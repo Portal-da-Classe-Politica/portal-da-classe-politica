@@ -38,38 +38,38 @@ const Home = () => {
                 <Image src="/img/logo.svg" alt="Logo" width={154} height={80} />
               </li>
               <li className="ml-auto self-center mr-5 text-white">
-                <Text textType="a" sizes={'L2'}>
+                <Text textType="a" size={'L2'}>
                   PÁGINA INICIAL
                 </Text>
               </li>
               <li className="self-center text-white mr-5">
-                <Text textType="a" sizes={'L2'}>
+                <Text textType="a" size={'L2'}>
                   CONSULTAS
                 </Text>
               </li>
               <li className="self-center text-white mr-5">
-                <Text textType="a" sizes={'L2'}>
+                <Text textType="a" size={'L2'}>
                   PROJEÇÕES
                 </Text>
               </li>
               <li className="self-center text-white mr-5">
-                <Text textType="a" sizes={'L2'}>
+                <Text textType="a" size={'L2'}>
                   PERFIL DOS CANDIDATOS
                 </Text>
               </li>
               <li className="self-center text-white mr-5">
-                <Text textType="a" sizes={'L2'}>
+                <Text textType="a" size={'L2'}>
                   SOBRE O PROJETO
                 </Text>
               </li>
               <li className="self-center text-white mr-5">
-                <Text textType="a" sizes={'L2'}>
+                <Text textType="a" size={'L2'}>
                   BLOG
                 </Text>
               </li>
               <li className="self-center text-white">
                 <Button>
-                  <Text sizes={'L2'}>ELEIÇÕES 2024</Text>
+                  <Text size={'L2'}>ELEIÇÕES 2024</Text>
                 </Button>
               </li>
             </ul>
@@ -78,12 +78,12 @@ const Home = () => {
             <div className=" flex-1">
               <div className=" max-w-[432px]">
                 <Display style={'D1'}>Conheça o Portal Redem</Display>
-                <Text sizes={'S1'}>Transformando dados eleitorais em análises para toda a sociedade</Text>
+                <Text size={'S1'}>Transformando dados eleitorais em análises para toda a sociedade</Text>
               </div>
             </div>
             <div className="flex-1 ">
               <div className="max-w-[460px]">
-                <Text sizes={'B1'}>
+                <Text size={'B1'}>
                   No Portal Redem os dados eleitorais são analisados e apresentados de forma detalhada. Aqui
                   você encontrará indicadores exclusivos e informações essenciais para compreender dados
                   eleitorais sensíveis. Junte-se a nós e transforme a maneira como você compreende as eleições
@@ -120,7 +120,7 @@ const Home = () => {
         <Container>
           <div className="max-w-[854px] mb-8">
             <Heading headingLevel={2}>Análises e Treinamentos </Heading>
-            <Text sizes={'B1'}>
+            <Text size={'B1'}>
               Aprofunde seu conhecimento sobre dados eleitorais com conteúdos e guias que tornarão a sua
               experiência nos uso dos dados eleitorais mais intuitiva e fundamentada.
             </Text>
@@ -165,13 +165,13 @@ const Home = () => {
                 <Heading headingLevel={2} className="font-bold">
                   Big Numbers
                 </Heading>
-                <Text sizes={'B1'} className="py-[24px]">
+                <Text size={'B1'} className="py-[24px]">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa
                   lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam
                   vulputate ipsum.
                 </Text>
                 <Button>
-                  <Text sizes={'C1'} className="font-bold">
+                  <Text size={'C1'} className="font-bold">
                     Saiba mais
                   </Text>
                 </Button>
@@ -179,25 +179,25 @@ const Home = () => {
             </div>
             <div className="grid grid-cols-2 gap-[24px]	flex-1">
               <BoxData
-                numero="+73"
-                title={'Pesquisadores e pesquisadoras envolvidos'}
-                texto={'Consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis'}
+                header="+73"
+                title="Pesquisadores e pesquisadoras envolvidos"
+                content="Consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis"
               />
               <BoxData
-                numero={'6243'}
-                title={'Dados processados'}
-                texto={'Consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis'}
+                header="6243"
+                title="Dados processados"
+                content="Consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis"
               />
 
               <BoxData
-                numero={'+180'}
-                title={'Variáveis'}
-                texto={'Consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis'}
+                header="+180"
+                title="Variáveis"
+                content="Consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis"
               />
               <BoxData
-                numero={'+1200'}
-                title={'Cruzamentos possíveis'}
-                texto={'Consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis'}
+                header="+1200"
+                title="Cruzamentos possíveis"
+                content="Consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis"
               />
             </div>
           </div>
@@ -216,10 +216,10 @@ Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla 
 
           <div className="mt-[120px]">
             <div className="flex mb-[30px]">
-              <Heading headingLevel={2} sizes={'H2'} className="font-bold ">
+              <Heading headingLevel={2} size={'H2'} className="font-bold ">
                 Conteúdos especiais
               </Heading>{' '}
-              <Text textType="a" sizes={'C1'} className="text-orange content-end ml-auto flex">
+              <Text textType="a" size={'C1'} className="text-orange content-end ml-auto flex">
                 Ver todos artigos
                 <div className="ml-4">
                   <Image src={'/img/voltarIcon.svg'} height={16} width={16} className="h-4 w-4" alt="" />
@@ -296,7 +296,7 @@ Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla 
               </div>
             </div>
             <div>
-              <Heading headingLevel={3} sizes={'H6'} className="font-bold mb-10">
+              <Heading headingLevel={3} size={'H6'} className="font-bold mb-10">
                 OVERVIEW
               </Heading>
               <ul className="space-y-2">
@@ -328,7 +328,7 @@ Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla 
               </ul>
             </div>
             <div className="w-[216px]">
-              <Heading headingLevel={3} sizes={'H6'} className="font-bold mb-10">
+              <Heading headingLevel={3} size={'H6'} className="font-bold mb-10">
                 FERRAMENTAS
               </Heading>
               <ul className="space-y-2">
@@ -355,7 +355,7 @@ Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla 
               </ul>
             </div>
             <div>
-              <Heading headingLevel={3} sizes={'H6'} className="font-bold mb-10">
+              <Heading headingLevel={3} size={'H6'} className="font-bold mb-10">
                 ATENDIMENTO
               </Heading>
               <ul className="space-y-2">
@@ -391,7 +391,7 @@ Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla 
         <div className="w-full h-[1px] bg-white"></div>
         <Container>
           <div className="text-center py-7">
-            <Text sizes={'L1'}>
+            <Text size={'L1'}>
               Copyright © 2024 ARW Consultoria. Todos os direitos reservados. Desenvolvido por Agência WDK
             </Text>
           </div>

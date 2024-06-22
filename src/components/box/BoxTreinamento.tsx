@@ -27,7 +27,7 @@ const BoxTreinamento = ({
           <ChipContainer>Leitura de 3min </ChipContainer>
           <ChipContainer>Categoria Aqui </ChipContainer>
         </div>
-        <Heading sizes="H6" className="font-bold ">
+        <Heading size="H6" className="font-bold ">
           {title}
         </Heading>
         <div className="h-[32-px]">

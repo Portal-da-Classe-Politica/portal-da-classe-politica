@@ -3,7 +3,7 @@ import { cva } from 'cva';
 
 const headingVariants = cva('font-montserrat', {
   variants: {
-    sizes: {
+    size: {
       H1: 'text-h1',
       H2: 'text-h2',
       H3: 'text-h3',
@@ -13,23 +13,23 @@ const headingVariants = cva('font-montserrat', {
     },
   },
   defaultVariants: {
-    sizes: 'H1',
+    size: 'H1',
   },
 });
 
 export const Heading = ({
   headingLevel = 1,
   className = '',
-  sizes,
+  size,
   children,
 }: {
   headingLevel?: number;
-  sizes?: 'H1' | 'H2' | 'H3' | 'H4' | 'H5' | 'H6';
+  size?: 'H1' | 'H2' | 'H3' | 'H4' | 'H5' | 'H6';
   className?: string;
   children: React.ReactNode;
 }) => {
   const HeadingTag = `h${headingLevel}` as keyof JSX.IntrinsicElements;
-  const combinedStyles = `${headingVariants({ sizes })} ${className}`;
+  const combinedStyles = `${headingVariants({ size })} ${className}`;
 
   return <HeadingTag className={combinedStyles}>{children}</HeadingTag>;
 };

@@ -27,15 +27,15 @@ const BoxEspeciais = ({
           <ChipContainer>Leitura de 3min </ChipContainer>
           <ChipContainer>Categoria Aqui </ChipContainer>
         </div>
-        <Heading headingLevel={2} sizes={'H6'} className="font-bold mb-[6px]">
+        <Heading headingLevel={2} size={'H6'} className="font-bold mb-[6px]">
           {title}
         </Heading>
         <div>
-          <Text sizes={'B2'} className=" flex-1 mb-3">
+          <Text size={'B2'} className=" flex-1 mb-3">
             {subTitle}
           </Text>
         </div>
-        <Text textType="a" sizes={'C1'} className="font-bold text-orange flex">
+        <Text textType="a" size={'C1'} className="font-bold text-orange flex">
           LEIA MAIS
           <div className="ml-4">
             <Image src={'/img/voltarIcon.svg'} height={16} width={16} className="h-4 w-4" alt="" />

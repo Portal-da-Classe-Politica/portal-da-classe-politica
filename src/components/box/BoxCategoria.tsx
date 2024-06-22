@@ -29,12 +29,12 @@ const BoxCategoria = ({
           <ChipContainer>Leitura de 3min</ChipContainer>
           <ChipContainer>Categoria Aqui</ChipContainer>
         </div>
-        <Text sizes={'S1'} className="font-bold ">
+        <Text size={'S1'} className="font-bold ">
           {title}
         </Text>
         <div className="flex items-center">
           {subTitle && (
-            <Text sizes={'B2'} className=" flex-1 mr-5">
+            <Text size={'B2'} className=" flex-1 mr-5">
               {subTitle}
             </Text>
           )}

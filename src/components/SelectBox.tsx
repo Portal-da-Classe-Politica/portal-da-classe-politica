@@ -37,7 +37,7 @@ const SelectBox = ({ title, subTitle, texto }: { title: string; subTitle: string
             {title}
           </Heading>
           <Text className=" text-[18px font-bold pb-[20px]">{subTitle}</Text>
-          <Text sizes={'B2'} className="mt-auto pb-[20px] ">
+          <Text size={'B2'} className="mt-auto pb-[20px] ">
             {texto}
           </Text>
           <Button>

@@ -1,16 +1,50 @@
 import React from 'react';
+import { cva } from 'cva';
 
 import { Text, Heading } from '@base';
 
-const BoxData = ({ numero, texto, title }: { numero: number | string; texto: string; title: string }) => {
+const variants = cva('font-montserrat', {
+  variants: {
+    background: {
+      white: 'bg-white',
+      orange: 'bg-orange',
+    },
+    header: {
+      white: 'text-orange',
+      orange: 'text-white',
+    },
+    content: {
+      white: 'text-black',
+      orange: 'text-white',
+    },
+  },
+});
+
+const BoxData = ({
+  variant = 'white',
+  header,
+  title,
+  content,
+}: {
+  variant?: 'white' | 'orange';
+  header: string;
+  title: string;
+  content: string;
+}) => {
+  const divClassName = variants({ background: variant });
+  const headerClassName = variants({ header: variant });
+  const contentClassName = variants({ content: variant });
+
   return (
-    <div className="flex flex-col bg-white h-[193px] w-[298px] p-5  rounded-[10px] ">
-      <Heading headingLevel={3} className="font-bold text-orange">
-        {numero}
+    <div className={`flex flex-col p-5 rounded-[10px] ${divClassName}`}>
+      <Heading headingLevel={2} className={`font-bold ${headerClassName}`}>
+        {header}
       </Heading>
-      <Text className=" text-[18px] text-orange font-bold pb-[10px]">{title}</Text>
-      <Text sizes={'B2'} className="mt-auto ">
-        {texto}
+      <Text size="B1" className={`font-bold pb-2 ${headerClassName}`}>
+        {title}
+      </Text>
+      <Text size="B2" className={`mt-auto ${contentClassName}`}>
+        {content}
       </Text>
     </div>
   );
