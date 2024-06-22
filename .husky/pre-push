@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "Hook | pre-push | Start"
+
+npm run build
+
+echo "Hook | pre-push | End"
