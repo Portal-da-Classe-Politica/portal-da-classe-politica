@@ -6,8 +6,8 @@ import Container from '@base/Container';
 import Heading from '@base/Heading';
 import Display from '@base/Display';
 import Text from '@base/Text';
-import Button from '@base/Button';
-import Icon from '@base/Icon';
+import { Button } from '@base/Button';
+import { Icon } from '@base/Icon';
 
 import BoxFerramenta from '@components/box/BoxFerramenta';
 import BoxCategoria from '@components/box/BoxCategoria';
@@ -35,7 +35,7 @@ const Home = () => {
           </ul>
         </Container>
       </header>
-      <section className="bg-laranja pb-[90px] pt-4">
+      <section className="bg-orange pb-[90px] pt-4">
         <Container>
           <nav>
             <ul className="flex">
@@ -162,7 +162,7 @@ const Home = () => {
           </div>
         </Container>
       </section>
-      <section className="bg-laranja py-[80px]">
+      <section className="bg-orange py-[80px]">
         <Container>
           <div className="flex">
             <div className="text-white flex-1 flex">
@@ -224,7 +224,7 @@ Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla 
               <Heading headingLevel={2} sizes={'H2'} className="font-bold ">
                 Conteúdos especiais
               </Heading>{' '}
-              <Text textType="a" sizes={'C1'} className="text-laranja content-end ml-auto flex">
+              <Text textType="a" sizes={'C1'} className="text-orange content-end ml-auto flex">
                 Ver todos artigos
                 <div className="ml-4">
                   <Image src={'/img/voltarIcon.svg'} height={16} width={16} className="h-4 w-4" alt="" />
@@ -265,7 +265,7 @@ Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla 
           </div>
         </Container>
       </section>
-      <section className="bg-laranja py-[80px]">
+      <section className="bg-orange py-[80px]">
         <Container className={'w-[770px]'}>
           <div className="text-white text-center mb-11">
             <Heading headingLevel={2} className="font-bold text-[30px] mb-[22px]">
@@ -294,10 +294,10 @@ Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla 
                 Lorem ipsum dolor sit amet consectetur adipiscing elit aliquam mauris sed ma
               </Text>
               <div className="flex gap-4">
-                <Icon src={'/img/Facebook.svg'} width={9} />
-                <Icon src={'/img/Twitter.svg'} width={18} />
-                <Icon src={'/img/LinkedIn.svg'} width={18} />
-                <Icon src={'/img/YouTube.svg'} width={18} />
+                <Icon type="Facebook" size={9} />
+                <Icon type="Twitter" size={18} />
+                <Icon type="LinkedIn" size={18} />
+                <Icon type="YouTube" size={18} />
               </div>
             </div>
             <div>
