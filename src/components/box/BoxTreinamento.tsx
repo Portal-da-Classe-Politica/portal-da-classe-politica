@@ -32,7 +32,7 @@ const BoxTreinamento = ({
           {title}
         </Heading>
         <div className="h-[32-px]">
-          <Button style={'laranjaSmall'}>
+          <Button style={'orangeSmall'}>
             <Text className="text-[12px] font-bold">Saiba mais</Text>
           </Button>
         </div>

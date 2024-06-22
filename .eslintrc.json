@@ -12,7 +12,6 @@
     "no-mixed-spaces-and-tabs": "error",
     "no-multiple-empty-lines": "error",
     "no-unexpected-multiline": "error",
-    "no-empty-function": "error",
     "curly": ["error", "all"],
     "keyword-spacing": "error",
     "default-param-last": "error",

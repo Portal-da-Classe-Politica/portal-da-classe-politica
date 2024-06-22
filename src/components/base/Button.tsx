@@ -1,21 +1,44 @@
-import React from 'react';
+'use client';
+
+import { MouseEventHandler } from 'react';
 import { cva } from 'cva';
 
-const buttonVariants = cva('font-montserrat', {
-  variants: {
-    style: {
-      preto: 'bg-black py-[12px] px-[28px] rounded-[10px]',
-      laranja: 'bg-laranja py-[12px] px-[28px] rounded-[10px] text-white',
-      laranjaSmall: 'bg-laranja py-[7px] px-[28px] rounded-[10px] text-white',
-    },
-  },
-  defaultVariants: {
-    style: 'preto',
-  },
+const buttonVariants = cva('font-montserrat rounded-[10px] font-bold', {
+  variants: {},
+  defaultVariants: {},
 });
 
-const Button = ({ style, children }: { style?: any; children: React.ReactNode }) => {
-  return <button className={buttonVariants({ style })}>{children}</button>;
-};
+export interface ButtonProps {
+  id?: string;
+  name?: string;
+  className?: string;
+  type?: 'button' | 'reset' | 'submit';
+  disabled?: boolean;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+  children?: any;
+}
 
-export default Button;
+export const Button = ({
+  id = '',
+  name = '',
+  className = '',
+  type = 'button',
+  disabled = false,
+  onClick = () => {},
+  children,
+}: ButtonProps) => {
+  const classes = buttonVariants();
+
+  return (
+    <button
+      id={id}
+      name={name}
+      type={type}
+      className={`${classes} ${className}`}
+      disabled={disabled}
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  );
+};
