@@ -2,7 +2,7 @@
 
 import { cva } from 'cva';
 import { Button, ButtonProps } from './Button';
-import Text from './Text';
+import { Text } from '../Text';
 
 const buttonVariants = cva('font-montserrat rounded-[10px] font-bold', {
   variants: {

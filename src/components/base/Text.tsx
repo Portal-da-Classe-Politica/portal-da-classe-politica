@@ -18,7 +18,7 @@ const textVariants = cva('font-montserrat', {
   },
 });
 
-const Text = ({
+export const Text = ({
   children,
   className = '',
   sizes,
@@ -40,5 +40,3 @@ const Text = ({
     </TextTag>
   );
 };
-
-export default Text;

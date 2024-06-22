@@ -17,7 +17,7 @@ const headingVariants = cva('font-montserrat', {
   },
 });
 
-const Heading = ({
+export const Heading = ({
   headingLevel = 1,
   className = '',
   sizes,
@@ -33,5 +33,3 @@ const Heading = ({
 
   return <HeadingTag className={combinedStyles}>{children}</HeadingTag>;
 };
-
-export default Heading;

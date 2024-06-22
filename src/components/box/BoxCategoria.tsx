@@ -1,8 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
-import Text from '../base/Text';
+
+import { Text, ButtonStyled } from '@base';
 import ChipContainer from '../ChipContainer';
-import Button from '../base/Button';
 
 const BoxCategoria = ({
   title,
@@ -40,11 +40,7 @@ const BoxCategoria = ({
           )}
 
           <div>
-            <Button style={'orange'}>
-              <Text sizes={'C1'} className="font-bold">
-                Saiba mais
-              </Text>
-            </Button>
+            <ButtonStyled color="orange" text="Saiba mais" />
           </div>
         </div>
       </div>

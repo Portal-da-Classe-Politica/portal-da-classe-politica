@@ -1,8 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
-import Text from '../base/Text';
+
+import { Text, Heading } from '@base';
 import ChipContainer from '../ChipContainer';
-import Heading from '../base/Heading';
 
 const BoxEspeciais = ({
   title,

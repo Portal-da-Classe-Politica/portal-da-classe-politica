@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import Text from '../base/Text';
+
+import { Text } from '@base';
 
 const BoxIcon = ({ texto, src }: { texto: string; src: string }) => {
   return (

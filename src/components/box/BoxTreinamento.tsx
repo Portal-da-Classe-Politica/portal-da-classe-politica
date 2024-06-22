@@ -1,9 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
-import Text from '../base/Text';
+
+import { Text, Heading, ButtonStyled } from '@base';
 import ChipContainer from '../ChipContainer';
-import Button from '../base/Button';
-import Heading from '../base/Heading';
 
 const BoxTreinamento = ({
   title,
@@ -32,9 +31,9 @@ const BoxTreinamento = ({
           {title}
         </Heading>
         <div className="h-[32-px]">
-          <Button style={'orangeSmall'}>
+          <ButtonStyled text="Saiba mais" size="small">
             <Text className="text-[12px] font-bold">Saiba mais</Text>
-          </Button>
+          </ButtonStyled>
         </div>
       </div>
     </div>

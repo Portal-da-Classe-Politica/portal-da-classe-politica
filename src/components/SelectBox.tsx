@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import Button from '@base/Button';
-import Heading from '@base/Heading';
-import Text from '@base/Text';
+
+import { Text, Heading, Button } from '@base';
 
 const SelectBox = ({ title, subTitle, texto }: { title: string; subTitle: string; texto: string }) => {
   const [selecionado, setSelecionado] = useState(0);

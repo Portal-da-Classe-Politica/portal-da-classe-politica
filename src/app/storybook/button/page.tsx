@@ -1,4 +1,4 @@
-import { ButtonStyled, ButtonStyledProps } from '@base/ButtonStyled';
+import { ButtonStyled, ButtonStyledProps } from '@base';
 
 const Page = () => {
   return (

@@ -2,12 +2,7 @@
 
 import Image from 'next/image';
 
-import Container from '@base/Container';
-import Heading from '@base/Heading';
-import Display from '@base/Display';
-import Text from '@base/Text';
-import { Button } from '@base/Button';
-import { Icon } from '@base/Icon';
+import { Container, Heading, Display, Text, Button, Icon } from '@base';
 
 import BoxFerramenta from '@components/box/BoxFerramenta';
 import BoxCategoria from '@components/box/BoxCategoria';

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Text from '@base/Text';
+import { Text } from '@base';
 
 const storybookLinks = [
   {

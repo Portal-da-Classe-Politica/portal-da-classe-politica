@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import Text from '../base/Text';
+
+import { Text } from '@base';
 
 const BoxFerramenta = ({ src, title, subTitle }: { src: string; title: string; subTitle: string }) => {
   return (

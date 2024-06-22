@@ -1,6 +1,6 @@
 import React from 'react';
-import Text from '@base/Text';
-import Heading from '@base/Heading';
+
+import { Text, Heading } from '@base';
 
 const BoxData = ({ numero, texto, title }: { numero: number | string; texto: string; title: string }) => {
   return (
