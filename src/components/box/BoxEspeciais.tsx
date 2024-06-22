@@ -35,7 +35,7 @@ const BoxEspeciais = ({
             {subTitle}
           </Text>
         </div>
-        <Text textType="a" sizes={'C1'} className="font-bold text-laranja flex">
+        <Text textType="a" sizes={'C1'} className="font-bold text-orange flex">
           LEIA MAIS
           <div className="ml-4">
             <Image src={'/img/voltarIcon.svg'} height={16} width={16} className="h-4 w-4" alt="" />

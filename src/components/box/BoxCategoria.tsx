@@ -40,7 +40,7 @@ const BoxCategoria = ({
           )}
 
           <div>
-            <Button style={'laranja'}>
+            <Button style={'orange'}>
               <Text sizes={'C1'} className="font-bold">
                 Saiba mais
               </Text>

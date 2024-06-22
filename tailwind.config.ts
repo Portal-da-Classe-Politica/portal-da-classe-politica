@@ -29,8 +29,23 @@ const config: Config = {
         c2: ['12px', '12px'],
       },
       colors: {
-        laranja: '#EB582F',
-        laranja1: '#F9D1C5',
+        orangeLight1: '#F9D1C5',
+        orangeLight2: '#F3A28B',
+        orangeLight3: '#ED7451',
+        orange: '#EB582F',
+        orangeDark1: '#CC3A10',
+        orangeDark2: '#A82D0A',
+        orangeDark3: '#6B1A02',
+
+        grayLight1: '#D4D4D4',
+        grayLight2: '#A9A8AA',
+        grayLight3: '#7D7D7F',
+        grayDark1: '#525155',
+        grayDark2: '#3C3C3D',
+        grayDark3: '#141315',
+
+        white: '#FFFFFF',
+        black: '#000000',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

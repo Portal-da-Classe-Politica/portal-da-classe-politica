@@ -23,8 +23,8 @@ const SelectBox = ({ title, subTitle, texto }: { title: string; subTitle: string
               }}
               className={`${
                 selecionado === index
-                  ? 'bg-laranja text-white text-[18px] font-bold rounded-t-[10px] py-4 px-8'
-                  : 'text-laranja text-[18px]  py-4 px-8'
+                  ? 'bg-orange text-white text-[18px] font-bold rounded-t-[10px] py-4 px-8'
+                  : 'text-orange text-[18px]  py-4 px-8'
               }`}
             >
               {conteudo}{' '}
@@ -32,7 +32,7 @@ const SelectBox = ({ title, subTitle, texto }: { title: string; subTitle: string
           );
         })}
       </div>
-      <div className="flex py-10 px-7py-10 px-7 bg-laranja">
+      <div className="flex py-10 px-7py-10 px-7 bg-orange">
         <div className="  text-white">
           <Heading headingLevel={2} className="font-bold pb-3">
             {title}
@@ -46,7 +46,7 @@ const SelectBox = ({ title, subTitle, texto }: { title: string; subTitle: string
           </Button>
         </div>
         <div>
-          <div className="h-[300px] w-[533px] bg-laranja1 rounded-lg"></div>
+          <div className="h-[300px] w-[533px] bg-orangeLight1 rounded-lg"></div>
         </div>
       </div>
     </div>

@@ -12,7 +12,7 @@ const BoxFerramenta = ({ src, title, subTitle }: { src: string; title: string; s
       <Text sizes={'B2'} className="text-center">
         {subTitle}
       </Text>
-      <Text textType="a" sizes={'C2'} className="mt-auto text-laranja">
+      <Text textType="a" sizes={'C2'} className="mt-auto text-orange">
         Acessar Ferramenta
       </Text>
     </div>
