@@ -7,7 +7,7 @@ import { Container, Heading, Display, Text, Button, Icon } from '@base';
 import BoxFerramenta from '@components/box/BoxFerramenta';
 import BoxCategoria from '@components/box/BoxCategoria';
 import BoxTreinamento from '@components/box/BoxTreinamento';
-import BoxData from '@components/box/BoxData';
+import BoxData from '@/components/box/BoxData';
 import SelectBox from '@components/SelectBox';
 import BoxEspeciais from '@components/box/BoxEspeciais';
 import BoxIcon from '@components/box/BoxIcon';
@@ -25,7 +25,7 @@ const Home = () => {
               <a className="font-montserrat text-xs ">Termos de Uso</a>
             </li>
             <li className=" ml-auto">
-              <Image src="/img/acessibilidade.svg" alt="Acessibilidade" width={200} height={30} />
+              <Image src="/img/Acessibilidade.svg" alt="Acessibilidade" width={200} height={30} />
             </li>
           </ul>
         </Container>
@@ -35,7 +35,7 @@ const Home = () => {
           <nav>
             <ul className="flex">
               <li>
-                <Image src="/img/logo.svg" alt="Logo" width={154} height={80} />
+                <Image src="/img/Logo.svg" alt="Logo" width={154} height={80} />
               </li>
               <li className="ml-auto self-center mr-5 text-white">
                 <Text textType="a" size={'L2'}>
@@ -94,22 +94,22 @@ const Home = () => {
           </div>
           <div className="flex justify-between mt-24">
             <BoxFerramenta
-              src={'/img/cruzdados.svg'}
+              src={'/img/Cruzdados.svg'}
               title={'Cruzamentos e Dados Eleitorais'}
               subTitle={'Consectetur adipiscing uspendisse non odio.'}
             />
             <BoxFerramenta
-              src={'/img/indicadores.svg'}
+              src={'/img/Indicadores.svg'}
               title={'Cruzamentos e Dados Eleitorais'}
               subTitle={'Consectetur adipiscing uspendisse non odio.'}
             />
             <BoxFerramenta
-              src={'/img/aprenda.svg'}
+              src={'/img/Aprenda.svg'}
               title={'Cruzamentos e Dados Eleitorais'}
               subTitle={'Consectetur adipiscing uspendisse non odio.'}
             />
             <BoxFerramenta
-              src={'/img/comunicacao.svg'}
+              src={'/img/Comunicacao.svg'}
               title={'Cruzamentos e Dados Eleitorais'}
               subTitle={'Consectetur adipiscing uspendisse non odio.'}
             />
@@ -132,7 +132,7 @@ const Home = () => {
                 subTitle={
                   'Antes de votar, confira o material informativo que preparamos com tudo que você precisa saber sobre suas opções de voto para prefeito e vereadores da sua cidade.'
                 }
-                src={'/img/dados.svg'}
+                src={'/img/Dados.svg'}
               />
             </div>
 
@@ -142,14 +142,14 @@ const Home = () => {
                   <BoxTreinamento
                     customHeight={90}
                     title={'Eleições 2024: Conheça o histórico dos candidatos da sua cidade'}
-                    src={'/img/dados2.svg'}
+                    src={'/img/Dados2.svg'}
                   />
                 </div>
                 <div className="h-[227px]">
                   <BoxTreinamento
                     customHeight={90}
                     title={'Eleições 2024: Conheça o histórico dos candidatos da sua cidade'}
-                    src={'/img/dados2.svg'}
+                    src={'/img/Dados2.svg'}
                   />
                 </div>
               </div>
@@ -222,7 +222,7 @@ Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla 
               <Text textType="a" size={'C1'} className="text-orange content-end ml-auto flex">
                 Ver todos artigos
                 <div className="ml-4">
-                  <Image src={'/img/voltarIcon.svg'} height={16} width={16} className="h-4 w-4" alt="" />
+                  <Image src={'/icons/VoltarIcon.svg'} height={16} width={16} className="h-4 w-4" alt="" />
                 </div>
               </Text>
               {/* pode ser um botao aqui no lugar do a (depois que estiver pronto)*/}
@@ -233,28 +233,28 @@ Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla 
                 subTitle={
                   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis.'
                 }
-                src={'/img/dados.svg'}
+                src={'/img/Dados.svg'}
               />
               <BoxEspeciais
                 title={'Lorem ipsum dolor sit amet sectetur dolor sit'}
                 subTitle={
                   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis.'
                 }
-                src={'/img/dados.svg'}
+                src={'/img/Dados.svg'}
               />
               <BoxEspeciais
                 title={'Lorem ipsum dolor sit amet sectetur dolor sit'}
                 subTitle={
                   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis.'
                 }
-                src={'/img/dados.svg'}
+                src={'/img/Dados.svg'}
               />
               <BoxEspeciais
                 title={'Lorem ipsum dolor sit amet sectetur dolor sit'}
                 subTitle={
                   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis.'
                 }
-                src={'/img/dados.svg'}
+                src={'/img/Dados.svg'}
               />
             </div>
           </div>
@@ -272,11 +272,11 @@ Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla 
               ipsum.
             </Text>
           </div>
-          <div className="flex justify-between">
-            <BoxIcon texto={'Canal de denúncia'} src={'/img/megafone.svg'} />
-            <BoxIcon texto={'Atendimento Redem'} src={'/img/headset.svg'} />
-            <BoxIcon texto={'Reportar Erro'} src={'/img/error.svg'} />
-            <BoxIcon texto={'Elogios ao projeto'} src={'/img/estrela.svg'} />
+          <div className="flex justify-between gap-8">
+            <BoxIcon text="Canal de denúncia" iconType="Megafone" />
+            <BoxIcon text="Atendimento Redem" iconType="Headset" />
+            <BoxIcon text="Reportar Erro" iconType="Error" />
+            <BoxIcon text="Elogios ao projeto" iconType="Estrela" />
           </div>
         </Container>
       </section>
@@ -284,7 +284,7 @@ Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla 
         <Container>
           <div className="flex py-[90px] gap-10">
             <div className="w-[340px] mr-[160px]">
-              <Image src="/img/logo.svg" alt="Logo" width={154} height={80} />
+              <Image src="/img/Logo.svg" alt="Logo" width={154} height={80} />
               <Text className="text-[18px] my-6">
                 Lorem ipsum dolor sit amet consectetur adipiscing elit aliquam mauris sed ma
               </Text>

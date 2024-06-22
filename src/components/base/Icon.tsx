@@ -1,19 +1,11 @@
 import Image from 'next/image';
 
 const sourceMap = {
-  Acessibilidade: '/icons/Acessibilidade.svg',
-  Aprenda: '/icons/Aprenda.svg',
-  Comunicacao: '/icons/Comunicacao.svg',
-  Cruzdados: '/icons/Cruzdados.svg',
-  Dados: '/icons/Dados.svg',
-  Dados2: '/icons/Dados2.svg',
   Error: '/icons/Error.svg',
   Estrela: '/icons/Estrela.svg',
   Facebook: '/icons/Facebook.svg',
   Headset: '/icons/Headset.svg',
-  Indicadores: '/icons/Indicadores.svg',
   LinkedIn: '/icons/LinkedIn.svg',
-  Logo: '/icons/Logo.svg',
   Megafone: '/icons/Megafone.svg',
   Twitter: '/icons/Twitter.svg',
   VoltarIcon: '/icons/VoltarIcon.svg',

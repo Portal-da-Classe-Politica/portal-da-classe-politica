@@ -1,14 +1,21 @@
 import React from 'react';
-import Image from 'next/image';
 
-import { Text } from '@base';
+import { Icon, IconType, Text } from '@base';
 
-const BoxIcon = ({ texto, src }: { texto: string; src: string }) => {
+const BoxIcon = ({
+  text,
+  iconType,
+  iconSize = 64,
+}: {
+  text: string;
+  iconType: IconType;
+  iconSize?: number;
+}) => {
   return (
-    <div className="flex flex-col bg-white h-[161px] w-[163px] py-5 px-7  rounded-[10px] items-center text-center ">
-      <Image src={src} height={64} width={64} className="w-[64px] h-[64px] pb-3" alt="" />
-      <Text size={'B1'} className="font-bold text-orange">
-        {texto}
+    <div className="flex flex-col flex-1 aspect-square bg-white py-5 px-7 rounded-[10px] items-center text-center">
+      <Icon type={iconType} size={iconSize} />
+      <Text size={'B1'} className="font-bold text-orange mt-auto">
+        {text}
       </Text>
     </div>
   );
