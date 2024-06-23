@@ -13,8 +13,11 @@ const BoxFerramenta = ({ src, title, subTitle }: { src: string; title: string; s
       <Text size={'B2'} className="text-center">
         {subTitle}
       </Text>
-      <Text textType="a" size={'C2'} className="mt-auto text-orange">
+      <Text textType="a" size={'C2'} className="mt-auto text-orange flex">
         Acessar Ferramenta
+        <div className="ml-2">
+          <Image src={'/icons/VoltarIcon.svg'} height={12} width={12} className="h-3 w-3" alt="" />
+        </div>{' '}
       </Text>
     </div>
   );
