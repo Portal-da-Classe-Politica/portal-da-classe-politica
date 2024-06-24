@@ -2,14 +2,15 @@
 
 import Image from 'next/image';
 
-import { Container, Heading, Display, Text, Button, Icon } from '@base';
+import { Container, Heading, Display, Text, Button } from '@base';
 
 import BoxFerramenta from '@components/box/BoxFerramenta';
 import BoxData from '@/components/box/BoxData';
 import SelectBox from '@components/SelectBox';
-import BoxIcon from '@components/box/BoxIcon';
 import CardPost from '@/components/CardPost';
 import LogoIcon from '@/components/LogoIcon';
+import { BoxIconText } from '@/components/box/BoxIconText';
+import { BoxIcon } from '@/components/box/BoxIcon';
 
 const Home = () => {
   return (
@@ -338,10 +339,10 @@ const Home = () => {
             </Text>
           </div>
           <div className="flex justify-between gap-8">
-            <BoxIcon text="Canal de denúncia" iconType="Megafone" />
-            <BoxIcon text="Atendimento Redem" iconType="Headset" />
-            <BoxIcon text="Reportar Erro" iconType="Error" />
-            <BoxIcon text="Elogios ao projeto" iconType="Estrela" />
+            <BoxIconText text="Canal de denúncia" iconType="Megafone" />
+            <BoxIconText text="Atendimento Redem" iconType="Headset" />
+            <BoxIconText text="Reportar Erro" iconType="Error" />
+            <BoxIconText text="Elogios ao projeto" iconType="Star" />
           </div>
         </Container>
       </section>
@@ -354,10 +355,10 @@ const Home = () => {
                 Lorem ipsum dolor sit amet consectetur adipiscing elit aliquam mauris sed ma
               </Text>
               <div className="flex gap-4">
-                <Icon type="Facebook" size={9} />
-                <Icon type="Twitter" size={18} />
-                <Icon type="LinkedIn" size={18} />
-                <Icon type="YouTube" size={18} />
+                <BoxIcon iconType="Facebook" iconSize={12} className="bg-orange" />
+                <BoxIcon iconType="Twitter" iconSize={18} className="bg-orange" />
+                <BoxIcon iconType="LinkedIn" iconSize={18} className="bg-orange" />
+                <BoxIcon iconType="YouTube" iconSize={18} className="bg-orange" />
               </div>
             </div>
             <div>
