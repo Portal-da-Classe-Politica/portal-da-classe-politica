@@ -341,7 +341,7 @@ const Home = () => {
             <BoxIcon text="Canal de denúncia" iconType="Megafone" />
             <BoxIcon text="Atendimento Redem" iconType="Headset" />
             <BoxIcon text="Reportar Erro" iconType="Error" />
-            <BoxIcon text="Elogios ao projeto" iconType="Estrela" />
+            <BoxIcon text="Elogios ao projeto" iconType="Star" />
           </div>
         </Container>
       </section>
