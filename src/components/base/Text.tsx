@@ -23,19 +23,21 @@ export const Text = ({
   className = '',
   size,
   textType = 'p',
+  href,
   props,
 }: {
   children: React.ReactNode;
   className?: string;
   size?: 'B1' | 'B2' | 'L1' | 'L2' | 'S1' | 'C1' | 'C2';
   textType?: string;
+  href?: string;
   props?: any;
 }) => {
   const TextTag = `${textType}`;
   const combinedStyles = `${textVariants({ size })} ${className}`;
 
   return (
-    <TextTag className={combinedStyles} {...props}>
+    <TextTag className={combinedStyles} href={href} {...props}>
       {children}
     </TextTag>
   );

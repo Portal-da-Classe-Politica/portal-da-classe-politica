@@ -5,12 +5,10 @@ import Image from 'next/image';
 import { Container, Heading, Display, Text, Button, Icon } from '@base';
 
 import BoxFerramenta from '@components/box/BoxFerramenta';
-import BoxCategoria from '@components/box/BoxCategoria';
-import BoxTreinamento from '@components/box/BoxTreinamento';
 import BoxData from '@/components/box/BoxData';
 import SelectBox from '@components/SelectBox';
-import BoxEspeciais from '@components/box/BoxEspeciais';
 import BoxIcon from '@components/box/BoxIcon';
+import CardPost from '@/components/CardPost';
 
 const Home = () => {
   return (
@@ -127,26 +125,33 @@ const Home = () => {
           </div>
           <div className="flex gap-[58px]">
             <div className="h-[480px]">
-              <BoxCategoria
+              <CardPost
+                category={['Leitura de 3min', 'Categoria Aqui']}
+                customHeight={250}
                 title={'Eleições 2024: Conheça o histórico dos candidatos da sua cidade'}
                 subTitle={
                   'Antes de votar, confira o material informativo que preparamos com tudo que você precisa saber sobre suas opções de voto para prefeito e vereadores da sua cidade.'
                 }
                 src={'/img/Dados.svg'}
+                type="Primary"
               />
             </div>
 
             <div className="">
               <div className="flex flex-col gap-[24px]">
                 <div className="h-[227px]">
-                  <BoxTreinamento
+                  <CardPost
+                    type="Secondary"
+                    category={['Leitura de 3min', 'Categoria Aqui']}
                     customHeight={90}
                     title={'Eleições 2024: Conheça o histórico dos candidatos da sua cidade'}
                     src={'/img/Dados2.svg'}
                   />
                 </div>
                 <div className="h-[227px]">
-                  <BoxTreinamento
+                  <CardPost
+                    type="Secondary"
+                    category={['Leitura de 3min', 'Categoria Aqui']}
                     customHeight={90}
                     title={'Eleições 2024: Conheça o histórico dos candidatos da sua cidade'}
                     src={'/img/Dados2.svg'}
@@ -227,29 +232,37 @@ Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla 
               </Text>
               {/* pode ser um botao aqui no lugar do a (depois que estiver pronto)*/}
             </div>
-            <div className="flex justify-between gap-8">
-              <BoxEspeciais
+            <div className="flex justify-between gap-8 h-[370px]">
+              <CardPost
+                type="Tertiary"
+                category={['Leitura de 3min', 'Categoria Aqui']}
                 title={'Lorem ipsum dolor sit amet sectetur dolor sit'}
                 subTitle={
                   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis.'
                 }
                 src={'/img/Dados.svg'}
               />
-              <BoxEspeciais
+              <CardPost
+                type="Tertiary"
+                category={['Leitura de 3min', 'Categoria Aqui']}
                 title={'Lorem ipsum dolor sit amet sectetur dolor sit'}
                 subTitle={
                   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis.'
                 }
                 src={'/img/Dados.svg'}
               />
-              <BoxEspeciais
+              <CardPost
+                type="Tertiary"
+                category={['Leitura de 3min', 'Categoria Aqui']}
                 title={'Lorem ipsum dolor sit amet sectetur dolor sit'}
                 subTitle={
                   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis.'
                 }
                 src={'/img/Dados.svg'}
               />
-              <BoxEspeciais
+              <CardPost
+                type="Tertiary"
+                category={['Leitura de 3min', 'Categoria Aqui']}
                 title={'Lorem ipsum dolor sit amet sectetur dolor sit'}
                 subTitle={
                   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis.'
