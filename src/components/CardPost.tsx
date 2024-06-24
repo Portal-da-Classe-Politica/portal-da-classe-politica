@@ -97,7 +97,7 @@ const CardPost = <T extends BaseProps>({
       className={`flex flex-col h-full bg-white w-full items-center rounded-[10px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] ${className}`}
     >
       <div className={`w-full h-[${customHeight}px] relative flex-1 `}>
-        <Image src={src} layout="fill" objectFit="cover" className="rounded-t-[10px]" alt="" />
+        <Image src={src} layout="fill" className="rounded-t-[10px]" alt="" />
       </div>
       <div className="pt-[15px] px-[20px] pb-[20px] ">
         <div className="pb-[18px]">

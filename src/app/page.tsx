@@ -2,14 +2,14 @@
 
 import Image from 'next/image';
 
-import { Container, Heading, Display, Text, Button, Icon } from '@base';
+import { Container, Heading, Display, Text, Button } from '@base';
 
 import BoxFerramenta from '@components/box/BoxFerramenta';
 import BoxData from '@/components/box/BoxData';
 import SelectBox from '@components/SelectBox';
-import BoxIcon from '@components/box/BoxIcon';
 import CardPost from '@/components/CardPost';
 import LogoIcon from '@/components/LogoIcon';
+import { BoxIconText } from '@/components/box/BoxIconText';
 
 const Home = () => {
   return (
@@ -338,130 +338,13 @@ const Home = () => {
             </Text>
           </div>
           <div className="flex justify-between gap-8">
-            <BoxIcon text="Canal de denúncia" iconType="Megafone" />
-            <BoxIcon text="Atendimento Redem" iconType="Headset" />
-            <BoxIcon text="Reportar Erro" iconType="Error" />
-            <BoxIcon text="Elogios ao projeto" iconType="Star" />
+            <BoxIconText text="Canal de denúncia" iconType="Megafone" />
+            <BoxIconText text="Atendimento Redem" iconType="Headset" />
+            <BoxIconText text="Reportar Erro" iconType="Error" />
+            <BoxIconText text="Elogios ao projeto" iconType="Star" />
           </div>
         </Container>
       </section>
-      <footer className="bg-black text-white">
-        <Container>
-          <div className="flex py-[90px] gap-10">
-            <div className="w-[340px] mr-[160px]">
-              <Image src="/img/Logo.svg" alt="Logo" width={154} height={80} />
-              <Text className="text-[18px] my-6">
-                Lorem ipsum dolor sit amet consectetur adipiscing elit aliquam mauris sed ma
-              </Text>
-              <div className="flex gap-4">
-                <Icon type="Facebook" size={9} />
-                <Icon type="Twitter" size={18} />
-                <Icon type="LinkedIn" size={18} />
-                <Icon type="YouTube" size={18} />
-              </div>
-            </div>
-            <div>
-              <Heading headingLevel={3} size={'H6'} className="font-bold mb-10">
-                OVERVIEW
-              </Heading>
-              <ul className="space-y-2">
-                <li>
-                  <Text textType="a" className="text-[18px]">
-                    Consultas
-                  </Text>
-                </li>
-                <li>
-                  <Text textType="a" className="text-[18px]">
-                    Projeções
-                  </Text>
-                </li>
-                <li>
-                  <Text textType="a" className="text-[18px]">
-                    Perfil dos candidatos
-                  </Text>
-                </li>
-                <li>
-                  <Text textType="a" className="text-[18px]">
-                    Sobre o projeto
-                  </Text>
-                </li>
-                <li>
-                  <Text textType="a" className="text-[18px]">
-                    Blog
-                  </Text>
-                </li>
-              </ul>
-            </div>
-            <div className="w-[216px]">
-              <Heading headingLevel={3} size={'H6'} className="font-bold mb-10">
-                FERRAMENTAS
-              </Heading>
-              <ul className="space-y-2">
-                <li>
-                  <Text textType="a" className="text-[18px]">
-                    Cruzamentos e Dados Eleitorais
-                  </Text>
-                </li>
-                <li>
-                  <Text textType="a" className="text-[18px]">
-                    Indicadores e Índices Especiais
-                  </Text>{' '}
-                </li>
-                <li>
-                  <Text textType="a" className="text-[18px]">
-                    Aprenda a usar os Indicadores
-                  </Text>
-                </li>
-                <li>
-                  <Text textType="a" className="text-[18px]">
-                    Comunicação Científica
-                  </Text>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <Heading headingLevel={3} size={'H6'} className="font-bold mb-10">
-                ATENDIMENTO
-              </Heading>
-              <ul className="space-y-2">
-                <li>
-                  <Text textType="a" className="text-[18px]">
-                    Suporte Técnico{' '}
-                  </Text>
-                </li>
-                <li>
-                  <Text textType="a" className="text-[18px]">
-                    Falar com Analista{' '}
-                  </Text>
-                </li>
-                <li>
-                  <Text textType="a" className="text-[18px]">
-                    Reportar Erro
-                  </Text>
-                </li>
-                <li>
-                  <Text textType="a" className="text-[18px]">
-                    Fazer Denúncia
-                  </Text>
-                </li>
-                <li>
-                  <Text textType="a" className="text-[18px]">
-                    Contato
-                  </Text>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </Container>
-        <div className="w-full h-[1px] bg-white"></div>
-        <Container>
-          <div className="text-center py-7">
-            <Text size={'L1'}>
-              Copyright © 2024 ARW Consultoria. Todos os direitos reservados. Desenvolvido por Agência WDK
-            </Text>
-          </div>
-        </Container>
-      </footer>
     </main>
   );
 };
