@@ -211,12 +211,63 @@ const Home = () => {
       <section className="pt-[72px] pb-[78px]">
         <Container>
           <SelectBox
-            title={'Como fazer os cruzamentos'}
-            subTitle={
-              'Aprenda como criar visualizações, escolhendo variáveis e criando cruzamentos com dados eleitorais.'
-            }
-            texto={`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis ec.Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum.`}
+            tabs={[
+              {
+                title: 'Como fazer os cruzamentos',
+                content: (
+                  <>
+                    <div className="  text-white">
+                      <Heading headingLevel={2} className="font-bold pb-3">
+                        Como fazer os cruzamentos
+                      </Heading>
+                      <Text className=" text-[18px font-bold pb-[20px]">
+                        Como fazer os cruzamentosComo fazer os cruzamentos
+                      </Text>
+                      <Text size={'B2'} className="mt-auto pb-[20px] ">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet
+                        massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis
+                        ec.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit
+                        amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis
+                        nec. Nam vulputate ipsum. Suspendisse non odio sit amet massa lobortis scelerisque.
+                        Integer gravida nulla ipsum.
+                      </Text>
+                      <Button>
+                        <Text className="text-[14px] font-bold">Saiba mais</Text>
+                      </Button>
+                    </div>
+                    <div>
+                      <div className="h-[300px] w-[533px] bg-orangeLight1 rounded-lg"></div>
+                    </div>
+                  </>
+                ),
+              },
+              {
+                title: 'Como fazer os cruzamentos',
+                content: (
+                  <>
+                    <div className="  text-white">
+                      <Heading headingLevel={2} className="font-bold pb-3">
+                        Como fazer os cruzamentos
+                      </Heading>
+                      <Text className=" text-[18px font-bold pb-[20px]">
+                        Como fazer os cruzamentosComo fazer os cruzamentos
+                      </Text>
+                      <Text size={'B2'} className="mt-auto pb-[20px] ">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet
+                        massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis
+                        ec.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit
+                        amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis
+                        nec. Nam vulputate ipsum. Suspendisse non odio sit amet massa lobortis scelerisque.
+                        Integer gravida nulla ipsum.
+                      </Text>
+                    </div>
+                    <div>
+                      <div className="h-[300px] w-[533px] bg-orangeLight1 rounded-lg"></div>
+                    </div>
+                  </>
+                ),
+              },
+            ]}
           />
 
           <div className="mt-[120px]">
