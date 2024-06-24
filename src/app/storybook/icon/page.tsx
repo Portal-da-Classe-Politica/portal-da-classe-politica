@@ -2,13 +2,12 @@ import { Icon } from '@base';
 
 const Page = () => {
   return (
-    <main className="font-montserrat p-10">
-      <div className="font-montserrat py-4"></div>
+    <main className="font-montserrat p-10 bg-green-200">
       <div className="py-4">
-        <Icon type="Error" />
+        <Icon type="ArrowRight" />
       </div>
       <div className="py-4">
-        <Icon type="Estrela" />
+        <Icon type="Error" />
       </div>
       <div className="py-4">
         <Icon type="Facebook" />
@@ -23,10 +22,10 @@ const Page = () => {
         <Icon type="Megafone" />
       </div>
       <div className="py-4">
-        <Icon type="Twitter" />
+        <Icon type="Star" />
       </div>
       <div className="py-4">
-        <Icon type="VoltarIcon" />
+        <Icon type="Twitter" />
       </div>
       <div className="py-4">
         <Icon type="YouTube" />
