@@ -18,21 +18,16 @@ const textVariants = cva('font-montserrat', {
   },
 });
 
-export const Text = ({
-  children,
-  className = '',
-  size,
-  textType = 'p',
-  href,
-  props,
-}: {
+export type TextProps = {
   children: React.ReactNode;
   className?: string;
   size?: 'B1' | 'B2' | 'L1' | 'L2' | 'S1' | 'C1' | 'C2';
   textType?: string;
   href?: string;
   props?: any;
-}) => {
+};
+
+export const Text = ({ children, className = '', size, textType = 'p', href, props }: TextProps) => {
   const TextTag = `${textType}`;
   const combinedStyles = `${textVariants({ size })} ${className}`;
 
