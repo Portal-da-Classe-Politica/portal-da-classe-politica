@@ -54,5 +54,13 @@ const config: Config = {
     },
   },
   plugins: [],
+  safelist: [
+    { pattern: /^w-\d+$/ },
+    { pattern: /^w-px$/ },
+    { pattern: /^w-(full|screen|min|max|fit)$/ },
+    { pattern: /^h-\d+$/ },
+    { pattern: /^h-px$/ },
+    { pattern: /^h-(full|screen|min|max|fit)$/ },
+  ],
 };
 export default config;

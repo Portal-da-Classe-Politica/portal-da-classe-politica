@@ -10,7 +10,6 @@ import SelectBox from '@components/SelectBox';
 import CardPost from '@/components/CardPost';
 import LogoIcon from '@/components/LogoIcon';
 import { BoxIconText } from '@/components/box/BoxIconText';
-import { BoxIcon } from '@/components/box/BoxIcon';
 
 const Home = () => {
   return (
@@ -346,123 +345,6 @@ const Home = () => {
           </div>
         </Container>
       </section>
-      <footer className="bg-black text-white">
-        <Container>
-          <div className="flex py-[90px] gap-10">
-            <div className="w-[340px] mr-[160px]">
-              <Image src="/img/Logo.svg" alt="Logo" width={154} height={80} />
-              <Text className="text-[18px] my-6">
-                Lorem ipsum dolor sit amet consectetur adipiscing elit aliquam mauris sed ma
-              </Text>
-              <div className="flex gap-4">
-                <BoxIcon iconType="Facebook" iconSize={12} className="bg-orange" />
-                <BoxIcon iconType="Twitter" iconSize={18} className="bg-orange" />
-                <BoxIcon iconType="LinkedIn" iconSize={18} className="bg-orange" />
-                <BoxIcon iconType="YouTube" iconSize={18} className="bg-orange" />
-              </div>
-            </div>
-            <div>
-              <Heading headingLevel={3} size={'H6'} className="font-bold mb-10">
-                OVERVIEW
-              </Heading>
-              <ul className="space-y-2">
-                <li>
-                  <Text textType="a" className="text-[18px]">
-                    Consultas
-                  </Text>
-                </li>
-                <li>
-                  <Text textType="a" className="text-[18px]">
-                    Projeções
-                  </Text>
-                </li>
-                <li>
-                  <Text textType="a" className="text-[18px]">
-                    Perfil dos candidatos
-                  </Text>
-                </li>
-                <li>
-                  <Text textType="a" className="text-[18px]">
-                    Sobre o projeto
-                  </Text>
-                </li>
-                <li>
-                  <Text textType="a" className="text-[18px]">
-                    Blog
-                  </Text>
-                </li>
-              </ul>
-            </div>
-            <div className="w-[216px]">
-              <Heading headingLevel={3} size={'H6'} className="font-bold mb-10">
-                FERRAMENTAS
-              </Heading>
-              <ul className="space-y-2">
-                <li>
-                  <Text textType="a" className="text-[18px]">
-                    Cruzamentos e Dados Eleitorais
-                  </Text>
-                </li>
-                <li>
-                  <Text textType="a" className="text-[18px]">
-                    Indicadores e Índices Especiais
-                  </Text>{' '}
-                </li>
-                <li>
-                  <Text textType="a" className="text-[18px]">
-                    Aprenda a usar os Indicadores
-                  </Text>
-                </li>
-                <li>
-                  <Text textType="a" className="text-[18px]">
-                    Comunicação Científica
-                  </Text>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <Heading headingLevel={3} size={'H6'} className="font-bold mb-10">
-                ATENDIMENTO
-              </Heading>
-              <ul className="space-y-2">
-                <li>
-                  <Text textType="a" className="text-[18px]">
-                    Suporte Técnico{' '}
-                  </Text>
-                </li>
-                <li>
-                  <Text textType="a" className="text-[18px]">
-                    Falar com Analista{' '}
-                  </Text>
-                </li>
-                <li>
-                  <Text textType="a" className="text-[18px]">
-                    Reportar Erro
-                  </Text>
-                </li>
-                <li>
-                  <Text textType="a" className="text-[18px]">
-                    Fazer Denúncia
-                  </Text>
-                </li>
-                <li>
-                  <Text textType="a" className="text-[18px]">
-                    Contato
-                  </Text>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </Container>
-        <div className="w-full h-[1px] bg-white"></div>
-        <Container>
-          <div className="text-center py-7">
-            <Text size={'L1'}>
-              Copyright © 2024 ARW Consultoria. Todos os direitos reservados. Desenvolvido por Agência WDK
-            </Text>
-          </div>
-        </Container>
-      </footer>
     </main>
   );
 };
