@@ -9,6 +9,7 @@ import BoxData from '@/components/box/BoxData';
 import SelectBox from '@components/SelectBox';
 import BoxIcon from '@components/box/BoxIcon';
 import CardPost from '@/components/CardPost';
+import LogoIcon from '@/components/LogoIcon';
 
 const Home = () => {
   return (
@@ -33,7 +34,7 @@ const Home = () => {
           <nav>
             <ul className="flex">
               <li>
-                <Image src="/img/Logo.svg" alt="Logo" width={154} height={80} />
+                <LogoIcon />
               </li>
               <li className="ml-auto self-center mr-5 text-white">
                 <Text textType="a" size={'L2'}>
