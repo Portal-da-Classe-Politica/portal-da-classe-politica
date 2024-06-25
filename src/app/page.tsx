@@ -13,21 +13,6 @@ import { SelectBox } from '@components/SelectBox';
 const Home = () => {
   return (
     <main className="font-montserrat">
-      <header>
-        <Container className={'my-[20px]'}>
-          <ul className="flex">
-            <li>
-              <a className="font-montserrat text-xs mr-4">Políticas de Privacidade</a>
-            </li>
-            <li>
-              <a className="font-montserrat text-xs ">Termos de Uso</a>
-            </li>
-            <li className=" ml-auto">
-              <Image src="/img/Acessibilidade.svg" alt="Acessibilidade" width={200} height={30} />
-            </li>
-          </ul>
-        </Container>
-      </header>
       <section className="bg-orange pb-[90px] pt-4">
         <Container>
           <nav>
