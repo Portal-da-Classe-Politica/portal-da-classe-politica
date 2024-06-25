@@ -9,7 +9,7 @@ type Props = {
   tabs: ContentProps[];
 };
 
-const SelectBox = ({ tabs }: Props) => {
+export const SelectBox = ({ tabs }: Props) => {
   const [selecionado, setSelecionado] = useState(0);
 
   return (
@@ -37,5 +37,3 @@ const SelectBox = ({ tabs }: Props) => {
     </div>
   );
 };
-
-export default SelectBox;

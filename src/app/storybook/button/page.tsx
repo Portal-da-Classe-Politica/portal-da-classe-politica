@@ -1,31 +1,31 @@
-import { ButtonStyled, ButtonStyledProps } from '@base';
+import { Button, ButtonProps } from '@base';
 
 const Page = () => {
   return (
     <main className="font-montserrat p-10">
       {[
-        ['Orange small', { color: 'orange', size: 'small' }],
-        ['Orange standard', { color: 'orange', size: 'standard' }],
-        ['Orange large', { color: 'orange', size: 'large' }],
-        ['Orange Outlined', { color: 'orange', size: 'large', style: 'outlined' }],
-        ['Orange ghost', { style: 'ghost' }],
-        ['Orange link', { style: 'link' }],
+        ['Orange small', { size: 'small' }],
+        ['Orange standard', { size: 'standard' }],
+        ['Orange large', { size: 'large' }],
+        ['Orange Outlined', { size: 'large', style: 'outlinedOrange' }],
+        ['Orange ghost', { style: 'ghostOrange' }],
+        ['Orange link', { style: 'linkOrange' }],
         ['Orange Disabled', { disabled: true }],
-        ['Black Fill', { color: 'black' }],
-        ['Black outlined', { color: 'black', style: 'outlined' }],
-        ['Black Ghost', { color: 'black', style: 'ghost' }],
-        ['Black Link', { color: 'black', style: 'link' }],
-        ['Black Disabled', { color: 'black', disabled: true }],
+        ['Black Fill', { style: 'fillBlack' }],
+        ['Black outlined', { style: 'outlinedBlack' }],
+        ['Black Ghost', { style: 'ghostBlack' }],
+        ['Black Link', { style: 'linkBlack' }],
+        ['Black Disabled', { disabled: true, style: 'fillBlack' }],
       ].map((el: any, idx: number) => {
         const text = el[0] as string;
-        const props = el[1] as ButtonStyledProps;
+        const props = el[1] as ButtonProps;
 
         return (
           <div key={idx} className="py-2">
-            <ButtonStyled
+            <Button
               text={text}
               color={props?.color || 'orange'}
-              style={props?.style || 'fill'}
+              style={props?.style || 'fillOrange'}
               size={props?.size || 'standard'}
               disabled={props?.disabled || false}
             />

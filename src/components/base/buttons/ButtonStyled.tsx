@@ -1,20 +1,21 @@
 'use client';
 
 import { cva } from 'cva';
-import { Button, ButtonProps } from './Button';
-import { Text } from '../text/Text';
+import { ButtonBase, ButtonBaseProps } from './ButtonBase';
 
 const buttonVariants = cva('font-montserrat rounded-[10px] font-bold', {
   variants: {
-    color: {
-      orange: 'text-white',
-      black: 'text-white',
-    },
     style: {
-      fill: '',
-      outlined: 'border-2 bg-white',
-      ghost: 'bg-transparent !font-normal',
-      link: 'bg-transparent !font-normal underline',
+      fillOrange: 'text-white bg-orange hover:bg-orangeDark2',
+      fillBlack: 'text-white bg-black hover:bg-grayDark2',
+      outlinedOrange:
+        'text-orange bg-white border-orange border-2 hover:text-white hover:bg-orangeLight3 hover:border-orangeLight3',
+      outlinedBlack:
+        'text-black bg-white border-black border-2 hover:text-white hover:bg-grayDark2 hover:border-grayDark2',
+      ghostOrange: 'text-orange bg-transparent font-normal hover:bg-orangeLight1',
+      ghostBlack: 'text-orange bg-transparent font-normal hover:bg-orangeLight1',
+      linkOrange: 'bg-transparent font-normal underline text-orange',
+      linkBlack: 'bg-transparent font-normal underline text-black',
     },
     size: {
       small: 'px-[28px] py-[7.5px]',
@@ -26,101 +27,43 @@ const buttonVariants = cva('font-montserrat rounded-[10px] font-bold', {
       disabled: 'opacity-20',
     },
   },
-  compoundVariants: [
-    // Fill
-    {
-      color: 'orange',
-      style: 'fill',
-      class: 'bg-orange hover:bg-orangeDark2',
-    },
-    {
-      color: 'black',
-      style: 'fill',
-      class: 'bg-black hover:bg-grayDark2',
-    },
-    // Outlined
-    {
-      color: 'orange',
-      style: 'outlined',
-      class: [
-        'border-orange !text-orange',
-        'hover:!text-white hover:bg-orangeLight3 hover:border-orangeLight3',
-      ],
-    },
-    {
-      color: 'black',
-      style: 'outlined',
-      class: 'border-black !text-black hover:!text-white hover:bg-grayDark2 hover:border-grayDark2',
-    },
-    // Ghost
-    {
-      color: 'orange',
-      style: 'ghost',
-      class: '!text-orange hover:bg-orangeLight1',
-    },
-    {
-      color: 'black',
-      style: 'ghost',
-      class: '!text-black hover:bg-grayLight1',
-    },
-    // Link
-    {
-      color: 'orange',
-      style: 'link',
-      class: '!text-orange',
-    },
-    {
-      color: 'black',
-      style: 'link',
-      class: '!text-black',
-    },
-  ],
   defaultVariants: {
-    color: 'orange',
-    style: 'fill',
+    style: 'fillOrange',
     size: 'standard',
   },
 });
 
-export interface ButtonStyledProps extends ButtonProps {
-  text: string;
+export interface ButtonStyledProps extends ButtonBaseProps {
   color?: 'orange' | 'black';
-  style?: 'fill' | 'outlined' | 'ghost' | 'link';
+  style?:
+    | 'fillOrange'
+    | 'fillBlack'
+    | 'outlinedOrange'
+    | 'outlinedBlack'
+    | 'ghostOrange'
+    | 'ghostBlack'
+    | 'linkOrange'
+    | 'linkBlack';
   size?: 'small' | 'standard' | 'large';
 }
 
 export const ButtonStyled = ({
-  text,
-  color = 'orange',
-  style = 'fill',
+  style = 'fillOrange',
   size = 'standard',
-
-  id = '',
-  name = '',
   className = '',
-  type = 'button',
   disabled = false,
-  onClick = () => {},
+  children,
+  ...restProps
 }: ButtonStyledProps) => {
   const classes = buttonVariants({
-    color,
     style,
     size,
     state: disabled ? 'disabled' : '',
   });
 
   return (
-    <Button
-      id={id}
-      name={name}
-      type={type}
-      className={`${classes} ${className}`}
-      disabled={disabled}
-      onClick={onClick}
-    >
-      <Text>{text}</Text>
-    </Button>
+    <ButtonBase className={`${classes} ${className}`} {...restProps}>
+      {children}
+    </ButtonBase>
   );
 };
-
-export default ButtonStyled;

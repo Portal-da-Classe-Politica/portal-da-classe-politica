@@ -1,44 +1,16 @@
 'use client';
 
-import { MouseEventHandler } from 'react';
-import { cva } from 'cva';
+import { Text } from '../text/Text';
+import { ButtonStyled, ButtonStyledProps } from './ButtonStyled';
 
-const buttonVariants = cva('font-montserrat rounded-[10px] font-bold', {
-  variants: {},
-  defaultVariants: {},
-});
-
-export interface ButtonProps {
-  id?: string;
-  name?: string;
-  className?: string;
-  type?: 'button' | 'reset' | 'submit';
-  disabled?: boolean;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
-  children?: any;
+export interface ButtonProps extends ButtonStyledProps {
+  text: string;
 }
 
-export const Button = ({
-  id = '',
-  name = '',
-  className = '',
-  type = 'button',
-  disabled = false,
-  onClick = () => {},
-  children,
-}: ButtonProps) => {
-  const classes = buttonVariants();
-
+export const Button = ({ text, children, ...restProps }: ButtonProps) => {
   return (
-    <button
-      id={id}
-      name={name}
-      type={type}
-      className={`${classes} ${className}`}
-      disabled={disabled}
-      onClick={onClick}
-    >
-      {children}
-    </button>
+    <ButtonStyled {...restProps}>
+      <Text>{text}</Text>
+    </ButtonStyled>
   );
 };

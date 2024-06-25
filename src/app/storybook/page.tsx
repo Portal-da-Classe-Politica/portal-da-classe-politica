@@ -10,12 +10,20 @@ const storybookLinks = [
     title: 'Icon',
     link: '/storybook/icon',
   },
+  {
+    title: 'Select',
+    link: '/storybook/select',
+  },
+  {
+    title: 'cardPost',
+    link: '/storybook/cardPost',
+  },
 ];
 
 const Page = () => {
   return (
-    <main className="font-montserrat">
-      <ul className="list-disc mt-8">
+    <main className="font-montserrat h-full">
+      <ul className="list-disc mt-auto h-full">
         <li>
           <Text className="list-item font-bold">Storybook</Text>
           <ul className="list-disc pl-8">

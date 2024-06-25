@@ -2,13 +2,13 @@
 
 import Image from 'next/image';
 
-import { Container, Heading, Display, Text, Button } from '@base';
+import { Container, Heading, Display, Text, ButtonBase } from '@base';
 
 import BoxFerramenta from '@components/box/BoxFerramenta';
 import BoxData from '@/components/box/BoxData';
-import SelectBox from '@components/SelectBox';
 import CardPost from '@/components/CardPost';
 import LogoIcon from '@/components/LogoIcon';
+import { SelectBox } from '@components/SelectBox';
 import { BoxIconText } from '@/components/box/BoxIconText';
 
 const Home = () => {
@@ -67,9 +67,9 @@ const Home = () => {
                 </Text>
               </li>
               <li className="self-center text-white">
-                <Button>
+                <ButtonBase>
                   <Text size={'L2'}>ELEIÇÕES 2024</Text>
-                </Button>
+                </ButtonBase>
               </li>
             </ul>
           </nav>
@@ -176,11 +176,11 @@ const Home = () => {
                   lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam
                   vulputate ipsum.
                 </Text>
-                <Button>
+                <ButtonBase>
                   <Text size={'C1'} className="font-bold">
                     Saiba mais
                   </Text>
-                </Button>
+                </ButtonBase>
               </div>
             </div>
             <div className="grid grid-cols-2 gap-[24px]	flex-1">
@@ -232,9 +232,9 @@ const Home = () => {
                         nec. Nam vulputate ipsum. Suspendisse non odio sit amet massa lobortis scelerisque.
                         Integer gravida nulla ipsum.
                       </Text>
-                      <Button>
+                      <ButtonBase>
                         <Text className="text-[14px] font-bold">Saiba mais</Text>
-                      </Button>
+                      </ButtonBase>
                     </div>
                     <div>
                       <div className="h-[300px] w-[533px] bg-orangeLight1 rounded-lg"></div>

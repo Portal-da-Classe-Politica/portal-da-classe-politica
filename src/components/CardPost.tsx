@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-import { Text, Heading, ButtonStyled } from '@base';
+import { Text, Heading, Button } from '@base';
 import ChipContainer from './ChipContainer';
 
 type BaseProps = {
@@ -35,7 +35,7 @@ const Primary = ({ title, subTitle }: { title: string; subTitle: string }) => {
         )}
 
         <div>
-          <ButtonStyled color="orange" text="Saiba mais" />
+          <Button color="orange" text="Saiba mais" />
         </div>
       </div>
     </>
@@ -49,7 +49,7 @@ const Secondary = ({ title }: { title: string }) => {
         {title}
       </Heading>
       <div className="h-[32-px] mt-3">
-        <ButtonStyled text="Saiba mais" size="small" />
+        <Button text="Saiba mais" size="small" />
       </div>
     </>
   );
