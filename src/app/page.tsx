@@ -7,56 +7,15 @@ import { Container, Heading, Display, Text, ButtonBase } from '@base';
 import BoxFerramenta from '@components/box/BoxFerramenta';
 import BoxData from '@/components/box/BoxData';
 import CardPost from '@/components/CardPost';
-import LogoIcon from '@/components/LogoIcon';
 import { SelectBox } from '@components/SelectBox';
+import { Header } from '@/components/Header';
 
 const Home = () => {
   return (
     <main className="font-montserrat">
       <section className="bg-orange pb-[90px] pt-4">
         <Container>
-          <nav>
-            <ul className="flex">
-              <li>
-                <LogoIcon />
-              </li>
-              <li className="ml-auto self-center mr-5 text-white">
-                <Text textType="a" size={'L2'}>
-                  PÁGINA INICIAL
-                </Text>
-              </li>
-              <li className="self-center text-white mr-5">
-                <Text textType="a" size={'L2'}>
-                  CONSULTAS
-                </Text>
-              </li>
-              <li className="self-center text-white mr-5">
-                <Text textType="a" size={'L2'}>
-                  PROJEÇÕES
-                </Text>
-              </li>
-              <li className="self-center text-white mr-5">
-                <Text textType="a" size={'L2'}>
-                  PERFIL DOS CANDIDATOS
-                </Text>
-              </li>
-              <li className="self-center text-white mr-5">
-                <Text textType="a" size={'L2'}>
-                  SOBRE O PROJETO
-                </Text>
-              </li>
-              <li className="self-center text-white mr-5">
-                <Text textType="a" size={'L2'}>
-                  BLOG
-                </Text>
-              </li>
-              <li className="self-center text-white">
-                <ButtonBase>
-                  <Text size={'L2'}>ELEIÇÕES 2024</Text>
-                </ButtonBase>
-              </li>
-            </ul>
-          </nav>
+          <Header />
           <div className="flex items-center mt-10 text-white">
             <div className=" flex-1">
               <div className=" max-w-[432px]">
@@ -178,7 +137,6 @@ const Home = () => {
                 title="Dados processados"
                 content="Consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis"
               />
-
               <BoxData
                 header="+180"
                 title="Variáveis"

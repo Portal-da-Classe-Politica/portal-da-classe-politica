@@ -58,12 +58,7 @@ export const ButtonStyled = ({
   children,
   ...restProps
 }: ButtonStyledProps) => {
-  const classes = buttonVariants({
-    style,
-    size,
-    state: disabled ? 'disabled' : '',
-  });
-
+  const classes = buttonVariants({ style, size, state: disabled ? 'disabled' : '' });
   return (
     <ButtonBase className={`${classes} ${className}`} {...restProps}>
       {children}

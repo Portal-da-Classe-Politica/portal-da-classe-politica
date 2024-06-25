@@ -3,7 +3,7 @@ import { Container } from '@base';
 
 export const AccessibilityHeader = () => {
   return (
-    <header>
+    <header className="border-2 border-black border-opacity-5">
       <Container className={'my-[20px]'}>
         <ul className="flex">
           <li>
