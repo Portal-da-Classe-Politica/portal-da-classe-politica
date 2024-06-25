@@ -16,7 +16,7 @@ const cards = [
   { text: 'Pesquisas Eleitorais', src: '/img/consulta/PieChart.png  ' },
 ];
 
-const Home = () => {
+const Page = () => {
   return (
     <main className="font-montserrat">
       <section className="bg-white pb-[45px] pt-4">
@@ -53,4 +53,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Page;
