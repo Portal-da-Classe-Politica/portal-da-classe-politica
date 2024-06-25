@@ -44,6 +44,8 @@ const config: Config = {
         grayDark2: '#3C3C3D',
         grayDark3: '#141315',
 
+        grayMix1: '#EDEDED', // Not mapped on palette but used on buttons
+
         white: '#FFFFFF',
         black: '#000000',
       },

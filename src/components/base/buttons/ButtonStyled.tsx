@@ -16,6 +16,8 @@ const buttonVariants = cva('font-montserrat rounded-[10px] font-bold', {
       ghostBlack: 'text-orange bg-transparent font-normal hover:bg-orangeLight1',
       linkOrange: 'bg-transparent font-normal underline text-orange',
       linkBlack: 'bg-transparent font-normal underline text-black',
+
+      fillGray: 'text-black bg-grayMix1 hover:opacity-80',
     },
     size: {
       small: 'px-[28px] py-[7.5px]',
@@ -43,7 +45,8 @@ export interface ButtonStyledProps extends ButtonBaseProps {
     | 'ghostOrange'
     | 'ghostBlack'
     | 'linkOrange'
-    | 'linkBlack';
+    | 'linkBlack'
+    | 'fillGray';
   size?: 'small' | 'standard' | 'large';
 }
 

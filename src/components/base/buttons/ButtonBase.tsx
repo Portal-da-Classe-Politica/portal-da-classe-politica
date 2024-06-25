@@ -3,7 +3,7 @@
 import { MouseEventHandler } from 'react';
 import { cva } from 'cva';
 
-const buttonVariants = cva('font-montserrat rounded-[10px] font-bold', {
+const buttonVariants = cva('font-montserrat rounded-[10px]', {
   variants: {},
   defaultVariants: {},
 });
