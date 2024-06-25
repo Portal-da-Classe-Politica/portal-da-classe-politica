@@ -1,23 +1,23 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import { ButtonStyled, ButtonStyledProps } from '../buttons/ButtonStyled';
+import { ButtonStyledProps } from '../buttons/ButtonStyled';
 import { Text } from '../text/Text';
+import { Icon } from '../Icon';
 
-export interface Option {
+interface Option {
   value: number | string;
   label: string;
 }
 
-export const Select = ({
+export const SelectBasic = ({
   options = [],
   defaultValue = '',
   placeholder = 'Select',
   className = '',
   onSelect = () => {},
   buttonProps = {},
-  prefixComponent,
-  suffixComponent,
+  disabled = false,
 }: {
   options: Option[];
   defaultValue?: number | string;
@@ -27,8 +27,7 @@ export const Select = ({
   className?: string;
   placeholder?: string;
   buttonProps?: ButtonStyledProps;
-  prefixComponent?: React.ReactNode;
-  suffixComponent?: React.ReactNode;
+  disabled?: boolean;
 }) => {
   const [selectedOption, setSelectedOption] = useState(options.find(op => op.value === defaultValue));
   const [showOptions, setShowOptions] = useState<boolean>(false);
@@ -58,18 +57,19 @@ export const Select = ({
   }, []);
 
   return (
-    <div ref={dropdownRef} className={`relative w-fit inline-block ${className}`}>
-      <ButtonStyled
-        {...buttonProps}
+    <div
+      ref={dropdownRef}
+      className={`relative w-fit inline-block ${className} cursor-pointer ${disabled ? 'pointer-events-none opacity-50' : ''}`}
+    >
+      <div
         onClick={onButtonClick}
         className={`flex justify-center items-center px-2 ${buttonProps.className}`}
       >
-        {prefixComponent}
         <Text className="font-bold">{selectedOption?.label || placeholder}</Text>
-        {suffixComponent}
-      </ButtonStyled>
+        <Icon type="ArrowDown" size={18} className="ml-2" />
+      </div>
       {showOptions && (
-        <div className="z-10 origin-top-right absolute w-full rounded-md shadow-lg bg-white">
+        <div className="z-10 origin-top-right absolute w-full rounded-md shadow-lg bg-white max-h-[200px] overflow-auto">
           <div className="">
             {options.map(option => (
               <div

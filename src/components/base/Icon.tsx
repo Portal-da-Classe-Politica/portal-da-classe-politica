@@ -11,6 +11,8 @@ const sourceMap = {
   Star: '/icons/Star.svg',
   Twitter: '/icons/Twitter.svg',
   YouTube: '/icons/YouTube.svg',
+  ArrowDown: '/icons/ArrowDown.svg',
+  Calendar: '/icons/Calendar.svg',
 };
 
 export type IconType = keyof typeof sourceMap;
