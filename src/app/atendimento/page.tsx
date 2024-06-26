@@ -1,12 +1,16 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+
+import { Constants } from '@constants';
+const { loremTitle, lorem } = Constants;
+
 import { Header } from '@/components/Header';
 import LineItem from '@/components/LineItem';
 import { ButtonStyled, Container, Heading, Text } from '@/components/base';
 import { BoxIconText } from '@/components/box/BoxIconText';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import Input from '@/components/base/input/Input';
-import TextArea from '@/components/base/input/TextArea';
-import ImageText from '@/components/ImageText';
+import Input from '@base/forms/Input';
+import TextArea from '@base/forms/TextArea';
+import { TextParagraphImage } from '@base/text/TextParagraphImage';
 
 const Atendimento = () => {
   return (
@@ -101,7 +105,7 @@ const Atendimento = () => {
               <ButtonStyled style="fillOrange">Enviar </ButtonStyled>
             </div>
           </div>
-          <ImageText />
+          <TextParagraphImage src="/img/Dados.svg" header={loremTitle} text={lorem} />
         </Container>
       </section>
     </main>

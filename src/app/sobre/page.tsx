@@ -2,9 +2,13 @@
 
 import Image from 'next/image';
 
+import { Constants } from '@constants';
+const { loremTitle, lorem } = Constants;
+
 import { Container, Heading, Text } from '@base';
 import { Header } from '@/components/Header';
 import { TextParagraph } from '@/components/base/text/TextParagraph';
+import { TextParagraphImage } from '@/components/base/text/TextParagraphImage';
 
 const headerText = [
   {
@@ -28,10 +32,6 @@ const headerText = [
     text: 'Consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis',
   },
 ];
-
-const loremTitle = 'Consectetur adipiscing elit Suspendisse non odio';
-const lorem =
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tempus tellus sed velit imperdiet, non pharetra orci volutpat. Vestibulum ultricies massa at ligula maximus, ullamcorper vestibulum enim auctor. Aenean purus felis, lobortis ultrices mi at, ultrices dignissim justo.';
 
 const Page = () => {
   return (
@@ -93,22 +93,7 @@ const Page = () => {
           </div>
 
           <div className="mt-24 mb-48">
-            <div className="flex flex-wrap">
-              <div className="w-full md:w-1/2 p-4">
-                <Image
-                  src="/img/Dados.svg"
-                  layout="responsive"
-                  className="w-full h-auto"
-                  width={50}
-                  height={30}
-                  alt=""
-                />
-              </div>
-              <div className="w-full md:w-1/2 p-4">
-                <h2 className="text-left text-2xl font-bold mb-4">{loremTitle}</h2>
-                <p>{lorem}</p>
-              </div>
-            </div>
+            <TextParagraphImage src="/img/Dados.svg" header={loremTitle} text={lorem} />
           </div>
         </Container>
       </section>

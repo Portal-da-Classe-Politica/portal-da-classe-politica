@@ -23,6 +23,8 @@
       "@base": ["./src/components/base/index"],
       "@components/*": ["./src/components/*"],
       "@components": ["./src/components/index"],
+      "@constants/*": ["./src/constants/*"],
+      "@constants": ["./src/constants/index"],
       "@hooks/*": ["./src/hooks/*"]
     }
   },
