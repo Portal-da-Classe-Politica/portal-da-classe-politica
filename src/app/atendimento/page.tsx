@@ -105,7 +105,7 @@ const Atendimento = () => {
               <ButtonStyled style="fillOrange">Enviar </ButtonStyled>
             </div>
           </div>
-          <TextParagraphImage src="/img/Dados.svg" header={loremTitle} text={lorem} />
+          <TextParagraphImage src="/img/Dados.svg" header={loremTitle} texts={[lorem]} />
         </Container>
       </section>
     </main>

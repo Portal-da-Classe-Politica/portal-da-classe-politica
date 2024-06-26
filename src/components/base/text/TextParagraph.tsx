@@ -12,7 +12,7 @@ export const TextParagraph = ({
 }) => {
   return (
     <div className={className}>
-      <Heading size="H2" className="font-bold text-left w-full md:w-1/2 mb-6 pr-4">
+      <Heading headingLevel={2} size="H2" className="font-bold text-left w-full md:w-1/2 mb-6 pr-4">
         {title}
       </Heading>
       <div className="flex flex-wrap">

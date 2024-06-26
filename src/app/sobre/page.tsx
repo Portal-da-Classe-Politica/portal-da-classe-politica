@@ -93,7 +93,7 @@ const Page = () => {
           </div>
 
           <div className="mt-24 mb-48">
-            <TextParagraphImage src="/img/Dados.svg" header={loremTitle} text={lorem} />
+            <TextParagraphImage src="/img/Dados.svg" header={loremTitle} texts={[lorem]} />
           </div>
         </Container>
       </section>
