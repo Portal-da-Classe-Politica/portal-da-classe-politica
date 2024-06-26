@@ -11,7 +11,7 @@ let years = Array.from({ length: endYear - startYear + 1 }, (v, i) => ({
   label: (i + startYear).toString(),
 }));
 
-const DatePicker = ({
+export const DatePicker = ({
   onSelectStart = () => {},
   onSelectEnd = () => {},
 }: {
@@ -59,5 +59,3 @@ const DatePicker = ({
     </div>
   );
 };
-
-export default DatePicker;

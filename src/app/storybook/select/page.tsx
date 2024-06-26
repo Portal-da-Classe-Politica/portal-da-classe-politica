@@ -1,9 +1,9 @@
 'use client';
 import { Icon, Text } from '@base';
-import { Select } from '@/components/base/forms/Select';
+import { Select } from '@base/forms/Select';
 import { BoxIcon } from '@/components/box/BoxIcon';
-import { SelectBasic } from '@/components/base/forms/SelectBasic';
-import DatePicker from '@/components/DatePicker';
+import { SelectBasic } from '@base/forms/SelectBasic';
+import { DatePicker } from '@/components/DatePicker';
 
 const Page = () => {
   const testFunc = (val: any, obj: any) => {

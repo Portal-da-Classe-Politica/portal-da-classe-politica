@@ -4,12 +4,12 @@ import Image from 'next/image';
 
 import { Container, Heading, Display, Text, ButtonBase } from '@base';
 
-import BoxFerramenta from '@components/box/BoxFerramenta';
-import BoxData from '@/components/box/BoxData';
-import CardPost from '@/components/CardPost';
-import { SelectBox } from '@components/SelectBox';
+import { BoxFerramenta } from '@components/box/BoxFerramenta';
+import { BoxData } from '@/components/box/BoxData';
+import { CardPost } from '@/components/CardPost';
 import { Header } from '@/components/Header';
 import { GetInContact } from '@/components/sections/GetInContact';
+import { SelectBox } from '@components/SelectBox';
 
 const Home = () => {
   return (

@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 
 import { Text, Heading, Button } from '@base';
-import ChipContainer from './ChipContainer';
+import { ChipContainer } from './ChipContainer';
 
 type BaseProps = {
   title: string;
@@ -82,7 +82,7 @@ const ContentSelect = {
   Tertiary: Tertiary,
 };
 
-const CardPost = <T extends BaseProps>({
+export const CardPost = <T extends BaseProps>({
   title,
   subTitle,
   src,
@@ -110,5 +110,3 @@ const CardPost = <T extends BaseProps>({
     </div>
   );
 };
-
-export default CardPost;

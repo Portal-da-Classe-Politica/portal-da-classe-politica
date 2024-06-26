@@ -1,6 +1,6 @@
-export * from './buttons/ButtonBase';
-export * from './buttons/ButtonStyled';
-export * from './buttons/Button';
+export * from './buttons';
+export * from './forms';
+export * from './text';
 
 export * from './Container';
 export * from './Display';

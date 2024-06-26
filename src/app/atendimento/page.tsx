@@ -4,13 +4,10 @@ import { faFacebook, faInstagram, faLinkedin } from '@fortawesome/free-brands-sv
 import { Constants } from '@constants';
 const { loremTitle, lorem } = Constants;
 
+import { ButtonStyled, Container, Heading, Text, Input, TextArea, TextParagraphImage } from '@base';
 import { Header } from '@/components/Header';
-import LineItem from '@/components/LineItem';
-import { ButtonStyled, Container, Heading, Text } from '@/components/base';
+import { LineItem } from '@/components/LineItem';
 import { BoxIconText } from '@/components/box/BoxIconText';
-import Input from '@base/forms/Input';
-import TextArea from '@base/forms/TextArea';
-import { TextParagraphImage } from '@base/text/TextParagraphImage';
 
 const Atendimento = () => {
   return (

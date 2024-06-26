@@ -1,4 +1,4 @@
-import CardPost from '@/components/CardPost';
+import { CardPost } from '@/components/CardPost';
 
 const Example = () => {
   return (

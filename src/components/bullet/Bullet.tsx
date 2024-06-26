@@ -1,6 +1,6 @@
-import { Text } from '../base';
+import { Text } from '@base';
 
-const Bullet = ({ text, name }: { text: string; name: string }) => {
+export const Bullet = ({ text, name }: { text: string; name: string }) => {
   return (
     <div>
       <label className="flex items-center cursor-pointer">
@@ -13,5 +13,3 @@ const Bullet = ({ text, name }: { text: string; name: string }) => {
     </div>
   );
 };
-
-export default Bullet;

@@ -1,4 +1,4 @@
-import Bullet from '@/components/bullet/Bullet';
+import { Bullet } from '@/components/bullet/Bullet';
 
 const Test = () => {
   return (

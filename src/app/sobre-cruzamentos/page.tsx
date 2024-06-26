@@ -3,9 +3,8 @@
 import { Constants } from '@constants';
 const { loremTitle, lorem } = Constants;
 
-import { Container, Heading, Text } from '@base';
+import { Container, Heading, Text, TextParagraphImage } from '@base';
 import { Header } from '@/components/Header';
-import { TextParagraphImage } from '@/components/base/text/TextParagraphImage';
 import { GetInContact } from '@/components/sections/GetInContact';
 
 const Page = () => {

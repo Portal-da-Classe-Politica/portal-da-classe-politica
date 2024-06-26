@@ -1,4 +1,4 @@
-const LineItem = ({ children, className }: { children: React.ReactNode; className?: string }) => {
+export const LineItem = ({ children, className }: { children: React.ReactNode; className?: string }) => {
   return (
     <div className={`flex ${className}`}>
       <div className="bg-orange w-[4px] mr-5"></div>
@@ -6,5 +6,3 @@ const LineItem = ({ children, className }: { children: React.ReactNode; classNam
     </div>
   );
 };
-
-export default LineItem;

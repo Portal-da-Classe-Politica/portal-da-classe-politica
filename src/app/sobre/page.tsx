@@ -5,10 +5,8 @@ import Image from 'next/image';
 import { Constants } from '@constants';
 const { loremTitle, lorem } = Constants;
 
-import { Container, Heading, Text } from '@base';
+import { Container, Heading, Text, TextParagraph, TextParagraphImage } from '@base';
 import { Header } from '@/components/Header';
-import { TextParagraph } from '@/components/base/text/TextParagraph';
-import { TextParagraphImage } from '@/components/base/text/TextParagraphImage';
 
 const headerText = [
   {

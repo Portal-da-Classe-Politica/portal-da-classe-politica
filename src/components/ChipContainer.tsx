@@ -16,13 +16,11 @@ const chipVariant = cva(
   },
 );
 
-interface Props {
+export interface ChipContainerProps {
   children: React.ReactNode;
   type?: 'default' | 'full' | 'ghost';
 }
 
-const ChipContainer = ({ type, children }: Props) => {
+export const ChipContainer = ({ type, children }: ChipContainerProps) => {
   return <span className={chipVariant({ type })}>{children}</span>;
 };
-
-export default ChipContainer;

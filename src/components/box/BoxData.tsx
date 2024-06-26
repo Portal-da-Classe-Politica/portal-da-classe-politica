@@ -20,7 +20,7 @@ const variants = cva('font-montserrat', {
   },
 });
 
-const BoxData = ({
+export const BoxData = ({
   variant = 'white',
   header,
   title,
@@ -49,5 +49,3 @@ const BoxData = ({
     </div>
   );
 };
-
-export default BoxData;

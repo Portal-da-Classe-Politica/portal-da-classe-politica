@@ -1,4 +1,4 @@
-const Input = ({
+export const Input = ({
   id,
   name,
   placeholder,
@@ -20,5 +20,3 @@ const Input = ({
     />
   );
 };
-
-export default Input;

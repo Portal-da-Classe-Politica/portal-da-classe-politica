@@ -1,4 +1,4 @@
-const TextArea = ({
+export const TextArea = ({
   id,
   name,
   placeholder,
@@ -21,5 +21,3 @@ const TextArea = ({
     />
   );
 };
-
-export default TextArea;

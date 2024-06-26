@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 import { Text } from '@base';
 
-const BoxFerramenta = ({ src, title, subTitle }: { src: string; title: string; subTitle: string }) => {
+export const BoxFerramenta = ({ src, title, subTitle }: { src: string; title: string; subTitle: string }) => {
   return (
     <div className="flex flex-col bg-white h-[312px] w-[295px] py-9 px-6 items-center rounded-[10px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)]">
       <Image src={src} width={180} height={110} alt="" />
@@ -22,5 +22,3 @@ const BoxFerramenta = ({ src, title, subTitle }: { src: string; title: string; s
     </div>
   );
 };
-
-export default BoxFerramenta;

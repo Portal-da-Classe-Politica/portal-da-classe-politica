@@ -1,6 +1,6 @@
 import { cva } from 'cva';
 
-import LogoIcon from './LogoIcon';
+import { LogoIcon } from './LogoIcon';
 import { Button, Icon, Text } from './base';
 
 const variants = cva('', {
