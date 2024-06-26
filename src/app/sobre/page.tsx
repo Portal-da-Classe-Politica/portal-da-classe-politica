@@ -7,6 +7,8 @@ const { loremTitle, lorem } = Constants;
 
 import { Container, Heading, Text, TextParagraph, TextParagraphImage } from '@base';
 import { Header } from '@/components/Header';
+import Avatar from '@/components/Avatar';
+import Timeline from '@/components/timeline/Timeline';
 
 const headerText = [
   {
@@ -30,6 +32,8 @@ const headerText = [
     text: 'Consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis',
   },
 ];
+
+const vectorMock = ['1', '1', '1'];
 
 const Page = () => {
   return (
@@ -74,20 +78,52 @@ const Page = () => {
           </div>
 
           <div className="mt-24 text-center max-w-[600px]">
-            <Heading size="H2" className="font-bold">
+            <Heading size="H2" className="font-bold mb-5">
               {loremTitle}
             </Heading>
             <Text size="B1">{lorem.substring(0, 98)}</Text>
           </div>
 
-          <div className="mt-24 text-center">
-            <p>Place Holder - Heads</p>
+          <div className="mt-24 text-center flex gap-14">
+            {vectorMock.map((v, i) => {
+              return (
+                <Avatar
+                  key={i}
+                  title="João Almeida"
+                  text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio."
+                />
+              );
+            })}
           </div>
 
           <TextParagraph className="mt-24" title={loremTitle} texts={[lorem, lorem, lorem, lorem]} />
 
           <div className="mt-24 text-center">
-            <p>Place Holder - Images</p>
+            <Timeline
+              items={[
+                {
+                  title: '2014',
+                  text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio.',
+                },
+
+                {
+                  title: '2018',
+                  text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio.',
+                },
+                {
+                  title: '2020',
+                  text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio.',
+                },
+                {
+                  title: '2023',
+                  text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio.',
+                },
+                {
+                  title: '2025',
+                  text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio.',
+                },
+              ]}
+            />
           </div>
 
           <div className="mt-24 mb-48">

@@ -10,7 +10,7 @@ export const BoxIconAwesome = ({
 }: {
   iconType: IconTypeAwesome;
   iconSize?: SizeProp;
-  size?: number;
+  size?: number | string;
   className?: string;
 }) => {
   const customClass = `w-${size} h-${size} ${className}`;
