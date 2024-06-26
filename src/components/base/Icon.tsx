@@ -3,6 +3,7 @@ import Image from 'next/image';
 const sourceMap = {
   ArrowRight: '/icons/ArrowRight.svg',
   ArrowDown: '/icons/ArrowDown.svg',
+  ArrowDownBlack: '/icons/ArrowDownBlack.svg',
   Error: '/icons/Error.svg',
   Facebook: '/icons/Facebook.svg',
   Headset: '/icons/Headset.svg',

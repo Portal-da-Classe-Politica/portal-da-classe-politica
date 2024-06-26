@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-
 import { Footer } from '@/components/sections/Footer';
-import { GetInContact } from '@/components/sections/GetInContact';
 import { AccessibilityHeader } from '@/components/sections/AccessibilityHeader';
+import { config } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+config.autoAddCss = false;
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -23,7 +24,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <AccessibilityHeader />
         {children}
-        <GetInContact />
+
         <Footer />
       </body>
     </html>

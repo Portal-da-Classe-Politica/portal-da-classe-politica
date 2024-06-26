@@ -66,7 +66,7 @@ export const SelectBasic = ({
         className={`flex justify-center items-center px-2 ${buttonProps.className}`}
       >
         <Text className="font-bold">{selectedOption?.label || placeholder}</Text>
-        <Icon type="ArrowDown" size={18} className="ml-2" />
+        <Icon type="ArrowDownBlack" size={18} className="ml-2" />
       </div>
       {showOptions && (
         <div className="z-10 origin-top-right absolute w-full rounded-md shadow-lg bg-white max-h-[200px] overflow-auto">

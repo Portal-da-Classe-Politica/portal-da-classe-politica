@@ -9,6 +9,7 @@ import BoxData from '@/components/box/BoxData';
 import CardPost from '@/components/CardPost';
 import { SelectBox } from '@components/SelectBox';
 import { Header } from '@/components/Header';
+import { GetInContact } from '@/components/sections/GetInContact';
 
 const Home = () => {
   return (
@@ -267,6 +268,7 @@ const Home = () => {
           </div>
         </Container>
       </section>
+      <GetInContact />
     </main>
   );
 };

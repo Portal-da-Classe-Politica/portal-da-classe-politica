@@ -4,6 +4,7 @@ import { Container, Heading, Text } from '@base';
 
 import { Header } from '@/components/Header';
 import { BoxImageText } from '@/components/box/BoxImageText';
+import { GetInContact } from '@/components/sections/GetInContact';
 
 const cards = [
   { text: 'Perfil dos Candidatos', src: '/img/consulta/Profile.png' },
@@ -47,6 +48,7 @@ const Home = () => {
           </div>
         </Container>
       </section>
+      <GetInContact />
     </main>
   );
 };
