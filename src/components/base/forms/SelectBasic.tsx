@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ButtonStyledProps } from '../buttons/ButtonStyled';
 import { Text } from '../text/Text';
-import { Icon } from '../Icon';
+import { Icon } from '../Icon/Icon';
 
 interface Option {
   value: number | string;

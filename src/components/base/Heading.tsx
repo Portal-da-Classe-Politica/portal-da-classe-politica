@@ -12,6 +12,7 @@ const headingVariants = cva('font-montserrat', {
       H4: 'text-h4',
       H5: 'text-h5',
       H6: 'text-h6',
+      S1: 'text-s1',
     },
   },
   defaultVariants: {
@@ -26,7 +27,7 @@ export const Heading = ({
   children,
 }: {
   headingLevel?: number;
-  size?: 'D1' | 'D2' | 'H1' | 'H2' | 'H3' | 'H4' | 'H5' | 'H6';
+  size?: 'D1' | 'D2' | 'H1' | 'H2' | 'H3' | 'H4' | 'H5' | 'H6' | 'S1';
   className?: string;
   children: React.ReactNode;
 }) => {
