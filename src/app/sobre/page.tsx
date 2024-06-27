@@ -99,6 +99,7 @@ const Page = () => {
 
           <div>
             <Avatar
+              src="/img/Person.png"
               type="left"
               title="João Almeida"
               text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio."
