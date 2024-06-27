@@ -10,6 +10,16 @@ const displayVariants = cva('font-montserrat', {
   },
 });
 
-export const Display = ({ style, children }: { style?: any; children: React.ReactNode }) => {
-  return <h1 className={displayVariants({ style })}>{children}</h1>;
+export const Display = ({
+  style,
+  children,
+  className,
+}: {
+  style?: any;
+  children: React.ReactNode;
+  className?: string;
+}) => {
+  const combinedStyles = `${displayVariants({ style })} ${className}`;
+
+  return <h1 className={combinedStyles}>{children}</h1>;
 };

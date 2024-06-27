@@ -42,7 +42,7 @@ export const Footer = () => {
   return (
     <footer className="bg-black text-white">
       <Container>
-        <div className="flex py-[90px] gap-10">
+        <div className="flex flex-col md:flex-row py-[90px] gap-10">
           <div className="w-[340px] mr-[160px]">
             <Image src="/img/Logo.svg" alt="Logo" width={154} height={80} />
             <Text className="text-[18px] my-6">

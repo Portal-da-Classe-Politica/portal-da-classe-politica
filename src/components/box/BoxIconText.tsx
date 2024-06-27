@@ -12,7 +12,7 @@ export const BoxIconText = ({
   iconSize?: number;
 }) => {
   return (
-    <div className="flex flex-col flex-1 aspect-square bg-white py-5 px-7 rounded-[10px] items-center text-center">
+    <div className="flex flex-col w-[164px] h-[164px] flex-1 aspect-square bg-white py-5 px-7 rounded-[10px] items-center text-center">
       <Icon type={iconType} size={iconSize} />
       <Text size={'B1'} className="font-bold text-orange mt-auto">
         {text}

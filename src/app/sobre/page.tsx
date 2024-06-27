@@ -97,6 +97,14 @@ const Page = () => {
             })}
           </div>
 
+          <div>
+            <Avatar
+              type="left"
+              title="João Almeida"
+              text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio."
+            />
+          </div>
+
           <TextParagraph className="mt-24" title={loremTitle} texts={[lorem, lorem, lorem, lorem]} />
 
           <div className="mt-24 text-center">

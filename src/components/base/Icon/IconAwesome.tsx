@@ -7,7 +7,12 @@ import {
   faYoutube,
 } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMountainSun, faArrowRightLong } from '@fortawesome/free-solid-svg-icons';
+import {
+  faMountainSun,
+  faArrowRightLong,
+  faAngleRight,
+  faAngleLeft,
+} from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
 const sourceMap = {
@@ -19,6 +24,8 @@ const sourceMap = {
   YouTube: faYoutube,
   Email: faEnvelope,
   LongArrowRight: faArrowRightLong,
+  shortRight: faAngleRight,
+  shortLeft: faAngleLeft,
 };
 
 export type IconTypeAwesome = keyof typeof sourceMap;

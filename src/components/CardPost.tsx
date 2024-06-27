@@ -24,17 +24,15 @@ type Props<T extends BaseProps> = T & ConditionalProps<T>;
 const Primary = ({ title, subTitle }: { title: string; subTitle: string }) => {
   return (
     <>
-      <Text size={'S1'} className="font-bold ">
-        {title}
-      </Text>
-      <div className="flex items-center">
+      <Text className="font-bold md:text-s1 text-b1 mb-2">{title}</Text>
+      <div className="flex flex-col md:flex-row items-start md:items-center">
         {subTitle && (
           <Text size={'B2'} className=" flex-1 mr-5">
             {subTitle}
           </Text>
         )}
 
-        <div>
+        <div className="mt-4">
           <Button color="orange" text="Saiba mais" />
         </div>
       </div>
@@ -58,7 +56,7 @@ const Secondary = ({ title }: { title: string }) => {
 const Tertiary = ({ title, subTitle }: { title: string; subTitle: string }) => {
   return (
     <>
-      <Heading headingLevel={2} size={'H6'} className="font-bold mb-[6px]">
+      <Heading headingLevel={2} size={'H6'} className="font-bold mb-[6px] md:text-h5 text-b1">
         {title}
       </Heading>
       <div>
@@ -94,7 +92,7 @@ export const CardPost = <T extends BaseProps>({
   const SelectedComponent = ContentSelect[type];
   return (
     <div
-      className={`flex flex-col h-full bg-white w-full items-center rounded-[10px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] ${className}`}
+      className={`flex flex-col h-[370px] md:h-full bg-white w-full items-center rounded-[10px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] ${className}`}
     >
       <div className={`w-full h-[${customHeight}px] relative flex-1 `}>
         <Image src={src} fill className="rounded-t-[10px] object-cover h-auto w-auto" alt="" />

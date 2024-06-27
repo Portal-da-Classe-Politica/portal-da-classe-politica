@@ -18,7 +18,7 @@ const variants = cva('', {
 export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
   const classes = variants({ style });
   return (
-    <nav>
+    <nav className="overflow-hidden">
       <ul className="flex">
         <li>
           <LogoIcon type={style === 'light' ? 'white' : 'orange'} />

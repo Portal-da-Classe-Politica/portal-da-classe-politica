@@ -37,7 +37,7 @@ export const BoxData = ({
 
   return (
     <div className={`flex flex-col p-5 rounded-[10px] ${divClassName}`}>
-      <Heading headingLevel={2} className={`font-bold ${headerClassName}`}>
+      <Heading headingLevel={2} className={`font-bold text-h1 md:text-h1 ${headerClassName}`}>
         {header}
       </Heading>
       <Text size="B1" className={`font-bold pb-2 ${headerClassName}`}>
