@@ -1,4 +1,5 @@
 import { IconProp, SizeProp } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faFacebook,
   faInstagram,
@@ -6,12 +7,12 @@ import {
   faTwitterSquare,
   faYoutube,
 } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faMountainSun,
   faArrowRightLong,
   faAngleRight,
   faAngleLeft,
+  faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
@@ -26,12 +27,13 @@ const sourceMap = {
   LongArrowRight: faArrowRightLong,
   shortRight: faAngleRight,
   shortLeft: faAngleLeft,
+  ArrowRight: faChevronRight,
 };
 
 export type IconTypeAwesome = keyof typeof sourceMap;
 
-export type PropsIcon = { type: IconTypeAwesome; size?: SizeProp; className?: string };
+export type IconAwesomeProps = { type: IconTypeAwesome; size?: SizeProp; className?: string };
 
-export const IconAwesome = ({ type, size = '1x', className = '' }: PropsIcon) => {
+export const IconAwesome = ({ type, size = '1x', className = '' }: IconAwesomeProps) => {
   return <FontAwesomeIcon icon={sourceMap[type] as IconProp} size={size} className={className} />;
 };

@@ -1,4 +1,4 @@
-import { IconAwesome } from '../base/Icon/IconAwesome';
+import { IconAwesome } from '@base';
 import TimelineItem from './TimelineItem';
 
 type TimelineProps = {
@@ -6,9 +6,9 @@ type TimelineProps = {
   text: string;
 };
 
-const Timeline = ({ items }: { items: TimelineProps[] }) => {
+const Timeline = ({ items, className }: { items: TimelineProps[]; className?: string }) => {
   return (
-    <div className="flex flex-wrap">
+    <div className={`flex flex-wrap text-center ${className}`}>
       {items.map((value, i) => {
         return (
           <div className="relative mb-5" key={i}>

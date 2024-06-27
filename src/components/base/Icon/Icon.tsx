@@ -17,8 +17,8 @@ const sourceMap = {
 
 export type IconType = keyof typeof sourceMap;
 
-export type PropsIcon = { type: IconType; size?: number; className?: string };
+export type IconProps = { type: IconType; size?: number; className?: string };
 
-export const Icon = ({ type, size = 64, className = '' }: PropsIcon) => {
+export const Icon = ({ type, size = 64, className = '' }: IconProps) => {
   return <Image src={sourceMap[type]} height={size} width={size} className={className} alt="" />;
 };

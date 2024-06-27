@@ -45,7 +45,7 @@ const Page = () => {
 
       <section className="mt-28">
         <Container>
-          <hr className="border-t-[3px] border-[#D9D9D9] mb-14" />
+          <hr className="border-t-[3px] border-grayMix2 mb-14" />
 
           <TextParagraphImage
             src="/img/Dados.svg"
@@ -56,7 +56,7 @@ const Page = () => {
 
           <TextParagraphImage src="/img/Dados.svg" header={loremTitle} texts={[lorem, lorem]} reverse />
 
-          <hr className="border-t-[3px] border-[#D9D9D9] mt-36" />
+          <hr className="border-t-[3px] border-grayMix2 mt-36" />
         </Container>
       </section>
 

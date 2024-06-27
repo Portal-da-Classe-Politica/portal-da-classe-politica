@@ -1,12 +1,12 @@
 import Image from 'next/image';
-import { Heading, Text } from './base';
-import { IconAwesome } from './base/Icon/IconAwesome';
 import { cva } from 'cva';
 
+import { Heading, Text, IconAwesome } from '@base';
+
 type CardIconTextProps = {
-  src: string;
   title: string;
   text: string;
+  src: string;
   type?: 'top' | 'left';
 };
 
@@ -18,11 +18,11 @@ const textVariants = cva('font-montserrat', {
     },
     imgContainer: {
       top: 'relative w-[360px] h-[360px] inline-block m-auto',
-      left: 'relative  w-[100px] h-[100px] inline-block m-auto',
+      left: 'relative w-[100px] h-[100px] inline-block m-auto',
     },
     mainContainer: {
       top: 'max-w-[360px]',
-      left: 'flex gap-4 ',
+      left: 'inline-flex gap-4',
     },
     textContainer: {
       top: 'text-left my-5',
@@ -31,12 +31,11 @@ const textVariants = cva('font-montserrat', {
   },
 });
 
-const Avatar = ({ title, text, type = 'top' }: CardIconTextProps) => {
-  //todo arrumar imagem dinamica
+const Avatar = ({ title, text, src, type = 'top' }: CardIconTextProps) => {
   return (
     <div className={textVariants({ mainContainer: type })}>
       <div className={textVariants({ imgContainer: type })}>
-        <Image src={`/img/Person.png`} fill className={textVariants({ personImage: type })} alt="" />
+        <Image src={src} fill className={textVariants({ personImage: type })} alt="" />
       </div>
       <div>
         <div className={textVariants({ textContainer: type })}>

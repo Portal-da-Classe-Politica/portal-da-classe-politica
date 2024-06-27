@@ -44,10 +44,13 @@ const config: Config = {
         grayDark2: '#3C3C3D',
         grayDark3: '#141315',
 
-        grayMix1: '#EDEDED', // Not mapped on palette but used on buttons
-
         white: '#FFFFFF',
         black: '#000000',
+
+        // Not mapped on palette but used on buttons
+        grayMix1: '#EDEDED',
+        grayMix2: '#D9D9D9',
+        grayMix3: '#F4F4F4',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

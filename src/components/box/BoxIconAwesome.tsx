@@ -1,6 +1,7 @@
 import React from 'react';
-import { IconAwesome, IconTypeAwesome } from '../base/Icon/IconAwesome';
 import { SizeProp } from '@fortawesome/fontawesome-svg-core';
+
+import { IconAwesome, IconTypeAwesome } from '@base';
 
 export const BoxIconAwesome = ({
   iconType,
