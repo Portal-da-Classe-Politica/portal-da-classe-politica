@@ -65,4 +65,5 @@ const config: Config = {
     { pattern: /^h-(full|screen|min|max|fit)$/ },
   ],
 };
+
 export default config;

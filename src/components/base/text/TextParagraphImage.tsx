@@ -21,7 +21,7 @@ export const TextParagraphImage = ({
         <Image src={src} fill className="rounded-lg object-cover h-auto w-auto" alt="" />
       </div>
       <div className="flex-1">
-        <Heading headingLevel={2} size="H1" className="font-bold text-grayDark2 mb-6">
+        <Heading headingLevel={2} size="H1" className="font-bold text-black mb-6">
           {header}
         </Heading>
         {texts.map((text, idx) => (

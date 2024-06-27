@@ -33,7 +33,7 @@ const headerText = [
   },
 ];
 
-const vectorMock = ['1', '1', '1'];
+const avatarMock = ['João Almeida', 'Daniel Almeida', 'Pedro Rocha'];
 
 const Page = () => {
   return (
@@ -85,11 +85,12 @@ const Page = () => {
           </div>
 
           <div className="mt-24 text-center flex gap-14">
-            {vectorMock.map((v, i) => {
+            {avatarMock.map((item, i) => {
               return (
                 <Avatar
                   key={i}
-                  title="João Almeida"
+                  src="/img/Person.png"
+                  title={item}
                   text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio."
                 />
               );

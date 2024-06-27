@@ -3,15 +3,16 @@ import { Heading, Text } from './base';
 import { IconAwesome } from './base/Icon/IconAwesome';
 
 type CardIconTextProps = {
+  src: string;
   title: string;
   text: string;
 };
 
-const Avatar = ({ title, text }: CardIconTextProps) => {
+const Avatar = ({ src, title, text }: CardIconTextProps) => {
   return (
     <div className="max-w-[360px]">
       <div className="relative w-[360px] h-[360px] inline-block m-auto">
-        <Image src={`/img/Person.png`} fill className="rounded-t-[10px] object-cover h-auto w-auto " alt="" />
+        <Image src={src} fill className="rounded-t-[10px] object-cover h-auto w-auto " alt="" />
       </div>
       <div className="text-left my-5">
         <Heading size="S1" className="font-bold my-4" headingLevel={2}>
