@@ -13,6 +13,7 @@ import {
   faAngleRight,
   faAngleLeft,
   faChevronRight,
+  faBars,
 } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
@@ -28,6 +29,7 @@ const sourceMap = {
   shortRight: faAngleRight,
   shortLeft: faAngleLeft,
   ArrowRight: faChevronRight,
+  Menu: faBars,
 };
 
 export type IconTypeAwesome = keyof typeof sourceMap;

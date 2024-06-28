@@ -233,43 +233,51 @@ const Home = () => {
               </Text>
               {/* pode ser um botao aqui no lugar do a (depois que estiver pronto)*/}
             </div>
-            <div className="flex flex-col gap-4 md:flex-row md:justify-between md:gap-8 md:h-[370px] ">
-              <CardPost
-                type="Tertiary"
-                category={['Leitura de 3min', 'Categoria Aqui']}
-                title={'Lorem ipsum dolor sit amet sectetur dolor sit'}
-                subTitle={
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis.'
-                }
-                src={'/img/Dados.svg'}
-              />
-              <CardPost
-                type="Tertiary"
-                category={['Leitura de 3min', 'Categoria Aqui']}
-                title={'Lorem ipsum dolor sit amet sectetur dolor sit'}
-                subTitle={
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis.'
-                }
-                src={'/img/Dados.svg'}
-              />
-              <CardPost
-                type="Tertiary"
-                category={['Leitura de 3min', 'Categoria Aqui']}
-                title={'Lorem ipsum dolor sit amet sectetur dolor sit'}
-                subTitle={
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis.'
-                }
-                src={'/img/Dados.svg'}
-              />
-              <CardPost
-                type="Tertiary"
-                category={['Leitura de 3min', 'Categoria Aqui']}
-                title={'Lorem ipsum dolor sit amet sectetur dolor sit'}
-                subTitle={
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis.'
-                }
-                src={'/img/Dados.svg'}
-              />
+            <div className="flex flex-col flex-wrap gap-4 items-center md:flex-row md:justify-evenly md:gap-3  ">
+              <div className="w-[280px] h-[370px]">
+                <CardPost
+                  type="Tertiary"
+                  category={['Leitura de 3min', 'Categoria Aqui']}
+                  title={'Lorem ipsum dolor sit amet sectetur dolor sit'}
+                  subTitle={
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis.'
+                  }
+                  src={'/img/Dados.svg'}
+                />
+              </div>
+              <div className="w-[280px] h-[370px]">
+                <CardPost
+                  type="Tertiary"
+                  category={['Leitura de 3min', 'Categoria Aqui']}
+                  title={'Lorem ipsum dolor sit amet sectetur dolor sit'}
+                  subTitle={
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis.'
+                  }
+                  src={'/img/Dados.svg'}
+                />
+              </div>
+              <div className="w-[280px] h-[370px]">
+                <CardPost
+                  type="Tertiary"
+                  category={['Leitura de 3min', 'Categoria Aqui']}
+                  title={'Lorem ipsum dolor sit amet sectetur dolor sit'}
+                  subTitle={
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis.'
+                  }
+                  src={'/img/Dados.svg'}
+                />
+              </div>
+              <div className="w-[280px] h-[370px]">
+                <CardPost
+                  type="Tertiary"
+                  category={['Leitura de 3min', 'Categoria Aqui']}
+                  title={'Lorem ipsum dolor sit amet sectetur dolor sit'}
+                  subTitle={
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis.'
+                  }
+                  src={'/img/Dados.svg'}
+                />
+              </div>
             </div>
           </div>
         </Container>
