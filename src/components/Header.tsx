@@ -1,3 +1,4 @@
+'use client';
 import { cva } from 'cva';
 import React, { useEffect, useState } from 'react';
 import { LogoIcon } from './LogoIcon';
