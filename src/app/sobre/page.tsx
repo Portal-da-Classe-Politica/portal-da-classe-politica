@@ -51,7 +51,7 @@ const Page = () => {
             </Heading>
           </div>
 
-          <div className="flex justify-center gap-20 mt-24">
+          <div className="flex flex-wrap justify-center gap-10 md:gap-20 mt-12 md:mt-24">
             {headerText.map((item, idx) => (
               <div key={idx} className="max-w-[220px]">
                 <Heading size="H2" className="text-white font-bold">
@@ -69,22 +69,22 @@ const Page = () => {
         </Container>
       </section>
 
-      <section className="pb-[45px] pt-32 bg-white">
+      <section className="pb-[45px] pt-12 md:pt-32 bg-white">
         <Container className="flex flex-col items-center">
           <TextParagraph title={loremTitle} texts={[lorem, lorem]} />
 
-          <div className="mt-24">
+          <div className="mt-12 md:mt-24">
             <Image src="/img/Dados.svg" width={1300} height={400} alt="" />
           </div>
 
-          <div className="mt-24 text-center max-w-[600px]">
+          <div className="mt-12 md:mt-24 text-center max-w-[600px]">
             <Heading size="H2" className="font-bold mb-5">
               {loremTitle}
             </Heading>
             <Text size="B1">{lorem.substring(0, 98)}</Text>
           </div>
 
-          <div className="mt-24 text-center flex gap-14">
+          <div className="md:mt-24 mt-12 text-center flex flex-wrap gap-14 justify-center md:justify-normal">
             {avatarMock.map((item, i) => {
               return (
                 <Avatar
@@ -97,18 +97,9 @@ const Page = () => {
             })}
           </div>
 
-          <div>
-            <Avatar
-              src="/img/Person.png"
-              type="left"
-              title="João Almeida"
-              text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio."
-            />
-          </div>
+          <TextParagraph className="md:mt-24 mt-12" title={loremTitle} texts={[lorem, lorem, lorem, lorem]} />
 
-          <TextParagraph className="mt-24" title={loremTitle} texts={[lorem, lorem, lorem, lorem]} />
-
-          <div className="mt-24 text-center">
+          <div className="mt-12 md:mt-24 text-center">
             <Timeline
               items={[
                 {
@@ -136,7 +127,7 @@ const Page = () => {
             />
           </div>
 
-          <div className="mt-24 mb-48">
+          <div className="mt-12 md:mt-24 mb-12 md:mb-48">
             <TextParagraphImage src="/img/Dados.svg" header={loremTitle} texts={[lorem]} />
           </div>
         </Container>

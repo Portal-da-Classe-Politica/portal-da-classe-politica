@@ -16,8 +16,8 @@ export const TextParagraphImage = ({
 }) => {
   const reverseClass = reverse ? 'flex-row-reverse' : '';
   return (
-    <div className={`flex gap-10 ${className} ${reverseClass}`}>
-      <div className="flex-1 w-full relative">
+    <div className={`flex flex-col md:flex-row gap-10 ${className} ${reverseClass}`}>
+      <div className="md:flex-1 w-full relative h-[240px] md:h-auto">
         <Image src={src} fill className="rounded-lg object-cover h-auto w-auto" alt="" />
       </div>
       <div className="flex-1">

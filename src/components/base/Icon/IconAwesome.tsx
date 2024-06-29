@@ -14,6 +14,8 @@ import {
   faAngleLeft,
   faChevronRight,
   faBars,
+  faArrowDownLong,
+  faChevronDown,
 } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
@@ -26,10 +28,12 @@ const sourceMap = {
   YouTube: faYoutube,
   Email: faEnvelope,
   LongArrowRight: faArrowRightLong,
+  LongArrowDown: faArrowDownLong,
   shortRight: faAngleRight,
   shortLeft: faAngleLeft,
   ArrowRight: faChevronRight,
   Menu: faBars,
+  ArrowDown: faChevronDown,
 };
 
 export type IconTypeAwesome = keyof typeof sourceMap;

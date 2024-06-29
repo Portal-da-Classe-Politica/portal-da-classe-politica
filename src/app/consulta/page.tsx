@@ -26,14 +26,14 @@ const Page = () => {
       </section>
       <section>
         <Container>
-          <div className="flex flex-row justify-between items-center">
+          <div className="flex flex-col justify-between items-center md:flex-row">
             <div className="flex flex-2 flex-col">
               <Heading size="D1" className="text-orange">
                 Explorando Dados Eleitorais
               </Heading>
               <Heading size="D2">Cruzamento e Visualização</Heading>
             </div>
-            <div className="flex flex-1 p-[30px]">
+            <div className="flex flex-1 pt-4 md:p-[30px]">
               <Text size="S1">
                 Utilize filtros e variáveis para criar gráficos e mapas eleitorais personalizados
               </Text>
@@ -41,7 +41,7 @@ const Page = () => {
           </div>
         </Container>
         <Container className="mb-12">
-          <div className="flex flex-wrap gap-8">
+          <div className="flex justify-center md:justify-normal flex-wrap gap-8">
             {cards.map((card, idx) => (
               <BoxImageText key={idx} text={card.text} src={card.src} />
             ))}
