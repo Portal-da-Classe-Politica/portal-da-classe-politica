@@ -1,13 +1,29 @@
-import { Heading } from '@base';
-import { Chart } from './Chart';
+'use client';
 
-export const ChartCard = ({ title, className }: { title: string; className?: string }) => {
+import { Heading, Text } from '@base';
+import { Chart, ChartProps } from './Chart';
+
+export interface ChartCardProps extends ChartProps {
+  title?: string;
+  className?: string;
+}
+
+export const ChartCard = ({ title, className, series, height }: ChartCardProps) => {
   return (
-    <div className={`flex flex-col w-[70%] p-4 bg-white shadow-lg rounded-lg ${className}`}>
+    <div className={`flex flex-col w-[70%] p-4 bg-white drop-shadow-lg rounded-lg ${className}`}>
       <Heading headingLevel={2} size="H1" className="mb-2">
         {title}
       </Heading>
-      <Chart />
+
+      <Chart series={series} height={height} />
+
+      <div className="flex justify-center items-center mt-4">
+        <Text size="C1">Y Axis Meaning</Text>
+        <Text size="C1" className="mx-2">
+          |
+        </Text>
+        <Text size="C1">X Axis Meaning</Text>
+      </div>
     </div>
   );
 };

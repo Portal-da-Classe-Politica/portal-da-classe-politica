@@ -1,41 +1,48 @@
+'use client';
+
 import React, { useState } from 'react';
-import { Container, Text } from '../base';
+import { Text } from '../base';
 import { ChartCard } from './ChartCard';
 import { Heading } from '@base';
+import { Checkbox } from '../base/forms/Checkbox';
 
-const dataSeries = {
-  electoral: {
-    name: 'Número Efetivo de Partidos Eleitoral',
-    data: [4000, 3000, 5000, 7000, 6000, 9000, 8000],
-  },
-  parliamentary: {
-    name: 'Número Efetivo de Partidos Parlamentar',
-    data: [2000, 4000, 3000, 4000, 3000, 2000, 1000],
-  },
-};
+export interface ChartSectionProps {
+  title: string;
+  description: string;
+  seriesTitle: string;
+  seriesDescription: string;
+  chartTitle: string;
+  series: Record<
+    string,
+    {
+      name: string;
+      initial?: boolean;
+      data: number[];
+      color: string;
+    }
+  >;
+}
 
-export const ChartSection = ({ title, description, seriesDescription }: any) => {
+export const ChartSection = ({
+  title,
+  description,
+  series,
+  seriesTitle,
+  seriesDescription,
+  chartTitle,
+}: ChartSectionProps) => {
   const [selectedSeries, setSelectedSeries] = useState({
     electoral: true,
     parliamentary: true,
-  });
+  } as Record<string, boolean>);
 
-  const toggleSeries = series => {
-    setSelectedSeries(prev => ({ ...prev, [series]: !prev[series] }));
+  const toggleSeries = (checked: boolean, value: string) => {
+    setSelectedSeries(prev => ({ ...prev, [value]: checked }));
   };
 
-  const series = Object.keys(selectedSeries)
-    .filter(key => selectedSeries[key])
-    .map(key => dataSeries[key]);
-
-  const options = {
-    chart: {
-      type: 'line',
-    },
-    xaxis: {
-      categories: ['2014', '2015', '2016', '2017', '2018'],
-    },
-  };
+  const seriesToShow = Object.keys(selectedSeries)
+    .filter((key: string) => selectedSeries[key])
+    .map(key => series[key]);
 
   return (
     <div>
@@ -47,35 +54,26 @@ export const ChartSection = ({ title, description, seriesDescription }: any) => 
       </div>
 
       <div className="flex mt-16">
-        <div className="flex w-[30%] mr-4">
+        <div className="flex w-[30%] mr-8">
           <div className="flex flex-col space-y-2">
             <Text size="B1" className="font-bold">
-              Adicione indicadores ao gráfico:
+              {seriesTitle}
             </Text>
             <Text size="B1">{seriesDescription}</Text>
 
-            <label className="inline-flex items-center">
-              <input
-                type="checkbox"
-                checked={selectedSeries.electoral}
-                onChange={() => toggleSeries('electoral')}
-                className="form-checkbox"
+            {Object.keys(series).map(key => (
+              <Checkbox
+                key={key}
+                value={key}
+                onClick={toggleSeries}
+                initialValue={series[key].initial}
+                label={series[key].name}
               />
-              <span className="ml-2">Número Efetivo de Partidos Eleitoral</span>
-            </label>
-            <label className="inline-flex items-center">
-              <input
-                type="checkbox"
-                checked={selectedSeries.parliamentary}
-                onChange={() => toggleSeries('parliamentary')}
-                className="form-checkbox"
-              />
-              <span className="ml-2">Número Efetivo de Partidos Parlamentar</span>
-            </label>
+            ))}
           </div>
         </div>
 
-        <ChartCard title="Lobortis celeris vulputate mollis" />
+        <ChartCard title={chartTitle} series={seriesToShow} />
       </div>
     </div>
   );
