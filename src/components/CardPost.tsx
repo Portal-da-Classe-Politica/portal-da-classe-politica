@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-import { Text, Heading, Button } from '@base';
+import { Text, Heading, Button, IconAwesome } from '@base';
 import { ChipContainer } from './ChipContainer';
 
 type BaseProps = {
@@ -56,18 +56,18 @@ const Secondary = ({ title }: { title: string }) => {
 const Tertiary = ({ title, subTitle }: { title: string; subTitle: string }) => {
   return (
     <>
-      <Heading headingLevel={2} size={'H6'} className="font-bold mb-[6px] md:text-h5 text-b1">
+      <Heading headingLevel={6} size={'H6'} className="font-bold mb-[6px]">
         {title}
       </Heading>
       <div>
-        <Text size={'B2'} className=" flex-1 mb-3">
+        <Text size={'B2'} className="flex-1 mb-3">
           {subTitle}
         </Text>
       </div>
       <Text textType="a" size={'C1'} className="font-bold text-orange flex cursor-pointer">
         LEIA MAIS
         <div className="ml-4">
-          <Image src={'/icons/VoltarIcon.svg'} height={16} width={16} className="h-4 w-4" alt="" />
+          <IconAwesome type="ArrowRight" />
         </div>
       </Text>
     </>

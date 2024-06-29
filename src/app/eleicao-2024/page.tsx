@@ -175,7 +175,7 @@ const Page = () => {
 
           <div className="flex text-orange font-bold justify-center items-center">
             <Text size="C1" className="mr-2">
-              Publicacoes do Autor
+              Publicações do Autor
             </Text>
             <IconAwesome type="ArrowRight" size="xs" />
           </div>
@@ -189,7 +189,7 @@ const Page = () => {
           <div className="mt-10 md:mt-[120px]">
             <div className="flex flex-col md:flex-row mb-[30px] gap-4">
               <Heading headingLevel={2} size={'H2'} className="font-bold ">
-                Conteúdos especiais
+                Publicações relacionadas
               </Heading>
             </div>
             <div className="flex flex-col gap-4 md:flex-row md:justify-between md:gap-8 md:h-[370px]">
