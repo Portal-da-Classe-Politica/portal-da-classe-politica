@@ -51,6 +51,7 @@ const config: Config = {
         grayMix1: '#EDEDED',
         grayMix2: '#D9D9D9',
         grayMix3: '#F4F4F4',
+        grayMix4: '#444444',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
