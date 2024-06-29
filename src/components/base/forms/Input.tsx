@@ -3,7 +3,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLElement> {
   name?: string;
   placeholder: string;
   label: string;
-  className: string;
+  className?: string;
 }
 
 export const Input = ({ id, name, placeholder, label, className, ...props }: ButtonProps) => {
