@@ -30,12 +30,12 @@ const Page = () => {
         </Container>
       </section>
 
-      <section className="mt-16">
+      <section className="mt-10 md:mt-16">
         <Container className="px-0">
-          <Heading headingLevel={2} size="H1" className="text-left mb-12 max-w-[50%]">
+          <Heading headingLevel={2} size="H1" className="text-left mb-12 md:max-w-[50%]">
             {loremTitle}
           </Heading>
-          <div className="grid grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {cardIconTexts.map((v, i) => {
               return <CardIconText key={'c' + i} title={'Consectetur adipiscing pendisse'} text={lorem} />;
             })}
@@ -43,7 +43,7 @@ const Page = () => {
         </Container>
       </section>
 
-      <section className="mt-28">
+      <section className="mt-12 md:mt-28">
         <Container>
           <hr className="border-t-[3px] border-grayMix2 mb-14" />
 
@@ -51,21 +51,21 @@ const Page = () => {
             src="/img/Dados.svg"
             header={loremTitle}
             texts={[lorem, lorem]}
-            className="mb-28"
+            className="mb-12 md:mb-28"
           />
 
           <TextParagraphImage src="/img/Dados.svg" header={loremTitle} texts={[lorem, lorem]} reverse />
 
-          <hr className="border-t-[3px] border-grayMix2 mt-36" />
+          <hr className="border-t-[3px] border-grayMix2 mt-12 md:mt-36" />
         </Container>
       </section>
 
-      <section className="mt-20 mb-12">
+      <section className="mt-10 md:mt-20 mb-12">
         <Container>
           <Heading headingLevel={2} size="H1" className="text-left mb-12">
             {loremTitle}
           </Heading>
-          <div className="flex gap-8">
+          <div className="flex flex-col-reverse md:flex-row gap-8">
             <div className="max-w-[300px]">
               {topics.map((v, i) => (
                 <div key={'a' + i}>

@@ -15,11 +15,19 @@ export const GetInContact = () => {
             ipsum.
           </Text>
         </div>
-        <div className="flex flex-wrap items-center  justify-between  gap-4 md:gap-8">
-          <BoxIconText text="Canal de denúncia" iconType="Megafone" />
-          <BoxIconText text="Atendimento Redem" iconType="Headset" />
-          <BoxIconText text="Reportar Erro" iconType="Error" />
-          <BoxIconText text="Elogios ao projeto" iconType="Star" />
+        <div className="flex flex-wrap items-center  justify-evenly  gap-4 md:gap-4">
+          <div className="w-[160px] h-[160px]">
+            <BoxIconText text="Canal de denúncia" iconType="Megafone" />
+          </div>
+          <div className="w-[160px] h-[160px]">
+            <BoxIconText text="Atendimento Redem" iconType="Headset" />
+          </div>
+          <div className="w-[160px] h-[160px]">
+            <BoxIconText text="Reportar Erro" iconType="Error" />
+          </div>
+          <div className="w-[160px] h-[160px]">
+            <BoxIconText text="Elogios ao projeto" iconType="Star" />
+          </div>
         </div>
       </Container>
     </section>

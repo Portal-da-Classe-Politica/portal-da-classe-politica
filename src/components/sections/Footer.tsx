@@ -42,8 +42,8 @@ export const Footer = () => {
   return (
     <footer className="bg-black text-white">
       <Container>
-        <div className="flex flex-col md:flex-row py-[90px] gap-10">
-          <div className="w-[340px] mr-[160px]">
+        <div className="flex flex-col lg:flex-row py-[90px] gap-10">
+          <div className=" lg:max-w-[340px] lg:mr-[160px]">
             <Image src="/img/Logo.svg" alt="Logo" width={154} height={80} />
             <Text className="text-[18px] my-6">
               Lorem ipsum dolor sit amet consectetur adipiscing elit aliquam mauris sed ma
@@ -56,22 +56,24 @@ export const Footer = () => {
             </div>
           </div>
 
-          {sections.map(section => (
-            <div key={section.title} className={section.className}>
-              <Heading headingLevel={3} size={'H6'} className="font-bold mb-10">
-                {section.title}
-              </Heading>
-              <ul className="space-y-2">
-                {section.links.map(link => (
-                  <li key={link.text}>
-                    <Text textType="a" className="text-[18px]">
-                      {link.text}
-                    </Text>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          <div className="flex flex-col gap-10 md:flex-row">
+            {sections.map(section => (
+              <div key={section.title} className={section.className}>
+                <Heading headingLevel={3} size={'H6'} className="font-bold mb-10">
+                  {section.title}
+                </Heading>
+                <ul className="space-y-2">
+                  {section.links.map(link => (
+                    <li key={link.text}>
+                      <Text textType="a" className="text-[18px]">
+                        {link.text}
+                      </Text>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
       </Container>
 

@@ -17,8 +17,8 @@ const textVariants = cva('font-montserrat', {
       left: 'rounded-full object-cover h-auto w-auto ',
     },
     imgContainer: {
-      top: 'relative w-[360px] h-[360px] inline-block m-auto',
-      left: 'relative w-[100px] h-[100px] inline-block m-auto',
+      top: 'relative w-[240px] h-[240px] md:w-[360px] md:h-[360px] inline-block m-auto',
+      left: 'relative w-[120px] h-[120px] md:w-[100px] md:h-[100px] inline-block m-auto',
     },
     mainContainer: {
       top: 'max-w-[360px]',

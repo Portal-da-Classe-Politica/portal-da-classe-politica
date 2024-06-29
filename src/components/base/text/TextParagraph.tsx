@@ -17,7 +17,7 @@ export const TextParagraph = ({
       </Heading>
       <div className="flex flex-wrap">
         {texts.map((text, idx) => (
-          <div key={idx} className={`w-full md:w-1/2 mb-4 ${idx % 2 ? 'pl-4' : 'pr-4'}`}>
+          <div key={idx} className={`w-full md:w-1/2 mb-4 ${idx % 2 ? 'md:pl-4' : 'md:pr-4'}`}>
             <Text size="B1">{text}</Text>
           </div>
         ))}

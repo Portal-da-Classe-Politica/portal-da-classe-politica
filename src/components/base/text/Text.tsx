@@ -8,7 +8,7 @@ const textVariants = cva('font-montserrat', {
       B2: 'text-b2',
       L1: 'text-l1',
       L2: 'text-l2',
-      S1: 'text-s1',
+      S1: 'text-h6 md:text-s1',
       C1: 'text-c1',
       C2: 'text-c2',
     },
