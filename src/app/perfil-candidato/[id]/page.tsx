@@ -19,7 +19,7 @@ import ArrowItem from '@/components/ArrowItem';
 const Page = () => {
   return (
     <main className="font-montserrat bg-grayMix1">
-      <section className="pb-[45px] pt-4 pb-24 bg-white">
+      <section className="pb-[45px] pt-4 bg-white">
         <Container>
           <Header style="dark" />
 
