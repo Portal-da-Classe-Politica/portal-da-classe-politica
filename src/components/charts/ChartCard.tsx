@@ -10,7 +10,9 @@ export interface ChartCardProps extends ChartProps {
 
 export const ChartCard = ({ title, className, series, height }: ChartCardProps) => {
   return (
-    <div className={`flex flex-col w-[70%] p-4 bg-white drop-shadow-lg rounded-lg ${className}`}>
+    <div
+      className={`flex flex-col md:w-[70%] p-4 bg-white drop-shadow-lg rounded-lg ${className} mb-10 md:mb-0`}
+    >
       <Heading headingLevel={2} size="H1" className="mb-2">
         {title}
       </Heading>

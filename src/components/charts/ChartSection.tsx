@@ -53,8 +53,8 @@ export const ChartSection = ({
         <Text size="S1">{description}</Text>
       </div>
 
-      <div className="flex mt-16">
-        <div className="flex w-[30%] mr-8">
+      <div className="flex flex-col-reverse md:flex-row mt-10 md:mt-16">
+        <div className="flex md:w-[30%] md:mr-8">
           <div className="flex flex-col space-y-2">
             <Text size="B1" className="font-bold">
               {seriesTitle}

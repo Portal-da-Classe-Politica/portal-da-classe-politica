@@ -18,7 +18,7 @@ const Atendimento = () => {
         </Container>
       </section>
       <section className="bg-orange py-[80px]">
-        <Container className={'w-[770px]'}>
+        <Container className={'md:w-[770px]'}>
           <div className="text-white text-center mb-11">
             <Text textType="span" size="S1" className="font-bold text-[30px] mb-[22px]">
               ATENDIMENTO
@@ -27,18 +27,26 @@ const Atendimento = () => {
               Precisando de ajuda? Escolha o método de atendimento
             </Heading>{' '}
           </div>
-          <div className="flex justify-between gap-8">
-            <BoxIconText text="Canal de denúncia" iconType="Megafone" />
-            <BoxIconText text="Atendimento Redem" iconType="Headset" />
-            <BoxIconText text="Reportar Erro" iconType="Error" />
-            <BoxIconText text="Elogios ao projeto" iconType="Star" />
+          <div className="flex flex-wrap items-center justify-evenly gap-4 md:gap-4">
+            <div className="w-[160px] h-[160px]">
+              <BoxIconText text="Canal de denúncia" iconType="Megafone" />
+            </div>
+            <div className="w-[160px] h-[160px]">
+              <BoxIconText text="Atendimento Redem" iconType="Headset" />
+            </div>
+            <div className="w-[160px] h-[160px]">
+              <BoxIconText text="Reportar Erro" iconType="Error" />
+            </div>
+            <div className="w-[160px] h-[160px]">
+              <BoxIconText text="Elogios ao projeto" iconType="Star" />
+            </div>
           </div>
         </Container>
       </section>
       <section className="bg-[#F4F4F4]">
-        <Container className="pt-10 pb-[150px]">
+        <Container className="pt-10 pb-10 md:pb-[150px]">
           <Heading headingLevel={2}>Informações de Contato</Heading>
-          <div className="flex mb-[140px]">
+          <div className="flex mb-10 md:mb-[140px] flex-col-reverse md:flex-row">
             <div className="flex-1">
               <LineItem className="my-7">
                 <Text textType="h2" size="B1" className="font-bold mb-2">
@@ -83,15 +91,15 @@ const Atendimento = () => {
               </LineItem>
             </div>
             <div className="flex-1">
-              <Text textType="h2" size="S1" className="font-bold">
+              <Text textType="h2" size="S1" className="font-bold hidden md:flex">
                 Informações de Contato
               </Text>
               <form className="flex flex-col gap-7 mt-6 mb-9">
-                <div className="flex gap-5">
+                <div className="flex gap-5 flex-col md:flex-row">
                   <Input placeholder="Nome Completo" label="name" />
                   <Input placeholder="Email" label="email" />
                 </div>
-                <div className="flex gap-5">
+                <div className="flex gap-5 flex-col md:flex-row">
                   <Input placeholder="Celular (DDD + telefone)" label="phone" />
                   <Input placeholder="Assunto" label="topic" />
                 </div>

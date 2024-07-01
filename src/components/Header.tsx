@@ -85,7 +85,7 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
           </li>
         </ul>
       </nav>
-      <nav className="flex w-full items-center h-16 z-10 xl:hidden mb-10">
+      <nav className="flex w-full items-center h-16 z-10 xl:hidden pb-10 pt-10">
         <div className="flex items-center w-full justify-between">
           <LogoIcon type={style === 'light' ? 'white' : 'orange'} />
           <button className={`${classes} `} aria-label="Open Menu" onClick={handleDrawer}>

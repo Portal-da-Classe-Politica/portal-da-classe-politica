@@ -18,6 +18,7 @@ import {
   faChevronDown,
   faCheck,
   faPlus,
+  faPhone,
 } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
@@ -38,6 +39,7 @@ const sourceMap = {
   ArrowDown: faChevronDown,
   Checked: faCheck,
   UnChecked: faPlus,
+  Phone: faPhone,
 };
 
 export type IconTypeAwesome = keyof typeof sourceMap;

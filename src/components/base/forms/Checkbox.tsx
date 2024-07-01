@@ -38,9 +38,11 @@ export const Checkbox: React.FC<CheckboxProps> = ({
           className={`${checked ? 'text-white' : 'text-orange'}`}
         />
       </div>
-      <Text size="C1" className="ml-4 text-black font-semibold">
-        {label}
-      </Text>
+      <div className="flex-1">
+        <Text size="C1" className="ml-4 text-black font-semibold">
+          {label}
+        </Text>
+      </div>
     </div>
   );
 };

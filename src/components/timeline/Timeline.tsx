@@ -9,7 +9,7 @@ type TimelineProps = {
 const Timeline = ({ items, className }: { items: TimelineProps[]; className?: string }) => {
   return (
     <div
-      className={`grid grid-cols-1 md:flex md:flex-wrap text-center justify-center md:justify-normal gap-14 md:gap-0 ${className}`}
+      className={`grid grid-cols-1 md:flex md:flex-wrap text-center justify-center justify-items-center md:justify-normal gap-14 md:gap-0 ${className}`}
     >
       {items.map((value, i) => {
         return (

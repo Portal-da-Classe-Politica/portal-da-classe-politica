@@ -107,43 +107,44 @@ const Page = () => {
             {lorem}
             {lorem}
           </Text>
+          <div className="mt-12 md:mt-24 text-center">
+            <Timeline
+              className="mt-16"
+              items={[
+                {
+                  title: '2015',
+                  text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio.',
+                },
 
-          <Timeline
-            className="mt-16"
-            items={[
-              {
-                title: '2015',
-                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio.',
-              },
-
-              {
-                title: '2018',
-                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio.',
-              },
-              {
-                title: '2020',
-                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio.',
-              },
-              {
-                title: '2023',
-                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio.',
-              },
-              {
-                title: '2025',
-                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio.',
-              },
-            ]}
-          />
+                {
+                  title: '2018',
+                  text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio.',
+                },
+                {
+                  title: '2020',
+                  text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio.',
+                },
+                {
+                  title: '2023',
+                  text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio.',
+                },
+                {
+                  title: '2025',
+                  text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio.',
+                },
+              ]}
+            />
+          </div>
         </Container>
       </section>
 
       <section className="mt-24">
         <Container>
-          <Heading headingLevel={2} size="H1">
+          <Heading headingLevel={2} size="H1" className="mb-8">
             {loremTitle}
           </Heading>
 
-          <div className="grid grid-cols-3 gap-10 mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {cardIconTexts.map((v, i) => {
               return <CardIconText key={'c' + i} title={'Consectetur adipiscing pendisse'} text={lorem} />;
             })}
@@ -165,7 +166,7 @@ const Page = () => {
       </section>
 
       <section className="mt-20">
-        <Container className="flex justify-between items-end">
+        <Container className="flex justify-between items-end flex-col md:flex-row gap-4">
           <Avatar
             type="left"
             src="/img/Person.png"

@@ -8,6 +8,7 @@ import { Header } from '@/components/Header';
 import { GetInContact } from '@/components/sections/GetInContact';
 import CardIconText from '@/components/CardIconText';
 import { LineItem } from '@/components/LineItem';
+import Divider from '@/components/Divider';
 
 const cardIconTexts = ['1', '1', '1', '1', '1', '1'];
 const topics = ['1', '1', '1', '1'];
@@ -45,8 +46,7 @@ const Page = () => {
 
       <section className="mt-12 md:mt-28">
         <Container>
-          <hr className="border-t-[3px] border-grayMix2 mb-14" />
-
+          <Divider />
           <TextParagraphImage
             src="/img/Dados.svg"
             header={loremTitle}
