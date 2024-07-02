@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 import { IconAwesome } from './base/Icon/IconAwesome';
 
@@ -6,11 +8,11 @@ type ContentProps = {
   content: string | React.ReactNode;
 };
 
-type Props = {
+export interface SelectBoxProps {
   tabs: ContentProps[];
-};
+}
 
-export const SelectBox = ({ tabs }: Props) => {
+const SelectBox = ({ tabs }: SelectBoxProps) => {
   const [selecionado, setSelecionado] = useState(0);
 
   const prevSlide = () => {
@@ -89,3 +91,5 @@ export const SelectBox = ({ tabs }: Props) => {
     </div>
   );
 };
+
+export default SelectBox;

@@ -14,11 +14,15 @@ const CandidateFinance = ({ name, city, date, value }: CandidateFinanceProps) =>
         <Text size="C1" className="font-bold">
           {name}
         </Text>
-        <Text className="text-[10px] text-orange">Origem: {city}</Text>
+        <Text size="MIN" className=" text-orange">
+          Origem: {city}
+        </Text>
       </div>
       <div className="text-right">
-        <Text className="text-orange font-bold text-[10px]">{value}</Text>
-        <Text className="text-[10px]">Data da doação: {date}</Text>
+        <Text size={'MIN'} className="text-orange font-bold ">
+          {value}
+        </Text>
+        <Text size={'MIN'}>Data da doação: {date}</Text>
       </div>
     </div>
   );

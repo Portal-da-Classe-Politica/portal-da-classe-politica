@@ -1,14 +1,16 @@
-'use client';
-
 import { Container, Heading, Display, Text, ButtonStyled } from '@base';
-
+import dynamic from 'next/dynamic';
 import { BoxFerramenta } from '@components/box/BoxFerramenta';
 import { BoxData } from '@/components/box/BoxData';
 import { CardPost } from '@/components/CardPost';
 import { Header } from '@/components/Header';
 import { GetInContact } from '@/components/sections/GetInContact';
-import { SelectBox } from '@components/SelectBox';
 import { SpecialContents } from '@/components/sections/SpecialContents';
+import { SelectBoxProps } from '@components/SelectBox';
+
+const SelectBox = dynamic<SelectBoxProps>(() => import('@components/SelectBox'), {
+  ssr: false,
+});
 
 const Home = () => {
   return (
@@ -40,23 +42,27 @@ const Home = () => {
           </div>
           <div className="flex flex-col gap-6 items-center md:gap-2 md:flex-row md:justify-between mt-12 md:mt-24">
             <BoxFerramenta
+              alt="Cruzamentos e Dados Eleitorais"
               src={'/img/Cruzdados.svg'}
               title={'Cruzamentos e Dados Eleitorais'}
               subTitle={'Consectetur adipiscing uspendisse non odio.'}
             />
             <BoxFerramenta
+              alt="Indicadores e Índices Especiais"
               src={'/img/Indicadores.svg'}
-              title={'Cruzamentos e Dados Eleitorais'}
+              title={'Indicadores e Índices Especiais'}
               subTitle={'Consectetur adipiscing uspendisse non odio.'}
             />
             <BoxFerramenta
+              alt="Aprenda a usar os Indicadores"
               src={'/img/Aprenda.svg'}
-              title={'Cruzamentos e Dados Eleitorais'}
+              title={'Aprenda a usar os Indicadores'}
               subTitle={'Consectetur adipiscing uspendisse non odio.'}
             />
             <BoxFerramenta
+              alt="Comunicação Científica"
               src={'/img/Comunicacao.svg'}
-              title={'Cruzamentos e Dados Eleitorais'}
+              title={'Comunicação Científica'}
               subTitle={'Consectetur adipiscing uspendisse non odio.'}
             />
           </div>
@@ -74,6 +80,7 @@ const Home = () => {
           <div className="flex flex-col h-full md:flex-row gap-4 md:gap-[58px]">
             <div className="h-[370px] md:h-[480px]">
               <CardPost
+                alt={'Eleições 2024: Conheça o histórico dos candidatos da sua cidade'}
                 category={['Leitura de 3min', 'Categoria Aqui']}
                 customHeight={250}
                 title={'Eleições 2024: Conheça o histórico dos candidatos da sua cidade'}
@@ -88,6 +95,7 @@ const Home = () => {
             <div className="flex flex-col gap-[24px]">
               <div className="md:h-[227px]">
                 <CardPost
+                  alt={'Eleições 2024: Conheça o histórico dos candidatos da sua cidade'}
                   type="Secondary"
                   category={['Leitura de 3min', 'Categoria Aqui']}
                   customHeight={90}
@@ -97,6 +105,7 @@ const Home = () => {
               </div>
               <div className="md:h-[227px]">
                 <CardPost
+                  alt={'Eleições 2024: Conheça o histórico dos candidatos da sua cidade'}
                   type="Secondary"
                   category={['Leitura de 3min', 'Categoria Aqui']}
                   customHeight={90}

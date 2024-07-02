@@ -10,7 +10,7 @@ type CandidateProfileProps = {
 
 const CandidateProfile = ({ src }: CandidateProfileProps) => {
   return (
-    <div className="flex gap-6">
+    <div className="flex flex-col md:flex-row gap-6">
       <div className=" w-[190px] relative h-[240px] ">
         <Image src={src} fill className="rounded-lg object-cover h-auto w-auto" alt="" />
       </div>
@@ -33,20 +33,22 @@ const CandidateProfile = ({ src }: CandidateProfileProps) => {
           <TextBetween text="Estado" title="Paraná - PR" />
           <TextBetween text="Situação" title="Apto" />
         </div>
-        <div className="flex gap-4">
+        <div className="flex flex-col-reverse md:flex-row gap-4">
           <ButtonStyled style="fillOrange" className="w-[210px]">
             Entre em contato
           </ButtonStyled>
-          <BoxIconAwesome
-            iconType="Phone"
-            size={11}
-            className="bg-white border-orange border-[1px] text-orange rounded-md"
-          />
-          <BoxIconAwesome
-            iconType="Email"
-            size={11}
-            className="bg-white border-orange border-[1px] text-orange rounded-md"
-          />
+          <div className="flex gap-4">
+            <BoxIconAwesome
+              iconType="Phone"
+              size={11}
+              className="bg-white border-orange border-[1px] text-orange rounded-md"
+            />
+            <BoxIconAwesome
+              iconType="Email"
+              size={11}
+              className="bg-white border-orange border-[1px] text-orange rounded-md"
+            />
+          </div>
         </div>
       </div>
     </div>

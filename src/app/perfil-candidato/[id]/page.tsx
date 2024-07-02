@@ -44,15 +44,15 @@ const Page = () => {
       </section>
       <section>
         <Container className="flex flex-col items-center">
-          <div className="flex w-full gap-8">
-            <div className="w-[75%]">
-              <div className="flex gap-6">
+          <div className="flex flex-col lg:flex-row w-full gap-8">
+            <div className="w-full lg:w-[75%]">
+              <div className="flex gap-6 flex-col xl:flex-row">
                 <CandidateProfile src={'/img/Person.png'} />
                 <LastElection />
               </div>
               <Divider type="orange" bottom="small" top="small" />
-              <div className="flex justify-between gap-16">
-                <div className="w-[50%] flex flex-col gap-3">
+              <div className="flex flex-col md:flex-row justify-between gap-3 md:gap-16">
+                <div className="w-full md:w-[50%] flex flex-col gap-3">
                   <TextBetween text="Nome Completo" title="Angela Alves Machado" />
                   <TextBetween text="Grau de Instrução" title="Superior Completo" />
                   <TextBetween text="Estado Civil" title="Casado(a)" />
@@ -60,7 +60,7 @@ const Page = () => {
                   <TextBetween text="Coligação" title="PSOL/REDE" />
                   <TextBetween text="Bens Declarados" title="R$ 416.857,0R$ 416.857,0" />
                 </div>
-                <div className="w-[50%] flex flex-col gap-3">
+                <div className="w-full md:w-[50%] flex flex-col gap-3">
                   <TextBetween text="Número do Partido" title="50 / PSOL" />
                   <TextBetween text="Ocupação" title="Administrador" />
                   <TextBetween text="Gênero" title="Feminino" />
@@ -69,39 +69,47 @@ const Page = () => {
                   <TextBetween text="Cidade de Nascimento" title="São José dos Pinhas" />
                 </div>
               </div>
-              <div className="flex gap-4 mt-10">
-                <BoxData
-                  content="Consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis"
-                  title="Lorem ipsum dolor"
-                  header="+35,7%"
-                  variant="orange"
-                />
-                <BoxData
-                  content="Consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis"
-                  title="Lorem ipsum dolor"
-                  header="+35,7%"
-                  variant="orange"
-                />
-                <BoxData
-                  content="Consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis"
-                  title="Lorem ipsum dolor"
-                  header="+35,7%"
-                  variant="orange"
-                />
-                <BoxData
-                  content="Consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis"
-                  title="Lorem ipsum dolor"
-                  header="+35,7%"
-                  variant="orange"
-                />
+              <div className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-2 xl:grid-cols-4 gap-4 mt-10 justify-center justify-items-center">
+                <div className="h-[190px] w-[210px]">
+                  <BoxData
+                    content="Consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis"
+                    title="Lorem ipsum dolor"
+                    header="+35,7%"
+                    variant="orange"
+                  />
+                </div>
+                <div className="h-[190px] w-[210px]">
+                  <BoxData
+                    content="Consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis"
+                    title="Lorem ipsum dolor"
+                    header="+35,7%"
+                    variant="orange"
+                  />
+                </div>{' '}
+                <div className="h-[190px] w-[210px]">
+                  <BoxData
+                    content="Consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis"
+                    title="Lorem ipsum dolor"
+                    header="+35,7%"
+                    variant="orange"
+                  />
+                </div>{' '}
+                <div className="h-[190px] w-[210px]">
+                  <BoxData
+                    content="Consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis"
+                    title="Lorem ipsum dolor"
+                    header="+35,7%"
+                    variant="orange"
+                  />
+                </div>
               </div>
               <div>grafico</div>
             </div>
-            <div className="w-[25%] ">
+            <div className="w-full lg:w-[25%]  ">
               <Text textType="h2" size="B1" className="mb-10 font-bold">
                 Candidatos Adversários
               </Text>
-              <div className="flex flex-col gap-6 mb-6">
+              <div className="flex flex-col sm:flex-row lg:flex-col gap-6 mb-6">
                 <CandidateAdversary
                   name="Sergio Nakatani"
                   political="PT"
@@ -125,35 +133,35 @@ const Page = () => {
                 Coligações
               </Text>
               <div className="flex flex-wrap mt-6 gap-2 mb-6">
-                <ChipContainer type="ghost" className="mr-0">
+                <ChipContainer type="ghost" className="!mr-0">
                   PSDO
                 </ChipContainer>
-                <ChipContainer type="ghost" className="mr-0">
+                <ChipContainer type="ghost" className="!mr-0">
                   PSDB
                 </ChipContainer>
-                <ChipContainer type="ghost" className="mr-0">
+                <ChipContainer type="ghost" className="!mr-0">
                   Partido Verde
                 </ChipContainer>
-                <ChipContainer type="full" className="mr-0">
+                <ChipContainer type="full" className="!mr-0">
                   PSOL
                 </ChipContainer>
-                <ChipContainer type="ghost" className="mr-0">
+                <ChipContainer type="ghost" className="!mr-0">
                   PL
                 </ChipContainer>
-                <ChipContainer type="ghost" className="mr-0">
+                <ChipContainer type="ghost" className="!mr-0">
                   PDVS
                 </ChipContainer>
-                <ChipContainer type="ghost" className="mr-0">
+                <ChipContainer type="ghost" className="!mr-0">
                   PT
                 </ChipContainer>
-                <ChipContainer type="ghost" className="mr-0">
+                <ChipContainer type="ghost" className="!mr-0">
                   PDT
                 </ChipContainer>
               </div>
               <Text textType="h2" size="B1" className="mb-6 font-bold">
                 Maiores Financiadores
               </Text>
-              <div className="w-full flex flex-col gap-3 mb-6">
+              <div className="w-full flex flex-col  gap-3 mb-6">
                 <CandidateFinance
                   city=" São Paulo/SP"
                   date="23/11/2023"
@@ -183,32 +191,32 @@ const Page = () => {
                 Maiores Financiadores
               </Text>
               <div className="flex flex-wrap mt-6 gap-2 mb-6">
-                <ChipContainer type="ghost" className="mr-0">
+                <ChipContainer type="ghost" className="!mr-0">
                   Saúde
                 </ChipContainer>
-                <ChipContainer type="ghost" className="mr-0">
+                <ChipContainer type="ghost" className="!mr-0">
                   Educação
                 </ChipContainer>
-                <ChipContainer type="ghost" className="mr-0">
+                <ChipContainer type="ghost" className="!mr-0">
                   Proteção Ambiental
                 </ChipContainer>
-                <ChipContainer type="ghost" className="mr-0">
+                <ChipContainer type="ghost" className="!mr-0">
                   Caudado aos Animais
                 </ChipContainer>
-                <ChipContainer type="ghost" className="mr-0">
+                <ChipContainer type="ghost" className="!mr-0">
                   Liberdade Religiosa
                 </ChipContainer>
-                <ChipContainer type="ghost" className="mr-0">
+                <ChipContainer type="ghost" className="!mr-0">
                   Privatização
                 </ChipContainer>
-                <ChipContainer type="ghost" className="mr-0">
+                <ChipContainer type="ghost" className="!mr-0">
                   Diminuição de Impostos
                 </ChipContainer>
               </div>
               <Text textType="h2" size="B1" className="mb-6 font-bold">
                 Maiores Financiadores
               </Text>
-              <div className="flex flex-wrap mt-6 gap-3 mb-6">
+              <div className="flex flex-wrap mt-6 gap-3 mb-3 md:mb-6">
                 <ArrowItem>
                   <Text size="C1">Sanear as Finanças, Transparência e Melhoria da Gestão Pública</Text>
                 </ArrowItem>
@@ -245,7 +253,7 @@ const Page = () => {
         </Container>
       </section>
 
-      <section className="mt-20 mb-20">
+      <section className="mt-6 md:mt-20 mb-10 md:mb-20">
         <Container>
           <hr className="border-t-[3px] border-graMix2" />
 

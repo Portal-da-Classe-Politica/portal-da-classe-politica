@@ -27,6 +27,7 @@ const config: Config = {
         s1: ['24px', '30px'],
         c1: ['14px', '17px'],
         c2: ['12px', '12px'],
+        min: ['10px', '12px'],
       },
       colors: {
         orangeLight1: '#F9D1C5',

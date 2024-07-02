@@ -1,12 +1,22 @@
 import React from 'react';
 import Image from 'next/image';
 
-import { Text } from '@base';
+import { IconAwesome, Text } from '@base';
 
-export const BoxFerramenta = ({ src, title, subTitle }: { src: string; title: string; subTitle: string }) => {
+export const BoxFerramenta = ({
+  src,
+  title,
+  subTitle,
+  alt,
+}: {
+  src: string;
+  title: string;
+  subTitle: string;
+  alt: string;
+}) => {
   return (
     <div className="flex flex-col bg-white h-[312px] w-[295px] py-9 px-6 items-center rounded-[10px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)]">
-      <Image src={src} width={180} height={110} alt="" />
+      <Image src={src} width={180} height={110} alt={alt} />
       <Text size={'B1'} className="font-bold text-center">
         {title}
       </Text>
@@ -16,7 +26,7 @@ export const BoxFerramenta = ({ src, title, subTitle }: { src: string; title: st
       <Text textType="a" size={'C2'} className="mt-auto text-orange flex">
         Acessar Ferramenta
         <div className="ml-2">
-          <Image src={'/icons/VoltarIcon.svg'} height={12} width={12} className="h-3 w-3" alt="" />
+          <IconAwesome type="ArrowRight" />
         </div>{' '}
       </Text>
     </div>

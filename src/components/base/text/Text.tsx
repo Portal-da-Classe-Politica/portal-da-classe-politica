@@ -11,6 +11,7 @@ const textVariants = cva('font-montserrat', {
       S1: 'text-h6 md:text-s1',
       C1: 'text-c1',
       C2: 'text-c2',
+      MIN: 'text-min',
     },
   },
   defaultVariants: {
@@ -21,7 +22,7 @@ const textVariants = cva('font-montserrat', {
 export type TextProps = {
   children: React.ReactNode;
   className?: string;
-  size?: 'B1' | 'B2' | 'L1' | 'L2' | 'S1' | 'C1' | 'C2';
+  size?: 'B1' | 'B2' | 'L1' | 'L2' | 'S1' | 'C1' | 'C2' | 'MIN';
   textType?: string;
   href?: string;
   props?: any;
