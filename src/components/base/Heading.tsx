@@ -25,14 +25,20 @@ export const Heading = ({
   className = '',
   size,
   children,
+  onClick,
 }: {
   headingLevel?: number;
   size?: 'D1' | 'D2' | 'H1' | 'H2' | 'H3' | 'H4' | 'H5' | 'H6' | 'S1';
   className?: string;
   children: React.ReactNode;
+  onClick?: () => void;
 }) => {
   const HeadingTag = `h${headingLevel}` as keyof JSX.IntrinsicElements;
   const combinedStyles = `${headingVariants({ size })} ${className}`;
 
-  return <HeadingTag className={combinedStyles}>{children}</HeadingTag>;
+  return (
+    <HeadingTag className={combinedStyles} onClick={onClick}>
+      {children}
+    </HeadingTag>
+  );
 };

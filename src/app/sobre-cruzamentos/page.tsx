@@ -7,11 +7,39 @@ import { Container, Heading, Text, TextParagraphImage } from '@base';
 import { Header } from '@/components/Header';
 import { GetInContact } from '@/components/sections/GetInContact';
 import CardIconText from '@/components/CardIconText';
-import { LineItem } from '@/components/LineItem';
 import Divider from '@/components/Divider';
+import dynamic from 'next/dynamic';
 
-const cardIconTexts = ['1', '1', '1', '1', '1', '1'];
-const topics = ['1', '1', '1', '1'];
+const TableMenu = dynamic(() => import('@components/TableMenu'), {
+  ssr: false,
+});
+
+const cardIconTexts = [
+  {
+    title: 'O que é a página Perfil dos Candidatos?',
+    text: 'A página Perfil dos Candidatos oferece um perfil detalhado de cada candidato que disputou cargos em uma determinada eleição. Aqui, você encontrará informações essenciais como nome, partido, cargo e situação da candidatura. ',
+  },
+  {
+    title: 'Para que serve a página perfil dos Candidatos? ',
+    text: 'A Página de Candidatos permite que os usuários explorem informações detalhadas sobre os candidatos, facilitando a análise de perfis e a comparação entre eles. Ideal para eleitores, pesquisadores e jornalistas que buscam uma visão sistematizada das candidaturas. ',
+  },
+  {
+    title: 'O que são Cruzamentos de Variáveis? ',
+    text: 'Cruzamentos de variáveis são combinações de diferentes conjuntos de dados para revelar relações e padrões que não são visíveis quando se analisa cada variável separadamente. No Portal, são 33 variáveis dividias em 4 dimensões: perfil social, votação obtida, prestação de contas e financiamento de campanha. ',
+  },
+  {
+    title: 'Para que servem os Cruzamentos de Variáveis? ',
+    text: 'Os Cruzamentos de Variáveis ajudam a identificar tendências, correlações e insights detalhados sobre a dinâmica eleitoral e política, gerando informações úteis para análises mais aprofundadas e a formulação de estratégias baseadas em dados concreto',
+  },
+  {
+    title: 'O que são os Indicadores? ',
+    text: 'Os Indicadores são métricas específicas que fornecem uma medida de aspectos-chave das eleições e da política. O Portal disponibiliza 16 índices divididos em quatro dimensões: eleitoral, de ambição política, geográfica e de financiamento eleitoral. ',
+  },
+  {
+    title: 'Para que servem os Indicadores? ',
+    text: 'Os Indicadores ajudam a medir e avaliar diferentes aspectos do cenário político e eleitoral, permitindo o acompanhamento de tendências ao longo do tempo. Eles podem ser ferramentas valiosas para pesquisadores, analistas, jornalistas e formuladores de políticas. ',
+  },
+];
 
 const Page = () => {
   return (
@@ -34,11 +62,11 @@ const Page = () => {
       <section className="mt-10 md:mt-16">
         <Container className="px-0">
           <Heading headingLevel={2} size="H1" className="text-left mb-12 md:max-w-[50%]">
-            {loremTitle}
+            Perfil dos Candidatos, variáveis e indicadores
           </Heading>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {cardIconTexts.map((v, i) => {
-              return <CardIconText key={'c' + i} title={'Consectetur adipiscing pendisse'} text={lorem} />;
+            {cardIconTexts.map((value, i) => {
+              return <CardIconText key={'c' + i} title={value.title} text={value.text} />;
             })}
           </div>
         </Container>
@@ -62,43 +90,7 @@ const Page = () => {
 
       <section className="mt-10 md:mt-20 mb-12">
         <Container>
-          <Heading headingLevel={2} size="H1" className="text-left mb-12">
-            {loremTitle}
-          </Heading>
-          <div className="flex flex-col-reverse md:flex-row gap-8">
-            <div className="max-w-[300px]">
-              {topics.map((v, i) => (
-                <div key={'a' + i}>
-                  <Text textType="h3" size="B2" className="font-bold">
-                    Tópicos Tema 01
-                  </Text>
-                  <ul>
-                    {topics.map((v, i) => (
-                      <li className="my-2" key={'b' + i}>
-                        <LineItem type="thin">
-                          <Text size="B2"> Nam vulpue ipsum</Text>
-                        </LineItem>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-            <div className="flex-1">
-              <Heading headingLevel={2} className="font-bold" size="H2">
-                Consectetur adipiscing elit suspendisse non odio
-              </Heading>
-              <Text size="B1" className="mt-8">
-                {lorem}
-              </Text>
-              <Text size="B1" className="mt-8">
-                {lorem}
-              </Text>
-              <Text size="B1" className="mt-8">
-                {lorem}
-              </Text>
-            </div>
-          </div>
+          <TableMenu />
         </Container>
       </section>
       <GetInContact />

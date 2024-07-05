@@ -1,7 +1,7 @@
 import React from 'react';
 import { cva } from 'cva';
 
-const textVariants = cva('font-montserrat', {
+const textVariants = cva('font-montserrat whitespace-pre-line	', {
   variants: {
     size: {
       B1: 'text-b1',
