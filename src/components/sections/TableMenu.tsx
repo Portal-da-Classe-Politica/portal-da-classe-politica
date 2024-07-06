@@ -1,13 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { LineItem } from './LineItem';
-import { Heading, Text } from './base';
+import { LineItem } from '../LineItem';
+import { Heading, Text } from '../base';
 
-const topics = [
+const sections = [
   {
     title: 'Perfil dos Candidatos ',
-    subTopics: [
+    topics: [
       {
         key: 's1-01',
         title: 'Acesso à Página Principal',
@@ -37,7 +37,7 @@ const topics = [
   },
   {
     title: 'Cruzamentos de Variáveis',
-    subTopics: [
+    topics: [
       {
         key: 's2-01',
         title: 'Acesse o Portal da Classe Política',
@@ -62,7 +62,7 @@ const topics = [
   },
   {
     title: 'Indicadores ',
-    subTopics: [
+    topics: [
       {
         key: 's3-01',
         title: 'Acesse o Portal da Classe Política',
@@ -92,7 +92,7 @@ const topics = [
   },
 ];
 
-const TitleText = {
+const MainTopic = {
   key: 'root',
   title: 'Perfil de candidatos, variáveis e índices',
   text: `O Portal da Classe Política disponibiliza ao público três conjuntos principais de informações que podem ser muito úteis para análises detalhadas e abrangentes do cenário político nacional. 
@@ -104,19 +104,17 @@ O segundo conjunto de informações se baseia em 33 variáveis, divididas em qua
 Por fim, o Portal apresenta um conjunto de 16 indicadores, também divididos em quatro dimensões temáticas: eleitoral; de ambição política; geográfica; e de financiamento de campanha. O objetivo principal aqui é disponibilizar um conjunto de indicadores para iluminar aspectos-chave das eleições. `,
 };
 
-type TextProp = {
-  key?: string;
+type Topic = {
+  key: string;
   title: string;
   text: string;
 };
 
 const TableMenu = () => {
-  const [selectedText, setSelectedText] = useState<TextProp>(TitleText);
-  const [selectedSubtopic, setSelectedSubtopic] = useState<string>('');
+  const [selectedTopic, setSelectedTopic] = useState<Topic>(MainTopic);
 
-  const onTextSelected = (subTopic: TextProp) => {
-    setSelectedText({ title: subTopic.title, text: subTopic.text });
-    setSelectedSubtopic(subTopic.key ?? '');
+  const onTextSelected = (topic: Topic) => {
+    setSelectedTopic(topic);
   };
 
   return (
@@ -125,7 +123,7 @@ const TableMenu = () => {
         headingLevel={2}
         size="H1"
         onClick={() => {
-          setSelectedText(TitleText);
+          setSelectedTopic(MainTopic);
         }}
         className="text-left mb-12 cursor-pointer"
       >
@@ -133,16 +131,16 @@ const TableMenu = () => {
       </Heading>
       <div className="flex flex-col-reverse md:flex-row gap-8">
         <div className="max-w-[300px]">
-          {topics.map((topic, i) => (
+          {sections.map((section, i) => (
             <div key={'a' + i}>
               <Text textType="h3" size="B2" className="font-bold">
-                {topic.title}
+                {section.title}
               </Text>
               <ul>
-                {topic.subTopics.map(subTopic => (
-                  <li key={subTopic.key} className="my-2" onClick={() => onTextSelected(subTopic)}>
-                    <LineItem type="thin" selected={subTopic.key === selectedSubtopic}>
-                      <Text size="B2">{subTopic.title}</Text>
+                {section.topics.map(topic => (
+                  <li key={topic.key} className="my-2" onClick={() => onTextSelected(topic)}>
+                    <LineItem type="thin" selected={topic.key === selectedTopic.key}>
+                      <Text size="B2">{topic.title}</Text>
                     </LineItem>
                   </li>
                 ))}
@@ -152,10 +150,10 @@ const TableMenu = () => {
         </div>
         <div className="flex-1">
           <Heading headingLevel={2} className="font-bold" size="H2">
-            {selectedText.title}
+            {selectedTopic.title}
           </Heading>
           <Text size="B1" className="mt-4">
-            {selectedText.text}
+            {selectedTopic.text}
           </Text>
         </div>
       </div>

@@ -10,7 +10,7 @@ import CardIconText from '@/components/CardIconText';
 import Divider from '@/components/Divider';
 import dynamic from 'next/dynamic';
 
-const TableMenu = dynamic(() => import('@components/TableMenu'), {
+const TableMenu = dynamic(() => import('@/components/sections/TableMenu'), {
   ssr: false,
 });
 
