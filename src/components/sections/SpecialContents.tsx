@@ -1,19 +1,17 @@
-import Image from 'next/image';
-
-import { Heading, Text } from '@base';
+import { Heading, Icon, Text } from '@base';
 import { CardPost } from '../CardPost';
 
 export const SpecialContents = () => {
   return (
     <div className="mt-10 md:mt-[120px]">
-      <div className="flex flex-col md:flex-row mb-[30px] gap-4">
+      <div className="flex flex-col md:flex-row mb-[30px] gap-4 items-center">
         <Heading headingLevel={2} size={'H2'} className="font-bold ">
           Conteúdos especiais
         </Heading>
         <Text textType="a" size={'C1'} className="text-orange content-end ml-auto flex">
           Ver todos artigos
           <div className="ml-4">
-            <Image src={'/icons/VoltarIcon.svg'} height={16} width={16} className="h-4 w-4" alt="" />
+            <Icon type="ArrowRightShort" />
           </div>
         </Text>
       </div>
