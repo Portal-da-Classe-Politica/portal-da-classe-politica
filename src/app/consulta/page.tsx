@@ -5,6 +5,7 @@ import { Container, Heading, Text } from '@base';
 import { Header } from '@/components/sections/Header';
 import { BoxImageText } from '@/components/box/BoxImageText';
 import { GetInContact } from '@/components/sections/GetInContact';
+import { SpecialContents } from '@/components/sections/SpecialContents';
 
 const cards = [
   { text: 'Perfil dos Candidatos', src: '/img/consulta/Profile.png' },
@@ -24,6 +25,7 @@ const Page = () => {
           <Header style="dark" />
         </Container>
       </section>
+
       <section>
         <Container>
           <div className="flex flex-col justify-between items-center md:flex-row">
@@ -48,6 +50,19 @@ const Page = () => {
           </div>
         </Container>
       </section>
+
+      <section className="bg-grayMix1">
+        <Container className="pt-16">
+          <h1>asdas</h1>
+        </Container>
+      </section>
+
+      <section className="bg-grayMix1">
+        <Container className="pt-24 pb-28">
+          <SpecialContents />
+        </Container>
+      </section>
+
       <GetInContact />
     </main>
   );

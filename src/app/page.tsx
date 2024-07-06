@@ -1,16 +1,10 @@
 import { Container, Heading, Display, Text, ButtonStyled } from '@base';
-import dynamic from 'next/dynamic';
 import { BoxFerramenta } from '@components/box/BoxFerramenta';
 import { BoxData } from '@/components/box/BoxData';
 import { CardPost } from '@/components/CardPost';
 import { Header } from '@/components/sections/Header';
 import { GetInContact } from '@/components/sections/GetInContact';
-import { SpecialContents } from '@/components/sections/SpecialContents';
-import { SelectBoxProps } from '@components/SelectBox';
-
-const SelectBox = dynamic<SelectBoxProps>(() => import('@components/SelectBox'), {
-  ssr: false,
-});
+import { HowToCrossing } from '@/components/sections/HowToCrossing';
 
 const Home = () => {
   return (
@@ -163,75 +157,9 @@ const Home = () => {
           </div>
         </Container>
       </section>
-      <section className="pt-8 md:pt-[72px] pb-8 md:pb-[78px]">
-        <Container>
-          <SelectBox
-            tabs={[
-              {
-                title: 'Como fazer os cruzamentos',
-                content: (
-                  <>
-                    <div className="flex flex-col md:flex-row gap-4 w-full">
-                      <div className="  text-white">
-                        <Heading headingLevel={2} className="font-bold pb-3 text-h5 md:text-h1">
-                          Como fazer os cruzamentos
-                        </Heading>
-                        <Text className=" text-[18px] font-bold pb-[20px]">
-                          Como fazer os cruzamentosComo fazer os cruzamentos
-                        </Text>
-                        <Text size={'B2'} className="mt-auto pb-[20px] ">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit
-                          amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi
-                          mollis ec.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non
-                          odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis
-                          nisi mollis nec. Nam vulputate ipsum. Suspendisse non odio sit amet massa lobortis
-                          scelerisque. Integer gravida nulla ipsum.
-                        </Text>
-                        <ButtonStyled style="fillBlack">
-                          <Text className="text-[14px] font-bold">Saiba mais</Text>
-                        </ButtonStyled>
-                      </div>
-                      <div>
-                        <div className="w-[320px] md:h-[300px] md:w-[533px] bg-orangeLight1 rounded-lg"></div>
-                      </div>
-                    </div>
-                  </>
-                ),
-              },
-              {
-                title: 'Como fazer os cruzamentos',
-                content: (
-                  <>
-                    <div className="flex flex-col md:flex-row">
-                      <div className="  text-white">
-                        <Heading headingLevel={2} className="font-bold pb-3">
-                          Como fazer os cruzamentos
-                        </Heading>
-                        <Text className=" text-[18px font-bold pb-[20px]">
-                          Como fazer os cruzamentosComo fazer os cruzamentos
-                        </Text>
-                        <Text size={'B2'} className="mt-auto pb-[20px] ">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit
-                          amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi
-                          mollis ec.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non
-                          odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis
-                          nisi mollis nec. Nam vulputate ipsum. Suspendisse non odio sit amet massa lobortis
-                          scelerisque. Integer gravida nulla ipsum.
-                        </Text>
-                      </div>
-                      <div>
-                        <div className="w-[320px] md:h-[300px] md:w-[533px] bg-orangeLight1 rounded-lg"></div>
-                      </div>
-                    </div>
-                  </>
-                ),
-              },
-            ]}
-          />
 
-          <SpecialContents />
-        </Container>
-      </section>
+      <HowToCrossing className="pt-8 md:pt-[72px] pb-8 md:pb-[78px]" />
+
       <GetInContact />
     </main>
   );
