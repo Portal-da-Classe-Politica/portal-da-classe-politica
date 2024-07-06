@@ -2,7 +2,7 @@
 import { cva } from 'cva';
 import React, { useEffect, useState } from 'react';
 import { LogoIcon } from '../LogoIcon';
-import { Button, Icon, IconAwesome, Text } from '../base';
+import { Button, IconAwesome, Text } from '../base';
 import Link from 'next/link';
 
 const routes = {
@@ -139,7 +139,7 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
               <Link href={routes.consult}>
                 <Text size={'L2'}>CONSULTAS</Text>
               </Link>
-              <Icon type="ArrowDown" size={16} className="ml-1" />
+              <IconAwesome type="ArrowDown" size="2x" className="ml-1" />
             </li>
             <li className={`self-start mr-5`}>
               <Link href={routes.projections}>

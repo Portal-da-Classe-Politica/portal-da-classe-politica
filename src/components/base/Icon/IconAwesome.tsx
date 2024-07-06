@@ -19,32 +19,50 @@ import {
   faCheck,
   faPlus,
   faPhone,
+  faBullhorn,
+  faHeadset,
+  faTriangleExclamation,
+  faStar,
+  faCalendarDays,
+  faAngleDown,
 } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
 const sourceMap = {
-  Facebook: faFacebook,
-  LinkedIn: faLinkedin,
-  Instagram: faInstagram,
   Mountain: faMountainSun,
+  Menu: faBars,
+  Checked: faCheck,
+  UnChecked: faPlus,
+  Phone: faPhone,
+  Megafone: faBullhorn,
+  Error: faTriangleExclamation,
+  Headset: faHeadset,
+  Star: faStar,
+  Calendar: faCalendarDays,
+
+  // Brands
+  LinkedIn: faLinkedin,
+  Facebook: faFacebook,
+  Instagram: faInstagram,
   Twitter: faTwitterSquare,
   YouTube: faYoutube,
   Email: faEnvelope,
+
+  // Arrows
+  ArrowDown: faChevronDown,
+  ArrowRight: faChevronRight,
   LongArrowRight: faArrowRightLong,
   LongArrowDown: faArrowDownLong,
   shortRight: faAngleRight,
   shortLeft: faAngleLeft,
-  ArrowRight: faChevronRight,
-  Menu: faBars,
-  ArrowDown: faChevronDown,
-  Checked: faCheck,
-  UnChecked: faPlus,
-  Phone: faPhone,
+  shortDown: faAngleDown,
 };
 
 export type IconTypeAwesome = keyof typeof sourceMap;
 
 export type IconAwesomeProps = { type: IconTypeAwesome; size?: SizeProp; className?: string };
+
+export type IconAwesomeSize = SizeProp;
 
 export const IconAwesome = ({ type, size = '1x', className = '' }: IconAwesomeProps) => {
   return <FontAwesomeIcon icon={sourceMap[type] as IconProp} size={size} className={className} />;
