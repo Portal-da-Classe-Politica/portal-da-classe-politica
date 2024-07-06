@@ -69,10 +69,10 @@ const Page = () => {
 
           <div className="flex flex-col mt-12 justify-between items-center text-center">
             <Text size="S1" className="text-white font-bold">
-              SUBTÍTULO AQUI
+              INDICADORES
             </Text>
             <Heading size="H1" className="text-white mt-4">
-              Lorem ipsum dolor sit consectetur adipiscing elit. Suspendisse non odio amet massa lobortis.
+              Use os Indicadores para avaliar diferentes aspectos do cenário eleitoral ao longo do tempo.
             </Heading>
           </div>
         </Container>
@@ -82,10 +82,10 @@ const Page = () => {
         <Container>
           <ChartSection
             title="Eleitorais & Partidários"
-            description="Lorem ipsum dolor sit consectetur adipiscing elit. Suspendisse non odio amet massa lobortis."
+            description="São quatro instrumentos úteis para analisar e compreender a dinâmica das eleições e do sistema eleitoral."
             seriesTitle="Adicione indicadores ao gráfico:"
-            seriesDescription="Lorem ipsum dolor sit consectetur adipiscing elit. Suspendisse non odio."
-            chartTitle="Lobortis celeris vulputate mollis"
+            seriesDescription="Os indicadores podem ser visualizados simultaneamente."
+            chartTitle="Dimensão eleitoral"
             series={dataSeries}
           />
 
@@ -97,10 +97,10 @@ const Page = () => {
         <Container>
           <ChartSection
             title="Carreira & Representação Política"
-            description="Lorem ipsum dolor sit consectetur adipiscing elit. Suspendisse non odio amet massa lobortis."
+            description="São quatro instrumentos úteis para analisar e compreender as aspirações e estratégias de carreira dos candidatos."
             seriesTitle="Adicione indicadores ao gráfico:"
-            seriesDescription="Lorem ipsum dolor sit consectetur adipiscing elit. Suspendisse non odio."
-            chartTitle="Lobortis celeris vulputate mollis"
+            seriesDescription="Os indicadores podem ser visualizados simultaneamente."
+            chartTitle="Dimensão de ambição política"
             series={dataSeries}
           />
 
@@ -112,10 +112,10 @@ const Page = () => {
         <Container>
           <ChartSection
             title="Espacial de Votos"
-            description="Lorem ipsum dolor sit consectetur adipiscing elit. Suspendisse non odio amet massa lobortis."
+            description="São quatro instrumentos úteis para analisar e compreender a distribuição espacial dos votos e a competitividade regional."
             seriesTitle="Adicione indicadores ao gráfico:"
-            seriesDescription="Lorem ipsum dolor sit consectetur adipiscing elit. Suspendisse non odio."
-            chartTitle="Lobortis celeris vulputate mollis"
+            seriesDescription="Os indicadores podem ser visualizados simultaneamente."
+            chartTitle="Dimensão geográfica"
             series={dataSeries}
           />
 
@@ -127,10 +127,10 @@ const Page = () => {
         <Container>
           <ChartSection
             title="Econômicos & Financeiros"
-            description="Lorem ipsum dolor sit consectetur adipiscing elit. Suspendisse non odio amet massa lobortis."
+            description="São quatro instrumentos úteis para analisar e compreender as dinâmicas econômica e financeira das campanhas eleitorais."
             seriesTitle="Adicione indicadores ao gráfico:"
-            seriesDescription="Lorem ipsum dolor sit consectetur adipiscing elit. Suspendisse non odio."
-            chartTitle="Lobortis celeris vulputate mollis"
+            seriesDescription="Os indicadores podem ser visualizados simultaneamente."
+            chartTitle="Dimensão de financiamento eleitoral"
             series={dataSeries}
           />
         </Container>
