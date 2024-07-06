@@ -1,5 +1,5 @@
 'use client';
-import { IconAwesome, Text } from '@base';
+import { Icon, Text } from '@base';
 import { Select } from '@base/forms/Select';
 import { BoxIcon } from '@/components/box/BoxIcon';
 import { SelectBasic } from '@base/forms/SelectBasic';
@@ -76,7 +76,7 @@ const Page = () => {
             <Text className="mr-1 font-normal">Categoria |</Text>
           </>
         }
-        suffixComponent={<IconAwesome type="ArrowRight" size="xs" className="ml-2" />}
+        suffixComponent={<Icon type="ArrowRight" size="xs" className="ml-2" />}
       />
     </main>
   );

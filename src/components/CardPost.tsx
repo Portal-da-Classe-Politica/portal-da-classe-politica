@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-import { Text, Heading, Button, IconAwesome } from '@base';
+import { Text, Heading, Button, Icon } from '@base';
 import { ChipContainer } from './ChipContainer';
 
 type BaseProps = {
@@ -70,7 +70,7 @@ const Tertiary = ({ title, subTitle }: { title: string; subTitle: string }) => {
       <Text textType="a" size={'C1'} className="font-bold text-orange flex cursor-pointer">
         LEIA MAIS
         <div className="ml-4">
-          <IconAwesome type="ArrowRight" />
+          <Icon type="ArrowRight" />
         </div>
       </Text>
     </>

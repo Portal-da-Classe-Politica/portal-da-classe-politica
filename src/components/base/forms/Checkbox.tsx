@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { IconAwesome } from '../Icon';
+import { Icon } from '../Icon';
 import { Text } from '../text';
 
 interface CheckboxProps {
@@ -33,7 +33,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
           checked ? 'bg-orange' : 'border border-orange'
         }`}
       >
-        <IconAwesome
+        <Icon
           type={checked ? 'Checked' : 'UnChecked'}
           className={`${checked ? 'text-white' : 'text-orange'}`}
         />

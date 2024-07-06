@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { cva } from 'cva';
 
-import { Heading, Text, IconAwesome } from '@base';
+import { Heading, Text, Icon } from '@base';
 
 type CardIconTextProps = {
   title: string;
@@ -45,10 +45,10 @@ const Avatar = ({ title, text, src, type = 'top' }: CardIconTextProps) => {
           <Text size="B1">{text}</Text>
         </div>
         <div className="flex gap-3 text-orange text-left">
-          <IconAwesome type="Facebook" />
-          <IconAwesome type="Instagram" />
-          <IconAwesome type="LinkedIn" />
-          <IconAwesome type="Email" />
+          <Icon type="Facebook" />
+          <Icon type="Instagram" />
+          <Icon type="LinkedIn" />
+          <Icon type="Email" />
         </div>
       </div>
     </div>

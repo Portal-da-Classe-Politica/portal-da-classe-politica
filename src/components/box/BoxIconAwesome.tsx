@@ -1,7 +1,7 @@
 import React from 'react';
 import { SizeProp } from '@fortawesome/fontawesome-svg-core';
 
-import { IconAwesome, IconTypeAwesome } from '@base';
+import { Icon, IconType } from '@base';
 
 export const BoxIconAwesome = ({
   iconType,
@@ -9,7 +9,7 @@ export const BoxIconAwesome = ({
   size = 9,
   className = '',
 }: {
-  iconType: IconTypeAwesome;
+  iconType: IconType;
   iconSize?: SizeProp;
   size?: number | string;
   className?: string;
@@ -17,7 +17,7 @@ export const BoxIconAwesome = ({
   const customClass = `w-${size} h-${size} ${className}`;
   return (
     <div className={`flex rounded-[10px] items-center justify-center ${customClass}`}>
-      <IconAwesome type={iconType} size={iconSize} />
+      <Icon type={iconType} size={iconSize} />
     </div>
   );
 };

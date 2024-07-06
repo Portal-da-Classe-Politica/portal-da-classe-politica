@@ -1,6 +1,6 @@
 'use client';
 
-import { ButtonStyled, Container, Heading, IconAwesome, Input, Select, Text } from '@base';
+import { ButtonStyled, Container, Heading, Icon, Input, Select, Text } from '@base';
 import { Header } from '@/components/sections/Header';
 import TableComponent from '@/components/Table';
 import { GetInContact } from '@/components/sections/GetInContact';
@@ -37,7 +37,7 @@ const Page = () => {
                       </Text>
                     </>
                   }
-                  suffixComponent={<IconAwesome type="ArrowDown" className="ml-2" />}
+                  suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
                 />
               </div>
               <div className="w-[270px]">
@@ -57,7 +57,7 @@ const Page = () => {
                       </Text>
                     </>
                   }
-                  suffixComponent={<IconAwesome type="ArrowDown" className="ml-2" />}
+                  suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
                 />
               </div>
             </div>
@@ -99,7 +99,7 @@ const Page = () => {
                   { value: 'value', label: 'label' },
                 ]}
                 buttonProps={{ style: 'ghostOrange', className: 'py-[4px] px-[4px] bg-white drop-shadow-md' }}
-                suffixComponent={<IconAwesome type="ArrowDown" className="ml-2  " />}
+                suffixComponent={<Icon type="ArrowDown" className="ml-2  " />}
               />
             </div>
           </div>

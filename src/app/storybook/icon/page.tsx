@@ -1,34 +1,34 @@
-import { IconAwesome } from '@base';
+import { Icon } from '@base';
 
 const Page = () => {
   return (
     <main className="font-montserrat p-10 bg-green-200">
       <div className="py-4">
-        <IconAwesome type="ArrowRight" />
+        <Icon type="ArrowRight" />
       </div>
       <div className="py-4">
-        <IconAwesome type="Error" />
+        <Icon type="Error" />
       </div>
       <div className="py-4">
-        <IconAwesome type="Facebook" />
+        <Icon type="Facebook" />
       </div>
       <div className="py-4">
-        <IconAwesome type="Headset" />
+        <Icon type="Headset" />
       </div>
       <div className="py-4">
-        <IconAwesome type="LinkedIn" />
+        <Icon type="LinkedIn" />
       </div>
       <div className="py-4">
-        <IconAwesome type="Megafone" />
+        <Icon type="Megafone" />
       </div>
       <div className="py-4">
-        <IconAwesome type="Star" />
+        <Icon type="Star" />
       </div>
       <div className="py-4">
-        <IconAwesome type="Twitter" />
+        <Icon type="Twitter" />
       </div>
       <div className="py-4">
-        <IconAwesome type="YouTube" />
+        <Icon type="YouTube" />
       </div>
     </main>
   );

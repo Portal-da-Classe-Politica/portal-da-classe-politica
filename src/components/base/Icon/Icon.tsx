@@ -70,12 +70,12 @@ const sourceMap = {
   ArrowRightShort: faAngleRight,
 };
 
-export type IconTypeAwesome = keyof typeof sourceMap;
+export type IconType = keyof typeof sourceMap;
 
-export type IconAwesomeProps = { type: IconTypeAwesome; size?: SizeProp; className?: string };
+export type IconProps = { type: IconType; size?: SizeProp; className?: string };
 
-export type IconAwesomeSize = SizeProp;
+export type IconSize = SizeProp;
 
-export const IconAwesome = ({ type, size = '1x', className = '' }: IconAwesomeProps) => {
+export const Icon = ({ type, size = '1x', className = '' }: IconProps) => {
   return <FontAwesomeIcon icon={sourceMap[type] as IconProp} size={size} className={className} />;
 };

@@ -1,4 +1,4 @@
-import { IconAwesome } from '@base';
+import { Icon } from '@base';
 import TimelineItem from './TimelineItem';
 
 type TimelineProps = {
@@ -17,10 +17,10 @@ const Timeline = ({ items, className }: { items: TimelineProps[]; className?: st
             {i !== items.length - 1 && (
               <>
                 <div className="absolute right-0 translate-x-7 top-1/4 -translate-y-1/2 text-orange hidden md:block">
-                  <IconAwesome type="ArrowRightLong" size="3x" />
+                  <Icon type="ArrowRightLong" size="3x" />
                 </div>
                 <div className="absolute right-1/2 translate-x-1/2 -bottom-1/4  text-orange md:hidden">
-                  <IconAwesome type="ArrowDownLong" size="3x" />
+                  <Icon type="ArrowDownLong" size="3x" />
                 </div>
               </>
             )}
