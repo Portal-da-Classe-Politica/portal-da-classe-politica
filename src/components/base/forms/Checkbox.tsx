@@ -9,6 +9,7 @@ interface CheckboxProps {
   value?: any;
   initialValue?: boolean;
   onClick?: (_checked: boolean, _value: any) => void;
+  className?: string;
 }
 
 export const Checkbox: React.FC<CheckboxProps> = ({
@@ -16,6 +17,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   initialValue = false,
   value = '',
   onClick = () => {},
+  className = '',
 }) => {
   const [checked, setChecked] = useState(initialValue);
   const _onClick = () => {
@@ -25,7 +27,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
 
   return (
     <div
-      className="flex items-center p-4 bg-white rounded-lg drop-shadow-md my-2 cursor-pointer"
+      className={`flex items-center p-4 bg-white rounded-lg drop-shadow-md cursor-pointer ${className}`}
       onClick={_onClick}
     >
       <div

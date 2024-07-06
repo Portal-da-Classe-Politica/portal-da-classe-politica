@@ -55,21 +55,23 @@ export const ChartSection = ({
 
       <div className="flex flex-col-reverse md:flex-row mt-10 md:mt-16">
         <div className="flex md:w-[30%] md:mr-8">
-          <div className="flex flex-col space-y-2">
+          <div className="flex flex-col">
             <Text size="B1" className="font-bold">
               {seriesTitle}
             </Text>
             <Text size="B1">{seriesDescription}</Text>
 
-            {Object.keys(series).map(key => (
-              <Checkbox
-                key={key}
-                value={key}
-                onClick={toggleSeries}
-                initialValue={series[key].initial}
-                label={series[key].name}
-              />
-            ))}
+            <div className="flex flex-1 flex-col justify-between mt-4">
+              {Object.keys(series).map(key => (
+                <Checkbox
+                  key={key}
+                  value={key}
+                  onClick={toggleSeries}
+                  initialValue={series[key].initial}
+                  label={series[key].name}
+                />
+              ))}
+            </div>
           </div>
         </div>
 

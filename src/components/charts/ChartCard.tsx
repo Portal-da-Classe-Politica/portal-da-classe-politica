@@ -13,7 +13,7 @@ export const ChartCard = ({ title, className, series, height }: ChartCardProps) 
     <div
       className={`flex flex-col md:w-[70%] p-4 bg-white drop-shadow-lg rounded-lg ${className} mb-10 md:mb-0`}
     >
-      <Heading headingLevel={2} size="H1" className="mb-2">
+      <Heading headingLevel={2} size="H1" className="mb-4">
         {title}
       </Heading>
 
