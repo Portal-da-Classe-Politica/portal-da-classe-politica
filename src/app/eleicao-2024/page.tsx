@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { Constants } from '@constants';
 const { loremTitle, lorem } = Constants;
 
-import { Container, Heading, IconAwesome, Text, TextParagraphImage } from '@base';
+import { Container, Heading, Icon, Text, TextParagraphImage } from '@base';
 import { Header } from '@/components/sections/Header';
 import { GetInContact } from '@/components/sections/GetInContact';
 import { ChipContainer } from '@/components/ChipContainer';
@@ -178,7 +178,7 @@ const Page = () => {
             <Text size="C1" className="mr-2">
               Publicações do Autor
             </Text>
-            <IconAwesome type="ArrowRight" size="xs" />
+            <Icon type="ArrowRight" size="xs" />
           </div>
         </Container>
       </section>

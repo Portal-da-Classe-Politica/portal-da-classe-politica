@@ -1,15 +1,15 @@
 import React from 'react';
 
-import { Icon, IconType } from '@base';
+import { Icon, IconType, IconSize } from '@base';
 
 export const BoxIcon = ({
   iconType,
-  iconSize = 64,
+  iconSize = 'xs',
   size = 9,
   className = '',
 }: {
   iconType: IconType;
-  iconSize?: number;
+  iconSize?: IconSize;
   size?: number;
   className?: string;
 }) => {

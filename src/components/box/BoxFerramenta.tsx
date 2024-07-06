@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-import { IconAwesome, Text } from '@base';
+import { Icon, Text } from '@base';
 
 export const BoxFerramenta = ({
   src,
@@ -29,7 +29,7 @@ export const BoxFerramenta = ({
         <Text textType="a" size={'C2'} className="text-orange flex">
           Acessar Ferramenta
           <div className="ml-2">
-            <IconAwesome type="ArrowRight" />
+            <Icon type="ArrowRight" />
           </div>{' '}
         </Text>
       </div>

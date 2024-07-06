@@ -2,7 +2,7 @@
 import { cva } from 'cva';
 import React, { useEffect, useState } from 'react';
 import { LogoIcon } from '../LogoIcon';
-import { Button, Icon, IconAwesome, Text } from '../base';
+import { Button, Icon, Text } from '../base';
 import Link from 'next/link';
 
 const routes = {
@@ -76,7 +76,7 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
             <Link href={routes.consult}>
               <Text size={'L2'}>CONSULTAS</Text>
             </Link>
-            <IconAwesome type="ArrowDown" size="xs" className={`ml-1 ${iconColor}`} />
+            <Icon type="ArrowDown" size="xs" className={`ml-1 ${iconColor}`} />
           </li>
           <li className={`self-center ${classes} mr-5`}>
             <Link href={routes.projections}>
@@ -109,7 +109,7 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
         <div className="flex items-center w-full justify-between">
           <LogoIcon type={style === 'light' ? 'white' : 'orange'} />
           <button className={`${classes}`} aria-label="Open Menu" onClick={handleDrawer}>
-            <IconAwesome type="Menu" size="2x" />
+            <Icon type="Menu" size="2x" />
           </button>
         </div>
 
@@ -139,7 +139,7 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
               <Link href={routes.consult}>
                 <Text size={'L2'}>CONSULTAS</Text>
               </Link>
-              <Icon type="ArrowDown" size={16} className="ml-1" />
+              <Icon type="ArrowDown" size="2x" className="ml-1" />
             </li>
             <li className={`self-start mr-5`}>
               <Link href={routes.projections}>

@@ -25,8 +25,8 @@ export const DatePicker = ({
 
   return (
     <div className="bg-[#EDEDED] py-1 px-2 rounded-md flex">
-      <div>
-        <BoxIcon iconType="Calendar" size={8} iconSize={35} className="bg-white mr-2 shadow-xl" />
+      <div className="flex justify-center items-center">
+        <BoxIcon iconType="Calendar" size={8} iconSize="xl" className="bg-white mr-2 shadow-xl" />
       </div>
       <div>
         <Text size="C2" className="text-grayLight3">

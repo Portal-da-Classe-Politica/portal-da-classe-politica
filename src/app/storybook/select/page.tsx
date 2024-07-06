@@ -54,7 +54,7 @@ const Page = () => {
         buttonProps={{ size: 'small', style: 'fillBlack' }}
         prefixComponent={
           <>
-            <BoxIcon iconType="YouTube" size={8} iconSize={20} className="bg-orange mr-2" />
+            <BoxIcon iconType="YouTube" size={8} iconSize="sm" className="bg-orange mr-2" />
             <Text className="mr-1 font-normal">Categoria |</Text>
           </>
         }
@@ -72,11 +72,11 @@ const Page = () => {
         buttonProps={{ size: 'small', style: 'fillGray' }}
         prefixComponent={
           <>
-            <BoxIcon iconType="YouTube" size={8} iconSize={20} className="bg-orange mr-2" />
+            <BoxIcon iconType="YouTube" size={8} iconSize="sm" className="bg-orange mr-2" />
             <Text className="mr-1 font-normal">Categoria |</Text>
           </>
         }
-        suffixComponent={<Icon type="ArrowRight" size={10} className="ml-2" />}
+        suffixComponent={<Icon type="ArrowRight" size="xs" className="ml-2" />}
       />
     </main>
   );

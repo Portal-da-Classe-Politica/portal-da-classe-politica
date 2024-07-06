@@ -1,4 +1,4 @@
-import { IconAwesome } from './base';
+import { Icon } from './base';
 
 type ArrowItemProps = {
   className?: string;
@@ -7,7 +7,7 @@ type ArrowItemProps = {
 const ArrowItem = ({ className, children }: ArrowItemProps) => {
   return (
     <div className={`flex ${className} cursor-pointer gap-4`}>
-      <IconAwesome type="ArrowRight" className="text-orange" />
+      <Icon type="ArrowRight" className="text-orange" />
       <div>{children}</div>
     </div>
   );
