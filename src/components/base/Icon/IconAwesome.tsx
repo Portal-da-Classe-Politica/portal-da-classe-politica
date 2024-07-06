@@ -9,13 +9,7 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import {
   faMountainSun,
-  faArrowRightLong,
-  faAngleRight,
-  faAngleLeft,
-  faChevronRight,
   faBars,
-  faArrowDownLong,
-  faChevronDown,
   faCheck,
   faPlus,
   faPhone,
@@ -24,7 +18,18 @@ import {
   faTriangleExclamation,
   faStar,
   faCalendarDays,
+  faChevronUp,
+  faChevronDown,
+  faChevronLeft,
+  faChevronRight,
+  faArrowUpLong,
+  faArrowDownLong,
+  faArrowLeftLong,
+  faArrowRightLong,
+  faAngleUp,
   faAngleDown,
+  faAngleLeft,
+  faAngleRight,
 } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
@@ -49,13 +54,20 @@ const sourceMap = {
   Email: faEnvelope,
 
   // Arrows
+  ArrowUp: faChevronUp,
   ArrowDown: faChevronDown,
+  ArrowLeft: faChevronLeft,
   ArrowRight: faChevronRight,
-  LongArrowRight: faArrowRightLong,
-  LongArrowDown: faArrowDownLong,
-  shortRight: faAngleRight,
-  shortLeft: faAngleLeft,
-  shortDown: faAngleDown,
+
+  ArrowUpLong: faArrowUpLong,
+  ArrowDownLong: faArrowDownLong,
+  ArrowLeftLong: faArrowLeftLong,
+  ArrowRightLong: faArrowRightLong,
+
+  ArrowUpShort: faAngleUp,
+  ArrowDownShort: faAngleDown,
+  ArrowLeftShort: faAngleLeft,
+  ArrowRightShort: faAngleRight,
 };
 
 export type IconTypeAwesome = keyof typeof sourceMap;

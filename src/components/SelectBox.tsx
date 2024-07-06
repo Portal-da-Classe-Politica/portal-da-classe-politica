@@ -47,13 +47,13 @@ const SelectBox = ({ tabs }: SelectBoxProps) => {
           onClick={prevSlide}
           className="absolute top-1/2 left-0 transform -translate-y-1/2 text-orange p-2"
         >
-          <IconAwesome type="shortLeft" size="2x" />
+          <IconAwesome type="ArrowLeftShort" size="2x" />
         </button>
         <button
           onClick={nextSlide}
           className="absolute top-1/2 right-0 transform -translate-y-1/2 text-orange p-2"
         >
-          <IconAwesome type="shortRight" size="2x" />
+          <IconAwesome type="ArrowRightShort" size="2x" />
         </button>
         <div className="flex gap-1 absolute top-[90%] -translate-y-1/2 left-[50%] -translate-x-1/2  ">
           {tabs.map((val, i) => {
