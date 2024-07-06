@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Icon } from './base/Icon/Icon';
+import { Icon } from './base/Icon';
 
 type ContentProps = {
   title: string;
