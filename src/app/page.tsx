@@ -20,22 +20,23 @@ const Home = () => {
           <Header style="light" />
           <div className="gap-7 flex flex-col items-center md:mt-10 text-white md:flex-row">
             <div className=" flex-1">
-              <div className=" md:max-w-[432px]">
+              <div className=" md:max-w-[472px]">
                 <Display style={'D1'} className="text-h2 md:text-d1 mb-1">
-                  Conheça o Portal Redem
+                  Portal da Classe Política
                 </Display>
                 <Text size={'S1'} className="text-h6 md:text-s1">
-                  Transformando dados eleitorais em análises para toda a sociedade
+                  Democratizando o acesso ao conhecimento
                 </Text>
               </div>
             </div>
             <div className="flex-1 ">
               <div className="md:max-w-[460px]">
                 <Text size={'B1'}>
-                  No Portal Redem os dados eleitorais são analisados e apresentados de forma detalhada. Aqui
-                  você encontrará indicadores exclusivos e informações essenciais para compreender dados
-                  eleitorais sensíveis. Junte-se a nós e transforme a maneira como você compreende as eleições
-                  no Brasil.
+                  Seja bem-vindo(a) ao Portal da Classe Política! A partir do uso intensivo de dados e da
+                  expertise de profissionais de ciência política, produzimos análises úteis e acessíveis,
+                  mesmo para quem não é especialista no assunto. Fazemos isso porque, além de produzir
+                  informação, queremos democratizar o acesso ao conhecimento, estimulando a participação,
+                  conectando pessoas, produzindo inovação e impacto social.
                 </Text>
               </div>
             </div>
@@ -43,27 +44,27 @@ const Home = () => {
           <div className="flex flex-col gap-6 items-center md:gap-2 md:flex-row md:justify-between mt-12 md:mt-24">
             <BoxFerramenta
               alt="Cruzamentos e Dados Eleitorais"
-              src={'/img/Cruzdados.svg'}
+              src={'/img/Cruzdados.png'}
               title={'Cruzamentos e Dados Eleitorais'}
-              subTitle={'Consectetur adipiscing uspendisse non odio.'}
+              subTitle={'Cruze e analise dezenas de variáveis eleitorais.'}
             />
             <BoxFerramenta
               alt="Indicadores e Índices Especiais"
-              src={'/img/Indicadores.svg'}
+              src={'/img/Indicadores.png'}
               title={'Indicadores e Índices Especiais'}
-              subTitle={'Consectetur adipiscing uspendisse non odio.'}
+              subTitle={'Trinta índices construídos com variáveis eleitorais.'}
             />
             <BoxFerramenta
               alt="Aprenda a usar os Indicadores"
-              src={'/img/Aprenda.svg'}
+              src={'/img/Aprenda.png'}
               title={'Aprenda a usar os Indicadores'}
-              subTitle={'Consectetur adipiscing uspendisse non odio.'}
+              subTitle={'Diversos tutoriais para ajudar você explorar ao máximo o Portal.'}
             />
             <BoxFerramenta
               alt="Comunicação Científica"
-              src={'/img/Comunicacao.svg'}
+              src={'/img/Comunicacao.png'}
               title={'Comunicação Científica'}
-              subTitle={'Consectetur adipiscing uspendisse non odio.'}
+              subTitle={'Nosso blog traz análises relevantes e acessíveis sobre a política nacional.'}
             />
           </div>
         </Container>
@@ -139,18 +140,18 @@ const Home = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px]	flex-1">
               <BoxData
-                header="+73"
+                header="+40"
                 title="Pesquisadores e pesquisadoras envolvidos"
                 content="Consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis"
               />
               <BoxData
-                header="6243"
-                title="Dados processados"
+                header="+20"
+                title="Universidades"
                 content="Consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis"
               />
               <BoxData
-                header="+180"
-                title="Variáveis"
+                header="+100"
+                title="Estudantes envolvidos"
                 content="Consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis"
               />
               <BoxData
