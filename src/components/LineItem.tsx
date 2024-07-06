@@ -20,7 +20,10 @@ const customVariant = cva('', {
     },
     transitions: {
       normal: '',
-      thin: 'transition-transform hover:translate-x-2',
+      thin: 'transition-all hover:ml-[8px]',
+    },
+    selected: {
+      true: 'ml-[8px]',
     },
   },
   defaultVariants: {
@@ -31,16 +34,18 @@ const customVariant = cva('', {
 export const LineItem = ({
   children,
   className,
+  selected = false,
   type = 'normal',
 }: {
   children: React.ReactNode;
   className?: string;
+  selected?: boolean;
   type?: 'normal' | 'thin';
 }) => {
   const classes = buttonVariants({ type });
 
   return (
-    <div className={`flex ${className} cursor-pointer ${customVariant({ transitions: type })}`}>
+    <div className={`flex ${className} cursor-pointer ${customVariant({ transitions: type, selected })}`}>
       <div className={`${classes}`}></div>
       <div className={customVariant({ size: type })}>{children}</div>
     </div>
