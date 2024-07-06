@@ -67,45 +67,35 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
           </li>
           <li className={`ml-auto self-center mr-5 ${classes}`}>
             <Link href={routes.home}>
-              <Text textType="a" size={'L2'} className="font-bold">
+              <Text size={'L2'} className="font-bold">
                 PÁGINA INICIAL
               </Text>
             </Link>
           </li>
           <li className={`flex self-center ${classes} mr-5 inline justify-center items-center`}>
             <Link href={routes.consult}>
-              <Text textType="a" size={'L2'}>
-                CONSULTAS
-              </Text>
+              <Text size={'L2'}>CONSULTAS</Text>
             </Link>
             <IconAwesome type="ArrowDown" size="xs" className={`ml-1 ${iconColor}`} />
           </li>
           <li className={`self-center ${classes} mr-5`}>
             <Link href={routes.projections}>
-              <Text textType="a" size={'L2'}>
-                PROJEÇÕES
-              </Text>
+              <Text size={'L2'}>PROJEÇÕES</Text>
             </Link>
           </li>
           <li className={`self-center ${classes} mr-5`}>
             <Link href={routes.candidates}>
-              <Text textType="a" size={'L2'}>
-                PERFIL DOS CANDIDATOS
-              </Text>
+              <Text size={'L2'}>PERFIL DOS CANDIDATOS</Text>
             </Link>
           </li>
           <li className={`self-center ${classes} mr-5`}>
             <Link href={routes.about}>
-              <Text textType="a" size={'L2'}>
-                SOBRE O PROJETO
-              </Text>
+              <Text size={'L2'}>SOBRE O PROJETO</Text>
             </Link>
           </li>
           <li className={`self-center ${classes} mr-5`}>
             <Link href={routes.blog}>
-              <Text textType="a" size={'L2'}>
-                BLOG
-              </Text>
+              <Text size={'L2'}>BLOG</Text>
             </Link>
           </li>
           <li className={`self-center ${classes}`}>
@@ -140,45 +130,35 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
           <ul className="text-black flex flex-col justify-start pl-4 gap-3">
             <li className={`ml-auto  mr-5 ${classes}`}>
               <Link href={routes.home}>
-                <Text textType="a" size={'L2'} className="font-bold">
+                <Text size={'L2'} className="font-bold">
                   PÁGINA INICIAL
                 </Text>
               </Link>
             </li>
             <li className={`flex `}>
               <Link href={routes.consult}>
-                <Text textType="a" size={'L2'}>
-                  CONSULTAS
-                </Text>
+                <Text size={'L2'}>CONSULTAS</Text>
               </Link>
               <Icon type="ArrowDown" size={16} className="ml-1" />
             </li>
             <li className={`self-start mr-5`}>
               <Link href={routes.projections}>
-                <Text textType="a" size={'L2'}>
-                  PROJEÇÕES
-                </Text>
+                <Text size={'L2'}>PROJEÇÕES</Text>
               </Link>
             </li>
             <li className={` mr-5`}>
               <Link href={routes.candidates}>
-                <Text textType="a" size={'L2'}>
-                  PERFIL DOS CANDIDATOS
-                </Text>
+                <Text size={'L2'}>PERFIL DOS CANDIDATOS</Text>
               </Link>
             </li>
             <li className={` mr-5`}>
               <Link href={routes.about}>
-                <Text textType="a" size={'L2'}>
-                  SOBRE O PROJETO
-                </Text>
+                <Text size={'L2'}>SOBRE O PROJETO</Text>
               </Link>
             </li>
             <li className={` mr-5`}>
               <Link href={routes.blog}>
-                <Text textType="a" size={'L2'}>
-                  BLOG
-                </Text>
+                <Text size={'L2'}>BLOG</Text>
               </Link>
             </li>
             <li className={``}>
