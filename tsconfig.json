@@ -25,7 +25,8 @@
       "@components": ["./src/components/index"],
       "@constants/*": ["./src/constants/*"],
       "@constants": ["./src/constants/index"],
-      "@hooks/*": ["./src/hooks/*"]
+      "@hooks/*": ["./src/hooks/*"],
+      "@routes": ["./src/routes/index"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

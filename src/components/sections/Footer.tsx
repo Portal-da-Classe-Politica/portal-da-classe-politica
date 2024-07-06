@@ -2,38 +2,40 @@ import Image from 'next/image';
 
 import { Container, Heading, Text } from '@base';
 import { BoxIcon } from '@/components/box/BoxIcon';
+import Link from 'next/link';
+import { routes } from '@/routes';
 
 const sections = [
   {
     title: 'OVERVIEW',
     className: '',
     links: [
-      { text: 'Consultas', href: '' },
-      { text: 'Projeções', href: '' },
-      { text: 'Perfil dos candidatos', href: '' },
-      { text: 'Sobre o projeto', href: '' },
-      { text: 'Blog', href: '' },
+      { text: 'Consultas', href: routes.consult },
+      { text: 'Projeções', href: routes.projections },
+      { text: 'Perfil dos candidatos', href: routes.candidates },
+      { text: 'Sobre o projeto', href: routes.about },
+      { text: 'Blog', href: routes.blog },
     ],
   },
   {
     title: 'ATENDIMENTO',
     className: '',
     links: [
-      { text: 'Cruzamentos e Dados Eleitorais', href: '' },
-      { text: 'Indicadores e Índices Especiais', href: '' },
-      { text: 'Aprenda a usar os Indicadores', href: '' },
-      { text: 'Comunicação Científica', href: '' },
+      { text: 'Cruzamentos e Dados Eleitorais', href: routes.support },
+      { text: 'Indicadores e Índices Especiais', href: routes.support },
+      { text: 'Aprenda a usar os Indicadores', href: routes.support },
+      { text: 'Comunicação Científica', href: routes.support },
     ],
   },
   {
     title: 'FERRAMENTAS',
     className: '',
     links: [
-      { text: 'Suporte Técnico', href: '' },
-      { text: 'Falar com Analista', href: '' },
-      { text: 'Reportar Erro', href: '' },
-      { text: 'Fazer Denúncia', href: '' },
-      { text: 'Contato', href: '' },
+      { text: 'Suporte Técnico', href: routes.support },
+      { text: 'Falar com Analista', href: routes.support },
+      { text: 'Reportar Erro', href: routes.support },
+      { text: 'Fazer Denúncia', href: routes.support },
+      { text: 'Contato', href: routes.support },
     ],
   },
 ];
@@ -65,9 +67,9 @@ export const Footer = () => {
                 <ul className="space-y-2">
                   {section.links.map(link => (
                     <li key={link.text}>
-                      <Text textType="a" className="text-[18px]">
-                        {link.text}
-                      </Text>
+                      <Link href={link.href}>
+                        <Text className="text-[18px]">{link.text}</Text>
+                      </Link>
                     </li>
                   ))}
                 </ul>

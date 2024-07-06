@@ -1,20 +1,11 @@
 'use client';
-import { cva } from 'cva';
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { cva } from 'cva';
+
+import { routes } from '@routes';
 import { LogoIcon } from '../LogoIcon';
 import { Button, Icon, Text } from '../base';
-import Link from 'next/link';
-
-const routes = {
-  home: '/',
-  consult: '/consulta',
-  consultList: [],
-  projections: '/segunda-camada',
-  candidates: '/perfil-candidato',
-  about: '/sobre',
-  blog: '/blog',
-  elections2024: '/eleicao-2024',
-};
 
 const variants = cva('', {
   variants: {
