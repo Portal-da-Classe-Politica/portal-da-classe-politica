@@ -2,7 +2,7 @@
 
 import { Container, Heading, Text } from '@base';
 
-import { Header } from '@/components/Header';
+import { Header } from '@/components/sections/Header';
 import { BoxImageText } from '@/components/box/BoxImageText';
 import { GetInContact } from '@/components/sections/GetInContact';
 

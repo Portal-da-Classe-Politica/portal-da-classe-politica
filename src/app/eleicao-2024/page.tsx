@@ -6,7 +6,7 @@ import { Constants } from '@constants';
 const { loremTitle, lorem } = Constants;
 
 import { Container, Heading, IconAwesome, Text, TextParagraphImage } from '@base';
-import { Header } from '@/components/Header';
+import { Header } from '@/components/sections/Header';
 import { GetInContact } from '@/components/sections/GetInContact';
 import { ChipContainer } from '@/components/ChipContainer';
 import CardIconText from '@/components/CardIconText';

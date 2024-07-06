@@ -1,8 +1,20 @@
 'use client';
 import { cva } from 'cva';
 import React, { useEffect, useState } from 'react';
-import { LogoIcon } from './LogoIcon';
-import { Button, Icon, IconAwesome, Text } from './base';
+import { LogoIcon } from '../LogoIcon';
+import { Button, Icon, IconAwesome, Text } from '../base';
+import Link from 'next/link';
+
+const routes = {
+  home: '/',
+  consult: '/consulta',
+  consultList: [],
+  projections: '/segunda-camada',
+  candidates: '/perfil-candidato',
+  about: '/sobre',
+  blog: '/blog',
+  elections2024: '/eleicao-2024',
+};
 
 const variants = cva('', {
   variants: {
@@ -18,6 +30,9 @@ const variants = cva('', {
 
 export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
   const classes = variants({ style });
+  const logoType = style === 'light' ? 'white' : 'orange';
+  const iconColor = style === 'light' ? 'text-white' : 'text-black';
+
   const [isOpen, setIsOpen] = useState(false);
   const handleDrawer = () => {
     setIsOpen(!isOpen);
@@ -42,53 +57,68 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
       document.removeEventListener('keydown', handleEscKeyPress);
     };
   }, [isOpen]);
+
   return (
     <>
       <nav className="hidden xl:block overflow-hidden">
         <ul className="flex">
           <li>
-            <LogoIcon type={style === 'light' ? 'white' : 'orange'} />
+            <LogoIcon type={logoType} />
           </li>
           <li className={`ml-auto self-center mr-5 ${classes}`}>
-            <Text textType="a" size={'L2'} className="font-bold">
-              PÁGINA INICIAL
-            </Text>
+            <Link href={routes.home}>
+              <Text textType="a" size={'L2'} className="font-bold">
+                PÁGINA INICIAL
+              </Text>
+            </Link>
           </li>
           <li className={`flex self-center ${classes} mr-5 inline justify-center items-center`}>
-            <Text textType="a" size={'L2'}>
-              CONSULTAS
-            </Text>
-            <Icon type="ArrowDown" size={16} className="ml-1" />
+            <Link href={routes.consult}>
+              <Text textType="a" size={'L2'}>
+                CONSULTAS
+              </Text>
+            </Link>
+            <IconAwesome type="ArrowDown" size="xs" className={`ml-1 ${iconColor}`} />
           </li>
           <li className={`self-center ${classes} mr-5`}>
-            <Text textType="a" size={'L2'}>
-              PROJEÇÕES
-            </Text>
+            <Link href={routes.projections}>
+              <Text textType="a" size={'L2'}>
+                PROJEÇÕES
+              </Text>
+            </Link>
           </li>
           <li className={`self-center ${classes} mr-5`}>
-            <Text textType="a" size={'L2'}>
-              PERFIL DOS CANDIDATOS
-            </Text>
+            <Link href={routes.candidates}>
+              <Text textType="a" size={'L2'}>
+                PERFIL DOS CANDIDATOS
+              </Text>
+            </Link>
           </li>
           <li className={`self-center ${classes} mr-5`}>
-            <Text textType="a" size={'L2'}>
-              SOBRE O PROJETO
-            </Text>
+            <Link href={routes.about}>
+              <Text textType="a" size={'L2'}>
+                SOBRE O PROJETO
+              </Text>
+            </Link>
           </li>
           <li className={`self-center ${classes} mr-5`}>
-            <Text textType="a" size={'L2'}>
-              BLOG
-            </Text>
+            <Link href={routes.blog}>
+              <Text textType="a" size={'L2'}>
+                BLOG
+              </Text>
+            </Link>
           </li>
           <li className={`self-center ${classes}`}>
-            <Button text="ELEIÇÕES 2024" style="fillBlack" />
+            <Link href={routes.elections2024}>
+              <Button text="ELEIÇÕES 2024" style="fillBlack" />
+            </Link>
           </li>
         </ul>
       </nav>
       <nav className="flex w-full items-center h-16 z-10 xl:hidden pb-10 pt-10">
         <div className="flex items-center w-full justify-between">
           <LogoIcon type={style === 'light' ? 'white' : 'orange'} />
-          <button className={`${classes} `} aria-label="Open Menu" onClick={handleDrawer}>
+          <button className={`${classes}`} aria-label="Open Menu" onClick={handleDrawer}>
             <IconAwesome type="Menu" size="2x" />
           </button>
         </div>
@@ -109,38 +139,52 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
           </span>
           <ul className="text-black flex flex-col justify-start pl-4 gap-3">
             <li className={`ml-auto  mr-5 ${classes}`}>
-              <Text textType="a" size={'L2'} className="font-bold">
-                PÁGINA INICIAL
-              </Text>
+              <Link href={routes.home}>
+                <Text textType="a" size={'L2'} className="font-bold">
+                  PÁGINA INICIAL
+                </Text>
+              </Link>
             </li>
             <li className={`flex `}>
-              <Text textType="a" size={'L2'}>
-                CONSULTAS
-              </Text>
+              <Link href={routes.consult}>
+                <Text textType="a" size={'L2'}>
+                  CONSULTAS
+                </Text>
+              </Link>
               <Icon type="ArrowDown" size={16} className="ml-1" />
             </li>
             <li className={`self-start mr-5`}>
-              <Text textType="a" size={'L2'}>
-                PROJEÇÕES
-              </Text>
+              <Link href={routes.projections}>
+                <Text textType="a" size={'L2'}>
+                  PROJEÇÕES
+                </Text>
+              </Link>
             </li>
             <li className={` mr-5`}>
-              <Text textType="a" size={'L2'}>
-                PERFIL DOS CANDIDATOS
-              </Text>
+              <Link href={routes.candidates}>
+                <Text textType="a" size={'L2'}>
+                  PERFIL DOS CANDIDATOS
+                </Text>
+              </Link>
             </li>
             <li className={` mr-5`}>
-              <Text textType="a" size={'L2'}>
-                SOBRE O PROJETO
-              </Text>
+              <Link href={routes.about}>
+                <Text textType="a" size={'L2'}>
+                  SOBRE O PROJETO
+                </Text>
+              </Link>
             </li>
             <li className={` mr-5`}>
-              <Text textType="a" size={'L2'}>
-                BLOG
-              </Text>
+              <Link href={routes.blog}>
+                <Text textType="a" size={'L2'}>
+                  BLOG
+                </Text>
+              </Link>
             </li>
             <li className={``}>
-              <Button text="ELEIÇÕES 2024" style="fillBlack" />
+              <Link href={routes.elections2024}>
+                <Button text="ELEIÇÕES 2024" style="fillBlack" />
+              </Link>
             </li>
           </ul>
         </aside>

@@ -1,7 +1,7 @@
 'use client';
 
 import { ButtonStyled, Container, Heading, IconAwesome, Input, Select, Text } from '@base';
-import { Header } from '@/components/Header';
+import { Header } from '@/components/sections/Header';
 import TableComponent from '@/components/Table';
 import { GetInContact } from '@/components/sections/GetInContact';
 import Divider from '@/components/Divider';

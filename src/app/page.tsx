@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import { BoxFerramenta } from '@components/box/BoxFerramenta';
 import { BoxData } from '@/components/box/BoxData';
 import { CardPost } from '@/components/CardPost';
-import { Header } from '@/components/Header';
+import { Header } from '@/components/sections/Header';
 import { GetInContact } from '@/components/sections/GetInContact';
 import { SpecialContents } from '@/components/sections/SpecialContents';
 import { SelectBoxProps } from '@components/SelectBox';

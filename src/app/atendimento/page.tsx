@@ -5,7 +5,7 @@ import { Constants } from '@constants';
 const { loremTitle, lorem } = Constants;
 
 import { ButtonStyled, Container, Heading, Text, Input, TextArea, TextParagraphImage } from '@base';
-import { Header } from '@/components/Header';
+import { Header } from '@/components/sections/Header';
 import { LineItem } from '@/components/LineItem';
 import { BoxIconText } from '@/components/box/BoxIconText';
 

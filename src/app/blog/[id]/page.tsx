@@ -1,5 +1,5 @@
 import { Container } from '@base';
-import { Header } from '@/components/Header';
+import { Header } from '@/components/sections/Header';
 
 import { GetInContact } from '@/components/sections/GetInContact';
 import { RelatedArticles } from '@/components/sections/RelatedArticles';
