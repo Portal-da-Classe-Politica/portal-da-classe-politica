@@ -257,132 +257,132 @@ export interface GetCandidate200ResponseData {
 /**
  *
  * @export
- * @interface GetCandidateFiltered200Response
+ * @interface GetCandidateFilters200Response
  */
-export interface GetCandidateFiltered200Response {
+export interface GetCandidateFilters200Response {
   /**
    *
    * @type {boolean}
-   * @memberof GetCandidateFiltered200Response
+   * @memberof GetCandidateFilters200Response
    */
   success?: boolean;
   /**
    *
-   * @type {GetCandidateFiltered200ResponseData}
-   * @memberof GetCandidateFiltered200Response
+   * @type {GetCandidateFilters200ResponseData}
+   * @memberof GetCandidateFilters200Response
    */
-  data?: GetCandidateFiltered200ResponseData;
+  data?: GetCandidateFilters200ResponseData;
   /**
    *
    * @type {string}
-   * @memberof GetCandidateFiltered200Response
+   * @memberof GetCandidateFilters200Response
    */
   message?: string;
 }
 /**
  *
  * @export
- * @interface GetCandidateFiltered200ResponseData
+ * @interface GetCandidateFilters200ResponseData
  */
-export interface GetCandidateFiltered200ResponseData {
+export interface GetCandidateFilters200ResponseData {
   /**
    *
-   * @type {Array<GetCandidateFiltered200ResponseDataCargosInner>}
-   * @memberof GetCandidateFiltered200ResponseData
+   * @type {Array<GetCandidateFilters200ResponseDataCargosInner>}
+   * @memberof GetCandidateFilters200ResponseData
    */
-  cargos?: Array<GetCandidateFiltered200ResponseDataCargosInner>;
+  cargos?: Array<GetCandidateFilters200ResponseDataCargosInner>;
   /**
    *
-   * @type {Array<GetCandidateFiltered200ResponseDataGenerosInner>}
-   * @memberof GetCandidateFiltered200ResponseData
+   * @type {Array<GetCandidateFilters200ResponseDataGenerosInner>}
+   * @memberof GetCandidateFilters200ResponseData
    */
-  generos?: Array<GetCandidateFiltered200ResponseDataGenerosInner>;
+  generos?: Array<GetCandidateFilters200ResponseDataGenerosInner>;
   /**
    *
-   * @type {Array<GetCandidateFiltered200ResponseDataEstadosInner>}
-   * @memberof GetCandidateFiltered200ResponseData
+   * @type {Array<GetCandidateFilters200ResponseDataEstadosInner>}
+   * @memberof GetCandidateFilters200ResponseData
    */
-  estados?: Array<GetCandidateFiltered200ResponseDataEstadosInner>;
+  estados?: Array<GetCandidateFilters200ResponseDataEstadosInner>;
 }
 /**
  *
  * @export
- * @interface GetCandidateFiltered200ResponseDataCargosInner
+ * @interface GetCandidateFilters200ResponseDataCargosInner
  */
-export interface GetCandidateFiltered200ResponseDataCargosInner {
+export interface GetCandidateFilters200ResponseDataCargosInner {
   /**
    *
    * @type {number}
-   * @memberof GetCandidateFiltered200ResponseDataCargosInner
+   * @memberof GetCandidateFilters200ResponseDataCargosInner
    */
   id?: number;
   /**
    *
    * @type {string}
-   * @memberof GetCandidateFiltered200ResponseDataCargosInner
+   * @memberof GetCandidateFilters200ResponseDataCargosInner
    */
   nome?: string;
 }
 /**
  *
  * @export
- * @interface GetCandidateFiltered200ResponseDataEstadosInner
+ * @interface GetCandidateFilters200ResponseDataEstadosInner
  */
-export interface GetCandidateFiltered200ResponseDataEstadosInner {
+export interface GetCandidateFilters200ResponseDataEstadosInner {
   /**
    *
    * @type {number}
-   * @memberof GetCandidateFiltered200ResponseDataEstadosInner
+   * @memberof GetCandidateFilters200ResponseDataEstadosInner
    */
   id?: number;
   /**
    *
    * @type {string}
-   * @memberof GetCandidateFiltered200ResponseDataEstadosInner
+   * @memberof GetCandidateFilters200ResponseDataEstadosInner
    */
   nome?: string;
 }
 /**
  *
  * @export
- * @interface GetCandidateFiltered200ResponseDataGenerosInner
+ * @interface GetCandidateFilters200ResponseDataGenerosInner
  */
-export interface GetCandidateFiltered200ResponseDataGenerosInner {
+export interface GetCandidateFilters200ResponseDataGenerosInner {
   /**
    *
    * @type {number}
-   * @memberof GetCandidateFiltered200ResponseDataGenerosInner
+   * @memberof GetCandidateFilters200ResponseDataGenerosInner
    */
   id?: number;
   /**
    *
    * @type {string}
-   * @memberof GetCandidateFiltered200ResponseDataGenerosInner
+   * @memberof GetCandidateFilters200ResponseDataGenerosInner
    */
   nome?: string;
 }
 /**
  *
  * @export
- * @interface GetCandidateFiltered500Response
+ * @interface GetCandidateFilters500Response
  */
-export interface GetCandidateFiltered500Response {
+export interface GetCandidateFilters500Response {
   /**
    *
    * @type {boolean}
-   * @memberof GetCandidateFiltered500Response
+   * @memberof GetCandidateFilters500Response
    */
   success?: boolean;
   /**
    *
    * @type {object}
-   * @memberof GetCandidateFiltered500Response
+   * @memberof GetCandidateFilters500Response
    */
   data?: object;
   /**
    *
    * @type {string}
-   * @memberof GetCandidateFiltered500Response
+   * @memberof GetCandidateFilters500Response
    */
   message?: string;
 }
@@ -846,7 +846,7 @@ export const CandidateApiAxiosParamCreator = function (configuration?: Configura
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCandidateFiltered: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+    getCandidateFilters: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
       const localVarPath = `/noauth/candidate/get-filters`;
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -975,13 +975,13 @@ export const CandidateApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCandidateFiltered(
+    async getCandidateFilters(
       options?: RawAxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetCandidateFiltered200Response>> {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.getCandidateFiltered(options);
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetCandidateFilters200Response>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getCandidateFilters(options);
       const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
       const localVarOperationServerBasePath =
-        operationServerMap['CandidateApi.getCandidateFiltered']?.[localVarOperationServerIndex]?.url;
+        operationServerMap['CandidateApi.getCandidateFilters']?.[localVarOperationServerIndex]?.url;
       return (axios, basePath) =>
         createRequestFunction(
           localVarAxiosArgs,
@@ -1058,8 +1058,8 @@ export const CandidateApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCandidateFiltered(options?: any): AxiosPromise<GetCandidateFiltered200Response> {
-      return localVarFp.getCandidateFiltered(options).then(request => request(axios, basePath));
+    getCandidateFilters(options?: any): AxiosPromise<GetCandidateFilters200Response> {
+      return localVarFp.getCandidateFilters(options).then(request => request(axios, basePath));
     },
     /**
      * Busca candidatos com base em parâmetros como nome, UF, abrangência, unidade eleitoral e página.
@@ -1115,9 +1115,9 @@ export class CandidateApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CandidateApi
    */
-  public getCandidateFiltered(options?: RawAxiosRequestConfig) {
+  public getCandidateFilters(options?: RawAxiosRequestConfig) {
     return CandidateApiFp(this.configuration)
-      .getCandidateFiltered(options)
+      .getCandidateFilters(options)
       .then(request => request(this.axios, this.basePath));
   }
 

@@ -216,7 +216,7 @@ paths:
 
   /noauth/candidate/get-filters:
     get:
-      operationId: 'getCandidateFiltered'
+      operationId: 'getCandidateFilters'
       tags:
         - candidate
       summary: Obter filtros de candidatos
