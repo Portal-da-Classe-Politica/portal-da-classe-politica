@@ -243,7 +243,7 @@ paths:
                             id:
                               type: integer
                               example: 1
-                            nome:
+                            nome_cargo:
                               type: string
                               example: 'Engenheiro'
                       generos:

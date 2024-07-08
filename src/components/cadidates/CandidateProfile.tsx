@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { ButtonStyled, Heading, Text } from '../base';
-import Divider from '../Divider';
+import { Divider } from '../Divider';
 import { BoxIconAwesome } from '../box/BoxIconAwesome';
 import TextBetween from '../base/text/TextBetween';
 

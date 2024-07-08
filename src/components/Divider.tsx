@@ -19,10 +19,8 @@ type DividerProps = {
   top?: 'default' | 'small';
 };
 
-const Divider = ({ type, bottom, top }: DividerProps) => {
+export const Divider = ({ type, bottom, top }: DividerProps) => {
   const classes = buttonVariants({ type, bottom, top });
 
   return <hr className={`h-[3px] w-full ${classes} `} />;
 };
-
-export default Divider;

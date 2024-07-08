@@ -1,12 +1,14 @@
-'use client';
-
 import { ButtonStyled, Container, Heading, Icon, Input, Select, Text } from '@base';
 import { Header } from '@components/sections/Header';
 import TableComponent from '@components/Table';
 import { GetInContact } from '@components/sections/GetInContact';
-import Divider from '@components/Divider';
+import { Divider } from '@components/Divider';
 
-const Page = () => {
+import { CandidateService } from '@services/candidates/CandidateService';
+
+const Page = async () => {
+  const filters = await CandidateService.getFilters();
+
   return (
     <main className="font-montserrat bg-orange">
       <section className="pb-[45px] pt-4">
@@ -23,39 +25,25 @@ const Page = () => {
               <div className="w-[270px]">
                 <Select
                   placeholder="Selecionar Estado"
-                  options={[
-                    { value: 'value', label: 'label' },
-                    { value: 'value', label: 'label' },
-                    { value: 'value', label: 'label' },
-                    { value: 'value', label: 'label' },
-                  ]}
+                  options={filters.estados}
                   buttonProps={{ style: 'fillGray', className: 'px-[8px]' }}
                   prefixComponent={
-                    <>
-                      <Text textType="span" size="B1" className="font-normal">
-                        Estado |
-                      </Text>
-                    </>
+                    <Text textType="span" size="B1" className="font-normal mr-2">
+                      Estado |
+                    </Text>
                   }
                   suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
                 />
               </div>
               <div className="w-[270px]">
                 <Select
-                  placeholder="Selecionar Estado"
-                  options={[
-                    { value: 'value', label: 'label' },
-                    { value: 'value', label: 'label' },
-                    { value: 'value', label: 'label' },
-                    { value: 'value', label: 'label' },
-                  ]}
+                  placeholder="Selecionar Cargo"
+                  options={filters.cargos}
                   buttonProps={{ style: 'fillGray', className: 'px-[8px]' }}
                   prefixComponent={
-                    <>
-                      <Text textType="span" size="B1" className="font-normal">
-                        Estado |
-                      </Text>
-                    </>
+                    <Text textType="span" size="B1" className="font-normal mr-2">
+                      Cargo |{' '}
+                    </Text>
                   }
                   suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
                 />
