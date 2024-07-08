@@ -1,6 +1,6 @@
 'use client';
 
-import { DatePicker } from '@/components/DatePicker';
+import { DatePicker } from '@components/DatePicker';
 
 const Page = () => {
   const testFunc = (val: any, obj: any) => {

@@ -1,20 +1,20 @@
 'use client';
 
 import { Container, Heading, Text } from '@base';
-import { Header } from '@/components/sections/Header';
+import { Header } from '@components/sections/Header';
 
-import { GetInContact } from '@/components/sections/GetInContact';
-import { MapComponent } from '@/components/map/MapComponent';
-import { SpecialContents } from '@/components/sections/SpecialContents';
-import CandidateProfile from '@/components/cadidates/CandidateProfile';
-import LastElection from '@/components/LastElection';
-import Divider from '@/components/Divider';
-import TextBetween from '@/components/base/text/TextBetween';
-import { BoxData } from '@/components/box/BoxData';
-import CandidateAdversary from '@/components/cadidates/CandidateAdversary';
-import { ChipContainer } from '@/components/ChipContainer';
-import CandidateFinance from '@/components/cadidates/CandidateFinance';
-import ArrowItem from '@/components/ArrowItem';
+import { GetInContact } from '@components/sections/GetInContact';
+import { MapComponent } from '@components/map/MapComponent';
+import { SpecialContents } from '@components/sections/SpecialContents';
+import CandidateProfile from '@components/cadidates/CandidateProfile';
+import LastElection from '@components/LastElection';
+import Divider from '@components/Divider';
+import TextBetween from '@components/base/text/TextBetween';
+import { BoxData } from '@components/box/BoxData';
+import CandidateAdversary from '@components/cadidates/CandidateAdversary';
+import { ChipContainer } from '@components/ChipContainer';
+import CandidateFinance from '@components/cadidates/CandidateFinance';
+import ArrowItem from '@components/ArrowItem';
 
 const Page = () => {
   return (

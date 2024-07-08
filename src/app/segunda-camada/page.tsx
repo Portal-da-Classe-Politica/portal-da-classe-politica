@@ -1,9 +1,9 @@
 'use client';
 
 import { Container, Heading, Text } from '@base';
-import { Header } from '@/components/sections/Header';
-import { GetInContact } from '@/components/sections/GetInContact';
-import { ChartSection } from '@/components/charts/ChartSection';
+import { Header } from '@components/sections/Header';
+import { GetInContact } from '@components/sections/GetInContact';
+import { ChartSection } from '@components/charts/ChartSection';
 
 const dataSeries = {
   electoral: {

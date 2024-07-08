@@ -18,7 +18,6 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
       "@base/*": ["./src/components/base/*"],
       "@base": ["./src/components/base/index"],
       "@components/*": ["./src/components/*"],

@@ -2,10 +2,10 @@
 
 import { Container, Heading, Text } from '@base';
 
-import { Header } from '@/components/sections/Header';
-import { BoxImageText } from '@/components/box/BoxImageText';
-import { GetInContact } from '@/components/sections/GetInContact';
-import { SpecialContents } from '@/components/sections/SpecialContents';
+import { Header } from '@components/sections/Header';
+import { BoxImageText } from '@components/box/BoxImageText';
+import { GetInContact } from '@components/sections/GetInContact';
+import { SpecialContents } from '@components/sections/SpecialContents';
 
 const cards = [
   { text: 'Perfil dos Candidatos', src: '/img/consulta/Profile.png' },

@@ -6,13 +6,13 @@ import { Constants } from '@constants';
 const { loremTitle, lorem } = Constants;
 
 import { Container, Heading, Icon, Text, TextParagraphImage } from '@base';
-import { Header } from '@/components/sections/Header';
-import { GetInContact } from '@/components/sections/GetInContact';
-import { ChipContainer } from '@/components/ChipContainer';
-import CardIconText from '@/components/CardIconText';
-import Timeline from '@/components/timeline/Timeline';
-import Avatar from '@/components/Avatar';
-import { RelatedArticles } from '@/components/sections/RelatedArticles';
+import { Header } from '@components/sections/Header';
+import { GetInContact } from '@components/sections/GetInContact';
+import { ChipContainer } from '@components/ChipContainer';
+import CardIconText from '@components/CardIconText';
+import Timeline from '@components/timeline/Timeline';
+import Avatar from '@components/Avatar';
+import { RelatedArticles } from '@components/sections/RelatedArticles';
 
 const cardIconTexts = ['1', '1', '1', '1', '1', '1'];
 

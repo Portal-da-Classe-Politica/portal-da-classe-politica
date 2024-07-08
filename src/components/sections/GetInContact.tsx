@@ -1,5 +1,5 @@
 import { Container, Heading, Text } from '@base';
-import { BoxIconText } from '@/components/box/BoxIconText';
+import { BoxIconText } from '@components/box/BoxIconText';
 
 export const GetInContact = () => {
   return (

@@ -7,8 +7,8 @@ import 'ol/ol.css';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 config.autoAddCss = false;
 
-import { Footer } from '@/components/sections/Footer';
-import { AccessibilityHeader } from '@/components/sections/AccessibilityHeader';
+import { Footer } from '@components/sections/Footer';
+import { AccessibilityHeader } from '@components/sections/AccessibilityHeader';
 
 const inter = Inter({ subsets: ['latin'] });
 

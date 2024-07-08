@@ -1,10 +1,10 @@
 import { Container, Heading, Display, Text, ButtonStyled } from '@base';
 import { BoxFerramenta } from '@components/box/BoxFerramenta';
-import { BoxData } from '@/components/box/BoxData';
-import { CardPost } from '@/components/CardPost';
-import { Header } from '@/components/sections/Header';
-import { GetInContact } from '@/components/sections/GetInContact';
-import { HowToCrossing } from '@/components/sections/HowToCrossing';
+import { BoxData } from '@components/box/BoxData';
+import { CardPost } from '@components/CardPost';
+import { Header } from '@components/sections/Header';
+import { GetInContact } from '@components/sections/GetInContact';
+import { HowToCrossing } from '@components/sections/HowToCrossing';
 
 const Home = () => {
   return (

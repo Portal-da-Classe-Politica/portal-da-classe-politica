@@ -6,9 +6,9 @@ import { Constants } from '@constants';
 const { loremTitle, lorem } = Constants;
 
 import { Container, Heading, Text, TextParagraph, TextParagraphImage } from '@base';
-import { Header } from '@/components/sections/Header';
-import Avatar from '@/components/Avatar';
-import Timeline from '@/components/timeline/Timeline';
+import { Header } from '@components/sections/Header';
+import Avatar from '@components/Avatar';
+import Timeline from '@components/timeline/Timeline';
 
 const headerText = [
   {

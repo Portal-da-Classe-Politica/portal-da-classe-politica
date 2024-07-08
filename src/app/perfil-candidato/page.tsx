@@ -1,10 +1,10 @@
 'use client';
 
 import { ButtonStyled, Container, Heading, Icon, Input, Select, Text } from '@base';
-import { Header } from '@/components/sections/Header';
-import TableComponent from '@/components/Table';
-import { GetInContact } from '@/components/sections/GetInContact';
-import Divider from '@/components/Divider';
+import { Header } from '@components/sections/Header';
+import TableComponent from '@components/Table';
+import { GetInContact } from '@components/sections/GetInContact';
+import Divider from '@components/Divider';
 
 const Page = () => {
   return (

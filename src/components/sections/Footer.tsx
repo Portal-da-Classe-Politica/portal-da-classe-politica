@@ -1,9 +1,9 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { Container, Heading, Text } from '@base';
-import { BoxIcon } from '@/components/box/BoxIcon';
-import Link from 'next/link';
-import { routes } from '@/routes';
+import { BoxIcon } from '@components/box/BoxIcon';
+import { routes } from '@routes';
 
 const sections = [
   {

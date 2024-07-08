@@ -4,13 +4,13 @@ import { Constants } from '@constants';
 const { loremTitle, lorem } = Constants;
 
 import { Container, Heading, Text, TextParagraphImage } from '@base';
-import { Header } from '@/components/sections/Header';
-import { GetInContact } from '@/components/sections/GetInContact';
-import CardIconText from '@/components/CardIconText';
-import Divider from '@/components/Divider';
+import { Header } from '@components/sections/Header';
+import { GetInContact } from '@components/sections/GetInContact';
+import CardIconText from '@components/CardIconText';
+import Divider from '@components/Divider';
 import dynamic from 'next/dynamic';
 
-const TableMenu = dynamic(() => import('@/components/sections/TableMenu'), {
+const TableMenu = dynamic(() => import('@components/sections/TableMenu'), {
   ssr: false,
 });
 

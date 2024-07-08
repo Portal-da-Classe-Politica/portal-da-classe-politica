@@ -1,8 +1,8 @@
 import { Container } from '@base';
-import { Header } from '@/components/sections/Header';
+import { Header } from '@components/sections/Header';
 
-import { GetInContact } from '@/components/sections/GetInContact';
-import { RelatedArticles } from '@/components/sections/RelatedArticles';
+import { GetInContact } from '@components/sections/GetInContact';
+import { RelatedArticles } from '@components/sections/RelatedArticles';
 
 const Page = () => {
   return (
