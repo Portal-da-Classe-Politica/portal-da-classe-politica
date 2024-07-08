@@ -1,0 +1,503 @@
+openapi: 3.0.0
+info:
+  title: Portal da Classe Politica API
+  version: 1.0.0
+  description: API portal da classe politica
+servers:
+  - url: http://localhost:7000
+    description: 'Servidor Local'
+  - url: https://portal-da-classe-back.onrender.com
+    description: 'Servidor de desenvolvimento'
+tags:
+  - name: abrangencia
+    description: Rotas para buscar abrangencias
+  - name: unidade eleitoral
+    description: Rotas para buscar unidades eleitorais
+  - name: candidato
+    description: Rotas para buscar candidatos
+
+paths:
+  /noauth/abrangency:
+    get:
+      tags:
+        - abrangencia
+      operationId: '1'
+      summary: Obter abrangências disponíveis
+      description: Retorna as abrangências disponíveis para candidatos.
+      responses:
+        '200':
+          description: Lista de abrangências disponíveis.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indica se a operação foi bem-sucedida.
+                    example: true
+                  message:
+                    type: string
+                    description: Mensagem de sucesso.
+                    example: 'abrangencias encontradas.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          description: ID da abrangência.
+                          example: 1
+                        nome:
+                          type: string
+                          description: Nome da abrangência.
+                          example: 'FEDERAL'
+                        descricao:
+                          type: string
+                          description: Descrição da abrangencia
+                          example: 'Abrangencia utilizada nos cargos de Deputado Estadual, Deputado Federal, Governador, Senador, Deputado Distrital e Presidente.'
+        '500':
+          description: Erro interno do servidor.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indica se a operação foi bem-sucedida.
+                    example: false
+                  message:
+                    type: string
+                    description: Mensagem de erro.
+                    example: 'Erro ao encontrar abrangencias'
+                  data:
+                    type: string
+                    description: Detalhes do erro.
+                    example: 'Erro ao processar a solicitação.'
+  /noauth/candidate/get-filters:
+    get:
+      operationId: '2'
+      tags:
+        - candidato
+      summary: Obter filtros de candidatos
+      description: Retorna os filtros disponíveis para candidatos.
+      responses:
+        '200':
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      cargos:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            nome:
+                              type: string
+                              example: 'Engenheiro'
+                      generos:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            nome:
+                              type: string
+                              example: 'Masculino'
+                      estados:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            nome:
+                              type: string
+                              example: 'São Paulo'
+                  message:
+                    type: string
+                    example: 'Dados buscados com sucesso.'
+        '400':
+          description: Requisição inválida
+        '500':
+          description: Erro interno do servidor
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  data:
+                    type: object
+                    example: {}
+                  message:
+                    type: string
+                    example: 'Erro ao buscar os filtros dos candidatos'
+  /noauth/electoral-unit:
+    get:
+      tags:
+        - unidade eleitoral
+      operationId: '3'
+      summary: Obter unidades eleitorais por abrangência
+      description: Retorna as unidades eleitorais disponíveis para uma determinada abrangência.
+      parameters:
+        - in: query
+          name: abrangencyId
+          schema:
+            type: integer
+          required: true
+          description: ID da abrangência.
+        - in: query
+          name: UF
+          schema:
+            type: string
+          required: false
+          description: Estado, obrigatório no caso de abrangência municipal.
+      responses:
+        '200':
+          description: Lista de unidades eleitorais encontradas.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indica se a operação foi bem-sucedida.
+                    example: true
+                  message:
+                    type: string
+                    description: Mensagem de sucesso.
+                    example: 'Unidades eleitorais encontradas.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          description: ID da unidade eleitoral.
+                          example: 1
+                        nome:
+                          type: string
+                          description: Nome da unidade eleitoral.
+                          example: 'São Paulo'
+        '500':
+          description: Erro interno do servidor.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indica se a operação foi bem-sucedida.
+                    example: false
+                  message:
+                    type: string
+                    description: Mensagem de erro.
+                    example: 'Erro ao encontrar unidades eleitorais'
+                  data:
+                    type: string
+                    description: Detalhes do erro.
+                    example: 'Erro ao processar a solicitação.'
+  /noauth/electoral-unit/get-ufs:
+    get:
+      tags:
+        - unidade eleitoral
+      operationId: '4'
+      summary: Obter unidades federativas
+      description: Retorna todas as unidades federativas.
+      responses:
+        '200':
+          description: Lista de unidades federativas encontradas.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indica se a operação foi bem-sucedida.
+                    example: true
+                  message:
+                    type: string
+                    description: Mensagem de sucesso.
+                    example: 'Unidades eleitorais encontradas.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        sigla_unidade_eleitoral:
+                          type: string
+                          description: Nome da unidade federativa.
+                          example: 'SP'
+        '400':
+          description: Erro de requisiçao.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indica se a operação foi bem-sucedida.
+                    example: false
+                  message:
+                    type: string
+                    description: Mensagem de erro caso escolha abrangencia 2 e nao envie estado.
+                    example: 'UF é obrigatório para abrangência Municipal.'
+                  data:
+                    type: object
+                    description: Detalhes do erro.
+                    example: {}
+        '500':
+          description: Erro interno do servidor.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indica se a operação foi bem-sucedida.
+                    example: false
+                  message:
+                    type: string
+                    description: Mensagem de erro.
+                    example: 'Erro ao encontrar unidades eleitorais'
+                  data:
+                    type: string
+                    description: Detalhes do erro.
+                    example: 'Erro ao processar a solicitação.'
+  /noauth/candidate:
+    get:
+      operationId: '5'
+      tags:
+        - candidato
+      summary: Busca candidatos
+      description: Busca candidatos com base em parâmetros como nome, UF, abrangência, unidade eleitoral e página.
+      parameters:
+        - in: query
+          name: name
+          schema:
+            type: string
+          description: Nome ou nome de urna do candidato
+        - in: query
+          name: UF
+          schema:
+            type: string
+          description: Unidade Federativa
+        - in: query
+          name: abrangencyId
+          schema:
+            type: string
+          description: ID da abrangência
+        - in: query
+          name: electoralUnitId
+          schema:
+            type: string
+          description: ID da unidade eleitoral
+        - in: query
+          name: page
+          schema:
+            type: integer
+          description: Número da página para paginação
+      responses:
+        '200':
+          description: Lista de candidatos encontrada
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: 'Indica o sucesso da requisição.'
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      totalResults:
+                        type: integer
+                        description: 'Indica a quantidade de candidatos que foram encontrados com os parâmetros.'
+                        example: 1822832
+                      currentPage:
+                        type: integer
+                        description: 'Indica a pagina atual.'
+                        example: 1
+                      totalPages:
+                        type: integer
+                        description: 'Indica a quantidade total de paginas encontradas.'
+                        example: 182284
+                      results:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            lastCandidatoEleicaoId:
+                              type: integer
+                              example: 2294466
+                            partido:
+                              type: string
+                              example: PRB
+                            nomeCandidato:
+                              type: string
+                              example: SYLVIA JANE HODGE CRIVELLA
+                            situacao:
+                              type: string
+                              example: APTO
+                            cargo:
+                              type: string
+                              example: 1º SUPLENTE
+                            nomeUrna:
+                              type: string
+                              example: JANE CRIVELLA
+                            ultimaEleicao:
+                              type: integer
+                              example: 2018
+                            candidatoId:
+                              type: integer
+                              example: 45111
+                  message:
+                    type: string
+                    example: Candidatos encontrados com sucesso.
+        '400':
+          description: Requisição inválida
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  data:
+                    type: object
+                  message:
+                    type: string
+                    example: Na abrangência selecionada é necessário informar a unidade eleitoral.
+        '500':
+          description: Erro no servidor
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  data:
+                    type: object
+                  message:
+                    type: string
+                    example: Erro ao buscar os candidatos.
+  /noauth/candidate/detail/{candidatoId}:
+    get:
+      operationId: '6'
+      tags:
+        - candidato
+      summary: Detalhe de candidato pelo id
+      description: Busca candidato com base no id
+      parameters:
+        - in: path
+          name: candidatoId
+          schema:
+            type: string
+          required: true
+          example: '415180'
+          description: Id do candidato para detalhe
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      candidato_id:
+                        type: integer
+                        example: 415180
+                      nome:
+                        type: string
+                        example: 'MOVIMENTO DEMOCRÁTICO BRASILEIRO'
+                      cpf:
+                        type: string
+                        example: '73284068015'
+                      data_nascimento:
+                        type: string
+                        format: date-time
+                        example: '1973-09-28T03:00:00.000Z'
+                      genero:
+                        type: string
+                        example: 'MASCULINO'
+                      raca:
+                        type: string
+                        example: 'BRANCA'
+                      ocupacao:
+                        type: string
+                        example: 'ADVOGADO'
+                      coligacao:
+                        type: string
+                        example: 'MDB'
+                      id:
+                        type: integer
+                        example: 46
+                      sigla:
+                        type: string
+                        example: 'MDB'
+                      nome_atual:
+                        type: string
+                        example: 'MDB'
+                      class_categ_1:
+                        type: string
+                        example: 'Centro'
+                      class_categ_4:
+                        type: string
+                        example: 'Secular centre'
+                      class_survey_esp:
+                        type: string
+                        example: 'Centro-direita'
+                      grau_de_instrucao:
+                        type: string
+                        example: 'SUPERIOR COMPLETO'
+                      bens_declarados:
+                        type: integer
+                        example: 600000
+                      ultimo_cargo:
+                        type: string
+                        example: 'DEPUTADO ESTADUAL'
+                      ultima_unidade_eleitoral:
+                        type: string
+                        example: 'RS - RIO GRANDE DO SUL'
+                      ultima_situacao_candidatura:
+                        type: string
+                        example: 'APTO'
+                  message:
+                    type: string
+                    example: 'Candidato encontrado com sucesso.'

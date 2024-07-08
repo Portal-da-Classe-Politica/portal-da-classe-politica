@@ -23,10 +23,11 @@
       "@base": ["./src/components/base/index"],
       "@components/*": ["./src/components/*"],
       "@components": ["./src/components/index"],
-      "@constants/*": ["./src/constants/*"],
       "@constants": ["./src/constants/index"],
       "@hooks/*": ["./src/hooks/*"],
-      "@routes": ["./src/routes/index"]
+      "@routes": ["./src/routes/index"],
+      "@services/*": ["./src/services/*"],
+      "@services": ["./src/services/index"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
