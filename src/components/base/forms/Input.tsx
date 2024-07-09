@@ -1,4 +1,4 @@
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLElement> {
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   id?: string;
   name?: string;
   placeholder: string;
@@ -6,7 +6,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLElement> {
   className?: string;
 }
 
-export const Input = ({ id, name, placeholder, label, className, ...props }: ButtonProps) => {
+export const Input = ({ id, name, placeholder, label, className, ...props }: InputProps) => {
   return (
     <input
       id={id}
