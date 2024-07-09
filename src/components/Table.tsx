@@ -21,7 +21,28 @@ const candidates = [
   },
 ];
 
-const TableComponent = () => {
+export interface TableStructure {
+  headers: {
+    title: string;
+    className?: string;
+    render?: () => React.ReactNode;
+  }[];
+  cells: {
+    key: string;
+    className?: string;
+    render?: (_value: any, _row: any) => React.ReactNode;
+  }[];
+}
+
+const TableComponent = ({
+  structure,
+  loading,
+  values = [],
+}: {
+  structure: TableStructure;
+  loading: boolean;
+  values: any[];
+}) => {
   return (
     <>
       <div className="container mx-auto p-8 hidden md:block bg-white shadow-xl rounded-lg">
@@ -29,35 +50,36 @@ const TableComponent = () => {
           <table className="min-w-full">
             <thead>
               <tr className="w-full text-orange border-b-2 border-orange">
-                <th className="text-left p-4 font-semibold">NOME DO CANDIDATO</th>
-                <th className="text-left p-4 font-semibold">PARTIDO POLÍTICO</th>
-                <th className="text-left p-4 font-semibold">VICE CANDIDATO</th>
-                <th className="text-left p-4 font-semibold">CARGO</th>
-                <th className="text-left p-4 font-semibold">SITUAÇÃO</th>
-                <th className="p-4"></th>
+                {structure.headers.map((header, idx) =>
+                  header.render ? (
+                    header.render()
+                  ) : (
+                    <th key={idx} className={`text-left p-4 font-semibold ${header.className}`}>
+                      {header.title}
+                    </th>
+                  ),
+                )}
               </tr>
             </thead>
             <tbody>
-              {candidates.map((candidate, index) => (
-                <tr key={index} className="border-b flex flex-col sm:table-row">
-                  <td className="p-4 font-semibold">{candidate.name}</td>
-                  <td className="p-4">{candidate.party}</td>
-                  <td className="p-4">{candidate.vice}</td>
-                  <td className="p-4">{candidate.position}</td>
-                  <td className="p-4">{candidate.status}</td>
-                  <td className="p-4">
-                    <ButtonStyled style="fillOrange" className="w-[210px]">
-                      <Text textType="span" size="L2">
-                        MAIS INFORMAÇÕES
-                      </Text>
-                    </ButtonStyled>
-                  </td>
-                </tr>
-              ))}
+              {loading ? (
+                <Text>Loading!</Text>
+              ) : (
+                values.map((value, idx) => (
+                  <tr key={idx} className="border-b flex flex-col sm:table-row">
+                    {structure.cells.map(cell => (
+                      <td key={cell.key} className={`p-4 font-semibold ${cell.className}`}>
+                        {cell.render ? cell.render(value, values) : value[cell.key]}
+                      </td>
+                    ))}
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
       </div>
+
       <div className="flex flex-col gap-3">
         {candidates.map((candidate, index) => {
           return (
