@@ -6,7 +6,7 @@ import { AbrangencyApi, CandidateApi, ElectoralUnitApi } from './api';
 
 const axiosInstance = axios.create({
   baseURL: Constants.api.baseURL,
-  timeout: 8000,
+  timeout: 30_000,
 });
 
 const config = new Configuration({ basePath: Constants.api.baseURL });
