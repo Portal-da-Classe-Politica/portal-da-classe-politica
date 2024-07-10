@@ -8,7 +8,7 @@ export async function GET(req: NextRequest) {
   console.log({ state, candidateId });
 
   if (!GeoJsonMap.hasOwnProperty(state) || !candidateId) {
-    return { type: 'FeatureCollection', features: [] };
+    return NextResponse.json({ type: 'FeatureCollection', features: [] });
   }
 
   const layer = GeoJsonMap[state as keyof typeof GeoJsonMap] as { type: string; features: any[] };
