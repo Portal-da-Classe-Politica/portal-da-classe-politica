@@ -1,5 +1,3 @@
-'use client';
-
 import { Container, Heading, Text } from '@base';
 import { Header } from '@components/sections/Header';
 
@@ -16,7 +14,24 @@ import { ChipContainer } from '@components/ChipContainer';
 import CandidateFinance from '@components/cadidates/CandidateFinance';
 import ArrowItem from '@components/ArrowItem';
 
-const Page = () => {
+import { cleanString, dayjs } from '@utils';
+import { CandidateService } from '@services/candidates/CandidateService';
+import { formatCurrency } from '@utils/formatCurrency';
+
+const Page = async ({ params: { id } }: { params: { id: string } }) => {
+  const candidate = await CandidateService.getCandidateById(id);
+
+  const formatAge = (age: string | undefined) => {
+    return age ? `${dayjs(age).age()} anos (${dayjs(age).format('DD/MM/YYYY')})` : '-';
+  };
+
+  const parseCoalitions = (coalitions: string | undefined) => {
+    return coalitions ? coalitions.split('/').map(cleanString) : [];
+  };
+
+  const coalitions = parseCoalitions(candidate?.coligacao);
+  const lastElectionState = cleanString(candidate?.ultima_unidade_eleitoral?.split('-')[0]);
+
   return (
     <main className="font-montserrat bg-grayMix1">
       <section className="pb-[45px] pt-4 bg-white">
@@ -35,38 +50,33 @@ const Page = () => {
         </Container>
       </section>
 
-      <section className="mt-24 mb-40">
-        <Container className="flex flex-col items-center">
-          <div className={`flex flex-col w-full max-h-[800px] p-4 bg-white drop-shadow-lg rounded-lg `}>
-            <MapComponent />
-          </div>
-        </Container>
-      </section>
       <section>
-        <Container className="flex flex-col items-center">
+        <Container className="flex flex-col items-center mt-24">
           <div className="flex flex-col lg:flex-row w-full gap-8">
             <div className="w-full lg:w-[75%]">
               <div className="flex gap-6 flex-col xl:flex-row">
-                <CandidateProfile src={'/img/Person.png'} />
+                <CandidateProfile src={'/img/Person.png'} candidate={candidate} />
                 <LastElection />
               </div>
               <Divider type="orange" bottom="small" top="small" />
               <div className="flex flex-col md:flex-row justify-between gap-3 md:gap-16">
                 <div className="w-full md:w-[50%] flex flex-col gap-3">
-                  <TextBetween text="Nome Completo" title="Angela Alves Machado" />
-                  <TextBetween text="Grau de Instrução" title="Superior Completo" />
-                  <TextBetween text="Estado Civil" title="Casado(a)" />
-                  <TextBetween text="Partido" title="Partido Socialismo E Liberdade" />
-                  <TextBetween text="Coligação" title="PSOL/REDE" />
-                  <TextBetween text="Bens Declarados" title="R$ 416.857,0R$ 416.857,0" />
+                  <TextBetween title="Nome Completo" text={candidate?.nome} />
+                  <TextBetween title="Grau de Instrução" text={candidate?.grau_de_instrucao} />
+                  <TextBetween title="Partido" text={candidate?.sigla} />
+                  <TextBetween title="Coligação" text={candidate?.coligacao} />
+                  <TextBetween
+                    title="Bens Declarados"
+                    text={candidate?.bens_declarados ? formatCurrency(candidate?.bens_declarados) : '-'}
+                  />
                 </div>
                 <div className="w-full md:w-[50%] flex flex-col gap-3">
-                  <TextBetween text="Número do Partido" title="50 / PSOL" />
-                  <TextBetween text="Ocupação" title="Administrador" />
-                  <TextBetween text="Gênero" title="Feminino" />
-                  <TextBetween text="Cor/Raça" title="Branca" />
-                  <TextBetween text="Idade" title="25 anos (11/07/1977)" />
-                  <TextBetween text="Cidade de Nascimento" title="São José dos Pinhas" />
+                  <TextBetween title="Número do Partido" text="---" />
+                  <TextBetween title="Ocupação" text={candidate?.ocupacao} />
+                  <TextBetween title="Gênero" text={candidate?.genero} />
+                  <TextBetween title="Cor/Raça" text={candidate?.raca} />
+                  <TextBetween title="Idade" text={formatAge(candidate?.data_nascimento)} />
+                  <TextBetween title="Cidade de Nascimento" text="---" />
                 </div>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-2 xl:grid-cols-4 gap-4 mt-10 justify-center justify-items-center">
@@ -105,7 +115,7 @@ const Page = () => {
               </div>
               <div>grafico</div>
             </div>
-            <div className="w-full lg:w-[25%]  ">
+            <div className="w-full lg:w-[25%]">
               <Text textType="h2" size="B1" className="mb-10 font-bold">
                 Candidatos Adversários
               </Text>
@@ -129,35 +139,22 @@ const Page = () => {
                   src="/img/Person.png"
                 />
               </div>
+
               <Text textType="h2" size="B1" className="mb-10 font-bold">
                 Coligações
               </Text>
               <div className="flex flex-wrap mt-6 gap-2 mb-6">
-                <ChipContainer type="ghost" className="!mr-0">
-                  PSDO
-                </ChipContainer>
-                <ChipContainer type="ghost" className="!mr-0">
-                  PSDB
-                </ChipContainer>
-                <ChipContainer type="ghost" className="!mr-0">
-                  Partido Verde
-                </ChipContainer>
-                <ChipContainer type="full" className="!mr-0">
-                  PSOL
-                </ChipContainer>
-                <ChipContainer type="ghost" className="!mr-0">
-                  PL
-                </ChipContainer>
-                <ChipContainer type="ghost" className="!mr-0">
-                  PDVS
-                </ChipContainer>
-                <ChipContainer type="ghost" className="!mr-0">
-                  PT
-                </ChipContainer>
-                <ChipContainer type="ghost" className="!mr-0">
-                  PDT
-                </ChipContainer>
+                {coalitions.map(coalition => (
+                  <ChipContainer
+                    key={coalition}
+                    type={candidate?.sigla === coalition ? 'full' : 'ghost'}
+                    className="!mr-0"
+                  >
+                    {coalition}
+                  </ChipContainer>
+                ))}
               </div>
+
               <Text textType="h2" size="B1" className="mb-6 font-bold">
                 Maiores Financiadores
               </Text>
@@ -253,10 +250,17 @@ const Page = () => {
         </Container>
       </section>
 
+      <section className="mt-24 mb-40">
+        <Container className="flex flex-col items-center">
+          <div className={`flex flex-col w-full max-h-[800px] p-4 bg-white drop-shadow-lg rounded-lg `}>
+            <MapComponent state={lastElectionState} candidateId={id} />
+          </div>
+        </Container>
+      </section>
+
       <section className="mt-6 md:mt-20 mb-10 md:mb-20">
         <Container>
           <hr className="border-t-[3px] border-graMix2" />
-
           <SpecialContents />
         </Container>
       </section>

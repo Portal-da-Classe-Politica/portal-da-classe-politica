@@ -6,6 +6,8 @@ import { Divider } from '@components/Divider';
 import { useObjReducer } from '@hooks/useObjReducer';
 import { cleanString } from '@utils/cleanString';
 import { useState } from 'react';
+import Link from 'next/link';
+import { routes } from '@routes';
 
 export const SearchSection = ({ title, filters }: { title: string; filters: any }) => {
   const [search, setSearch] = useObjReducer({ uf: '', job: '', name: '' });
@@ -137,13 +139,18 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
                   { key: 'situacao' },
                   {
                     key: '',
-                    render: () => (
-                      <ButtonStyled size="small" style="fillOrange" className="w-[210px]">
-                        <Text textType="span" size="L2">
-                          MAIS INFORMAÇÕES
-                        </Text>
-                      </ButtonStyled>
-                    ),
+                    render: (_, row) => {
+                      console.log(_, row);
+                      return (
+                        <Link href={routes.candidate(row.candidatoId)}>
+                          <ButtonStyled size="small" style="fillOrange" className="w-[210px]">
+                            <Text textType="span" size="L2">
+                              MAIS INFORMAÇÕES
+                            </Text>
+                          </ButtonStyled>
+                        </Link>
+                      );
+                    },
                   },
                 ],
               }}

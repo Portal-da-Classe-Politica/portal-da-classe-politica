@@ -20,6 +20,7 @@ const agePlugin = (_: any, dayjsClass: any, __: any) => {
 dayjs.extend(agePlugin);
 
 declare module 'dayjs' {
+  // eslint-disable-next-line
   interface Dayjs {
     age(): number;
   }

@@ -69,7 +69,7 @@ const TableComponent = ({
                   <tr key={idx} className="border-b flex flex-col sm:table-row">
                     {structure.cells.map(cell => (
                       <td key={cell.key} className={`p-4 font-semibold ${cell.className}`}>
-                        {cell.render ? cell.render(value, values) : value[cell.key]}
+                        {cell.render ? cell.render(value, values[idx]) : value[cell.key]}
                       </td>
                     ))}
                   </tr>
