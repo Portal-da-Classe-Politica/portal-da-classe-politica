@@ -20,6 +20,7 @@
     "apexcharts": "^3.49.2",
     "axios": "^1.7.2",
     "cva": "npm:class-variance-authority@^0.7.0",
+    "dayjs": "^1.11.11",
     "next": "14.2.4",
     "ol": "^9.2.4",
     "react": "^18",
