@@ -11,12 +11,16 @@ import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
 import GeoJSON from 'ol/format/GeoJSON';
 import Overlay from 'ol/Overlay';
-import { transform } from 'ol/proj';
 
-import GeoJsonAcre from './geojson/acre.json';
-import GeoJsonBahia from './geojson/bahia.json';
+import { FeatureStyle } from './Styles';
+import { getCenter } from 'ol/extent';
 
-export const MapComponent: React.FC = () => {
+export interface MapComponentProps {
+  state: string;
+  candidateId: string | number;
+}
+
+export const MapComponent = ({ state, candidateId }: MapComponentProps) => {
   const mapRef = useRef<Map | null>(null);
   const mapElement = useRef<HTMLDivElement>(null);
 
@@ -28,32 +32,35 @@ export const MapComponent: React.FC = () => {
 
   useEffect(() => {
     if (mapElement.current && !mapRef.current) {
+      const featureLayers = new VectorLayer({
+        source: new VectorSource({
+          format: new GeoJSON(),
+          url: `/api/map?state=${state}&candidateId=${candidateId}`,
+        }),
+        style: FeatureStyle,
+        visible: true,
+      });
+
       mapRef.current = new Map({
         target: mapElement.current,
         view: new View({
           projection: 'EPSG:4326',
-          center: transform([0, 0], 'EPSG:4326', 'EPSG:3857'),
-          zoom: 2,
+          center: [-51.9253, -14.235],
+          zoom: 5,
         }),
-        layers: [
-          new TileLayer({
-            source: new OSM(),
-          }),
-          new VectorLayer({
-            source: new VectorSource({
-              features: new GeoJSON().readFeatures(GeoJsonAcre),
-            }),
-          }),
-          new VectorLayer({
-            source: new VectorSource({
-              features: new GeoJSON().readFeatures(GeoJsonBahia),
-            }),
-          }),
-        ],
+        layers: [new TileLayer({ source: new OSM() }), featureLayers],
+      });
+
+      mapRef.current.on('loadend', () => {
+        const view = mapRef.current?.getView();
+        const ext = featureLayers.getSource()?.getExtent();
+        if (view && ext) {
+          view.animate({ center: getCenter(ext), duration: 2000, zoom: 7 });
+        }
       });
 
       // Create tooltip overlay
-      if (mapRef.current && tooltipContainerRef.current) {
+      if (tooltipContainerRef.current) {
         tooltipOverlayRef.current = new Overlay({
           element: tooltipContainerRef.current,
           offset: [10, 0],
@@ -79,7 +86,7 @@ export const MapComponent: React.FC = () => {
         });
       }
     }
-  }, []);
+  }, [state, candidateId]);
 
   const tooltipPortal =
     tooltipVisible && tooltipProperties ? <h1>{JSON.stringify(tooltipProperties)}</h1> : null;
