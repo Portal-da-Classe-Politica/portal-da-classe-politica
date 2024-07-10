@@ -321,7 +321,7 @@ export interface GetCandidateFilters200ResponseDataCargosInner {
    * @type {string}
    * @memberof GetCandidateFilters200ResponseDataCargosInner
    */
-  nome?: string;
+  nome_cargo?: string;
 }
 /**
  *
@@ -385,6 +385,56 @@ export interface GetCandidateFilters500Response {
    * @memberof GetCandidateFilters500Response
    */
   message?: string;
+}
+/**
+ *
+ * @export
+ * @interface GetCandidateLastElectionVoteByRegion200Response
+ */
+export interface GetCandidateLastElectionVoteByRegion200Response {
+  /**
+   *
+   * @type {boolean}
+   * @memberof GetCandidateLastElectionVoteByRegion200Response
+   */
+  success?: boolean;
+  /**
+   *
+   * @type {string}
+   * @memberof GetCandidateLastElectionVoteByRegion200Response
+   */
+  message?: string;
+  /**
+   *
+   * @type {Array<GetCandidateLastElectionVoteByRegion200ResponseDataInner>}
+   * @memberof GetCandidateLastElectionVoteByRegion200Response
+   */
+  data?: Array<GetCandidateLastElectionVoteByRegion200ResponseDataInner>;
+}
+/**
+ *
+ * @export
+ * @interface GetCandidateLastElectionVoteByRegion200ResponseDataInner
+ */
+export interface GetCandidateLastElectionVoteByRegion200ResponseDataInner {
+  /**
+   *
+   * @type {string}
+   * @memberof GetCandidateLastElectionVoteByRegion200ResponseDataInner
+   */
+  municipio?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof GetCandidateLastElectionVoteByRegion200ResponseDataInner
+   */
+  codigo_ibge?: string;
+  /**
+   *
+   * @type {number}
+   * @memberof GetCandidateLastElectionVoteByRegion200ResponseDataInner
+   */
+  votos?: number;
 }
 /**
  *
@@ -873,6 +923,47 @@ export const CandidateApiAxiosParamCreator = function (configuration?: Configura
       };
     },
     /**
+     * Busca candidato com base no id
+     * @summary Votos por cidade da ultima eleicao do candidato
+     * @param {string} candidatoId Id do candidato para detalhe
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCandidateLastElectionVoteByRegion: async (
+      candidatoId: string,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'candidatoId' is not null or undefined
+      assertParamExists('getCandidateLastElectionVoteByRegion', 'candidatoId', candidatoId);
+      const localVarPath = `/noauth/candidate/last-election-votes-by-region/{candidatoId}`.replace(
+        `{${'candidatoId'}}`,
+        encodeURIComponent(String(candidatoId)),
+      );
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
      * Busca candidatos com base em parâmetros como nome, UF, abrangência, unidade eleitoral e página.
      * @summary Busca candidatos
      * @param {string} [name] Nome ou nome de urna do candidato
@@ -991,6 +1082,39 @@ export const CandidateApiFp = function (configuration?: Configuration) {
         )(axios, localVarOperationServerBasePath || basePath);
     },
     /**
+     * Busca candidato com base no id
+     * @summary Votos por cidade da ultima eleicao do candidato
+     * @param {string} candidatoId Id do candidato para detalhe
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getCandidateLastElectionVoteByRegion(
+      candidatoId: string,
+      options?: RawAxiosRequestConfig,
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string,
+      ) => AxiosPromise<GetCandidateLastElectionVoteByRegion200Response>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getCandidateLastElectionVoteByRegion(
+        candidatoId,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['CandidateApi.getCandidateLastElectionVoteByRegion']?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
      * Busca candidatos com base em parâmetros como nome, UF, abrangência, unidade eleitoral e página.
      * @summary Busca candidatos
      * @param {string} [name] Nome ou nome de urna do candidato
@@ -1062,6 +1186,21 @@ export const CandidateApiFactory = function (
       return localVarFp.getCandidateFilters(options).then(request => request(axios, basePath));
     },
     /**
+     * Busca candidato com base no id
+     * @summary Votos por cidade da ultima eleicao do candidato
+     * @param {string} candidatoId Id do candidato para detalhe
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCandidateLastElectionVoteByRegion(
+      candidatoId: string,
+      options?: any,
+    ): AxiosPromise<GetCandidateLastElectionVoteByRegion200Response> {
+      return localVarFp
+        .getCandidateLastElectionVoteByRegion(candidatoId, options)
+        .then(request => request(axios, basePath));
+    },
+    /**
      * Busca candidatos com base em parâmetros como nome, UF, abrangência, unidade eleitoral e página.
      * @summary Busca candidatos
      * @param {string} [name] Nome ou nome de urna do candidato
@@ -1118,6 +1257,20 @@ export class CandidateApi extends BaseAPI {
   public getCandidateFilters(options?: RawAxiosRequestConfig) {
     return CandidateApiFp(this.configuration)
       .getCandidateFilters(options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Busca candidato com base no id
+   * @summary Votos por cidade da ultima eleicao do candidato
+   * @param {string} candidatoId Id do candidato para detalhe
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CandidateApi
+   */
+  public getCandidateLastElectionVoteByRegion(candidatoId: string, options?: RawAxiosRequestConfig) {
+    return CandidateApiFp(this.configuration)
+      .getCandidateLastElectionVoteByRegion(candidatoId, options)
       .then(request => request(this.axios, this.basePath));
   }
 
