@@ -99,7 +99,7 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
                 Resultados encontrados:
               </Text>
               <Text textType="span" size="L1" className="font-bold">
-                5 candidatos
+                {result.length || 0} candidatos
               </Text>
             </div>
             <div>

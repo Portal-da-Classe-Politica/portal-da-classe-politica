@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonStyled, Text } from './base';
+import { ButtonStyled, Loader, Text } from './base';
 
 const candidates = [
   { name: 'Alexandre Rocha', party: 'PSOL', vice: 'Sergio Masanobu', position: 'Governador', status: 'Apto' },
@@ -63,7 +63,13 @@ const TableComponent = ({
             </thead>
             <tbody>
               {loading ? (
-                <Text>Loading!</Text>
+                <tr>
+                  <td colSpan={structure.headers.length} className="w-full p-16">
+                    <div className="flex flex-1 justify-center align-center">
+                      <Loader />
+                    </div>
+                  </td>
+                </tr>
               ) : (
                 values.map((value, idx) => (
                   <tr key={idx} className="border-b flex flex-col sm:table-row">

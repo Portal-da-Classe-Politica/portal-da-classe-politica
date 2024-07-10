@@ -7,3 +7,5 @@ export * from './Container';
 export * from './Display';
 export * from './Heading';
 export * from './text/Text';
+
+export * from './Loader';
