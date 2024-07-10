@@ -544,3 +544,59 @@ paths:
                         votos:
                           type: integer
                           example: 13505
+  /noauth/candidate/get-last-5-last-elections-votes/{candidatoId}:
+    get:
+      operationId: 'getCandidateLastFiveElectionVotes'
+      tags:
+        - candidate
+      summary: Votos por ano das ultimas 5 eleicoes do candidato
+      description: Busca votos das ultimas 5 eleicoes do candidato com base no id
+      parameters:
+        - in: path
+          name: candidatoId
+          schema:
+            type: string
+          required: true
+          example: '415180'
+          description: Id do candidato para detalhe
+      responses:
+        '200':
+          description: Resposta com os votos encontrados
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Votos encontrados com sucesso.
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        ano_eleicao:
+                          type: integer
+                          example: 2002
+                        total_votos:
+                          type: integer
+                          example: 38074
+        '500':
+          description: Erro ao buscar os votos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  data:
+                    type: object
+                    example: {}
+                  message:
+                    type: string
+                    example: Erro ao buscar os votos

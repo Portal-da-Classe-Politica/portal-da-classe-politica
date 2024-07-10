@@ -185,7 +185,7 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
                 />
               </div>
               <Text textType="h2" size="B1" className="mb-6 font-bold">
-                Maiores Financiadores
+                Principais Causas
               </Text>
               <div className="flex flex-wrap mt-6 gap-2 mb-6">
                 <ChipContainer type="ghost" className="!mr-0">
@@ -211,7 +211,7 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
                 </ChipContainer>
               </div>
               <Text textType="h2" size="B1" className="mb-6 font-bold">
-                Maiores Financiadores
+                Proposta de Governo
               </Text>
               <div className="flex flex-wrap mt-6 gap-3 mb-3 md:mb-6">
                 <ArrowItem>
