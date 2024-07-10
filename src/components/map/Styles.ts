@@ -11,7 +11,7 @@ export const FeatureStyle = (feature: FeatureLike, _: number) => {
       color: `rgba(243, 162, 139, ${votes ? 1 : 0})`,
     }),
     stroke: new Stroke({
-      color: 'rgba(243, 162, 139, 0.5)',
+      color: '#ED7451',
       width: 2,
     }),
   });

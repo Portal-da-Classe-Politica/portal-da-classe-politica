@@ -51,7 +51,7 @@ export const MapComponent = ({ state, candidateId }: MapComponentProps) => {
         layers: [new TileLayer({ source: new OSM() }), featureLayers],
       });
 
-      mapRef.current.on('loadend', () => {
+      mapRef.current.once('loadend', () => {
         const view = mapRef.current?.getView();
         const ext = featureLayers.getSource()?.getExtent();
         if (view && ext) {
