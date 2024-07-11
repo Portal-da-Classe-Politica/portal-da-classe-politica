@@ -39,7 +39,7 @@ export const ChartBar = ({ series, height = 600 }: ChartProps) => {
       bar: {
         borderRadius: 20,
         borderRadiusApplication: 'around',
-        barHeight: '41px',
+        barHeight: 41,
         horizontal: true,
         colors: {
           ranges: [
