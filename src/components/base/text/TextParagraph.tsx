@@ -15,9 +15,9 @@ export const TextParagraph = ({
       <Heading headingLevel={2} size="H2" className="font-bold text-left w-full md:w-1/2 mb-6 pr-4">
         {title}
       </Heading>
-      <div className="flex flex-wrap">
+      <div className="md:columns-2 gap-4">
         {texts.map((text, idx) => (
-          <div key={idx} className={`w-full md:w-1/2 mb-4 ${idx % 2 ? 'md:pl-4' : 'md:pr-4'}`}>
+          <div key={idx} className={`w-full mb-4`}>
             <Text size="B1">{text}</Text>
           </div>
         ))}

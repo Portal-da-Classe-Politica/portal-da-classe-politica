@@ -1,29 +1,12 @@
 import React from 'react';
 import { ButtonStyled, Loader, Text } from './base';
-
-const candidates = [
-  { name: 'Alexandre Rocha', party: 'PSOL', vice: 'Sergio Masanobu', position: 'Governador', status: 'Apto' },
-  { name: 'Marcos João', party: 'PSOL', vice: 'Sergio Masanobu', position: 'Governador', status: 'Apto' },
-  { name: 'Paulo Henrique', party: 'PSOL', vice: 'Sergio Masanobu', position: 'Governador', status: 'Apto' },
-  {
-    name: 'Professora Angela',
-    party: 'PSOL',
-    vice: 'Sergio Masanobu',
-    position: 'Governador',
-    status: 'Apto',
-  },
-  {
-    name: 'Zé Felipe Santini',
-    party: 'PSOL',
-    vice: 'Sergio Masanobu',
-    position: 'Governador',
-    status: 'Apto',
-  },
-];
+import Link from 'next/link';
+import { routes } from '@routes';
 
 export interface TableStructure {
   headers: {
     title: string;
+    key?: string;
     className?: string;
     render?: () => React.ReactNode;
   }[];
@@ -87,45 +70,32 @@ const TableComponent = ({
       </div>
 
       <div className="flex flex-col gap-3">
-        {candidates.map((candidate, index) => {
+        {loading && (
+          <div className="flex flex-1 justify-center align-center md:hidden">
+            <Loader />
+          </div>
+        )}
+        {values.map((value, idx) => {
           return (
-            <div key={index} className="w-full p-2  md:hidden bg-white shadow-xl rounded-lg flex-1">
-              <div className="text-left p-2 ">
-                <Text size="B1" className="font-bold">
-                  NOME DO CANDIDATO:
-                </Text>
-                <Text size="B2"> {candidate.name}</Text>
-              </div>
-              <div className="text-left p-2 ">
-                <Text size="B1" className="font-bold">
-                  PARTIDO POLÍTICO:
-                </Text>{' '}
-                <Text size="B2">{candidate.party}</Text>
-              </div>
-              <div className="text-left p-2 ">
-                <Text size="B1" className="font-bold">
-                  VICE CANDIDATO:
-                </Text>
-                <Text size="B2"> {candidate.vice}</Text>
-              </div>
-              <div className="text-left p-2 ">
-                <Text size="B1" className="font-bold">
-                  CARGO:{' '}
-                </Text>
-                <Text size="B2"> {candidate.position}</Text>
-              </div>
-              <div className="text-left p-2 ">
-                <Text size="B1" className="font-bold">
-                  SITUAÇÃO:
-                </Text>
-                <Text size="B2"> {candidate.status}</Text>
-              </div>
+            <div key={idx} className="w-full p-2  md:hidden bg-white shadow-xl rounded-lg flex-1">
+              {structure.headers.map((sValue, index) => {
+                return (
+                  <div className="text-left p-2 " key={index}>
+                    <Text size="B1" className="font-bold">
+                      {sValue.title}
+                    </Text>
+                    <Text size="B2"> {value[sValue.key || '']}</Text>
+                  </div>
+                );
+              })}
               <div className="p-2 text-center">
-                <ButtonStyled size="small" style="fillOrange" className="w-[210px]">
-                  <Text textType="span" size="L2">
-                    MAIS INFORMAÇÕES
-                  </Text>
-                </ButtonStyled>
+                <Link href={routes.candidate(value.candidatoId)}>
+                  <ButtonStyled size="small" style="fillOrange" className="w-[210px]">
+                    <Text textType="span" size="L2">
+                      MAIS INFORMAÇÕES
+                    </Text>
+                  </ButtonStyled>
+                </Link>
               </div>
             </div>
           );

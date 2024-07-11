@@ -41,12 +41,12 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
             </Heading>
           </div>
           <div className="flex flex-col lg:flex-row gap-2 items-center mt-16">
-            <div className="flex flex-col md:flex-row gap-2 items-center text-center">
-              <div className="w-[270px]">
+            <div className="flex flex-col md:flex-row gap-2 items-center text-center w-full">
+              <div className="w-full lg:w-[270px]">
                 <Select
                   placeholder="Selecionar Estado"
                   options={filters.estados}
-                  buttonProps={{ style: 'fillGray', className: 'px-[8px]' }}
+                  buttonProps={{ style: 'fillGray', className: 'px-[8px] w-full' }}
                   prefixComponent={
                     <Text textType="span" size="B1" className="font-normal mr-2">
                       Estado |
@@ -56,11 +56,11 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
                   onSelect={value => setSearch({ uf: String(value) })}
                 />
               </div>
-              <div className="w-[270px]">
+              <div className="w-full lg:w-[270px]">
                 <Select
                   placeholder="Selecionar Cargo"
                   options={filters.cargos}
-                  buttonProps={{ style: 'fillGray', className: 'px-[8px]' }}
+                  buttonProps={{ style: 'fillGray', className: 'px-[8px] w-full' }}
                   prefixComponent={
                     <Text textType="span" size="B1" className="font-normal mr-2">
                       Cargo |{' '}
@@ -102,23 +102,28 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
                 {result.length || 0} candidatos
               </Text>
             </div>
-            <div>
-              <Text textType="span" size="L1" className="mr-2">
-                Ordenar por:
-              </Text>
-              <Select
-                defaultValue="Alfabética A-Z"
-                placeholder="Alfabética A-Z"
-                options={[
-                  { value: 'value', label: 'label' },
-                  { value: 'value', label: 'label' },
-                  { value: 'value', label: 'label' },
-                  { value: 'value', label: 'label' },
-                ]}
-                buttonProps={{ style: 'ghostOrange', className: 'py-[4px] px-[4px] bg-white drop-shadow-md' }}
-                suffixComponent={<Icon type="ArrowDown" className="ml-2  " />}
-              />
-            </div>
+            {result.length > 0 && (
+              <div>
+                <Text textType="span" size="L1" className="mr-2">
+                  Ordenar por:
+                </Text>
+                <Select
+                  defaultValue="Alfabética A-Z"
+                  placeholder="Alfabética A-Z"
+                  options={[
+                    { value: 'value', label: 'label' },
+                    { value: 'value', label: 'label' },
+                    { value: 'value', label: 'label' },
+                    { value: 'value', label: 'label' },
+                  ]}
+                  buttonProps={{
+                    style: 'ghostOrange',
+                    className: 'py-[4px] px-[4px] bg-white drop-shadow-md',
+                  }}
+                  suffixComponent={<Icon type="ArrowDown" className="ml-2  " />}
+                />
+              </div>
+            )}
           </div>
           <div className="w-full">
             <TableComponent
@@ -126,10 +131,10 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
               loading={loading}
               structure={{
                 headers: [
-                  { title: 'NOME DO CANDIDATO' },
-                  { title: 'PARTIDO POLÍTICO' },
-                  { title: 'CARGO' },
-                  { title: 'SITUAÇÃO' },
+                  { title: 'NOME DO CANDIDATO', key: 'nomeCandidato' },
+                  { title: 'PARTIDO POLÍTICO', key: 'partido' },
+                  { title: 'CARGO', key: 'cargo' },
+                  { title: 'SITUAÇÃO', key: 'situacao' },
                   { title: '' },
                 ],
                 cells: [

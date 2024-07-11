@@ -2,12 +2,19 @@ import Image from 'next/image';
 import { cva } from 'cva';
 
 import { Heading, Text, Icon } from '@base';
+import Link from 'next/link';
 
 type CardIconTextProps = {
   title: string;
   text: string;
   src: string;
   type?: 'top' | 'left';
+  social?: {
+    instagram?: string;
+    facebook?: string;
+    email?: string;
+    linkedin?: string;
+  };
 };
 
 const textVariants = cva('font-montserrat', {
@@ -31,7 +38,7 @@ const textVariants = cva('font-montserrat', {
   },
 });
 
-const Avatar = ({ title, text, src, type = 'top' }: CardIconTextProps) => {
+const Avatar = ({ title, text, src, type = 'top', social }: CardIconTextProps) => {
   return (
     <div className={textVariants({ mainContainer: type })}>
       <div className={textVariants({ imgContainer: type })}>
@@ -45,10 +52,26 @@ const Avatar = ({ title, text, src, type = 'top' }: CardIconTextProps) => {
           <Text size="B1">{text}</Text>
         </div>
         <div className="flex gap-3 text-orange text-left">
-          <Icon type="Facebook" />
-          <Icon type="Instagram" />
-          <Icon type="LinkedIn" />
-          <Icon type="Email" />
+          {social?.facebook && (
+            <Link href={social?.facebook || ''}>
+              <Icon type="Facebook" />
+            </Link>
+          )}
+          {social?.instagram && (
+            <Link href={social?.instagram || ''}>
+              <Icon type="Instagram" />
+            </Link>
+          )}
+          {social?.linkedin && (
+            <Link href={social?.linkedin || ''}>
+              <Icon type="LinkedIn" />
+            </Link>
+          )}
+          {social?.email && (
+            <Link href={social?.email || ''}>
+              <Icon type="Email" />
+            </Link>
+          )}
         </div>
       </div>
     </div>

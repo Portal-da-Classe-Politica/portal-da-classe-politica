@@ -35,7 +35,7 @@ const Primary = ({ title, subTitle }: { title: string; subTitle: string }) => {
             </Text>
           )}
         </div>
-        <div className="mt-4 self-start lg:w-[20%] lg:self-end">
+        <div className="mt-4 self-start lg:w-[170px] lg:self-end">
           <Button color="orange" text="Saiba mais" />
         </div>
       </div>

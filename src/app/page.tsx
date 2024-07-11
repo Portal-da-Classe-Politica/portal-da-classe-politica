@@ -118,12 +118,13 @@ const Home = () => {
             <div className="text-white flex-1 flex">
               <div className="max-w-[440px] content-center">
                 <Heading headingLevel={2} className="font-bold">
-                  Big Numbers
+                  Alguns números do Portal da Classe Política
                 </Heading>
                 <Text size={'B1'} className="py-[24px]">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa
-                  lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam
-                  vulputate ipsum.
+                  A transparência e o acesso à informação são pilares fundamentais para o fortalecimento da
+                  democracia. O acesso fácil e intuitivo aos dados eleitorais possibilita maior participação e
+                  fiscalização por parte da sociedade. Para contribuir com esses objetivos, empreendemos
+                  grandes esforços tratar e analisar uma quantidade enorme de informações.
                 </Text>
                 <ButtonStyled style="fillBlack">
                   <Text size={'C1'} className="font-bold">
@@ -134,24 +135,24 @@ const Home = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px]	flex-1">
               <BoxData
-                header="+40"
-                title="Pesquisadores e pesquisadoras envolvidos"
-                content="Consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis"
+                header="2.884.495 "
+                title="Candidaturas computadas "
+                content="Número de candidaturas identificadas nos bancos de dados do TSE de 1998 a 2022"
               />
               <BoxData
-                header="+20"
-                title="Universidades"
-                content="Consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis"
+                header="1.822.832 "
+                title="Indivíduos candidatos "
+                content="Número de pessoas candidatas nos bancos de dados do TSE de 1998 a 2022 "
               />
               <BoxData
-                header="+100"
-                title="Estudantes envolvidos"
-                content="Consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis"
+                header="8gb "
+                title="Dataframe "
+                content="Tamanho total do banco de dados computado no Portal da Classe Política "
               />
               <BoxData
-                header="+1200"
-                title="Cruzamentos possíveis"
-                content="Consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis"
+                header="47 planilhas"
+                title="Arquivos do TSE "
+                content="Número de planilhas tratadas na arquitetura de dados do Portal da Classe Política "
               />
             </div>
           </div>
