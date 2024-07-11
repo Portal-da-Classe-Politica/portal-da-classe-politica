@@ -34,7 +34,6 @@ export const ChartBar = ({ series, height = 600 }: ChartProps) => {
     plotOptions: {
       bar: {
         borderRadius: 20,
-        borderRadiusApplication: 'around',
         barHeight: 41,
         horizontal: true,
         colors: {
@@ -60,7 +59,14 @@ export const ChartBar = ({ series, height = 600 }: ChartProps) => {
 
   return (
     <div className="w-full" ref={divRef}>
-      <ApexChart options={options} series={series} type="bar" height={height} width={width} />
+      <ApexChart
+        options={options}
+        series={series}
+        type="bar"
+        borderRadiusApplication="around"
+        height={height}
+        width={width}
+      />
     </div>
   );
 };
