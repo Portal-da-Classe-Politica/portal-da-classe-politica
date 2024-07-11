@@ -31,10 +31,6 @@ export const ChartBar = ({ series, height = 600 }: ChartProps) => {
   }, []);
 
   let options = {
-    chart: {
-      type: 'bar',
-      height: 47,
-    },
     plotOptions: {
       bar: {
         borderRadius: 20,
