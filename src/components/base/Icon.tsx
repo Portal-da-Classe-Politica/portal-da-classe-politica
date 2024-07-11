@@ -30,6 +30,7 @@ import {
   faAngleDown,
   faAngleLeft,
   faAngleRight,
+  faSliders,
 } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
@@ -44,6 +45,7 @@ const sourceMap = {
   Headset: faHeadset,
   Star: faStar,
   Calendar: faCalendarDays,
+  Slider: faSliders,
 
   // Brands
   LinkedIn: faLinkedin,

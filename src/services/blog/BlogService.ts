@@ -11,4 +11,7 @@ export const BlogService = {
   getBlogsByYear: (year: string) => {
     return BlogDatabase.filter(b => b.year === year);
   },
+  getAllBlog: () => {
+    return BlogDatabase;
+  },
 };

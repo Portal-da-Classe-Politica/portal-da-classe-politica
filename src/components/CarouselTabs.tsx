@@ -1,38 +1,45 @@
-import { useState } from 'react';
-import { Icon } from './base';
+import { useRef, useState } from 'react';
+// import { Icon } from './base';
 
 export const CarouselTabs = ({
   tabs,
   contents,
   onTabChange = () => {},
-  loop = false,
 }: {
   tabs: React.ReactNode[];
   contents: React.ReactNode[];
-  loop?: boolean;
   onTabChange?: (_tab: number, _previousTab?: number) => void;
 }) => {
   const [currentTab, setCurrentTab] = useState(0);
+  const tabsRef = useRef<(HTMLDivElement | null)[]>([]);
 
-  const onNext = () => {
-    const next = currentTab + 1;
-    const setTo = loop && next === tabs.length ? 0 : Math.min(tabs.length - 1, next);
+  const handleClick = (index: any) => {
+    setCurrentTab(index);
 
-    setCurrentTab(setTo);
-    onTabChange(setTo, currentTab);
+    if (tabsRef.current[index]) {
+      tabsRef.current[index]?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
   };
 
-  const onPrevious = () => {
-    const previous = currentTab - 1;
-    const setTo = loop && previous < 0 ? tabs.length - 1 : Math.max(0, previous);
+  // const onNext = () => {
+  //   const next = currentTab + 1;
+  //   const setTo = loop && next === tabs.length ? 0 : Math.min(tabs.length - 1, next);
 
-    setCurrentTab(setTo);
-    onTabChange(setTo, currentTab);
-  };
+  //   setCurrentTab(setTo);
+  //   onTabChange(setTo, currentTab);
+  // };
+
+  // const onPrevious = () => {
+  //   const previous = currentTab - 1;
+  //   const setTo = loop && previous < 0 ? tabs.length - 1 : Math.max(0, previous);
+
+  //   setCurrentTab(setTo);
+  //   onTabChange(setTo, currentTab);
+  // };
 
   return (
     <div className="max-w-[1298px]">
-      <div className="carousel-container relative overflow-hidden w-full md:hidden">
+      {/* <div className="carousel-container relative overflow-hidden w-full md:hidden">
         <div
           className="carousel flex transition-transform duration-500 ease-in-out"
           style={{ transform: `translateX(-${currentTab * 100}%)` }}
@@ -71,15 +78,18 @@ export const CarouselTabs = ({
             );
           })}
         </div>
-      </div>
-      <div className="hidden md:flex">
+      </div> */}
+      <div className="flex overflow-x-auto">
         {tabs.map((item, idx) => {
           return (
             <div
               key={idx}
               onClick={() => {
-                setCurrentTab(idx);
+                handleClick(idx);
                 onTabChange(idx, currentTab);
+              }}
+              ref={el => {
+                tabsRef.current[idx] = el;
               }}
               className={`${
                 currentTab === idx

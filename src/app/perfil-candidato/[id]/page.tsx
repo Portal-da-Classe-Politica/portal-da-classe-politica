@@ -118,7 +118,7 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
                 <div>grafico</div>
                 <div>
                   {' '}
-                  <ChartBar series={[{ data: [200, 300, 400] }]} />
+                  <ChartBar series={[{ name: 'votos', data: [200, 300, 400, 300, 300] }]} />
                 </div>
               </div>
               <div className="w-full lg:w-[25%]">

@@ -34,24 +34,17 @@ export const ChartBar = ({ series, height = 600 }: ChartProps) => {
     plotOptions: {
       bar: {
         borderRadius: 20,
-        barHeight: 41,
+        barHeight: '50%', // Adjust this percentage to reduce/increase spacing
         horizontal: true,
-        colors: {
-          ranges: [
-            {
-              from: 0,
-              to: 255,
-              color: '#EB582F',
-            },
-          ],
-        },
+        distributed: true, // This ensures each bar gets a unique color
       },
     },
+    colors: ['#F3A28B', '#ED7451', '#EB582F', '#CC3A10', '#A82D0A', '#6B1A02', '#000000'],
     dataLabels: {
       enabled: false,
     },
     xaxis: {
-      categories: ['2020', '2022', '2024'],
+      categories: ['2020', '2022', '2024', '2026', '2028'],
     },
   };
 
