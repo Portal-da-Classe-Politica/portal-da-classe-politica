@@ -1,7 +1,11 @@
 import { Heading, Icon, Text } from '@base';
 import { CardPost } from '../CardPost';
+import { BlogService } from '@services/blog/BlogService';
 
-export const SpecialContents = () => {
+export const SpecialContents = async () => {
+  const postIds = [1, 2, 1, 2];
+  const blogs = await Promise.all(postIds.map(id => BlogService.getBlogById(id)));
+
   return (
     <div className="mt-10 md:mt-[120px]">
       <div className="flex flex-col md:flex-row mb-[30px] gap-4 items-center">
@@ -16,20 +20,21 @@ export const SpecialContents = () => {
         </Text>
       </div>
       <div className="flex flex-col flex-wrap gap-4 items-center md:flex-row md:justify-evenly md:gap-3">
-        {[1, 2, 3, 4].map((_, idx) => (
-          <div key={idx} className="w-[280px] h-[370px]">
-            <CardPost
-              alt="Lorem ipsum dolor sit amet sectetur dolor sit"
-              type="Tertiary"
-              category={['Leitura de 3min', 'Categoria Aqui']}
-              title={'Lorem ipsum dolor sit amet sectetur dolor sit'}
-              subTitle={
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis.'
-              }
-              src={'/img/Dados.svg'}
-            />
-          </div>
-        ))}
+        {blogs.map(
+          (blog, idx) =>
+            blog && (
+              <div key={idx} className="w-[280px] h-[370px]">
+                <CardPost
+                  type="Tertiary"
+                  title={blog.title}
+                  subTitle={blog.description}
+                  alt={blog.title}
+                  category={blog.categories}
+                  src={blog.img}
+                />
+              </div>
+            ),
+        )}
       </div>
     </div>
   );

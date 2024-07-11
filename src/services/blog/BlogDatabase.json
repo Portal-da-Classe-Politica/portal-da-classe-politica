@@ -1,0 +1,40 @@
+[
+  {
+    "id": "1",
+    "title": "Lorem ipsum dolor sit amet sectetur dolor sit",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis.",
+    "img": "/img/Dados.svg",
+    "categories": ["Leitura de 3min", "Categoria Aqui"],
+    "year": "2024",
+    "author": {
+      "name": "",
+      "description": "",
+      "img": "",
+      "social": [
+        {
+          "type": "",
+          "value": ""
+        }
+      ]
+    }
+  },
+  {
+    "id": "2",
+    "title": "Lorem ipsum dolor sit amet sectetur dolor sit",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis.",
+    "img": "/img/Dados2.svg",
+    "categories": ["Leitura de 3min", "Categoria Aqui"],
+    "year": "2023",
+    "author": {
+      "name": "",
+      "description": "",
+      "img": "",
+      "social": [
+        {
+          "type": "",
+          "value": ""
+        }
+      ]
+    }
+  }
+]

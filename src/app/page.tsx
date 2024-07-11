@@ -5,6 +5,7 @@ import { CardPost } from '@components/CardPost';
 import { Header } from '@components/sections/Header';
 import { GetInContact } from '@components/sections/GetInContact';
 import { HowToCrossing } from '@components/sections/HowToCrossing';
+import { SpecialContents } from '@components/sections/SpecialContents';
 
 const Home = () => {
   return (
@@ -160,6 +161,12 @@ const Home = () => {
       </section>
 
       <HowToCrossing className="pt-8 md:pt-[72px] pb-8 md:pb-[78px]" />
+
+      <section className="mt-6 md:mt-20 mb-10 md:mb-20">
+        <Container>
+          <SpecialContents />
+        </Container>
+      </section>
 
       <GetInContact />
     </main>
