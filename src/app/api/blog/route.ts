@@ -6,7 +6,9 @@ export async function GET(req: NextRequest) {
   const _year = req.nextUrl.searchParams.get('year') || '';
 
   // Fix
-  const blogs = BlogService.getBlogsByCategory(category);
+  const blogs = BlogService.getAllBlog()
+    .filter(val => (category ? val.categories.includes(category) : val))
+    .filter(val => (_year ? val.year === _year : val));
 
   return NextResponse.json(blogs);
 }

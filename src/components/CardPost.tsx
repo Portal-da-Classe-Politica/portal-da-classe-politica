@@ -99,7 +99,9 @@ export const CardPost = <T extends BaseProps>({
       className={`flex flex-col h-[370px] md:h-full bg-white w-full items-center rounded-[10px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] ${className}`}
     >
       <div className={`w-full h-[${customHeight}px] relative flex-1 `}>
-        <Image src={src} fill className="rounded-t-[10px] object-cover h-auto w-auto" alt={alt} />
+        <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+          <Image src={src} fill className="rounded-t-[10px] object-cover h-auto w-auto" alt={alt} />
+        </div>
       </div>
       <div className="pt-[15px] px-[20px] pb-[20px] ">
         <div className="pb-[18px]">
