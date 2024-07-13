@@ -19,9 +19,7 @@ export const SpecialContents = async () => {
         <Link href={routes.blog} className="text-orange content-end ml-auto flex">
           <Text size={'C1'} className="flex">
             Ver todos artigos
-            <div className="ml-4">
-              <Icon type="ArrowRightShort" />
-            </div>
+            <Icon type="ArrowRightShort" className="ml-4" />
           </Text>
         </Link>
       </div>
