@@ -76,40 +76,48 @@ const Home = () => {
           <div className="flex flex-col h-full md:flex-row gap-4 md:gap-[58px]">
             <div className="h-[370px] md:h-[480px]">
               <CardPost
-                href=""
-                alt={'Eleições 2024: Conheça o histórico dos candidatos da sua cidade'}
-                category={['Leitura de 3min', 'Categoria Aqui']}
+                alt={' Eleição 2024: A Persistente Sub-Representação de Mulheres na Política'}
+                category={['Leitura de 5min']}
                 customHeight={250}
-                title={'Eleições 2024: Conheça o histórico dos candidatos da sua cidade'}
+                title={' Eleição 2024: A Persistente Sub-Representação de Mulheres na Política'}
                 subTitle={
-                  'Antes de votar, confira o material informativo que preparamos com tudo que você precisa saber sobre suas opções de voto para prefeito e vereadores da sua cidade.'
+                  'Subtítulo: Partidos controlam recursos políticos vitais e desde 2009, devem investir 5% do Fundo Partidário anual para fomentar a participação feminina na política.'
                 }
-                src={'/img/Dados.svg'}
+                src={'/img/blog/mic.png'}
                 type="Primary"
+                href="/blog/reputacao-mulher"
               />
             </div>
 
             <div className="flex flex-col gap-[24px]">
               <div className="md:h-[227px]">
                 <CardPost
-                  href=""
-                  alt={'Eleições 2024: Conheça o histórico dos candidatos da sua cidade'}
+                  alt={
+                    'A promoção da participação política das mulheres parcialmente realizada pelos partidos políticos'
+                  }
                   type="Secondary"
-                  category={['Leitura de 3min', 'Categoria Aqui']}
+                  category={['Leitura de 5min']}
                   customHeight={90}
-                  title={'Eleições 2024: Conheça o histórico dos candidatos da sua cidade'}
-                  src={'/img/Dados2.svg'}
+                  title={
+                    'A promoção da participação política das mulheres parcialmente realizada pelos partidos políticos'
+                  }
+                  src={'/img/blog/smile.png'}
+                  href="/blog/promo-part"
                 />
               </div>
               <div className="md:h-[227px]">
                 <CardPost
-                  href=""
-                  alt={'Eleições 2024: Conheça o histórico dos candidatos da sua cidade'}
+                  alt={
+                    'A participação feminina na liderança partidária e o cumprimento das cotas financeiras para mulheres '
+                  }
                   type="Secondary"
-                  category={['Leitura de 3min', 'Categoria Aqui']}
+                  category={['Leitura de 5min']}
                   customHeight={90}
-                  title={'Eleições 2024: Conheça o histórico dos candidatos da sua cidade'}
-                  src={'/img/Dados2.svg'}
+                  title={
+                    'A participação feminina na liderança partidária e o cumprimento das cotas financeiras para mulheres '
+                  }
+                  src={'/img/blog/airplane.png'}
+                  href="part-fem-lid"
                 />
               </div>
             </div>

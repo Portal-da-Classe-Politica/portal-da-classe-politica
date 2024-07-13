@@ -1,7 +1,8 @@
 import React from 'react';
-import { ButtonStyled, Loader, Text } from './base';
+import { ButtonStyled, Icon, Loader, Text } from './base';
 import Link from 'next/link';
 import { routes } from '@routes';
+import ReactPaginate from 'react-paginate';
 
 export interface TableStructure {
   headers: {
@@ -20,11 +21,18 @@ export interface TableStructure {
 const TableComponent = ({
   structure,
   loading,
+  totalPages,
+  currentPage,
+  pageChange,
   values = [],
 }: {
   structure: TableStructure;
   loading: boolean;
+  totalPages: number;
   values: any[];
+  currentPage: number;
+  // eslint-disable-next-line
+  pageChange: (page: number) => void;
 }) => {
   return (
     <>
@@ -66,6 +74,23 @@ const TableComponent = ({
               )}
             </tbody>
           </table>
+          {values.length > 0 && (
+            <ReactPaginate
+              breakLabel="..."
+              nextLabel={<Icon type="ArrowRight" />}
+              onPageChange={e => {
+                pageChange(e.selected + 1);
+              }}
+              forcePage={currentPage - 1}
+              className="flex gap-2 text-orange place-items-center mt-4 justify-end"
+              activeClassName={'font-bold'}
+              pageClassName={'border border-orange rounded-full px-2'}
+              pageRangeDisplayed={5}
+              pageCount={totalPages}
+              previousLabel={<Icon type="ArrowLeft" />}
+              renderOnZeroPageCount={null}
+            />
+          )}
         </div>
       </div>
 
@@ -75,31 +100,59 @@ const TableComponent = ({
             <Loader />
           </div>
         )}
-        {values.map((value, idx) => {
-          return (
-            <div key={idx} className="w-full p-2  md:hidden bg-white shadow-xl rounded-lg flex-1">
-              {structure.headers.map((sValue, index) => {
-                return (
-                  <div className="text-left p-2 " key={index}>
-                    <Text size="B1" className="font-bold">
-                      {sValue.title}
-                    </Text>
-                    <Text size="B2"> {value[sValue.key || '']}</Text>
-                  </div>
-                );
-              })}
-              <div className="p-2 text-center">
-                <Link href={routes.candidate(value.candidatoId)}>
-                  <ButtonStyled size="small" style="fillOrange" className="w-[210px]">
-                    <Text textType="span" size="L2">
-                      MAIS INFORMAÇÕES
-                    </Text>
-                  </ButtonStyled>
-                </Link>
+        {!loading &&
+          values.map((value, idx) => {
+            return (
+              <div key={idx} className="w-full p-2  md:hidden bg-white shadow-xl rounded-lg flex-1">
+                {structure.headers.map((sValue, index) => {
+                  return (
+                    <div className="text-left p-2 " key={index}>
+                      <Text size="B1" className="font-bold">
+                        {sValue.title}
+                      </Text>
+                      <Text size="B2"> {value[sValue.key || '']}</Text>
+                    </div>
+                  );
+                })}
+                <div className="p-2 text-center">
+                  <Link href={routes.candidate(value.candidatoId)}>
+                    <ButtonStyled size="small" style="fillOrange" className="w-[210px]">
+                      <Text textType="span" size="L2">
+                        MAIS INFORMAÇÕES
+                      </Text>
+                    </ButtonStyled>
+                  </Link>
+                </div>
               </div>
+            );
+          })}
+        <div className="md:hidden">
+          {values.length > 0 && (
+            <div className="flex overflow-x-auto">
+              <ReactPaginate
+                breakLabel="..."
+                nextLabel={<Icon type="ArrowRight" />}
+                onPageChange={e => {
+                  pageChange(e.selected + 1);
+                }}
+                forcePage={currentPage - 1}
+                className="flex gap-2 text-orange place-items-center mt-4 justify-end"
+                activeClassName={'font-bold'}
+                pageClassName={'border border-orange rounded-full px-2'}
+                pageRangeDisplayed={2}
+                pageCount={totalPages}
+                marginPagesDisplayed={1}
+                previousLabel={<Icon type="ArrowLeft" />}
+                renderOnZeroPageCount={null}
+              />
             </div>
-          );
-        })}
+          )}
+          {values.length === 0 && (
+            <div className="text-center w-full">
+              <Text>Nenhum dado encontrado.</Text>
+            </div>
+          )}
+        </div>
       </div>
     </>
   );

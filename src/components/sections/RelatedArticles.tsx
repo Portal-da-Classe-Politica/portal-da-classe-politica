@@ -3,7 +3,7 @@ import { CardPost } from '../CardPost';
 
 export const RelatedArticles = () => {
   return (
-    <div className="mt-10 md:mt-[120px]">
+    <div className="mt-10 ">
       <div className="flex flex-col md:flex-row mb-[30px] gap-4">
         <Heading headingLevel={2} size={'H2'} className="font-bold ">
           Publicações relacionadas

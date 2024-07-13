@@ -4,7 +4,7 @@ const buttonVariants = cva('font-montserrat rounded-[10px] font-bold', {
   variants: {
     type: { default: 'border-grayMix2', darkerGray: 'border-grayLight2', orange: 'border-orange' },
     bottom: { small: 'mb-3', default: 'mb-14' },
-    top: { default: '', small: 'mt-10' },
+    top: { default: '', small: 'mt-10', verysmall: 'mt-3' },
   },
   defaultVariants: {
     type: 'default',
@@ -16,7 +16,7 @@ const buttonVariants = cva('font-montserrat rounded-[10px] font-bold', {
 type DividerProps = {
   type?: 'default' | 'darkerGray' | 'orange';
   bottom?: 'default' | 'small';
-  top?: 'default' | 'small';
+  top?: 'default' | 'small' | 'verysmall';
 };
 
 export const Divider = ({ type, bottom, top }: DividerProps) => {

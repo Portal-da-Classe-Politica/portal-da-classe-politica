@@ -29,7 +29,7 @@ const Page = async () => {
             <div className="h-[370px] md:h-[480px]">
               <CardPost
                 alt={' Eleição 2024: A Persistente Sub-Representação de Mulheres na Política'}
-                category={['Leitura de 3min', 'Categoria Aqui']}
+                category={['Leitura de 5min']}
                 customHeight={250}
                 title={' Eleição 2024: A Persistente Sub-Representação de Mulheres na Política'}
                 subTitle={
@@ -37,7 +37,7 @@ const Page = async () => {
                 }
                 src={'/img/blog/mic.png'}
                 type="Primary"
-                href=""
+                href="/blog/reputacao-mulher"
               />
             </div>
 
@@ -48,13 +48,13 @@ const Page = async () => {
                     'A promoção da participação política das mulheres parcialmente realizada pelos partidos políticos'
                   }
                   type="Secondary"
-                  category={['Leitura de 3min', 'Categoria Aqui']}
+                  category={['Leitura de 5min']}
                   customHeight={90}
                   title={
                     'A promoção da participação política das mulheres parcialmente realizada pelos partidos políticos'
                   }
                   src={'/img/blog/smile.png'}
-                  href=""
+                  href="/blog/promo-part"
                 />
               </div>
               <div className="md:h-[227px]">
@@ -63,13 +63,13 @@ const Page = async () => {
                     'A participação feminina na liderança partidária e o cumprimento das cotas financeiras para mulheres '
                   }
                   type="Secondary"
-                  category={['Leitura de 3min', 'Categoria Aqui']}
+                  category={['Leitura de 5min']}
                   customHeight={90}
                   title={
                     'A participação feminina na liderança partidária e o cumprimento das cotas financeiras para mulheres '
                   }
                   src={'/img/blog/airplane.png'}
-                  href=""
+                  href="part-fem-lid"
                 />
               </div>
             </div>

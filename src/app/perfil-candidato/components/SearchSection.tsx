@@ -5,21 +5,28 @@ import TableComponent from '@components/Table';
 import { Divider } from '@components/Divider';
 import { useObjReducer } from '@hooks/useObjReducer';
 import { cleanString } from '@utils/cleanString';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import Link from 'next/link';
 import { routes } from '@routes';
+import LoadingSkele from '@components/LoadingSkele';
 
 export const SearchSection = ({ title, filters }: { title: string; filters: any }) => {
   const [search, setSearch] = useObjReducer({ uf: '', job: '', name: '' });
-  const [result, setResult] = useState([]);
+  // const [page, setPage] = useState(1);
+  const [result, setResult] = useState<any>([]);
   const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const onSearch = () => {
+  const onSearch = (page = 1) => {
     if (!loading) {
       setLoading(true);
-
-      fetch(`/api/candidates?name=${search.name}&uf=${search.uf}`)
-        .then(res => res.json())
+      console.log('chamaa', page);
+      setCurrentPage(page);
+      fetch(`/api/candidates?name=${search.name}&uf=${search.uf}&page=${page}`)
+        .then(res => {
+          console.log('resp', res);
+          return res.json();
+        })
         .then(data => {
           console.log(data);
           setResult(data);
@@ -39,53 +46,55 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
               {title}
             </Heading>
           </div>
-          <div className="flex flex-col lg:flex-row gap-2 items-center mt-16">
-            <div className="flex flex-col md:flex-row gap-2 items-center text-center w-full">
-              <div className="w-full lg:w-[270px]">
-                <Select
-                  placeholder="Selecionar Estado"
-                  options={filters.estados}
-                  buttonProps={{ style: 'fillGray', className: 'px-[8px] w-full' }}
-                  prefixComponent={
-                    <Text textType="span" size="B1" className="font-normal mr-2 text-nowrap">
-                      Estado |
-                    </Text>
-                  }
-                  suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
-                  onSelect={value => setSearch({ uf: String(value) })}
-                />
+          <Suspense fallback={<LoadingSkele />}>
+            <div className="flex flex-col lg:flex-row gap-2 items-center mt-16">
+              <div className="flex flex-col md:flex-row gap-2 items-center text-center w-full">
+                <div className="w-full lg:w-[270px]">
+                  <Select
+                    placeholder="Selecionar Estado"
+                    options={filters.estados}
+                    buttonProps={{ style: 'fillGray', className: 'px-[8px] w-full' }}
+                    prefixComponent={
+                      <Text textType="span" size="B1" className="font-normal mr-2">
+                        Estado |
+                      </Text>
+                    }
+                    suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
+                    onSelect={value => setSearch({ uf: String(value) })}
+                  />
+                </div>
+                <div className="w-full lg:w-[270px]">
+                  <Select
+                    placeholder="Selecionar Cargo"
+                    options={filters.cargos}
+                    buttonProps={{ style: 'fillGray', className: 'px-[8px] w-full' }}
+                    prefixComponent={
+                      <Text textType="span" size="B1" className="font-normal mr-2">
+                        Cargo |{' '}
+                      </Text>
+                    }
+                    suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
+                    onSelect={value => setSearch({ job: String(value) })}
+                  />
+                </div>
               </div>
-              <div className="w-full lg:w-[270px]">
-                <Select
-                  placeholder="Selecionar Cargo"
-                  options={filters.cargos}
-                  buttonProps={{ style: 'fillGray', className: 'px-[8px] w-full' }}
-                  prefixComponent={
-                    <Text textType="span" size="B1" className="font-normal mr-2 text-nowrap">
-                      Cargo |{' '}
-                    </Text>
-                  }
-                  suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
-                  onSelect={value => setSearch({ job: String(value) })}
-                />
+              <Input
+                className="py-3"
+                placeholder="Digite o nome do candidato..."
+                label="nome candidato"
+                onChange={evt => {
+                  setSearch({ name: cleanString(evt.target.value) });
+                }}
+              />
+              <div className="flex">
+                <ButtonStyled style="fillBlack" className="w-[200px]" onClick={() => onSearch()}>
+                  <Text textType="span" size="L2">
+                    FAZER PESQUISA
+                  </Text>
+                </ButtonStyled>
               </div>
             </div>
-            <Input
-              className="py-3"
-              placeholder="Digite o nome do candidato..."
-              label="nome candidato"
-              onChange={evt => {
-                setSearch({ name: cleanString(evt.target.value) });
-              }}
-            />
-            <div className="flex">
-              <ButtonStyled style="fillBlack" className="w-[200px]" onClick={onSearch}>
-                <Text textType="span" size="L2">
-                  FAZER PESQUISA
-                </Text>
-              </ButtonStyled>
-            </div>
-          </div>
+          </Suspense>
         </Container>
       </section>
 
@@ -98,9 +107,10 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
                 Resultados encontrados:
               </Text>
               <Text textType="span" size="L1" className="font-bold">
-                {result.length || 0} candidatos
+                {result?.results?.length || 0} candidatos
               </Text>
             </div>
+            {/** sem ordenação ainda */}
             {result.length > 0 && (
               <div>
                 <Text textType="span" size="L1" className="mr-2">
@@ -126,7 +136,12 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
           </div>
           <div className="w-full">
             <TableComponent
-              values={result}
+              values={result?.results}
+              totalPages={result.totalPages}
+              currentPage={currentPage}
+              pageChange={(currentPage: number) => {
+                onSearch(currentPage);
+              }}
               loading={loading}
               structure={{
                 headers: [
