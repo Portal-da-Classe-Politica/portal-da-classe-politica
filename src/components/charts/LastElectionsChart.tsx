@@ -46,7 +46,7 @@ export const LastElectionsChart = async ({ title, candidateId }: { title?: strin
         show: false,
       },
       labels: {
-        offsetY: -7,
+        offsetY: -5,
         offsetX: -20,
         align: 'center',
         style: {
