@@ -31,29 +31,31 @@ import {
   faAngleLeft,
   faAngleRight,
   faSliders,
+  faCloudDownload,
 } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
 const sourceMap = {
-  Mountain: faMountainSun,
-  Menu: faBars,
+  Calendar: faCalendarDays,
   Checked: faCheck,
-  UnChecked: faPlus,
-  Phone: faPhone,
-  Megafone: faBullhorn,
+  Download: faCloudDownload,
   Error: faTriangleExclamation,
   Headset: faHeadset,
-  Star: faStar,
-  Calendar: faCalendarDays,
+  Megafone: faBullhorn,
+  Menu: faBars,
+  Mountain: faMountainSun,
+  Phone: faPhone,
   Slider: faSliders,
+  Star: faStar,
+  UnChecked: faPlus,
 
-  // Brands
-  LinkedIn: faLinkedin,
-  Facebook: faFacebook,
+  // Social
+  Email: faEnvelope,
   Instagram: faInstagram,
+  Facebook: faFacebook,
+  LinkedIn: faLinkedin,
   Twitter: faTwitterSquare,
   YouTube: faYoutube,
-  Email: faEnvelope,
 
   // Arrows
   ArrowUp: faChevronUp,

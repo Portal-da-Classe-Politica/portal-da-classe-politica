@@ -1,6 +1,10 @@
+import Link from 'next/link';
+
 import { Heading, Icon, Text } from '@base';
-import { CardPost } from '../CardPost';
+import { routes } from '@routes';
 import { BlogService } from '@services/blog/BlogService';
+
+import { CardPost } from '../CardPost';
 
 export const SpecialContents = async () => {
   const postIds = [1, 2, 1, 2];
@@ -12,20 +16,22 @@ export const SpecialContents = async () => {
         <Heading headingLevel={2} size={'H2'} className="font-bold ">
           Conteúdos especiais
         </Heading>
-        <Text textType="a" size={'C1'} className="text-orange content-end ml-auto flex">
-          Ver todos artigos
-          <div className="ml-4">
-            <Icon type="ArrowRightShort" />
-          </div>
-        </Text>
+        <Link href={routes.blog} className="text-orange content-end ml-auto flex">
+          <Text size={'C1'} className="flex">
+            Ver todos artigos
+            <div className="ml-4">
+              <Icon type="ArrowRightShort" />
+            </div>
+          </Text>
+        </Link>
       </div>
-      <div className="flex flex-col flex-wrap gap-4 items-center md:flex-row md:justify-evenly md:gap-3">
+      <div className="flex flex-col flex-wrap gap-4 items-center md:flex-row md:justify-between md:gap-3">
         {blogs.map(
           (blog, idx) =>
             blog && (
               <div key={idx} className="w-[280px] h-[370px]">
                 <CardPost
-                  href=""
+                  href={routes.blogPost(blog.id)}
                   type="Tertiary"
                   title={blog.title}
                   subTitle={blog.description}
