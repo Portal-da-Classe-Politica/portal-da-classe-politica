@@ -16,6 +16,7 @@ const BlogPost = () => {
   // const filterBlog = await BlogService.getAllBlog();
 
   const [blogPost, setBlogPost] = useState<any>([]);
+  const [filterType, setFilterType] = useState('cres');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedYear, setSelectedYear] = useState('');
 
@@ -28,12 +29,33 @@ const BlogPost = () => {
       });
   };
 
+  const sortedMethod = (a: any, b: any) => {
+    if (filterType === 'cres') {
+      if (a.title < b.title) {
+        return -1;
+      }
+      if (a.title > b.title) {
+        return 1;
+      }
+    } else {
+      if (a.title > b.title) {
+        return -1;
+      }
+      if (a.title < b.title) {
+        return 1;
+      }
+    }
+
+    return 0;
+  };
+
   useEffect(() => {
     onSearch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedCategory, selectedYear]);
 
   return (
-    <div className="flex  md:flex-row flex-col mt-4">
+    <div className="flex  md:flex-row flex-col mt-4 gap-4">
       <div className="lg:w-[20%] md:w-[30%] w-full">
         <div className="flex">
           <BoxIcon
@@ -112,9 +134,10 @@ const BlogPost = () => {
                   defaultValue="Alfabética A-Z"
                   placeholder="Alfabética A-Z"
                   options={[
-                    { value: 'Alfabética A-Z', label: 'Alfabética A-Z' },
-                    { value: 'Alfabética Z-A', label: 'Alfabética Z-A' },
+                    { label: 'Alfabética A-Z', value: 'cres' },
+                    { label: 'Alfabética Z-A', value: 'decr' },
                   ]}
+                  onSelect={val => setFilterType(val as string)}
                   buttonProps={{
                     style: 'ghostOrange',
                     className: 'py-[4px] px-[4px] bg-white drop-shadow-md',
@@ -125,10 +148,10 @@ const BlogPost = () => {
             </div>
           )}
         </div>
-        <div className="flex flex-1 flex-wrap gap-4 lg:justify-end justify-center ">
-          {blogPost.map((values: any, index: number) => {
+        <div className="inline-flex flex-1 flex-wrap gap-4 lg:justify-center justify-center">
+          {blogPost.sort(sortedMethod).map((values: any, index: number) => {
             return (
-              <div className="md:h-[370px] w-[302px]" key={index}>
+              <div className="md:h-[370px] w-[302px] " key={index}>
                 <CardPost
                   alt={values.title}
                   type="Tertiary"
@@ -137,6 +160,7 @@ const BlogPost = () => {
                   customHeight={90}
                   subTitle={values.description}
                   src={values.img}
+                  href={`/blog/${values.id}`}
                 />
               </div>
             );

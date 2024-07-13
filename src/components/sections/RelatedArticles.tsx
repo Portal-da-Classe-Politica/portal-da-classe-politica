@@ -13,6 +13,7 @@ export const RelatedArticles = () => {
         {[1, 2, 3, 4].map((_, idx) => (
           <div key={idx} className="w-[280px] h-[370px]">
             <CardPost
+              href=""
               alt="Lorem ipsum dolor sit amet sectetur dolor sit"
               type="Tertiary"
               category={['Leitura de 3min', 'Categoria Aqui']}

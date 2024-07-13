@@ -3,6 +3,7 @@ import Image from 'next/image';
 
 import { Text, Heading, Button, Icon } from '@base';
 import { ChipContainer } from './ChipContainer';
+import Link from 'next/link';
 
 type BaseProps = {
   title: string;
@@ -12,6 +13,7 @@ type BaseProps = {
   category: string[];
   type: 'Primary' | 'Secondary' | 'Tertiary';
   alt: string;
+  href: string;
 };
 
 type ConditionalProps<T> = T extends { type: 'Secondary' }
@@ -22,7 +24,7 @@ type ConditionalProps<T> = T extends { type: 'Secondary' }
 
 type Props<T extends BaseProps> = T & ConditionalProps<T>;
 
-const Primary = ({ title, subTitle }: { title: string; subTitle: string }) => {
+const Primary = ({ title, subTitle, href }: { title: string; subTitle: string; href: string }) => {
   return (
     <>
       {' '}
@@ -36,27 +38,31 @@ const Primary = ({ title, subTitle }: { title: string; subTitle: string }) => {
           )}
         </div>
         <div className="mt-4 self-start lg:w-[170px] lg:self-end">
-          <Button color="orange" text="Saiba mais" />
+          <Link href={href}>
+            <Button color="orange" text="Saiba mais" />
+          </Link>
         </div>
       </div>
     </>
   );
 };
 
-const Secondary = ({ title }: { title: string }) => {
+const Secondary = ({ title, href }: { title: string; href: string }) => {
   return (
     <>
       <Heading size="H6" className="font-bold ">
         {title}
       </Heading>
       <div className="h-[32-px] mt-3">
-        <Button text="Saiba mais" size="small" />
+        <Link href={href}>
+          <Button text="Saiba mais" size="small" />
+        </Link>
       </div>
     </>
   );
 };
 
-const Tertiary = ({ title, subTitle }: { title: string; subTitle: string }) => {
+const Tertiary = ({ title, subTitle, href }: { title: string; subTitle: string; href: string }) => {
   return (
     <>
       <Heading headingLevel={6} size={'H6'} className="font-bold mb-[6px]">
@@ -67,12 +73,14 @@ const Tertiary = ({ title, subTitle }: { title: string; subTitle: string }) => {
           {subTitle}
         </Text>
       </div>
-      <Text textType="a" size={'C1'} className="font-bold text-orange flex cursor-pointer">
-        LEIA MAIS
-        <div className="ml-4">
-          <Icon type="ArrowRight" />
-        </div>
-      </Text>
+      <Link href={href}>
+        <Text textType="span" size={'C1'} className="font-bold text-orange flex cursor-pointer">
+          LEIA MAIS
+          <div className="ml-4">
+            <Icon type="ArrowRight" />
+          </div>
+        </Text>
+      </Link>
     </>
   );
 };
@@ -92,6 +100,7 @@ export const CardPost = <T extends BaseProps>({
   category,
   type,
   alt,
+  href,
 }: Props<T>) => {
   const SelectedComponent = ContentSelect[type];
   return (
@@ -104,12 +113,12 @@ export const CardPost = <T extends BaseProps>({
         </div>
       </div>
       <div className="pt-[15px] px-[20px] pb-[20px] ">
-        <div className="pb-[18px]">
+        <div className="pb-2">
           {category.map((categoryText, i) => {
             return <ChipContainer key={i}>{categoryText}</ChipContainer>;
           })}
         </div>
-        <SelectedComponent title={title} subTitle={subTitle as string} />
+        <SelectedComponent title={title} subTitle={subTitle as string} href={href} />
       </div>
     </div>
   );

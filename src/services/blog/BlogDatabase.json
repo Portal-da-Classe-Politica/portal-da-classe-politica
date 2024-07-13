@@ -1,10 +1,10 @@
 [
   {
     "id": "1",
-    "title": "Lorem ipsum dolor sit amet sectetur dolor sit",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis.",
-    "img": "/img/Dados.svg",
-    "categories": ["Leitura de 3min", "Categoria Aqui"],
+    "title": "Como Utilizar Cruzamentos entre Variáveis no Portal da Classe Política",
+    "description": "Descubra como cruzar variáveis para obter análises políticas detalhadas e insights valiosos",
+    "img": "/img/blog/numbers.png",
+    "categories": ["Cruzamentos"],
     "year": "2024",
     "author": {
       "name": "",
@@ -20,11 +20,11 @@
   },
   {
     "id": "2",
-    "title": "Lorem ipsum dolor sit amet sectetur dolor sit",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis.",
-    "img": "/img/Dados2.svg",
-    "categories": ["Leitura de 3min", "Categoria Aqui"],
-    "year": "2023",
+    "title": "Como Utilizar a Página de Perfil dos Candidatos",
+    "description": " Aprenda a acessar e usar facilmente as informações dos candidatos no Portal da Classe Política",
+    "img": "/img/blog/people.png",
+    "categories": ["Indicadores"],
+    "year": "2024",
     "author": {
       "name": "",
       "description": "",
@@ -39,11 +39,11 @@
   },
   {
     "id": "3",
-    "title": "Lorem ipsum dolor sit amet sectetur dolor sit",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis.",
-    "img": "/img/Dados2.svg",
-    "categories": ["Leitura de 3min", "Categoria Aqui"],
-    "year": "2023",
+    "title": "Como Utilizar a Seção de Conteúdos Especiais do Portal da Classe Política",
+    "description": "Descubra como acessar e aproveitar materiais exclusivos sobre a participação das mulheres na política.",
+    "img": "/img/blog/lines.png",
+    "categories": ["Indicadores"],
+    "year": "2024",
     "author": {
       "name": "",
       "description": "",
@@ -58,11 +58,11 @@
   },
   {
     "id": "4",
-    "title": "Lorem ipsum dolor sit amet sectetur dolor sit",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis.",
-    "img": "/img/Dados2.svg",
-    "categories": ["Leitura de 3min", "Categoria Aqui"],
-    "year": "2023",
+    "title": "Tutoriais sobre os indicadores: dimensão 1",
+    "description": "Apresenta indicadores úteis para compreender a dinâmica das eleições.",
+    "img": "/img/blog/graphs.png",
+    "categories": ["Indicadores"],
+    "year": "2024",
     "author": {
       "name": "",
       "description": "",
@@ -77,11 +77,11 @@
   },
   {
     "id": "5",
-    "title": "Lorem ipsum dolor sit amet sectetur dolor sit",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis.",
-    "img": "/img/Dados2.svg",
-    "categories": ["Leitura de 3min", "Categoria Aqui"],
-    "year": "2023",
+    "title": "Tutoriais sobre os indicadores: dimensão 2 ",
+    "description": "Apresenta indicadores úteis para analisar as aspirações e estratégias dos candidatos",
+    "img": "/img/blog/lampIdea.png",
+    "categories": ["Indicadores"],
+    "year": "2024",
     "author": {
       "name": "",
       "description": "",
@@ -96,11 +96,11 @@
   },
   {
     "id": "6",
-    "title": "Lorem ipsum dolor sit amet sectetur dolor sit",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis.",
-    "img": "/img/Dados2.svg",
-    "categories": ["Leitura de 3min", "Categoria Aqui"],
-    "year": "2023",
+    "title": "Tutoriais sobre os indicadores: dimensão 3 ",
+    "description": "Entenda a distribuição dos votos e a competitividade regional nas eleições.",
+    "img": "/img/blog/vote.png",
+    "categories": ["Perfil dos candidatos"],
+    "year": "2024",
     "author": {
       "name": "",
       "description": "",
@@ -115,11 +115,11 @@
   },
   {
     "id": "7",
-    "title": "Lorem ipsum dolor sit amet sectetur dolor sit",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis.",
-    "img": "/img/Dados2.svg",
-    "categories": ["Leitura de 3min", "Categoria Aqui"],
-    "year": "2023",
+    "title": "Tutoriais sobre os indicadores: dimensão 4 ",
+    "description": "Apresenta indicadores úteis para entender a dinâmica financeira das campanhas eleitorais.",
+    "img": "/img/blog/study.png",
+    "categories": ["Blog e conteúdos especiais"],
+    "year": "2024",
     "author": {
       "name": "",
       "description": "",
@@ -134,30 +134,11 @@
   },
   {
     "id": "8",
-    "title": "Lorem ipsum dolor sit amet sectetur dolor sit",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis.",
-    "img": "/img/Dados2.svg",
-    "categories": ["Leitura de 3min", "Categoria Aqui"],
-    "year": "2023",
-    "author": {
-      "name": "",
-      "description": "",
-      "img": "",
-      "social": [
-        {
-          "type": "",
-          "value": ""
-        }
-      ]
-    }
-  },
-  {
-    "id": "9",
-    "title": "Lorem ipsum dolor sit amet sectetur dolor sit",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis.",
-    "img": "/img/Dados2.svg",
-    "categories": ["Leitura de 3min", "Categoria Aqui"],
-    "year": "2023",
+    "title": "Tutorial: Como Utilizar a Seção do Blog no Portal da Classe Política",
+    "description": " Fique atualizado com posts regulares, categorizados por temas e autores, promovendo interação e compartilhamento de informações.",
+    "img": "/img/blog/books.png",
+    "categories": ["Blog e conteúdos especiais"],
+    "year": "2024",
     "author": {
       "name": "",
       "description": "",

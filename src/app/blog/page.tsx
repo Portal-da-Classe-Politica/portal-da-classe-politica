@@ -3,16 +3,12 @@ import { Header } from '@components/sections/Header';
 import { GetInContact } from '@components/sections/GetInContact';
 import { CardPost } from '@components/CardPost';
 import { Divider } from '@components/Divider';
-import { BlogService } from '@services/blog/BlogService';
 import dynamic from 'next/dynamic';
 const BlogPost = dynamic(() => import('@components/sections/BlogPosts'), {
   ssr: false,
 });
 
 const Page = async () => {
-  const filterBlog = await BlogService.getAllBlog();
-  console.log('getblog', filterBlog);
-
   return (
     <main className="font-montserrat bg-grayMix1">
       <section className="pb-[45px] pt-4 bg-orange">
@@ -21,7 +17,7 @@ const Page = async () => {
 
           <div className="flex flex-col mt-12 justify-between items-center text-center">
             <Heading size="H1" className="text-white font-bold">
-              Fique sempre atualizado com as últimas notícias
+              Explore conhecimento eleitoral baseado em dados científicos
             </Heading>
           </div>
         </Container>
@@ -32,37 +28,48 @@ const Page = async () => {
           <div className="flex flex-col h-full md:flex-row gap-4 md:gap-[58px]">
             <div className="h-[370px] md:h-[480px]">
               <CardPost
-                alt={'Eleições 2024: Conheça o histórico dos candidatos da sua cidade'}
+                alt={' Eleição 2024: A Persistente Sub-Representação de Mulheres na Política'}
                 category={['Leitura de 3min', 'Categoria Aqui']}
                 customHeight={250}
-                title={'Eleições 2024: Conheça o histórico dos candidatos da sua cidade'}
+                title={' Eleição 2024: A Persistente Sub-Representação de Mulheres na Política'}
                 subTitle={
-                  'Antes de votar, confira o material informativo que preparamos com tudo que você precisa saber sobre suas opções de voto para prefeito e vereadores da sua cidade.'
+                  'Subtítulo: Partidos controlam recursos políticos vitais e desde 2009, devem investir 5% do Fundo Partidário anual para fomentar a participação feminina na política.'
                 }
-                src={'/img/Dados.svg'}
+                src={'/img/blog/mic.png'}
                 type="Primary"
+                href=""
               />
             </div>
 
             <div className="flex flex-col gap-[24px]">
               <div className="md:h-[227px]">
                 <CardPost
-                  alt={'Eleições 2024: Conheça o histórico dos candidatos da sua cidade'}
+                  alt={
+                    'A promoção da participação política das mulheres parcialmente realizada pelos partidos políticos'
+                  }
                   type="Secondary"
                   category={['Leitura de 3min', 'Categoria Aqui']}
                   customHeight={90}
-                  title={'Eleições 2024: Conheça o histórico dos candidatos da sua cidade'}
-                  src={'/img/Dados2.svg'}
+                  title={
+                    'A promoção da participação política das mulheres parcialmente realizada pelos partidos políticos'
+                  }
+                  src={'/img/blog/smile.png'}
+                  href=""
                 />
               </div>
               <div className="md:h-[227px]">
                 <CardPost
-                  alt={'Eleições 2024: Conheça o histórico dos candidatos da sua cidade'}
+                  alt={
+                    'A participação feminina na liderança partidária e o cumprimento das cotas financeiras para mulheres '
+                  }
                   type="Secondary"
                   category={['Leitura de 3min', 'Categoria Aqui']}
                   customHeight={90}
-                  title={'Eleições 2024: Conheça o histórico dos candidatos da sua cidade'}
-                  src={'/img/Dados2.svg'}
+                  title={
+                    'A participação feminina na liderança partidária e o cumprimento das cotas financeiras para mulheres '
+                  }
+                  src={'/img/blog/airplane.png'}
+                  href=""
                 />
               </div>
             </div>

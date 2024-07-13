@@ -14,4 +14,9 @@ export const BlogService = {
   getAllBlog: () => {
     return BlogDatabase;
   },
+
+  getMdBlogById: () => {
+    console.log('test');
+    return fetch('./um.md');
+  },
 };
