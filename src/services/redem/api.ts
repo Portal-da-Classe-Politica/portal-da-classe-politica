@@ -150,13 +150,19 @@ export interface GetCandidate200ResponseData {
    * @type {string}
    * @memberof GetCandidate200ResponseData
    */
-  nome?: string;
+  municipio_nascimento?: string;
   /**
    *
    * @type {string}
    * @memberof GetCandidate200ResponseData
    */
-  cpf?: string;
+  estado_nascimento?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof GetCandidate200ResponseData
+   */
+  nome?: string;
   /**
    *
    * @type {string}
@@ -189,16 +195,16 @@ export interface GetCandidate200ResponseData {
   coligacao?: string;
   /**
    *
-   * @type {number}
+   * @type {string}
    * @memberof GetCandidate200ResponseData
    */
-  id?: number;
+  partido?: string;
   /**
    *
    * @type {string}
    * @memberof GetCandidate200ResponseData
    */
-  sigla?: string;
+  sigla_partido?: string;
   /**
    *
    * @type {string}
@@ -235,6 +241,12 @@ export interface GetCandidate200ResponseData {
    * @memberof GetCandidate200ResponseData
    */
   bens_declarados?: number;
+  /**
+   *
+   * @type {string}
+   * @memberof GetCandidate200ResponseData
+   */
+  cidade_nascimento?: string;
   /**
    *
    * @type {string}

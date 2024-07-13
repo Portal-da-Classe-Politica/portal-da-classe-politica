@@ -1,5 +1,5 @@
-import { Divider } from './Divider';
-import { Heading, Text } from './base';
+import { Divider } from '../Divider';
+import { Heading, Text } from '../base';
 
 const LastElection = () => {
   return (

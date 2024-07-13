@@ -428,7 +428,7 @@ paths:
           description: Id do candidato para detalhe
       responses:
         '200':
-          description: Successful response
+          description: Resposta bem-sucedida com detalhes do candidato.
           content:
             application/json:
               schema:
@@ -442,35 +442,38 @@ paths:
                     properties:
                       candidato_id:
                         type: integer
-                        example: 415180
+                        example: 838503
+                      municipio_nascimento:
+                        type: string
+                        example: 'CARMO DO CAJURU'
+                      estado_nascimento:
+                        type: string
+                        example: 'MG'
                       nome:
                         type: string
-                        example: 'MOVIMENTO DEMOCRÁTICO BRASILEIRO'
-                      cpf:
-                        type: string
-                        example: '73284068015'
+                        example: 'ADEMIR OSMAR DOS SANTOS'
                       data_nascimento:
                         type: string
                         format: date-time
-                        example: '1973-09-28T03:00:00.000Z'
+                        example: '1950-09-04T03:00:00.000Z'
                       genero:
                         type: string
                         example: 'MASCULINO'
                       raca:
                         type: string
-                        example: 'BRANCA'
+                        example: 'Não informada'
                       ocupacao:
                         type: string
-                        example: 'ADVOGADO'
+                        example: 'COMERCIANTE'
                       coligacao:
                         type: string
-                        example: 'MDB'
-                      id:
-                        type: integer
-                        example: 46
-                      sigla:
+                        example: 'PMDB / PT'
+                      partido:
                         type: string
-                        example: 'MDB'
+                        example: 'PARTIDO DO MOVIMENTO DEMOCRÁTICO BRASILEIRO'
+                      sigla_partido:
+                        type: string
+                        example: 'PMDB'
                       nome_atual:
                         type: string
                         example: 'MDB'
@@ -485,16 +488,19 @@ paths:
                         example: 'Centro-direita'
                       grau_de_instrucao:
                         type: string
-                        example: 'SUPERIOR COMPLETO'
+                        example: 'ENSINO FUNDAMENTAL COMPLETO'
                       bens_declarados:
-                        type: integer
-                        example: 600000
+                        type: number
+                        example: 3500
+                      cidade_nascimento:
+                        type: string
+                        example: 'CARMO DO CAJURU'
                       ultimo_cargo:
                         type: string
-                        example: 'DEPUTADO ESTADUAL'
+                        example: 'VEREADOR'
                       ultima_unidade_eleitoral:
                         type: string
-                        example: 'RS - RIO GRANDE DO SUL'
+                        example: 'MG - CARMO DO CAJURU'
                       ultima_situacao_candidatura:
                         type: string
                         example: 'APTO'
