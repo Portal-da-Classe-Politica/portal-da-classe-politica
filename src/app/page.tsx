@@ -76,6 +76,7 @@ const Home = () => {
           <div className="flex flex-col h-full md:flex-row gap-4 md:gap-[58px]">
             <div className="h-[370px] md:h-[480px]">
               <CardPost
+                href=""
                 alt={'Eleições 2024: Conheça o histórico dos candidatos da sua cidade'}
                 category={['Leitura de 3min', 'Categoria Aqui']}
                 customHeight={250}
@@ -91,6 +92,7 @@ const Home = () => {
             <div className="flex flex-col gap-[24px]">
               <div className="md:h-[227px]">
                 <CardPost
+                  href=""
                   alt={'Eleições 2024: Conheça o histórico dos candidatos da sua cidade'}
                   type="Secondary"
                   category={['Leitura de 3min', 'Categoria Aqui']}
@@ -101,6 +103,7 @@ const Home = () => {
               </div>
               <div className="md:h-[227px]">
                 <CardPost
+                  href=""
                   alt={'Eleições 2024: Conheça o histórico dos candidatos da sua cidade'}
                   type="Secondary"
                   category={['Leitura de 3min', 'Categoria Aqui']}

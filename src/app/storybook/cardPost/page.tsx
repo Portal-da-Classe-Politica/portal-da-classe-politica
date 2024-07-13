@@ -5,6 +5,7 @@ const Example = () => {
     <div>
       <div className="m-10 h-[500px] w-[600px]">
         <CardPost
+          href=""
           alt={'Lorem ipsum dolor sit amet sectetur dolor sit'}
           category={['Leitura de 3min', 'Categoria Aqui']}
           customHeight={90}
@@ -18,6 +19,7 @@ const Example = () => {
       </div>
       <div className="m-10 h-[500px] w-[600px]">
         <CardPost
+          href=""
           alt={'Lorem ipsum dolor sit amet sectetur dolor sit'}
           category={['Leitura de 3min', 'Categoria Aqui']}
           customHeight={90}
@@ -31,6 +33,7 @@ const Example = () => {
       </div>
       <div className="m-10 h-[500px] w-[600px]">
         <CardPost
+          href=""
           alt={'Lorem ipsum dolor sit amet sectetur dolor sit'}
           category={['Leitura de 3min', 'Categoria Aqui']}
           customHeight={90}

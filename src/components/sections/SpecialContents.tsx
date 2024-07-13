@@ -25,6 +25,7 @@ export const SpecialContents = async () => {
             blog && (
               <div key={idx} className="w-[280px] h-[370px]">
                 <CardPost
+                  href=""
                   type="Tertiary"
                   title={blog.title}
                   subTitle={blog.description}
