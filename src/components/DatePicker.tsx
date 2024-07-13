@@ -24,7 +24,7 @@ export const DatePicker = ({
   const [endDate, setEndDate] = useState<number>(years[years.length - 1].value);
 
   return (
-    <div className="bg-[#EDEDED] py-1 px-2 rounded-md flex">
+    <div className="bg-[#EDEDED] py-1 px-2 rounded-md flex text-black">
       <div className="flex justify-center items-center">
         <BoxIcon iconType="Calendar" size={8} iconSize="xl" className="bg-white mr-2 shadow-xl" />
       </div>
@@ -41,7 +41,7 @@ export const DatePicker = ({
             }}
             defaultValue={years[0].label}
             options={years.filter(val => val.value < endDate)}
-            buttonProps={{ size: 'small', className: 'pl-0' }}
+            buttonProps={{ size: 'small', className: 'px-2' }}
           />
           <Text className="flex self-end">até </Text>
           <SelectBasic
@@ -52,7 +52,7 @@ export const DatePicker = ({
               setEndDate(value as number);
             }}
             options={years.filter(val => val.value > startDate)}
-            buttonProps={{ size: 'small' }}
+            buttonProps={{ size: 'small', className: 'px-2' }}
           />
         </div>
       </div>

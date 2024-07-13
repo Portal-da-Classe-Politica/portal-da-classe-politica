@@ -32,6 +32,7 @@ import {
   faAngleRight,
   faSliders,
   faCloudDownload,
+  faTable,
 } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
@@ -47,6 +48,7 @@ const sourceMap = {
   Phone: faPhone,
   Slider: faSliders,
   Star: faStar,
+  Table: faTable,
   UnChecked: faPlus,
 
   // Social

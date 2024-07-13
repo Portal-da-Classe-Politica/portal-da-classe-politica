@@ -11,7 +11,6 @@ import { routes } from '@routes';
 
 export const SearchSection = ({ title, filters }: { title: string; filters: any }) => {
   const [search, setSearch] = useObjReducer({ uf: '', job: '', name: '' });
-  // const [page, setPage] = useState(1);
   const [result, setResult] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -48,7 +47,7 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
                   options={filters.estados}
                   buttonProps={{ style: 'fillGray', className: 'px-[8px] w-full' }}
                   prefixComponent={
-                    <Text textType="span" size="B1" className="font-normal mr-2">
+                    <Text textType="span" size="B1" className="font-normal mr-2 text-nowrap">
                       Estado |
                     </Text>
                   }
@@ -62,7 +61,7 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
                   options={filters.cargos}
                   buttonProps={{ style: 'fillGray', className: 'px-[8px] w-full' }}
                   prefixComponent={
-                    <Text textType="span" size="B1" className="font-normal mr-2">
+                    <Text textType="span" size="B1" className="font-normal mr-2 text-nowrap">
                       Cargo |{' '}
                     </Text>
                   }

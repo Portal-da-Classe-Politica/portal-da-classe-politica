@@ -133,7 +133,7 @@ const TableMenu = () => {
         <div className="max-w-[300px]">
           {sections.map((section, i) => (
             <div key={'a' + i}>
-              <Text textType="h3" size="B2" className="font-bold">
+              <Text size="B2" className="font-bold">
                 {section.title}
               </Text>
               <ul>

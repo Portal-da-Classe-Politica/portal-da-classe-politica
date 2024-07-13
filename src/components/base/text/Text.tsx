@@ -23,7 +23,7 @@ export type TextProps = {
   children: React.ReactNode;
   className?: string;
   size?: 'B1' | 'B2' | 'L1' | 'L2' | 'S1' | 'C1' | 'C2' | 'MIN';
-  textType?: string;
+  textType?: 'p' | 'a' | 'span';
   href?: string;
   props?: any;
 };

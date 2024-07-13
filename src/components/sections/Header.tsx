@@ -106,7 +106,7 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
 
         {isOpen && (
           <div className="z-10 fixed inset-0 transition-opacity">
-            <div onClick={() => setIsOpen(false)} className="absolute inset-0 bg-black opacity-50"></div>
+            <div onClick={() => setIsOpen(false)} className="absolute inset-0 bg-black opacity-50" />
           </div>
         )}
 
@@ -119,7 +119,7 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
             <LogoIcon type={'orange'} />
           </span>
           <ul className="text-black flex flex-col justify-start pl-4 gap-3">
-            <li className={`ml-auto  mr-5 ${classes}`}>
+            <li className={`mt-12 mr-5`}>
               <Link href={routes.home}>
                 <Text size={'L2'} className="font-bold">
                   PÁGINA INICIAL
@@ -130,7 +130,7 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
               <Link href={routes.consult}>
                 <Text size={'L2'}>CONSULTAS</Text>
               </Link>
-              <Icon type="ArrowDown" size="2x" className="ml-1" />
+              <Icon type="ArrowDown" size="sm" className="ml-1" />
             </li>
             <li className={`self-start mr-5`}>
               <Link href={routes.projections}>

@@ -58,7 +58,7 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
                 <div className="flex gap-6 flex-col xl:flex-row">
                   <CandidateProfile src={'/img/Person.png'} candidate={candidate} />
                   <div>
-                    <Text textType="h2" size="B1" className="mb-2 font-bold">
+                    <Text size="B1" className="mb-2 font-bold">
                       Coligações
                     </Text>
                     <div className="flex flex-wrap mt-2 gap-2 mb-2">

@@ -46,32 +46,32 @@ const Atendimento = () => {
           <div className="flex mb-10 md:mb-[140px] flex-col-reverse md:flex-row">
             <div className="flex-1">
               <LineItem className="my-7">
-                <Text textType="h2" size="B1" className="font-bold mb-2">
+                <Text size="B1" className="font-bold mb-2">
                   Telefone
                 </Text>
                 <Text>+55 (41) 3234-1241</Text>
               </LineItem>
               <LineItem className="mb-7">
-                <Text textType="h2" size="B1" className="font-bold mb-2">
+                <Text size="B1" className="font-bold mb-2">
                   WhatsApp
                 </Text>
                 <Text>+55 (41) 98234-1241</Text>
               </LineItem>
               <LineItem className="mb-7">
-                <Text textType="h2" size="B1" className="font-bold mb-2">
+                <Text size="B1" className="font-bold mb-2">
                   E-mail
                 </Text>
                 <Text>contato@rwbincorporadora.com.br</Text>
               </LineItem>
               <LineItem className="mb-7">
-                <Text textType="h2" size="B1" className="font-bold mb-2">
+                <Text size="B1" className="font-bold mb-2">
                   Endereço
                 </Text>
                 <Text>Rua João José Massaneiro, 1377</Text>
                 <Text>Centro - São José dos Pinhais</Text>
               </LineItem>
               <LineItem>
-                <Text textType="h2" size="B1" className="font-bold mb-2">
+                <Text size="B1" className="font-bold mb-2">
                   Redes Sociais
                 </Text>
                 <div className="flex justify-between text-orange">
@@ -88,7 +88,7 @@ const Atendimento = () => {
               </LineItem>
             </div>
             <div className="flex-1">
-              <Text textType="h2" size="S1" className="font-bold hidden md:flex">
+              <Text size="S1" className="font-bold hidden md:flex">
                 Informações de Contato
               </Text>
               <form className="flex flex-col gap-7 mt-6 mb-9">

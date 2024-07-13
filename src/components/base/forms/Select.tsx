@@ -58,7 +58,7 @@ export const Select = ({
   }, []);
 
   return (
-    <div ref={dropdownRef} className={`relative w-full inline-block ${className}`}>
+    <div ref={dropdownRef} className={`relative inline-block ${className}`}>
       <ButtonStyled
         {...buttonProps}
         onClick={onButtonClick}

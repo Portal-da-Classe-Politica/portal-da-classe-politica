@@ -1,16 +1,14 @@
-'use client';
-
 import { Container, Heading, Text } from '@base';
 
 import { Header } from '@components/sections/Header';
 import { BoxImageText } from '@components/box/BoxImageText';
 import { GetInContact } from '@components/sections/GetInContact';
 import { SpecialContents } from '@components/sections/SpecialContents';
+import { ConsultFilterBox } from './components/ConsultFilterBox';
 
 const cards = [
   { text: 'Perfil dos Candidatos', src: '/img/consulta/Profile.png' },
   { text: 'Resultados das Eleições', src: '/img/consulta/Chart.png ' },
-  { text: 'Perfil dos Eleitores', src: '/img/consulta/Search.png ' },
   { text: 'Filiação Partidária', src: '/img/consulta/ShakeHand.png' },
   { text: 'Financiamento de Campanha', src: '/img/consulta/Coin.png ' },
   { text: 'Mapas Eleitorais', src: '/img/consulta/Brazil.png ' },
@@ -53,7 +51,7 @@ const Page = () => {
 
       <section className="bg-grayMix1">
         <Container className="pt-16">
-          <h1>asdas</h1>
+          <ConsultFilterBox />
         </Container>
       </section>
 
