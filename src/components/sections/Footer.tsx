@@ -32,9 +32,7 @@ const sections = [
     className: '',
     links: [
       { text: 'Suporte Técnico', href: routes.support },
-      { text: 'Falar com Analista', href: routes.support },
       { text: 'Reportar Erro', href: routes.support },
-      { text: 'Fazer Denúncia', href: routes.support },
       { text: 'Contato', href: routes.support },
     ],
   },
