@@ -8,10 +8,12 @@ const ApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 export interface ChartProps {
   series: ApexOptions['series'];
+  type?: 'line' | 'bar';
+  options?: ApexOptions;
   height?: number;
 }
 
-export const Chart = ({ series, height = 600 }: ChartProps) => {
+export const Chart = ({ series, type = 'line', options = {}, height = 600 }: ChartProps) => {
   const divRef = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState<number | undefined>(undefined);
 
@@ -30,7 +32,7 @@ export const Chart = ({ series, height = 600 }: ChartProps) => {
     };
   }, []);
 
-  const options: ApexOptions = {
+  const defaultOptions: ApexOptions = {
     chart: {
       toolbar: {
         tools: {
@@ -39,15 +41,13 @@ export const Chart = ({ series, height = 600 }: ChartProps) => {
         },
       },
     },
-    xaxis: {
-      categories: ['2014', '2015', '2016', '2017', '2018', '2019', '2020'],
-    },
-    yaxis: {},
   };
+
+  const _options = Object.assign(defaultOptions, options);
 
   return (
     <div className="w-full" ref={divRef}>
-      <ApexChart options={options} series={series} type="line" height={height} width={width} />
+      <ApexChart options={_options} series={series} type={type} height={height} width={width} />
     </div>
   );
 };

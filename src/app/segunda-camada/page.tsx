@@ -3,7 +3,7 @@
 import { Container, Heading, Text } from '@base';
 import { Header } from '@components/sections/Header';
 import { GetInContact } from '@components/sections/GetInContact';
-import { ChartSection } from '@components/charts/ChartSection';
+import { SecondLayerChart } from '@components/charts/SecondLayerChart';
 
 const dataSeries = {
   electoral: {
@@ -80,7 +80,7 @@ const Page = () => {
 
       <section className="mt-20 mb-20">
         <Container>
-          <ChartSection
+          <SecondLayerChart
             title="Eleitorais & Partidários"
             description="São quatro instrumentos úteis para analisar e compreender a dinâmica das eleições e do sistema eleitoral."
             seriesTitle="Adicione indicadores ao gráfico:"
@@ -95,7 +95,7 @@ const Page = () => {
 
       <section className="mt-20 mb-20">
         <Container>
-          <ChartSection
+          <SecondLayerChart
             title="Carreira & Representação Política"
             description="São quatro instrumentos úteis para analisar e compreender as aspirações e estratégias de carreira dos candidatos."
             seriesTitle="Adicione indicadores ao gráfico:"
@@ -110,7 +110,7 @@ const Page = () => {
 
       <section className="mt-20 mb-20">
         <Container>
-          <ChartSection
+          <SecondLayerChart
             title="Espacial de Votos"
             description="São quatro instrumentos úteis para analisar e compreender a distribuição espacial dos votos e a competitividade regional."
             seriesTitle="Adicione indicadores ao gráfico:"
@@ -125,7 +125,7 @@ const Page = () => {
 
       <section className="mt-20 mb-20">
         <Container>
-          <ChartSection
+          <SecondLayerChart
             title="Econômicos & Financeiros"
             description="São quatro instrumentos úteis para analisar e compreender as dinâmicas econômica e financeira das campanhas eleitorais."
             seriesTitle="Adicione indicadores ao gráfico:"

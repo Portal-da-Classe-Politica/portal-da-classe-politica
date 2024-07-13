@@ -2,16 +2,16 @@
 
 import React, { useState } from 'react';
 import { Text } from '../base';
-import { ChartCard } from './ChartCard';
 import { Heading } from '@base';
 import { Checkbox } from '../base/forms/Checkbox';
+import { Chart } from './Chart';
 
 export interface ChartSectionProps {
   title: string;
   description: string;
+  chartTitle: string;
   seriesTitle: string;
   seriesDescription: string;
-  chartTitle: string;
   series: Record<
     string,
     {
@@ -23,13 +23,13 @@ export interface ChartSectionProps {
   >;
 }
 
-export const ChartSection = ({
+export const SecondLayerChart = ({
   title,
   description,
+  chartTitle,
   series,
   seriesTitle,
   seriesDescription,
-  chartTitle,
 }: ChartSectionProps) => {
   const [selectedSeries, setSelectedSeries] = useState({
     electoral: true,
@@ -75,7 +75,28 @@ export const ChartSection = ({
           </div>
         </div>
 
-        <ChartCard title={chartTitle} series={seriesToShow} />
+        <div className={`flex flex-col md:w-[70%] p-4 bg-white drop-shadow-lg rounded-lg mb-10 md:mb-0`}>
+          <Heading headingLevel={2} size="H1" className="mb-4">
+            {chartTitle}
+          </Heading>
+
+          <Chart
+            series={seriesToShow}
+            options={{
+              xaxis: {
+                categories: ['2014', '2015', '2016', '2017', '2018', '2019', '2020'],
+              },
+            }}
+          />
+
+          <div className="flex justify-center items-center mt-4">
+            <Text size="C1">Y Axis Meaning</Text>
+            <Text size="C1" className="mx-2">
+              |
+            </Text>
+            <Text size="C1">X Axis Meaning</Text>
+          </div>
+        </div>
       </div>
     </div>
   );

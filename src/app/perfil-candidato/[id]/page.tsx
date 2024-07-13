@@ -1,7 +1,10 @@
-import { Container, Heading, Text } from '@base';
-import { Header } from '@components/sections/Header';
+import { Suspense } from 'react';
 
+import { ButtonStyled, Container, Heading, Icon, Text } from '@base';
+
+import { Header } from '@components/sections/Header';
 import { GetInContact } from '@components/sections/GetInContact';
+
 import { MapComponent } from '@components/map/MapComponent';
 import { SpecialContents } from '@components/sections/SpecialContents';
 import CandidateProfile from '@components/cadidates/CandidateProfile';
@@ -13,8 +16,8 @@ import { ChipContainer } from '@components/ChipContainer';
 import { cleanString, dayjs } from '@utils';
 import { CandidateService } from '@services/candidates/CandidateService';
 import { formatCurrency } from '@utils/formatCurrency';
-import { Suspense } from 'react';
-import { ChartBar } from '@components/charts/ChartBar';
+
+import { LastElectionsChart } from '@components/charts/LastElectionsChart';
 
 const Page = async ({ params: { id } }: { params: { id: string } }) => {
   const candidate = await CandidateService.getCandidateById(id);
@@ -111,7 +114,7 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
                       header="+35,7%"
                       variant="orange"
                     />
-                  </div>{' '}
+                  </div>
                   <div className="h-[190px] w-[210px]">
                     <BoxData
                       content="Consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis"
@@ -119,7 +122,7 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
                       header="+35,7%"
                       variant="orange"
                     />
-                  </div>{' '}
+                  </div>
                   <div className="h-[190px] w-[210px]">
                     <BoxData
                       content="Consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis"
@@ -129,24 +132,51 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
                     />
                   </div>
                 </div>
-                <div>
-                  <ChartBar series={[{ name: 'votos', data: [200, 300, 400, 300, 300] }]} />
-                </div>
               </div>
             </div>
           </Container>
         </section>
-        <section className="mt-24 mb-40">
+
+        <section className="mt-20">
           <Container className="flex flex-col items-center">
             <div className={`flex flex-col w-full max-h-[800px] p-4 bg-white drop-shadow-lg rounded-lg `}>
+              <LastElectionsChart title="Lobortis celeris vulputate" candidateId={id} />
+            </div>
+          </Container>
+        </section>
+
+        <section className="mt-8">
+          <Container className="flex flex-col items-center">
+            <div className={`flex flex-col w-full max-h-[800px] p-4 bg-white drop-shadow-lg rounded-lg `}>
+              <Heading headingLevel={2} className="text-grayMix4 my-4">
+                Mapa da votação do 1º turno
+              </Heading>
               <MapComponent state={lastElectionState} candidateId={id} />
+            </div>
+          </Container>
+        </section>
+
+        <section className="mt-4 md:mt-16 mb-8 md:mb-16">
+          <Container>
+            <div className="flex gap-4">
+              <ButtonStyled>
+                <>
+                  <Icon type="Download" className="mx-2" size="xl" />
+                  Baixar Cruzamentos em .PDF
+                </>
+              </ButtonStyled>
+              <ButtonStyled>
+                <>
+                  <Icon type="Download" className="mx-2" size="xl" />
+                  Baixar Cruzamentos em .CSV
+                </>
+              </ButtonStyled>
             </div>
           </Container>
         </section>
 
         <section className="mt-6 md:mt-20 mb-10 md:mb-20">
           <Container>
-            <hr className="border-t-[3px] border-graMix2" />
             <SpecialContents />
           </Container>
         </section>
