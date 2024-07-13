@@ -118,7 +118,7 @@ export const CardPost = <T extends BaseProps>({
             return <ChipContainer key={i}>{categoryText}</ChipContainer>;
           })}
         </div>
-        <SelectedComponent title={title} subTitle={subTitle as string} href={href} />
+        <SelectedComponent title={title} subTitle={subTitle} href={href} />
       </div>
     </div>
   );

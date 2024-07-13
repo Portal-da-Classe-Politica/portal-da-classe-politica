@@ -3,6 +3,7 @@ import { Header } from '@components/sections/Header';
 import { GetInContact } from '@components/sections/GetInContact';
 import { RelatedArticles } from '@components/sections/RelatedArticles';
 import dynamic from 'next/dynamic';
+
 const MarkdownSection = dynamic(() => import('@components/sections/MarkdownSection'), {
   ssr: false,
 });
