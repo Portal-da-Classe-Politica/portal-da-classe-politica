@@ -1,8 +1,5 @@
 'use client';
 
-import { Constants } from '@constants';
-const { loremTitle, lorem } = Constants;
-
 import { Container, Heading, Text, TextParagraphImage } from '@base';
 import { Header } from '@components/sections/Header';
 import { GetInContact } from '@components/sections/GetInContact';
@@ -66,7 +63,7 @@ const Page = () => {
           </Heading>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {cardIconTexts.map((value, i) => {
-              return <CardIconText key={'c' + i} title={value.title} text={value.text} />;
+              return <CardIconText key={'c' + i} title={value.title} text={value.text} iconType="Mountain" />;
             })}
           </div>
         </Container>
@@ -76,13 +73,29 @@ const Page = () => {
         <Container>
           <Divider />
           <TextParagraphImage
-            src="/img/Dados.svg"
-            header={loremTitle}
-            texts={[lorem, lorem]}
-            className="mb-12 md:mb-28"
+            link="/blog/promo-part"
+            src="/img/blog/smile.png"
+            header={
+              'A promoção da participação política das mulheres parcialmente realizada pelos partidos políticos'
+            }
+            texts={[
+              'Os partidos políticos desempenham um papel crucial na política, controlando recursos importantes como cargos, seleção de candidatos (as) e financiamento. Desde 2009, a legislação brasileira obriga os partidos a destinar pelo menos 5% do Fundo Partidário anual para incentivar a participação das mulheres na política. Desde 2015, essa lei tem sido aprimorada, exigindo que os recursos fossem geridos por secretarias de mulheres ou institutos liderados pela secretaria. Ainda que o repasse seja obrigatório, os partidos cumprem essa regra apenas parcialmente, no período de 2009 a 2021. A anistia dada pelos partidos a eles próprios, no caso do não cumprimento da lei, é uma forma de subverter as regras formais que buscam incluir mais mulheres na política. Enquanto isso, o papel de formação política acaba sendo ocupado por organizações sociais e think tanks.',
+            ]}
+            className="mb-28"
           />
 
-          <TextParagraphImage src="/img/Dados.svg" header={loremTitle} texts={[lorem, lorem]} reverse />
+          <TextParagraphImage
+            link="/blog/part-feml-lid"
+            src="/img/blog/airplane.png"
+            header={
+              'A participação feminina na liderança partidária e o cumprimento das cotas financeiras para mulheres'
+            }
+            texts={[
+              'Na disputa eleitoral, mulheres, em geral, enfrentam desafios mais rigorosos em comparação aos homens, recebendo menor apoio partidário e possuindo redes de financiamento mais restritas. Este texto mostra como a participação feminina na estrutura organizacional partidária pode atuar como um catalisador da representação política de mulheres por meio da distribuição de recursos financeiros de campanha.',
+              'Os dados analisados apontam que diretórios estaduais nos quais mulheres ocuparam a presidência ou a secretaria geral destinaram mais recursos públicos eleitorais às suas candidatas. Além disso, a presença feminina nesses cargos aumenta a chance de os partidos cumprirem as cotas de gênero no financiamento público de campanha.',
+            ]}
+            reverse
+          />
 
           <hr className="border-t-[3px] border-grayMix2 mt-12 md:mt-36" />
         </Container>

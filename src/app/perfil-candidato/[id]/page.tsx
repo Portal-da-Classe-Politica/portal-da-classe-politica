@@ -11,7 +11,6 @@ import CandidateProfile from '@components/cadidates/CandidateProfile';
 import { Divider } from '@components/Divider';
 import TextBetween from '@components/base/text/TextBetween';
 import { BoxData } from '@components/box/BoxData';
-import { ChipContainer } from '@components/ChipContainer';
 
 import { cleanString, dayjs } from '@utils';
 import { CandidateService } from '@services/candidates/CandidateService';
@@ -26,11 +25,6 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
     return age ? `${dayjs(age).age()} anos (${dayjs(age).format('DD/MM/YYYY')})` : '-';
   };
 
-  const parseCoalitions = (coalitions: string | undefined) => {
-    return coalitions ? coalitions.split('/').map(cleanString) : [];
-  };
-
-  const coalitions = parseCoalitions(candidate?.coligacao);
   const lastElectionState = cleanString(candidate?.ultima_unidade_eleitoral?.split('-')[0]);
 
   return (
@@ -55,29 +49,10 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
           <Container className="flex flex-col items-center mt-24">
             <div className="flex flex-col lg:flex-row w-full gap-8">
               <div className="w-full">
-                <div className="flex gap-6 flex-col xl:flex-row">
+                <div className="flex gap-6 flex-col xl:flex-row place-content-center">
                   <CandidateProfile src={'/img/Person.png'} candidate={candidate} />
-                  <div>
-                    <Text size="B1" className="mb-2 font-bold">
-                      Coligações
-                    </Text>
-                    <div className="flex flex-wrap mt-2 gap-2 mb-2">
-                      {coalitions.map(coalition => (
-                        <ChipContainer
-                          key={coalition}
-                          type={
-                            candidate?.nome_atual === coalition || candidate?.sigla_partido === coalition
-                              ? 'full'
-                              : 'ghost'
-                          }
-                          className="!mr-0"
-                        >
-                          {coalition}
-                        </ChipContainer>
-                      ))}
-                    </div>
-                  </div>
                 </div>
+
                 <Divider type="orange" bottom="small" top="small" />
                 <div className="flex flex-col md:flex-row justify-between gap-3 md:gap-16">
                   <div className="w-full md:w-[50%] flex flex-col gap-3">

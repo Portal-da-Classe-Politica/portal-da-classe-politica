@@ -1,8 +1,8 @@
 import { Container } from '@base';
 import { Header } from '@components/sections/Header';
 import { GetInContact } from '@components/sections/GetInContact';
-import { RelatedArticles } from '@components/sections/RelatedArticles';
 import dynamic from 'next/dynamic';
+import { SpecialContents } from '@components/sections/SpecialContents';
 
 const MarkdownSection = dynamic(() => import('@components/sections/MarkdownSection'), {
   ssr: false,
@@ -23,7 +23,7 @@ const Page = ({ params: { id } }: { params: { id: string } }) => {
         <Container>
           <hr className="border-t-[3px] border-graMix2" />
 
-          <RelatedArticles />
+          <SpecialContents title="Publicações relacionadasPublicações relacionadas" />
         </Container>
       </section>
 

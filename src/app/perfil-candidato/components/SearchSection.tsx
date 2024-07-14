@@ -5,10 +5,9 @@ import TableComponent from '@components/Table';
 import { Divider } from '@components/Divider';
 import { useObjReducer } from '@hooks/useObjReducer';
 import { cleanString } from '@utils/cleanString';
-import { Suspense, useState } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { routes } from '@routes';
-import LoadingSkele from '@components/LoadingSkele';
 
 export const SearchSection = ({ title, filters }: { title: string; filters: any }) => {
   const [search, setSearch] = useObjReducer({ uf: '', job: '', name: '' });
@@ -46,55 +45,53 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
               {title}
             </Heading>
           </div>
-          <Suspense fallback={<LoadingSkele />}>
-            <div className="flex flex-col lg:flex-row gap-2 items-center mt-16">
-              <div className="flex flex-col md:flex-row gap-2 items-center text-center w-full">
-                <div className="w-full lg:w-[270px]">
-                  <Select
-                    placeholder="Selecionar Estado"
-                    options={filters.estados}
-                    buttonProps={{ style: 'fillGray', className: 'px-[8px] w-full' }}
-                    prefixComponent={
-                      <Text textType="span" size="B1" className="font-normal mr-2">
-                        Estado |
-                      </Text>
-                    }
-                    suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
-                    onSelect={value => setSearch({ uf: String(value) })}
-                  />
-                </div>
-                <div className="w-full lg:w-[270px]">
-                  <Select
-                    placeholder="Selecionar Cargo"
-                    options={filters.cargos}
-                    buttonProps={{ style: 'fillGray', className: 'px-[8px] w-full' }}
-                    prefixComponent={
-                      <Text textType="span" size="B1" className="font-normal mr-2">
-                        Cargo |{' '}
-                      </Text>
-                    }
-                    suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
-                    onSelect={value => setSearch({ job: String(value) })}
-                  />
-                </div>
+          <div className="flex flex-col lg:flex-row gap-2 items-center mt-16">
+            <div className="flex flex-col md:flex-row gap-2 items-center text-center w-full">
+              <div className="w-full lg:w-[270px]">
+                <Select
+                  placeholder="Selecionar Estado"
+                  options={filters.estados}
+                  buttonProps={{ style: 'fillGray', className: 'px-[8px] w-full' }}
+                  prefixComponent={
+                    <Text textType="span" size="B1" className="font-normal mr-2">
+                      Estado |
+                    </Text>
+                  }
+                  suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
+                  onSelect={value => setSearch({ uf: String(value) })}
+                />
               </div>
-              <Input
-                className="py-3"
-                placeholder="Digite o nome do candidato..."
-                label="nome candidato"
-                onChange={evt => {
-                  setSearch({ name: cleanString(evt.target.value) });
-                }}
-              />
-              <div className="flex">
-                <ButtonStyled style="fillBlack" className="w-[200px]" onClick={() => onSearch()}>
-                  <Text textType="span" size="L2">
-                    FAZER PESQUISA
-                  </Text>
-                </ButtonStyled>
+              <div className="w-full lg:w-[270px]">
+                <Select
+                  placeholder="Selecionar Cargo"
+                  options={filters.cargos}
+                  buttonProps={{ style: 'fillGray', className: 'px-[8px] w-full' }}
+                  prefixComponent={
+                    <Text textType="span" size="B1" className="font-normal mr-2">
+                      Cargo |{' '}
+                    </Text>
+                  }
+                  suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
+                  onSelect={value => setSearch({ job: String(value) })}
+                />
               </div>
             </div>
-          </Suspense>
+            <Input
+              className="py-3"
+              placeholder="Digite o nome do candidato..."
+              label="nome candidato"
+              onChange={evt => {
+                setSearch({ name: cleanString(evt.target.value) });
+              }}
+            />
+            <div className="flex">
+              <ButtonStyled style="fillBlack" className="w-[200px]" onClick={() => onSearch()}>
+                <Text textType="span" size="L2">
+                  FAZER PESQUISA
+                </Text>
+              </ButtonStyled>
+            </div>
+          </div>
         </Container>
       </section>
 

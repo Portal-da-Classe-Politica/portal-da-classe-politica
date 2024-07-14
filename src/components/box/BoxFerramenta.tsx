@@ -2,17 +2,20 @@ import React from 'react';
 import Image from 'next/image';
 
 import { Icon, Text } from '@base';
+import Link from 'next/link';
 
 export const BoxFerramenta = ({
   src,
   title,
   subTitle,
   alt,
+  href = '',
 }: {
   src: string;
   title: string;
   subTitle: string;
   alt: string;
+  href?: string;
 }) => {
   return (
     <div className="flex flex-col bg-white h-[312px] w-[295px] py-9 px-6 items-center rounded-[10px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)]">
@@ -26,12 +29,14 @@ export const BoxFerramenta = ({
         <Text size={'B2'} className="text-center">
           {subTitle}
         </Text>
-        <Text textType="a" size={'C2'} className="text-orange flex">
-          Acessar Ferramenta
-          <div className="ml-2">
-            <Icon type="ArrowRight" />
-          </div>{' '}
-        </Text>
+        <Link href={href}>
+          <Text size={'C2'} className="text-orange flex">
+            Acessar Ferramenta
+            <div className="ml-2">
+              <Icon type="ArrowRight" />
+            </div>
+          </Text>
+        </Link>
       </div>
     </div>
   );

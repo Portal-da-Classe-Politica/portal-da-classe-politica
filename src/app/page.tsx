@@ -6,6 +6,7 @@ import { Header } from '@components/sections/Header';
 import { GetInContact } from '@components/sections/GetInContact';
 import { HowToCrossing } from '@components/sections/HowToCrossing';
 import { SpecialContents } from '@components/sections/SpecialContents';
+import { routes } from '@routes';
 
 const Home = () => {
   return (
@@ -42,24 +43,28 @@ const Home = () => {
               src={'/img/Cruzdados.png'}
               title={'Cruzamentos e Dados Eleitorais'}
               subTitle={'Cruze e analise dezenas de variáveis eleitorais.'}
+              href={routes.consult}
             />
             <BoxFerramenta
               alt="Indicadores e Índices Especiais"
               src={'/img/Indicadores.png'}
               title={'Indicadores e Índices Especiais'}
               subTitle={'Trinta índices construídos com variáveis eleitorais.'}
+              href={routes.projections}
             />
             <BoxFerramenta
               alt="Aprenda a usar os Indicadores"
               src={'/img/Aprenda.png'}
               title={'Aprenda a usar os Indicadores'}
               subTitle={'Diversos tutoriais para ajudar você explorar ao máximo o Portal.'}
+              href={routes.aboutCrossing}
             />
             <BoxFerramenta
               alt="Comunicação Científica"
               src={'/img/Comunicacao.png'}
               title={'Comunicação Científica'}
               subTitle={'Nosso blog traz análises relevantes e acessíveis sobre a política nacional.'}
+              href={routes.blog}
             />
           </div>
         </Container>

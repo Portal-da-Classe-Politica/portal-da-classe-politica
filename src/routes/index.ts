@@ -10,4 +10,5 @@ export const routes = {
   blogPost: (id: string) => `/blog/${id}`,
   elections2024: '/eleicao-2024',
   support: '/atendimento',
+  aboutCrossing: '/sobre-cruzamentos',
 };

@@ -3,6 +3,8 @@ import { Heading, Text } from '../base';
 import { Divider } from '../Divider';
 import { BoxIconAwesome } from '../box/BoxIconAwesome';
 import TextBetween from '../base/text/TextBetween';
+import { cleanString } from '@utils';
+import { ChipContainer } from '@components/ChipContainer';
 
 type CandidateProfileProps = {
   src: string;
@@ -10,6 +12,11 @@ type CandidateProfileProps = {
 };
 
 const CandidateProfile = ({ src, candidate }: CandidateProfileProps) => {
+  const parseCoalitions = (coalitions: string | undefined) => {
+    return coalitions ? coalitions.split('/').map(cleanString) : [];
+  };
+
+  const coalitions = parseCoalitions(candidate?.coligacao);
   return (
     <div className="flex flex-col md:flex-row gap-6">
       <div className=" w-[190px] relative h-[240px] ">
@@ -48,6 +55,26 @@ const CandidateProfile = ({ src, candidate }: CandidateProfileProps) => {
               iconSize="lg"
               className="bg-white border-orange border-[1px] text-orange rounded-md"
             />
+          </div>
+        </div>
+        <div>
+          <Text size="B1" className="mb-2 font-bold mt-2">
+            Coligações
+          </Text>
+          <div className="flex flex-wrap mt-2 gap-2 mb-2">
+            {coalitions.map(coalition => (
+              <ChipContainer
+                key={coalition}
+                type={
+                  candidate?.nome_atual === coalition || candidate?.sigla_partido === coalition
+                    ? 'full'
+                    : 'ghost'
+                }
+                className="!mr-0"
+              >
+                {coalition}
+              </ChipContainer>
+            ))}
           </div>
         </div>
       </div>

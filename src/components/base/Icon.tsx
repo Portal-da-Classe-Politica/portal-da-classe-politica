@@ -33,6 +33,17 @@ import {
   faSliders,
   faCloudDownload,
   faTable,
+  fa1,
+  fa2,
+  fa3,
+  fa4,
+  fa5,
+  fa6,
+  fa7,
+  fa8,
+  fa9,
+  fa0,
+  faO,
 } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
@@ -74,6 +85,21 @@ const sourceMap = {
   ArrowDownShort: faAngleDown,
   ArrowLeftShort: faAngleLeft,
   ArrowRightShort: faAngleRight,
+
+  //number
+  One: fa1,
+  Two: fa2,
+  Three: fa3,
+  Four: fa4,
+  Five: fa5,
+  Six: fa6,
+  Seven: fa7,
+  Eight: fa8,
+  Nine: fa9,
+  Zero: fa0,
+
+  //letter
+  O: faO,
 };
 
 export type IconType = keyof typeof sourceMap;

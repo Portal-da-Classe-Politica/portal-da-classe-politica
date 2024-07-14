@@ -6,15 +6,27 @@ import { BlogService } from '@services/blog/BlogService';
 
 import { CardPost } from '../CardPost';
 
-export const SpecialContents = async () => {
-  const postIds = [1, 2, 1, 2];
+export const SpecialContents = async ({ title = 'Conteúdos especiais' }: { title?: string }) => {
+  const getRandomNumbers = () => {
+    const numbers = [1, 2, 3, 4, 5, 6, 7, 8];
+
+    // Fisher-Yates shuffle algorithm to shuffle the array
+    for (let i = numbers.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
+    }
+
+    // Return the first 4 elements of the shuffled array
+    return numbers.slice(0, 4);
+  };
+  const postIds = getRandomNumbers();
   const blogs = await Promise.all(postIds.map(id => BlogService.getBlogById(id)));
 
   return (
     <div className="mt-10 md:mt-[120px]">
       <div className="flex flex-col md:flex-row mb-[30px] gap-4 items-center">
         <Heading headingLevel={2} size={'H2'} className="font-bold ">
-          Conteúdos especiais
+          {title}
         </Heading>
         <Link href={routes.blog} className="text-orange content-end ml-auto flex">
           <Text size={'C1'} className="flex">

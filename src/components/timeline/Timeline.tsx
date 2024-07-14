@@ -1,9 +1,10 @@
-import { Icon } from '@base';
+import { Icon, IconType } from '@base';
 import TimelineItem from './TimelineItem';
 
 type TimelineProps = {
-  title: string;
+  title?: string;
   text: string;
+  vectorIconType?: IconType[];
 };
 
 const Timeline = ({ items, className }: { items: TimelineProps[]; className?: string }) => {
@@ -24,7 +25,7 @@ const Timeline = ({ items, className }: { items: TimelineProps[]; className?: st
                 </div>
               </>
             )}
-            <TimelineItem title={value.title} text={value.text} />
+            <TimelineItem vectorIconType={value.vectorIconType} title={value.title} text={value.text} />
           </div>
         );
       })}

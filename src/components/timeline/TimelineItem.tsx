@@ -1,19 +1,29 @@
-import { Heading, Text } from '../base';
+import { Heading, IconType, Text } from '../base';
 import { BoxIconAwesome } from '../box/BoxIconAwesome';
 
 type TimelineItemProps = {
-  title: string;
+  title?: string;
   text: string;
+  vectorIconType?: IconType[];
 };
 
-const TimelineItem = ({ title, text }: TimelineItemProps) => {
+const TimelineItem = ({ title, text, vectorIconType }: TimelineItemProps) => {
   return (
     <div className="max-w-[240px]">
-      <BoxIconAwesome iconType="Mountain" className="bg-orange text-white m-auto" size={32} iconSize={'2x'} />
-      <Heading size="H4" className="text-orange font-bold mt-5 mb-3">
-        {title}
-      </Heading>
-      <Text size="B2">{text}</Text>
+      <BoxIconAwesome
+        vectorIconType={vectorIconType}
+        className="bg-orange text-white m-auto"
+        size={32}
+        iconSize={'2x'}
+      />
+      {title && (
+        <Heading size="H4" className="text-orange font-bold mt-5">
+          {title}
+        </Heading>
+      )}
+      <Text size="B2" className={`${title ? 'mt-3' : 'mt-10 md:mt-5'}`}>
+        {text}
+      </Text>
     </div>
   );
 };

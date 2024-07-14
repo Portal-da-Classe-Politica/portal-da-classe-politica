@@ -1,9 +1,9 @@
 import { Container, Heading, Text } from '@base';
 import { Header } from '@components/sections/Header';
 import { GetInContact } from '@components/sections/GetInContact';
-import { RelatedArticles } from '@components/sections/RelatedArticles';
 import Image from 'next/image';
 import { Divider } from '@components/Divider';
+import { SpecialContents } from '@components/sections/SpecialContents';
 
 const Page = () => {
   return (
@@ -147,7 +147,7 @@ const Page = () => {
         <Container>
           <hr className="border-t-[3px] border-graMix2" />
 
-          <RelatedArticles />
+          <SpecialContents title="Publicações relacionadasPublicações relacionadas" />
         </Container>
       </section>
 

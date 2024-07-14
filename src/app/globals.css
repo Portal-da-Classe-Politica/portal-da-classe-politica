@@ -19,3 +19,10 @@ body {
 .overflow-x-auto::-webkit-scrollbar {
   display: none; /* Hide scrollbar in WebKit browsers (like Chrome, Safari) */
 }
+
+.icon-o {
+  svg {
+    height: 10px;
+    margin-bottom: 5px;
+  }
+}
