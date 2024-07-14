@@ -10,13 +10,11 @@ export const SpecialContents = async ({ title = 'Conteúdos especiais' }: { titl
   const getRandomNumbers = () => {
     const numbers = [1, 2, 3, 4, 5, 6, 7, 8];
 
-    // Fisher-Yates shuffle algorithm to shuffle the array
     for (let i = numbers.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
     }
 
-    // Return the first 4 elements of the shuffled array
     return numbers.slice(0, 4);
   };
   const postIds = getRandomNumbers();
@@ -29,7 +27,7 @@ export const SpecialContents = async ({ title = 'Conteúdos especiais' }: { titl
           {title}
         </Heading>
         <Link href={routes.blog} className="text-orange content-end ml-auto flex">
-          <Text size={'C1'} className="flex">
+          <Text size={'C1'} className="flex font-bold">
             Ver todos artigos
             <Icon type="ArrowRightShort" className="ml-4" />
           </Text>

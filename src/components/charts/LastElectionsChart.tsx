@@ -4,6 +4,7 @@ import { BarChartCard } from './BarChartCard';
 
 export const LastElectionsChart = async ({ title, candidateId }: { title?: string; candidateId: string }) => {
   const elections = await CandidateService.getCandidateLastFiveElectionVotes(candidateId);
+
   const categories = elections.map(e => String(e.ano_eleicao ?? ''));
   const data = elections.map(e => e.total_votos ?? 0);
 

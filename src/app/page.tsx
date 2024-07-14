@@ -123,7 +123,7 @@ const Home = () => {
                     'A participação feminina na liderança partidária e o cumprimento das cotas financeiras para mulheres '
                   }
                   src={'/img/blog/airplane.png'}
-                  href="part-fem-lid"
+                  href="/blog/part-fem-lid"
                 />
               </div>
             </div>

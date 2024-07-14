@@ -5,6 +5,7 @@ import { Container, Heading, Text, TextParagraph, TextParagraphImage } from '@ba
 import { Header } from '@components/sections/Header';
 import Avatar from '@components/Avatar';
 import Timeline from '@components/timeline/Timeline';
+import { GetInContact } from '@components/sections/GetInContact';
 
 const headerText = [
   {
@@ -147,23 +148,27 @@ const Page = () => {
               items={[
                 {
                   title: '03/2023',
+                  icons: ['Mountain'],
                   text: 'Instalação do Instituto Representação e Legitimidade democrática na UFPR ',
                 },
-
                 {
                   title: '06/2023',
+                  icons: ['Mountain'],
                   text: 'A construção da API pública com base em dados do TSE para a análise de candidatos e início dos bancos de dados ',
                 },
                 {
                   title: '08/2023 ',
+                  icons: ['Mountain'],
                   text: 'Consolidação do projeto com a incorporação da API e uma proposta de acesso e transparência de dados sobre classe política ',
                 },
                 {
                   title: '02/2024',
+                  icons: ['Mountain'],
                   text: 'Realização de estudos sobre seleção dos conjuntos e processamentos de dados, seleção das variáveis e escolhas dos índices e indicadores ',
                 },
                 {
                   title: '02/2024',
+                  icons: ['Mountain'],
                   text: 'Definição dos parâmetros e experiência do usuário e construção do sistema de cruzamentos, análises e visualização de dados. ',
                 },
               ]}
@@ -185,6 +190,8 @@ const Page = () => {
           </div>
         </Container>
       </section>
+
+      <GetInContact />
     </main>
   );
 };

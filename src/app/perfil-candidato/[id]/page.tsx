@@ -36,10 +36,10 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
 
             <div className="flex flex-col mt-12 justify-between items-center text-center">
               <Heading size="H1" className="text-grayMix4">
-                Consectetur adipiscing elit Suspendisse non odio
+                Perfil do Candidato
               </Heading>
               <Text size="S1" className="text-orange mt-8">
-                Lorem ipsum dolor sit consectetur adipiscing elit. Suspendisse non odio amet massa lobortis.
+                Conheça o seu canditado.
               </Text>
             </div>
           </Container>
@@ -114,7 +114,7 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
 
         <section className="mt-20">
           <Container className="flex flex-col items-center">
-            <LastElectionsChart title="Lobortis celeris vulputate" candidateId={id} />
+            <LastElectionsChart title="Histórico de Votações" candidateId={id} />
           </Container>
         </section>
 
