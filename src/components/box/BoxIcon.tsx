@@ -1,22 +1,24 @@
 import React from 'react';
+import { SizeProp } from '@fortawesome/fontawesome-svg-core';
 
-import { Icon, IconType, IconSize } from '@base';
+import { Icon, IconType } from '@base';
+import { Box, BoxProps } from './Box';
 
-export const BoxIcon = ({
-  iconType,
-  iconSize = 'xs',
-  size = 9,
-  className = '',
-}: {
-  iconType: IconType;
-  iconSize?: IconSize;
-  size?: number;
+export interface BoxIcon extends BoxProps {
+  icon?: IconType;
+  icons?: IconType[];
+
+  iconSize?: SizeProp;
+  size?: number | string;
   className?: string;
-}) => {
-  const customClass = `w-${size} h-${size} ${className}`;
+}
+
+export const BoxIcon = ({ icon, icons, iconSize = '1x', size = 9, className = '' }: BoxIcon) => {
+  const _icons = icon ? [icon] : icons || [];
+
   return (
-    <div className={`flex rounded-[10px] items-center justify-center ${customClass}`}>
-      <Icon type={iconType} size={iconSize} />
-    </div>
+    <Box size={size} className={className}>
+      {_icons?.map((type, i) => <Icon key={i} type={type} size={iconSize} />)}
+    </Box>
   );
 };

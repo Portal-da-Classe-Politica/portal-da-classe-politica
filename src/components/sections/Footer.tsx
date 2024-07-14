@@ -49,10 +49,10 @@ export const Footer = () => {
               Lorem ipsum dolor sit amet consectetur adipiscing elit aliquam mauris sed ma
             </Text>
             <div className="flex gap-4">
-              <BoxIcon iconType="Facebook" iconSize="lg" className="bg-orange" />
-              <BoxIcon iconType="Twitter" iconSize="lg" className="bg-orange" />
-              <BoxIcon iconType="LinkedIn" iconSize="lg" className="bg-orange" />
-              <BoxIcon iconType="YouTube" iconSize="lg" className="bg-orange" />
+              <BoxIcon icon="Facebook" iconSize="lg" className="bg-orange" />
+              <BoxIcon icon="Twitter" iconSize="lg" className="bg-orange" />
+              <BoxIcon icon="LinkedIn" iconSize="lg" className="bg-orange" />
+              <BoxIcon icon="YouTube" iconSize="lg" className="bg-orange" />
             </div>
           </div>
 

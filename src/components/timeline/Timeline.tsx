@@ -4,7 +4,7 @@ import TimelineItem from './TimelineItem';
 type TimelineProps = {
   title?: string;
   text: string;
-  vectorIconType?: IconType[];
+  icons?: IconType[];
 };
 
 const Timeline = ({ items, className }: { items: TimelineProps[]; className?: string }) => {
@@ -25,7 +25,7 @@ const Timeline = ({ items, className }: { items: TimelineProps[]; className?: st
                 </div>
               </>
             )}
-            <TimelineItem vectorIconType={value.vectorIconType} title={value.title} text={value.text} />
+            <TimelineItem icons={value.icons} title={value.title} text={value.text} />
           </div>
         );
       })}

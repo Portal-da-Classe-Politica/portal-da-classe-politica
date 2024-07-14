@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Heading, Text } from '../base';
 import { Divider } from '../Divider';
-import { BoxIconAwesome } from '../box/BoxIconAwesome';
+import { BoxIcon } from '../box/BoxIcon';
 import TextBetween from '../base/text/TextBetween';
 import { cleanString } from '@utils';
 import { ChipContainer } from '@components/ChipContainer';
@@ -37,20 +37,20 @@ const CandidateProfile = ({ src, candidate }: CandidateProfileProps) => {
         </div>
         <div className="flex flex-col-reverse md:flex-row gap-4">
           <div className="flex gap-4">
-            <BoxIconAwesome
-              iconType="Instagram"
+            <BoxIcon
+              icon="Instagram"
               size={9}
               iconSize="lg"
               className="bg-white border-orange border-[1px] text-orange rounded-md"
             />
-            <BoxIconAwesome
-              iconType="Twitter"
+            <BoxIcon
+              icon="Twitter"
               size={9}
               iconSize="lg"
               className="bg-white border-orange border-[1px] text-orange rounded-md"
             />
-            <BoxIconAwesome
-              iconType="Facebook"
+            <BoxIcon
+              icon="Facebook"
               size={9}
               iconSize="lg"
               className="bg-white border-orange border-[1px] text-orange rounded-md"

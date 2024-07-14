@@ -65,12 +65,12 @@ export const Select = ({
         className={`flex justify-center items-center px-2 ${buttonProps.className}`}
       >
         {prefixComponent}
-        <Text className="font-bold">{selectedOption?.label || placeholder}</Text>
+        <Text className="font-bold">{selectedOption?.label ?? placeholder}</Text>
         {suffixComponent}
       </ButtonStyled>
       {showOptions && (
         <div className="z-10 origin-top-right absolute w-full rounded-md shadow-lg bg-white">
-          <div className="">
+          <div>
             {options.map(option => (
               <div
                 key={option.value}

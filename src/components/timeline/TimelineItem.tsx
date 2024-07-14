@@ -1,21 +1,17 @@
 import { Heading, IconType, Text } from '../base';
-import { BoxIconAwesome } from '../box/BoxIconAwesome';
+import { BoxIcon } from '../box/BoxIcon';
 
 type TimelineItemProps = {
   title?: string;
   text: string;
-  vectorIconType?: IconType[];
+  icons?: IconType[];
 };
 
-const TimelineItem = ({ title, text, vectorIconType }: TimelineItemProps) => {
+const TimelineItem = ({ title, text, icons }: TimelineItemProps) => {
   return (
     <div className="max-w-[240px]">
-      <BoxIconAwesome
-        vectorIconType={vectorIconType}
-        className="bg-orange text-white m-auto"
-        size={32}
-        iconSize={'2x'}
-      />
+      <BoxIcon icons={icons} className="bg-orange text-white m-auto" size={32} iconSize={'2x'} />
+      <div></div>
       {title && (
         <Heading size="H4" className="text-orange font-bold mt-5">
           {title}

@@ -1,5 +1,7 @@
 import { Heading, IconType, Text } from './base';
-import { BoxIconAwesome } from './box/BoxIconAwesome';
+
+import { Box } from './box/Box';
+import { BoxIcon } from './box/BoxIcon';
 
 type CardIconTextProps = {
   title: string;
@@ -11,12 +13,13 @@ type CardIconTextProps = {
 const CardIconText = ({ title, text, customIcon, iconType }: CardIconTextProps) => {
   return (
     <div>
-      <BoxIconAwesome
-        customIcon={customIcon}
-        iconType={iconType}
-        className="bg-orange text-white"
-        size={12}
-      />
+      {iconType && <BoxIcon icon={iconType} className="bg-orange text-white" size={12} />}
+      {customIcon && (
+        <Box className="bg-orange text-white" size={12}>
+          {customIcon}
+        </Box>
+      )}
+
       <Heading size="S1" className="font-bold my-4" headingLevel={2}>
         {title}
       </Heading>

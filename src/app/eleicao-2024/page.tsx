@@ -1,5 +1,3 @@
-'use client';
-
 import Image from 'next/image';
 
 import { Constants } from '@constants';
@@ -170,35 +168,35 @@ const Page = () => {
               className="mt-16"
               items={[
                 {
-                  vectorIconType: ['One', 'Nine', 'Nine', 'Two'],
+                  icons: ['One', 'Nine', 'Nine', 'Two'],
                   text: 'A participação feminina era de apenas 7,4%',
                 },
                 {
-                  vectorIconType: ['One', 'Nine', 'Nine', 'Six'],
+                  icons: ['One', 'Nine', 'Nine', 'Six'],
                   text: 'A participação feminina vai a 11,2%',
                 },
                 {
-                  vectorIconType: ['Two', 'Zero', 'Zero', 'Zero'],
+                  icons: ['Two', 'Zero', 'Zero', 'Zero'],
                   text: 'A participação feminina atinge 11,6%',
                 },
                 {
-                  vectorIconType: ['Two', 'Zero', 'Zero', 'Four'],
+                  icons: ['Two', 'Zero', 'Zero', 'Four'],
                   text: 'A participação feminina chega a 12,65%A participação feminina chega a 12,65%',
                 },
                 {
-                  vectorIconType: ['Two', 'Zero', 'Zero', 'Eight'],
+                  icons: ['Two', 'Zero', 'Zero', 'Eight'],
                   text: 'A participação feminina declina para 12,51%',
                 },
                 {
-                  vectorIconType: ['Two', 'Zero', 'One', 'Two'],
+                  icons: ['Two', 'Zero', 'One', 'Two'],
                   text: 'A participação feminina vai a 13,3%',
                 },
                 {
-                  vectorIconType: ['Two', 'Zero', 'One', 'Six'],
+                  icons: ['Two', 'Zero', 'One', 'Six'],
                   text: 'A participação feminina atinge 13,5%',
                 },
                 {
-                  vectorIconType: ['Two', 'Zero', 'Two', 'Zero'],
+                  icons: ['Two', 'Zero', 'Two', 'Zero'],
                   text: 'A participação feminina alcança 16%',
                 },
               ]}
