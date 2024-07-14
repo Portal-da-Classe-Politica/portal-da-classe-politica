@@ -15,7 +15,7 @@ const cards = [
   { text: 'Pesquisas Eleitorais', src: '/img/consulta/PieChart.png  ' },
 ];
 
-const Page = () => {
+const Page = ({ searchParams }: { searchParams: { consulta: string | undefined } }) => {
   return (
     <main className="font-montserrat">
       <section className="bg-white pb-[45px] pt-4">
@@ -49,7 +49,7 @@ const Page = () => {
         </Container>
       </section>
 
-      <ConsultSection />
+      <ConsultSection initialConsult={String(searchParams.consulta)} />
 
       <section className="bg-grayMix1">
         <Container className="pt-24 pb-28">

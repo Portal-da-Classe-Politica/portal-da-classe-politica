@@ -139,7 +139,14 @@ const Filter = ({
   );
 };
 
-export const ConsultFilterBox = ({ onConsult }: FilterProps) => {
+export const ConsultFilterBox = ({
+  initialConsult,
+  onConsult,
+}: {
+  initialConsult?: string;
+  // eslint-disable-next-line no-unused-vars
+  onConsult: (filters: any) => void;
+}) => {
   const tabs = [
     { value: 'CandidateProfile', Comp: FilterCandidateProfile, title: 'Perfil dos', bold: 'Candidatos' },
     { value: 'ElectionResult', Comp: FilterElectionResult, title: 'Resultados das', bold: 'Eleições' },
@@ -148,9 +155,11 @@ export const ConsultFilterBox = ({ onConsult }: FilterProps) => {
     { value: 'ElectoralMaps', Comp: FilterElectoralMaps, title: 'Mapas', bold: 'Eleitorais' },
     { value: 'ElectoralResearch', Comp: FilterElectoralResearch, title: 'Pesquisas', bold: 'Eleitorais' },
   ];
+  const initialTab = tabs.findIndex(t => t.value === initialConsult);
 
   return (
     <CarouselTabs
+      initialTab={initialTab < 0 ? 0 : initialTab}
       tabs={tabs.map(({ title, bold }, idx) => (
         <div key={idx} className="flex">
           <Text className="text-nowrap mr-1">{title}</Text>

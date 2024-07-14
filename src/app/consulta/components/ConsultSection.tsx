@@ -11,7 +11,7 @@ import { Icon } from '@base/Icon';
 import { LineChartCard } from '@components/charts/LineChartCard';
 import { PieChartCard } from '@components/charts/PieChartCard';
 
-export const ConsultSection = () => {
+export const ConsultSection = ({ initialConsult }: { initialConsult: string }) => {
   const onConsult = (values: any) => {
     console.log(values);
   };
@@ -19,7 +19,7 @@ export const ConsultSection = () => {
   return (
     <section className="bg-grayMix1">
       <Container className="pt-16">
-        <ConsultFilterBox onConsult={onConsult} />
+        <ConsultFilterBox initialConsult={initialConsult} onConsult={onConsult} />
       </Container>
       <Container className="pt-16">
         <div className="flex">
