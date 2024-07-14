@@ -6,6 +6,7 @@ import { cva } from 'cva';
 import { routes } from '@routes';
 import { LogoIcon } from '../LogoIcon';
 import { Button, Icon, Text } from '../base';
+import { usePathname } from 'next/navigation';
 
 const variants = cva('', {
   variants: {
@@ -19,12 +20,31 @@ const variants = cva('', {
   },
 });
 
+const HeaderTopic = ({
+  label,
+  currentPath = '',
+  href,
+}: {
+  label: string;
+  currentPath: string;
+  href: string;
+}) => {
+  const selected = href === '/' ? currentPath === '/' : currentPath.startsWith(href);
+  return (
+    <Text size={'L2'} className={selected ? 'font-bold' : ''}>
+      {label}
+    </Text>
+  );
+};
+
 export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
   const classes = variants({ style });
   const logoType = style === 'light' ? 'white' : 'orange';
   const iconColor = style === 'light' ? 'text-white' : 'text-black';
 
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+
   const handleDrawer = () => {
     setIsOpen(!isOpen);
   };
@@ -58,35 +78,33 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
           </li>
           <li className={`ml-auto self-center mr-5 ${classes}`}>
             <Link href={routes.home}>
-              <Text size={'L2'} className="font-bold">
-                PÁGINA INICIAL
-              </Text>
+              <HeaderTopic label="PÁGINA INICIAL" href={routes.home} currentPath={pathname} />
             </Link>
           </li>
           <li className={`flex self-center ${classes} mr-5 inline justify-center items-center`}>
             <Link href={routes.consult}>
-              <Text size={'L2'}>CONSULTAS</Text>
+              <HeaderTopic label="CONSULTAS" href={routes.consult} currentPath={pathname} />
             </Link>
             <Icon type="ArrowDown" size="xs" className={`ml-1 ${iconColor}`} />
           </li>
           <li className={`self-center ${classes} mr-5`}>
             <Link href={routes.projections}>
-              <Text size={'L2'}>PROJEÇÕES</Text>
+              <HeaderTopic label="PROJEÇÕES" href={routes.projections} currentPath={pathname} />
             </Link>
           </li>
           <li className={`self-center ${classes} mr-5`}>
             <Link href={routes.candidates}>
-              <Text size={'L2'}>PERFIL DOS CANDIDATOS</Text>
+              <HeaderTopic label="PERFIL DOS CANDIDATOS" href={routes.candidates} currentPath={pathname} />
             </Link>
           </li>
           <li className={`self-center ${classes} mr-5`}>
             <Link href={routes.about}>
-              <Text size={'L2'}>SOBRE O PROJETO</Text>
+              <HeaderTopic label="SOBRE O PROJETO" href={routes.about} currentPath={pathname} />
             </Link>
           </li>
           <li className={`self-center ${classes} mr-5`}>
             <Link href={routes.blog}>
-              <Text size={'L2'}>BLOG</Text>
+              <HeaderTopic label="BLOG" href={routes.blog} currentPath={pathname} />
             </Link>
           </li>
           <li className={`self-center ${classes}`}>
@@ -121,38 +139,36 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
           <ul className="text-black flex flex-col justify-start pl-4 gap-3">
             <li className={`mt-12 mr-5`}>
               <Link href={routes.home}>
-                <Text size={'L2'} className="font-bold">
-                  PÁGINA INICIAL
-                </Text>
+                <HeaderTopic label="PÁGINA INICIAL" href={routes.home} currentPath={pathname} />
               </Link>
             </li>
             <li className={`flex `}>
               <Link href={routes.consult}>
-                <Text size={'L2'}>CONSULTAS</Text>
+                <HeaderTopic label="CONSULTAS" href={routes.consult} currentPath={pathname} />
               </Link>
               <Icon type="ArrowDown" size="sm" className="ml-1" />
             </li>
             <li className={`self-start mr-5`}>
               <Link href={routes.projections}>
-                <Text size={'L2'}>PROJEÇÕES</Text>
+                <HeaderTopic label="PROJEÇÕES" href={routes.projections} currentPath={pathname} />
               </Link>
             </li>
-            <li className={` mr-5`}>
+            <li className={`mr-5`}>
               <Link href={routes.candidates}>
-                <Text size={'L2'}>PERFIL DOS CANDIDATOS</Text>
+                <HeaderTopic label="PERFIL DOS CANDIDATOS" href={routes.candidates} currentPath={pathname} />
               </Link>
             </li>
-            <li className={` mr-5`}>
+            <li className={`mr-5`}>
               <Link href={routes.about}>
-                <Text size={'L2'}>SOBRE O PROJETO</Text>
+                <HeaderTopic label="SOBRE O PROJETO" href={routes.about} currentPath={pathname} />
               </Link>
             </li>
-            <li className={` mr-5`}>
+            <li className={`mr-5`}>
               <Link href={routes.blog}>
-                <Text size={'L2'}>BLOG</Text>
+                <HeaderTopic label="BLOG" href={routes.blog} currentPath={pathname} />
               </Link>
             </li>
-            <li className={``}>
+            <li>
               <Link href={routes.elections2024}>
                 <Button text="ELEIÇÕES 2024" style="fillBlack" />
               </Link>
