@@ -76,9 +76,7 @@ const Tertiary = ({ title, subTitle, href }: { title: string; subTitle: string; 
       <Link href={href}>
         <Text textType="span" size={'C1'} className="font-bold text-orange flex cursor-pointer">
           LEIA MAIS
-          <div className="ml-4">
-            <Icon type="ArrowRight" />
-          </div>
+          <Icon type="ArrowRight" className="ml-4" />
         </Text>
       </Link>
     </>

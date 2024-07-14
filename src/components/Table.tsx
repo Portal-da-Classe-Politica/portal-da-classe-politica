@@ -1,8 +1,9 @@
 import React from 'react';
-import { ButtonStyled, Icon, Loader, Text } from './base';
 import Link from 'next/link';
-import { routes } from '@routes';
 import ReactPaginate from 'react-paginate';
+
+import { ButtonStyled, Icon, Loader, Text } from './base';
+import { routes } from '@routes';
 
 export interface TableStructure {
   headers: {

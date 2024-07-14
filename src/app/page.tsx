@@ -69,6 +69,7 @@ const Home = () => {
           </div>
         </Container>
       </section>
+
       <section className=" pt-10 md:pt-[90px] pb-14 md:pb-[120px]">
         <Container>
           <div className=" md:max-w-[854px] mb-8">
@@ -129,6 +130,7 @@ const Home = () => {
           </div>
         </Container>
       </section>
+
       <section className="bg-orange py-10 md:py-[80px]">
         <Container>
           <div className="flex flex-col md:flex-row gap-4">
