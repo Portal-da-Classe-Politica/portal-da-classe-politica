@@ -6,6 +6,7 @@ import { BoxIcon } from '@components/box/BoxIcon';
 import { CarouselTabs } from '@components/CarouselTabs';
 import { DatePicker } from '@components/DatePicker';
 import { useObjReducer } from '@hooks/useObjReducer';
+import { consultSearchParam } from '@routes';
 
 interface FilterProps {
   // eslint-disable-next-line no-unused-vars
@@ -148,12 +149,42 @@ export const ConsultFilterBox = ({
   onConsult: (filters: any) => void;
 }) => {
   const tabs = [
-    { value: 'CandidateProfile', Comp: FilterCandidateProfile, title: 'Perfil dos', bold: 'Candidatos' },
-    { value: 'ElectionResult', Comp: FilterElectionResult, title: 'Resultados das', bold: 'Eleições' },
-    { value: 'PartyFiliation', Comp: FilterPartyFiliation, title: 'Filiação', bold: 'Partidária' },
-    { value: 'Financing', Comp: FilterFinancing, title: 'Financiamento de', bold: 'Campanha' },
-    { value: 'ElectoralMaps', Comp: FilterElectoralMaps, title: 'Mapas', bold: 'Eleitorais' },
-    { value: 'ElectoralResearch', Comp: FilterElectoralResearch, title: 'Pesquisas', bold: 'Eleitorais' },
+    {
+      value: consultSearchParam.CandidateProfile,
+      Comp: FilterCandidateProfile,
+      title: 'Perfil dos',
+      bold: 'Candidatos',
+    },
+    {
+      value: consultSearchParam.ElectionResult,
+      Comp: FilterElectionResult,
+      title: 'Resultados das',
+      bold: 'Eleições',
+    },
+    {
+      value: consultSearchParam.PartyFiliation,
+      Comp: FilterPartyFiliation,
+      title: 'Filiação',
+      bold: 'Partidária',
+    },
+    {
+      value: consultSearchParam.Financing,
+      Comp: FilterFinancing,
+      title: 'Financiamento de',
+      bold: 'Campanha',
+    },
+    {
+      value: consultSearchParam.ElectoralMaps,
+      Comp: FilterElectoralMaps,
+      title: 'Mapas',
+      bold: 'Eleitorais',
+    },
+    {
+      value: consultSearchParam.ElectoralResearch,
+      Comp: FilterElectoralResearch,
+      title: 'Pesquisas',
+      bold: 'Eleitorais',
+    },
   ];
   const initialTab = tabs.findIndex(t => t.value === initialConsult);
 
