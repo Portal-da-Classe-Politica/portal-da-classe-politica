@@ -26,24 +26,3 @@ body {
     margin-bottom: 5px;
   }
 }
-
-/* Input Radio Button */
-input[type='radio'] {
-  @apply w-[20px] h-[20px] bg-transparent rounded-full border border-2 border-orange shadow-sm p-0 m-1;
-  outline: none;
-  border-radius: 100%;
-}
-input[type='radio']:hover {
-  @apply bg-orange;
-}
-input[type='radio']:before {
-  content: '';
-  display: block;
-  width: 100%;
-  height: 100%;
-  border-radius: 100%;
-}
-input[type='radio']:checked:before {
-  @apply bg-orange;
-  border-radius: 100%;
-}
