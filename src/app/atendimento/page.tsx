@@ -1,9 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
-
-import { Constants } from '@constants';
-const { loremTitle, lorem } = Constants;
-
 import { ButtonStyled, Container, Heading, Text, Input, TextArea, TextParagraphImage } from '@base';
 import { Header } from '@components/sections/Header';
 import { LineItem } from '@components/LineItem';
@@ -107,7 +103,17 @@ const Atendimento = () => {
               <ButtonStyled style="fillOrange">Enviar </ButtonStyled>
             </div>
           </div>
-          <TextParagraphImage src="/img/Dados.svg" header={loremTitle} texts={[lorem]} />
+          <TextParagraphImage
+            link="/blog/promo-part"
+            src="/img/blog/smile.png"
+            header={
+              'A promoção da participação política das mulheres parcialmente realizada pelos partidos políticos'
+            }
+            texts={[
+              'Os partidos políticos desempenham um papel crucial na política, controlando recursos importantes como cargos, seleção de candidatos (as) e financiamento. Desde 2009, a legislação brasileira obriga os partidos a destinar pelo menos 5% do Fundo Partidário anual para incentivar a participação das mulheres na política. Desde 2015, essa lei tem sido aprimorada, exigindo que os recursos fossem geridos por secretarias de mulheres ou institutos liderados pela secretaria. Ainda que o repasse seja obrigatório, os partidos cumprem essa regra apenas parcialmente, no período de 2009 a 2021. A anistia dada pelos partidos a eles próprios, no caso do não cumprimento da lei, é uma forma de subverter as regras formais que buscam incluir mais mulheres na política. Enquanto isso, o papel de formação política acaba sendo ocupado por organizações sociais e think tanks.',
+            ]}
+            className="mb-28"
+          />
         </Container>
       </section>
     </main>
