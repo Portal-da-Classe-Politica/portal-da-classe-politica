@@ -9,6 +9,7 @@ import { BarChartCard } from '@components/charts/BarChartCard';
 import { ButtonStyled } from '@base/buttons';
 import { Icon } from '@base/Icon';
 import { LineChartCard } from '@components/charts/LineChartCard';
+import { PieChartCard } from '@components/charts/PieChartCard';
 
 export const ConsultSection = () => {
   const onConsult = (values: any) => {
@@ -59,6 +60,14 @@ export const ConsultSection = () => {
                 </div>
               </div>
             </div>
+
+            <PieChartCard
+              className="mt-12"
+              title="Lobortis celeris vulputate"
+              labels={['Team A', 'Team B', 'Team C', 'Team D', 'Team E']}
+              series={[900, 1000, 500, 700]}
+              topics={['consectetur adipis', 'ipsum sectetur adipis', 'ipsum sectetur adipis']}
+            />
 
             <BarChartCard
               className="mt-12"
