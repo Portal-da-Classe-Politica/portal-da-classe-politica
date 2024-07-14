@@ -4,7 +4,7 @@ import { Header } from '@components/sections/Header';
 import { BoxImageText } from '@components/box/BoxImageText';
 import { GetInContact } from '@components/sections/GetInContact';
 import { SpecialContents } from '@components/sections/SpecialContents';
-import { ConsultFilterBox } from './components/ConsultFilterBox';
+import { ConsultSection } from './components/ConsultSection';
 
 const cards = [
   { text: 'Perfil dos Candidatos', src: '/img/consulta/Profile.png' },
@@ -49,11 +49,7 @@ const Page = () => {
         </Container>
       </section>
 
-      <section className="bg-grayMix1">
-        <Container className="pt-16">
-          <ConsultFilterBox />
-        </Container>
-      </section>
+      <ConsultSection />
 
       <section className="bg-grayMix1">
         <Container className="pt-24 pb-28">

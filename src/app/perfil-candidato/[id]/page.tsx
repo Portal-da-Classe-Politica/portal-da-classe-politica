@@ -114,9 +114,7 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
 
         <section className="mt-20">
           <Container className="flex flex-col items-center">
-            <div className={`flex flex-col w-full max-h-[800px] p-12 bg-white drop-shadow-lg rounded-lg `}>
-              <LastElectionsChart title="Lobortis celeris vulputate" candidateId={id} />
-            </div>
+            <LastElectionsChart title="Lobortis celeris vulputate" candidateId={id} />
           </Container>
         </section>
 

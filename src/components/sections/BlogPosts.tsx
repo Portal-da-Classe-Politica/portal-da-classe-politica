@@ -58,12 +58,7 @@ const BlogPost = () => {
     <div className="flex  md:flex-row flex-col mt-4 gap-4">
       <div className="lg:w-[20%] md:w-[30%] w-full">
         <div className="flex">
-          <BoxIcon
-            iconType="Slider"
-            size={10}
-            iconSize="xl"
-            className="bg-white mr-2 text-orange shadow-lg"
-          />
+          <BoxIcon icon="Slider" size={10} iconSize="xl" className="bg-white mr-2 text-orange shadow-lg" />
           <Text className="font-bold self-center"> Filtros</Text>
         </div>
         <div>
