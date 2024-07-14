@@ -14,6 +14,7 @@ import Overlay from 'ol/Overlay';
 
 import { FeatureStyle } from './Styles';
 import { getCenter } from 'ol/extent';
+import { Tooltip } from './Tooltip';
 
 export interface MapComponentProps {
   state: string;
@@ -27,7 +28,7 @@ export const MapComponent = ({ state, candidateId }: MapComponentProps) => {
   const tooltipContainerRef = useRef<HTMLDivElement | null>(null);
   const tooltipOverlayRef = useRef<Overlay | null>(null);
 
-  const [tooltipProperties, setTooltipProperties] = useState<any | null>(null);
+  const [tooltipProperties, setTooltipProperties] = useState<any>(null);
   const [tooltipVisible, setTooltipVisible] = useState<boolean>(false);
 
   useEffect(() => {
@@ -88,8 +89,7 @@ export const MapComponent = ({ state, candidateId }: MapComponentProps) => {
     }
   }, [state, candidateId]);
 
-  const tooltipPortal =
-    tooltipVisible && tooltipProperties ? <h1>{JSON.stringify(tooltipProperties)}</h1> : null;
+  const tooltipPortal = tooltipVisible && tooltipProperties ? <Tooltip {...tooltipProperties} /> : null;
 
   return (
     <>

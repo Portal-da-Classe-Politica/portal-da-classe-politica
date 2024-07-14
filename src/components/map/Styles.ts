@@ -12,7 +12,7 @@ export const FeatureStyle = (feature: FeatureLike, _: number) => {
     }),
     stroke: new Stroke({
       color: '#ED7451',
-      width: 2,
+      width: 1,
     }),
   });
 };
