@@ -51,23 +51,25 @@ const filters = [
 const FilterSidebar = () => {
   return (
     <div>
-      <div className="flex items-center mb-8">
+      <label htmlFor="toggle" className="flex items-center mb-8 cursor-pointer md:cursor-default">
         <BoxIcon icon="Filter" iconSize="lg" className="bg-white shadow-lg text-orange" />
         <Text className="font-bold ml-2 text-center">Filtros</Text>
+      </label>
+      <input type="checkbox" id="toggle" className="hidden" />
+      <div className="hidden-button overflow-hidden opacity-0 md:opacity-100 transition-all duration-500 md:max-h-max max-h-0">
+        {filters.map(({ title, options, group }, idx) => (
+          <div key={idx} className="mb-6">
+            <h3 className="font-semibold mb-2">{title}</h3>
+            {options.map(({ value, label }) => (
+              <Radio key={value} id={`${group}-${value}`} name={group} value={value} label={label} />
+            ))}
+          </div>
+        ))}
+
+        <ButtonStyled style="outlinedOrange" className="!bg-transparent hover:!text-orangeLight2">
+          <Text>Aplicar Filtro</Text>
+        </ButtonStyled>
       </div>
-
-      {filters.map(({ title, options, group }, idx) => (
-        <div key={idx} className="mb-6">
-          <h3 className="font-semibold mb-2">{title}</h3>
-          {options.map(({ value, label }) => (
-            <Radio key={value} id={`${group}-${value}`} name={group} value={value} label={label} />
-          ))}
-        </div>
-      ))}
-
-      <ButtonStyled style="outlinedOrange">
-        <Text>Aplicar Filtro</Text>
-      </ButtonStyled>
     </div>
   );
 };

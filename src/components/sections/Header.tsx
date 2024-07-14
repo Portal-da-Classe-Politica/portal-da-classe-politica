@@ -5,20 +5,24 @@ import { cva } from 'cva';
 
 import { routes } from '@routes';
 import { LogoIcon } from '../LogoIcon';
-import { Button, Icon, Text } from '../base';
-import { usePathname } from 'next/navigation';
+import { Button, Icon, Select, Text } from '../base';
+import { usePathname, useRouter } from 'next/navigation';
 
 const variants = cva('', {
   variants: {
     style: {
-      light: 'text-white',
-      dark: 'text-black',
+      light: '!text-white',
+      dark: '!text-black',
     },
   },
   defaultVariants: {
     style: 'light',
   },
 });
+
+const verifyPathSelect = (href: any, currentPath: any) => {
+  return href === '/' ? currentPath === '/' : currentPath.startsWith(href);
+};
 
 const HeaderTopic = ({
   label,
@@ -29,7 +33,7 @@ const HeaderTopic = ({
   currentPath: string;
   href: string;
 }) => {
-  const selected = href === '/' ? currentPath === '/' : currentPath.startsWith(href);
+  const selected = verifyPathSelect(href, currentPath);
   return (
     <Text size={'L2'} className={selected ? 'font-bold' : ''}>
       {label}
@@ -42,6 +46,7 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
   const logoType = style === 'light' ? 'white' : 'orange';
   const iconColor = style === 'light' ? 'text-white' : 'text-black';
 
+  const router = useRouter();
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -71,7 +76,7 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
 
   return (
     <>
-      <nav className="hidden xl:block overflow-hidden">
+      <nav className="hidden xl:block ">
         <ul className="flex">
           <li>
             <LogoIcon type={logoType} />
@@ -82,10 +87,30 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
             </Link>
           </li>
           <li className={`flex self-center ${classes} mr-5 inline justify-center items-center`}>
-            <Link href={routes.consult}>
-              <HeaderTopic label="CONSULTAS" href={routes.consult} currentPath={pathname} />
-            </Link>
-            <Icon type="ArrowDown" size="xs" className={`ml-1 ${iconColor}`} />
+            {/* <HeaderTopic label="CONSULTAS" href={routes.consult} currentPath={pathname} /> */}
+            <Select
+              className="p-0"
+              placeholder="CONSULTA"
+              staticOptions
+              options={[
+                { value: routes.consultCandidateProfile, label: 'Perfil dos Candidatos' },
+                { value: routes.consultElectionResult, label: 'Resultados das Eleições' },
+                { value: routes.consultPartyFiliation, label: 'Filiação Partidária' },
+                { value: routes.consultFinancing, label: 'Financiamento de Campanha' },
+                { value: routes.consultElectoralMaps, label: 'Mapas Eleitorais' },
+                { value: routes.consultElectoralResearch, label: 'Pesquisas Eleitorais' },
+              ]}
+              onSelect={(myValue, _) => {
+                router.push(myValue as string);
+                router.refresh();
+              }}
+              buttonProps={{
+                size: 'small',
+                style: 'ghostBlack',
+                className: `${classes} ${verifyPathSelect(routes.consult, pathname) ? '!font-bold' : ''} hover:!bg-transparent`,
+              }}
+              suffixComponent={<Icon type="ArrowDown" size="xs" className={`ml-1 ${iconColor}`} />}
+            />
           </li>
           <li className={`self-center ${classes} mr-5`}>
             <Link href={routes.projections}>

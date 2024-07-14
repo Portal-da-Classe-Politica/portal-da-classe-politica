@@ -117,31 +117,29 @@ const BlogPost = () => {
       </div>
       <div className="lg:w-[80%] md:w-[70%] w-full">
         <div className="justify-end flex">
-          {blogPost.length > 0 && (
-            <div className="mb-4">
-              <div className=" w-[120px] inline-block">
-                <Text textType="span" size="L1" className="mr-2 w-full">
-                  Ordenar por:
-                </Text>
-              </div>
-              <div className="inline-block">
-                <Select
-                  defaultValue="Alfabética A-Z"
-                  placeholder="Alfabética A-Z"
-                  options={[
-                    { label: 'Alfabética A-Z', value: 'cres' },
-                    { label: 'Alfabética Z-A', value: 'decr' },
-                  ]}
-                  onSelect={val => setFilterType(val as string)}
-                  buttonProps={{
-                    style: 'ghostOrange',
-                    className: 'py-[4px] px-[4px] bg-white drop-shadow-md',
-                  }}
-                  suffixComponent={<Icon type="ArrowDown" className="ml-2  " />}
-                />
-              </div>
+          <div className="mb-4">
+            <div className=" w-[120px] inline-block">
+              <Text textType="span" size="L1" className="mr-2 w-full">
+                Ordenar por:
+              </Text>
             </div>
-          )}
+            <div className="inline-block">
+              <Select
+                defaultValue="Alfabética A-Z"
+                placeholder="Alfabética A-Z"
+                options={[
+                  { label: 'Alfabética A-Z', value: 'cres' },
+                  { label: 'Alfabética Z-A', value: 'decr' },
+                ]}
+                onSelect={val => setFilterType(val as string)}
+                buttonProps={{
+                  style: 'ghostOrange',
+                  className: 'py-[4px] px-[4px] bg-white drop-shadow-md',
+                }}
+                suffixComponent={<Icon type="ArrowDown" className="ml-2  " />}
+              />
+            </div>
+          </div>
         </div>
         <div className="inline-flex flex-1 flex-wrap gap-4 lg:justify-center justify-center">
           {blogPost.sort(sortedMethod).map((values: any, index: number) => {

@@ -22,17 +22,17 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
         <ConsultFilterBox initialConsult={initialConsult} onConsult={onConsult} />
       </Container>
       <Container className="pt-16">
-        <div className="flex">
-          <div className="w-[25%]">
+        <div className="flex flex-col md:flex-row">
+          <div className="w-full md:w-[25%]">
             <FilterSidebar />
           </div>
-          <div className="w-[75%]">
+          <div className="w-full md:w-[75%]">
             <div className="bg-white rounded-xl shadow-xl p-8">
               <Heading headingLevel={2} size="H1" className="font-bold">
                 Sitamet massa lobortis celeris ue vulputate mollis
               </Heading>
-              <div className="flex justify-between">
-                <div className="flex gap-2 mt-4">
+              <div className="flex flex-col md:flex-row justify-between">
+                <div className="flex flex-col md:flex-row gap-2 mt-4">
                   <div>
                     <Heading headingLevel={2} size="H2" className="font-bold text-orange">
                       303%
@@ -45,7 +45,7 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet{' '}
                   </Text>
                 </div>
-                <div className="flex gap-2 mt-4">
+                <div className="flex flex-col md:flex-row gap-2 mt-4">
                   <div>
                     <Heading headingLevel={2} size="H2" className="font-bold text-orange">
                       +1042
@@ -93,7 +93,7 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
               ]}
             />
 
-            <div className="flex gap-4 mt-4 md:mt-16 mb-8 md:mb-16">
+            <div className="flex flex-col md:flex-row gap-4 mt-4 md:mt-16 mb-8 md:mb-16">
               <ButtonStyled>
                 <>
                   <Icon type="Download" className="mx-2" size="xl" />

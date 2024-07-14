@@ -91,7 +91,7 @@ const Filter = ({
     <div className="text-white">
       <Text>{description}</Text>
 
-      <div className="flex gap-8 my-8">
+      <div className="flex flex-col xl:flex-row gap-8 my-8">
         <ButtonStyled style="fillBlack" size="small">
           <Text className="font-normal border-white border-r-2 pr-2" textType="span">
             Categoria
@@ -100,36 +100,43 @@ const Filter = ({
             {category}
           </Text>
         </ButtonStyled>
-
-        <Select
-          options={[
-            { label: 'Resultados das Eleições', value: '1' },
-            { label: 'Filiação Partidária', value: '2' },
-            { label: 'Financiamento de Campanha', value: '3' },
-            { label: 'Mapas Eleitorais', value: '4' },
-            { label: 'Pesquisas Eleitorais', value: '5' },
-          ]}
-          placeholder="Sem cruzamento"
-          buttonProps={{ style: 'fillGray', className: 'px-[8px] w-full' }}
-          prefixComponent={
-            <>
-              <BoxIcon
-                icon="Table"
-                size={6}
-                iconSize="sm"
-                className="bg-white text-orange drop-shadow-md rounded-md mr-2"
-              />
-              <Text className="font-normal border-black border-r-2 pr-2 mr-2" textType="span">
-                Categoria
-              </Text>
-            </>
-          }
-          suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
-          onSelect={category => setValues({ category })}
-        />
-
-        <DatePicker onSelectEnd={end => setValues({ end })} onSelectStart={start => setValues({ start })} />
-
+        <div className="flex flex-col md:flex-row gap-8">
+          <div className="!grow">
+            <Select
+              options={[
+                { label: 'Resultados das Eleições', value: '1' },
+                { label: 'Filiação Partidária', value: '2' },
+                { label: 'Financiamento de Campanha', value: '3' },
+                { label: 'Mapas Eleitorais', value: '4' },
+                { label: 'Pesquisas Eleitorais', value: '5' },
+              ]}
+              placeholder="Sem cruzamento"
+              className="inline"
+              buttonProps={{ style: 'fillGray', className: 'px-[8px] w-full' }}
+              prefixComponent={
+                <>
+                  <BoxIcon
+                    icon="Table"
+                    size={6}
+                    iconSize="sm"
+                    className="bg-white text-orange drop-shadow-md rounded-md mr-2"
+                  />
+                  <Text className="font-normal border-black border-r-2 pr-2 mr-2" textType="span">
+                    Categoria
+                  </Text>
+                </>
+              }
+              suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
+              onSelect={category => setValues({ category })}
+            />
+          </div>
+          <div className="grow md:self-center">
+            <DatePicker
+              onSelectEnd={end => setValues({ end })}
+              onSelectStart={start => setValues({ start })}
+            />
+          </div>
+        </div>
         <ButtonStyled style="fillBlack" size="small" onClick={() => onConsult(values)}>
           <Text>Gerar Cruzamento</Text>
         </ButtonStyled>

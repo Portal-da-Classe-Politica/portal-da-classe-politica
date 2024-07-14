@@ -24,11 +24,11 @@ export const DatePicker = ({
   const [endDate, setEndDate] = useState<number>(years[years.length - 1].value);
 
   return (
-    <div className="bg-[#EDEDED] py-1 px-2 rounded-md flex text-black">
+    <div className="bg-[#EDEDED] py-1 px-2 rounded-md flex  justify-center text-orange">
       <div className="flex justify-center items-center">
         <BoxIcon icon="Calendar" size={8} iconSize="xl" className="bg-white mr-2 shadow-xl" />
       </div>
-      <div className="flex flex-col justify-center">
+      <div className="flex flex-col justify-center text-black">
         <Text size="C2" className="text-grayLight3">
           Período
         </Text>

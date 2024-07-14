@@ -50,6 +50,7 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
               <div className="w-full lg:w-[270px]">
                 <Select
                   placeholder="Selecionar Estado"
+                  className="w-full"
                   options={filters.estados}
                   buttonProps={{ style: 'fillGray', className: 'px-[8px] w-full' }}
                   prefixComponent={
@@ -65,6 +66,7 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
                 <Select
                   placeholder="Selecionar Cargo"
                   options={filters.cargos}
+                  className="w-full"
                   buttonProps={{ style: 'fillGray', className: 'px-[8px] w-full' }}
                   prefixComponent={
                     <Text textType="span" size="B1" className="font-normal mr-2">

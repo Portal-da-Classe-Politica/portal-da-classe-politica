@@ -64,14 +64,14 @@ export const BarChartCard = ({
 
   return (
     <div
-      className={`flex flex-col w-full max-h-[800px] p-12 bg-white drop-shadow-lg rounded-lg ${className}`}
+      className={`flex flex-col w-full max-h-[800px] p-3 md:p-12 bg-white drop-shadow-lg rounded-lg ${className}`}
     >
       <div className="w-full">
         <Heading headingLevel={2} className="text-grayMix4 my-4">
           {title}
         </Heading>
         <Chart series={series} type="bar" options={options} height={300} />
-        <div className="flex gap-8 mt-8">
+        <div className="flex flex-col md:flex-row gap-8 mt-8">
           {metaData.map(({ value, label }, idx) => (
             <div key={idx} className="flex flex-col">
               <Heading headingLevel={3} size="H3" className="font-bold">

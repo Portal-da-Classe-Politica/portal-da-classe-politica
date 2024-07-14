@@ -17,10 +17,7 @@ const Page = async () => {
         </Container>
       </section>
 
-      <SearchSection
-        title="Lorem ipsum dolor sit consectetur adipiscing elit. Suspendisse non odio amet massa lobortis."
-        filters={filters}
-      />
+      <SearchSection title="Procure seu candidato" filters={filters} />
 
       <GetInContact />
     </main>

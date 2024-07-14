@@ -26,3 +26,9 @@ body {
     margin-bottom: 5px;
   }
 }
+
+#toggle:checked ~ .hidden-button {
+  display: inline-block;
+  opacity: 1;
+  max-height: 1000px;
+}
