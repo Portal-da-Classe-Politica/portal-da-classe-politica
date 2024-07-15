@@ -4,7 +4,7 @@ import {
   faFacebook,
   faInstagram,
   faLinkedin,
-  faTwitterSquare,
+  faSquareXTwitter,
   faYoutube,
 } from '@fortawesome/free-brands-svg-icons';
 import {
@@ -68,7 +68,7 @@ const sourceMap = {
   Instagram: faInstagram,
   Facebook: faFacebook,
   LinkedIn: faLinkedin,
-  Twitter: faTwitterSquare,
+  Twitter: faSquareXTwitter,
   YouTube: faYoutube,
 
   // Arrows
