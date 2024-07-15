@@ -4,6 +4,7 @@ import { GetInContact } from '@components/sections/GetInContact';
 import Image from 'next/image';
 import { Divider } from '@components/Divider';
 import { SpecialContents } from '@components/sections/SpecialContents';
+import Avatar from '@components/Avatar';
 
 const Page = () => {
   return (
@@ -140,6 +141,14 @@ const Page = () => {
               E o mínimo de 30% do FEFC e da parcela do Fundo Partidário destinada às eleições para campanhas
               de candidatas mulheres.
             </Text>
+          </div>
+          <div className="w-full mt-6">
+            <Avatar
+              type="left"
+              src="/img/author/karolina.png"
+              title="Karolina Roeder"
+              text=" Doutora em Ciência Política pela UFPR, professora de Ciência Política na UNINTER e pesquisadora do INCT Representação e Legitimidade Democrática ReDem. Pesquisa partidos políticos, estrutura, financiamento e atualmente tem como foco o impacto de instituições formais e informais na representação de mulheres na política."
+            />
           </div>
         </Container>
       </section>

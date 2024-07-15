@@ -2,6 +2,7 @@ import { Container, Heading, Text } from '@base';
 import { Header } from '@components/sections/Header';
 import { GetInContact } from '@components/sections/GetInContact';
 import { SpecialContents } from '@components/sections/SpecialContents';
+import Avatar from '@components/Avatar';
 
 const Page = () => {
   return (
@@ -190,6 +191,14 @@ const Page = () => {
             participação feminina nos partidos e a chance de adesão às cotas. Gênero e Eleições. (no prelo).
             2024.
           </Text>
+          <div className="w-full mt-6">
+            <Avatar
+              type="left"
+              src="/img/author/maria.png"
+              title="Karolina Roeder"
+              text="Doutora em Ciência Política pela Universidade Federal do Paraná. Pesquisadora de pós-doutorado no INCT Representação e Legitimidade Democrática (ReDem). Interessada nos temas participação política de mulheres, financiamento de campanha e gênero e teoria política feminista."
+            />
+          </div>
         </Container>
       </section>
       <section className="mt-6 mb-20">
