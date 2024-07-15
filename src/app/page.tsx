@@ -1,4 +1,4 @@
-import { Container, Heading, Display, Text, ButtonStyled } from '@base';
+import { Container, Heading, Display, Text } from '@base';
 import { BoxFerramenta } from '@components/box/BoxFerramenta';
 import { BoxData } from '@components/box/BoxData';
 import { CardPost } from '@components/CardPost';
@@ -145,11 +145,6 @@ const Home = () => {
                   fiscalização por parte da sociedade. Para contribuir com esses objetivos, empreendemos
                   grandes esforços tratar e analisar uma quantidade enorme de informações.
                 </Text>
-                <ButtonStyled style="fillBlack">
-                  <Text size={'C1'} className="font-bold">
-                    Saiba mais
-                  </Text>
-                </ButtonStyled>
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px]	flex-1">
