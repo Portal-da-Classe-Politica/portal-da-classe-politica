@@ -53,6 +53,7 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
         setSearch({ abrangency: data[0].value });
         setAbrangencyFilter(data);
       });
+    // eslint-disable-next-line
   }, []);
 
   const preSelectAbrangency = () => {
