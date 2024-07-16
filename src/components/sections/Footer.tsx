@@ -45,14 +45,28 @@ export const Footer = () => {
         <div className="flex flex-col lg:flex-row py-[90px] gap-10">
           <div className=" lg:max-w-[340px] lg:mr-[160px]">
             <Image src="/img/Logo.svg" alt="Logo" width={154} height={80} />
-            <Text className="text-[18px] my-6">
-              Lorem ipsum dolor sit amet consectetur adipiscing elit aliquam mauris sed ma
-            </Text>
+            <Text className="text-[18px] my-6">Representação e Legitimidade Democrática</Text>
             <div className="flex gap-4">
-              <BoxIcon icon="Facebook" iconSize="lg" className="bg-orange" />
-              <BoxIcon icon="Twitter" iconSize="lg" className="bg-orange" />
-              <BoxIcon icon="LinkedIn" iconSize="lg" className="bg-orange" />
-              <BoxIcon icon="YouTube" iconSize="lg" className="bg-orange" />
+              <a
+                target="_blank"
+                href="https://www.facebook.com/people/INCT-ReDem/61552965411509/ "
+                className="cursor-pointer"
+              >
+                <BoxIcon icon="Facebook" iconSize="lg" className="bg-orange" />
+              </a>
+              <a target="_blank" href="https://x.com/INCT_ReDem " className="cursor-pointer">
+                <BoxIcon icon="Twitter" iconSize="lg" className="bg-orange" />
+              </a>
+              <a
+                target="_blank"
+                href="https://www.linkedin.com/company/inct-redem-representa%C3%A7%C3%A3o-e-legitimidade-democr%C3%A1tica/"
+                className="cursor-pointer"
+              >
+                <BoxIcon icon="LinkedIn" iconSize="lg" className="bg-orange" />
+              </a>
+              <a target="_blank" href="https://www.instagram.com/redem.inct/" className="cursor-pointer">
+                <BoxIcon icon="Instagram" iconSize="lg" className="bg-orange" />
+              </a>
             </div>
           </div>
 

@@ -19,6 +19,7 @@ export const Select = ({
   prefixComponent,
   suffixComponent,
   staticOptions = false,
+  disabled = false,
 }: {
   options: Option[];
   defaultValue?: number | string;
@@ -31,6 +32,7 @@ export const Select = ({
   prefixComponent?: React.ReactNode;
   suffixComponent?: React.ReactNode;
   staticOptions?: boolean;
+  disabled?: boolean;
 }) => {
   const [selectedOption, setSelectedOption] = useState(options.find(op => op.value === defaultValue));
   const [showOptions, setShowOptions] = useState<boolean>(false);
@@ -72,7 +74,7 @@ export const Select = ({
         </Text>
         {suffixComponent}
       </ButtonStyled>
-      {showOptions && (
+      {showOptions && !disabled && (
         <div className="z-10 origin-top-right absolute w-full rounded-md shadow-lg bg-white max-h-[300px] overflow-y-auto">
           <div>
             {options.map(option => (

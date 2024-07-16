@@ -1121,7 +1121,7 @@ export const CandidateApiAxiosParamCreator = function (configuration?: Configura
       }
 
       if (uF !== undefined) {
-        localVarQueryParameter['UF'] = uF;
+        localVarQueryParameter['uf'] = uF;
       }
 
       if (abrangencyId !== undefined) {

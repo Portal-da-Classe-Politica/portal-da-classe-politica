@@ -5,25 +5,33 @@ import TableComponent from '@components/Table';
 import { Divider } from '@components/Divider';
 import { useObjReducer } from '@hooks/useObjReducer';
 import { cleanString } from '@utils/cleanString';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { routes } from '@routes';
 
 export const SearchSection = ({ title, filters }: { title: string; filters: any }) => {
-  const [search, setSearch] = useObjReducer({ uf: '', job: '', name: '' });
+  const [search, setSearch] = useObjReducer({ uf: '', name: '', abrangency: '', city: '' });
   // const [page, setPage] = useState(1);
   const [result, setResult] = useState<any>([]);
+  const [cities, setCities] = useState([]);
+  const [abrangencyFilter, setAbrangencyFilter] = useState<
+    {
+      label: string;
+      value: string;
+      description: string;
+    }[]
+  >([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
 
   const onSearch = (page = 1) => {
     if (!loading) {
       setLoading(true);
-      console.log('chamaa', page);
+      console.log('chamaa', search.name, search.uf, page);
       setCurrentPage(page);
-      fetch(`/api/candidates?name=${search.name}&uf=${search.uf}&page=${page}`)
+
+      fetch(`/api/candidates?name=${search.name}&uf=${search.uf}&page=${page}&electoralUnitId=${search.city}`)
         .then(res => {
-          console.log('resp', res);
           return res.json();
         })
         .then(data => {
@@ -36,6 +44,33 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
     }
   };
 
+  useEffect(() => {
+    fetch('/api/abrangency')
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        setSearch({ abrangency: data[0].value });
+        setAbrangencyFilter(data);
+      });
+  }, []);
+
+  const preSelectAbrangency = () => {
+    return abrangencyFilter.filter(myAbra => String(myAbra?.value) === search.abrangency)[0]?.label;
+  };
+
+  useEffect(() => {
+    if (search.abrangency === '2' && search.uf) {
+      fetch(`/api/electoralUnit?abrangecyId=${search.abrangency}&uf=${search.uf}`)
+        .then(res => {
+          return res.json();
+        })
+        .then(data => {
+          setCities(data);
+        });
+    }
+  }, [search.uf, search.abrangency]);
+
   return (
     <>
       <section className="pb-[45px]">
@@ -45,9 +80,24 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
               {title}
             </Heading>
           </div>
-          <div className="flex flex-col lg:flex-row gap-2 items-center mt-16">
+          <div className="flex flex-col gap-2 items-center mt-16">
             <div className="flex flex-col md:flex-row gap-2 items-center text-center w-full">
-              <div className="w-full lg:w-[270px]">
+              <div className="w-full ">
+                <Select
+                  placeholder={search.abrangency ? preSelectAbrangency() || '' : 'Selecionar Abrangencia'}
+                  className="w-full"
+                  options={abrangencyFilter}
+                  buttonProps={{ style: 'fillGray', className: 'px-[8px] w-full' }}
+                  prefixComponent={
+                    <Text textType="span" size="B1" className="font-normal mr-2">
+                      Abrangencia |
+                    </Text>
+                  }
+                  suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
+                  onSelect={value => setSearch({ abrangency: String(value) })}
+                />
+              </div>
+              <div className="w-full ">
                 <Select
                   placeholder="Selecionar Estado"
                   className="w-full"
@@ -62,21 +112,24 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
                   onSelect={value => setSearch({ uf: String(value) })}
                 />
               </div>
-              <div className="w-full lg:w-[270px]">
-                <Select
-                  placeholder="Selecionar Cargo"
-                  options={filters.cargos}
-                  className="w-full"
-                  buttonProps={{ style: 'fillGray', className: 'px-[8px] w-full' }}
-                  prefixComponent={
-                    <Text textType="span" size="B1" className="font-normal mr-2">
-                      Cargo |{' '}
-                    </Text>
-                  }
-                  suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
-                  onSelect={value => setSearch({ job: String(value) })}
-                />
-              </div>
+              {search.abrangency === '2' && (
+                <div className="w-full ">
+                  <Select
+                    placeholder="Selecionar Cidade"
+                    disabled={search.uf ? false : true}
+                    options={cities}
+                    className="w-full"
+                    buttonProps={{ style: 'fillGray', className: 'px-[8px] w-full' }}
+                    prefixComponent={
+                      <Text textType="span" size="B1" className="font-normal mr-2">
+                        Cidade |{' '}
+                      </Text>
+                    }
+                    suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
+                    onSelect={value => setSearch({ city: String(value) })}
+                  />
+                </div>
+              )}
             </div>
             <Input
               className="py-3"
