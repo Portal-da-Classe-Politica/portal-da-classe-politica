@@ -1,0 +1,20 @@
+#!/usr/bin/env sh
+
+echo "Hook | pre-commit | Start"
+
+stagedFiles="$(git diff --cached --name-only --diff-filter=d HEAD)"
+filesToFormat=$(echo "$stagedFiles" | grep -E "\.(ts|tsx|js|jsx|json)$" | xargs)
+
+if [ -n "$filesToFormat" ]; then
+  echo "Hook | pre-commit | Running prettier..."
+  npm run hooks:prettier -- $filesToFormat
+fi
+
+if [ -n "$filesToFormat" ]; then
+  echo "Hook | pre-commit | Adding files..."
+  echo "$stagedFiles" | xargs -L1 git add
+fi
+
+npm run lint
+
+echo "Hook | pre-commit | End"
