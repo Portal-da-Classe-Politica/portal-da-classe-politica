@@ -2,13 +2,12 @@ import { ElectoralUnitService } from '@services/electoralUnit/ElectoralUnitServi
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
-  const id = req.nextUrl.searchParams.get('abrangecyId') || '';
-  const uf = req.nextUrl.searchParams.get('uf') || '';
+  const abrangecyId = req.nextUrl.searchParams.get('abrangecyId') ?? '';
+  const uf = req.nextUrl.searchParams.get('uf') ?? '';
+  console.info('get:electoralUnit', { abrangecyId, uf });
 
-  console.log({ id });
-
-  const data = await ElectoralUnitService.getElectoralUnit(id, uf);
-  console.log('meu data', { data });
+  const data = await ElectoralUnitService.getElectoralUnit(abrangecyId, uf);
+  console.info('get:electoralUnit', { data });
 
   return NextResponse.json(data);
 }

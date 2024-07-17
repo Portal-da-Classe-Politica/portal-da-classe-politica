@@ -3,7 +3,7 @@ import { redem } from '../redem';
 export const getCandidateLastElectionVoteByRegion = async (id: string) => {
   try {
     const response = await redem.candidate.getCandidateLastElectionVoteByRegion(id);
-    console.log('getCandidateLastElectionVoteByRegion', response?.data);
+    console.info('getCandidateLastElectionVoteByRegion', response?.data);
 
     return response?.data?.data || [];
   } catch (error) {
