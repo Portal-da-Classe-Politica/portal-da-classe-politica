@@ -1,3 +1,4 @@
+import { logError } from '@utils';
 import { redem } from '../redem';
 
 export const getFilters = async () => {
@@ -8,7 +9,7 @@ export const getFilters = async () => {
       cargos: filterToOptions(response.data.data?.cargos || [], 'id', 'nome_cargo'),
     };
   } catch (error) {
-    console.error('Failed to get Candidate Filters', error);
+    logError('Failed to getFilters', error as Error);
     return { estados: [], cargos: [] };
   }
 };

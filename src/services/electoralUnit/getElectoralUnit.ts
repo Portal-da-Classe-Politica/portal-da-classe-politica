@@ -1,3 +1,4 @@
+import { logError } from '@utils';
 import { redem } from '../redem';
 
 export const getElectoralUnit = async (id: string, uf: string) => {
@@ -12,7 +13,7 @@ export const getElectoralUnit = async (id: string, uf: string) => {
 
     return transformedData || [];
   } catch (error) {
-    console.error('Failed to get electoral unit', error);
+    logError('Failed to getElectoralUnit', error as Error);
     return [];
   }
 };

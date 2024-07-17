@@ -8,10 +8,10 @@ import { cleanString } from '@utils/cleanString';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { routes } from '@routes';
+import { Constants } from '@constants';
 
 export const SearchSection = ({ title, filters }: { title: string; filters: any }) => {
   const [search, setSearch] = useObjReducer({ uf: '', name: '', abrangency: '', city: '' });
-  // const [page, setPage] = useState(1);
   const [result, setResult] = useState<any>([]);
   const [cities, setCities] = useState([]);
   const [abrangencyFilter, setAbrangencyFilter] = useState<
@@ -27,7 +27,6 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
   const onSearch = (page = 1) => {
     if (!loading) {
       setLoading(true);
-      console.log('chamaa', search.name, search.uf, page);
       setCurrentPage(page);
 
       fetch(`/api/candidates?name=${search.name}&uf=${search.uf}&page=${page}&electoralUnitId=${search.city}`)
@@ -61,7 +60,7 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
   };
 
   useEffect(() => {
-    if (search.abrangency === '2' && search.uf) {
+    if (search.abrangency === Constants.abrangency.municipal && search.uf) {
       fetch(`/api/electoralUnit?abrangecyId=${search.abrangency}&uf=${search.uf}`)
         .then(res => {
           return res.json();
@@ -113,7 +112,7 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
                   onSelect={value => setSearch({ uf: String(value) })}
                 />
               </div>
-              {search.abrangency === '2' && (
+              {search.abrangency === Constants.abrangency.municipal && (
                 <div className="w-full ">
                   <Select
                     placeholder="Selecionar Cidade"

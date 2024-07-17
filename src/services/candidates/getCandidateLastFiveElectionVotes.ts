@@ -1,3 +1,4 @@
+import { logError } from '@utils';
 import { redem } from '../redem';
 
 export const getCandidateLastFiveElectionVotes = async (id: string) => {
@@ -7,7 +8,7 @@ export const getCandidateLastFiveElectionVotes = async (id: string) => {
 
     return response?.data?.data || [];
   } catch (error) {
-    console.error('Failed to getCandidateLastFiveElectionVotes', error);
+    logError('Failed to getCandidateLastFiveElectionVotes', error as Error);
     return [];
   }
 };

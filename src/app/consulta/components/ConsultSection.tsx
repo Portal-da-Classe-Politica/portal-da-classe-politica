@@ -72,8 +72,8 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
             <BarChartCard
               className="mt-12"
               title="Lobortis celeris vulputate"
-              categories={['Ipsum dolorsit', 'Lorem adipis', 'Lorem adipis', 'Lorem adipis']}
-              series={[{ name: 'Ipsum dolorsit', data: [900, 1000, 500, 700] }]}
+              categories={['Candidato A', 'Candidato B', 'Candidato C', 'Candidato D']}
+              series={[{ name: 'votos', data: [900, 1000, 500, 700] }]}
               metaData={[
                 { value: '+35%', label: 'consectetur adipis' },
                 { value: '+17%', label: 'ipsum sectetur adipis' },

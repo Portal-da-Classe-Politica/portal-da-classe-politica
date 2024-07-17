@@ -1,3 +1,4 @@
+import { logError } from '@utils';
 import { redem } from '../redem';
 
 export const getCandidateById = async (id: string) => {
@@ -7,7 +8,7 @@ export const getCandidateById = async (id: string) => {
 
     return response?.data?.data || null;
   } catch (error) {
-    console.error('Failed to getCandidateById', error);
+    logError('Failed to getCandidateById', error as Error);
     return null;
   }
 };

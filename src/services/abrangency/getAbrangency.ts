@@ -1,3 +1,4 @@
+import { logError } from '@utils/logError';
 import { redem } from '../redem';
 
 export const getAbrangency = async () => {
@@ -15,7 +16,7 @@ export const getAbrangency = async () => {
 
     return transformedData || [];
   } catch (error) {
-    console.error('Failed to get Abrangency', error);
+    logError('Failed to getAbrangency', error as Error);
     return [];
   }
 };
