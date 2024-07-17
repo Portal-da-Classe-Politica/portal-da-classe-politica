@@ -7,6 +7,8 @@ export const logError = (msg: string, error: AxiosError | Error) => {
         status: error?.response?.status,
         data: error?.response?.data,
       },
+      code: error?.code,
+      message: error?.message,
       method: error?.config?.method,
       url: error?.config?.url,
       params: error?.config?.params,
@@ -15,4 +17,5 @@ export const logError = (msg: string, error: AxiosError | Error) => {
   } else {
     console.error(msg, error);
   }
+  console.log(error);
 };

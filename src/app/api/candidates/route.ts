@@ -6,9 +6,10 @@ export async function GET(req: NextRequest) {
   const uf = req.nextUrl.searchParams.get('uf') ?? '';
   const page = req.nextUrl.searchParams.get('page') ?? '';
   const electoralUnitId = req.nextUrl.searchParams.get('electoralUnitId') ?? '';
-  console.info('get:candidates', { name, uf, page, electoralUnitId });
+  const abrangencyId = req.nextUrl.searchParams.get('abrangencyId') ?? '';
+  console.info('get:candidates', { name, uf, page, electoralUnitId, abrangencyId });
 
-  const data = await CandidateService.searchCandidates(name, uf, page, electoralUnitId);
+  const data = await CandidateService.searchCandidates(name, uf, page, electoralUnitId, abrangencyId);
   console.info('get:candidates', { data });
 
   return NextResponse.json(data);

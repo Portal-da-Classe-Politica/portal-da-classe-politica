@@ -11,7 +11,7 @@ import { routes } from '@routes';
 import { Constants } from '@constants';
 
 export const SearchSection = ({ title, filters }: { title: string; filters: any }) => {
-  const [search, setSearch] = useObjReducer({ uf: '', name: '', abrangency: '', city: '' });
+  const [search, setSearch] = useObjReducer({ uf: '', name: '', abrangencyId: '', city: '' });
   const [result, setResult] = useState<any>([]);
   const [cities, setCities] = useState([]);
   const [abrangencyFilter, setAbrangencyFilter] = useState<
@@ -29,7 +29,8 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
       setLoading(true);
       setCurrentPage(page);
 
-      fetch(`/api/candidates?name=${search.name}&uf=${search.uf}&page=${page}&electoralUnitId=${search.city}`)
+      const searchParams = new URLSearchParams({ ...search, page: String(page) });
+      fetch(`/api/candidates?${searchParams.toString()}`)
         .then(res => {
           return res.json();
         })
@@ -49,19 +50,19 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
         return res.json();
       })
       .then(data => {
-        setSearch({ abrangency: data[0].value });
+        setSearch({ abrangencyId: data[0].value });
         setAbrangencyFilter(data);
       });
     // eslint-disable-next-line
   }, []);
 
   const preSelectAbrangency = () => {
-    return abrangencyFilter.filter(myAbra => String(myAbra?.value) === search.abrangency)[0]?.label;
+    return abrangencyFilter.filter(myAbra => String(myAbra?.value) === search.abrangencyId)[0]?.label;
   };
 
   useEffect(() => {
-    if (search.abrangency === Constants.abrangency.municipal && search.uf) {
-      fetch(`/api/electoralUnit?abrangecyId=${search.abrangency}&uf=${search.uf}`)
+    if (search.abrangencyId === Constants.abrangency.municipal && search.uf) {
+      fetch(`/api/electoralUnit?abrangecyId=${search.abrangencyId}&uf=${search.uf}`)
         .then(res => {
           return res.json();
         })
@@ -69,7 +70,7 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
           setCities(data);
         });
     }
-  }, [search.uf, search.abrangency]);
+  }, [search.uf, search.abrangencyId]);
 
   return (
     <>
@@ -84,7 +85,7 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
             <div className="flex flex-col md:flex-row gap-2 items-center text-center w-full">
               <div className="w-full ">
                 <Select
-                  placeholder={search.abrangency ? preSelectAbrangency() || '' : 'Selecionar Abrangencia'}
+                  placeholder={search.abrangencyId ? preSelectAbrangency() || '' : 'Selecionar Abrangencia'}
                   className="w-full"
                   options={abrangencyFilter}
                   buttonProps={{ style: 'fillGray', className: 'px-[8px] w-full' }}
@@ -94,7 +95,7 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
                     </Text>
                   }
                   suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
-                  onSelect={value => setSearch({ abrangency: String(value) })}
+                  onSelect={value => setSearch({ abrangencyId: String(value) })}
                 />
               </div>
               <div className="w-full ">
@@ -112,7 +113,7 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
                   onSelect={value => setSearch({ uf: String(value) })}
                 />
               </div>
-              {search.abrangency === Constants.abrangency.municipal && (
+              {search.abrangencyId === Constants.abrangency.municipal && (
                 <div className="w-full ">
                   <Select
                     placeholder="Selecionar Cidade"

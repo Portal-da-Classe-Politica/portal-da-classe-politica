@@ -90,7 +90,7 @@ paths:
           required: true
           description: ID da abrangência.
         - in: query
-          name: uf
+          name: UF
           schema:
             type: string
           required: false
