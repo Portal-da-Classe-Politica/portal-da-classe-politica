@@ -11,7 +11,7 @@ import { routes } from '@routes';
 import { Constants } from '@constants';
 
 export const SearchSection = ({ title, filters }: { title: string; filters: any }) => {
-  const [search, setSearch] = useObjReducer({ uf: '', name: '', abrangencyId: '', city: '' });
+  const [search, setSearch] = useObjReducer({ uf: '', name: '', abrangencyId: '', electoralUnitId: '' });
   const [result, setResult] = useState<any>([]);
   const [cities, setCities] = useState([]);
   const [abrangencyFilter, setAbrangencyFilter] = useState<
@@ -127,7 +127,7 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
                       </Text>
                     }
                     suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
-                    onSelect={value => setSearch({ city: String(value) })}
+                    onSelect={value => setSearch({ electoralUnitId: String(value) })}
                   />
                 </div>
               )}
