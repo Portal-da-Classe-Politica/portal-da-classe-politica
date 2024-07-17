@@ -1089,7 +1089,7 @@ export const CandidateApiAxiosParamCreator = function (configuration?: Configura
      * Busca candidatos com base em parâmetros como nome, UF, abrangência, unidade eleitoral e página.
      * @summary Busca candidatos
      * @param {string} [name] Nome ou nome de urna do candidato
-     * @param {string} [uF] Unidade Federativa
+     * @param {string} [uf] Unidade Federativa
      * @param {string} [abrangencyId] ID da abrangência
      * @param {string} [electoralUnitId] ID da unidade eleitoral
      * @param {number} [page] Número da página para paginação
@@ -1098,7 +1098,7 @@ export const CandidateApiAxiosParamCreator = function (configuration?: Configura
      */
     getCandidates: async (
       name?: string,
-      uF?: string,
+      uf?: string,
       abrangencyId?: string,
       electoralUnitId?: string,
       page?: number,
@@ -1120,8 +1120,8 @@ export const CandidateApiAxiosParamCreator = function (configuration?: Configura
         localVarQueryParameter['name'] = name;
       }
 
-      if (uF !== undefined) {
-        localVarQueryParameter['uf'] = uF;
+      if (uf !== undefined) {
+        localVarQueryParameter['uf'] = uf;
       }
 
       if (abrangencyId !== undefined) {
@@ -1269,7 +1269,7 @@ export const CandidateApiFp = function (configuration?: Configuration) {
      * Busca candidatos com base em parâmetros como nome, UF, abrangência, unidade eleitoral e página.
      * @summary Busca candidatos
      * @param {string} [name] Nome ou nome de urna do candidato
-     * @param {string} [uF] Unidade Federativa
+     * @param {string} [uf] Unidade Federativa
      * @param {string} [abrangencyId] ID da abrangência
      * @param {string} [electoralUnitId] ID da unidade eleitoral
      * @param {number} [page] Número da página para paginação
@@ -1278,7 +1278,7 @@ export const CandidateApiFp = function (configuration?: Configuration) {
      */
     async getCandidates(
       name?: string,
-      uF?: string,
+      uf?: string,
       abrangencyId?: string,
       electoralUnitId?: string,
       page?: number,
@@ -1286,7 +1286,7 @@ export const CandidateApiFp = function (configuration?: Configuration) {
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetCandidates200Response>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.getCandidates(
         name,
-        uF,
+        uf,
         abrangencyId,
         electoralUnitId,
         page,
@@ -1370,7 +1370,7 @@ export const CandidateApiFactory = function (
      * Busca candidatos com base em parâmetros como nome, UF, abrangência, unidade eleitoral e página.
      * @summary Busca candidatos
      * @param {string} [name] Nome ou nome de urna do candidato
-     * @param {string} [uF] Unidade Federativa
+     * @param {string} [uf] Unidade Federativa
      * @param {string} [abrangencyId] ID da abrangência
      * @param {string} [electoralUnitId] ID da unidade eleitoral
      * @param {number} [page] Número da página para paginação
@@ -1379,14 +1379,14 @@ export const CandidateApiFactory = function (
      */
     getCandidates(
       name?: string,
-      uF?: string,
+      uf?: string,
       abrangencyId?: string,
       electoralUnitId?: string,
       page?: number,
       options?: any,
     ): AxiosPromise<GetCandidates200Response> {
       return localVarFp
-        .getCandidates(name, uF, abrangencyId, electoralUnitId, page, options)
+        .getCandidates(name, uf, abrangencyId, electoralUnitId, page, options)
         .then(request => request(axios, basePath));
     },
   };
@@ -1458,7 +1458,7 @@ export class CandidateApi extends BaseAPI {
    * Busca candidatos com base em parâmetros como nome, UF, abrangência, unidade eleitoral e página.
    * @summary Busca candidatos
    * @param {string} [name] Nome ou nome de urna do candidato
-   * @param {string} [uF] Unidade Federativa
+   * @param {string} [uf] Unidade Federativa
    * @param {string} [abrangencyId] ID da abrangência
    * @param {string} [electoralUnitId] ID da unidade eleitoral
    * @param {number} [page] Número da página para paginação
@@ -1468,14 +1468,14 @@ export class CandidateApi extends BaseAPI {
    */
   public getCandidates(
     name?: string,
-    uF?: string,
+    uf?: string,
     abrangencyId?: string,
     electoralUnitId?: string,
     page?: number,
     options?: RawAxiosRequestConfig,
   ) {
     return CandidateApiFp(this.configuration)
-      .getCandidates(name, uF, abrangencyId, electoralUnitId, page, options)
+      .getCandidates(name, uf, abrangencyId, electoralUnitId, page, options)
       .then(request => request(this.axios, this.basePath));
   }
 }
@@ -1490,13 +1490,13 @@ export const ElectoralUnitApiAxiosParamCreator = function (configuration?: Confi
      * Retorna as unidades eleitorais disponíveis para uma determinada abrangência.
      * @summary Obter unidades eleitorais por abrangência
      * @param {number} abrangencyId ID da abrangência.
-     * @param {string} [uF] Estado, obrigatório no caso de abrangência municipal.
+     * @param {string} [uf] Estado, obrigatório no caso de abrangência municipal.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     getElectoralUnit: async (
       abrangencyId: number,
-      uF?: string,
+      uf?: string,
       options: RawAxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       // verify required parameter 'abrangencyId' is not null or undefined
@@ -1517,8 +1517,8 @@ export const ElectoralUnitApiAxiosParamCreator = function (configuration?: Confi
         localVarQueryParameter['abrangencyId'] = abrangencyId;
       }
 
-      if (uF !== undefined) {
-        localVarQueryParameter['UF'] = uF;
+      if (uf !== undefined) {
+        localVarQueryParameter['uf'] = uf;
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -1580,16 +1580,16 @@ export const ElectoralUnitApiFp = function (configuration?: Configuration) {
      * Retorna as unidades eleitorais disponíveis para uma determinada abrangência.
      * @summary Obter unidades eleitorais por abrangência
      * @param {number} abrangencyId ID da abrangência.
-     * @param {string} [uF] Estado, obrigatório no caso de abrangência municipal.
+     * @param {string} [uf] Estado, obrigatório no caso de abrangência municipal.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async getElectoralUnit(
       abrangencyId: number,
-      uF?: string,
+      uf?: string,
       options?: RawAxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetElectoralUnit200Response>> {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.getElectoralUnit(abrangencyId, uF, options);
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getElectoralUnit(abrangencyId, uf, options);
       const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
       const localVarOperationServerBasePath =
         operationServerMap['ElectoralUnitApi.getElectoralUnit']?.[localVarOperationServerIndex]?.url;
@@ -1640,16 +1640,16 @@ export const ElectoralUnitApiFactory = function (
      * Retorna as unidades eleitorais disponíveis para uma determinada abrangência.
      * @summary Obter unidades eleitorais por abrangência
      * @param {number} abrangencyId ID da abrangência.
-     * @param {string} [uF] Estado, obrigatório no caso de abrangência municipal.
+     * @param {string} [uf] Estado, obrigatório no caso de abrangência municipal.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     getElectoralUnit(
       abrangencyId: number,
-      uF?: string,
+      uf?: string,
       options?: any,
     ): AxiosPromise<GetElectoralUnit200Response> {
-      return localVarFp.getElectoralUnit(abrangencyId, uF, options).then(request => request(axios, basePath));
+      return localVarFp.getElectoralUnit(abrangencyId, uf, options).then(request => request(axios, basePath));
     },
     /**
      * Retorna todas as unidades federativas.
@@ -1674,14 +1674,14 @@ export class ElectoralUnitApi extends BaseAPI {
    * Retorna as unidades eleitorais disponíveis para uma determinada abrangência.
    * @summary Obter unidades eleitorais por abrangência
    * @param {number} abrangencyId ID da abrangência.
-   * @param {string} [uF] Estado, obrigatório no caso de abrangência municipal.
+   * @param {string} [uf] Estado, obrigatório no caso de abrangência municipal.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ElectoralUnitApi
    */
-  public getElectoralUnit(abrangencyId: number, uF?: string, options?: RawAxiosRequestConfig) {
+  public getElectoralUnit(abrangencyId: number, uf?: string, options?: RawAxiosRequestConfig) {
     return ElectoralUnitApiFp(this.configuration)
-      .getElectoralUnit(abrangencyId, uF, options)
+      .getElectoralUnit(abrangencyId, uf, options)
       .then(request => request(this.axios, this.basePath));
   }
 
