@@ -44,6 +44,7 @@ import {
   fa9,
   fa0,
   faO,
+  faLocationDot,
 } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
@@ -62,6 +63,7 @@ const sourceMap = {
   Star: faStar,
   Table: faTable,
   UnChecked: faPlus,
+  Location: faLocationDot,
 
   // Social
   Email: faEnvelope,

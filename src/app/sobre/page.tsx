@@ -32,8 +32,9 @@ const headerText = [
 
 const avatarMock = [
   {
-    name: 'Adriano Codato ',
+    name: 'Adriano Codato',
     text: 'Coordenador do INCT ReDem e Portal da Classe Política. Doutor em Ciência Política (Unicamp) ',
+    src: '/img/author/AdrianoCodato.png',
     social: {
       linkedin: 'https://www.linkedin.com/in/adriano-codato-24526628/  ',
       instagram: ' https://www.instagram.com/adrianocodato/ ',
@@ -44,6 +45,7 @@ const avatarMock = [
   {
     name: 'Nilton Sainz ',
     text: 'Coordenador Portal da Classe Política e pesquisador do INCT ReDem. Doutorando em Ciência Política (UFPR) ',
+    src: '/img/author/NiltonSainz.png',
     social: {
       linkedin: 'https://www.linkedin.com/in/nilton-sainz/ ',
       instagram: '',
@@ -54,6 +56,7 @@ const avatarMock = [
   {
     name: 'Luiz Sebastião D`Avila Filho ',
     text: 'Desenvolvedor Portal da Classe Política e pesquisador INCT ReDem. Bacharel em Ciências Contábeis (FURG) e Análise e desenvolvimento de Sistemas (IFRS) ',
+    src: '/img/author/LuizSebastiao.png',
     social: {
       linkedin: '',
       instagram: ' https://www.linkedin.com/in/luizdavilaf/ ',
@@ -121,13 +124,7 @@ const Page = () => {
           <div className="md:mt-24 mt-12 text-center flex flex-wrap gap-14 justify-center md:justify-normal">
             {avatarMock.map((item, i) => {
               return (
-                <Avatar
-                  key={i}
-                  src="/img/Person.png"
-                  title={item.name}
-                  text={item.text}
-                  social={item.social}
-                />
+                <Avatar key={i} src={item.src} title={item.name} text={item.text} social={item.social} />
               );
             })}
           </div>
@@ -148,27 +145,27 @@ const Page = () => {
               items={[
                 {
                   title: '03/2023',
-                  icons: ['Mountain'],
+                  icons: ['Location'],
                   text: 'Instalação do Instituto Representação e Legitimidade democrática na UFPR ',
                 },
                 {
                   title: '06/2023',
-                  icons: ['Mountain'],
+                  icons: ['Location'],
                   text: 'A construção da API pública com base em dados do TSE para a análise de candidatos e início dos bancos de dados ',
                 },
                 {
                   title: '08/2023 ',
-                  icons: ['Mountain'],
+                  icons: ['Location'],
                   text: 'Consolidação do projeto com a incorporação da API e uma proposta de acesso e transparência de dados sobre classe política ',
                 },
                 {
                   title: '02/2024',
-                  icons: ['Mountain'],
+                  icons: ['Location'],
                   text: 'Realização de estudos sobre seleção dos conjuntos e processamentos de dados, seleção das variáveis e escolhas dos índices e indicadores ',
                 },
                 {
                   title: '02/2024',
-                  icons: ['Mountain'],
+                  icons: ['Location'],
                   text: 'Definição dos parâmetros e experiência do usuário e construção do sistema de cruzamentos, análises e visualização de dados. ',
                 },
               ]}

@@ -1125,11 +1125,11 @@ export const CandidateApiAxiosParamCreator = function (configuration?: Configura
       }
 
       if (abrangencyId !== undefined) {
-        localVarQueryParameter['abrangencyId'] = abrangencyId;
+        localVarQueryParameter['abrangencyid'] = abrangencyId;
       }
 
       if (electoralUnitId !== undefined) {
-        localVarQueryParameter['electoralUnitId'] = electoralUnitId;
+        localVarQueryParameter['electoralunitid'] = electoralUnitId;
       }
 
       if (page !== undefined) {
