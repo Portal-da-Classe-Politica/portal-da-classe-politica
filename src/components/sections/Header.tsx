@@ -146,9 +146,7 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
           </span>
           <ul className="text-black flex flex-col justify-start pl-4 gap-3">
             <li className={`mt-12`}>
-              <Link href={routes.home}>
-                <HeaderTopic label="PÁGINA INICIAL" href={routes.home} currentPath={pathname} />
-              </Link>
+              <HeaderTopic label="HOME" href={routes.home} currentPath={pathname} />
             </li>
             <li className={`flex `}>
               <HeaderTopic label="CONSULTAS" href={routes.consult} currentPath={pathname} />

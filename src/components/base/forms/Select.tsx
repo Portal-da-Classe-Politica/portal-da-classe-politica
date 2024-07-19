@@ -57,6 +57,10 @@ export const Select = ({
   };
 
   useEffect(() => {
+    setSelectedOption(options.find(op => op.value === defaultValue));
+  }, [options, defaultValue]);
+
+  useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
