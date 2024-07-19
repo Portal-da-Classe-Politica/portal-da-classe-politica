@@ -50,7 +50,7 @@ const Primary = ({ title, subTitle, href }: { title: string; subTitle: string; h
 const Secondary = ({ title, href }: { title: string; href: string }) => {
   return (
     <>
-      <Heading size="H6" className="font-bold ">
+      <Heading headingLevel={6} size="H6" className="font-bold ">
         {title}
       </Heading>
       <div className="h-[32-px] mt-3">
@@ -65,7 +65,7 @@ const Secondary = ({ title, href }: { title: string; href: string }) => {
 const Tertiary = ({ title, subTitle, href }: { title: string; subTitle: string; href: string }) => {
   return (
     <>
-      <Heading headingLevel={6} size={'H6'} className="font-bold mb-[6px]">
+      <Heading headingLevel={6} size={'H6'} className="font-bold mb-1.5">
         {title}
       </Heading>
       <div>
@@ -110,7 +110,7 @@ export const CardPost = <T extends BaseProps>({
           <Image src={src} fill className="rounded-t-[10px] object-cover h-auto w-auto" alt={alt} />
         </div>
       </div>
-      <div className="pt-[15px] px-[20px] pb-[20px] ">
+      <div className="pt-4 px-5 pb-5 ">
         <div className="pb-2">
           {category.map((categoryText, i) => {
             return <ChipContainer key={i}>{categoryText}</ChipContainer>;

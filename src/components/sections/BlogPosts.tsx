@@ -13,8 +13,6 @@ const filterCategoria = ['Cruzamentos', 'Indicadores', 'Perfil dos candidatos', 
 const filterYear = ['2024', '2023', '2022'];
 
 const BlogPost = () => {
-  // const filterBlog = await BlogService.getAllBlog();
-
   const [blogPost, setBlogPost] = useState<any>([]);
   const [filterType, setFilterType] = useState('cres');
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -23,10 +21,7 @@ const BlogPost = () => {
   const onSearch = () => {
     fetch(`/api/blog?category=${selectedCategory}&year=${selectedYear}`)
       .then(res => res.json())
-      .then(data => {
-        console.log(data);
-        setBlogPost(data);
-      });
+      .then(data => setBlogPost(data));
   };
 
   const sortedMethod = (a: any, b: any) => {
@@ -71,7 +66,6 @@ const BlogPost = () => {
             <div
               key={index}
               onClick={() => {
-                console.log('teste', cat);
                 setSelectedCategory(pastValue => (cat === pastValue ? '' : cat));
               }}
             >
@@ -134,7 +128,7 @@ const BlogPost = () => {
                 onSelect={val => setFilterType(val as string)}
                 buttonProps={{
                   style: 'ghostOrange',
-                  className: 'py-[4px] px-[4px] bg-white drop-shadow-md',
+                  className: 'py-1 px-1 bg-white drop-shadow-md',
                 }}
                 suffixComponent={<Icon type="ArrowDown" className="ml-2  " />}
               />

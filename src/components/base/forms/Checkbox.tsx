@@ -27,7 +27,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
 
   return (
     <div
-      className={`flex items-center p-4 bg-white rounded-lg drop-shadow-md cursor-pointer ${className}`}
+      className={`flex items-center p-2 bg-white rounded-lg drop-shadow-md cursor-pointer ${className}`}
       onClick={_onClick}
     >
       <div

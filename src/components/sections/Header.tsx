@@ -35,9 +35,11 @@ const HeaderTopic = ({
 }) => {
   const selected = verifyPathSelect(href, currentPath);
   return (
-    <Text size={'L2'} className={selected ? 'font-bold' : ''}>
-      {label}
-    </Text>
+    <Link href={href}>
+      <Text size={'L2'} className={selected ? 'font-bold' : ''}>
+        {label}
+      </Text>
+    </Link>
   );
 };
 
@@ -82,23 +84,19 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
             <LogoIcon type={logoType} />
           </li>
           <li className={`ml-auto self-center mr-5 ${classes}`}>
-            <Link href={routes.home}>
-              <HeaderTopic label="PÁGINA INICIAL" href={routes.home} currentPath={pathname} />
-            </Link>
+            <HeaderTopic label="HOME" href={routes.home} currentPath={pathname} />
           </li>
           <li className={`flex self-center ${classes} mr-5 inline justify-center items-center`}>
-            {/* <HeaderTopic label="CONSULTAS" href={routes.consult} currentPath={pathname} /> */}
             <Select
               className="p-0"
               placeholder="CONSULTA"
               staticOptions
+              sizeInsideText="L2"
+              biggerList
               options={[
-                { value: routes.consultCandidateProfile, label: 'Perfil dos Candidatos' },
-                { value: routes.consultElectionResult, label: 'Resultados das Eleições' },
-                { value: routes.consultPartyFiliation, label: 'Filiação Partidária' },
-                { value: routes.consultFinancing, label: 'Financiamento de Campanha' },
-                { value: routes.consultElectoralMaps, label: 'Mapas Eleitorais' },
-                { value: routes.consultElectoralResearch, label: 'Pesquisas Eleitorais' },
+                { value: routes.consult, label: 'CRUZAMENTOS' },
+                { value: routes.projections, label: 'PROJEÇÕES' },
+                { value: routes.candidates, label: 'PERFIL DOS CANDIDATOS' },
               ]}
               onSelect={(myValue, _) => {
                 router.push(myValue as string);
@@ -107,30 +105,16 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
               buttonProps={{
                 size: 'small',
                 style: 'ghostBlack',
-                className: `${classes} ${verifyPathSelect(routes.consult, pathname) ? '!font-bold' : ''} hover:!bg-transparent`,
+                className: `${classes} ${verifyPathSelect(routes.consult, pathname) ? '!font-bold' : ''} hover:!bg-transparent font-b2 !p-0`,
               }}
               suffixComponent={<Icon type="ArrowDown" size="xs" className={`ml-1 ${iconColor}`} />}
             />
           </li>
           <li className={`self-center ${classes} mr-5`}>
-            <Link href={routes.projections}>
-              <HeaderTopic label="PROJEÇÕES" href={routes.projections} currentPath={pathname} />
-            </Link>
+            <HeaderTopic label="SOBRE O PROJETO" href={routes.about} currentPath={pathname} />
           </li>
           <li className={`self-center ${classes} mr-5`}>
-            <Link href={routes.candidates}>
-              <HeaderTopic label="PERFIL DOS CANDIDATOS" href={routes.candidates} currentPath={pathname} />
-            </Link>
-          </li>
-          <li className={`self-center ${classes} mr-5`}>
-            <Link href={routes.about}>
-              <HeaderTopic label="SOBRE O PROJETO" href={routes.about} currentPath={pathname} />
-            </Link>
-          </li>
-          <li className={`self-center ${classes} mr-5`}>
-            <Link href={routes.blog}>
-              <HeaderTopic label="BLOG" href={routes.blog} currentPath={pathname} />
-            </Link>
+            <HeaderTopic label="BLOG" href={routes.blog} currentPath={pathname} />
           </li>
           <li className={`self-center ${classes}`}>
             <Link href={routes.elections2024}>
@@ -162,36 +146,30 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
             <LogoIcon type={'orange'} />
           </span>
           <ul className="text-black flex flex-col justify-start pl-4 gap-3">
-            <li className={`mt-12 mr-5`}>
-              <Link href={routes.home}>
-                <HeaderTopic label="PÁGINA INICIAL" href={routes.home} currentPath={pathname} />
-              </Link>
+            <li className={`mt-12`}>
+              <HeaderTopic label="HOME" href={routes.home} currentPath={pathname} />
             </li>
             <li className={`flex `}>
-              <Link href={routes.consult}>
-                <HeaderTopic label="CONSULTAS" href={routes.consult} currentPath={pathname} />
-              </Link>
-              <Icon type="ArrowDown" size="sm" className="ml-1" />
+              <HeaderTopic label="CONSULTAS" href={routes.consult} currentPath={pathname} />
             </li>
-            <li className={`self-start mr-5`}>
-              <Link href={routes.projections}>
+
+            <ul className="text-black flex flex-col justify-start pl-4 gap-2">
+              <li>
+                <HeaderTopic label="CRUZAMENTOS" href={routes.consult} currentPath={pathname} />
+              </li>
+              <li>
                 <HeaderTopic label="PROJEÇÕES" href={routes.projections} currentPath={pathname} />
-              </Link>
-            </li>
-            <li className={`mr-5`}>
-              <Link href={routes.candidates}>
+              </li>
+              <li>
                 <HeaderTopic label="PERFIL DOS CANDIDATOS" href={routes.candidates} currentPath={pathname} />
-              </Link>
+              </li>
+            </ul>
+
+            <li>
+              <HeaderTopic label="SOBRE O PROJETO" href={routes.about} currentPath={pathname} />
             </li>
-            <li className={`mr-5`}>
-              <Link href={routes.about}>
-                <HeaderTopic label="SOBRE O PROJETO" href={routes.about} currentPath={pathname} />
-              </Link>
-            </li>
-            <li className={`mr-5`}>
-              <Link href={routes.blog}>
-                <HeaderTopic label="BLOG" href={routes.blog} currentPath={pathname} />
-              </Link>
+            <li>
+              <HeaderTopic label="BLOG" href={routes.blog} currentPath={pathname} />
             </li>
             <li>
               <Link href={routes.elections2024}>

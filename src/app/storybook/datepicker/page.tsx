@@ -4,8 +4,8 @@ import { DatePicker } from '@components/DatePicker';
 
 const Page = () => {
   const testFunc = (val: any, obj: any) => {
-    console.log('teste', val);
-    console.log('teste', obj);
+    console.debug('teste', val);
+    console.debug('teste', obj);
   };
 
   return (

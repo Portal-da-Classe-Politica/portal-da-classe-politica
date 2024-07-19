@@ -7,8 +7,8 @@ import { DatePicker } from '@components/DatePicker';
 
 const Page = () => {
   const testFunc = (val: any, obj: any) => {
-    console.log('teste', val);
-    console.log('teste', obj);
+    console.debug('teste', val);
+    console.debug('teste', obj);
   };
 
   return (
@@ -35,11 +35,7 @@ const Page = () => {
           { value: 50, label: 'label4' },
         ]}
         buttonProps={{ size: 'small' }}
-        prefixComponent={
-          <>
-            <Text className="mr-1 font-normal">Categoria |</Text>
-          </>
-        }
+        prefixComponent={<Text className="mr-1 font-normal">Categoria |</Text>}
       />
 
       <Select

@@ -5,54 +5,104 @@ import TableComponent from '@components/Table';
 import { Divider } from '@components/Divider';
 import { useObjReducer } from '@hooks/useObjReducer';
 import { cleanString } from '@utils/cleanString';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { routes } from '@routes';
+import { Constants } from '@constants';
+import DesignSemiCircle from '@components/DesignSemiCircle';
 
 export const SearchSection = ({ title, filters }: { title: string; filters: any }) => {
-  const [search, setSearch] = useObjReducer({ uf: '', job: '', name: '' });
-  // const [page, setPage] = useState(1);
+  const [search, setSearch] = useObjReducer({ uf: '', name: '', abrangencyId: '', electoralUnitId: '' });
   const [result, setResult] = useState<any>([]);
+  const [electoralUnits, setElectoralUnits] = useState([]);
+  const [abrangencyFilter, setAbrangencyFilter] = useState<
+    {
+      label: string;
+      value: string;
+      description: string;
+    }[]
+  >([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
 
   const onSearch = (page = 1) => {
     if (!loading) {
       setLoading(true);
-      console.log('chamaa', page);
       setCurrentPage(page);
-      fetch(`/api/candidates?name=${search.name}&uf=${search.uf}&page=${page}`)
-        .then(res => {
-          console.log('resp', res);
-          return res.json();
-        })
-        .then(data => {
-          console.log(data);
-          setResult(data);
-        })
+
+      const searchParams = new URLSearchParams({ ...search, page: String(page) });
+      fetch(`/api/candidates?${searchParams.toString()}`)
+        .then(res => res.json())
+        .then(data => setResult(data))
         .finally(() => {
           setLoading(false);
         });
     }
   };
 
+  useEffect(() => {
+    fetch('/api/abrangency')
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        setSearch({ abrangencyId: data[0].value });
+        setAbrangencyFilter(data);
+      });
+    // eslint-disable-next-line
+  }, []);
+
+  const preSelectAbrangency = () => {
+    return abrangencyFilter.filter(myAbra => String(myAbra?.value) === search.abrangencyId)[0]?.label;
+  };
+
+  useEffect(() => {
+    if (search.abrangencyId === Constants.abrangency.municipal && search.uf) {
+      setSearch({ electoralUnitId: '' });
+      setElectoralUnits([]);
+
+      fetch(`/api/electoralUnit?abrangecyId=${search.abrangencyId}&uf=${search.uf}`)
+        .then(res => res.json())
+        .then(data => {
+          setElectoralUnits(data);
+        });
+    }
+  }, [search.uf, search.abrangencyId, setSearch, setElectoralUnits]);
+
   return (
     <>
-      <section className="pb-[45px]">
+      <section className="pb-12 relative">
+        <DesignSemiCircle />
+
         <Container>
           <div className="flex flex-col mt-12 justify-between items-center text-center">
             <Heading size="H1" className="text-white mt-4">
               {title}
             </Heading>
           </div>
-          <div className="flex flex-col lg:flex-row gap-2 items-center mt-16">
+          <div className="flex flex-col gap-2 items-center mt-16">
             <div className="flex flex-col md:flex-row gap-2 items-center text-center w-full">
-              <div className="w-full lg:w-[270px]">
+              <div className="w-full ">
+                <Select
+                  placeholder={search.abrangencyId ? preSelectAbrangency() || '' : 'Selecionar Abrangencia'}
+                  className="w-full"
+                  options={abrangencyFilter}
+                  buttonProps={{ style: 'fillGray', className: 'px-2 w-full' }}
+                  prefixComponent={
+                    <Text textType="span" size="B1" className="font-normal mr-2">
+                      Abrangencia |
+                    </Text>
+                  }
+                  suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
+                  onSelect={value => setSearch({ abrangencyId: String(value) })}
+                />
+              </div>
+              <div className="w-full ">
                 <Select
                   placeholder="Selecionar Estado"
                   className="w-full"
                   options={filters.estados}
-                  buttonProps={{ style: 'fillGray', className: 'px-[8px] w-full' }}
+                  buttonProps={{ style: 'fillGray', className: 'px-2 w-full' }}
                   prefixComponent={
                     <Text textType="span" size="B1" className="font-normal mr-2">
                       Estado |
@@ -62,21 +112,24 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
                   onSelect={value => setSearch({ uf: String(value) })}
                 />
               </div>
-              <div className="w-full lg:w-[270px]">
-                <Select
-                  placeholder="Selecionar Cargo"
-                  options={filters.cargos}
-                  className="w-full"
-                  buttonProps={{ style: 'fillGray', className: 'px-[8px] w-full' }}
-                  prefixComponent={
-                    <Text textType="span" size="B1" className="font-normal mr-2">
-                      Cargo |{' '}
-                    </Text>
-                  }
-                  suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
-                  onSelect={value => setSearch({ job: String(value) })}
-                />
-              </div>
+              {search.abrangencyId === Constants.abrangency.municipal && (
+                <div className="w-full ">
+                  <Select
+                    placeholder="Selecionar Cidade"
+                    disabled={!search.uf}
+                    options={electoralUnits}
+                    className="w-full"
+                    buttonProps={{ style: 'fillGray', className: 'px-2 w-full' }}
+                    prefixComponent={
+                      <Text textType="span" size="B1" className="font-normal mr-2">
+                        Cidade |{' '}
+                      </Text>
+                    }
+                    suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
+                    onSelect={value => setSearch({ electoralUnitId: String(value) })}
+                  />
+                </div>
+              )}
             </div>
             <Input
               className="py-3"
@@ -97,7 +150,7 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
         </Container>
       </section>
 
-      <section className="pb-[45px] pt-10 bg-grayMix1">
+      <section className="pb-12 pt-10 bg-grayMix1">
         <Container className="flex flex-col items-center">
           <Divider type="darkerGray" bottom="small" />
           <div className="flex text-orange justify-between w-full mb-10 flex-col md:flex-row gap-2 ">
@@ -126,7 +179,7 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
                   ]}
                   buttonProps={{
                     style: 'ghostOrange',
-                    className: 'py-[4px] px-[4px] bg-white drop-shadow-md',
+                    className: 'py-1 px-1 bg-white drop-shadow-md',
                   }}
                   suffixComponent={<Icon type="ArrowDown" className="ml-2  " />}
                 />
@@ -158,7 +211,6 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
                   {
                     key: '',
                     render: (_, row) => {
-                      console.log(_, row);
                       return (
                         <Link href={routes.candidate(row.candidatoId)}>
                           <ButtonStyled size="small" style="fillOrange" className="w-[210px]">

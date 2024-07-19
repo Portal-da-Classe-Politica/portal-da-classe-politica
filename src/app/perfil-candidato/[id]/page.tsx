@@ -17,6 +17,7 @@ import { CandidateService } from '@services/candidates/CandidateService';
 import { formatCurrency } from '@utils/formatCurrency';
 
 import { LastElectionsChart } from '@components/charts/LastElectionsChart';
+import DesignSemiCircle from '@components/DesignSemiCircle';
 
 const Page = async ({ params: { id } }: { params: { id: string } }) => {
   const candidate = await CandidateService.getCandidateById(id);
@@ -30,7 +31,9 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
   return (
     <main className="font-montserrat bg-grayMix1">
       <Suspense>
-        <section className="pb-[45px] pt-4 bg-white">
+        <section className="pb-12 pt-4 relative bg-white overflow-hidden">
+          <DesignSemiCircle theme="dark" />
+
           <Container>
             <Header style="dark" />
 

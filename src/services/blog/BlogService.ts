@@ -16,7 +16,6 @@ export const BlogService = {
   },
 
   getMdBlogById: () => {
-    console.log('test');
     return fetch('./um.md');
   },
 };

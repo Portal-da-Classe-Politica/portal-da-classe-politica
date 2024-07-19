@@ -23,7 +23,7 @@ const MarkdownSection = ({ id }: { id: string }) => {
   }, []);
 
   return (
-    <section className="pb-[45px] pt-12">
+    <section className="pb-12 pt-12">
       <Container className="flex flex-col items-center markdown-body !m-auto">
         <Markdown>{markdownContent}</Markdown>
       </Container>

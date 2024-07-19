@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        design: '1700px',
+      },
       flex: {
         '2': '2 2 0%',
         '3': '3 3 0%',
@@ -18,22 +21,22 @@ const config: Config = {
         montserrat: ['Montserrat', 'sans-serif'],
       },
       fontSize: {
-        d1: ['60px', '72px'],
-        d2: ['52px', '62px'],
-        h1: ['40px', '48px'],
-        h2: ['32px', '38px'],
-        h3: ['28px', '33px'],
-        h4: ['24px', '33px'],
-        h5: ['22px', '33px'],
-        h6: ['20px', '24px'],
-        b1: ['16px', '22px'],
-        b2: ['14px', '20px'],
-        l1: ['16px', '19px'],
-        l2: ['14px', '17px'],
-        s1: ['24px', '30px'],
-        c1: ['14px', '17px'],
-        c2: ['12px', '12px'],
-        min: ['10px', '12px'],
+        d1: ['3.75em', '1.2em'], // 60px - 72px
+        d2: ['3.25em', '1.1923em'], // 52px - 62px
+        h1: ['2.5em', '1.2em'], // 40px - 48px
+        h2: ['2em', '1.1875em'], // 32px - 38px
+        h3: ['1.75em', '1.1786em'], // 28px - 33px
+        h4: ['1.5em', '1.375em'], // 24px - 33px
+        h5: ['1.375em', '1.5em'], // 22px - 33px
+        h6: ['1.25em', '1.2em'], // 20px - 24px
+        b1: ['1em', '1.375em'], // 16px - 22px
+        b2: ['0.875em', '1.4286em'], // 14px - 20px
+        l1: ['1em', '1.1875em'], // 16px - 19px
+        l2: ['0.875em', '1.2143em'], // 14px - 17px
+        s1: ['1.5em', '1.25em'], // 24px - 30px
+        c1: ['0.875em', '1.2143em'], // 14px - 17px
+        c2: ['0.75em', '1em'], // 12px - 12px
+        min: ['0.625em', '1.2em'], // 10px - 12px
       },
       colors: {
         orangeLight1: '#F9D1C5',

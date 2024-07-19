@@ -16,14 +16,14 @@ const customVariant = cva('', {
   variants: {
     size: {
       normal: 'my-2',
-      thin: 'my-[2px]',
+      thin: 'my-0.5',
     },
     transitions: {
       normal: '',
-      thin: 'transition-all hover:ml-[8px]',
+      thin: 'transition-all hover:ml-4',
     },
     selected: {
-      true: 'ml-[8px]',
+      true: 'ml-4',
     },
   },
   defaultVariants: {

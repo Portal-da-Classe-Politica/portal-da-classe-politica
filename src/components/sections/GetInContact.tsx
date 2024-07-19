@@ -1,21 +1,16 @@
-import { Container, Heading, Text } from '@base';
+import { Container, Heading } from '@base';
 import { BoxIconText } from '@components/box/BoxIconText';
 import { routes } from '@routes';
 import Link from 'next/link';
 
 export const GetInContact = () => {
   return (
-    <section className="bg-orange py-[80px]">
+    <section className="bg-orange py-20">
       <Container className={'md:w-[770px]'}>
         <div className="text-white text-center mb-11">
-          <Heading headingLevel={2} className="font-bold text-[30px] mb-[22px]">
+          <Heading headingLevel={2} className="font-bold !text-7 mb-5">
             Entre em contato com a equipe do Portal Redem
-          </Heading>{' '}
-          <Text className="text-[18px] mt-5">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa
-            lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate
-            ipsum.
-          </Text>
+          </Heading>
         </div>
         <div className="flex flex-wrap items-center  justify-evenly  gap-4 md:gap-4">
           <div className="w-[160px] h-[160px]">

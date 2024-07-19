@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { ButtonStyled, ButtonStyledProps } from '../buttons/ButtonStyled';
-import { Text } from '../text/Text';
+import { Text, TextSize } from '../text/Text';
 
 export interface Option {
   value: number | string;
@@ -19,6 +19,9 @@ export const Select = ({
   prefixComponent,
   suffixComponent,
   staticOptions = false,
+  disabled = false,
+  sizeInsideText = 'B1',
+  biggerList = false,
 }: {
   options: Option[];
   defaultValue?: number | string;
@@ -31,6 +34,9 @@ export const Select = ({
   prefixComponent?: React.ReactNode;
   suffixComponent?: React.ReactNode;
   staticOptions?: boolean;
+  disabled?: boolean;
+  sizeInsideText?: TextSize;
+  biggerList?: boolean;
 }) => {
   const [selectedOption, setSelectedOption] = useState(options.find(op => op.value === defaultValue));
   const [showOptions, setShowOptions] = useState<boolean>(false);
@@ -53,6 +59,10 @@ export const Select = ({
   };
 
   useEffect(() => {
+    setSelectedOption(options.find(op => op.value === defaultValue));
+  }, [options, defaultValue]);
+
+  useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
@@ -64,16 +74,18 @@ export const Select = ({
       <ButtonStyled
         {...buttonProps}
         onClick={onButtonClick}
-        className={`flex justify-center items-center px-2 ${buttonProps.className}`}
+        className={`flex justify-center items-center  ${buttonProps.className}`}
       >
         {prefixComponent}
-        <Text className={staticOptions ? '' : 'font-bold'}>
+        <Text className={staticOptions ? '' : 'font-bold'} size={sizeInsideText}>
           {staticOptions ? placeholder : selectedOption?.label ?? placeholder}
         </Text>
         {suffixComponent}
       </ButtonStyled>
-      {showOptions && (
-        <div className="z-10 origin-top-right absolute w-full rounded-md shadow-lg bg-white max-h-[300px] overflow-y-auto">
+      {showOptions && !disabled && (
+        <div
+          className={`z-10 origin-top-right absolute ${biggerList ? 'w-[160px] ' : 'w-full'} rounded-md shadow-lg bg-white max-h-[300px] overflow-y-auto px-2`}
+        >
           <div>
             {options.map(option => (
               <div

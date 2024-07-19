@@ -4,6 +4,7 @@ import { GetInContact } from '@components/sections/GetInContact';
 import { CardPost } from '@components/CardPost';
 import { Divider } from '@components/Divider';
 import dynamic from 'next/dynamic';
+import DesignSemiCircle from '@components/DesignSemiCircle';
 const BlogPost = dynamic(() => import('@components/sections/BlogPosts'), {
   ssr: false,
 });
@@ -11,7 +12,8 @@ const BlogPost = dynamic(() => import('@components/sections/BlogPosts'), {
 const Page = async () => {
   return (
     <main className="font-montserrat bg-grayMix1">
-      <section className="pb-[45px] pt-4 bg-orange">
+      <section className="pb-12 pt-4 relative bg-orange overflow-hidden">
+        <DesignSemiCircle />
         <Container>
           <Header style="light" />
 
@@ -23,9 +25,9 @@ const Page = async () => {
         </Container>
       </section>
 
-      <section className="pb-[45px] pt-12 md:pt-32">
+      <section className="pb-12 pt-12 md:pt-32">
         <Container className="flex flex-col items-center">
-          <div className="flex flex-col h-full md:flex-row gap-4 md:gap-[58px]">
+          <div className="flex flex-col h-full md:flex-row gap-4 md:gap-14">
             <div className="h-[370px] md:h-[480px]">
               <CardPost
                 alt={' Eleição 2024: A Persistente Sub-Representação de Mulheres na Política'}
@@ -41,7 +43,7 @@ const Page = async () => {
               />
             </div>
 
-            <div className="flex flex-col gap-[24px]">
+            <div className="flex flex-col gap-6">
               <div className="md:h-[227px]">
                 <CardPost
                   alt={

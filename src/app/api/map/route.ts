@@ -5,6 +5,7 @@ import { CandidateService } from '@services/candidates/CandidateService';
 export async function GET(req: NextRequest) {
   const state = req.nextUrl.searchParams.get('state') ?? '';
   const candidateId = req.nextUrl.searchParams.get('candidateId') ?? '';
+  console.info('get:map', { state, candidateId });
 
   if (!GeoJsonMap.hasOwnProperty(state) || !candidateId) {
     return NextResponse.json({ type: 'FeatureCollection', features: [] });

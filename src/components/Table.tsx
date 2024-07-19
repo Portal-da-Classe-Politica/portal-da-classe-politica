@@ -111,7 +111,7 @@ const TableComponent = ({
                       <Text size="B1" className="font-bold">
                         {sValue.title}
                       </Text>
-                      <Text size="B2"> {value[sValue.key || '']}</Text>
+                      <Text size="B2"> {value[sValue.key ?? '']}</Text>
                     </div>
                   );
                 })}
