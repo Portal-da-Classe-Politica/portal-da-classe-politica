@@ -13,7 +13,7 @@ import { PieChartCard } from '@components/charts/PieChartCard';
 
 export const ConsultSection = ({ initialConsult }: { initialConsult: string }) => {
   const onConsult = (values: any) => {
-    console.log(values);
+    console.debug(values);
   };
 
   return (

@@ -8,9 +8,9 @@ export const GetInContact = () => {
     <section className="bg-orange py-[80px]">
       <Container className={'md:w-[770px]'}>
         <div className="text-white text-center mb-11">
-          <Heading headingLevel={2} className="font-bold text-[30px] mb-[22px]">
+          <Heading headingLevel={2} className="font-bold !text-[30px] mb-[22px]">
             Entre em contato com a equipe do Portal Redem
-          </Heading>{' '}
+          </Heading>
         </div>
         <div className="flex flex-wrap items-center  justify-evenly  gap-4 md:gap-4">
           <div className="w-[160px] h-[160px]">

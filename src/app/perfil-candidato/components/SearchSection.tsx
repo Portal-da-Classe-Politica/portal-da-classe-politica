@@ -13,7 +13,7 @@ import { Constants } from '@constants';
 export const SearchSection = ({ title, filters }: { title: string; filters: any }) => {
   const [search, setSearch] = useObjReducer({ uf: '', name: '', abrangencyId: '', electoralUnitId: '' });
   const [result, setResult] = useState<any>([]);
-  const [cities, setCities] = useState([]);
+  const [electoralUnits, setElectoralUnits] = useState([]);
   const [abrangencyFilter, setAbrangencyFilter] = useState<
     {
       label: string;
@@ -31,13 +31,8 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
 
       const searchParams = new URLSearchParams({ ...search, page: String(page) });
       fetch(`/api/candidates?${searchParams.toString()}`)
-        .then(res => {
-          return res.json();
-        })
-        .then(data => {
-          console.log(data);
-          setResult(data);
-        })
+        .then(res => res.json())
+        .then(data => setResult(data))
         .finally(() => {
           setLoading(false);
         });
@@ -62,15 +57,16 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
 
   useEffect(() => {
     if (search.abrangencyId === Constants.abrangency.municipal && search.uf) {
+      setSearch({ electoralUnitId: '' });
+      setElectoralUnits([]);
+
       fetch(`/api/electoralUnit?abrangecyId=${search.abrangencyId}&uf=${search.uf}`)
-        .then(res => {
-          return res.json();
-        })
+        .then(res => res.json())
         .then(data => {
-          setCities(data);
+          setElectoralUnits(data);
         });
     }
-  }, [search.uf, search.abrangencyId]);
+  }, [search.uf, search.abrangencyId, setSearch, setElectoralUnits]);
 
   return (
     <>
@@ -117,8 +113,8 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
                 <div className="w-full ">
                   <Select
                     placeholder="Selecionar Cidade"
-                    disabled={search.uf ? false : true}
-                    options={cities}
+                    disabled={!search.uf}
+                    options={electoralUnits}
                     className="w-full"
                     buttonProps={{ style: 'fillGray', className: 'px-[8px] w-full' }}
                     prefixComponent={
@@ -212,7 +208,6 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
                   {
                     key: '',
                     render: (_, row) => {
-                      console.log(_, row);
                       return (
                         <Link href={routes.candidate(row.candidatoId)}>
                           <ButtonStyled size="small" style="fillOrange" className="w-[210px]">

@@ -4,13 +4,14 @@ import Link from 'next/link';
 import { Container, Heading, Text } from '@base';
 import { BoxIcon } from '@components/box/BoxIcon';
 import { routes } from '@routes';
+import { Constants } from '@constants';
 
 const sections = [
   {
-    title: 'OVERVIEW',
+    title: 'MENU',
     className: '',
     links: [
-      { text: 'Consultas', href: routes.consult },
+      { text: 'Cruzamentos', href: routes.consult },
       { text: 'Projeções', href: routes.projections },
       { text: 'Perfil dos candidatos', href: routes.candidates },
       { text: 'Sobre o projeto', href: routes.about },
@@ -20,12 +21,9 @@ const sections = [
   {
     title: 'ATENDIMENTO',
     className: '',
-    links: [
-      { text: 'Cruzamentos e Dados Eleitorais', href: routes.support },
-      { text: 'Indicadores e Índices Especiais', href: routes.support },
-      { text: 'Aprenda a usar os Indicadores', href: routes.support },
-      { text: 'Comunicação Científica', href: routes.support },
-    ],
+    text: `Tel: +55 (41) 3360-5065
+E-mail: inct.redem@gmail.com`,
+    links: [{ text: 'Contato', href: routes.support }],
   },
   {
     title: 'FERRAMENTAS',
@@ -33,7 +31,6 @@ const sections = [
     links: [
       { text: 'Suporte Técnico', href: routes.support },
       { text: 'Reportar Erro', href: routes.support },
-      { text: 'Contato', href: routes.support },
     ],
   },
 ];
@@ -45,28 +42,27 @@ export const Footer = () => {
         <div className="flex flex-col lg:flex-row py-[90px] gap-10">
           <div className=" lg:max-w-[340px] lg:mr-[160px]">
             <Image src="/img/Logo.svg" alt="Logo" width={154} height={80} />
-            <Text className="text-[18px] my-6">Representação e Legitimidade Democrática</Text>
+            <Text className="text-[18px] my-6">
+              Universidade Federal do Paraná{'\n'}
+              Departamento de Ciência Política{'\n'}
+              INCT ReDem{'\n'}
+              {'\n'}
+              Endereço: Rua General{'\n'}
+              Carneiro, 460 sala 515 CEP 80060-150 Curitiba, Paraná, Brasil{'\n'}
+            </Text>
             <div className="flex gap-4">
-              <a
-                target="_blank"
-                href="https://www.facebook.com/people/INCT-ReDem/61552965411509/ "
-                className="cursor-pointer"
-              >
+              <Link target="_blank" href={Constants.links.facebook}>
                 <BoxIcon icon="Facebook" iconSize="lg" className="bg-orange" />
-              </a>
-              <a target="_blank" href="https://x.com/INCT_ReDem " className="cursor-pointer">
+              </Link>
+              <Link target="_blank" href={Constants.links.xTwitter}>
                 <BoxIcon icon="Twitter" iconSize="lg" className="bg-orange" />
-              </a>
-              <a
-                target="_blank"
-                href="https://www.linkedin.com/company/inct-redem-representa%C3%A7%C3%A3o-e-legitimidade-democr%C3%A1tica/"
-                className="cursor-pointer"
-              >
+              </Link>
+              <Link target="_blank" href={Constants.links.linkedin}>
                 <BoxIcon icon="LinkedIn" iconSize="lg" className="bg-orange" />
-              </a>
-              <a target="_blank" href="https://www.instagram.com/redem.inct/" className="cursor-pointer">
+              </Link>
+              <Link target="_blank" href={Constants.links.instagram}>
                 <BoxIcon icon="Instagram" iconSize="lg" className="bg-orange" />
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -76,6 +72,7 @@ export const Footer = () => {
                 <Heading headingLevel={3} size={'H6'} className="font-bold mb-10">
                   {section.title}
                 </Heading>
+                {section.text && <Text className="text-[18px] my-6">{section.text}</Text>}
                 <ul className="space-y-2">
                   {section.links.map(link => (
                     <li key={link.text}>
@@ -95,7 +92,10 @@ export const Footer = () => {
       <Container>
         <div className="text-center py-7">
           <Text size={'L1'}>
-            Copyright © 2024 ARW Consultoria. Todos os direitos reservados. Desenvolvido por Agência WDK
+            Copyright © 2024 INCT REDEM. Todos os direitos reservados. Desenvolvido por{' '}
+            <Link href={Constants.links.arwPoliticalAdvisory} className="underline underline-offset-1">
+              ARW POLITICAL ADVISORY
+            </Link>
           </Text>
         </div>
       </Container>
