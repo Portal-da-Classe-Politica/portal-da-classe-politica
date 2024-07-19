@@ -66,7 +66,7 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
           setElectoralUnits(data);
         });
     }
-  }, [search.uf, search.abrangencyId]);
+  }, [search.uf, search.abrangencyId, setSearch, setElectoralUnits]);
 
   return (
     <>
