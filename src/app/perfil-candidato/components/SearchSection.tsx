@@ -70,7 +70,7 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
 
   return (
     <>
-      <section className="pb-[45px]">
+      <section className="pb-12">
         <Container>
           <div className="flex flex-col mt-12 justify-between items-center text-center">
             <Heading size="H1" className="text-white mt-4">
@@ -84,7 +84,7 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
                   placeholder={search.abrangencyId ? preSelectAbrangency() || '' : 'Selecionar Abrangencia'}
                   className="w-full"
                   options={abrangencyFilter}
-                  buttonProps={{ style: 'fillGray', className: 'px-[8px] w-full' }}
+                  buttonProps={{ style: 'fillGray', className: 'px-2 w-full' }}
                   prefixComponent={
                     <Text textType="span" size="B1" className="font-normal mr-2">
                       Abrangencia |
@@ -99,7 +99,7 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
                   placeholder="Selecionar Estado"
                   className="w-full"
                   options={filters.estados}
-                  buttonProps={{ style: 'fillGray', className: 'px-[8px] w-full' }}
+                  buttonProps={{ style: 'fillGray', className: 'px-2 w-full' }}
                   prefixComponent={
                     <Text textType="span" size="B1" className="font-normal mr-2">
                       Estado |
@@ -116,7 +116,7 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
                     disabled={!search.uf}
                     options={electoralUnits}
                     className="w-full"
-                    buttonProps={{ style: 'fillGray', className: 'px-[8px] w-full' }}
+                    buttonProps={{ style: 'fillGray', className: 'px-2 w-full' }}
                     prefixComponent={
                       <Text textType="span" size="B1" className="font-normal mr-2">
                         Cidade |{' '}
@@ -147,7 +147,7 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
         </Container>
       </section>
 
-      <section className="pb-[45px] pt-10 bg-grayMix1">
+      <section className="pb-12 pt-10 bg-grayMix1">
         <Container className="flex flex-col items-center">
           <Divider type="darkerGray" bottom="small" />
           <div className="flex text-orange justify-between w-full mb-10 flex-col md:flex-row gap-2 ">
@@ -176,7 +176,7 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
                   ]}
                   buttonProps={{
                     style: 'ghostOrange',
-                    className: 'py-[4px] px-[4px] bg-white drop-shadow-md',
+                    className: 'py-1 px-1 bg-white drop-shadow-md',
                   }}
                   suffixComponent={<Icon type="ArrowDown" className="ml-2  " />}
                 />

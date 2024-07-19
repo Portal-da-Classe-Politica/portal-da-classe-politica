@@ -112,7 +112,7 @@ const Filter = ({
               ]}
               placeholder="Sem cruzamento"
               className="inline"
-              buttonProps={{ style: 'fillGray', className: 'px-[8px] w-full' }}
+              buttonProps={{ style: 'fillGray', className: 'px-2 w-full' }}
               prefixComponent={
                 <>
                   <BoxIcon

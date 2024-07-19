@@ -30,7 +30,7 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
   return (
     <main className="font-montserrat bg-grayMix1">
       <Suspense>
-        <section className="pb-[45px] pt-4 bg-white">
+        <section className="pb-12 pt-4 bg-white">
           <Container>
             <Header style="dark" />
 

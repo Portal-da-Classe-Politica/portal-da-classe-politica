@@ -41,7 +41,7 @@ const cardIconTexts = [
 const Page = () => {
   return (
     <main className="font-montserrat">
-      <section className="pb-[45px] pt-4 bg-orange">
+      <section className="pb-12 pt-4 bg-orange">
         <Container>
           <Header style="light" />
 

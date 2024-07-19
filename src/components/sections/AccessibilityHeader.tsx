@@ -7,7 +7,7 @@ import { Constants } from '@constants';
 export const AccessibilityHeader = () => {
   return (
     <header className="border-2 border-black border-opacity-5">
-      <Container className={'my-[20px]'}>
+      <Container className={'my-5'}>
         <ul className="flex">
           <li>
             <Link href={Constants.links.privacyPolicy} target="__blank">

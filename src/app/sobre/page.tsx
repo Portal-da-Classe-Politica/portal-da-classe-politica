@@ -69,7 +69,7 @@ const avatarMock = [
 const Page = () => {
   return (
     <main className="font-montserrat bg-orange">
-      <section className="pb-[45px] pt-4">
+      <section className="pb-12 pt-4">
         <Container>
           <Header style="light" />
 
@@ -100,7 +100,7 @@ const Page = () => {
         </Container>
       </section>
 
-      <section className="pb-[45px] pt-12 md:pt-32 bg-white">
+      <section className="pb-12 pt-12 md:pt-32 bg-white">
         <Container className="flex flex-col items-center">
           <TextParagraph
             title={'Democratização e transparência de dados eleitorais no Brasil'}

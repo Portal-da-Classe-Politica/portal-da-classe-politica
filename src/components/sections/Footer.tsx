@@ -39,10 +39,10 @@ export const Footer = () => {
   return (
     <footer className="bg-black text-white">
       <Container>
-        <div className="flex flex-col lg:flex-row py-[90px] gap-10">
-          <div className=" lg:max-w-[340px] lg:mr-[160px]">
+        <div className="flex flex-col lg:flex-row py-20 gap-10">
+          <div className=" lg:max-w-[340px] lg:mr-36">
             <Image src="/img/Logo.svg" alt="Logo" width={154} height={80} />
-            <Text className="text-[18px] my-6">
+            <Text className="text-4 my-6">
               Universidade Federal do Paraná{'\n'}
               Departamento de Ciência Política{'\n'}
               INCT ReDem{'\n'}
@@ -72,12 +72,12 @@ export const Footer = () => {
                 <Heading headingLevel={3} size={'H6'} className="font-bold mb-10">
                   {section.title}
                 </Heading>
-                {section.text && <Text className="text-[18px] my-6">{section.text}</Text>}
+                {section.text && <Text className="text-4 my-6">{section.text}</Text>}
                 <ul className="space-y-2">
                   {section.links.map(link => (
                     <li key={link.text}>
                       <Link href={link.href}>
-                        <Text className="text-[18px]">{link.text}</Text>
+                        <Text className="text-4">{link.text}</Text>
                       </Link>
                     </li>
                   ))}

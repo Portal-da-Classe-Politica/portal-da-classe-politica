@@ -63,7 +63,7 @@ const dataSeries = {
 const Page = () => {
   return (
     <main className="font-montserrat">
-      <section className="pb-[45px] pt-4 bg-orange">
+      <section className="pb-12 pt-4 bg-orange">
         <Container>
           <Header style="light" />
 
@@ -103,7 +103,6 @@ const Page = () => {
             chartTitle="Dimensão de ambição política"
             series={dataSeries}
           />
-
           <hr className="border-t-[1px] border-orange mt-16" />
         </Container>
       </section>

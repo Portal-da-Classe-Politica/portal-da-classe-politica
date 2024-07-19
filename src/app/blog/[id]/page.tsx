@@ -11,7 +11,7 @@ const MarkdownSection = dynamic(() => import('@components/sections/MarkdownSecti
 const Page = ({ params: { id } }: { params: { id: string } }) => {
   return (
     <main className="font-montserrat bg-grayMix1">
-      <section className="pb-[45px] pt-4">
+      <section className="pb-12 pt-4">
         <Container>
           <Header style="dark" />
         </Container>

@@ -22,7 +22,7 @@ export const SpecialContents = async ({ title = 'Conteúdos especiais' }: { titl
 
   return (
     <div className="mt-10">
-      <div className="flex flex-col md:flex-row mb-[30px] gap-4 items-center">
+      <div className="flex flex-col md:flex-row mb-7 gap-4 items-center">
         <Heading headingLevel={2} size={'H2'} className="font-bold ">
           {title}
         </Heading>

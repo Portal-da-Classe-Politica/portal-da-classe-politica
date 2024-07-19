@@ -8,18 +8,18 @@ import { BoxIconText } from '@components/box/BoxIconText';
 const Atendimento = () => {
   return (
     <main>
-      <section className="bg-orange pt-[15px]">
+      <section className="bg-orange pt-4">
         <Container>
           <Header style="light" />
         </Container>
       </section>
-      <section className="bg-orange py-[80px]">
+      <section className="bg-orange py-20">
         <Container className={'md:w-[770px]'}>
           <div className="text-white text-center mb-11">
-            <Text textType="span" size="S1" className="font-bold text-[30px] mb-[22px]">
+            <Text textType="span" size="S1" className="font-bold mb-4">
               ATENDIMENTO
             </Text>{' '}
-            <Heading headingLevel={2} className="font-bold text-[30px] mb-[22px]">
+            <Heading headingLevel={2} className="font-bold mb-4">
               Precisando de ajuda? Escolha o método de atendimento
             </Heading>{' '}
           </div>
@@ -37,9 +37,9 @@ const Atendimento = () => {
         </Container>
       </section>
       <section className="bg-[#F4F4F4]">
-        <Container className="pt-10 pb-10 md:pb-[150px]">
+        <Container className="pt-10 pb-10 md:pb-28">
           <Heading headingLevel={2}>Informações de Contato</Heading>
-          <div className="flex mb-10 md:mb-[140px] flex-col-reverse md:flex-row">
+          <div className="flex mb-10 md:mb-28 flex-col-reverse md:flex-row">
             <div className="flex-1">
               <LineItem className="my-7">
                 <Text size="B1" className="font-bold mb-2">
