@@ -108,7 +108,7 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
               buttonProps={{
                 size: 'small',
                 style: 'ghostBlack',
-                className: `${classes} ${verifyPathSelect(routes.consult, pathname) ? '!font-bold' : ''} hover:!bg-transparent font-b2`,
+                className: `${classes} ${verifyPathSelect(routes.consult, pathname) ? '!font-bold' : ''} hover:!bg-transparent font-b2 !p-0`,
               }}
               suffixComponent={<Icon type="ArrowDown" size="xs" className={`ml-1 ${iconColor}`} />}
             />

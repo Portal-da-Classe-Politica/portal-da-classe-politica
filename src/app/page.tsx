@@ -7,11 +7,13 @@ import { GetInContact } from '@components/sections/GetInContact';
 import { HowToCrossing } from '@components/sections/HowToCrossing';
 import { SpecialContents } from '@components/sections/SpecialContents';
 import { routes } from '@routes';
+import DesignSemiCircle from '@components/DesignSemiCircle';
 
 const Home = () => {
   return (
     <main className="font-montserrat">
-      <section className="bg-orange pb-10 md:pb-[90px] pt-4">
+      <section className="bg-orange pb-10 md:pb-[90px] pt-4 relative overflow-hidden">
+        <DesignSemiCircle position="top" />
         <Container>
           <Header style="light" />
           <div className="gap-7 flex flex-col items-center md:mt-10 text-white md:flex-row">

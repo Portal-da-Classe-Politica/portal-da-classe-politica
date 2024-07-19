@@ -11,7 +11,7 @@ const Page = async () => {
 
   return (
     <main className="font-montserrat bg-orange">
-      <section className="pt-4">
+      <section className="pt-4 ">
         <Container>
           <Header style="light" />
         </Container>

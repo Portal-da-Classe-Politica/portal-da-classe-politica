@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { routes } from '@routes';
 import { Constants } from '@constants';
+import DesignSemiCircle from '@components/DesignSemiCircle';
 
 export const SearchSection = ({ title, filters }: { title: string; filters: any }) => {
   const [search, setSearch] = useObjReducer({ uf: '', name: '', abrangencyId: '', electoralUnitId: '' });
@@ -74,7 +75,9 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
 
   return (
     <>
-      <section className="pb-[45px]">
+      <section className="pb-[45px] relative">
+        <DesignSemiCircle />
+
         <Container>
           <div className="flex flex-col mt-12 justify-between items-center text-center">
             <Heading size="H1" className="text-white mt-4">

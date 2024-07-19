@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        design: '1700px',
+      },
       flex: {
         '2': '2 2 0%',
         '3': '3 3 0%',
