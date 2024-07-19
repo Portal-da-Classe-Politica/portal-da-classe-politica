@@ -92,6 +92,7 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
               placeholder="CONSULTA"
               staticOptions
               sizeInsideText="L2"
+              biggerList
               options={[
                 { value: routes.consult, label: 'CRUZAMENTOS' },
                 { value: routes.projections, label: 'PROJEÇÕES' },

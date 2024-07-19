@@ -21,6 +21,7 @@ export const Select = ({
   staticOptions = false,
   disabled = false,
   sizeInsideText = 'B1',
+  biggerList = false,
 }: {
   options: Option[];
   defaultValue?: number | string;
@@ -35,6 +36,7 @@ export const Select = ({
   staticOptions?: boolean;
   disabled?: boolean;
   sizeInsideText?: TextSize;
+  biggerList?: boolean;
 }) => {
   const [selectedOption, setSelectedOption] = useState(options.find(op => op.value === defaultValue));
   const [showOptions, setShowOptions] = useState<boolean>(false);
@@ -72,7 +74,7 @@ export const Select = ({
       <ButtonStyled
         {...buttonProps}
         onClick={onButtonClick}
-        className={`flex justify-center items-center px-2 ${buttonProps.className}`}
+        className={`flex justify-center items-center  ${buttonProps.className}`}
       >
         {prefixComponent}
         <Text className={staticOptions ? '' : 'font-bold'} size={sizeInsideText}>
@@ -81,7 +83,9 @@ export const Select = ({
         {suffixComponent}
       </ButtonStyled>
       {showOptions && !disabled && (
-        <div className="z-10 origin-top-right absolute w-full rounded-md shadow-lg bg-white max-h-[300px] overflow-y-auto">
+        <div
+          className={`z-10 origin-top-right absolute ${biggerList ? 'w-[160px] ' : 'w-full'} rounded-md shadow-lg bg-white max-h-[300px] overflow-y-auto px-2`}
+        >
           <div>
             {options.map(option => (
               <div
