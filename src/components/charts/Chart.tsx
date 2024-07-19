@@ -14,7 +14,7 @@ export interface ChartProps {
   className?: string;
 }
 
-export const Chart = ({ series, type = 'line', options = {}, height = 600, className = '' }: ChartProps) => {
+export const Chart = ({ series, type = 'line', options = {}, height = 500, className = '' }: ChartProps) => {
   const divRef = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState<number | undefined>(undefined);
 
