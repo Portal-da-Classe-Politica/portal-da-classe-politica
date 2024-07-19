@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { ButtonStyled, ButtonStyledProps } from '../buttons/ButtonStyled';
-import { Text } from '../text/Text';
+import { Text, TextSize } from '../text/Text';
 
 export interface Option {
   value: number | string;
@@ -34,7 +34,7 @@ export const Select = ({
   suffixComponent?: React.ReactNode;
   staticOptions?: boolean;
   disabled?: boolean;
-  sizeInsideText?: 'B1' | 'B2';
+  sizeInsideText?: TextSize;
 }) => {
   const [selectedOption, setSelectedOption] = useState(options.find(op => op.value === defaultValue));
   const [showOptions, setShowOptions] = useState<boolean>(false);
