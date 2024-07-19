@@ -128,7 +128,7 @@ const BlogPost = () => {
                 onSelect={val => setFilterType(val as string)}
                 buttonProps={{
                   style: 'ghostOrange',
-                  className: 'py-[4px] px-[4px] bg-white drop-shadow-md',
+                  className: 'py-1 px-1 bg-white drop-shadow-md',
                 }}
                 suffixComponent={<Icon type="ArrowDown" className="ml-2  " />}
               />

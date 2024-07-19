@@ -11,7 +11,7 @@ import { routes } from '@routes';
 const Home = () => {
   return (
     <main className="font-montserrat">
-      <section className="bg-orange pb-10 md:pb-[90px] pt-4">
+      <section className="bg-orange pb-10 md:pb-20 pt-4">
         <Container>
           <Header style="light" />
           <div className="gap-7 flex flex-col items-center md:mt-10 text-white md:flex-row">
@@ -70,7 +70,7 @@ const Home = () => {
         </Container>
       </section>
 
-      <section className=" pt-10 md:pt-[90px] pb-14 md:pb-[120px]">
+      <section className=" pt-10 md:pt-20 pb-14 md:pb-28">
         <Container>
           <div className=" md:max-w-[854px] mb-8">
             <Heading headingLevel={2}>Análises e Treinamentos </Heading>
@@ -79,7 +79,7 @@ const Home = () => {
               experiência nos uso dos dados eleitorais mais intuitiva e fundamentada.
             </Text>
           </div>
-          <div className="flex flex-col h-full md:flex-row gap-4 md:gap-[58px]">
+          <div className="flex flex-col h-full md:flex-row gap-4 md:gap-14">
             <div className="h-[370px] md:h-[480px]">
               <CardPost
                 alt={' Eleição 2024: A Persistente Sub-Representação de Mulheres na Política'}
@@ -95,7 +95,7 @@ const Home = () => {
               />
             </div>
 
-            <div className="flex flex-col gap-[24px]">
+            <div className="flex flex-col gap-6">
               <div className="md:h-[227px]">
                 <CardPost
                   alt={
@@ -131,7 +131,7 @@ const Home = () => {
         </Container>
       </section>
 
-      <section className="bg-orange py-10 md:py-[80px]">
+      <section className="bg-orange py-10 md:py-20">
         <Container>
           <div className="flex flex-col md:flex-row gap-4">
             <div className="text-white flex-1 flex">
@@ -139,7 +139,7 @@ const Home = () => {
                 <Heading headingLevel={2} className="font-bold">
                   Alguns números do Portal da Classe Política
                 </Heading>
-                <Text size={'B1'} className="py-[24px]">
+                <Text size={'B1'} className="py-6">
                   A transparência e o acesso à informação são pilares fundamentais para o fortalecimento da
                   democracia. O acesso fácil e intuitivo aos dados eleitorais possibilita maior participação e
                   fiscalização por parte da sociedade. Para contribuir com esses objetivos, empreendemos
@@ -147,7 +147,7 @@ const Home = () => {
                 </Text>
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px]	flex-1">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6	flex-1">
               <BoxData
                 header="2.884.495 "
                 title="Candidaturas computadas "
@@ -173,7 +173,7 @@ const Home = () => {
         </Container>
       </section>
 
-      <HowToCrossing className="pt-8 md:pt-[72px] pb-8 md:pb-[78px]" />
+      <HowToCrossing className="pt-8 md:pt-16 pb-8 md:pb-16" />
 
       <section className="mt-6 md:mt-20 mb-10 md:mb-20">
         <Container>

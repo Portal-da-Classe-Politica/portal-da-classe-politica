@@ -1,7 +1,7 @@
 import { cva } from 'cva';
 
 const chipVariant = cva(
-  'font-montserrat mr-3 text-nowrap text-c2 rounded-[20px] py-[3px] px-[8px] transition-opacity duration-300 hover:opacity-70 cursor-default',
+  'font-montserrat mr-3 text-nowrap text-c2 rounded-[20px] py-2 px-4 transition-opacity duration-300 hover:opacity-70 cursor-default',
   {
     variants: {
       type: {

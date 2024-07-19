@@ -23,7 +23,7 @@ const LastElection = () => {
               </Text>
             </div>
             <div className="w-[60%]  text-right content-center font-bold text-white flex justify-end">
-              <div className="bg-orange rounded-full py-[2px] pr-[6px]" style={{ width: `calc(1% + 28px)` }}>
+              <div className="bg-orange rounded-full py-0.5 pr-1.5" style={{ width: `calc(1% + 28px)` }}>
                 <Text textType="span" size="C2">
                   1%
                 </Text>
@@ -40,7 +40,7 @@ const LastElection = () => {
               </Text>
             </div>
             <div className="w-[60%]  text-right content-center font-bold text-white flex justify-end">
-              <div className="bg-orange rounded-full py-[2px] pr-[6px]" style={{ width: `calc(1% + 28px)` }}>
+              <div className="bg-orange rounded-full py-0.5 pr-1.5" style={{ width: `calc(1% + 28px)` }}>
                 <Text textType="span" size="C2">
                   1%
                 </Text>
@@ -57,7 +57,7 @@ const LastElection = () => {
               </Text>
             </div>
             <div className="w-[60%]  text-right content-center font-bold text-white flex justify-end">
-              <div className="bg-orange rounded-full py-[2px] pr-[6px]" style={{ width: `calc(1% + 28px)` }}>
+              <div className="bg-orange rounded-full py-0.5 pr-1.5" style={{ width: `calc(1% + 28px)` }}>
                 <Text textType="span" size="C2">
                   1%
                 </Text>
@@ -74,7 +74,7 @@ const LastElection = () => {
               </Text>
             </div>
             <div className="w-[60%]  text-right content-center font-bold text-white flex justify-end">
-              <div className="bg-orange rounded-full py-[2px] pr-[6px]" style={{ width: `calc(1% + 28px)` }}>
+              <div className="bg-orange rounded-full py-0.5 pr-1.5" style={{ width: `calc(1% + 28px)` }}>
                 <Text textType="span" size="C2">
                   1%
                 </Text>

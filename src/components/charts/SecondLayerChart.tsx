@@ -54,17 +54,18 @@ export const SecondLayerChart = ({
       </div>
 
       <div className="flex flex-col-reverse md:flex-row mt-10 md:mt-16">
-        <div className="flex md:w-[30%] md:mr-8">
+        <div className="flex md:w-[30%] md:mr-8 max-w-[300px]">
           <div className="flex flex-col">
             <Text size="B1" className="font-bold">
               {seriesTitle}
             </Text>
             <Text size="B1">{seriesDescription}</Text>
 
-            <div className="flex flex-1 flex-col justify-between mt-4">
+            <div className="flex flex-1 flex-col mt-4">
               {Object.keys(series).map(key => (
                 <Checkbox
                   key={key}
+                  className="mt-2"
                   value={key}
                   onClick={toggleSeries}
                   initialValue={series[key].initial}
@@ -75,7 +76,9 @@ export const SecondLayerChart = ({
           </div>
         </div>
 
-        <div className={`flex flex-col md:w-[70%] p-4 bg-white drop-shadow-lg rounded-lg mb-10 md:mb-0`}>
+        <div
+          className={`flex flex-1 flex-col min-w-[70%] p-4 bg-white drop-shadow-lg rounded-lg mb-10 md:mb-0`}
+        >
           <Heading headingLevel={2} size="H1" className="mb-4">
             {chartTitle}
           </Heading>

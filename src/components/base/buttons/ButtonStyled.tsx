@@ -20,9 +20,9 @@ const buttonVariants = cva('font-montserrat rounded-[10px] font-bold', {
       fillGray: 'text-black bg-grayMix1 hover:opacity-80',
     },
     size: {
-      small: 'px-[28px] py-[7.5px]',
-      standard: 'px-[28px] py-[11.5px]',
-      large: 'px-[28px] py-[15.5px]',
+      small: 'px-7 py-2',
+      standard: 'px-7 py-3',
+      large: 'px-7 py-4',
     },
     state: {
       '': '',

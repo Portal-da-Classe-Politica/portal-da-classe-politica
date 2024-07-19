@@ -18,7 +18,7 @@ const cards = [
 const Page = ({ searchParams }: { searchParams: { consulta: string | undefined } }) => {
   return (
     <main className="font-montserrat">
-      <section className="bg-white pb-[45px] pt-4">
+      <section className="bg-white pb-12 pt-4">
         <Container>
           <Header style="dark" />
         </Container>
@@ -33,7 +33,7 @@ const Page = ({ searchParams }: { searchParams: { consulta: string | undefined }
               </Heading>
               <Heading size="D2">Cruzamento e Visualização</Heading>
             </div>
-            <div className="flex flex-1 pt-4 md:p-[30px]">
+            <div className="flex flex-1 pt-4 md:p-7">
               <Text size="S1">
                 Utilize filtros e variáveis para criar gráficos e mapas eleitorais personalizados
               </Text>

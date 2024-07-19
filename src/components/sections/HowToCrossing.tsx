@@ -13,10 +13,8 @@ export const HowToCrossing = ({ className }: { className?: string }) => {
             <Heading headingLevel={2} className="font-bold pb-3 text-h5 md:text-h1">
               Como fazer os cruzamentos
             </Heading>
-            <Text className=" text-[18px] font-bold pb-[20px]">
-              Como fazer os cruzamentosComo fazer os cruzamentos
-            </Text>
-            <Text size={'B2'} className="mt-auto pb-[20px] ">
+            <Text className=" text-4 font-bold pb-5">Como fazer os cruzamentosComo fazer os cruzamentos</Text>
+            <Text size={'B2'} className="mt-auto pb-5 ">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa
               lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis ec.Lorem ipsum dolor
               sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque.
@@ -41,10 +39,8 @@ export const HowToCrossing = ({ className }: { className?: string }) => {
             <Heading headingLevel={2} className="font-bold pb-3">
               Como fazer os cruzamentos
             </Heading>
-            <Text className=" text-[18px font-bold pb-[20px]">
-              Como fazer os cruzamentosComo fazer os cruzamentos
-            </Text>
-            <Text size={'B2'} className="mt-auto pb-[20px] ">
+            <Text className=" text-4 font-bold pb-5">Como fazer os cruzamentosComo fazer os cruzamentos</Text>
+            <Text size={'B2'} className="mt-auto pb-5 ">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa
               lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis ec.Lorem ipsum dolor
               sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque.

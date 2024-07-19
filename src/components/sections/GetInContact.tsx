@@ -5,10 +5,10 @@ import Link from 'next/link';
 
 export const GetInContact = () => {
   return (
-    <section className="bg-orange py-[80px]">
+    <section className="bg-orange py-20">
       <Container className={'md:w-[770px]'}>
         <div className="text-white text-center mb-11">
-          <Heading headingLevel={2} className="font-bold !text-[30px] mb-[22px]">
+          <Heading headingLevel={2} className="font-bold !text-7 mb-5">
             Entre em contato com a equipe do Portal Redem
           </Heading>
         </div>
