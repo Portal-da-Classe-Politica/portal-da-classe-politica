@@ -6,6 +6,7 @@ import { Header } from '@components/sections/Header';
 import Avatar from '@components/Avatar';
 import Timeline from '@components/timeline/Timeline';
 import { GetInContact } from '@components/sections/GetInContact';
+import DesignSemiCircle from '@components/DesignSemiCircle';
 
 const headerText = [
   {
@@ -69,7 +70,9 @@ const avatarMock = [
 const Page = () => {
   return (
     <main className="font-montserrat bg-orange">
-      <section className="pb-12 pt-4">
+      <section className="pb-12 relative pt-4 overflow-hidden">
+        <DesignSemiCircle />
+
         <Container>
           <Header style="light" />
 

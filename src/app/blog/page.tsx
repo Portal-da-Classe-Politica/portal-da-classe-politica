@@ -4,6 +4,7 @@ import { GetInContact } from '@components/sections/GetInContact';
 import { CardPost } from '@components/CardPost';
 import { Divider } from '@components/Divider';
 import dynamic from 'next/dynamic';
+import DesignSemiCircle from '@components/DesignSemiCircle';
 const BlogPost = dynamic(() => import('@components/sections/BlogPosts'), {
   ssr: false,
 });
@@ -11,7 +12,8 @@ const BlogPost = dynamic(() => import('@components/sections/BlogPosts'), {
 const Page = async () => {
   return (
     <main className="font-montserrat bg-grayMix1">
-      <section className="pb-12 pt-4 bg-orange">
+      <section className="pb-12 pt-4 relative bg-orange overflow-hidden">
+        <DesignSemiCircle />
         <Container>
           <Header style="light" />
 

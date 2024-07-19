@@ -9,7 +9,7 @@ import Avatar from '@components/Avatar';
 const Page = () => {
   return (
     <main className="font-montserrat bg-grayMix1">
-      <section className="pb-12 pt-4">
+      <section className="pb-12  pt-4 overflow-hidden">
         <Container>
           <Header style="dark" />
         </Container>

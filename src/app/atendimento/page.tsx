@@ -4,38 +4,43 @@ import { ButtonStyled, Container, Heading, Text, Input, TextArea, TextParagraphI
 import { Header } from '@components/sections/Header';
 import { LineItem } from '@components/LineItem';
 import { BoxIconText } from '@components/box/BoxIconText';
+import DesignSemiCircle from '@components/DesignSemiCircle';
 
 const Atendimento = () => {
   return (
     <main>
-      <section className="bg-orange pt-4">
-        <Container>
-          <Header style="light" />
-        </Container>
-      </section>
-      <section className="bg-orange py-20">
-        <Container className={'md:w-[770px]'}>
-          <div className="text-white text-center mb-11">
-            <Text textType="span" size="S1" className="font-bold mb-4">
-              ATENDIMENTO
-            </Text>{' '}
-            <Heading headingLevel={2} className="font-bold mb-4">
-              Precisando de ajuda? Escolha o método de atendimento
-            </Heading>{' '}
-          </div>
-          <div className="flex flex-wrap items-center justify-evenly gap-4 md:gap-4">
-            <div className="w-[160px] h-[160px]">
-              <BoxIconText text="Atendimento Redem" iconType="Headset" />
+      <div className="relative">
+        <section className="bg-orange pt-[15px] ">
+          <DesignSemiCircle />
+
+          <Container>
+            <Header style="light" />
+          </Container>
+        </section>
+        <section className="bg-orange py-20">
+          <Container className={'md:w-[770px]'}>
+            <div className="text-white text-center mb-11">
+              <Text textType="span" size="S1" className="font-bold text-[30px] mb-[22px]">
+                ATENDIMENTO
+              </Text>{' '}
+              <Heading headingLevel={2} className="font-bold text-[30px] mb-[22px]">
+                Precisando de ajuda? Escolha o método de atendimento
+              </Heading>{' '}
             </div>
-            <div className="w-[160px] h-[160px]">
-              <BoxIconText text="Reportar Erro" iconType="Error" />
+            <div className="flex flex-wrap items-center justify-evenly gap-4 md:gap-4">
+              <div className="w-[160px] h-[160px]">
+                <BoxIconText text="Atendimento Redem" iconType="Headset" />
+              </div>
+              <div className="w-[160px] h-[160px]">
+                <BoxIconText text="Reportar Erro" iconType="Error" />
+              </div>
+              <div className="w-[160px] h-[160px]">
+                <BoxIconText text="Elogios ao projeto" iconType="Star" />
+              </div>
             </div>
-            <div className="w-[160px] h-[160px]">
-              <BoxIconText text="Elogios ao projeto" iconType="Star" />
-            </div>
-          </div>
-        </Container>
-      </section>
+          </Container>
+        </section>
+      </div>
       <section className="bg-[#F4F4F4]">
         <Container className="pt-10 pb-10 md:pb-28">
           <Heading headingLevel={2}>Informações de Contato</Heading>

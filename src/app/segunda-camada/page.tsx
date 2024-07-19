@@ -4,6 +4,7 @@ import { Container, Heading, Text } from '@base';
 import { Header } from '@components/sections/Header';
 import { GetInContact } from '@components/sections/GetInContact';
 import { SecondLayerChart } from '@components/charts/SecondLayerChart';
+import DesignSemiCircle from '@components/DesignSemiCircle';
 
 const dataSeries = {
   electoral: {
@@ -63,7 +64,9 @@ const dataSeries = {
 const Page = () => {
   return (
     <main className="font-montserrat">
-      <section className="pb-12 pt-4 bg-orange">
+      <section className="pb-12 pt-4 relative bg-orange overflow-hidden">
+        <DesignSemiCircle />
+
         <Container>
           <Header style="light" />
 

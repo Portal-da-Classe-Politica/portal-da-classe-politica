@@ -6,6 +6,7 @@ import { GetInContact } from '@components/sections/GetInContact';
 import CardIconText from '@components/CardIconText';
 import { Divider } from '@components/Divider';
 import dynamic from 'next/dynamic';
+import DesignSemiCircle from '@components/DesignSemiCircle';
 
 const TableMenu = dynamic(() => import('@components/sections/TableMenu'), {
   ssr: false,
@@ -41,7 +42,9 @@ const cardIconTexts = [
 const Page = () => {
   return (
     <main className="font-montserrat">
-      <section className="pb-12 pt-4 bg-orange">
+      <section className="pb-12 pt-4 relative bg-orange overflow-hidden">
+        <DesignSemiCircle />
+
         <Container>
           <Header style="light" />
 
