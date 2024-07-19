@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
 import { Container, Text } from '@base';
@@ -22,9 +21,6 @@ export const AccessibilityHeader = () => {
                 Termos de Uso
               </Text>
             </Link>
-          </li>
-          <li className=" ml-auto">
-            <Image src="/img/Acessibilidade.svg" alt="Acessibilidade" width={200} height={30} />
           </li>
         </ul>
       </Container>
