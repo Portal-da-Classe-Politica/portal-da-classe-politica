@@ -77,7 +77,7 @@ export const SecondLayerChart = ({
         </div>
 
         <div
-          className={`flex flex-1 flex-col min-w-[70%] p-4 bg-white drop-shadow-lg rounded-lg mb-10 md:mb-0`}
+          className={`flex flex-1 flex-col h-max-[657px] min-w-[70%] p-4 bg-white drop-shadow-lg rounded-lg mb-10 md:mb-0`}
         >
           <Heading headingLevel={2} size="H1" className="mb-4">
             {chartTitle}
