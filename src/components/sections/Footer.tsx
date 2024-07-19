@@ -39,8 +39,8 @@ export const Footer = () => {
   return (
     <footer className="bg-black text-white">
       <Container>
-        <div className="flex flex-col lg:flex-row py-20 gap-10">
-          <div className=" lg:max-w-[340px] lg:mr-36">
+        <div className="flex flex-col lg:flex-row py-16 justify-between">
+          <div className="lg:max-w-[340px] py-4">
             <Image src="/img/Logo.svg" alt="Logo" width={154} height={80} />
             <Text className="text-4 my-6">
               Universidade Federal do Paraná{'\n'}
@@ -66,7 +66,7 @@ export const Footer = () => {
             </div>
           </div>
 
-          <div className="flex flex-col gap-10 md:flex-row">
+          <div className="flex flex-col gap-10 md:flex-row py-4">
             {sections.map(section => (
               <div key={section.title} className={section.className}>
                 <Heading headingLevel={3} size={'H6'} className="font-bold mb-10">
