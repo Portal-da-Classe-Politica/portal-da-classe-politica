@@ -31,13 +31,8 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
 
       const searchParams = new URLSearchParams({ ...search, page: String(page) });
       fetch(`/api/candidates?${searchParams.toString()}`)
-        .then(res => {
-          return res.json();
-        })
-        .then(data => {
-          console.log(data);
-          setResult(data);
-        })
+        .then(res => res.json())
+        .then(data => setResult(data))
         .finally(() => {
           setLoading(false);
         });
@@ -212,7 +207,6 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
                   {
                     key: '',
                     render: (_, row) => {
-                      console.log(_, row);
                       return (
                         <Link href={routes.candidate(row.candidatoId)}>
                           <ButtonStyled size="small" style="fillOrange" className="w-[210px]">

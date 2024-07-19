@@ -95,7 +95,7 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
               options={[
                 { value: routes.consult, label: 'CRUZAMENTOS' },
                 { value: routes.projections, label: 'PROJEÇÕES' },
-                { value: routes.consultCandidateProfile, label: 'PERFIL DOS CANDIDATOS' },
+                { value: routes.candidates, label: 'PERFIL DOS CANDIDATOS' },
               ]}
               onSelect={(myValue, _) => {
                 router.push(myValue as string);

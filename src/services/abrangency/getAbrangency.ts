@@ -4,7 +4,7 @@ import { redem } from '../redem';
 export const getAbrangency = async () => {
   try {
     const response = await redem.abrangency.getAbrangency();
-    console.log('getAbrangency', response?.data);
+    console.info('getAbrangency', response?.data);
 
     const transformedData = response?.data?.data?.map(value => {
       return {
