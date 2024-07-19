@@ -20,6 +20,7 @@ export const Select = ({
   suffixComponent,
   staticOptions = false,
   disabled = false,
+  sizeInsideText = 'B1',
 }: {
   options: Option[];
   defaultValue?: number | string;
@@ -33,6 +34,7 @@ export const Select = ({
   suffixComponent?: React.ReactNode;
   staticOptions?: boolean;
   disabled?: boolean;
+  sizeInsideText?: 'B1' | 'B2';
 }) => {
   const [selectedOption, setSelectedOption] = useState(options.find(op => op.value === defaultValue));
   const [showOptions, setShowOptions] = useState<boolean>(false);
@@ -69,7 +71,7 @@ export const Select = ({
         className={`flex justify-center items-center px-2 ${buttonProps.className}`}
       >
         {prefixComponent}
-        <Text className={staticOptions ? '' : 'font-bold'}>
+        <Text className={staticOptions ? '' : 'font-bold'} size={sizeInsideText}>
           {staticOptions ? placeholder : selectedOption?.label ?? placeholder}
         </Text>
         {suffixComponent}

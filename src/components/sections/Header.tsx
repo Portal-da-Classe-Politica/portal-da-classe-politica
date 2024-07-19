@@ -92,6 +92,7 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
               className="p-0"
               placeholder="CONSULTA"
               staticOptions
+              sizeInsideText="B2"
               options={[
                 { value: routes.consultCandidateProfile, label: 'Perfil dos Candidatos' },
                 { value: routes.consultElectionResult, label: 'Resultados das Eleições' },
@@ -107,7 +108,7 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
               buttonProps={{
                 size: 'small',
                 style: 'ghostBlack',
-                className: `${classes} ${verifyPathSelect(routes.consult, pathname) ? '!font-bold' : ''} hover:!bg-transparent`,
+                className: `${classes} ${verifyPathSelect(routes.consult, pathname) ? '!font-bold' : ''} hover:!bg-transparent font-b2`,
               }}
               suffixComponent={<Icon type="ArrowDown" size="xs" className={`ml-1 ${iconColor}`} />}
             />
