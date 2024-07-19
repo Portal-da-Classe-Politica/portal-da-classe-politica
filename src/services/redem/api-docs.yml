@@ -303,7 +303,7 @@ paths:
             type: string
           description: Nome ou nome de urna do candidato
         - in: query
-          name: uf
+          name: UF
           schema:
             type: string
           description: Unidade Federativa
