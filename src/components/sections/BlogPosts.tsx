@@ -61,7 +61,7 @@ const BlogPost = () => {
             Categoria
           </Heading>
         </div>
-        <div className="flex flex-wrap mt-6 gap-2 mb-6">
+        <div className="flex flex-wrap mt-6 gap-2 mb-6 [&_div]:mb-2">
           {filterCategoria.map((cat, index) => (
             <div
               key={index}
