@@ -15,6 +15,7 @@ tags:
     description: Rotas para buscar candidatos
 
 paths:
+  # Abrangency
   /noauth/abrangency:
     get:
       tags:
@@ -75,6 +76,7 @@ paths:
                     description: Detalhes do erro.
                     example: 'Erro ao processar a solicitação.'
 
+  # Electoral Unit
   /noauth/electoral-unit:
     get:
       tags:
@@ -214,81 +216,7 @@ paths:
                     description: Detalhes do erro.
                     example: 'Erro ao processar a solicitação.'
 
-  /noauth/candidate/get-filters:
-    get:
-      operationId: 'getCandidateFilters'
-      tags:
-        - candidate
-      summary: Obter filtros de candidatos
-      description: Retorna os filtros disponíveis para candidatos.
-      responses:
-        '200':
-          description: Sucesso
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  data:
-                    type: object
-                    properties:
-                      cargos:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            id:
-                              type: integer
-                              example: 1
-                            nome_cargo:
-                              type: string
-                              example: 'Engenheiro'
-                      generos:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            id:
-                              type: integer
-                              example: 1
-                            nome:
-                              type: string
-                              example: 'Masculino'
-                      estados:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            id:
-                              type: integer
-                              example: 1
-                            nome:
-                              type: string
-                              example: 'São Paulo'
-                  message:
-                    type: string
-                    example: 'Dados buscados com sucesso.'
-        '400':
-          description: Requisição inválida
-        '500':
-          description: Erro interno do servidor
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: false
-                  data:
-                    type: object
-                    example: {}
-                  message:
-                    type: string
-                    example: 'Erro ao buscar os filtros dos candidatos'
+  # Candidate
   /noauth/candidate:
     get:
       operationId: 'getCandidates'
@@ -606,3 +534,460 @@ paths:
                   message:
                     type: string
                     example: Erro ao buscar os votos
+
+  # Consult
+  # Consult - Filters
+  /noauth/candidate/get-filters:
+    get:
+      operationId: 'getCandidateFilters'
+      tags:
+        - consult
+      summary: Obter filtros de candidatos
+      description: Retorna os filtros disponíveis para candidatos.
+      responses:
+        '200':
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+                    properties:
+                      cargo:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                          values:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                nome_cargo:
+                                  type: string
+                                abrangenciumId:
+                                  type: integer
+                      foiEleito:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                          values:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                label:
+                                  type: string
+                      genero:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                          values:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                nome_genero:
+                                  type: string
+                      estado:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                          values:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                sigla_unidade_eleitoral:
+                                  type: string
+                                nome:
+                                  type: string
+                                sigla_unidade_federacao:
+                                  type: string
+                                codigo_ibge:
+                                  type: integer
+                                  nullable: true
+                                abrangenciumId:
+                                  type: integer
+                      categorias:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                          values:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                nome:
+                                  type: string
+                      partidos:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                          values:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                sigla:
+                                  type: string
+                                nome:
+                                  type: string
+                                nome_atual:
+                                  type: string
+                                class_categ_1:
+                                  type: string
+                                class_categ_4:
+                                  type: string
+                                class_survey_esp:
+                                  type: string
+                      possibilities:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                          values:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                label:
+                                  type: string
+                      anos:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                          values:
+                            type: array
+                            items:
+                              type: integer
+                  message:
+                    type: string
+
+        '400':
+          description: Requisição inválida
+        '500':
+          description: Erro interno do servidor
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  data:
+                    type: object
+                    example: {}
+                  message:
+                    type: string
+                    example: 'Erro ao buscar os filtros dos candidatos'
+
+  # Consult - Candidate Profile
+  /noauth/cruzamentos/candidates-profile/by-year:
+    get:
+      operationId: 'getCandidateProfileByYear'
+      tags:
+        - consult
+      summary: Perfil dos candidatos por ano
+      description: Retorna o perfil dos candidatos agrupado por ano.
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: dimension
+          schema:
+            type: integer
+          required: false
+          description: Dimensão de agregação (1, 2, 3).
+        - in: query
+          name: unidadesEleitoraisIds
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: IDs das unidades eleitorais desejadas.
+        - in: query
+          name: isElected
+          schema:
+            type: integer
+          required: false
+          description: Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+        - in: query
+          name: partidos
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: IDs dos partidos
+        - in: query
+          name: categoriasOcupacoes
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Categoria 1 das ocupações (1,2 ...)
+        - in: query
+          name: cargosIds
+          schema:
+            type: array
+            items:
+              type: string+
+          required: false
+          description: IDs dos cargos (1,2,3...)
+      responses:
+        '200':
+          description: Resposta bem-sucedida com o perfil dos candidatos por ano.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Perfil dos candidatos por ano encontrado com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        ano:
+                          type: integer
+                          example: 2022
+                        # ... (other properties based on your query results)
+  /noauth/cruzamentos/candidates-profile/by-gender:
+    get:
+      operationId: 'getCandidateProfileByGender'
+      tags:
+        - consult
+      summary: Perfil dos candidatos por gênero
+      description: Retorna o perfil dos candidatos agrupado por gênero.
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: dimension
+          schema:
+            type: integer
+          required: false
+          description: Dimensão de agregação (1, 2, 3).
+        - in: query
+          name: unidadesEleitoraisIds
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: IDs das unidades eleitorais desejadas.
+        - in: query
+          name: isElected
+          schema:
+            type: integer
+          required: false
+          description: Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+        - in: query
+          name: partidos
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: IDs dos partidos
+        - in: query
+          name: categoriasOcupacoes
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Categoria 1 das ocupações (1,2 ...)
+        - in: query
+          name: cargosIds
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: IDs dos cargos (1,2,3...)
+      responses:
+        '200':
+          description: Resposta bem-sucedida com o perfil dos candidatos por gênero.
+          # ... (similar content schema to by-year, but with 'genero' property instead of 'ano')
+  /noauth/cruzamentos/candidates-profile/by-occupation:
+    get:
+      operationId: 'getCandidateProfileByOccupation' # New operation ID
+      tags:
+        - consult
+      summary: Perfil dos candidatos por ocupação
+      description: Retorna o perfil dos candidatos agrupado por ocupação.
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: dimension
+          schema:
+            type: integer
+          required: false
+          description: Dimensão de agregação (1, 2, 3).
+        - in: query
+          name: unidadesEleitoraisIds
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: IDs das unidades eleitorais desejadas.
+        - in: query
+          name: isElected
+          schema:
+            type: integer
+          required: false
+          description: Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+        - in: query
+          name: partidos
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: IDs dos partidos
+        - in: query
+          name: categoriasOcupacoes
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Categoria 1 das ocupações (1,2 ...)
+        - in: query
+          name: cargosIds
+          schema:
+            type: array
+            items:
+              type: string+
+          required: false
+          description: IDs dos cargos (1,2,3...)
+      responses:
+        '200':
+          description: Resposta bem-sucedida com o perfil dos candidatos por ocupação.
+  /noauth/cruzamentos/candidates-profile/kpis:
+    get:
+      operationId: 'getCandidateProfileKpis' # New operation ID
+      tags:
+        - consult
+      summary: KPIs para página de cruzamentos Perfil dos candidatos
+      description: Retorna os kpis  do perfil dos candidatos.
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: unidadesEleitoraisIds
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: IDs das unidades eleitorais desejadas.
+        - in: query
+          name: isElected
+          schema:
+            type: integer
+          required: false
+          description: Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+        - in: query
+          name: partidos
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: IDs dos partidos
+        - in: query
+          name: categoriasOcupacoes
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Categoria 1 das ocupações (1,2 ...)
+        - in: query
+          name: cargosIds
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: IDs dos cargos (1,2,3...)
+      responses:
+        '200':
+          description: Resposta bem-sucedida com o perfil dos candidatos por ocupação.

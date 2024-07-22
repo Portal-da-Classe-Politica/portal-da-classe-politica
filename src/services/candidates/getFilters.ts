@@ -3,10 +3,10 @@ import { redem } from '../redem';
 
 export const getFilters = async () => {
   try {
-    const response = await redem.candidate.getCandidateFilters();
+    const response = await redem.consult.getCandidateFilters();
     return {
-      estados: filterToOptions(response.data.data?.estados || [], 'sigla_unidade_federacao', 'nome'),
-      cargos: filterToOptions(response.data.data?.cargos || [], 'id', 'nome_cargo'),
+      estados: filterToOptions(response.data.data?.estado?.values || [], 'sigla_unidade_federacao', 'nome'),
+      cargos: filterToOptions(response.data.data?.cargo?.values || [], 'id', 'nome_cargo'),
     };
   } catch (error) {
     logError('Failed to getFilters', error as Error);

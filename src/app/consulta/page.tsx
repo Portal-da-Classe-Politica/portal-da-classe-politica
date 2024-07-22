@@ -53,6 +53,7 @@ const Page = ({ searchParams }: { searchParams: { consulta: string | undefined }
           </Container>
         </section>
       </div>
+
       <ConsultSection initialConsult={String(searchParams.consulta)} />
 
       <section className="bg-grayMix1">
