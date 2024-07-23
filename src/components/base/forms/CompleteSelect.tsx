@@ -1,6 +1,6 @@
 import { Icon, IconType } from '@base/Icon';
 import { Text } from '@base/text';
-import React, { useEffect } from 'react';
+import React from 'react';
 import Select, { components, StylesConfig } from 'react-select';
 
 interface OptionType {
@@ -86,11 +86,6 @@ const CompleteSelect = ({
   onSelect,
 }: CompleteSelectType) => {
   // const [selectedOption, setSelectedOption] = React.useState<OptionType | null>(null);
-
-  useEffect(() => {
-    console.log('selected', selectedOption);
-    console.log('placeholder', placeholder);
-  }, [selectedOption]);
 
   return (
     <Select
