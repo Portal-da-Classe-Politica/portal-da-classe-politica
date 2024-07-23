@@ -14,8 +14,8 @@ export const getFilters = async () => {
   }
 };
 
-const filterToOptions = (filter: { id?: number; nome?: string }[], valueKey: string, labelKey: string) => {
-  return filter.map(e => ({
+const filterToOptions = (filter: any, valueKey: string, labelKey: string) => {
+  return filter.map((e: any) => ({
     value: String(e[valueKey as keyof typeof e]),
     label: String(e[labelKey as keyof typeof e]),
   }));

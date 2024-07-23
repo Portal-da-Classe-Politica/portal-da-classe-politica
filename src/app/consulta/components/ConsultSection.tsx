@@ -10,17 +10,52 @@ import { ButtonStyled } from '@base/buttons';
 import { Icon } from '@base/Icon';
 import { LineChartCard } from '@components/charts/LineChartCard';
 import { PieChartCard } from '@components/charts/PieChartCard';
+// import CompleteSelect from '@base/forms/CompleteSelect';
+// import { useState } from 'react';
 
 export const ConsultSection = ({ initialConsult }: { initialConsult: string }) => {
   const onConsult = (values: any) => {
     console.debug(values);
   };
+  // const options = [
+  //   { value: 'new-york', label: 'New York' },
+  //   { value: 'los-angeles', label: 'Los Angeles' },
+  //   { value: 'chicago', label: 'Chicago' },
+  //   { value: 'new-york', label: 'New York' },
+  //   { value: 'los-angeles', label: 'Los Angeles' },
+  //   { value: 'chicago', label: 'Chicago' },
+  //   { value: 'new-york', label: 'New York' },
+  //   { value: 'los-angeles', label: 'Los Angeles' },
+  //   { value: 'chicago', label: 'Chicago' },
+  //   { value: 'new-york', label: 'New York' },
+  //   { value: 'los-angeles', label: 'Los Angeles' },
+  //   { value: 'chicago', label: 'Chicago' },
+  //   { value: 'new-york', label: 'New York' },
+  //   { value: 'los-angeles', label: 'Los Angeles' },
+  //   { value: 'chicago', label: 'Chicago' },
+  //   { value: 'new-york', label: 'New York' },
+  //   { value: 'los-angeles', label: 'Los Angeles' },
+  //   { value: 'chicago', label: 'Chicago' },
+  //   { value: 'new-york', label: 'New York' },
+  //   { value: 'los-angeles', label: 'Los Angeles' },
+  //   { value: 'chicago', label: 'Chicago' },
+  //   // Add more options as needed
+  // ];
+  // const [selectedOption, setSelectedOption] = useState<any>({value: '', label: ''});
 
   return (
     <section className="bg-grayMix1">
       <Container className="pt-16">
         <ConsultFilterBox initialConsult={initialConsult} onConsult={onConsult} />
       </Container>
+      {/* <Container>
+        <CompleteSelect
+          placeholder="Teste"
+          selectedOption={selectedOption}
+          options={options}
+          onSelect={value => setSelectedOption(value)}
+        />
+      </Container> */}
       <Container className="pt-16">
         <div className="flex flex-col md:flex-row">
           <div className="w-full md:w-[25%]">
