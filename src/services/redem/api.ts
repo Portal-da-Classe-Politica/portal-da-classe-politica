@@ -1771,7 +1771,7 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
-     * @param {Array<ModelString>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1783,7 +1783,7 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
       isElected?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
-      cargosIds?: Array<ModelString>,
+      cargosIds?: Array<string>,
       options: RawAxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       // verify required parameter 'initialYear' is not null or undefined
@@ -1857,7 +1857,7 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
-     * @param {Array<ModelString>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1869,7 +1869,7 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
       isElected?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
-      cargosIds?: Array<ModelString>,
+      cargosIds?: Array<string>,
       options: RawAxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       // verify required parameter 'initialYear' is not null or undefined
@@ -1943,7 +1943,7 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
-     * @param {Array<ModelString>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1955,7 +1955,7 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
       isElected?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
-      cargosIds?: Array<ModelString>,
+      cargosIds?: Array<string>,
       options: RawAxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       // verify required parameter 'initialYear' is not null or undefined
@@ -2140,7 +2140,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
-     * @param {Array<ModelString>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -2152,7 +2152,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
       isElected?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
-      cargosIds?: Array<ModelString>,
+      cargosIds?: Array<string>,
       options?: RawAxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.getCandidateProfileByGender(
@@ -2187,7 +2187,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
-     * @param {Array<ModelString>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -2199,7 +2199,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
       isElected?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
-      cargosIds?: Array<ModelString>,
+      cargosIds?: Array<string>,
       options?: RawAxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.getCandidateProfileByOccupation(
@@ -2234,7 +2234,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
-     * @param {Array<ModelString>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -2246,7 +2246,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
       isElected?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
-      cargosIds?: Array<ModelString>,
+      cargosIds?: Array<string>,
       options?: RawAxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetCandidateProfileByYear200Response>
@@ -2350,7 +2350,7 @@ export const ConsultApiFactory = function (
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
-     * @param {Array<ModelString>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -2362,7 +2362,7 @@ export const ConsultApiFactory = function (
       isElected?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
-      cargosIds?: Array<ModelString>,
+      cargosIds?: Array<string>,
       options?: any,
     ): AxiosPromise<void> {
       return localVarFp
@@ -2389,7 +2389,7 @@ export const ConsultApiFactory = function (
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
-     * @param {Array<ModelString>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -2401,7 +2401,7 @@ export const ConsultApiFactory = function (
       isElected?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
-      cargosIds?: Array<ModelString>,
+      cargosIds?: Array<string>,
       options?: any,
     ): AxiosPromise<void> {
       return localVarFp
@@ -2428,7 +2428,7 @@ export const ConsultApiFactory = function (
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
-     * @param {Array<ModelString>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -2440,7 +2440,7 @@ export const ConsultApiFactory = function (
       isElected?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
-      cargosIds?: Array<ModelString>,
+      cargosIds?: Array<string>,
       options?: any,
     ): AxiosPromise<GetCandidateProfileByYear200Response> {
       return localVarFp
@@ -2526,7 +2526,7 @@ export class ConsultApi extends BaseAPI {
    * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
    * @param {Array<string>} [partidos] IDs dos partidos
    * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
-   * @param {Array<ModelString>} [cargosIds] IDs dos cargos (1,2,3...)
+   * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ConsultApi
@@ -2539,7 +2539,7 @@ export class ConsultApi extends BaseAPI {
     isElected?: number,
     partidos?: Array<string>,
     categoriasOcupacoes?: Array<string>,
-    cargosIds?: Array<ModelString>,
+    cargosIds?: Array<string>,
     options?: RawAxiosRequestConfig,
   ) {
     return ConsultApiFp(this.configuration)
@@ -2567,7 +2567,7 @@ export class ConsultApi extends BaseAPI {
    * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
    * @param {Array<string>} [partidos] IDs dos partidos
    * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
-   * @param {Array<ModelString>} [cargosIds] IDs dos cargos (1,2,3...)
+   * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ConsultApi
@@ -2580,7 +2580,7 @@ export class ConsultApi extends BaseAPI {
     isElected?: number,
     partidos?: Array<string>,
     categoriasOcupacoes?: Array<string>,
-    cargosIds?: Array<ModelString>,
+    cargosIds?: Array<string>,
     options?: RawAxiosRequestConfig,
   ) {
     return ConsultApiFp(this.configuration)
@@ -2608,7 +2608,7 @@ export class ConsultApi extends BaseAPI {
    * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
    * @param {Array<string>} [partidos] IDs dos partidos
    * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
-   * @param {Array<ModelString>} [cargosIds] IDs dos cargos (1,2,3...)
+   * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ConsultApi
@@ -2621,7 +2621,7 @@ export class ConsultApi extends BaseAPI {
     isElected?: number,
     partidos?: Array<string>,
     categoriasOcupacoes?: Array<string>,
-    cargosIds?: Array<ModelString>,
+    cargosIds?: Array<string>,
     options?: RawAxiosRequestConfig,
   ) {
     return ConsultApiFp(this.configuration)
