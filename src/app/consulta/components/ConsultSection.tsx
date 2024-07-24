@@ -10,13 +10,91 @@ import { ButtonStyled } from '@base/buttons';
 import { Icon } from '@base/Icon';
 import { LineChartCard } from '@components/charts/LineChartCard';
 import { PieChartCard } from '@components/charts/PieChartCard';
+import { useEffect, useState } from 'react';
 // import CompleteSelect from '@base/forms/CompleteSelect';
 // import { useState } from 'react';
+
+export type selectObject = { title: string; type: string; values: { value: number; label: string }[] };
+
+type selectObjectWithoutTitle = { type: string; values: { value: number; label: string }[] };
+
+type filterObjectType = {
+  anos: {
+    type: string;
+    values: number[];
+  };
+  dimensions: selectObjectWithoutTitle;
+  sideFilters: {
+    cargosIds: selectObject;
+    categoriasOcupacoes: selectObject;
+    genero: selectObject;
+    isElected: selectObject;
+    partidos: selectObject;
+    unidadesEleitoraisIds: selectObject;
+  };
+};
+
+const emptyFilter: filterObjectType = {
+  anos: {
+    type: '',
+    values: [],
+  },
+  dimensions: {
+    type: '',
+    values: [],
+  },
+  sideFilters: {
+    cargosIds: {
+      title: '',
+      type: '',
+      values: [],
+    },
+    categoriasOcupacoes: {
+      title: '',
+      type: '',
+      values: [],
+    },
+    genero: {
+      title: '',
+      type: '',
+      values: [],
+    },
+    isElected: {
+      title: '',
+      type: '',
+      values: [],
+    },
+    partidos: {
+      title: '',
+      type: '',
+      values: [],
+    },
+    unidadesEleitoraisIds: {
+      title: '',
+      type: '',
+      values: [],
+    },
+  },
+};
 
 export const ConsultSection = ({ initialConsult }: { initialConsult: string }) => {
   const onConsult = (values: any) => {
     console.debug(values);
   };
+
+  const [dataFilter, setDataFilter] = useState<filterObjectType>(emptyFilter);
+
+  useEffect(() => {
+    fetch(`/api/consult`)
+      .then(res => res.json())
+      .then(data => {
+        setDataFilter(data);
+      });
+  }, []);
+
+  useEffect(() => {
+    console.log('dados aqui', dataFilter);
+  }, [dataFilter]);
   // const options = [
   //   { value: 'new-york', label: 'New York' },
   //   { value: 'los-angeles', label: 'Los Angeles' },
@@ -46,7 +124,12 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
   return (
     <section className="bg-grayMix1">
       <Container className="pt-16">
-        <ConsultFilterBox initialConsult={initialConsult} onConsult={onConsult} />
+        <ConsultFilterBox
+          initialConsult={initialConsult}
+          years={dataFilter.anos}
+          onConsult={onConsult}
+          dimensions={dataFilter?.dimensions}
+        />
       </Container>
       {/* <Container>
         <CompleteSelect
@@ -59,7 +142,7 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
       <Container className="pt-16">
         <div className="flex flex-col md:flex-row">
           <div className="w-full md:w-[25%]">
-            <FilterSidebar />
+            <FilterSidebar sideFilters={dataFilter.sideFilters} />
           </div>
           <div className="w-full md:w-[75%]">
             <div className="bg-white rounded-xl shadow-xl p-8">

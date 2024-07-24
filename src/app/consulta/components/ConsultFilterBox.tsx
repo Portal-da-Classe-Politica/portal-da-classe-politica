@@ -11,65 +11,78 @@ import { consultSearchParam } from '@routes';
 interface FilterProps {
   // eslint-disable-next-line no-unused-vars
   onConsult: (filters: any) => void;
+  filtersData: {
+    years: {
+      type: string;
+      values: number[];
+    };
+    dimensions: { type: string; values: { value: number; label: string }[] };
+  };
 }
 
-const FilterCandidateProfile = ({ onConsult }: FilterProps) => {
+const FilterCandidateProfile = ({ onConsult, filtersData }: FilterProps) => {
   return (
     <Filter
       description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
       longDescription="O resultado do cruzamento entre Perfil dos Candidatos & {Categoria Selecionada} nos trás informações sobre lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Ainda com dúvida? Clique aqui."
       category="Perfil dos Candidatos"
       onConsult={onConsult}
+      filtersData={filtersData}
     />
   );
 };
-const FilterElectionResult = ({ onConsult }: FilterProps) => {
+const FilterElectionResult = ({ onConsult, filtersData }: FilterProps) => {
   return (
     <Filter
       description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
       longDescription="O resultado do cruzamento entre Perfil dos Candidatos & {Categoria Selecionada} nos trás informações sobre lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Ainda com dúvida? Clique aqui."
       category="Resultados das Eleições"
       onConsult={onConsult}
+      filtersData={filtersData}
     />
   );
 };
-const FilterPartyFiliation = ({ onConsult }: FilterProps) => {
+const FilterPartyFiliation = ({ onConsult, filtersData }: FilterProps) => {
   return (
     <Filter
       description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
       longDescription="O resultado do cruzamento entre Perfil dos Candidatos & {Categoria Selecionada} nos trás informações sobre lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Ainda com dúvida? Clique aqui."
       category="Filiação Partidária"
       onConsult={onConsult}
+      filtersData={filtersData}
     />
   );
 };
-const FilterFinancing = ({ onConsult }: FilterProps) => {
+const FilterFinancing = ({ onConsult, filtersData }: FilterProps) => {
   return (
     <Filter
       description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
       longDescription="O resultado do cruzamento entre Perfil dos Candidatos & {Categoria Selecionada} nos trás informações sobre lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Ainda com dúvida? Clique aqui."
       category="Financiamento de Campanha"
       onConsult={onConsult}
+      filtersData={filtersData}
     />
   );
 };
-const FilterElectoralMaps = ({ onConsult }: FilterProps) => {
+const FilterElectoralMaps = ({ onConsult, filtersData }: FilterProps) => {
   return (
     <Filter
       description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
       longDescription="O resultado do cruzamento entre Perfil dos Candidatos & {Categoria Selecionada} nos trás informações sobre lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Ainda com dúvida? Clique aqui."
       category="Mapas Eleitorais"
       onConsult={onConsult}
+      filtersData={filtersData}
     />
   );
 };
-const FilterElectoralResearch = ({ onConsult }: FilterProps) => {
+const FilterElectoralResearch = ({ onConsult, filtersData }: FilterProps) => {
   return (
     <Filter
       description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
       longDescription="O resultado do cruzamento entre Perfil dos Candidatos & {Categoria Selecionada} nos trás informações sobre lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Ainda com dúvida? Clique aqui."
       category="Pesquisas Eleitorais"
       onConsult={onConsult}
+      filtersData={filtersData}
     />
   );
 };
@@ -79,11 +92,19 @@ const Filter = ({
   longDescription,
   category,
   onConsult = () => {},
+  filtersData,
 }: {
   description: string;
   longDescription: string;
   category: string;
   onConsult: (_: any) => void;
+  filtersData: {
+    years: {
+      type: string;
+      values: number[];
+    };
+    dimensions: { type: string; values: { value: number; label: string }[] };
+  };
 }) => {
   const [values, setValues] = useObjReducer<any>({ start: '1990', end: '2024' });
 
@@ -103,13 +124,7 @@ const Filter = ({
         <div className="flex flex-col md:flex-row gap-8">
           <div className="!grow">
             <Select
-              options={[
-                { label: 'Resultados das Eleições', value: '1' },
-                { label: 'Filiação Partidária', value: '2' },
-                { label: 'Financiamento de Campanha', value: '3' },
-                { label: 'Mapas Eleitorais', value: '4' },
-                { label: 'Pesquisas Eleitorais', value: '5' },
-              ]}
+              options={filtersData.dimensions.values}
               placeholder="Sem cruzamento"
               className="inline"
               buttonProps={{ style: 'fillGray', className: 'px-2 w-full' }}
@@ -134,6 +149,8 @@ const Filter = ({
             <DatePicker
               onSelectEnd={end => setValues({ end })}
               onSelectStart={start => setValues({ start })}
+              startYearAPI={filtersData.years.values[0]}
+              endYearAPI={filtersData.years.values[filtersData.years.values.length - 1]}
             />
           </div>
         </div>
@@ -150,10 +167,23 @@ const Filter = ({
 export const ConsultFilterBox = ({
   initialConsult,
   onConsult,
+  years,
+  dimensions,
 }: {
   initialConsult?: string;
   // eslint-disable-next-line no-unused-vars
   onConsult: (filters: any) => void;
+  years: {
+    type: string;
+    values: number[];
+  };
+  dimensions: {
+    type: string;
+    values: {
+      value: number;
+      label: string;
+    }[];
+  };
 }) => {
   const tabs = [
     {
@@ -205,7 +235,11 @@ export const ConsultFilterBox = ({
         </div>
       ))}
       contents={tabs.map(({ value, Comp }) => (
-        <Comp key={value} onConsult={values => onConsult({ ...values, filter: value })} />
+        <Comp
+          key={value}
+          onConsult={values => onConsult({ ...values, filter: value })}
+          filtersData={{ years: years, dimensions: dimensions }}
+        />
       ))}
       unSelectedClassName="!text-black"
     />

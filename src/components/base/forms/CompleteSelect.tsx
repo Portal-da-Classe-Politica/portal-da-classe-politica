@@ -19,6 +19,7 @@ type CompleteSelectType = {
   // eslint-disable-next-line no-unused-vars
   onSelect: (value: number | string) => void;
   selectedOption: any;
+  multiSelect: any;
 };
 
 const customStyles: StylesConfig<OptionType, false> = {
@@ -83,27 +84,34 @@ const CompleteSelect = ({
   size = 'B1',
   options,
   selectedOption,
+  multiSelect,
   onSelect,
 }: CompleteSelectType) => {
-  // const [selectedOption, setSelectedOption] = React.useState<OptionType | null>(null);
-
   return (
-    <Select
-      value={selectedOption.value ? selectedOption : null}
-      onChange={onSelect}
-      options={options}
-      placeholder={placeholder}
-      styles={customStyles}
-      components={{
-        SingleValue: props => <CustomSingleValue size={size} prefixComponent={prefixComponent} {...props} />,
-        Placeholder: props => {
-          console.log('what');
-          return <CustomPlaceholder placeholder={placeholder} prefixComponent={prefixComponent} {...props} />;
-        },
+    <>
+      {console.log('teste', multiSelect)}
+      <Select
+        value={selectedOption || null}
+        onChange={onSelect}
+        isMulti={(multiSelect === 'multiselect') as false} //typescript + lib com tipo errado por isso esse as false
+        options={options}
+        placeholder={placeholder}
+        styles={customStyles}
+        components={{
+          SingleValue: props => (
+            <CustomSingleValue size={size} prefixComponent={prefixComponent} {...props} />
+          ),
+          Placeholder: props => {
+            console.log('what');
+            return (
+              <CustomPlaceholder placeholder={placeholder} prefixComponent={prefixComponent} {...props} />
+            );
+          },
 
-        IndicatorSeparator: null,
-      }}
-    />
+          IndicatorSeparator: null,
+        }}
+      />
+    </>
   );
 };
 
