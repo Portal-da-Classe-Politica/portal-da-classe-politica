@@ -1,6 +1,6 @@
 'use client';
 
-import { ButtonStyled, Icon, Text } from '@base';
+import { ButtonStyled, Icon, Loader, Text } from '@base';
 import { Select } from '@base/forms';
 import { BoxIcon } from '@components/box/BoxIcon';
 import { CarouselTabs } from '@components/CarouselTabs';
@@ -9,6 +9,7 @@ import { consultSearchParam } from '@routes';
 import { Filter } from '../../types';
 
 interface FilterProps {
+  loading: boolean;
   // eslint-disable-next-line no-unused-vars
   onConsult: (filters: any) => void;
   filtersData: {
@@ -27,6 +28,7 @@ const FilterCandidateProfile = ({
   handleFilterChange,
   selectedOption,
   filtersData,
+  loading,
 }: FilterProps) => {
   return (
     <FilterComponent
@@ -37,6 +39,7 @@ const FilterCandidateProfile = ({
       filtersData={filtersData}
       handleFilterChange={handleFilterChange}
       selectedOption={selectedOption}
+      loading={loading}
     />
   );
 };
@@ -45,6 +48,7 @@ const FilterElectionResult = ({
   handleFilterChange,
   selectedOption,
   filtersData,
+  loading,
 }: FilterProps) => {
   return (
     <FilterComponent
@@ -55,6 +59,7 @@ const FilterElectionResult = ({
       filtersData={filtersData}
       handleFilterChange={handleFilterChange}
       selectedOption={selectedOption}
+      loading={loading}
     />
   );
 };
@@ -63,6 +68,7 @@ const FilterPartyFiliation = ({
   handleFilterChange,
   selectedOption,
   filtersData,
+  loading,
 }: FilterProps) => {
   return (
     <FilterComponent
@@ -73,10 +79,17 @@ const FilterPartyFiliation = ({
       filtersData={filtersData}
       handleFilterChange={handleFilterChange}
       selectedOption={selectedOption}
+      loading={loading}
     />
   );
 };
-const FilterFinancing = ({ onConsult, handleFilterChange, selectedOption, filtersData }: FilterProps) => {
+const FilterFinancing = ({
+  onConsult,
+  handleFilterChange,
+  selectedOption,
+  filtersData,
+  loading,
+}: FilterProps) => {
   return (
     <FilterComponent
       description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
@@ -86,10 +99,17 @@ const FilterFinancing = ({ onConsult, handleFilterChange, selectedOption, filter
       filtersData={filtersData}
       handleFilterChange={handleFilterChange}
       selectedOption={selectedOption}
+      loading={loading}
     />
   );
 };
-const FilterElectoralMaps = ({ onConsult, handleFilterChange, selectedOption, filtersData }: FilterProps) => {
+const FilterElectoralMaps = ({
+  onConsult,
+  handleFilterChange,
+  selectedOption,
+  filtersData,
+  loading,
+}: FilterProps) => {
   return (
     <FilterComponent
       description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
@@ -99,6 +119,7 @@ const FilterElectoralMaps = ({ onConsult, handleFilterChange, selectedOption, fi
       filtersData={filtersData}
       handleFilterChange={handleFilterChange}
       selectedOption={selectedOption}
+      loading={loading}
     />
   );
 };
@@ -107,6 +128,7 @@ const FilterElectoralResearch = ({
   handleFilterChange,
   selectedOption,
   filtersData,
+  loading,
 }: FilterProps) => {
   return (
     <FilterComponent
@@ -117,11 +139,13 @@ const FilterElectoralResearch = ({
       filtersData={filtersData}
       handleFilterChange={handleFilterChange}
       selectedOption={selectedOption}
+      loading={loading}
     />
   );
 };
 
 const FilterComponent = ({
+  loading,
   description,
   longDescription,
   category,
@@ -130,6 +154,7 @@ const FilterComponent = ({
   handleFilterChange,
   selectedOption,
 }: {
+  loading: boolean;
   description: string;
   longDescription: string;
   category: string;
@@ -148,7 +173,7 @@ const FilterComponent = ({
     <div className="text-white">
       <Text>{description}</Text>
 
-      <div className="flex flex-col xl:flex-row gap-8 my-8">
+      <div className="flex flex-col xl:flex-row gap-8 my-8 justify-between">
         <ButtonStyled style="fillBlack" size="small">
           <Text className="font-normal border-white border-r-2 pr-2" textType="span">
             Categoria
@@ -157,41 +182,55 @@ const FilterComponent = ({
             {category}
           </Text>
         </ButtonStyled>
+
         <div className="flex flex-col md:flex-row gap-8">
-          <div className="!grow">
-            <Select
-              options={filtersData.dimensions.values}
-              placeholder="Sem cruzamento"
-              className="inline"
-              buttonProps={{ style: 'fillGray', className: 'px-2 w-full' }}
-              prefixComponent={
-                <>
-                  <BoxIcon
-                    icon="Table"
-                    size={6}
-                    iconSize="sm"
-                    className="bg-white text-orange drop-shadow-md rounded-md mr-2"
+          {loading ? (
+            <div className="flex flex-1">
+              <Loader />
+            </div>
+          ) : (
+            <>
+              {filtersData?.dimensions?.values && (
+                <div className="!grow">
+                  <Select
+                    options={filtersData.dimensions.values}
+                    placeholder="Sem cruzamento"
+                    className="inline"
+                    buttonProps={{ style: 'fillGray', className: 'px-2 w-full' }}
+                    prefixComponent={
+                      <>
+                        <BoxIcon
+                          icon="Table"
+                          size={6}
+                          iconSize="sm"
+                          className="bg-white text-orange drop-shadow-md rounded-md mr-2"
+                        />
+                        <Text className="font-normal border-black border-r-2 pr-2 mr-2" textType="span">
+                          Categoria
+                        </Text>
+                      </>
+                    }
+                    suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
+                    onSelect={category => handleFilterChange('dimension', category)}
                   />
-                  <Text className="font-normal border-black border-r-2 pr-2 mr-2" textType="span">
-                    Categoria
-                  </Text>
-                </>
-              }
-              suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
-              onSelect={category => handleFilterChange('dimension', category)}
-            />
-          </div>
-          <div className="grow md:self-center">
-            <DatePicker
-              onSelectEnd={end => {
-                return handleFilterChange('finalYear', end);
-              }}
-              onSelectStart={start => handleFilterChange('initialYear', start)}
-              startYearAPI={filtersData.years.values[0]}
-              endYearAPI={filtersData.years.values[filtersData.years.values.length - 1]}
-            />
-          </div>
+                </div>
+              )}
+              {filtersData?.years?.values && (
+                <div className="grow md:self-center">
+                  <DatePicker
+                    onSelectEnd={end => {
+                      return handleFilterChange('finalYear', end);
+                    }}
+                    onSelectStart={start => handleFilterChange('initialYear', start)}
+                    startYearAPI={filtersData.years.values[0]}
+                    endYearAPI={filtersData.years.values[filtersData.years.values.length - 1]}
+                  />
+                </div>
+              )}
+            </>
+          )}
         </div>
+
         <ButtonStyled
           style="fillBlack"
           size="small"
@@ -219,6 +258,7 @@ export const ConsultFilterBox = ({
   dimensions,
   handleFilterChange,
   selectedOption,
+  loading = false,
   onTabChange = () => {},
 }: {
   initialConsult?: string;
@@ -231,6 +271,7 @@ export const ConsultFilterBox = ({
   dimensions: Filter;
   handleFilterChange: (_a: any, _b: any) => void;
   selectedOption: any;
+  loading: boolean;
   onTabChange?: (_tab: string) => void;
 }) => {
   const tabs = [
@@ -285,6 +326,7 @@ export const ConsultFilterBox = ({
       contents={tabs.map(({ value, Comp }) => (
         <Comp
           key={value}
+          loading={loading}
           onConsult={values => onConsult({ ...values, filter: value })}
           filtersData={{ years, dimensions: dimensions }}
           handleFilterChange={handleFilterChange}

@@ -20,7 +20,6 @@ export const BarChartCard = ({
     plotOptions: {
       bar: {
         borderRadius: 10,
-        barHeight: '50px',
         horizontal: true,
         distributed: true,
       },
@@ -53,7 +52,7 @@ export const BarChartCard = ({
       },
       labels: {
         offsetY: -5,
-        offsetX: -20,
+        offsetX: -10,
         align: 'center',
         style: {
           fontSize: 'medium',

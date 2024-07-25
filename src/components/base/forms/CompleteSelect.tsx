@@ -24,7 +24,9 @@ type CompleteSelectType = {
 };
 
 const customStyles: StylesConfig<OptionType, false> = {
-  option: () => ({}),
+  option: () => ({
+    padding: 5,
+  }),
   control: provided => ({
     ...provided,
     borderColor: 'hsl(0, 0%, 80%)',
