@@ -30,7 +30,7 @@ export const BarChartCard = ({
         left: 20,
       },
     },
-    colors: ['#F3A28B', '#ED7451', '#EB582F', '#CC3A10', '#A82D0A', '#6B1A02', '#000000'],
+    colors: ['#ee4f21', '#d6471d', '#be3f1a', '#a63717', '#8e2f13', '#772710'],
     xaxis: {
       categories: categories,
       axisBorder: {
@@ -51,7 +51,6 @@ export const BarChartCard = ({
         show: false,
       },
       labels: {
-        offsetY: -5,
         offsetX: -10,
         align: 'center',
         style: {

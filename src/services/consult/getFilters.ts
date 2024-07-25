@@ -32,7 +32,21 @@ export const getFilters = async () => {
     return filters;
   } catch (error) {
     logError('Failed to getFilters', error as Error);
-    return [];
+    return {
+      dimensions: {
+        title: 'Categorias',
+        key: 'dimensions',
+        type: 'select',
+        values: [],
+      },
+      years: {
+        title: 'Anos',
+        key: 'years',
+        type: 'date_years',
+        values: [2020, 2021, 2022],
+      },
+      sideFilters: [],
+    };
   }
 };
 

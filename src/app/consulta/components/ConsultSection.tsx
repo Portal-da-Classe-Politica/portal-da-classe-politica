@@ -74,6 +74,10 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
   };
 
   const sendConsult = () => {
+    if (loadingResults) {
+      return;
+    }
+
     setLoadingResults(true);
 
     const search = Object.entries(selectedOptions).reduce((r, [key, value]: [string, any]) => {
