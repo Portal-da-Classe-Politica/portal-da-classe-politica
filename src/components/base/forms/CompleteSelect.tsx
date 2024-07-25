@@ -1,5 +1,6 @@
 import { Icon, IconType } from '@base/Icon';
 import { Text } from '@base/text';
+import { ChipContainer } from '@components/ChipContainer';
 import React from 'react';
 import Select, { components, StylesConfig } from 'react-select';
 
@@ -23,6 +24,7 @@ type CompleteSelectType = {
 };
 
 const customStyles: StylesConfig<OptionType, false> = {
+  option: () => ({}),
   control: provided => ({
     ...provided,
     borderColor: 'hsl(0, 0%, 80%)',
@@ -65,17 +67,14 @@ const CustomSingleValue = ({ children, size, prefixComponent, ...props }: any) =
 );
 
 const CustomPlaceholder = ({ children, prefixComponent, placeholder, ...props }: any) => (
-  <>
-    <components.Placeholder {...props}>
-      <>{console.log('o quee', placeholder)}</>
-      {prefixComponent && (
-        <Text size="B1" className="mr-2">
-          {prefixComponent?.prefixText}|{' '}
-        </Text>
-      )}
-      <Text size="B1">{placeholder}</Text>
-    </components.Placeholder>
-  </>
+  <components.Placeholder {...props}>
+    {prefixComponent && (
+      <Text size="B1" className="mr-2">
+        {prefixComponent?.prefixText}|{' '}
+      </Text>
+    )}
+    <Text size="B1">{placeholder}</Text>
+  </components.Placeholder>
 );
 
 const CompleteSelect = ({
@@ -88,30 +87,28 @@ const CompleteSelect = ({
   onSelect,
 }: CompleteSelectType) => {
   return (
-    <>
-      {console.log('teste', multiSelect)}
-      <Select
-        value={selectedOption || null}
-        onChange={onSelect}
-        isMulti={(multiSelect === 'multiselect') as false} //typescript + lib com tipo errado por isso esse as false
-        options={options}
-        placeholder={placeholder}
-        styles={customStyles}
-        components={{
-          SingleValue: props => (
-            <CustomSingleValue size={size} prefixComponent={prefixComponent} {...props} />
-          ),
-          Placeholder: props => {
-            console.log('what');
-            return (
-              <CustomPlaceholder placeholder={placeholder} prefixComponent={prefixComponent} {...props} />
-            );
-          },
-
-          IndicatorSeparator: null,
-        }}
-      />
-    </>
+    <Select
+      value={selectedOption || null}
+      onChange={onSelect}
+      isMulti={(multiSelect === 'multiselect') as false} //typescript + lib com tipo errado por isso esse as false
+      options={options}
+      placeholder={placeholder}
+      styles={customStyles}
+      components={{
+        SingleValue: props => <CustomSingleValue size={size} prefixComponent={prefixComponent} {...props} />,
+        Placeholder: props => {
+          return <CustomPlaceholder placeholder={placeholder} prefixComponent={prefixComponent} {...props} />;
+        },
+        MultiValue: props => {
+          return (
+            <div className="m-1">
+              <ChipContainer onClick={() => props.selectOption(props.data)}>{props.data.label}</ChipContainer>
+            </div>
+          );
+        },
+        IndicatorSeparator: null,
+      }}
+    />
   );
 };
 

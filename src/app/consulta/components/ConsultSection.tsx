@@ -10,80 +10,54 @@ import { ButtonStyled } from '@base/buttons';
 import { Icon } from '@base/Icon';
 import { LineChartCard } from '@components/charts/LineChartCard';
 import { PieChartCard } from '@components/charts/PieChartCard';
-import { useEffect, useState } from 'react';
-// import CompleteSelect from '@base/forms/CompleteSelect';
-// import { useState } from 'react';
-
-export type selectObject = { title: string; type: string; values: { value: number; label: string }[] };
-
-type selectObjectWithoutTitle = { type: string; values: { value: number; label: string }[] };
+import { useCallback, useEffect, useState } from 'react';
+import { Filter } from '../../types';
 
 type filterObjectType = {
-  anos: {
+  years: {
     type: string;
     values: number[];
   };
-  dimensions: selectObjectWithoutTitle;
-  sideFilters: {
-    cargosIds: selectObject;
-    categoriasOcupacoes: selectObject;
-    genero: selectObject;
-    isElected: selectObject;
-    partidos: selectObject;
-    unidadesEleitoraisIds: selectObject;
-  };
+  dimensions: Filter;
+  sideFilters: Filter[];
 };
 
 const emptyFilter: filterObjectType = {
-  anos: {
+  years: {
     type: '',
     values: [],
   },
   dimensions: {
     type: '',
+    title: '',
+    key: '',
     values: [],
   },
-  sideFilters: {
-    cargosIds: {
-      title: '',
-      type: '',
-      values: [],
-    },
-    categoriasOcupacoes: {
-      title: '',
-      type: '',
-      values: [],
-    },
-    genero: {
-      title: '',
-      type: '',
-      values: [],
-    },
-    isElected: {
-      title: '',
-      type: '',
-      values: [],
-    },
-    partidos: {
-      title: '',
-      type: '',
-      values: [],
-    },
-    unidadesEleitoraisIds: {
-      title: '',
-      type: '',
-      values: [],
-    },
-  },
+  sideFilters: [],
 };
 
 export const ConsultSection = ({ initialConsult }: { initialConsult: string }) => {
   const [dataFilter, setDataFilter] = useState<filterObjectType>(emptyFilter);
-  const [graphData, setGraphData] = useState([]);
-  const [selectedOption, setSelectedOption] = useState<any>({});
+  const [selectedOptions, setSelectedOptions] = useState<any>({});
+  const [loadingSideFilters, setLoadingSideFilters] = useState(true);
+
+  const loadFilters = useCallback(() => {
+    setLoadingSideFilters(true);
+
+    fetch(`/api/consult/filters`)
+      .then(res => res.json())
+      .then(data => {
+        setDataFilter(data);
+        setLoadingSideFilters(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    loadFilters();
+  }, []);
 
   const handleFilterChange = (filterName: any, value: any) => {
-    setSelectedOption((prevFilters: any) => {
+    setSelectedOptions((prevFilters: any) => {
       return {
         ...prevFilters,
         [filterName]: value,
@@ -91,89 +65,37 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
     });
   };
 
-  useEffect(() => {
-    fetch(`/api/consult`)
-      .then(res => res.json())
-      .then(data => {
-        setDataFilter(data);
-      });
-  }, []);
+  const consult = () => {
+    const search = Object.entries(selectedOptions).reduce((r, [key, value]: [string, any]) => {
+      const _value = Array.isArray(value) ? value.map(v => v.value).join(',') : value;
+      const param = typeof _value === 'object' ? _value.value : _value;
+      return `${r}&${key}=${param}`;
+    }, '');
 
-  useEffect(() => {
-    console.log('dados aqui', dataFilter);
-  }, [dataFilter]);
-
-  useEffect(() => {
-    console.log('dados aqui', graphData);
-  }, [graphData]);
-
-  const sendData = ({
-    initialYear,
-    finalYear,
-    dimension,
-  }: {
-    initialYear: number;
-    finalYear: number;
-    dimension: number;
-  }) => {
-    console.log('data chama aqui');
-    fetch(`/api/consultGraph?initialYear=${initialYear}&finalYear=${finalYear}&dimension=${dimension}`)
-      .then(res => res.json())
-      .then(data => setGraphData(data));
+    console.log('consult > search >', search);
   };
-  // const options = [
-  //   { value: 'new-york', label: 'New York' },
-  //   { value: 'los-angeles', label: 'Los Angeles' },
-  //   { value: 'chicago', label: 'Chicago' },
-  //   { value: 'new-york', label: 'New York' },
-  //   { value: 'los-angeles', label: 'Los Angeles' },
-  //   { value: 'chicago', label: 'Chicago' },
-  //   { value: 'new-york', label: 'New York' },
-  //   { value: 'los-angeles', label: 'Los Angeles' },
-  //   { value: 'chicago', label: 'Chicago' },
-  //   { value: 'new-york', label: 'New York' },
-  //   { value: 'los-angeles', label: 'Los Angeles' },
-  //   { value: 'chicago', label: 'Chicago' },
-  //   { value: 'new-york', label: 'New York' },
-  //   { value: 'los-angeles', label: 'Los Angeles' },
-  //   { value: 'chicago', label: 'Chicago' },
-  //   { value: 'new-york', label: 'New York' },
-  //   { value: 'los-angeles', label: 'Los Angeles' },
-  //   { value: 'chicago', label: 'Chicago' },
-  //   { value: 'new-york', label: 'New York' },
-  //   { value: 'los-angeles', label: 'Los Angeles' },
-  //   { value: 'chicago', label: 'Chicago' },
-  //   // Add more options as needed
-  // ];
-  // const [selectedOption, setSelectedOption] = useState<any>({value: '', label: ''});
 
   return (
     <section className="bg-grayMix1">
       <Container className="pt-16">
         <ConsultFilterBox
           initialConsult={initialConsult}
-          years={dataFilter.anos}
-          onConsult={sendData}
+          years={dataFilter.years}
+          onConsult={consult}
           dimensions={dataFilter?.dimensions}
           handleFilterChange={handleFilterChange}
-          selectedOption={selectedOption}
+          selectedOption={selectedOptions}
         />
       </Container>
-      {/* <Container>
-        <CompleteSelect
-          placeholder="Teste"
-          selectedOption={selectedOption}
-          options={options}
-          onSelect={value => setSelectedOption(value)}
-        />
-      </Container> */}
+
       <Container className="pt-16">
         <div className="flex flex-col md:flex-row">
           <div className="w-full md:w-[25%]">
             <FilterSidebar
+              loading={loadingSideFilters}
               sideFilters={dataFilter.sideFilters}
-              sendData={sendData}
-              selectedOption={selectedOption}
+              onApplyFilter={consult}
+              selectedOptions={selectedOptions}
               handleFilterChange={handleFilterChange}
             />
           </div>

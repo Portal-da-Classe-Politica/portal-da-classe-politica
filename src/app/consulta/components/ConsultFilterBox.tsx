@@ -6,6 +6,7 @@ import { BoxIcon } from '@components/box/BoxIcon';
 import { CarouselTabs } from '@components/CarouselTabs';
 import { DatePicker } from '@components/DatePicker';
 import { consultSearchParam } from '@routes';
+import { Filter } from '../../types';
 
 interface FilterProps {
   // eslint-disable-next-line no-unused-vars
@@ -15,7 +16,7 @@ interface FilterProps {
       type: string;
       values: number[];
     };
-    dimensions: { type: string; values: { value: number; label: string }[] };
+    dimensions: Filter;
   };
   handleFilterChange: (_a: any, _b: any) => void;
   selectedOption: any;
@@ -28,7 +29,7 @@ const FilterCandidateProfile = ({
   filtersData,
 }: FilterProps) => {
   return (
-    <Filter
+    <FilterComponent
       description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
       longDescription="O resultado do cruzamento entre Perfil dos Candidatos & {Categoria Selecionada} nos trás informações sobre lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Ainda com dúvida? Clique aqui."
       category="Perfil dos Candidatos"
@@ -46,7 +47,7 @@ const FilterElectionResult = ({
   filtersData,
 }: FilterProps) => {
   return (
-    <Filter
+    <FilterComponent
       description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
       longDescription="O resultado do cruzamento entre Perfil dos Candidatos & {Categoria Selecionada} nos trás informações sobre lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Ainda com dúvida? Clique aqui."
       category="Resultados das Eleições"
@@ -64,7 +65,7 @@ const FilterPartyFiliation = ({
   filtersData,
 }: FilterProps) => {
   return (
-    <Filter
+    <FilterComponent
       description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
       longDescription="O resultado do cruzamento entre Perfil dos Candidatos & {Categoria Selecionada} nos trás informações sobre lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Ainda com dúvida? Clique aqui."
       category="Filiação Partidária"
@@ -77,7 +78,7 @@ const FilterPartyFiliation = ({
 };
 const FilterFinancing = ({ onConsult, handleFilterChange, selectedOption, filtersData }: FilterProps) => {
   return (
-    <Filter
+    <FilterComponent
       description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
       longDescription="O resultado do cruzamento entre Perfil dos Candidatos & {Categoria Selecionada} nos trás informações sobre lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Ainda com dúvida? Clique aqui."
       category="Financiamento de Campanha"
@@ -90,7 +91,7 @@ const FilterFinancing = ({ onConsult, handleFilterChange, selectedOption, filter
 };
 const FilterElectoralMaps = ({ onConsult, handleFilterChange, selectedOption, filtersData }: FilterProps) => {
   return (
-    <Filter
+    <FilterComponent
       description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
       longDescription="O resultado do cruzamento entre Perfil dos Candidatos & {Categoria Selecionada} nos trás informações sobre lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Ainda com dúvida? Clique aqui."
       category="Mapas Eleitorais"
@@ -108,7 +109,7 @@ const FilterElectoralResearch = ({
   filtersData,
 }: FilterProps) => {
   return (
-    <Filter
+    <FilterComponent
       description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
       longDescription="O resultado do cruzamento entre Perfil dos Candidatos & {Categoria Selecionada} nos trás informações sobre lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Ainda com dúvida? Clique aqui."
       category="Pesquisas Eleitorais"
@@ -120,7 +121,7 @@ const FilterElectoralResearch = ({
   );
 };
 
-const Filter = ({
+const FilterComponent = ({
   description,
   longDescription,
   category,
@@ -143,8 +144,6 @@ const Filter = ({
   };
   selectedOption: any;
 }) => {
-  // const [values, setValues] = useObjReducer<any>({ start: '1990', end: '2024' });
-
   return (
     <div className="text-white">
       <Text>{description}</Text>
@@ -185,7 +184,6 @@ const Filter = ({
           <div className="grow md:self-center">
             <DatePicker
               onSelectEnd={end => {
-                console.log('end', end);
                 return handleFilterChange('finalYear', end);
               }}
               onSelectStart={start => handleFilterChange('initialYear', start)}
@@ -229,13 +227,7 @@ export const ConsultFilterBox = ({
     type: string;
     values: number[];
   };
-  dimensions: {
-    type: string;
-    values: {
-      value: number;
-      label: string;
-    }[];
-  };
+  dimensions: Filter;
   handleFilterChange: (_a: any, _b: any) => void;
   selectedOption: any;
 }) => {
@@ -292,7 +284,7 @@ export const ConsultFilterBox = ({
         <Comp
           key={value}
           onConsult={values => onConsult({ ...values, filter: value })}
-          filtersData={{ years: years, dimensions: dimensions }}
+          filtersData={{ years, dimensions: dimensions }}
           handleFilterChange={handleFilterChange}
           selectedOption={selectedOption}
         />

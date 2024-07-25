@@ -12,19 +12,21 @@ export const getFilters = async () => {
     }
 
     const filters = {
-      dimensions: toFilter(filterData?.possibilities, 'label', 'id'),
-      anos: {
+      dimensions: toFilter('Categorias', 'dimensions', filterData?.possibilities, 'label', 'id'),
+      years: {
+        title: 'Anos',
+        key: 'years',
         type: 'date_years',
         values: filterData?.anos?.values,
       },
-      sideFilters: {
-        cargosIds: { ...toFilter(filterData?.cargo, 'nome_cargo', 'id'), title: 'Cargos' },
-        isElected: { ...toFilter(filterData?.foiEleito, 'label', 'id'), title: 'Eleito' },
-        genero: { ...toFilter(filterData?.genero, 'nome_genero', 'id'), title: 'Genero' },
-        unidadesEleitoraisIds: { ...toFilter(filterData?.estado, 'nome', 'id'), title: 'Estado' },
-        categoriasOcupacoes: { ...toFilter(filterData?.categorias, 'nome', 'id'), title: 'Ocupação' },
-        partidos: { ...toFilter(filterData?.partidos, 'nome_atual', 'id'), title: 'Partido' },
-      },
+      sideFilters: [
+        toFilter('Cargos', 'cargosIds', filterData?.cargo, 'nome_cargo', 'id'),
+        toFilter('Eleito', 'isElected', filterData?.foiEleito, 'label', 'id'),
+        toFilter('Genero', 'genero', filterData?.genero, 'nome_genero', 'id'),
+        toFilter('Estado', 'unidadesEleitoraisIds', filterData?.estado, 'nome', 'id'),
+        toFilter('Ocupação', 'categoriasOcupacoes', filterData?.categorias, 'nome', 'id'),
+        toFilter('Partido', 'partidos', filterData?.partidos, 'nome_atual', 'id'),
+      ],
     };
 
     return filters;
@@ -35,11 +37,15 @@ export const getFilters = async () => {
 };
 
 const toFilter = (
+  title: string,
+  key: string,
   filter: { type?: string; values?: any[] } | undefined,
   labelKey: string,
   valueKey: string,
 ) => {
   return {
+    title,
+    key,
     type: filter?.type ?? 'select',
     values: filter?.values?.map(e => ({ value: e[valueKey], label: e[labelKey] })) || [],
   };
