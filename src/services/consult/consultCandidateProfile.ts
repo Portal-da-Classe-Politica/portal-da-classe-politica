@@ -4,7 +4,7 @@ import { redem } from '../redem';
 export const consultCandidateProfile = async ({
   initialYear,
   finalYear,
-  dimension = undefined,
+  dimension,
   unidadesEleitoraisIds = undefined,
   isElected = undefined,
   partidos = undefined,
@@ -13,7 +13,7 @@ export const consultCandidateProfile = async ({
 }: {
   initialYear: number;
   finalYear: number;
-  dimension?: number;
+  dimension: number;
   unidadesEleitoraisIds?: string[];
   isElected?: number;
   partidos?: string[];

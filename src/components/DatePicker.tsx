@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Text } from './base';
 import { Option } from './base/forms/Select';
 import { SelectBasic } from './base/forms/SelectBasic';
@@ -11,9 +11,9 @@ export const DatePicker = ({
   endYearAPI,
 }: {
   // eslint-disable-next-line no-unused-vars
-  onSelectStart?: (value: number | string, option: Option) => void;
+  onSelectStart?: (value: number | string, option: Option | null) => void;
   // eslint-disable-next-line no-unused-vars
-  onSelectEnd?: (value: number | string, option: Option) => void;
+  onSelectEnd?: (value: number | string, option: Option | null) => void;
   startYearAPI?: number;
   endYearAPI?: number;
 }) => {
@@ -26,6 +26,12 @@ export const DatePicker = ({
 
   const [startDate, setStartDate] = useState<number>(years[0].value);
   const [endDate, setEndDate] = useState<number>(years[years.length - 1].value);
+
+  useEffect(() => {
+    onSelectStart(years[0].value, null);
+    onSelectEnd(years[years.length - 1].value, null);
+    // eslint-disable-next-line
+  }, [startYearAPI, endYearAPI]);
 
   return (
     <div className="bg-[#EDEDED] py-1 px-2 rounded-md flex  justify-center text-orange">

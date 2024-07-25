@@ -5,7 +5,6 @@ import { Select } from '@base/forms';
 import { BoxIcon } from '@components/box/BoxIcon';
 import { CarouselTabs } from '@components/CarouselTabs';
 import { DatePicker } from '@components/DatePicker';
-import { useObjReducer } from '@hooks/useObjReducer';
 import { consultSearchParam } from '@routes';
 
 interface FilterProps {
@@ -18,9 +17,16 @@ interface FilterProps {
     };
     dimensions: { type: string; values: { value: number; label: string }[] };
   };
+  handleFilterChange: (_a: any, _b: any) => void;
+  selectedOption: any;
 }
 
-const FilterCandidateProfile = ({ onConsult, filtersData }: FilterProps) => {
+const FilterCandidateProfile = ({
+  onConsult,
+  handleFilterChange,
+  selectedOption,
+  filtersData,
+}: FilterProps) => {
   return (
     <Filter
       description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
@@ -28,10 +34,17 @@ const FilterCandidateProfile = ({ onConsult, filtersData }: FilterProps) => {
       category="Perfil dos Candidatos"
       onConsult={onConsult}
       filtersData={filtersData}
+      handleFilterChange={handleFilterChange}
+      selectedOption={selectedOption}
     />
   );
 };
-const FilterElectionResult = ({ onConsult, filtersData }: FilterProps) => {
+const FilterElectionResult = ({
+  onConsult,
+  handleFilterChange,
+  selectedOption,
+  filtersData,
+}: FilterProps) => {
   return (
     <Filter
       description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
@@ -39,10 +52,17 @@ const FilterElectionResult = ({ onConsult, filtersData }: FilterProps) => {
       category="Resultados das Eleições"
       onConsult={onConsult}
       filtersData={filtersData}
+      handleFilterChange={handleFilterChange}
+      selectedOption={selectedOption}
     />
   );
 };
-const FilterPartyFiliation = ({ onConsult, filtersData }: FilterProps) => {
+const FilterPartyFiliation = ({
+  onConsult,
+  handleFilterChange,
+  selectedOption,
+  filtersData,
+}: FilterProps) => {
   return (
     <Filter
       description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
@@ -50,10 +70,12 @@ const FilterPartyFiliation = ({ onConsult, filtersData }: FilterProps) => {
       category="Filiação Partidária"
       onConsult={onConsult}
       filtersData={filtersData}
+      handleFilterChange={handleFilterChange}
+      selectedOption={selectedOption}
     />
   );
 };
-const FilterFinancing = ({ onConsult, filtersData }: FilterProps) => {
+const FilterFinancing = ({ onConsult, handleFilterChange, selectedOption, filtersData }: FilterProps) => {
   return (
     <Filter
       description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
@@ -61,10 +83,12 @@ const FilterFinancing = ({ onConsult, filtersData }: FilterProps) => {
       category="Financiamento de Campanha"
       onConsult={onConsult}
       filtersData={filtersData}
+      handleFilterChange={handleFilterChange}
+      selectedOption={selectedOption}
     />
   );
 };
-const FilterElectoralMaps = ({ onConsult, filtersData }: FilterProps) => {
+const FilterElectoralMaps = ({ onConsult, handleFilterChange, selectedOption, filtersData }: FilterProps) => {
   return (
     <Filter
       description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
@@ -72,10 +96,17 @@ const FilterElectoralMaps = ({ onConsult, filtersData }: FilterProps) => {
       category="Mapas Eleitorais"
       onConsult={onConsult}
       filtersData={filtersData}
+      handleFilterChange={handleFilterChange}
+      selectedOption={selectedOption}
     />
   );
 };
-const FilterElectoralResearch = ({ onConsult, filtersData }: FilterProps) => {
+const FilterElectoralResearch = ({
+  onConsult,
+  handleFilterChange,
+  selectedOption,
+  filtersData,
+}: FilterProps) => {
   return (
     <Filter
       description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
@@ -83,6 +114,8 @@ const FilterElectoralResearch = ({ onConsult, filtersData }: FilterProps) => {
       category="Pesquisas Eleitorais"
       onConsult={onConsult}
       filtersData={filtersData}
+      handleFilterChange={handleFilterChange}
+      selectedOption={selectedOption}
     />
   );
 };
@@ -93,11 +126,14 @@ const Filter = ({
   category,
   onConsult = () => {},
   filtersData,
+  handleFilterChange,
+  selectedOption,
 }: {
   description: string;
   longDescription: string;
   category: string;
   onConsult: (_: any) => void;
+  handleFilterChange: (_a: any, _b: any) => void;
   filtersData: {
     years: {
       type: string;
@@ -105,8 +141,9 @@ const Filter = ({
     };
     dimensions: { type: string; values: { value: number; label: string }[] };
   };
+  selectedOption: any;
 }) => {
-  const [values, setValues] = useObjReducer<any>({ start: '1990', end: '2024' });
+  // const [values, setValues] = useObjReducer<any>({ start: '1990', end: '2024' });
 
   return (
     <div className="text-white">
@@ -142,19 +179,32 @@ const Filter = ({
                 </>
               }
               suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
-              onSelect={category => setValues({ category })}
+              onSelect={category => handleFilterChange('dimension', category)}
             />
           </div>
           <div className="grow md:self-center">
             <DatePicker
-              onSelectEnd={end => setValues({ end })}
-              onSelectStart={start => setValues({ start })}
+              onSelectEnd={end => {
+                console.log('end', end);
+                return handleFilterChange('finalYear', end);
+              }}
+              onSelectStart={start => handleFilterChange('initialYear', start)}
               startYearAPI={filtersData.years.values[0]}
               endYearAPI={filtersData.years.values[filtersData.years.values.length - 1]}
             />
           </div>
         </div>
-        <ButtonStyled style="fillBlack" size="small" onClick={() => onConsult(values)}>
+        <ButtonStyled
+          style="fillBlack"
+          size="small"
+          onClick={() =>
+            onConsult({
+              initialYear: selectedOption.initialYear,
+              finalYear: selectedOption.finalYear,
+              dimension: selectedOption.dimension,
+            })
+          }
+        >
           <Text>Gerar Cruzamento</Text>
         </ButtonStyled>
       </div>
@@ -169,6 +219,8 @@ export const ConsultFilterBox = ({
   onConsult,
   years,
   dimensions,
+  handleFilterChange,
+  selectedOption,
 }: {
   initialConsult?: string;
   // eslint-disable-next-line no-unused-vars
@@ -184,6 +236,8 @@ export const ConsultFilterBox = ({
       label: string;
     }[];
   };
+  handleFilterChange: (_a: any, _b: any) => void;
+  selectedOption: any;
 }) => {
   const tabs = [
     {
@@ -239,6 +293,8 @@ export const ConsultFilterBox = ({
           key={value}
           onConsult={values => onConsult({ ...values, filter: value })}
           filtersData={{ years: years, dimensions: dimensions }}
+          handleFilterChange={handleFilterChange}
+          selectedOption={selectedOption}
         />
       ))}
       unSelectedClassName="!text-black"

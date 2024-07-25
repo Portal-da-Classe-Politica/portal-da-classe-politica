@@ -78,11 +78,18 @@ const emptyFilter: filterObjectType = {
 };
 
 export const ConsultSection = ({ initialConsult }: { initialConsult: string }) => {
-  const onConsult = (values: any) => {
-    console.debug(values);
-  };
-
   const [dataFilter, setDataFilter] = useState<filterObjectType>(emptyFilter);
+  const [graphData, setGraphData] = useState([]);
+  const [selectedOption, setSelectedOption] = useState<any>({});
+
+  const handleFilterChange = (filterName: any, value: any) => {
+    setSelectedOption((prevFilters: any) => {
+      return {
+        ...prevFilters,
+        [filterName]: value,
+      };
+    });
+  };
 
   useEffect(() => {
     fetch(`/api/consult`)
@@ -95,6 +102,25 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
   useEffect(() => {
     console.log('dados aqui', dataFilter);
   }, [dataFilter]);
+
+  useEffect(() => {
+    console.log('dados aqui', graphData);
+  }, [graphData]);
+
+  const sendData = ({
+    initialYear,
+    finalYear,
+    dimension,
+  }: {
+    initialYear: number;
+    finalYear: number;
+    dimension: number;
+  }) => {
+    console.log('data chama aqui');
+    fetch(`/api/consultGraph?initialYear=${initialYear}&finalYear=${finalYear}&dimension=${dimension}`)
+      .then(res => res.json())
+      .then(data => setGraphData(data));
+  };
   // const options = [
   //   { value: 'new-york', label: 'New York' },
   //   { value: 'los-angeles', label: 'Los Angeles' },
@@ -127,8 +153,10 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
         <ConsultFilterBox
           initialConsult={initialConsult}
           years={dataFilter.anos}
-          onConsult={onConsult}
+          onConsult={sendData}
           dimensions={dataFilter?.dimensions}
+          handleFilterChange={handleFilterChange}
+          selectedOption={selectedOption}
         />
       </Container>
       {/* <Container>
@@ -142,7 +170,12 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
       <Container className="pt-16">
         <div className="flex flex-col md:flex-row">
           <div className="w-full md:w-[25%]">
-            <FilterSidebar sideFilters={dataFilter.sideFilters} />
+            <FilterSidebar
+              sideFilters={dataFilter.sideFilters}
+              sendData={sendData}
+              selectedOption={selectedOption}
+              handleFilterChange={handleFilterChange}
+            />
           </div>
           <div className="w-full md:w-[75%]">
             <div className="bg-white rounded-xl shadow-xl p-8">

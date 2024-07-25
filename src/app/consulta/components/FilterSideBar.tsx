@@ -3,10 +3,12 @@ import { Text } from '@base/text';
 import { BoxIcon } from '@components/box/BoxIcon';
 import { selectObject } from './ConsultSection';
 import CompleteSelect from '@base/forms/CompleteSelect';
-import { useState } from 'react';
 
 const FilterSidebar = ({
   sideFilters,
+  sendData,
+  selectedOption,
+  handleFilterChange,
 }: {
   sideFilters: {
     cargosIds: selectObject;
@@ -16,18 +18,11 @@ const FilterSidebar = ({
     partidos: selectObject;
     unidadesEleitoraisIds: selectObject;
   };
+  selectedOption: any;
+  handleFilterChange: (_a: any, _b: any) => void;
+  // eslint-disable-next-line
+  sendData: (_value: any) => void;
 }) => {
-  const [selectedOption, setSelectedOption] = useState<any>({});
-
-  const handleFilterChange = (filterName: any, value: any) => {
-    setSelectedOption((prevFilters: any) => {
-      return {
-        ...prevFilters,
-        [filterName]: value,
-      };
-    });
-  };
-
   return (
     <div>
       <label htmlFor="toggle" className="flex items-center mb-8 cursor-pointer md:cursor-default">
@@ -52,7 +47,11 @@ const FilterSidebar = ({
           );
         })}
 
-        <ButtonStyled style="outlinedOrange" className="!bg-transparent hover:!text-orangeLight2">
+        <ButtonStyled
+          style="outlinedOrange"
+          className="!bg-transparent hover:!text-orangeLight2"
+          onClick={sendData}
+        >
           <Text>Aplicar Filtro</Text>
         </ButtonStyled>
       </div>
