@@ -219,6 +219,7 @@ export const ConsultFilterBox = ({
   dimensions,
   handleFilterChange,
   selectedOption,
+  onTabChange = () => {},
 }: {
   initialConsult?: string;
   // eslint-disable-next-line no-unused-vars
@@ -230,6 +231,7 @@ export const ConsultFilterBox = ({
   dimensions: Filter;
   handleFilterChange: (_a: any, _b: any) => void;
   selectedOption: any;
+  onTabChange?: (_tab: string) => void;
 }) => {
   const tabs = [
     {
@@ -290,6 +292,7 @@ export const ConsultFilterBox = ({
         />
       ))}
       unSelectedClassName="!text-black"
+      onTabChange={idx => onTabChange(tabs[idx].value)}
     />
   );
 };

@@ -12,6 +12,7 @@ import { LineChartCard } from '@components/charts/LineChartCard';
 import { PieChartCard } from '@components/charts/PieChartCard';
 import { useCallback, useEffect, useState } from 'react';
 import { Filter } from '../../types';
+import { consultSearchParam } from '@routes';
 
 type filterObjectType = {
   years: {
@@ -40,6 +41,10 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
   const [dataFilter, setDataFilter] = useState<filterObjectType>(emptyFilter);
   const [selectedOptions, setSelectedOptions] = useState<any>({});
   const [loadingSideFilters, setLoadingSideFilters] = useState(true);
+  const [consult, setConsult] = useState(
+    consultSearchParam[initialConsult as keyof typeof consultSearchParam] ||
+      consultSearchParam.CandidateProfile,
+  );
 
   const loadFilters = useCallback(() => {
     setLoadingSideFilters(true);
@@ -65,14 +70,14 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
     });
   };
 
-  const consult = () => {
+  const sendConsult = () => {
     const search = Object.entries(selectedOptions).reduce((r, [key, value]: [string, any]) => {
       const _value = Array.isArray(value) ? value.map(v => v.value).join(',') : value;
       const param = typeof _value === 'object' ? _value.value : _value;
       return `${r}&${key}=${param}`;
     }, '');
 
-    console.log('consult > search >', search);
+    console.log('consult > search >', consult, search);
   };
 
   return (
@@ -81,10 +86,11 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
         <ConsultFilterBox
           initialConsult={initialConsult}
           years={dataFilter.years}
-          onConsult={consult}
+          onConsult={sendConsult}
           dimensions={dataFilter?.dimensions}
           handleFilterChange={handleFilterChange}
           selectedOption={selectedOptions}
+          onTabChange={tab => setConsult(tab)}
         />
       </Container>
 
@@ -94,7 +100,7 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
             <FilterSidebar
               loading={loadingSideFilters}
               sideFilters={dataFilter.sideFilters}
-              onApplyFilter={consult}
+              onApplyFilter={sendConsult}
               selectedOptions={selectedOptions}
               handleFilterChange={handleFilterChange}
             />
