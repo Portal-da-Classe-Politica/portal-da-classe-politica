@@ -1,4 +1,5 @@
 import { ConsultService } from '@services/consult/ConsultService';
+import { logError } from '@utils/logError';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
@@ -11,6 +12,7 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json(result);
   } catch (error) {
-    console.error(error);
+    logError('get:consult result', error as Error);
+    return NextResponse.json([]);
   }
 }
