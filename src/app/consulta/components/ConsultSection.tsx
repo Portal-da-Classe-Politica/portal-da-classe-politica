@@ -59,7 +59,7 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
 
   useEffect(() => {
     loadFilters();
-  }, []);
+  }, [loadFilters]);
 
   const handleFilterChange = (filterName: any, value: any) => {
     setSelectedOptions((prevFilters: any) => {
@@ -70,14 +70,23 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
     });
   };
 
+  const onTabChange = (value: string) => {
+    setConsult(value);
+  };
+
   const sendConsult = () => {
     const search = Object.entries(selectedOptions).reduce((r, [key, value]: [string, any]) => {
       const _value = Array.isArray(value) ? value.map(v => v.value).join(',') : value;
       const param = typeof _value === 'object' ? _value.value : _value;
       return `${r}&${key}=${param}`;
-    }, '');
+    }, `consulta=${consult}`);
 
-    console.log('consult > search >', consult, search);
+    console.log('consult > search >', search);
+    fetch(`/api/consult?${search}`)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+      });
   };
 
   return (
@@ -90,7 +99,7 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
           dimensions={dataFilter?.dimensions}
           handleFilterChange={handleFilterChange}
           selectedOption={selectedOptions}
-          onTabChange={tab => setConsult(tab)}
+          onTabChange={value => onTabChange(value)}
         />
       </Container>
 
