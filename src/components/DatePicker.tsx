@@ -9,6 +9,7 @@ export const DatePicker = ({
   onSelectEnd = () => {},
   startYearAPI,
   endYearAPI,
+  optionsValue = [],
 }: {
   // eslint-disable-next-line no-unused-vars
   onSelectStart?: (value: number | string, option: Option | null) => void;
@@ -16,6 +17,7 @@ export const DatePicker = ({
   onSelectEnd?: (value: number | string, option: Option | null) => void;
   startYearAPI?: number;
   endYearAPI?: number;
+  optionsValue?: number[];
 }) => {
   let startYear = startYearAPI ? startYearAPI : 1990;
   let endYear = endYearAPI ? endYearAPI : 2024;
@@ -50,7 +52,12 @@ export const DatePicker = ({
               setStartDate(value as number);
             }}
             defaultValue={years[0].label}
-            options={years.filter(val => val.value < endDate)}
+            options={optionsValue
+              .map(values => ({
+                value: values,
+                label: values.toString(),
+              }))
+              .filter(val => val.value < endDate)}
             buttonProps={{ size: 'small', className: 'px-2' }}
           />
           <Text className="flex self-end">até </Text>
@@ -61,7 +68,12 @@ export const DatePicker = ({
               onSelectEnd(value, option);
               setEndDate(value as number);
             }}
-            options={years.filter(val => val.value > startDate)}
+            options={optionsValue
+              .map(values => ({
+                value: values,
+                label: values.toString(),
+              }))
+              .filter(val => val.value > startDate)}
             buttonProps={{ size: 'small', className: 'px-2' }}
           />
         </div>

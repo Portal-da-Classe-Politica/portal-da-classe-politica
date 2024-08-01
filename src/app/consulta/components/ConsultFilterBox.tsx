@@ -221,6 +221,7 @@ const FilterComponent = ({
                     onSelectEnd={end => {
                       return handleFilterChange('finalYear', end);
                     }}
+                    optionsValue={filtersData.years.values}
                     onSelectStart={start => handleFilterChange('initialYear', start)}
                     startYearAPI={filtersData.years.values[0]}
                     endYearAPI={filtersData.years.values[filtersData.years.values.length - 1]}
