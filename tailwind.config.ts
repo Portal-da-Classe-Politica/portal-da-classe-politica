@@ -7,6 +7,13 @@ const config: Config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    screens: {
+      sm: '640px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
+      '2xl': '1536px',
+    },
     extend: {
       screens: {
         design: '1700px',
@@ -57,7 +64,7 @@ const config: Config = {
         white: '#FFFFFF',
         black: '#000000',
 
-        // Not mapped on palette but used on buttons
+        // Not mapped on palette but appear on Figma
         grayMix1: '#EDEDED',
         grayMix2: '#D9D9D9',
         grayMix3: '#F4F4F4',

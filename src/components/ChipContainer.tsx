@@ -1,3 +1,5 @@
+'use client';
+
 import { cva } from 'cva';
 
 const chipVariant = cva(
@@ -20,8 +22,13 @@ export interface ChipContainerProps {
   children: React.ReactNode;
   className?: string;
   type?: 'default' | 'full' | 'ghost';
+  onClick?: () => void;
 }
 
-export const ChipContainer = ({ type, children, className }: ChipContainerProps) => {
-  return <span className={`${chipVariant({ type })} ${className}`}>{children}</span>;
+export const ChipContainer = ({ type, children, className, onClick = () => {} }: ChipContainerProps) => {
+  return (
+    <span className={`${chipVariant({ type })} ${className}`} onClick={onClick}>
+      {children}
+    </span>
+  );
 };

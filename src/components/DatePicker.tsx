@@ -1,27 +1,37 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Text } from './base';
 import { Option } from './base/forms/Select';
 import { SelectBasic } from './base/forms/SelectBasic';
 import { BoxIcon } from './box/BoxIcon';
 
-let startYear = 1990;
-let endYear = 2024;
-let years = Array.from({ length: endYear - startYear + 1 }, (v, i) => ({
-  value: i + startYear,
-  label: (i + startYear).toString(),
-}));
-
 export const DatePicker = ({
   onSelectStart = () => {},
   onSelectEnd = () => {},
+  startYearAPI,
+  endYearAPI,
 }: {
   // eslint-disable-next-line no-unused-vars
-  onSelectStart?: (value: number | string, option: Option) => void;
+  onSelectStart?: (value: number | string, option: Option | null) => void;
   // eslint-disable-next-line no-unused-vars
-  onSelectEnd?: (value: number | string, option: Option) => void;
+  onSelectEnd?: (value: number | string, option: Option | null) => void;
+  startYearAPI?: number;
+  endYearAPI?: number;
 }) => {
+  let startYear = startYearAPI ? startYearAPI : 1990;
+  let endYear = endYearAPI ? endYearAPI : 2024;
+  let years = Array.from({ length: endYear - startYear + 1 }, (v, i) => ({
+    value: i + startYear,
+    label: (i + startYear).toString(),
+  }));
+
   const [startDate, setStartDate] = useState<number>(years[0].value);
   const [endDate, setEndDate] = useState<number>(years[years.length - 1].value);
+
+  useEffect(() => {
+    onSelectStart(years[0].value, null);
+    onSelectEnd(years[years.length - 1].value, null);
+    // eslint-disable-next-line
+  }, [startYearAPI, endYearAPI]);
 
   return (
     <div className="bg-[#EDEDED] py-1 px-2 rounded-md flex  justify-center text-orange">

@@ -17,5 +17,4 @@ export const logError = (msg: string, error: AxiosError | Error) => {
   } else {
     console.error(msg, error);
   }
-  console.error(error);
 };

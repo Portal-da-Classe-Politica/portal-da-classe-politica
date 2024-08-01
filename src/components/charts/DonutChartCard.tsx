@@ -4,7 +4,7 @@ import { Heading } from '@base/Heading';
 import { Chart } from './Chart';
 import { Text } from '@base/text';
 
-export const PieChartCard = ({
+export const DonutChartCard = ({
   title = '',
   labels,
   series,

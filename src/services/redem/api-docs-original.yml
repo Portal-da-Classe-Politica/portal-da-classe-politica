@@ -713,6 +713,262 @@ paths:
                   data:
                     type: object
                     example: {}
+
+  /noauth/cruzamentos/candidates-profile/by-year:
+    get:
+      operationId: '10' # New operation ID
+      tags:
+        - candidato
+      summary: Perfil dos candidatos por ano
+      description: Retorna o perfil dos candidatos agrupado por ano.
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: dimension
+          schema:
+            type: integer
+          required: false
+          description: Dimensão de agregação (1, 2, 3).
+        - in: query
+          name: unidadesEleitoraisIds
+          schema:
+            type: array
+          required: false
+          description: IDs das unidades eleitorais desejadas.
+        - in: query
+          name: isElected
+          schema:
+            type: integer
+          required: false
+          description: Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+        - in: query
+          name: partidos
+          schema:
+            type: array
+          required: false
+          description: IDs dos partidos
+        - in: query
+          name: categoriasOcupacoes
+          schema:
+            type: array
+          required: false
+          description: Categoria 1 das ocupações (1,2 ...)
+        - in: query
+          name: cargosIds
+          schema:
+            type: array
+          required: false
+          description: IDs dos cargos (1,2,3...)
+      responses:
+        '200':
+          description: Resposta bem-sucedida com o perfil dos candidatos por ano.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Perfil dos candidatos por ano encontrado com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        ano:
+                          type: integer
+                          example: 2022
+                        # ... (other properties based on your query results)
+
+  /noauth/cruzamentos/candidates-profile/by-gender:
+    get:
+      operationId: '11' # New operation ID
+      tags:
+        - candidato
+      summary: Perfil dos candidatos por gênero
+      description: Retorna o perfil dos candidatos agrupado por gênero.
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: dimension
+          schema:
+            type: integer
+          required: false
+          description: Dimensão de agregação (1, 2, 3).
+        - in: query
+          name: unidadesEleitoraisIds
+          schema:
+            type: array
+          required: false
+          description: IDs das unidades eleitorais desejadas.
+        - in: query
+          name: isElected
+          schema:
+            type: integer
+          required: false
+          description: Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+        - in: query
+          name: partidos
+          schema:
+            type: array
+          required: false
+          description: IDs dos partidos
+        - in: query
+          name: categoriasOcupacoes
+          schema:
+            type: array
+          required: false
+          description: Categoria 1 das ocupações (1,2 ...)
+        - in: query
+          name: cargosIds
+          schema:
+            type: array
+          required: false
+          description: IDs dos cargos (1,2,3...)
+      responses:
+        '200':
+          description: Resposta bem-sucedida com o perfil dos candidatos por gênero.
+          # ... (similar content schema to by-year, but with 'genero' property instead of 'ano')
+
+  /noauth/cruzamentos/candidates-profile/by-occupation:
+    get:
+      operationId: '12' # New operation ID
+      tags:
+        - candidato
+      summary: Perfil dos candidatos por ocupação
+      description: Retorna o perfil dos candidatos agrupado por ocupação.
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: dimension
+          schema:
+            type: integer
+          required: false
+          description: Dimensão de agregação (1, 2, 3).
+        - in: query
+          name: unidadesEleitoraisIds
+          schema:
+            type: array
+          required: false
+          description: IDs das unidades eleitorais desejadas.
+        - in: query
+          name: isElected
+          schema:
+            type: integer
+          required: false
+          description: Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+        - in: query
+          name: partidos
+          schema:
+            type: array
+          required: false
+          description: IDs dos partidos
+        - in: query
+          name: categoriasOcupacoes
+          schema:
+            type: array
+          required: false
+          description: Categoria 1 das ocupações (1,2 ...)
+        - in: query
+          name: cargosIds
+          schema:
+            type: array
+          required: false
+          description: IDs dos cargos (1,2,3...)
+      responses:
+        '200':
+          description: Resposta bem-sucedida com o perfil dos candidatos por ocupação.
+
+  /noauth/cruzamentos/candidates-profile/kpis:
+    get:
+      operationId: '12' # New operation ID
+      tags:
+        - candidato
+      summary: KPIs para página de cruzamentos Perfil dos candidatos
+      description: Retorna os kpis  do perfil dos candidatos.
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: unidadesEleitoraisIds
+          schema:
+            type: array
+          required: false
+          description: IDs das unidades eleitorais desejadas.
+        - in: query
+          name: isElected
+          schema:
+            type: integer
+          required: false
+          description: Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+        - in: query
+          name: partidos
+          schema:
+            type: array
+          required: false
+          description: IDs dos partidos
+        - in: query
+          name: categoriasOcupacoes
+          schema:
+            type: array
+          required: false
+          description: Categoria 1 das ocupações (1,2 ...)
+        - in: query
+          name: cargosIds
+          schema:
+            type: array
+          required: false
+          description: IDs dos cargos (1,2,3...)
+      responses:
+        '200':
+          description: Resposta bem-sucedida com o perfil dos candidatos por ocupação.
+
 components:
   schemas:
     Donor:

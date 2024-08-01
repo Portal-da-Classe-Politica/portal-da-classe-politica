@@ -1,97 +1,179 @@
 'use client';
 
-import { ButtonStyled, Icon, Text } from '@base';
+import { ButtonStyled, Icon, Loader, Text } from '@base';
 import { Select } from '@base/forms';
 import { BoxIcon } from '@components/box/BoxIcon';
 import { CarouselTabs } from '@components/CarouselTabs';
 import { DatePicker } from '@components/DatePicker';
-import { useObjReducer } from '@hooks/useObjReducer';
 import { consultSearchParam } from '@routes';
+import { Filter } from '../../types';
 
 interface FilterProps {
+  loading: boolean;
   // eslint-disable-next-line no-unused-vars
   onConsult: (filters: any) => void;
+  filtersData: {
+    years: {
+      type: string;
+      values: number[];
+    };
+    dimensions: Filter;
+  };
+  handleFilterChange: (_a: any, _b: any) => void;
+  selectedOption: any;
 }
 
-const FilterCandidateProfile = ({ onConsult }: FilterProps) => {
+const FilterCandidateProfile = ({
+  onConsult,
+  handleFilterChange,
+  selectedOption,
+  filtersData,
+  loading,
+}: FilterProps) => {
   return (
-    <Filter
+    <FilterComponent
       description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
       longDescription="O resultado do cruzamento entre Perfil dos Candidatos & {Categoria Selecionada} nos trás informações sobre lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Ainda com dúvida? Clique aqui."
       category="Perfil dos Candidatos"
       onConsult={onConsult}
+      filtersData={filtersData}
+      handleFilterChange={handleFilterChange}
+      selectedOption={selectedOption}
+      loading={loading}
     />
   );
 };
-const FilterElectionResult = ({ onConsult }: FilterProps) => {
+const FilterElectionResult = ({
+  onConsult,
+  handleFilterChange,
+  selectedOption,
+  filtersData,
+  loading,
+}: FilterProps) => {
   return (
-    <Filter
+    <FilterComponent
       description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
       longDescription="O resultado do cruzamento entre Perfil dos Candidatos & {Categoria Selecionada} nos trás informações sobre lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Ainda com dúvida? Clique aqui."
       category="Resultados das Eleições"
       onConsult={onConsult}
+      filtersData={filtersData}
+      handleFilterChange={handleFilterChange}
+      selectedOption={selectedOption}
+      loading={loading}
     />
   );
 };
-const FilterPartyFiliation = ({ onConsult }: FilterProps) => {
+const FilterPartyFiliation = ({
+  onConsult,
+  handleFilterChange,
+  selectedOption,
+  filtersData,
+  loading,
+}: FilterProps) => {
   return (
-    <Filter
+    <FilterComponent
       description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
       longDescription="O resultado do cruzamento entre Perfil dos Candidatos & {Categoria Selecionada} nos trás informações sobre lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Ainda com dúvida? Clique aqui."
       category="Filiação Partidária"
       onConsult={onConsult}
+      filtersData={filtersData}
+      handleFilterChange={handleFilterChange}
+      selectedOption={selectedOption}
+      loading={loading}
     />
   );
 };
-const FilterFinancing = ({ onConsult }: FilterProps) => {
+const FilterFinancing = ({
+  onConsult,
+  handleFilterChange,
+  selectedOption,
+  filtersData,
+  loading,
+}: FilterProps) => {
   return (
-    <Filter
+    <FilterComponent
       description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
       longDescription="O resultado do cruzamento entre Perfil dos Candidatos & {Categoria Selecionada} nos trás informações sobre lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Ainda com dúvida? Clique aqui."
       category="Financiamento de Campanha"
       onConsult={onConsult}
+      filtersData={filtersData}
+      handleFilterChange={handleFilterChange}
+      selectedOption={selectedOption}
+      loading={loading}
     />
   );
 };
-const FilterElectoralMaps = ({ onConsult }: FilterProps) => {
+const FilterElectoralMaps = ({
+  onConsult,
+  handleFilterChange,
+  selectedOption,
+  filtersData,
+  loading,
+}: FilterProps) => {
   return (
-    <Filter
+    <FilterComponent
       description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
       longDescription="O resultado do cruzamento entre Perfil dos Candidatos & {Categoria Selecionada} nos trás informações sobre lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Ainda com dúvida? Clique aqui."
       category="Mapas Eleitorais"
       onConsult={onConsult}
+      filtersData={filtersData}
+      handleFilterChange={handleFilterChange}
+      selectedOption={selectedOption}
+      loading={loading}
     />
   );
 };
-const FilterElectoralResearch = ({ onConsult }: FilterProps) => {
+const FilterElectoralResearch = ({
+  onConsult,
+  handleFilterChange,
+  selectedOption,
+  filtersData,
+  loading,
+}: FilterProps) => {
   return (
-    <Filter
+    <FilterComponent
       description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
       longDescription="O resultado do cruzamento entre Perfil dos Candidatos & {Categoria Selecionada} nos trás informações sobre lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Ainda com dúvida? Clique aqui."
       category="Pesquisas Eleitorais"
       onConsult={onConsult}
+      filtersData={filtersData}
+      handleFilterChange={handleFilterChange}
+      selectedOption={selectedOption}
+      loading={loading}
     />
   );
 };
 
-const Filter = ({
+const FilterComponent = ({
+  loading,
   description,
   longDescription,
   category,
   onConsult = () => {},
+  filtersData,
+  handleFilterChange,
+  selectedOption,
 }: {
+  loading: boolean;
   description: string;
   longDescription: string;
   category: string;
   onConsult: (_: any) => void;
+  handleFilterChange: (_a: any, _b: any) => void;
+  filtersData: {
+    years: {
+      type: string;
+      values: number[];
+    };
+    dimensions: { type: string; values: { value: number; label: string }[] };
+  };
+  selectedOption: any;
 }) => {
-  const [values, setValues] = useObjReducer<any>({ start: '1990', end: '2024' });
-
   return (
     <div className="text-white">
       <Text>{description}</Text>
 
-      <div className="flex flex-col xl:flex-row gap-8 my-8">
+      <div className="flex flex-col xl:flex-row gap-8 my-8 justify-between">
         <ButtonStyled style="fillBlack" size="small">
           <Text className="font-normal border-white border-r-2 pr-2" textType="span">
             Categoria
@@ -100,44 +182,66 @@ const Filter = ({
             {category}
           </Text>
         </ButtonStyled>
+
         <div className="flex flex-col md:flex-row gap-8">
-          <div className="!grow">
-            <Select
-              options={[
-                { label: 'Resultados das Eleições', value: '1' },
-                { label: 'Filiação Partidária', value: '2' },
-                { label: 'Financiamento de Campanha', value: '3' },
-                { label: 'Mapas Eleitorais', value: '4' },
-                { label: 'Pesquisas Eleitorais', value: '5' },
-              ]}
-              placeholder="Sem cruzamento"
-              className="inline"
-              buttonProps={{ style: 'fillGray', className: 'px-2 w-full' }}
-              prefixComponent={
-                <>
-                  <BoxIcon
-                    icon="Table"
-                    size={6}
-                    iconSize="sm"
-                    className="bg-white text-orange drop-shadow-md rounded-md mr-2"
+          {loading ? (
+            <div className="flex flex-1">
+              <Loader />
+            </div>
+          ) : (
+            <>
+              {filtersData?.dimensions?.values && (
+                <div className="!grow">
+                  <Select
+                    options={filtersData.dimensions.values}
+                    placeholder="Sem cruzamento"
+                    className="inline"
+                    buttonProps={{ style: 'fillGray', className: 'px-2 w-full' }}
+                    prefixComponent={
+                      <>
+                        <BoxIcon
+                          icon="Table"
+                          size={6}
+                          iconSize="sm"
+                          className="bg-white text-orange drop-shadow-md rounded-md mr-2"
+                        />
+                        <Text className="font-normal border-black border-r-2 pr-2 mr-2" textType="span">
+                          Categoria
+                        </Text>
+                      </>
+                    }
+                    suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
+                    onSelect={category => handleFilterChange('dimension', category)}
                   />
-                  <Text className="font-normal border-black border-r-2 pr-2 mr-2" textType="span">
-                    Categoria
-                  </Text>
-                </>
-              }
-              suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
-              onSelect={category => setValues({ category })}
-            />
-          </div>
-          <div className="grow md:self-center">
-            <DatePicker
-              onSelectEnd={end => setValues({ end })}
-              onSelectStart={start => setValues({ start })}
-            />
-          </div>
+                </div>
+              )}
+              {filtersData?.years?.values && (
+                <div className="grow md:self-center">
+                  <DatePicker
+                    onSelectEnd={end => {
+                      return handleFilterChange('finalYear', end);
+                    }}
+                    onSelectStart={start => handleFilterChange('initialYear', start)}
+                    startYearAPI={filtersData.years.values[0]}
+                    endYearAPI={filtersData.years.values[filtersData.years.values.length - 1]}
+                  />
+                </div>
+              )}
+            </>
+          )}
         </div>
-        <ButtonStyled style="fillBlack" size="small" onClick={() => onConsult(values)}>
+
+        <ButtonStyled
+          style="fillBlack"
+          size="small"
+          onClick={() =>
+            onConsult({
+              initialYear: selectedOption.initialYear,
+              finalYear: selectedOption.finalYear,
+              dimension: selectedOption.dimension,
+            })
+          }
+        >
           <Text>Gerar Cruzamento</Text>
         </ButtonStyled>
       </div>
@@ -150,10 +254,25 @@ const Filter = ({
 export const ConsultFilterBox = ({
   initialConsult,
   onConsult,
+  years,
+  dimensions,
+  handleFilterChange,
+  selectedOption,
+  loading = false,
+  onTabChange = () => {},
 }: {
   initialConsult?: string;
   // eslint-disable-next-line no-unused-vars
   onConsult: (filters: any) => void;
+  years: {
+    type: string;
+    values: number[];
+  };
+  dimensions: Filter;
+  handleFilterChange: (_a: any, _b: any) => void;
+  selectedOption: any;
+  loading: boolean;
+  onTabChange?: (_tab: string) => void;
 }) => {
   const tabs = [
     {
@@ -205,9 +324,17 @@ export const ConsultFilterBox = ({
         </div>
       ))}
       contents={tabs.map(({ value, Comp }) => (
-        <Comp key={value} onConsult={values => onConsult({ ...values, filter: value })} />
+        <Comp
+          key={value}
+          loading={loading}
+          onConsult={values => onConsult({ ...values, filter: value })}
+          filtersData={{ years, dimensions: dimensions }}
+          handleFilterChange={handleFilterChange}
+          selectedOption={selectedOption}
+        />
       ))}
       unSelectedClassName="!text-black"
+      onTabChange={idx => onTabChange(tabs[idx].value)}
     />
   );
 };

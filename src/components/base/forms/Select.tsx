@@ -84,13 +84,13 @@ export const Select = ({
       </ButtonStyled>
       {showOptions && !disabled && (
         <div
-          className={`z-10 origin-top-right absolute ${biggerList ? 'w-[160px] ' : 'w-full'} rounded-md shadow-lg bg-white max-h-[300px] overflow-y-auto px-2`}
+          className={`z-10 origin-top-right absolute ${biggerList ? 'w-[160px] ' : 'w-full'} rounded-md shadow-lg bg-white max-h-[300px] overflow-y-auto`}
         >
           <div>
             {options.map(option => (
               <div
                 key={option.value}
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left cursor-pointer"
                 onClick={() => onOptionSelected(option)}
               >
                 {option.label}

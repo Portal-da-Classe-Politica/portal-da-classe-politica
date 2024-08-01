@@ -299,79 +299,359 @@ export interface GetCandidateFilters200Response {
 export interface GetCandidateFilters200ResponseData {
   /**
    *
-   * @type {Array<GetCandidateFilters200ResponseDataCargosInner>}
+   * @type {GetCandidateFilters200ResponseDataCargo}
    * @memberof GetCandidateFilters200ResponseData
    */
-  cargos?: Array<GetCandidateFilters200ResponseDataCargosInner>;
+  cargo?: GetCandidateFilters200ResponseDataCargo;
   /**
    *
-   * @type {Array<GetCandidateFilters200ResponseDataGenerosInner>}
+   * @type {GetCandidateFilters200ResponseDataFoiEleito}
    * @memberof GetCandidateFilters200ResponseData
    */
-  generos?: Array<GetCandidateFilters200ResponseDataGenerosInner>;
+  foiEleito?: GetCandidateFilters200ResponseDataFoiEleito;
   /**
    *
-   * @type {Array<GetCandidateFilters200ResponseDataEstadosInner>}
+   * @type {GetCandidateFilters200ResponseDataGenero}
    * @memberof GetCandidateFilters200ResponseData
    */
-  estados?: Array<GetCandidateFilters200ResponseDataEstadosInner>;
+  genero?: GetCandidateFilters200ResponseDataGenero;
+  /**
+   *
+   * @type {GetCandidateFilters200ResponseDataEstado}
+   * @memberof GetCandidateFilters200ResponseData
+   */
+  estado?: GetCandidateFilters200ResponseDataEstado;
+  /**
+   *
+   * @type {GetCandidateFilters200ResponseDataCategorias}
+   * @memberof GetCandidateFilters200ResponseData
+   */
+  categorias?: GetCandidateFilters200ResponseDataCategorias;
+  /**
+   *
+   * @type {GetCandidateFilters200ResponseDataPartidos}
+   * @memberof GetCandidateFilters200ResponseData
+   */
+  partidos?: GetCandidateFilters200ResponseDataPartidos;
+  /**
+   *
+   * @type {GetCandidateFilters200ResponseDataFoiEleito}
+   * @memberof GetCandidateFilters200ResponseData
+   */
+  possibilities?: GetCandidateFilters200ResponseDataFoiEleito;
+  /**
+   *
+   * @type {GetCandidateFilters200ResponseDataAnos}
+   * @memberof GetCandidateFilters200ResponseData
+   */
+  anos?: GetCandidateFilters200ResponseDataAnos;
 }
 /**
  *
  * @export
- * @interface GetCandidateFilters200ResponseDataCargosInner
+ * @interface GetCandidateFilters200ResponseDataAnos
  */
-export interface GetCandidateFilters200ResponseDataCargosInner {
+export interface GetCandidateFilters200ResponseDataAnos {
+  /**
+   *
+   * @type {string}
+   * @memberof GetCandidateFilters200ResponseDataAnos
+   */
+  type?: string;
+  /**
+   *
+   * @type {Array<number>}
+   * @memberof GetCandidateFilters200ResponseDataAnos
+   */
+  values?: Array<number>;
+}
+/**
+ *
+ * @export
+ * @interface GetCandidateFilters200ResponseDataCargo
+ */
+export interface GetCandidateFilters200ResponseDataCargo {
+  /**
+   *
+   * @type {string}
+   * @memberof GetCandidateFilters200ResponseDataCargo
+   */
+  type?: string;
+  /**
+   *
+   * @type {Array<GetCandidateFilters200ResponseDataCargoValuesInner>}
+   * @memberof GetCandidateFilters200ResponseDataCargo
+   */
+  values?: Array<GetCandidateFilters200ResponseDataCargoValuesInner>;
+}
+/**
+ *
+ * @export
+ * @interface GetCandidateFilters200ResponseDataCargoValuesInner
+ */
+export interface GetCandidateFilters200ResponseDataCargoValuesInner {
   /**
    *
    * @type {number}
-   * @memberof GetCandidateFilters200ResponseDataCargosInner
+   * @memberof GetCandidateFilters200ResponseDataCargoValuesInner
    */
   id?: number;
   /**
    *
    * @type {string}
-   * @memberof GetCandidateFilters200ResponseDataCargosInner
+   * @memberof GetCandidateFilters200ResponseDataCargoValuesInner
    */
   nome_cargo?: string;
+  /**
+   *
+   * @type {number}
+   * @memberof GetCandidateFilters200ResponseDataCargoValuesInner
+   */
+  abrangenciumId?: number;
 }
 /**
  *
  * @export
- * @interface GetCandidateFilters200ResponseDataEstadosInner
+ * @interface GetCandidateFilters200ResponseDataCategorias
  */
-export interface GetCandidateFilters200ResponseDataEstadosInner {
+export interface GetCandidateFilters200ResponseDataCategorias {
+  /**
+   *
+   * @type {string}
+   * @memberof GetCandidateFilters200ResponseDataCategorias
+   */
+  type?: string;
+  /**
+   *
+   * @type {Array<GetCandidateFilters200ResponseDataCategoriasValuesInner>}
+   * @memberof GetCandidateFilters200ResponseDataCategorias
+   */
+  values?: Array<GetCandidateFilters200ResponseDataCategoriasValuesInner>;
+}
+/**
+ *
+ * @export
+ * @interface GetCandidateFilters200ResponseDataCategoriasValuesInner
+ */
+export interface GetCandidateFilters200ResponseDataCategoriasValuesInner {
   /**
    *
    * @type {number}
-   * @memberof GetCandidateFilters200ResponseDataEstadosInner
+   * @memberof GetCandidateFilters200ResponseDataCategoriasValuesInner
    */
   id?: number;
   /**
    *
    * @type {string}
-   * @memberof GetCandidateFilters200ResponseDataEstadosInner
+   * @memberof GetCandidateFilters200ResponseDataCategoriasValuesInner
    */
   nome?: string;
 }
 /**
  *
  * @export
- * @interface GetCandidateFilters200ResponseDataGenerosInner
+ * @interface GetCandidateFilters200ResponseDataEstado
  */
-export interface GetCandidateFilters200ResponseDataGenerosInner {
+export interface GetCandidateFilters200ResponseDataEstado {
+  /**
+   *
+   * @type {string}
+   * @memberof GetCandidateFilters200ResponseDataEstado
+   */
+  type?: string;
+  /**
+   *
+   * @type {Array<GetCandidateFilters200ResponseDataEstadoValuesInner>}
+   * @memberof GetCandidateFilters200ResponseDataEstado
+   */
+  values?: Array<GetCandidateFilters200ResponseDataEstadoValuesInner>;
+}
+/**
+ *
+ * @export
+ * @interface GetCandidateFilters200ResponseDataEstadoValuesInner
+ */
+export interface GetCandidateFilters200ResponseDataEstadoValuesInner {
   /**
    *
    * @type {number}
-   * @memberof GetCandidateFilters200ResponseDataGenerosInner
+   * @memberof GetCandidateFilters200ResponseDataEstadoValuesInner
    */
   id?: number;
   /**
    *
    * @type {string}
-   * @memberof GetCandidateFilters200ResponseDataGenerosInner
+   * @memberof GetCandidateFilters200ResponseDataEstadoValuesInner
+   */
+  sigla_unidade_eleitoral?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof GetCandidateFilters200ResponseDataEstadoValuesInner
    */
   nome?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof GetCandidateFilters200ResponseDataEstadoValuesInner
+   */
+  sigla_unidade_federacao?: string;
+  /**
+   *
+   * @type {number}
+   * @memberof GetCandidateFilters200ResponseDataEstadoValuesInner
+   */
+  codigo_ibge?: number | null;
+  /**
+   *
+   * @type {number}
+   * @memberof GetCandidateFilters200ResponseDataEstadoValuesInner
+   */
+  abrangenciumId?: number;
+}
+/**
+ *
+ * @export
+ * @interface GetCandidateFilters200ResponseDataFoiEleito
+ */
+export interface GetCandidateFilters200ResponseDataFoiEleito {
+  /**
+   *
+   * @type {string}
+   * @memberof GetCandidateFilters200ResponseDataFoiEleito
+   */
+  type?: string;
+  /**
+   *
+   * @type {Array<GetCandidateFilters200ResponseDataFoiEleitoValuesInner>}
+   * @memberof GetCandidateFilters200ResponseDataFoiEleito
+   */
+  values?: Array<GetCandidateFilters200ResponseDataFoiEleitoValuesInner>;
+}
+/**
+ *
+ * @export
+ * @interface GetCandidateFilters200ResponseDataFoiEleitoValuesInner
+ */
+export interface GetCandidateFilters200ResponseDataFoiEleitoValuesInner {
+  /**
+   *
+   * @type {number}
+   * @memberof GetCandidateFilters200ResponseDataFoiEleitoValuesInner
+   */
+  id?: number;
+  /**
+   *
+   * @type {string}
+   * @memberof GetCandidateFilters200ResponseDataFoiEleitoValuesInner
+   */
+  label?: string;
+}
+/**
+ *
+ * @export
+ * @interface GetCandidateFilters200ResponseDataGenero
+ */
+export interface GetCandidateFilters200ResponseDataGenero {
+  /**
+   *
+   * @type {string}
+   * @memberof GetCandidateFilters200ResponseDataGenero
+   */
+  type?: string;
+  /**
+   *
+   * @type {Array<GetCandidateFilters200ResponseDataGeneroValuesInner>}
+   * @memberof GetCandidateFilters200ResponseDataGenero
+   */
+  values?: Array<GetCandidateFilters200ResponseDataGeneroValuesInner>;
+}
+/**
+ *
+ * @export
+ * @interface GetCandidateFilters200ResponseDataGeneroValuesInner
+ */
+export interface GetCandidateFilters200ResponseDataGeneroValuesInner {
+  /**
+   *
+   * @type {number}
+   * @memberof GetCandidateFilters200ResponseDataGeneroValuesInner
+   */
+  id?: number;
+  /**
+   *
+   * @type {string}
+   * @memberof GetCandidateFilters200ResponseDataGeneroValuesInner
+   */
+  nome_genero?: string;
+}
+/**
+ *
+ * @export
+ * @interface GetCandidateFilters200ResponseDataPartidos
+ */
+export interface GetCandidateFilters200ResponseDataPartidos {
+  /**
+   *
+   * @type {string}
+   * @memberof GetCandidateFilters200ResponseDataPartidos
+   */
+  type?: string;
+  /**
+   *
+   * @type {Array<GetCandidateFilters200ResponseDataPartidosValuesInner>}
+   * @memberof GetCandidateFilters200ResponseDataPartidos
+   */
+  values?: Array<GetCandidateFilters200ResponseDataPartidosValuesInner>;
+}
+/**
+ *
+ * @export
+ * @interface GetCandidateFilters200ResponseDataPartidosValuesInner
+ */
+export interface GetCandidateFilters200ResponseDataPartidosValuesInner {
+  /**
+   *
+   * @type {number}
+   * @memberof GetCandidateFilters200ResponseDataPartidosValuesInner
+   */
+  id?: number;
+  /**
+   *
+   * @type {string}
+   * @memberof GetCandidateFilters200ResponseDataPartidosValuesInner
+   */
+  sigla?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof GetCandidateFilters200ResponseDataPartidosValuesInner
+   */
+  nome?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof GetCandidateFilters200ResponseDataPartidosValuesInner
+   */
+  nome_atual?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof GetCandidateFilters200ResponseDataPartidosValuesInner
+   */
+  class_categ_1?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof GetCandidateFilters200ResponseDataPartidosValuesInner
+   */
+  class_categ_4?: string;
+  /**
+   *
+   * @type {string}
+   * @memberof GetCandidateFilters200ResponseDataPartidosValuesInner
+   */
+  class_survey_esp?: string;
 }
 /**
  *
@@ -516,6 +796,44 @@ export interface GetCandidateLastFiveElectionVotes500Response {
    * @memberof GetCandidateLastFiveElectionVotes500Response
    */
   message?: string;
+}
+/**
+ *
+ * @export
+ * @interface GetCandidateProfileByYear200Response
+ */
+export interface GetCandidateProfileByYear200Response {
+  /**
+   *
+   * @type {boolean}
+   * @memberof GetCandidateProfileByYear200Response
+   */
+  success?: boolean;
+  /**
+   *
+   * @type {string}
+   * @memberof GetCandidateProfileByYear200Response
+   */
+  message?: string;
+  /**
+   *
+   * @type {Array<GetCandidateProfileByYear200ResponseDataInner>}
+   * @memberof GetCandidateProfileByYear200Response
+   */
+  data?: Array<GetCandidateProfileByYear200ResponseDataInner>;
+}
+/**
+ *
+ * @export
+ * @interface GetCandidateProfileByYear200ResponseDataInner
+ */
+export interface GetCandidateProfileByYear200ResponseDataInner {
+  /**
+   *
+   * @type {number}
+   * @memberof GetCandidateProfileByYear200ResponseDataInner
+   */
+  ano?: number;
 }
 /**
  *
@@ -972,38 +1290,6 @@ export const CandidateApiAxiosParamCreator = function (configuration?: Configura
       };
     },
     /**
-     * Retorna os filtros disponíveis para candidatos.
-     * @summary Obter filtros de candidatos
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getCandidateFilters: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-      const localVarPath = `/noauth/candidate/get-filters`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
      * Busca candidato com base no id
      * @summary Votos por cidade da ultima eleicao do candidato
      * @param {string} candidatoId Id do candidato para detalhe
@@ -1183,27 +1469,6 @@ export const CandidateApiFp = function (configuration?: Configuration) {
         )(axios, localVarOperationServerBasePath || basePath);
     },
     /**
-     * Retorna os filtros disponíveis para candidatos.
-     * @summary Obter filtros de candidatos
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async getCandidateFilters(
-      options?: RawAxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetCandidateFilters200Response>> {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.getCandidateFilters(options);
-      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-      const localVarOperationServerBasePath =
-        operationServerMap['CandidateApi.getCandidateFilters']?.[localVarOperationServerIndex]?.url;
-      return (axios, basePath) =>
-        createRequestFunction(
-          localVarAxiosArgs,
-          globalAxios,
-          BASE_PATH,
-          configuration,
-        )(axios, localVarOperationServerBasePath || basePath);
-    },
-    /**
      * Busca candidato com base no id
      * @summary Votos por cidade da ultima eleicao do candidato
      * @param {string} candidatoId Id do candidato para detalhe
@@ -1328,15 +1593,6 @@ export const CandidateApiFactory = function (
       return localVarFp.getCandidate(candidatoId, options).then(request => request(axios, basePath));
     },
     /**
-     * Retorna os filtros disponíveis para candidatos.
-     * @summary Obter filtros de candidatos
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getCandidateFilters(options?: any): AxiosPromise<GetCandidateFilters200Response> {
-      return localVarFp.getCandidateFilters(options).then(request => request(axios, basePath));
-    },
-    /**
      * Busca candidato com base no id
      * @summary Votos por cidade da ultima eleicao do candidato
      * @param {string} candidatoId Id do candidato para detalhe
@@ -1414,19 +1670,6 @@ export class CandidateApi extends BaseAPI {
   }
 
   /**
-   * Retorna os filtros disponíveis para candidatos.
-   * @summary Obter filtros de candidatos
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof CandidateApi
-   */
-  public getCandidateFilters(options?: RawAxiosRequestConfig) {
-    return CandidateApiFp(this.configuration)
-      .getCandidateFilters(options)
-      .then(request => request(this.axios, this.basePath));
-  }
-
-  /**
    * Busca candidato com base no id
    * @summary Votos por cidade da ultima eleicao do candidato
    * @param {string} candidatoId Id do candidato para detalhe
@@ -1476,6 +1719,961 @@ export class CandidateApi extends BaseAPI {
   ) {
     return CandidateApiFp(this.configuration)
       .getCandidates(name, uF, abrangencyId, electoralUnitId, page, options)
+      .then(request => request(this.axios, this.basePath));
+  }
+}
+
+/**
+ * ConsultApi - axios parameter creator
+ * @export
+ */
+export const ConsultApiAxiosParamCreator = function (configuration?: Configuration) {
+  return {
+    /**
+     * Retorna os filtros disponíveis para candidatos.
+     * @summary Obter filtros de candidatos
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCandidateFilters: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+      const localVarPath = `/noauth/candidate/get-filters`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Retorna o perfil dos candidatos agrupado por gênero.
+     * @summary Perfil dos candidatos por gênero
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCandidateProfileByGender: async (
+      initialYear: number,
+      finalYear: number,
+      dimension?: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getCandidateProfileByGender', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getCandidateProfileByGender', 'finalYear', finalYear);
+      const localVarPath = `/noauth/cruzamentos/candidates-profile/by-gender`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (dimension !== undefined) {
+        localVarQueryParameter['dimension'] = dimension;
+      }
+
+      if (unidadesEleitoraisIds) {
+        localVarQueryParameter['unidadesEleitoraisIds'] = unidadesEleitoraisIds;
+      }
+
+      if (isElected !== undefined) {
+        localVarQueryParameter['isElected'] = isElected;
+      }
+
+      if (partidos) {
+        localVarQueryParameter['partidos'] = partidos;
+      }
+
+      if (categoriasOcupacoes) {
+        localVarQueryParameter['categoriasOcupacoes'] = categoriasOcupacoes;
+      }
+
+      if (cargosIds) {
+        localVarQueryParameter['cargosIds'] = cargosIds;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Retorna o perfil dos candidatos agrupado por ocupação.
+     * @summary Perfil dos candidatos por ocupação
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCandidateProfileByOccupation: async (
+      initialYear: number,
+      finalYear: number,
+      dimension?: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getCandidateProfileByOccupation', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getCandidateProfileByOccupation', 'finalYear', finalYear);
+      const localVarPath = `/noauth/cruzamentos/candidates-profile/by-occupation`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (dimension !== undefined) {
+        localVarQueryParameter['dimension'] = dimension;
+      }
+
+      if (unidadesEleitoraisIds) {
+        localVarQueryParameter['unidadesEleitoraisIds'] = unidadesEleitoraisIds;
+      }
+
+      if (isElected !== undefined) {
+        localVarQueryParameter['isElected'] = isElected;
+      }
+
+      if (partidos) {
+        localVarQueryParameter['partidos'] = partidos;
+      }
+
+      if (categoriasOcupacoes) {
+        localVarQueryParameter['categoriasOcupacoes'] = categoriasOcupacoes;
+      }
+
+      if (cargosIds) {
+        localVarQueryParameter['cargosIds'] = cargosIds;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Retorna o perfil dos candidatos agrupado por ano.
+     * @summary Perfil dos candidatos por ano
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCandidateProfileByYear: async (
+      initialYear: number,
+      finalYear: number,
+      dimension?: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getCandidateProfileByYear', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getCandidateProfileByYear', 'finalYear', finalYear);
+      const localVarPath = `/noauth/cruzamentos/candidates-profile/by-year`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (dimension !== undefined) {
+        localVarQueryParameter['dimension'] = dimension;
+      }
+
+      if (unidadesEleitoraisIds) {
+        localVarQueryParameter['unidadesEleitoraisIds'] = unidadesEleitoraisIds;
+      }
+
+      if (isElected !== undefined) {
+        localVarQueryParameter['isElected'] = isElected;
+      }
+
+      if (partidos) {
+        localVarQueryParameter['partidos'] = partidos;
+      }
+
+      if (categoriasOcupacoes) {
+        localVarQueryParameter['categoriasOcupacoes'] = categoriasOcupacoes;
+      }
+
+      if (cargosIds) {
+        localVarQueryParameter['cargosIds'] = cargosIds;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Retorna os kpis  do perfil dos candidatos.
+     * @summary KPIs para página de cruzamentos Perfil dos candidatos
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCandidateProfileKpis: async (
+      initialYear: number,
+      finalYear: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getCandidateProfileKpis', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getCandidateProfileKpis', 'finalYear', finalYear);
+      const localVarPath = `/noauth/cruzamentos/candidates-profile/kpis`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (unidadesEleitoraisIds) {
+        localVarQueryParameter['unidadesEleitoraisIds'] = unidadesEleitoraisIds;
+      }
+
+      if (isElected !== undefined) {
+        localVarQueryParameter['isElected'] = isElected;
+      }
+
+      if (partidos) {
+        localVarQueryParameter['partidos'] = partidos;
+      }
+
+      if (categoriasOcupacoes) {
+        localVarQueryParameter['categoriasOcupacoes'] = categoriasOcupacoes;
+      }
+
+      if (cargosIds) {
+        localVarQueryParameter['cargosIds'] = cargosIds;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+  };
+};
+
+/**
+ * ConsultApi - functional programming interface
+ * @export
+ */
+export const ConsultApiFp = function (configuration?: Configuration) {
+  const localVarAxiosParamCreator = ConsultApiAxiosParamCreator(configuration);
+  return {
+    /**
+     * Retorna os filtros disponíveis para candidatos.
+     * @summary Obter filtros de candidatos
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getCandidateFilters(
+      options?: RawAxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetCandidateFilters200Response>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getCandidateFilters(options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['ConsultApi.getCandidateFilters']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * Retorna o perfil dos candidatos agrupado por gênero.
+     * @summary Perfil dos candidatos por gênero
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getCandidateProfileByGender(
+      initialYear: number,
+      finalYear: number,
+      dimension?: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getCandidateProfileByGender(
+        initialYear,
+        finalYear,
+        dimension,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['ConsultApi.getCandidateProfileByGender']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * Retorna o perfil dos candidatos agrupado por ocupação.
+     * @summary Perfil dos candidatos por ocupação
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getCandidateProfileByOccupation(
+      initialYear: number,
+      finalYear: number,
+      dimension?: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getCandidateProfileByOccupation(
+        initialYear,
+        finalYear,
+        dimension,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['ConsultApi.getCandidateProfileByOccupation']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * Retorna o perfil dos candidatos agrupado por ano.
+     * @summary Perfil dos candidatos por ano
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getCandidateProfileByYear(
+      initialYear: number,
+      finalYear: number,
+      dimension?: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetCandidateProfileByYear200Response>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getCandidateProfileByYear(
+        initialYear,
+        finalYear,
+        dimension,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['ConsultApi.getCandidateProfileByYear']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * Retorna os kpis  do perfil dos candidatos.
+     * @summary KPIs para página de cruzamentos Perfil dos candidatos
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getCandidateProfileKpis(
+      initialYear: number,
+      finalYear: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getCandidateProfileKpis(
+        initialYear,
+        finalYear,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['ConsultApi.getCandidateProfileKpis']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+  };
+};
+
+/**
+ * ConsultApi - factory interface
+ * @export
+ */
+export const ConsultApiFactory = function (
+  configuration?: Configuration,
+  basePath?: string,
+  axios?: AxiosInstance,
+) {
+  const localVarFp = ConsultApiFp(configuration);
+  return {
+    /**
+     * Retorna os filtros disponíveis para candidatos.
+     * @summary Obter filtros de candidatos
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCandidateFilters(options?: any): AxiosPromise<GetCandidateFilters200Response> {
+      return localVarFp.getCandidateFilters(options).then(request => request(axios, basePath));
+    },
+    /**
+     * Retorna o perfil dos candidatos agrupado por gênero.
+     * @summary Perfil dos candidatos por gênero
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCandidateProfileByGender(
+      initialYear: number,
+      finalYear: number,
+      dimension?: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .getCandidateProfileByGender(
+          initialYear,
+          finalYear,
+          dimension,
+          unidadesEleitoraisIds,
+          isElected,
+          partidos,
+          categoriasOcupacoes,
+          cargosIds,
+          options,
+        )
+        .then(request => request(axios, basePath));
+    },
+    /**
+     * Retorna o perfil dos candidatos agrupado por ocupação.
+     * @summary Perfil dos candidatos por ocupação
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCandidateProfileByOccupation(
+      initialYear: number,
+      finalYear: number,
+      dimension?: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .getCandidateProfileByOccupation(
+          initialYear,
+          finalYear,
+          dimension,
+          unidadesEleitoraisIds,
+          isElected,
+          partidos,
+          categoriasOcupacoes,
+          cargosIds,
+          options,
+        )
+        .then(request => request(axios, basePath));
+    },
+    /**
+     * Retorna o perfil dos candidatos agrupado por ano.
+     * @summary Perfil dos candidatos por ano
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCandidateProfileByYear(
+      initialYear: number,
+      finalYear: number,
+      dimension?: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      options?: any,
+    ): AxiosPromise<GetCandidateProfileByYear200Response> {
+      return localVarFp
+        .getCandidateProfileByYear(
+          initialYear,
+          finalYear,
+          dimension,
+          unidadesEleitoraisIds,
+          isElected,
+          partidos,
+          categoriasOcupacoes,
+          cargosIds,
+          options,
+        )
+        .then(request => request(axios, basePath));
+    },
+    /**
+     * Retorna os kpis  do perfil dos candidatos.
+     * @summary KPIs para página de cruzamentos Perfil dos candidatos
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCandidateProfileKpis(
+      initialYear: number,
+      finalYear: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      options?: any,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .getCandidateProfileKpis(
+          initialYear,
+          finalYear,
+          unidadesEleitoraisIds,
+          isElected,
+          partidos,
+          categoriasOcupacoes,
+          cargosIds,
+          options,
+        )
+        .then(request => request(axios, basePath));
+    },
+  };
+};
+
+/**
+ * ConsultApi - object-oriented interface
+ * @export
+ * @class ConsultApi
+ * @extends {BaseAPI}
+ */
+export class ConsultApi extends BaseAPI {
+  /**
+   * Retorna os filtros disponíveis para candidatos.
+   * @summary Obter filtros de candidatos
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ConsultApi
+   */
+  public getCandidateFilters(options?: RawAxiosRequestConfig) {
+    return ConsultApiFp(this.configuration)
+      .getCandidateFilters(options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Retorna o perfil dos candidatos agrupado por gênero.
+   * @summary Perfil dos candidatos por gênero
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
+   * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+   * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+   * @param {Array<string>} [partidos] IDs dos partidos
+   * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+   * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ConsultApi
+   */
+  public getCandidateProfileByGender(
+    initialYear: number,
+    finalYear: number,
+    dimension?: number,
+    unidadesEleitoraisIds?: Array<string>,
+    isElected?: number,
+    partidos?: Array<string>,
+    categoriasOcupacoes?: Array<string>,
+    cargosIds?: Array<string>,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return ConsultApiFp(this.configuration)
+      .getCandidateProfileByGender(
+        initialYear,
+        finalYear,
+        dimension,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+        options,
+      )
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Retorna o perfil dos candidatos agrupado por ocupação.
+   * @summary Perfil dos candidatos por ocupação
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
+   * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+   * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+   * @param {Array<string>} [partidos] IDs dos partidos
+   * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+   * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ConsultApi
+   */
+  public getCandidateProfileByOccupation(
+    initialYear: number,
+    finalYear: number,
+    dimension?: number,
+    unidadesEleitoraisIds?: Array<string>,
+    isElected?: number,
+    partidos?: Array<string>,
+    categoriasOcupacoes?: Array<string>,
+    cargosIds?: Array<string>,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return ConsultApiFp(this.configuration)
+      .getCandidateProfileByOccupation(
+        initialYear,
+        finalYear,
+        dimension,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+        options,
+      )
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Retorna o perfil dos candidatos agrupado por ano.
+   * @summary Perfil dos candidatos por ano
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
+   * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+   * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+   * @param {Array<string>} [partidos] IDs dos partidos
+   * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+   * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ConsultApi
+   */
+  public getCandidateProfileByYear(
+    initialYear: number,
+    finalYear: number,
+    dimension?: number,
+    unidadesEleitoraisIds?: Array<string>,
+    isElected?: number,
+    partidos?: Array<string>,
+    categoriasOcupacoes?: Array<string>,
+    cargosIds?: Array<string>,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return ConsultApiFp(this.configuration)
+      .getCandidateProfileByYear(
+        initialYear,
+        finalYear,
+        dimension,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+        options,
+      )
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Retorna os kpis  do perfil dos candidatos.
+   * @summary KPIs para página de cruzamentos Perfil dos candidatos
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+   * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+   * @param {Array<string>} [partidos] IDs dos partidos
+   * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+   * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ConsultApi
+   */
+  public getCandidateProfileKpis(
+    initialYear: number,
+    finalYear: number,
+    unidadesEleitoraisIds?: Array<string>,
+    isElected?: number,
+    partidos?: Array<string>,
+    categoriasOcupacoes?: Array<string>,
+    cargosIds?: Array<string>,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return ConsultApiFp(this.configuration)
+      .getCandidateProfileKpis(
+        initialYear,
+        finalYear,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+        options,
+      )
       .then(request => request(this.axios, this.basePath));
   }
 }
