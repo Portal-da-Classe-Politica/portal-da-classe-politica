@@ -23,6 +23,19 @@ interface FilterProps {
   selectedOption: any;
 }
 
+const showDimension = (dimensionId: any) => {
+  switch (dimensionId) {
+    case 0:
+      return 'Quantidade';
+    case 1:
+      return 'Votos';
+    case 2:
+      return 'Bens Declarados';
+    default:
+      return '{Categoria Selecionada}';
+  }
+};
+
 const FilterCandidateProfile = ({
   onConsult,
   handleFilterChange,
@@ -33,7 +46,7 @@ const FilterCandidateProfile = ({
   return (
     <FilterComponent
       description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
-      longDescription="O resultado do cruzamento entre Perfil dos Candidatos & {Categoria Selecionada} nos trás informações sobre lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Ainda com dúvida? Clique aqui."
+      longDescription={`O resultado do cruzamento entre Perfil dos Candidatos & ${showDimension(selectedOption.dimension)} nos trás informações sobre lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Ainda com dúvida? Clique aqui.`}
       category="Perfil dos Candidatos"
       onConsult={onConsult}
       filtersData={filtersData}
@@ -53,7 +66,7 @@ const FilterElectionResult = ({
   return (
     <FilterComponent
       description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
-      longDescription="O resultado do cruzamento entre Perfil dos Candidatos & {Categoria Selecionada} nos trás informações sobre lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Ainda com dúvida? Clique aqui."
+      longDescription={`O resultado do cruzamento entre Perfil dos Candidatos & ${showDimension(selectedOption.dimension)} nos trás informações sobre lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Ainda com dúvida? Clique aqui.`}
       category="Resultados das Eleições"
       onConsult={onConsult}
       filtersData={filtersData}
@@ -73,7 +86,7 @@ const FilterPartyFiliation = ({
   return (
     <FilterComponent
       description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
-      longDescription="O resultado do cruzamento entre Perfil dos Candidatos & {Categoria Selecionada} nos trás informações sobre lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Ainda com dúvida? Clique aqui."
+      longDescription={`O resultado do cruzamento entre Perfil dos Candidatos & ${showDimension(selectedOption.dimension)} nos trás informações sobre lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Ainda com dúvida? Clique aqui.`}
       category="Filiação Partidária"
       onConsult={onConsult}
       filtersData={filtersData}
@@ -93,7 +106,7 @@ const FilterFinancing = ({
   return (
     <FilterComponent
       description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
-      longDescription="O resultado do cruzamento entre Perfil dos Candidatos & {Categoria Selecionada} nos trás informações sobre lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Ainda com dúvida? Clique aqui."
+      longDescription={`O resultado do cruzamento entre Perfil dos Candidatos & ${showDimension(selectedOption.dimension)} nos trás informações sobre lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Ainda com dúvida? Clique aqui.`}
       category="Financiamento de Campanha"
       onConsult={onConsult}
       filtersData={filtersData}
@@ -113,7 +126,7 @@ const FilterElectoralMaps = ({
   return (
     <FilterComponent
       description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
-      longDescription="O resultado do cruzamento entre Perfil dos Candidatos & {Categoria Selecionada} nos trás informações sobre lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Ainda com dúvida? Clique aqui."
+      longDescription={`O resultado do cruzamento entre Perfil dos Candidatos & ${showDimension(selectedOption.dimension)} nos trás informações sobre lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Ainda com dúvida? Clique aqui.`}
       category="Mapas Eleitorais"
       onConsult={onConsult}
       filtersData={filtersData}
@@ -133,7 +146,7 @@ const FilterElectoralResearch = ({
   return (
     <FilterComponent
       description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
-      longDescription="O resultado do cruzamento entre Perfil dos Candidatos & {Categoria Selecionada} nos trás informações sobre lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Ainda com dúvida? Clique aqui."
+      longDescription={`O resultado do cruzamento entre Perfil dos Candidatos & ${showDimension(selectedOption.dimension)} nos trás informações sobre lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Ainda com dúvida? Clique aqui.`}
       category="Pesquisas Eleitorais"
       onConsult={onConsult}
       filtersData={filtersData}

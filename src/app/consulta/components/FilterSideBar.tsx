@@ -29,7 +29,7 @@ const FilterSidebar = ({
       {loading ? (
         <Loader />
       ) : (
-        <div className="hidden-button overflow-hidden opacity-0 md:opacity-100 transition-all duration-500 md:max-h-max max-h-0">
+        <div className="hidden-button opacity-0 md:opacity-100 transition-all duration-500 md:max-h-max max-h-0">
           {sideFilters.map((filter, index: number) => {
             return (
               <div className="max-w-[280px] mb-4" key={index}>

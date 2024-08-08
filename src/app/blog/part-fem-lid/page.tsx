@@ -195,7 +195,7 @@ const Page = () => {
             <Avatar
               type="left"
               src="/img/author/maria.png"
-              title="Karolina Roeder"
+              title="Maria Cecília Eduardo"
               text="Doutora em Ciência Política pela Universidade Federal do Paraná. Pesquisadora de pós-doutorado no INCT Representação e Legitimidade Democrática (ReDem). Interessada nos temas participação política de mulheres, financiamento de campanha e gênero e teoria política feminista."
             />
           </div>

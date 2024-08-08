@@ -1,15 +1,11 @@
 import Image from 'next/image';
 
-import { Constants } from '@constants';
-const { loremTitle, lorem } = Constants;
-
 import { Container, Heading, Icon, Text, TextParagraphImage } from '@base';
 import { Header } from '@components/sections/Header';
 import { GetInContact } from '@components/sections/GetInContact';
 import { ChipContainer } from '@components/ChipContainer';
 import CardIconText from '@components/CardIconText';
 import Timeline from '@components/timeline/Timeline';
-import Avatar from '@components/Avatar';
 import Link from 'next/link';
 import { SpecialContents } from '@components/sections/SpecialContents';
 
@@ -44,7 +40,7 @@ const cardIconTexts = [
 const Page = () => {
   return (
     <main className="font-montserrat bg-grayMix3">
-      <section className="pb-12 pt-4  overflow-hidden">
+      <section className="pb-12 pt-4">
         <Container>
           <Header style="dark" />
         </Container>
@@ -230,30 +226,6 @@ const Page = () => {
               );
             })}
           </div>
-        </Container>
-      </section>
-
-      <section className="mt-24">
-        <Container>
-          <Heading headingLevel={2} size="H1" className="text-center">
-            {loremTitle}
-          </Heading>
-
-          <Text size="B1" className="mt-6">
-            {lorem}
-            {lorem}
-          </Text>
-        </Container>
-      </section>
-
-      <section className="mt-20">
-        <Container className="flex justify-between items-end flex-col md:flex-row gap-4">
-          <Avatar
-            type="left"
-            src="/img/Person.png"
-            title="Matheus Alencar"
-            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio."
-          />
         </Container>
       </section>
 
