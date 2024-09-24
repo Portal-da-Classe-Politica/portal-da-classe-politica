@@ -37,7 +37,7 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
   const [dataFilter, setDataFilter] = useState<filterObjectType>(emptyFilter);
   const [selectedOptions, setSelectedOptions] = useState<any>({});
   const [loadingSideFilters, setLoadingSideFilters] = useState(true);
-  const [consult, setConsult] = useState(
+  const [consultType, setConsultType] = useState(
     consultSearchParam[initialConsult as keyof typeof consultSearchParam] ||
       consultSearchParam.CandidateProfile,
   );
@@ -70,7 +70,7 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
   };
 
   const onTabChange = (value: string) => {
-    setConsult(value);
+    setConsultType(value);
   };
 
   const sendConsult = () => {
@@ -84,7 +84,7 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
       const _value = Array.isArray(value) ? value.map(v => v.value).join(',') : value;
       const param = typeof _value === 'object' ? _value.value : _value;
       return `${r}&${key}=${param}`;
-    }, `consulta=${consult}`);
+    }, `type=${consultType}`);
 
     fetch(`/api/consult?${search}`)
       .then(res => res.json())

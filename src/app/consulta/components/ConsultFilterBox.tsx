@@ -302,16 +302,16 @@ export const ConsultFilterBox = ({
       bold: 'Eleições',
     },
     {
-      value: consultSearchParam.PartyFiliation,
-      Comp: FilterPartyFiliation,
-      title: 'Filiação',
-      bold: 'Partidária',
-    },
-    {
       value: consultSearchParam.Financing,
       Comp: FilterFinancing,
       title: 'Financiamento de',
       bold: 'Campanha',
+    },
+    {
+      value: consultSearchParam.PartyFiliation,
+      Comp: FilterPartyFiliation,
+      title: 'Filiação',
+      bold: 'Partidária',
     },
     {
       value: consultSearchParam.ElectoralMaps,
