@@ -37,7 +37,7 @@ export const consultFinance = async ({
       redem.consult.getFinanceByLocation(
         Number(initialYear),
         Number(finalYear),
-        ['PR'],
+        ['PR'], // TODO - Waiting Backend Update
         isElected,
         partidos,
         categoriasOcupacoes,

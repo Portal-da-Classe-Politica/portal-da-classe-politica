@@ -1,6 +1,14 @@
 import { getParamAsArray } from '@utils';
 import { ConsultService } from './ConsultService';
 
+/**
+ * Core function for Layer One Consult
+ * Dispatch queries for multiple Consult Types
+ *
+ * @param {string} type
+ * @param {URLSearchParams} params
+ * @return {*}
+ */
 export const consult = async (type: string, params: URLSearchParams) => {
   const parameters = {
     initialYear: Number(params.get('initialYear')),

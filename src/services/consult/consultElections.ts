@@ -34,7 +34,7 @@ export const consultElections = async ({
 
   try {
     const responses = await Promise.allSettled([
-      redem.consult.getElectionsByLocation(Number(initialYear), Number(finalYear), 'PR'),
+      redem.consult.getElectionsByLocation(Number(initialYear), Number(finalYear), 'PR'), // TODO - Waiting Backend Update
       redem.consult.getElectionsTopCandidates(Number(initialYear), Number(finalYear)),
       redem.consult.getElectionsCompetitionByYear(Number(initialYear), Number(finalYear)),
       redem.consult.getElectionsKpis(Number(initialYear), Number(finalYear)),

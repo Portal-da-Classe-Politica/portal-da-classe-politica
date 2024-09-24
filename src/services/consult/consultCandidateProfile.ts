@@ -80,14 +80,14 @@ export const consultCandidateProfile = async ({
       if (resp.status === 'fulfilled') {
         result.push(resp.value.data);
       } else {
-        logError('Failed to candidateProfile', resp.reason as AxiosError);
+        logError('Failed to consultCandidateProfile', resp.reason as AxiosError);
         result.push(resp.reason?.response?.data || { success: false });
       }
     }
 
     return result;
   } catch (error) {
-    logError('Failed to candidateProfile', error as Error);
+    logError('Failed to consultCandidateProfile', error as Error);
     return {};
   }
 };
