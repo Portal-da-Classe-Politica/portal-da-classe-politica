@@ -999,6 +999,106 @@ export interface GetCandidates500Response {
 /**
  *
  * @export
+ * @interface GetElectionsByLocation200Response
+ */
+export interface GetElectionsByLocation200Response {
+  /**
+   *
+   * @type {boolean}
+   * @memberof GetElectionsByLocation200Response
+   */
+  success?: boolean;
+  /**
+   *
+   * @type {string}
+   * @memberof GetElectionsByLocation200Response
+   */
+  message?: string;
+  /**
+   *
+   * @type {Array<object>}
+   * @memberof GetElectionsByLocation200Response
+   */
+  data?: Array<object>;
+}
+/**
+ *
+ * @export
+ * @interface GetElectionsCompetitionByYear200Response
+ */
+export interface GetElectionsCompetitionByYear200Response {
+  /**
+   *
+   * @type {boolean}
+   * @memberof GetElectionsCompetitionByYear200Response
+   */
+  success?: boolean;
+  /**
+   *
+   * @type {string}
+   * @memberof GetElectionsCompetitionByYear200Response
+   */
+  message?: string;
+  /**
+   *
+   * @type {Array<object>}
+   * @memberof GetElectionsCompetitionByYear200Response
+   */
+  data?: Array<object>;
+}
+/**
+ *
+ * @export
+ * @interface GetElectionsKpis200Response
+ */
+export interface GetElectionsKpis200Response {
+  /**
+   *
+   * @type {boolean}
+   * @memberof GetElectionsKpis200Response
+   */
+  success?: boolean;
+  /**
+   *
+   * @type {string}
+   * @memberof GetElectionsKpis200Response
+   */
+  message?: string;
+  /**
+   *
+   * @type {Array<object>}
+   * @memberof GetElectionsKpis200Response
+   */
+  data?: Array<object>;
+}
+/**
+ *
+ * @export
+ * @interface GetElectionsTopCandidates200Response
+ */
+export interface GetElectionsTopCandidates200Response {
+  /**
+   *
+   * @type {boolean}
+   * @memberof GetElectionsTopCandidates200Response
+   */
+  success?: boolean;
+  /**
+   *
+   * @type {string}
+   * @memberof GetElectionsTopCandidates200Response
+   */
+  message?: string;
+  /**
+   *
+   * @type {Array<object>}
+   * @memberof GetElectionsTopCandidates200Response
+   */
+  data?: Array<object>;
+}
+/**
+ *
+ * @export
  * @interface GetElectoralUnit200Response
  */
 export interface GetElectoralUnit200Response {
@@ -1218,7 +1318,7 @@ export const AbrangencyApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getAbrangency(options?: any): AxiosPromise<GetAbrangency200Response> {
+    getAbrangency(options?: RawAxiosRequestConfig): AxiosPromise<GetAbrangency200Response> {
       return localVarFp.getAbrangency(options).then(request => request(axios, basePath));
     },
   };
@@ -1589,7 +1689,10 @@ export const CandidateApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCandidate(candidatoId: string, options?: any): AxiosPromise<GetCandidate200Response> {
+    getCandidate(
+      candidatoId: string,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetCandidate200Response> {
       return localVarFp.getCandidate(candidatoId, options).then(request => request(axios, basePath));
     },
     /**
@@ -1601,7 +1704,7 @@ export const CandidateApiFactory = function (
      */
     getCandidateLastElectionVoteByRegion(
       candidatoId: string,
-      options?: any,
+      options?: RawAxiosRequestConfig,
     ): AxiosPromise<GetCandidateLastElectionVoteByRegion200Response> {
       return localVarFp
         .getCandidateLastElectionVoteByRegion(candidatoId, options)
@@ -1616,7 +1719,7 @@ export const CandidateApiFactory = function (
      */
     getCandidateLastFiveElectionVotes(
       candidatoId: string,
-      options?: any,
+      options?: RawAxiosRequestConfig,
     ): AxiosPromise<GetCandidateLastFiveElectionVotes200Response> {
       return localVarFp
         .getCandidateLastFiveElectionVotes(candidatoId, options)
@@ -1639,7 +1742,7 @@ export const CandidateApiFactory = function (
       abrangencyId?: string,
       electoralUnitId?: string,
       page?: number,
-      options?: any,
+      options?: RawAxiosRequestConfig,
     ): AxiosPromise<GetCandidates200Response> {
       return localVarFp
         .getCandidates(name, uF, abrangencyId, electoralUnitId, page, options)
@@ -2099,6 +2202,556 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
         options: localVarRequestOptions,
       };
     },
+    /**
+     * Retorna os votos por localização nas eleições.
+     * @summary Votos por localização nas eleições
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {string} [uF] Filtra por Unidade Federativa (UF). Exemplo: RS
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getElectionsByLocation: async (
+      initialYear: number,
+      finalYear: number,
+      uF?: string,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getElectionsByLocation', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getElectionsByLocation', 'finalYear', finalYear);
+      const localVarPath = `/noauth/cruzamentos/elections/by-location`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (uF !== undefined) {
+        localVarQueryParameter['UF'] = uF;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Retorna dados de competição por ano nas eleições.
+     * @summary Competição por ano nas eleições
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getElectionsCompetitionByYear: async (
+      initialYear: number,
+      finalYear: number,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getElectionsCompetitionByYear', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getElectionsCompetitionByYear', 'finalYear', finalYear);
+      const localVarPath = `/noauth/cruzamentos/elections/competition-by-year`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Retorna os KPIs relacionados às eleições.
+     * @summary KPIs para a página de eleições
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getElectionsKpis: async (
+      initialYear: number,
+      finalYear: number,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getElectionsKpis', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getElectionsKpis', 'finalYear', finalYear);
+      const localVarPath = `/noauth/elections/kpis`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Retorna os principais candidatos nas eleições.
+     * @summary Principais candidatos nas eleições
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getElectionsTopCandidates: async (
+      initialYear: number,
+      finalYear: number,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getElectionsTopCandidates', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getElectionsTopCandidates', 'finalYear', finalYear);
+      const localVarPath = `/noauth/cruzamentos/elections/top-candidates`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Cruzamentos financiamento de campanhas por municpio ou estado
+     * @summary Cruzamentos financiamento de campanhas por municpio ou estado
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {Array<string>} [uF] só envie caso deseje agregar por municipio, caso for enviar deve ser a string da UF. Exemplo RS.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {number} [dimension] medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFinanceByLocation: async (
+      initialYear: number,
+      finalYear: number,
+      uF?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      dimension?: number,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getFinanceByLocation', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getFinanceByLocation', 'finalYear', finalYear);
+      const localVarPath = `/noauth/cruzamentos/finance/by-location`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (uF) {
+        localVarQueryParameter['UF'] = uF;
+      }
+
+      if (isElected !== undefined) {
+        localVarQueryParameter['isElected'] = isElected;
+      }
+
+      if (partidos) {
+        localVarQueryParameter['partidos'] = partidos;
+      }
+
+      if (categoriasOcupacoes) {
+        localVarQueryParameter['categoriasOcupacoes'] = categoriasOcupacoes;
+      }
+
+      if (cargosIds) {
+        localVarQueryParameter['cargosIds'] = cargosIds;
+      }
+
+      if (dimension !== undefined) {
+        localVarQueryParameter['dimension'] = dimension;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Cruzamentos financiamento de campanhas por partido
+     * @summary Cruzamentos financiamento de campanhas por partido
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {number} [dimension] medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFinanceByParty: async (
+      initialYear: number,
+      finalYear: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      dimension?: number,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getFinanceByParty', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getFinanceByParty', 'finalYear', finalYear);
+      const localVarPath = `/noauth/cruzamentos/finance/by-party`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (unidadesEleitoraisIds) {
+        localVarQueryParameter['unidadesEleitoraisIds'] = unidadesEleitoraisIds;
+      }
+
+      if (isElected !== undefined) {
+        localVarQueryParameter['isElected'] = isElected;
+      }
+
+      if (partidos) {
+        localVarQueryParameter['partidos'] = partidos;
+      }
+
+      if (categoriasOcupacoes) {
+        localVarQueryParameter['categoriasOcupacoes'] = categoriasOcupacoes;
+      }
+
+      if (cargosIds) {
+        localVarQueryParameter['cargosIds'] = cargosIds;
+      }
+
+      if (dimension !== undefined) {
+        localVarQueryParameter['dimension'] = dimension;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Retorna ruzamentos financiamento de campanhas por ano
+     * @summary Cruzamentos financiamento de campanhas por ano
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {number} [dimension] medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFinanceByYear: async (
+      initialYear: number,
+      finalYear: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      dimension?: number,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getFinanceByYear', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getFinanceByYear', 'finalYear', finalYear);
+      const localVarPath = `/noauth/cruzamentos/finance/by-year`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (unidadesEleitoraisIds) {
+        localVarQueryParameter['unidadesEleitoraisIds'] = unidadesEleitoraisIds;
+      }
+
+      if (isElected !== undefined) {
+        localVarQueryParameter['isElected'] = isElected;
+      }
+
+      if (partidos) {
+        localVarQueryParameter['partidos'] = partidos;
+      }
+
+      if (categoriasOcupacoes) {
+        localVarQueryParameter['categoriasOcupacoes'] = categoriasOcupacoes;
+      }
+
+      if (cargosIds) {
+        localVarQueryParameter['cargosIds'] = cargosIds;
+      }
+
+      if (dimension !== undefined) {
+        localVarQueryParameter['dimension'] = dimension;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Retorna os kpis  do perfil dos financimanento.
+     * @summary KPIs para página de cruzamentos financiamento de campanhas
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {number} [dimension] medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFinanceKpis: async (
+      initialYear: number,
+      finalYear: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      dimension?: number,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getFinanceKpis', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getFinanceKpis', 'finalYear', finalYear);
+      const localVarPath = `/noauth/cruzamentos/finance/kpis`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (unidadesEleitoraisIds) {
+        localVarQueryParameter['unidadesEleitoraisIds'] = unidadesEleitoraisIds;
+      }
+
+      if (isElected !== undefined) {
+        localVarQueryParameter['isElected'] = isElected;
+      }
+
+      if (partidos) {
+        localVarQueryParameter['partidos'] = partidos;
+      }
+
+      if (categoriasOcupacoes) {
+        localVarQueryParameter['categoriasOcupacoes'] = categoriasOcupacoes;
+      }
+
+      if (cargosIds) {
+        localVarQueryParameter['cargosIds'] = cargosIds;
+      }
+
+      if (dimension !== undefined) {
+        localVarQueryParameter['dimension'] = dimension;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
   };
 };
 
@@ -2317,6 +2970,319 @@ export const ConsultApiFp = function (configuration?: Configuration) {
           configuration,
         )(axios, localVarOperationServerBasePath || basePath);
     },
+    /**
+     * Retorna os votos por localização nas eleições.
+     * @summary Votos por localização nas eleições
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {string} [uF] Filtra por Unidade Federativa (UF). Exemplo: RS
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getElectionsByLocation(
+      initialYear: number,
+      finalYear: number,
+      uF?: string,
+      options?: RawAxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetElectionsByLocation200Response>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getElectionsByLocation(
+        initialYear,
+        finalYear,
+        uF,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['ConsultApi.getElectionsByLocation']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * Retorna dados de competição por ano nas eleições.
+     * @summary Competição por ano nas eleições
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getElectionsCompetitionByYear(
+      initialYear: number,
+      finalYear: number,
+      options?: RawAxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetElectionsCompetitionByYear200Response>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getElectionsCompetitionByYear(
+        initialYear,
+        finalYear,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['ConsultApi.getElectionsCompetitionByYear']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * Retorna os KPIs relacionados às eleições.
+     * @summary KPIs para a página de eleições
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getElectionsKpis(
+      initialYear: number,
+      finalYear: number,
+      options?: RawAxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetElectionsKpis200Response>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getElectionsKpis(
+        initialYear,
+        finalYear,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['ConsultApi.getElectionsKpis']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * Retorna os principais candidatos nas eleições.
+     * @summary Principais candidatos nas eleições
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getElectionsTopCandidates(
+      initialYear: number,
+      finalYear: number,
+      options?: RawAxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetElectionsTopCandidates200Response>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getElectionsTopCandidates(
+        initialYear,
+        finalYear,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['ConsultApi.getElectionsTopCandidates']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * Cruzamentos financiamento de campanhas por municpio ou estado
+     * @summary Cruzamentos financiamento de campanhas por municpio ou estado
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {Array<string>} [uF] só envie caso deseje agregar por municipio, caso for enviar deve ser a string da UF. Exemplo RS.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {number} [dimension] medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getFinanceByLocation(
+      initialYear: number,
+      finalYear: number,
+      uF?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      dimension?: number,
+      options?: RawAxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getFinanceByLocation(
+        initialYear,
+        finalYear,
+        uF,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+        dimension,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['ConsultApi.getFinanceByLocation']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * Cruzamentos financiamento de campanhas por partido
+     * @summary Cruzamentos financiamento de campanhas por partido
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {number} [dimension] medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getFinanceByParty(
+      initialYear: number,
+      finalYear: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      dimension?: number,
+      options?: RawAxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getFinanceByParty(
+        initialYear,
+        finalYear,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+        dimension,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['ConsultApi.getFinanceByParty']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * Retorna ruzamentos financiamento de campanhas por ano
+     * @summary Cruzamentos financiamento de campanhas por ano
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {number} [dimension] medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getFinanceByYear(
+      initialYear: number,
+      finalYear: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      dimension?: number,
+      options?: RawAxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getFinanceByYear(
+        initialYear,
+        finalYear,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+        dimension,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['ConsultApi.getFinanceByYear']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * Retorna os kpis  do perfil dos financimanento.
+     * @summary KPIs para página de cruzamentos financiamento de campanhas
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {number} [dimension] medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getFinanceKpis(
+      initialYear: number,
+      finalYear: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      dimension?: number,
+      options?: RawAxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getFinanceKpis(
+        initialYear,
+        finalYear,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+        dimension,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['ConsultApi.getFinanceKpis']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
   };
 };
 
@@ -2337,7 +3303,7 @@ export const ConsultApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCandidateFilters(options?: any): AxiosPromise<GetCandidateFilters200Response> {
+    getCandidateFilters(options?: RawAxiosRequestConfig): AxiosPromise<GetCandidateFilters200Response> {
       return localVarFp.getCandidateFilters(options).then(request => request(axios, basePath));
     },
     /**
@@ -2363,7 +3329,7 @@ export const ConsultApiFactory = function (
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
-      options?: any,
+      options?: RawAxiosRequestConfig,
     ): AxiosPromise<void> {
       return localVarFp
         .getCandidateProfileByGender(
@@ -2402,7 +3368,7 @@ export const ConsultApiFactory = function (
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
-      options?: any,
+      options?: RawAxiosRequestConfig,
     ): AxiosPromise<void> {
       return localVarFp
         .getCandidateProfileByOccupation(
@@ -2441,7 +3407,7 @@ export const ConsultApiFactory = function (
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
-      options?: any,
+      options?: RawAxiosRequestConfig,
     ): AxiosPromise<GetCandidateProfileByYear200Response> {
       return localVarFp
         .getCandidateProfileByYear(
@@ -2478,7 +3444,7 @@ export const ConsultApiFactory = function (
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
-      options?: any,
+      options?: RawAxiosRequestConfig,
     ): AxiosPromise<void> {
       return localVarFp
         .getCandidateProfileKpis(
@@ -2489,6 +3455,232 @@ export const ConsultApiFactory = function (
           partidos,
           categoriasOcupacoes,
           cargosIds,
+          options,
+        )
+        .then(request => request(axios, basePath));
+    },
+    /**
+     * Retorna os votos por localização nas eleições.
+     * @summary Votos por localização nas eleições
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {string} [uF] Filtra por Unidade Federativa (UF). Exemplo: RS
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getElectionsByLocation(
+      initialYear: number,
+      finalYear: number,
+      uF?: string,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetElectionsByLocation200Response> {
+      return localVarFp
+        .getElectionsByLocation(initialYear, finalYear, uF, options)
+        .then(request => request(axios, basePath));
+    },
+    /**
+     * Retorna dados de competição por ano nas eleições.
+     * @summary Competição por ano nas eleições
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getElectionsCompetitionByYear(
+      initialYear: number,
+      finalYear: number,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetElectionsCompetitionByYear200Response> {
+      return localVarFp
+        .getElectionsCompetitionByYear(initialYear, finalYear, options)
+        .then(request => request(axios, basePath));
+    },
+    /**
+     * Retorna os KPIs relacionados às eleições.
+     * @summary KPIs para a página de eleições
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getElectionsKpis(
+      initialYear: number,
+      finalYear: number,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetElectionsKpis200Response> {
+      return localVarFp
+        .getElectionsKpis(initialYear, finalYear, options)
+        .then(request => request(axios, basePath));
+    },
+    /**
+     * Retorna os principais candidatos nas eleições.
+     * @summary Principais candidatos nas eleições
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getElectionsTopCandidates(
+      initialYear: number,
+      finalYear: number,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetElectionsTopCandidates200Response> {
+      return localVarFp
+        .getElectionsTopCandidates(initialYear, finalYear, options)
+        .then(request => request(axios, basePath));
+    },
+    /**
+     * Cruzamentos financiamento de campanhas por municpio ou estado
+     * @summary Cruzamentos financiamento de campanhas por municpio ou estado
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {Array<string>} [uF] só envie caso deseje agregar por municipio, caso for enviar deve ser a string da UF. Exemplo RS.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {number} [dimension] medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFinanceByLocation(
+      initialYear: number,
+      finalYear: number,
+      uF?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      dimension?: number,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .getFinanceByLocation(
+          initialYear,
+          finalYear,
+          uF,
+          isElected,
+          partidos,
+          categoriasOcupacoes,
+          cargosIds,
+          dimension,
+          options,
+        )
+        .then(request => request(axios, basePath));
+    },
+    /**
+     * Cruzamentos financiamento de campanhas por partido
+     * @summary Cruzamentos financiamento de campanhas por partido
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {number} [dimension] medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFinanceByParty(
+      initialYear: number,
+      finalYear: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      dimension?: number,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .getFinanceByParty(
+          initialYear,
+          finalYear,
+          unidadesEleitoraisIds,
+          isElected,
+          partidos,
+          categoriasOcupacoes,
+          cargosIds,
+          dimension,
+          options,
+        )
+        .then(request => request(axios, basePath));
+    },
+    /**
+     * Retorna ruzamentos financiamento de campanhas por ano
+     * @summary Cruzamentos financiamento de campanhas por ano
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {number} [dimension] medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFinanceByYear(
+      initialYear: number,
+      finalYear: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      dimension?: number,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .getFinanceByYear(
+          initialYear,
+          finalYear,
+          unidadesEleitoraisIds,
+          isElected,
+          partidos,
+          categoriasOcupacoes,
+          cargosIds,
+          dimension,
+          options,
+        )
+        .then(request => request(axios, basePath));
+    },
+    /**
+     * Retorna os kpis  do perfil dos financimanento.
+     * @summary KPIs para página de cruzamentos financiamento de campanhas
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {number} [dimension] medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFinanceKpis(
+      initialYear: number,
+      finalYear: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      dimension?: number,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .getFinanceKpis(
+          initialYear,
+          finalYear,
+          unidadesEleitoraisIds,
+          isElected,
+          partidos,
+          categoriasOcupacoes,
+          cargosIds,
+          dimension,
           options,
         )
         .then(request => request(axios, basePath));
@@ -2676,6 +3868,240 @@ export class ConsultApi extends BaseAPI {
       )
       .then(request => request(this.axios, this.basePath));
   }
+
+  /**
+   * Retorna os votos por localização nas eleições.
+   * @summary Votos por localização nas eleições
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {string} [uF] Filtra por Unidade Federativa (UF). Exemplo: RS
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ConsultApi
+   */
+  public getElectionsByLocation(
+    initialYear: number,
+    finalYear: number,
+    uF?: string,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return ConsultApiFp(this.configuration)
+      .getElectionsByLocation(initialYear, finalYear, uF, options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Retorna dados de competição por ano nas eleições.
+   * @summary Competição por ano nas eleições
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ConsultApi
+   */
+  public getElectionsCompetitionByYear(
+    initialYear: number,
+    finalYear: number,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return ConsultApiFp(this.configuration)
+      .getElectionsCompetitionByYear(initialYear, finalYear, options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Retorna os KPIs relacionados às eleições.
+   * @summary KPIs para a página de eleições
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ConsultApi
+   */
+  public getElectionsKpis(initialYear: number, finalYear: number, options?: RawAxiosRequestConfig) {
+    return ConsultApiFp(this.configuration)
+      .getElectionsKpis(initialYear, finalYear, options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Retorna os principais candidatos nas eleições.
+   * @summary Principais candidatos nas eleições
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ConsultApi
+   */
+  public getElectionsTopCandidates(initialYear: number, finalYear: number, options?: RawAxiosRequestConfig) {
+    return ConsultApiFp(this.configuration)
+      .getElectionsTopCandidates(initialYear, finalYear, options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Cruzamentos financiamento de campanhas por municpio ou estado
+   * @summary Cruzamentos financiamento de campanhas por municpio ou estado
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {Array<string>} [uF] só envie caso deseje agregar por municipio, caso for enviar deve ser a string da UF. Exemplo RS.
+   * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+   * @param {Array<string>} [partidos] IDs dos partidos
+   * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+   * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+   * @param {number} [dimension] medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ConsultApi
+   */
+  public getFinanceByLocation(
+    initialYear: number,
+    finalYear: number,
+    uF?: Array<string>,
+    isElected?: number,
+    partidos?: Array<string>,
+    categoriasOcupacoes?: Array<string>,
+    cargosIds?: Array<string>,
+    dimension?: number,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return ConsultApiFp(this.configuration)
+      .getFinanceByLocation(
+        initialYear,
+        finalYear,
+        uF,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+        dimension,
+        options,
+      )
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Cruzamentos financiamento de campanhas por partido
+   * @summary Cruzamentos financiamento de campanhas por partido
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+   * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+   * @param {Array<string>} [partidos] IDs dos partidos
+   * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+   * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+   * @param {number} [dimension] medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ConsultApi
+   */
+  public getFinanceByParty(
+    initialYear: number,
+    finalYear: number,
+    unidadesEleitoraisIds?: Array<string>,
+    isElected?: number,
+    partidos?: Array<string>,
+    categoriasOcupacoes?: Array<string>,
+    cargosIds?: Array<string>,
+    dimension?: number,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return ConsultApiFp(this.configuration)
+      .getFinanceByParty(
+        initialYear,
+        finalYear,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+        dimension,
+        options,
+      )
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Retorna ruzamentos financiamento de campanhas por ano
+   * @summary Cruzamentos financiamento de campanhas por ano
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+   * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+   * @param {Array<string>} [partidos] IDs dos partidos
+   * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+   * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+   * @param {number} [dimension] medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ConsultApi
+   */
+  public getFinanceByYear(
+    initialYear: number,
+    finalYear: number,
+    unidadesEleitoraisIds?: Array<string>,
+    isElected?: number,
+    partidos?: Array<string>,
+    categoriasOcupacoes?: Array<string>,
+    cargosIds?: Array<string>,
+    dimension?: number,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return ConsultApiFp(this.configuration)
+      .getFinanceByYear(
+        initialYear,
+        finalYear,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+        dimension,
+        options,
+      )
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Retorna os kpis  do perfil dos financimanento.
+   * @summary KPIs para página de cruzamentos financiamento de campanhas
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+   * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+   * @param {Array<string>} [partidos] IDs dos partidos
+   * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+   * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+   * @param {number} [dimension] medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ConsultApi
+   */
+  public getFinanceKpis(
+    initialYear: number,
+    finalYear: number,
+    unidadesEleitoraisIds?: Array<string>,
+    isElected?: number,
+    partidos?: Array<string>,
+    categoriasOcupacoes?: Array<string>,
+    cargosIds?: Array<string>,
+    dimension?: number,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return ConsultApiFp(this.configuration)
+      .getFinanceKpis(
+        initialYear,
+        finalYear,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+        dimension,
+        options,
+      )
+      .then(request => request(this.axios, this.basePath));
+  }
 }
 
 /**
@@ -2845,7 +4271,7 @@ export const ElectoralUnitApiFactory = function (
     getElectoralUnit(
       abrangencyId: number,
       uF?: string,
-      options?: any,
+      options?: RawAxiosRequestConfig,
     ): AxiosPromise<GetElectoralUnit200Response> {
       return localVarFp.getElectoralUnit(abrangencyId, uF, options).then(request => request(axios, basePath));
     },
@@ -2855,7 +4281,7 @@ export const ElectoralUnitApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getUfs(options?: any): AxiosPromise<GetUfs200Response> {
+    getUfs(options?: RawAxiosRequestConfig): AxiosPromise<GetUfs200Response> {
       return localVarFp.getUfs(options).then(request => request(axios, basePath));
     },
   };

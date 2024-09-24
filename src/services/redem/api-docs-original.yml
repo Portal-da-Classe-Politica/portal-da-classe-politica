@@ -15,6 +15,10 @@ tags:
     description: Rotas para buscar unidades eleitorais
   - name: candidato
     description: Rotas para buscar candidatos
+  - name: cruzamentos candidato
+    description: Rotas para buscar candidatos
+  - name: cruzamentos financimento
+    description: Rotas para buscar candidatos
 
 paths:
   /noauth/abrangency:
@@ -718,7 +722,7 @@ paths:
     get:
       operationId: '10' # New operation ID
       tags:
-        - candidato
+        - cruzamentos candidato
       summary: Perfil dos candidatos por ano
       description: Retorna o perfil dos candidatos agrupado por ano.
       parameters:
@@ -792,13 +796,11 @@ paths:
                         ano:
                           type: integer
                           example: 2022
-                        # ... (other properties based on your query results)
-
   /noauth/cruzamentos/candidates-profile/by-gender:
     get:
       operationId: '11' # New operation ID
       tags:
-        - candidato
+        - cruzamentos candidato
       summary: Perfil dos candidatos por gênero
       description: Retorna o perfil dos candidatos agrupado por gênero.
       parameters:
@@ -853,13 +855,11 @@ paths:
       responses:
         '200':
           description: Resposta bem-sucedida com o perfil dos candidatos por gênero.
-          # ... (similar content schema to by-year, but with 'genero' property instead of 'ano')
-
   /noauth/cruzamentos/candidates-profile/by-occupation:
     get:
       operationId: '12' # New operation ID
       tags:
-        - candidato
+        - cruzamentos candidato
       summary: Perfil dos candidatos por ocupação
       description: Retorna o perfil dos candidatos agrupado por ocupação.
       parameters:
@@ -914,12 +914,11 @@ paths:
       responses:
         '200':
           description: Resposta bem-sucedida com o perfil dos candidatos por ocupação.
-
   /noauth/cruzamentos/candidates-profile/kpis:
     get:
-      operationId: '12' # New operation ID
+      operationId: '13' # New operation ID
       tags:
-        - candidato
+        - cruzamentos candidato
       summary: KPIs para página de cruzamentos Perfil dos candidatos
       description: Retorna os kpis  do perfil dos candidatos.
       parameters:
@@ -969,39 +968,404 @@ paths:
         '200':
           description: Resposta bem-sucedida com o perfil dos candidatos por ocupação.
 
-components:
-  schemas:
-    Donor:
-      type: object
-      properties:
-        nome:
-          type: string
-          example: 'PMDB DIRETÓRIO ESTADUAL'
-        total:
-          type: number
-          example: 190000
-    DonorsResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          example: true
-        message:
-          type: string
-          example: 'Doadores encontrados com sucesso.'
-        data:
-          type: object
-          properties:
-            results:
-              type: array
-              items:
-                $ref: '#/components/schemas/Donor'
-            totalResults:
-              type: integer
-              example: 40
-            currentPage:
-              type: integer
-              example: 1
-            totalPages:
-              type: integer
-              example: 4
+  /noauth/cruzamentos/finance/kpis:
+    get:
+      operationId: '14'
+      tags:
+        - cruzamentos financimento
+      summary: KPIs para página de cruzamentos financiamento de campanhas
+      description: Retorna os kpis  do perfil dos financimanento.
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: unidadesEleitoraisIds
+          schema:
+            type: array
+          required: false
+          description: IDs das unidades eleitorais desejadas.
+        - in: query
+          name: isElected
+          schema:
+            type: integer
+          required: false
+          description: Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+        - in: query
+          name: partidos
+          schema:
+            type: array
+          required: false
+          description: IDs dos partidos
+        - in: query
+          name: categoriasOcupacoes
+          schema:
+            type: array
+          required: false
+          description: Categoria 1 das ocupações (1,2 ...)
+        - in: query
+          name: cargosIds
+          schema:
+            type: array
+          required: false
+          description: IDs dos cargos (1,2,3...)
+        - in: query
+          name: dimension
+          schema:
+            type: number
+          required: false
+          description: medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+      responses:
+        '200':
+          description: Resposta bem-sucedida.
+  /noauth/cruzamentos/finance/by-year:
+    get:
+      operationId: '15'
+      tags:
+        - cruzamentos financimento
+      summary: Cruzamentos financiamento de campanhas por ano
+      description: Retorna ruzamentos financiamento de campanhas por ano
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: unidadesEleitoraisIds
+          schema:
+            type: array
+          required: false
+          description: IDs das unidades eleitorais desejadas.
+        - in: query
+          name: isElected
+          schema:
+            type: integer
+          required: false
+          description: Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+        - in: query
+          name: partidos
+          schema:
+            type: array
+          required: false
+          description: IDs dos partidos
+        - in: query
+          name: categoriasOcupacoes
+          schema:
+            type: array
+          required: false
+          description: Categoria 1 das ocupações (1,2 ...)
+        - in: query
+          name: cargosIds
+          schema:
+            type: array
+          required: false
+          description: IDs dos cargos (1,2,3...)
+        - in: query
+          name: dimension
+          schema:
+            type: number
+          required: false
+          description: medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+      responses:
+        '200':
+          description: Resposta bem-sucedida.
+  /noauth/cruzamentos/finance/by-party:
+    get:
+      operationId: '16'
+      tags:
+        - cruzamentos financimento
+      summary: Cruzamentos financiamento de campanhas por partido
+      description: Cruzamentos financiamento de campanhas por partido
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: unidadesEleitoraisIds
+          schema:
+            type: array
+          required: false
+          description: IDs das unidades eleitorais desejadas.
+        - in: query
+          name: isElected
+          schema:
+            type: integer
+          required: false
+          description: Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+        - in: query
+          name: partidos
+          schema:
+            type: array
+          required: false
+          description: IDs dos partidos
+        - in: query
+          name: categoriasOcupacoes
+          schema:
+            type: array
+          required: false
+          description: Categoria 1 das ocupações (1,2 ...)
+        - in: query
+          name: cargosIds
+          schema:
+            type: array
+          required: false
+          description: IDs dos cargos (1,2,3...)
+        - in: query
+          name: dimension
+          schema:
+            type: number
+          required: false
+          description: medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+      responses:
+        '200':
+          description: Resposta bem-sucedida com o perfil dos candidatos por ocupação.
+  /noauth/cruzamentos/finance/by-location:
+    get:
+      operationId: '17'
+      tags:
+        - cruzamentos financimento
+      summary: Cruzamentos financiamento de campanhas por municpio ou estado
+      description: Cruzamentos financiamento de campanhas por municpio ou estado
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: UF
+          schema:
+            type: array
+          required: false
+          description: só envie caso deseje agregar por municipio, caso for enviar deve ser a string da UF. Exemplo RS.
+          example: 'RS'
+        - in: query
+          name: isElected
+          schema:
+            type: integer
+          required: false
+          description: Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+        - in: query
+          name: partidos
+          schema:
+            type: array
+          required: false
+          description: IDs dos partidos
+        - in: query
+          name: categoriasOcupacoes
+          schema:
+            type: array
+          required: false
+          description: Categoria 1 das ocupações (1,2 ...)
+        - in: query
+          name: cargosIds
+          schema:
+            type: array
+          required: false
+          description: IDs dos cargos (1,2,3...)
+        - in: query
+          name: dimension
+          schema:
+            type: number
+          required: false
+          description: medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+      responses:
+        '200':
+          description: Resposta bem-sucedida .
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /noauth/elections/kpis:
+    get:
+      operationId: '18' # New operation ID
+      tags:
+        - eleições
+      summary: KPIs para a página de eleições
+      description: Retorna os KPIs relacionados às eleições.
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os KPIs das eleições.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'KPIs das eleições encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+  /noauth/cruzamentos/elections/competition-by-year:
+    get:
+      operationId: '19' # New operation ID
+      tags:
+        - eleições
+      summary: Competição por ano nas eleições
+      description: Retorna dados de competição por ano nas eleições.
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os dados de competição por ano.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Dados de competição por ano encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+  /noauth/cruzamentos/elections/top-candidates:
+    get:
+      operationId: '20' # New operation ID
+      tags:
+        - eleições
+      summary: Principais candidatos nas eleições
+      description: Retorna os principais candidatos nas eleições.
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os principais candidatos.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Principais candidatos encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+  /noauth/cruzamentos/elections/by-location:
+    get:
+      operationId: '21' # New operation ID
+      tags:
+        - eleições
+      summary: Votos por localização nas eleições
+      description: Retorna os votos por localização nas eleições.
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: UF
+          schema:
+            type: string
+          required: false
+          description: 'Filtra por Unidade Federativa (UF). Exemplo: RS'
+          example: 'RS'
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os votos por localização.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Votos por localização encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object

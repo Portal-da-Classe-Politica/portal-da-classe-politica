@@ -19,3 +19,8 @@
 - [Figma](https://www.figma.com/design/0bqBQXwZ9pG4J2XZk6ag0U/Plataforma-ReDem?node-id=0-1&t=c0VsGSvQibnbAu79-0)
 - [GitHub](https://github.com/Portal-da-Classe-Politica/portal-da-classse-politica)
 - [GitHub - Backend](https://github.com/Portal-da-Classe-Politica/portal-da-classe-back/tree/main)
+
+## Generate API
+
+- Update API at `./src/services/redem`
+- Run script from `cd scripts && ./generate-redem-api.sh`
