@@ -10,8 +10,7 @@ import { Filter } from '../../types';
 
 interface FilterProps {
   loading: boolean;
-  // eslint-disable-next-line no-unused-vars
-  onConsult: (filters: any) => void;
+  onConsult: (_filters: any) => void;
   filtersData: {
     years: {
       type: string;
@@ -56,6 +55,7 @@ const FilterCandidateProfile = ({
     />
   );
 };
+
 const FilterElectionResult = ({
   onConsult,
   handleFilterChange,
@@ -76,26 +76,7 @@ const FilterElectionResult = ({
     />
   );
 };
-const FilterPartyFiliation = ({
-  onConsult,
-  handleFilterChange,
-  selectedOption,
-  filtersData,
-  loading,
-}: FilterProps) => {
-  return (
-    <FilterComponent
-      description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
-      longDescription={`O resultado do cruzamento entre Perfil dos Candidatos & ${showDimension(selectedOption.dimension)} nos trás informações sobre lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Ainda com dúvida? Clique aqui.`}
-      category="Filiação Partidária"
-      onConsult={onConsult}
-      filtersData={filtersData}
-      handleFilterChange={handleFilterChange}
-      selectedOption={selectedOption}
-      loading={loading}
-    />
-  );
-};
+
 const FilterFinancing = ({
   onConsult,
   handleFilterChange,
@@ -108,46 +89,6 @@ const FilterFinancing = ({
       description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
       longDescription={`O resultado do cruzamento entre Perfil dos Candidatos & ${showDimension(selectedOption.dimension)} nos trás informações sobre lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Ainda com dúvida? Clique aqui.`}
       category="Financiamento de Campanha"
-      onConsult={onConsult}
-      filtersData={filtersData}
-      handleFilterChange={handleFilterChange}
-      selectedOption={selectedOption}
-      loading={loading}
-    />
-  );
-};
-const FilterElectoralMaps = ({
-  onConsult,
-  handleFilterChange,
-  selectedOption,
-  filtersData,
-  loading,
-}: FilterProps) => {
-  return (
-    <FilterComponent
-      description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
-      longDescription={`O resultado do cruzamento entre Perfil dos Candidatos & ${showDimension(selectedOption.dimension)} nos trás informações sobre lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Ainda com dúvida? Clique aqui.`}
-      category="Mapas Eleitorais"
-      onConsult={onConsult}
-      filtersData={filtersData}
-      handleFilterChange={handleFilterChange}
-      selectedOption={selectedOption}
-      loading={loading}
-    />
-  );
-};
-const FilterElectoralResearch = ({
-  onConsult,
-  handleFilterChange,
-  selectedOption,
-  filtersData,
-  loading,
-}: FilterProps) => {
-  return (
-    <FilterComponent
-      description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
-      longDescription={`O resultado do cruzamento entre Perfil dos Candidatos & ${showDimension(selectedOption.dimension)} nos trás informações sobre lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis scelerisque. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Integer gravida nulla ipsum, in convallis nisi mollis nec. Nam vulputate ipsum. Ainda com dúvida? Clique aqui.`}
-      category="Pesquisas Eleitorais"
       onConsult={onConsult}
       filtersData={filtersData}
       handleFilterChange={handleFilterChange}
@@ -306,24 +247,6 @@ export const ConsultFilterBox = ({
       Comp: FilterFinancing,
       title: 'Financiamento de',
       bold: 'Campanha',
-    },
-    {
-      value: consultSearchParam.PartyFiliation,
-      Comp: FilterPartyFiliation,
-      title: 'Filiação',
-      bold: 'Partidária',
-    },
-    {
-      value: consultSearchParam.ElectoralMaps,
-      Comp: FilterElectoralMaps,
-      title: 'Mapas',
-      bold: 'Eleitorais',
-    },
-    {
-      value: consultSearchParam.ElectoralResearch,
-      Comp: FilterElectoralResearch,
-      title: 'Pesquisas',
-      bold: 'Eleitorais',
     },
   ];
   const initialTab = tabs.findIndex(t => t.value === initialConsult);
