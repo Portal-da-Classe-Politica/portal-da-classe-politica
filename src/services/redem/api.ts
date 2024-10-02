@@ -2207,14 +2207,24 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
      * @summary Votos por localização nas eleições
      * @param {number} initialYear Ano inicial do intervalo.
      * @param {number} finalYear Ano final do intervalo.
-     * @param {string} [uF] Filtra por Unidade Federativa (UF). Exemplo: RS
+     * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     getElectionsByLocation: async (
       initialYear: number,
       finalYear: number,
-      uF?: string,
+      dimension?: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
       options: RawAxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       // verify required parameter 'initialYear' is not null or undefined
@@ -2241,8 +2251,28 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
         localVarQueryParameter['finalYear'] = finalYear;
       }
 
-      if (uF !== undefined) {
-        localVarQueryParameter['UF'] = uF;
+      if (dimension !== undefined) {
+        localVarQueryParameter['dimension'] = dimension;
+      }
+
+      if (unidadesEleitoraisIds) {
+        localVarQueryParameter['unidadesEleitoraisIds'] = unidadesEleitoraisIds;
+      }
+
+      if (isElected !== undefined) {
+        localVarQueryParameter['isElected'] = isElected;
+      }
+
+      if (partidos) {
+        localVarQueryParameter['partidos'] = partidos;
+      }
+
+      if (categoriasOcupacoes) {
+        localVarQueryParameter['categoriasOcupacoes'] = categoriasOcupacoes;
+      }
+
+      if (cargosIds) {
+        localVarQueryParameter['cargosIds'] = cargosIds;
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -2263,12 +2293,24 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
      * @summary Competição por ano nas eleições
      * @param {number} initialYear Ano inicial do intervalo.
      * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     getElectionsCompetitionByYear: async (
       initialYear: number,
       finalYear: number,
+      dimension?: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
       options: RawAxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       // verify required parameter 'initialYear' is not null or undefined
@@ -2293,6 +2335,30 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
 
       if (finalYear !== undefined) {
         localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (dimension !== undefined) {
+        localVarQueryParameter['dimension'] = dimension;
+      }
+
+      if (unidadesEleitoraisIds) {
+        localVarQueryParameter['unidadesEleitoraisIds'] = unidadesEleitoraisIds;
+      }
+
+      if (isElected !== undefined) {
+        localVarQueryParameter['isElected'] = isElected;
+      }
+
+      if (partidos) {
+        localVarQueryParameter['partidos'] = partidos;
+      }
+
+      if (categoriasOcupacoes) {
+        localVarQueryParameter['categoriasOcupacoes'] = categoriasOcupacoes;
+      }
+
+      if (cargosIds) {
+        localVarQueryParameter['cargosIds'] = cargosIds;
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -2363,12 +2429,24 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
      * @summary Principais candidatos nas eleições
      * @param {number} initialYear Ano inicial do intervalo.
      * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     getElectionsTopCandidates: async (
       initialYear: number,
       finalYear: number,
+      dimension?: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
       options: RawAxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       // verify required parameter 'initialYear' is not null or undefined
@@ -2393,6 +2471,30 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
 
       if (finalYear !== undefined) {
         localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (dimension !== undefined) {
+        localVarQueryParameter['dimension'] = dimension;
+      }
+
+      if (unidadesEleitoraisIds) {
+        localVarQueryParameter['unidadesEleitoraisIds'] = unidadesEleitoraisIds;
+      }
+
+      if (isElected !== undefined) {
+        localVarQueryParameter['isElected'] = isElected;
+      }
+
+      if (partidos) {
+        localVarQueryParameter['partidos'] = partidos;
+      }
+
+      if (categoriasOcupacoes) {
+        localVarQueryParameter['categoriasOcupacoes'] = categoriasOcupacoes;
+      }
+
+      if (cargosIds) {
+        localVarQueryParameter['cargosIds'] = cargosIds;
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -2975,14 +3077,24 @@ export const ConsultApiFp = function (configuration?: Configuration) {
      * @summary Votos por localização nas eleições
      * @param {number} initialYear Ano inicial do intervalo.
      * @param {number} finalYear Ano final do intervalo.
-     * @param {string} [uF] Filtra por Unidade Federativa (UF). Exemplo: RS
+     * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async getElectionsByLocation(
       initialYear: number,
       finalYear: number,
-      uF?: string,
+      dimension?: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
       options?: RawAxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetElectionsByLocation200Response>
@@ -2990,7 +3102,12 @@ export const ConsultApiFp = function (configuration?: Configuration) {
       const localVarAxiosArgs = await localVarAxiosParamCreator.getElectionsByLocation(
         initialYear,
         finalYear,
-        uF,
+        dimension,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
         options,
       );
       const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
@@ -3009,12 +3126,24 @@ export const ConsultApiFp = function (configuration?: Configuration) {
      * @summary Competição por ano nas eleições
      * @param {number} initialYear Ano inicial do intervalo.
      * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async getElectionsCompetitionByYear(
       initialYear: number,
       finalYear: number,
+      dimension?: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
       options?: RawAxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetElectionsCompetitionByYear200Response>
@@ -3022,6 +3151,12 @@ export const ConsultApiFp = function (configuration?: Configuration) {
       const localVarAxiosArgs = await localVarAxiosParamCreator.getElectionsCompetitionByYear(
         initialYear,
         finalYear,
+        dimension,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
         options,
       );
       const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
@@ -3069,12 +3204,24 @@ export const ConsultApiFp = function (configuration?: Configuration) {
      * @summary Principais candidatos nas eleições
      * @param {number} initialYear Ano inicial do intervalo.
      * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async getElectionsTopCandidates(
       initialYear: number,
       finalYear: number,
+      dimension?: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
       options?: RawAxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetElectionsTopCandidates200Response>
@@ -3082,6 +3229,12 @@ export const ConsultApiFp = function (configuration?: Configuration) {
       const localVarAxiosArgs = await localVarAxiosParamCreator.getElectionsTopCandidates(
         initialYear,
         finalYear,
+        dimension,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
         options,
       );
       const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
@@ -3464,18 +3617,38 @@ export const ConsultApiFactory = function (
      * @summary Votos por localização nas eleições
      * @param {number} initialYear Ano inicial do intervalo.
      * @param {number} finalYear Ano final do intervalo.
-     * @param {string} [uF] Filtra por Unidade Federativa (UF). Exemplo: RS
+     * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     getElectionsByLocation(
       initialYear: number,
       finalYear: number,
-      uF?: string,
+      dimension?: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
       options?: RawAxiosRequestConfig,
     ): AxiosPromise<GetElectionsByLocation200Response> {
       return localVarFp
-        .getElectionsByLocation(initialYear, finalYear, uF, options)
+        .getElectionsByLocation(
+          initialYear,
+          finalYear,
+          dimension,
+          unidadesEleitoraisIds,
+          isElected,
+          partidos,
+          categoriasOcupacoes,
+          cargosIds,
+          options,
+        )
         .then(request => request(axios, basePath));
     },
     /**
@@ -3483,16 +3656,38 @@ export const ConsultApiFactory = function (
      * @summary Competição por ano nas eleições
      * @param {number} initialYear Ano inicial do intervalo.
      * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     getElectionsCompetitionByYear(
       initialYear: number,
       finalYear: number,
+      dimension?: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
       options?: RawAxiosRequestConfig,
     ): AxiosPromise<GetElectionsCompetitionByYear200Response> {
       return localVarFp
-        .getElectionsCompetitionByYear(initialYear, finalYear, options)
+        .getElectionsCompetitionByYear(
+          initialYear,
+          finalYear,
+          dimension,
+          unidadesEleitoraisIds,
+          isElected,
+          partidos,
+          categoriasOcupacoes,
+          cargosIds,
+          options,
+        )
         .then(request => request(axios, basePath));
     },
     /**
@@ -3517,16 +3712,38 @@ export const ConsultApiFactory = function (
      * @summary Principais candidatos nas eleições
      * @param {number} initialYear Ano inicial do intervalo.
      * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     getElectionsTopCandidates(
       initialYear: number,
       finalYear: number,
+      dimension?: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
       options?: RawAxiosRequestConfig,
     ): AxiosPromise<GetElectionsTopCandidates200Response> {
       return localVarFp
-        .getElectionsTopCandidates(initialYear, finalYear, options)
+        .getElectionsTopCandidates(
+          initialYear,
+          finalYear,
+          dimension,
+          unidadesEleitoraisIds,
+          isElected,
+          partidos,
+          categoriasOcupacoes,
+          cargosIds,
+          options,
+        )
         .then(request => request(axios, basePath));
     },
     /**
@@ -3874,7 +4091,12 @@ export class ConsultApi extends BaseAPI {
    * @summary Votos por localização nas eleições
    * @param {number} initialYear Ano inicial do intervalo.
    * @param {number} finalYear Ano final do intervalo.
-   * @param {string} [uF] Filtra por Unidade Federativa (UF). Exemplo: RS
+   * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
+   * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+   * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+   * @param {Array<string>} [partidos] IDs dos partidos
+   * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+   * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ConsultApi
@@ -3882,11 +4104,26 @@ export class ConsultApi extends BaseAPI {
   public getElectionsByLocation(
     initialYear: number,
     finalYear: number,
-    uF?: string,
+    dimension?: number,
+    unidadesEleitoraisIds?: Array<string>,
+    isElected?: number,
+    partidos?: Array<string>,
+    categoriasOcupacoes?: Array<string>,
+    cargosIds?: Array<string>,
     options?: RawAxiosRequestConfig,
   ) {
     return ConsultApiFp(this.configuration)
-      .getElectionsByLocation(initialYear, finalYear, uF, options)
+      .getElectionsByLocation(
+        initialYear,
+        finalYear,
+        dimension,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+        options,
+      )
       .then(request => request(this.axios, this.basePath));
   }
 
@@ -3895,6 +4132,12 @@ export class ConsultApi extends BaseAPI {
    * @summary Competição por ano nas eleições
    * @param {number} initialYear Ano inicial do intervalo.
    * @param {number} finalYear Ano final do intervalo.
+   * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
+   * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+   * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+   * @param {Array<string>} [partidos] IDs dos partidos
+   * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+   * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ConsultApi
@@ -3902,10 +4145,26 @@ export class ConsultApi extends BaseAPI {
   public getElectionsCompetitionByYear(
     initialYear: number,
     finalYear: number,
+    dimension?: number,
+    unidadesEleitoraisIds?: Array<string>,
+    isElected?: number,
+    partidos?: Array<string>,
+    categoriasOcupacoes?: Array<string>,
+    cargosIds?: Array<string>,
     options?: RawAxiosRequestConfig,
   ) {
     return ConsultApiFp(this.configuration)
-      .getElectionsCompetitionByYear(initialYear, finalYear, options)
+      .getElectionsCompetitionByYear(
+        initialYear,
+        finalYear,
+        dimension,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+        options,
+      )
       .then(request => request(this.axios, this.basePath));
   }
 
@@ -3929,13 +4188,39 @@ export class ConsultApi extends BaseAPI {
    * @summary Principais candidatos nas eleições
    * @param {number} initialYear Ano inicial do intervalo.
    * @param {number} finalYear Ano final do intervalo.
+   * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
+   * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+   * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+   * @param {Array<string>} [partidos] IDs dos partidos
+   * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+   * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ConsultApi
    */
-  public getElectionsTopCandidates(initialYear: number, finalYear: number, options?: RawAxiosRequestConfig) {
+  public getElectionsTopCandidates(
+    initialYear: number,
+    finalYear: number,
+    dimension?: number,
+    unidadesEleitoraisIds?: Array<string>,
+    isElected?: number,
+    partidos?: Array<string>,
+    categoriasOcupacoes?: Array<string>,
+    cargosIds?: Array<string>,
+    options?: RawAxiosRequestConfig,
+  ) {
     return ConsultApiFp(this.configuration)
-      .getElectionsTopCandidates(initialYear, finalYear, options)
+      .getElectionsTopCandidates(
+        initialYear,
+        finalYear,
+        dimension,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+        options,
+      )
       .then(request => request(this.axios, this.basePath));
   }
 

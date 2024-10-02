@@ -52,7 +52,7 @@ export const BarChartCard = ({
       },
       labels: {
         offsetX: -10,
-        align: 'center',
+        align: 'left',
         style: {
           fontSize: 'medium',
         },

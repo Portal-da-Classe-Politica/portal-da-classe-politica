@@ -177,7 +177,7 @@ const FilterComponent = ({
                     }}
                     optionsValue={filtersData.years.values}
                     onSelectStart={start => handleFilterChange('initialYear', start)}
-                    startYearAPI={filtersData.years.values[0]}
+                    startYearAPI={filtersData.years.values[filtersData.years.values.length - 2]}
                     endYearAPI={filtersData.years.values[filtersData.years.values.length - 1]}
                   />
                 </div>

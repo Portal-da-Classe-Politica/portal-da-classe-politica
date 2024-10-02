@@ -76,7 +76,7 @@ export const ResultsSection = ({ results }: { results: any[] }) => {
                     data: data.series.map(({ value }: any) => value),
                   },
                 ]}
-                metaData={data.extraData.bigNumbers}
+                metaData={data?.extraData?.bigNumbers}
               />
             );
           }

@@ -34,9 +34,36 @@ export const consultElections = async ({
 
   try {
     const responses = await Promise.allSettled([
-      redem.consult.getElectionsByLocation(Number(initialYear), Number(finalYear), 'PR'), // TODO - Waiting Backend Update
-      redem.consult.getElectionsTopCandidates(Number(initialYear), Number(finalYear)),
-      redem.consult.getElectionsCompetitionByYear(Number(initialYear), Number(finalYear)),
+      redem.consult.getElectionsByLocation(
+        Number(initialYear),
+        Number(finalYear),
+        dimension,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+      ),
+      redem.consult.getElectionsTopCandidates(
+        Number(initialYear),
+        Number(finalYear),
+        dimension,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+      ),
+      redem.consult.getElectionsCompetitionByYear(
+        Number(initialYear),
+        Number(finalYear),
+        dimension,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+      ),
       redem.consult.getElectionsKpis(Number(initialYear), Number(finalYear)),
     ]);
 
