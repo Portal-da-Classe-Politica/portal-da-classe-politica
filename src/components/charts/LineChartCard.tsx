@@ -23,7 +23,7 @@ export const LineChartCard = ({
 }: ChartSectionProps) => {
   return (
     <div
-      className={`flex flex-col w-full max-h-[800px] p-3 md:p-12 bg-white drop-shadow-lg rounded-lg ${className}`}
+      className={`flex flex-col w-full max-h-[800px] p-4 md:p-12 bg-white drop-shadow-lg rounded-lg ${className}`}
     >
       <div className="w-full">
         <Heading headingLevel={2} size="H1" className="mb-4 text-grayMix4">

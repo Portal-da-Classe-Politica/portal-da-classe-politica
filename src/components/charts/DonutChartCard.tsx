@@ -41,9 +41,7 @@ export const DonutChartCard = ({
   };
 
   return (
-    <div
-      className={`flex flex-col w-full max-h-[800px] p-12 bg-white drop-shadow-lg rounded-lg ${className}`}
-    >
+    <div className={`flex flex-col w-full max-h-[800px] p-4 bg-white drop-shadow-lg rounded-lg ${className}`}>
       <div className="flex w-full">
         <Chart className="flex flex-1 w-fit" series={series} type="donut" options={options} height={350} />
         <div className="flex flex-col flex-1">
