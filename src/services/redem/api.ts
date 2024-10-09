@@ -1168,6 +1168,31 @@ export interface GetElectoralUnit500Response {
 /**
  *
  * @export
+ * @interface GetPartyIndicators200Response
+ */
+export interface GetPartyIndicators200Response {
+  /**
+   *
+   * @type {boolean}
+   * @memberof GetPartyIndicators200Response
+   */
+  success?: boolean;
+  /**
+   *
+   * @type {string}
+   * @memberof GetPartyIndicators200Response
+   */
+  message?: string;
+  /**
+   *
+   * @type {Array<object>}
+   * @memberof GetPartyIndicators200Response
+   */
+  data?: Array<object>;
+}
+/**
+ *
+ * @export
  * @interface GetUfs200Response
  */
 export interface GetUfs200Response {
@@ -4604,6 +4629,1043 @@ export class ElectoralUnitApi extends BaseAPI {
   public getUfs(options?: RawAxiosRequestConfig) {
     return ElectoralUnitApiFp(this.configuration)
       .getUfs(options)
+      .then(request => request(this.axios, this.basePath));
+  }
+}
+
+/**
+ * IndicatorsApi - axios parameter creator
+ * @export
+ */
+export const IndicatorsApiAxiosParamCreator = function (configuration?: Configuration) {
+  return {
+    /**
+     * Avaliar a eficiência do financiamento de campanha em termos de conversão de recursos financeiros em votos
+     * @summary Taxa de Custo por Voto
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFinanceIndicator13: async (
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getFinanceIndicator13', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getFinanceIndicator13', 'finalYear', finalYear);
+      const localVarPath = `/noauth/indicadores/financeiros/13`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (cargoId !== undefined) {
+        localVarQueryParameter['cargoId'] = cargoId;
+      }
+
+      if (unidadesEleitorais) {
+        localVarQueryParameter['unidadesEleitorais'] = unidadesEleitorais;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Permite identificar se os candidatos pertencem predominantemente a classes econômicas mais altas ou se há uma diversidade econômica entre eles.É útil para analisar o impacto de fatores como classe social e ocupação profissional na representatividade política.Pode ser utilizado para avaliar a necessidade de medidas que promovam a diversidade no perfil dos candidatos.
+     * @summary Índice de Igualdade de Acesso a Recursos
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFinanceIndicator14: async (
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getFinanceIndicator14', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getFinanceIndicator14', 'finalYear', finalYear);
+      const localVarPath = `/noauth/indicadores/financeiros/14`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (cargoId !== undefined) {
+        localVarQueryParameter['cargoId'] = cargoId;
+      }
+
+      if (unidadesEleitorais) {
+        localVarQueryParameter['unidadesEleitorais'] = unidadesEleitorais;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Ajuda a identificar se os candidatos pertencem predominantemente a classes econômicas mais altas ou se há uma diversidade econômica entre eles
+     * @summary Média e Mediana de Patrimônio da Classe Política
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFinanceIndicator16: async (
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getFinanceIndicator16', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getFinanceIndicator16', 'finalYear', finalYear);
+      const localVarPath = `/noauth/indicadores/financeiros/16`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (cargoId !== undefined) {
+        localVarQueryParameter['cargoId'] = cargoId;
+      }
+
+      if (unidadesEleitorais) {
+        localVarQueryParameter['unidadesEleitorais'] = unidadesEleitorais;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Retorna todos indicadores possiveis para o grupo de financiamento de campanha
+     * @summary Indicadores possiveis de financiamento de campanha
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFinanceIndicators: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+      const localVarPath = `/noauth/indicadores/financeiros`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Leva em consideração todos os candidatos que se reapresentaram para a reeleição, tanto os derrotados, quanto os reeleitos que obtiveram êxitos no seu pleito
+     * @summary Indicadores Taxa de Renovação Líquida
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPartyIndicator05: async (
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getPartyIndicator05', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getPartyIndicator05', 'finalYear', finalYear);
+      const localVarPath = `/noauth/indicadores/partidarios/5`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (cargoId !== undefined) {
+        localVarQueryParameter['cargoId'] = cargoId;
+      }
+
+      if (unidadesEleitorais) {
+        localVarQueryParameter['unidadesEleitorais'] = unidadesEleitorais;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Leva em consideração todos os candidatos que se reapresentaram para a reeleição, tanto os derrotados, quanto os reeleitos que obtiveram êxitos no seu pleito
+     * @summary Indicadores Taxa de Renovação Bruta
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPartyIndicator06: async (
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getPartyIndicator06', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getPartyIndicator06', 'finalYear', finalYear);
+      const localVarPath = `/noauth/indicadores/partidarios/6`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (cargoId !== undefined) {
+        localVarQueryParameter['cargoId'] = cargoId;
+      }
+
+      if (unidadesEleitorais) {
+        localVarQueryParameter['unidadesEleitorais'] = unidadesEleitorais;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * É um indicador importante para mensurar a desigualdade de gênero. Permite comparações entre cargos, regiões e esferas de governo. Pode ser usado para avaliar a magnitude da desigualdade de gênero em diferentes contextos.
+     * @summary Índice de Paridade Eleitoral de Gênero
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPartyIndicator08: async (
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getPartyIndicator08', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getPartyIndicator08', 'finalYear', finalYear);
+      const localVarPath = `/noauth/indicadores/partidarios/8`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (cargoId !== undefined) {
+        localVarQueryParameter['cargoId'] = cargoId;
+      }
+
+      if (unidadesEleitorais) {
+        localVarQueryParameter['unidadesEleitorais'] = unidadesEleitorais;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Retorna todos indicadores possiveis para o grupo de carreira e representacao
+     * @summary Indicadores possiveis de carreira e representacao
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPartyIndicators: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+      const localVarPath = `/noauth/indicadores/partidarios`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+  };
+};
+
+/**
+ * IndicatorsApi - functional programming interface
+ * @export
+ */
+export const IndicatorsApiFp = function (configuration?: Configuration) {
+  const localVarAxiosParamCreator = IndicatorsApiAxiosParamCreator(configuration);
+  return {
+    /**
+     * Avaliar a eficiência do financiamento de campanha em termos de conversão de recursos financeiros em votos
+     * @summary Taxa de Custo por Voto
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getFinanceIndicator13(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPartyIndicators200Response>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getFinanceIndicator13(
+        initialYear,
+        finalYear,
+        cargoId,
+        unidadesEleitorais,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['IndicatorsApi.getFinanceIndicator13']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * Permite identificar se os candidatos pertencem predominantemente a classes econômicas mais altas ou se há uma diversidade econômica entre eles.É útil para analisar o impacto de fatores como classe social e ocupação profissional na representatividade política.Pode ser utilizado para avaliar a necessidade de medidas que promovam a diversidade no perfil dos candidatos.
+     * @summary Índice de Igualdade de Acesso a Recursos
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getFinanceIndicator14(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPartyIndicators200Response>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getFinanceIndicator14(
+        initialYear,
+        finalYear,
+        cargoId,
+        unidadesEleitorais,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['IndicatorsApi.getFinanceIndicator14']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * Ajuda a identificar se os candidatos pertencem predominantemente a classes econômicas mais altas ou se há uma diversidade econômica entre eles
+     * @summary Média e Mediana de Patrimônio da Classe Política
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getFinanceIndicator16(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPartyIndicators200Response>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getFinanceIndicator16(
+        initialYear,
+        finalYear,
+        cargoId,
+        unidadesEleitorais,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['IndicatorsApi.getFinanceIndicator16']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * Retorna todos indicadores possiveis para o grupo de financiamento de campanha
+     * @summary Indicadores possiveis de financiamento de campanha
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getFinanceIndicators(
+      options?: RawAxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPartyIndicators200Response>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getFinanceIndicators(options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['IndicatorsApi.getFinanceIndicators']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * Leva em consideração todos os candidatos que se reapresentaram para a reeleição, tanto os derrotados, quanto os reeleitos que obtiveram êxitos no seu pleito
+     * @summary Indicadores Taxa de Renovação Líquida
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getPartyIndicator05(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPartyIndicators200Response>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getPartyIndicator05(
+        initialYear,
+        finalYear,
+        cargoId,
+        unidadesEleitorais,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['IndicatorsApi.getPartyIndicator05']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * Leva em consideração todos os candidatos que se reapresentaram para a reeleição, tanto os derrotados, quanto os reeleitos que obtiveram êxitos no seu pleito
+     * @summary Indicadores Taxa de Renovação Bruta
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getPartyIndicator06(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPartyIndicators200Response>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getPartyIndicator06(
+        initialYear,
+        finalYear,
+        cargoId,
+        unidadesEleitorais,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['IndicatorsApi.getPartyIndicator06']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * É um indicador importante para mensurar a desigualdade de gênero. Permite comparações entre cargos, regiões e esferas de governo. Pode ser usado para avaliar a magnitude da desigualdade de gênero em diferentes contextos.
+     * @summary Índice de Paridade Eleitoral de Gênero
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getPartyIndicator08(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPartyIndicators200Response>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getPartyIndicator08(
+        initialYear,
+        finalYear,
+        cargoId,
+        unidadesEleitorais,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['IndicatorsApi.getPartyIndicator08']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * Retorna todos indicadores possiveis para o grupo de carreira e representacao
+     * @summary Indicadores possiveis de carreira e representacao
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getPartyIndicators(
+      options?: RawAxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPartyIndicators200Response>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getPartyIndicators(options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['IndicatorsApi.getPartyIndicators']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+  };
+};
+
+/**
+ * IndicatorsApi - factory interface
+ * @export
+ */
+export const IndicatorsApiFactory = function (
+  configuration?: Configuration,
+  basePath?: string,
+  axios?: AxiosInstance,
+) {
+  const localVarFp = IndicatorsApiFp(configuration);
+  return {
+    /**
+     * Avaliar a eficiência do financiamento de campanha em termos de conversão de recursos financeiros em votos
+     * @summary Taxa de Custo por Voto
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFinanceIndicator13(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetPartyIndicators200Response> {
+      return localVarFp
+        .getFinanceIndicator13(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+        .then(request => request(axios, basePath));
+    },
+    /**
+     * Permite identificar se os candidatos pertencem predominantemente a classes econômicas mais altas ou se há uma diversidade econômica entre eles.É útil para analisar o impacto de fatores como classe social e ocupação profissional na representatividade política.Pode ser utilizado para avaliar a necessidade de medidas que promovam a diversidade no perfil dos candidatos.
+     * @summary Índice de Igualdade de Acesso a Recursos
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFinanceIndicator14(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetPartyIndicators200Response> {
+      return localVarFp
+        .getFinanceIndicator14(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+        .then(request => request(axios, basePath));
+    },
+    /**
+     * Ajuda a identificar se os candidatos pertencem predominantemente a classes econômicas mais altas ou se há uma diversidade econômica entre eles
+     * @summary Média e Mediana de Patrimônio da Classe Política
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFinanceIndicator16(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetPartyIndicators200Response> {
+      return localVarFp
+        .getFinanceIndicator16(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+        .then(request => request(axios, basePath));
+    },
+    /**
+     * Retorna todos indicadores possiveis para o grupo de financiamento de campanha
+     * @summary Indicadores possiveis de financiamento de campanha
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFinanceIndicators(options?: RawAxiosRequestConfig): AxiosPromise<GetPartyIndicators200Response> {
+      return localVarFp.getFinanceIndicators(options).then(request => request(axios, basePath));
+    },
+    /**
+     * Leva em consideração todos os candidatos que se reapresentaram para a reeleição, tanto os derrotados, quanto os reeleitos que obtiveram êxitos no seu pleito
+     * @summary Indicadores Taxa de Renovação Líquida
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPartyIndicator05(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetPartyIndicators200Response> {
+      return localVarFp
+        .getPartyIndicator05(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+        .then(request => request(axios, basePath));
+    },
+    /**
+     * Leva em consideração todos os candidatos que se reapresentaram para a reeleição, tanto os derrotados, quanto os reeleitos que obtiveram êxitos no seu pleito
+     * @summary Indicadores Taxa de Renovação Bruta
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPartyIndicator06(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetPartyIndicators200Response> {
+      return localVarFp
+        .getPartyIndicator06(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+        .then(request => request(axios, basePath));
+    },
+    /**
+     * É um indicador importante para mensurar a desigualdade de gênero. Permite comparações entre cargos, regiões e esferas de governo. Pode ser usado para avaliar a magnitude da desigualdade de gênero em diferentes contextos.
+     * @summary Índice de Paridade Eleitoral de Gênero
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPartyIndicator08(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetPartyIndicators200Response> {
+      return localVarFp
+        .getPartyIndicator08(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+        .then(request => request(axios, basePath));
+    },
+    /**
+     * Retorna todos indicadores possiveis para o grupo de carreira e representacao
+     * @summary Indicadores possiveis de carreira e representacao
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPartyIndicators(options?: RawAxiosRequestConfig): AxiosPromise<GetPartyIndicators200Response> {
+      return localVarFp.getPartyIndicators(options).then(request => request(axios, basePath));
+    },
+  };
+};
+
+/**
+ * IndicatorsApi - object-oriented interface
+ * @export
+ * @class IndicatorsApi
+ * @extends {BaseAPI}
+ */
+export class IndicatorsApi extends BaseAPI {
+  /**
+   * Avaliar a eficiência do financiamento de campanha em termos de conversão de recursos financeiros em votos
+   * @summary Taxa de Custo por Voto
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {number} [cargoId] cargo desejado
+   * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IndicatorsApi
+   */
+  public getFinanceIndicator13(
+    initialYear: number,
+    finalYear: number,
+    cargoId?: number,
+    unidadesEleitorais?: Array<string>,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return IndicatorsApiFp(this.configuration)
+      .getFinanceIndicator13(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Permite identificar se os candidatos pertencem predominantemente a classes econômicas mais altas ou se há uma diversidade econômica entre eles.É útil para analisar o impacto de fatores como classe social e ocupação profissional na representatividade política.Pode ser utilizado para avaliar a necessidade de medidas que promovam a diversidade no perfil dos candidatos.
+   * @summary Índice de Igualdade de Acesso a Recursos
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {number} [cargoId] cargo desejado
+   * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IndicatorsApi
+   */
+  public getFinanceIndicator14(
+    initialYear: number,
+    finalYear: number,
+    cargoId?: number,
+    unidadesEleitorais?: Array<string>,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return IndicatorsApiFp(this.configuration)
+      .getFinanceIndicator14(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Ajuda a identificar se os candidatos pertencem predominantemente a classes econômicas mais altas ou se há uma diversidade econômica entre eles
+   * @summary Média e Mediana de Patrimônio da Classe Política
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {number} [cargoId] cargo desejado
+   * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IndicatorsApi
+   */
+  public getFinanceIndicator16(
+    initialYear: number,
+    finalYear: number,
+    cargoId?: number,
+    unidadesEleitorais?: Array<string>,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return IndicatorsApiFp(this.configuration)
+      .getFinanceIndicator16(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Retorna todos indicadores possiveis para o grupo de financiamento de campanha
+   * @summary Indicadores possiveis de financiamento de campanha
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IndicatorsApi
+   */
+  public getFinanceIndicators(options?: RawAxiosRequestConfig) {
+    return IndicatorsApiFp(this.configuration)
+      .getFinanceIndicators(options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Leva em consideração todos os candidatos que se reapresentaram para a reeleição, tanto os derrotados, quanto os reeleitos que obtiveram êxitos no seu pleito
+   * @summary Indicadores Taxa de Renovação Líquida
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {number} [cargoId] cargo desejado
+   * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IndicatorsApi
+   */
+  public getPartyIndicator05(
+    initialYear: number,
+    finalYear: number,
+    cargoId?: number,
+    unidadesEleitorais?: Array<string>,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return IndicatorsApiFp(this.configuration)
+      .getPartyIndicator05(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Leva em consideração todos os candidatos que se reapresentaram para a reeleição, tanto os derrotados, quanto os reeleitos que obtiveram êxitos no seu pleito
+   * @summary Indicadores Taxa de Renovação Bruta
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {number} [cargoId] cargo desejado
+   * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IndicatorsApi
+   */
+  public getPartyIndicator06(
+    initialYear: number,
+    finalYear: number,
+    cargoId?: number,
+    unidadesEleitorais?: Array<string>,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return IndicatorsApiFp(this.configuration)
+      .getPartyIndicator06(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   * É um indicador importante para mensurar a desigualdade de gênero. Permite comparações entre cargos, regiões e esferas de governo. Pode ser usado para avaliar a magnitude da desigualdade de gênero em diferentes contextos.
+   * @summary Índice de Paridade Eleitoral de Gênero
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {number} [cargoId] cargo desejado
+   * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IndicatorsApi
+   */
+  public getPartyIndicator08(
+    initialYear: number,
+    finalYear: number,
+    cargoId?: number,
+    unidadesEleitorais?: Array<string>,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return IndicatorsApiFp(this.configuration)
+      .getPartyIndicator08(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Retorna todos indicadores possiveis para o grupo de carreira e representacao
+   * @summary Indicadores possiveis de carreira e representacao
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IndicatorsApi
+   */
+  public getPartyIndicators(options?: RawAxiosRequestConfig) {
+    return IndicatorsApiFp(this.configuration)
+      .getPartyIndicators(options)
       .then(request => request(this.axios, this.basePath));
   }
 }

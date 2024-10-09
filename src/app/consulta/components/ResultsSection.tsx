@@ -9,7 +9,7 @@ import { DonutChartCard } from '@components/charts/DonutChartCard';
 export const ResultsSection = ({ results }: { results: any[] }) => {
   return (
     <>
-      <div className="bg-white rounded-xl shadow-xl p-4">
+      <div className="bg-white rounded-xl shadow-xl p-8">
         <Heading headingLevel={2} size="H1" className="font-bold">
           Sitamet massa lobortis celeris ue vulputate mollis
         </Heading>

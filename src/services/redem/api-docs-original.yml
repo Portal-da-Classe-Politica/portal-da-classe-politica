@@ -1470,6 +1470,7 @@ paths:
                     type: array
                     items:
                       type: object
+
   /noauth/indicadores/partidarios:
     get:
       operationId: '22' # New operation ID
@@ -1645,6 +1646,7 @@ paths:
                     type: array
                     items:
                       type: object
+
   /noauth/indicadores/financeiros:
     get:
       operationId: '26' # New operation ID
@@ -1670,7 +1672,6 @@ paths:
                     type: array
                     items:
                       type: object
-
   /noauth/indicadores/financeiros/13:
     get:
       operationId: '27' # New operation ID
@@ -1821,4 +1822,3 @@ paths:
                     type: array
                     items:
                       type: object
-  #  /noauth/indicadores/financeiros/15:

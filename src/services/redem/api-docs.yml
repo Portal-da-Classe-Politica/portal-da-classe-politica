@@ -1552,3 +1552,369 @@ paths:
                     type: array
                     items:
                       type: object
+
+  # Indicators - Party
+  /noauth/indicadores/partidarios:
+    get:
+      operationId: 'getPartyIndicators'
+      tags:
+        - indicators
+      summary: Indicadores possiveis de carreira e representacao
+      description: Retorna todos indicadores possiveis para o grupo de carreira e representacao
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os indicadores possiveis.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Indicadores encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+  /noauth/indicadores/partidarios/5:
+    get:
+      operationId: 'getPartyIndicator05'
+      tags:
+        - indicators
+      summary: Indicadores Taxa de Renovação Líquida
+      description: Leva em consideração todos os candidatos que se reapresentaram para a reeleição, tanto os derrotados, quanto os reeleitos que obtiveram êxitos no seu pleito
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: cargoId
+          schema:
+            type: integer
+          required: false
+          description: cargo desejado
+        - in: query
+          name: unidadesEleitorais
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Ids das unidades eleitorais desejadas
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os indicadores possiveis.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Indicadores encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+  /noauth/indicadores/partidarios/6:
+    get:
+      operationId: 'getPartyIndicator06'
+      tags:
+        - indicators
+      summary: Indicadores Taxa de Renovação Bruta
+      description: Leva em consideração todos os candidatos que se reapresentaram para a reeleição, tanto os derrotados, quanto os reeleitos que obtiveram êxitos no seu pleito
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: cargoId
+          schema:
+            type: integer
+          required: false
+          description: cargo desejado
+        - in: query
+          name: unidadesEleitorais
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Ids das unidades eleitorais desejadas
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os indicadores possiveis.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Indicadores encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+  /noauth/indicadores/partidarios/8:
+    get:
+      operationId: 'getPartyIndicator08'
+      tags:
+        - indicators
+      summary: Índice de Paridade Eleitoral de Gênero
+      description: 'É um indicador importante para mensurar a desigualdade de gênero. Permite comparações entre cargos, regiões e esferas de governo. Pode ser usado para avaliar a magnitude da desigualdade de gênero em diferentes contextos.'
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: cargoId
+          schema:
+            type: integer
+          required: false
+          description: cargo desejado
+        - in: query
+          name: unidadesEleitorais
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Ids das unidades eleitorais desejadas
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os indicadores possiveis.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Indicadores encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+
+  # Indicators - Fianance
+  /noauth/indicadores/financeiros:
+    get:
+      operationId: 'getFinanceIndicators'
+      tags:
+        - indicators
+      summary: Indicadores possiveis de financiamento de campanha
+      description: Retorna todos indicadores possiveis para o grupo de financiamento de campanha
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os indicadores possiveis.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Indicadores encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+  /noauth/indicadores/financeiros/13:
+    get:
+      operationId: 'getFinanceIndicator13'
+      tags:
+        - indicators
+      summary: Taxa de Custo por Voto
+      description: Avaliar a eficiência do financiamento de campanha em termos de conversão de recursos financeiros em votos
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: cargoId
+          schema:
+            type: integer
+          required: false
+          description: cargo desejado
+        - in: query
+          name: unidadesEleitorais
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Ids das unidades eleitorais desejadas
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os indicadores possiveis.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Indicadores encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+  /noauth/indicadores/financeiros/14:
+    get:
+      operationId: 'getFinanceIndicator14'
+      tags:
+        - indicators
+      summary: Índice de Igualdade de Acesso a Recursos
+      description: 'Permite identificar se os candidatos pertencem predominantemente a classes econômicas mais altas ou se há uma diversidade econômica entre eles.É útil para analisar o impacto de fatores como classe social e ocupação profissional na representatividade política.Pode ser utilizado para avaliar a necessidade de medidas que promovam a diversidade no perfil dos candidatos.'
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: cargoId
+          schema:
+            type: integer
+          required: false
+          description: cargo desejado
+        - in: query
+          name: unidadesEleitorais
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Ids das unidades eleitorais desejadas
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os indicadores possiveis.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Indicadores encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+  /noauth/indicadores/financeiros/16:
+    get:
+      operationId: 'getFinanceIndicator16'
+      tags:
+        - indicators
+      summary: Média e Mediana de Patrimônio da Classe Política
+      description: Ajuda a identificar se os candidatos pertencem predominantemente a classes econômicas mais altas ou se há uma diversidade econômica entre eles
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: cargoId
+          schema:
+            type: integer
+          required: false
+          description: cargo desejado
+        - in: query
+          name: unidadesEleitorais
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Ids das unidades eleitorais desejadas
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os indicadores possiveis.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Indicadores encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
