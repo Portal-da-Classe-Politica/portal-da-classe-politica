@@ -1,6 +1,7 @@
+import { NextRequest, NextResponse } from 'next/server';
+
 import { ConsultService } from '@services/consult/ConsultService';
 import { logError } from '@utils/logError';
-import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
   try {
