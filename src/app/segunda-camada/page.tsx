@@ -1,10 +1,14 @@
 'use client';
 
-import { Container, Heading, Text } from '@base';
+import { Container, Heading, Loader, Text } from '@base';
 import { Header } from '@components/sections/Header';
 import { GetInContact } from '@components/sections/GetInContact';
 import { SecondLayerChart } from '@components/charts/SecondLayerChart';
 import DesignSemiCircle from '@components/DesignSemiCircle';
+import { AllCharts } from './components/AllCharts';
+import { useCallback, useEffect, useState } from 'react';
+import { consultSearchParam } from '@routes';
+import { Filter } from '../types';
 
 const dataSeries = {
   electoral: {
@@ -61,7 +65,90 @@ const dataSeries = {
   },
 } as Record<string, any>;
 
+type filterObjectType = {
+  years: {
+    type: string;
+    values: number[];
+  };
+  dimensions: Filter;
+  sideFilters: Filter[];
+};
+
+const emptyFilter: filterObjectType = {
+  years: {
+    type: '',
+    values: [],
+  },
+  dimensions: {
+    type: '',
+    title: '',
+    key: '',
+    values: [],
+  },
+  sideFilters: [],
+};
+
 const Page = () => {
+  const [dataFilter, setDataFilter] = useState<filterObjectType>(emptyFilter);
+  const [selectedOptions, setSelectedOptions] = useState<any>({});
+  const [loadingSideFilters, setLoadingSideFilters] = useState(true);
+  const [consultType, setConsultType] = useState(
+    consultSearchParam['ElectionResult' as keyof typeof consultSearchParam] ||
+      consultSearchParam.CandidateProfile,
+  );
+
+  // const [results, setResults] = useState([]);
+  const [loadingResults, setLoadingResults] = useState(false);
+
+  const loadFilters = useCallback(() => {
+    setLoadingSideFilters(true);
+
+    fetch(`/api/consult/filters`)
+      .then(res => res.json())
+      .then(data => {
+        setDataFilter(data);
+        setLoadingSideFilters(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    loadFilters();
+  }, [loadFilters]);
+
+  const handleFilterChange = (filterName: any, value: any) => {
+    setSelectedOptions((prevFilters: any) => {
+      return {
+        ...prevFilters,
+        [filterName]: value,
+      };
+    });
+  };
+
+  const onTabChange = (value: string) => {
+    setConsultType(value);
+  };
+
+  const sendConsult = () => {
+    if (loadingResults) {
+      return;
+    }
+
+    setLoadingResults(true);
+
+    const search = Object.entries(selectedOptions).reduce((r, [key, value]: [string, any]) => {
+      const _value = Array.isArray(value) ? value.map(v => v.value).join(',') : value;
+      const param = typeof _value === 'object' ? _value.value : _value;
+      return `${r}&${key}=${param}`;
+    }, `type=${consultType}`);
+
+    fetch(`/api/consult?${search}`)
+      .then(res => res.json())
+      .then(data => {
+        console.log('data consult', data);
+        // setResults(data);
+      })
+      .finally(() => setLoadingResults(false));
+  };
   return (
     <main className="font-montserrat">
       <section className="pb-12 pt-4 relative bg-orange overflow-hidden">
@@ -83,58 +170,38 @@ const Page = () => {
 
       <section className="mt-20 mb-20">
         <Container>
-          <SecondLayerChart
-            title="Eleitorais & Partidários"
-            description="São quatro instrumentos úteis para analisar e compreender a dinâmica das eleições e do sistema eleitoral."
-            seriesTitle="Adicione indicadores ao gráfico:"
-            seriesDescription="Os indicadores podem ser visualizados simultaneamente."
-            chartTitle="Dimensão eleitoral"
-            series={dataSeries}
+          <AllCharts
+            loading={loadingSideFilters}
+            initialConsult={'ElectionResult'}
+            years={dataFilter.years}
+            onConsult={sendConsult}
+            dimensions={dataFilter?.dimensions}
+            handleFilterChange={handleFilterChange}
+            selectedOption={selectedOptions}
+            onTabChange={value => onTabChange(value)}
           />
 
           <hr className="border-t-[1px] border-orange mt-16" />
         </Container>
-      </section>
-
-      <section className="mt-20 mb-20">
-        <Container>
-          <SecondLayerChart
-            title="Carreira & Representação Política"
-            description="São quatro instrumentos úteis para analisar e compreender as aspirações e estratégias de carreira dos candidatos."
-            seriesTitle="Adicione indicadores ao gráfico:"
-            seriesDescription="Os indicadores podem ser visualizados simultaneamente."
-            chartTitle="Dimensão de ambição política"
-            series={dataSeries}
-          />
-          <hr className="border-t-[1px] border-orange mt-16" />
-        </Container>
-      </section>
-
-      <section className="mt-20 mb-20">
-        <Container>
-          <SecondLayerChart
-            title="Espacial de Votos"
-            description="São quatro instrumentos úteis para analisar e compreender a distribuição espacial dos votos e a competitividade regional."
-            seriesTitle="Adicione indicadores ao gráfico:"
-            seriesDescription="Os indicadores podem ser visualizados simultaneamente."
-            chartTitle="Dimensão geográfica"
-            series={dataSeries}
-          />
-
-          <hr className="border-t-[1px] border-orange mt-16" />
-        </Container>
-      </section>
-
-      <section className="mt-20 mb-20">
-        <Container>
-          <SecondLayerChart
-            title="Econômicos & Financeiros"
-            description="São quatro instrumentos úteis para analisar e compreender as dinâmicas econômica e financeira das campanhas eleitorais."
-            seriesTitle="Adicione indicadores ao gráfico:"
-            seriesDescription="Os indicadores podem ser visualizados simultaneamente."
-            chartTitle="Dimensão de financiamento eleitoral"
-            series={dataSeries}
-          />
+        <Container className="pt-16">
+          <div className="flex flex-col md:flex-row">
+            <div className="flex flex-col w-full ">
+              {loadingResults ? (
+                <div className="flex flex-1 justify-center items-center">
+                  <Loader variant="Sync" color="#EB582F" />
+                </div>
+              ) : (
+                <SecondLayerChart
+                  title="Eleitorais & Partidários"
+                  description="São quatro instrumentos úteis para analisar e compreender a dinâmica das eleições e do sistema eleitoral."
+                  seriesTitle="Adicione indicadores ao gráfico:"
+                  seriesDescription="Os indicadores podem ser visualizados simultaneamente."
+                  chartTitle="Dimensão eleitoral"
+                  series={dataSeries}
+                />
+              )}
+            </div>
+          </div>
         </Container>
       </section>
 

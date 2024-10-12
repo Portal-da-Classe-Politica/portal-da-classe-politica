@@ -36,7 +36,7 @@ export const DatePicker = ({
   }, [startYearAPI, endYearAPI]);
 
   return (
-    <div className="bg-[#EDEDED] py-1 px-2 rounded-md flex  justify-center text-orange">
+    <div className="bg-[#EDEDED] py-2 px-3 rounded-md flex  justify-center text-orange">
       <div className="flex justify-center items-center">
         <BoxIcon icon="Calendar" size={8} iconSize="xl" className="bg-white mr-2 shadow-xl" />
       </div>
