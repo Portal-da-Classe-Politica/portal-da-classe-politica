@@ -100,7 +100,7 @@ const FilterComponent = ({
   loading,
   description,
   longDescription,
-  // category,
+  category,
   onConsult = () => {},
   filtersData,
   handleFilterChange,
@@ -109,7 +109,7 @@ const FilterComponent = ({
   loading: boolean;
   description: string;
   longDescription?: string;
-  // category: string;
+  category: string;
   onConsult: (_: any) => void;
   handleFilterChange: (_a: any, _b: any) => void;
   filtersData: {
@@ -124,7 +124,7 @@ const FilterComponent = ({
   return (
     <div className="text-white w-full">
       <Text>{description}</Text>
-
+      <>{console.log(category)}</>
       <div className="flex flex-col xl:flex-row gap-8 mt-8 justify-between">
         <div className="flex flex-col md:flex-row gap-8">
           {loading ? (
