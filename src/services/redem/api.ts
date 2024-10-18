@@ -2416,7 +2416,7 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
       assertParamExists('getElectionsKpis', 'initialYear', initialYear);
       // verify required parameter 'finalYear' is not null or undefined
       assertParamExists('getElectionsKpis', 'finalYear', finalYear);
-      const localVarPath = `/noauth/elections/kpis`;
+      const localVarPath = `/noauth/cruzamentos/elections/kpis`;
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
       let baseOptions;
@@ -2540,7 +2540,7 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
      * @summary Cruzamentos financiamento de campanhas por municpio ou estado
      * @param {number} initialYear Ano inicial do intervalo.
      * @param {number} finalYear Ano final do intervalo.
-     * @param {Array<string>} [uF] só envie caso deseje agregar por municipio, caso for enviar deve ser a string da UF. Exemplo RS.
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
@@ -2552,7 +2552,7 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
     getFinanceByLocation: async (
       initialYear: number,
       finalYear: number,
-      uF?: Array<string>,
+      unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
@@ -2584,8 +2584,8 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
         localVarQueryParameter['finalYear'] = finalYear;
       }
 
-      if (uF) {
-        localVarQueryParameter['UF'] = uF;
+      if (unidadesEleitoraisIds) {
+        localVarQueryParameter['unidadesEleitoraisIds'] = unidadesEleitoraisIds;
       }
 
       if (isElected !== undefined) {
@@ -3278,7 +3278,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
      * @summary Cruzamentos financiamento de campanhas por municpio ou estado
      * @param {number} initialYear Ano inicial do intervalo.
      * @param {number} finalYear Ano final do intervalo.
-     * @param {Array<string>} [uF] só envie caso deseje agregar por municipio, caso for enviar deve ser a string da UF. Exemplo RS.
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
@@ -3290,7 +3290,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
     async getFinanceByLocation(
       initialYear: number,
       finalYear: number,
-      uF?: Array<string>,
+      unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
@@ -3301,7 +3301,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
       const localVarAxiosArgs = await localVarAxiosParamCreator.getFinanceByLocation(
         initialYear,
         finalYear,
-        uF,
+        unidadesEleitoraisIds,
         isElected,
         partidos,
         categoriasOcupacoes,
@@ -3776,7 +3776,7 @@ export const ConsultApiFactory = function (
      * @summary Cruzamentos financiamento de campanhas por municpio ou estado
      * @param {number} initialYear Ano inicial do intervalo.
      * @param {number} finalYear Ano final do intervalo.
-     * @param {Array<string>} [uF] só envie caso deseje agregar por municipio, caso for enviar deve ser a string da UF. Exemplo RS.
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
@@ -3788,7 +3788,7 @@ export const ConsultApiFactory = function (
     getFinanceByLocation(
       initialYear: number,
       finalYear: number,
-      uF?: Array<string>,
+      unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
@@ -3800,7 +3800,7 @@ export const ConsultApiFactory = function (
         .getFinanceByLocation(
           initialYear,
           finalYear,
-          uF,
+          unidadesEleitoraisIds,
           isElected,
           partidos,
           categoriasOcupacoes,
@@ -4254,7 +4254,7 @@ export class ConsultApi extends BaseAPI {
    * @summary Cruzamentos financiamento de campanhas por municpio ou estado
    * @param {number} initialYear Ano inicial do intervalo.
    * @param {number} finalYear Ano final do intervalo.
-   * @param {Array<string>} [uF] só envie caso deseje agregar por municipio, caso for enviar deve ser a string da UF. Exemplo RS.
+   * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
    * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
    * @param {Array<string>} [partidos] IDs dos partidos
    * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
@@ -4267,7 +4267,7 @@ export class ConsultApi extends BaseAPI {
   public getFinanceByLocation(
     initialYear: number,
     finalYear: number,
-    uF?: Array<string>,
+    unidadesEleitoraisIds?: Array<string>,
     isElected?: number,
     partidos?: Array<string>,
     categoriasOcupacoes?: Array<string>,
@@ -4279,7 +4279,7 @@ export class ConsultApi extends BaseAPI {
       .getFinanceByLocation(
         initialYear,
         finalYear,
-        uF,
+        unidadesEleitoraisIds,
         isElected,
         partidos,
         categoriasOcupacoes,

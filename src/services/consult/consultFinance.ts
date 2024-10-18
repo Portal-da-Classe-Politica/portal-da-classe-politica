@@ -1,6 +1,7 @@
 import { logError } from '@utils/logError';
 import { redem } from '../redem';
 import { AxiosError } from 'axios';
+import { parseByLocationResult } from './parseByLocationResult';
 
 export const consultFinance = async ({
   initialYear = 2020,
@@ -34,15 +35,24 @@ export const consultFinance = async ({
 
   try {
     const responses = await Promise.allSettled([
-      redem.consult.getFinanceByLocation(
-        Number(initialYear),
-        Number(finalYear),
-        ['PR'], // TODO - Waiting Backend Update
-        isElected,
-        partidos,
-        categoriasOcupacoes,
-        cargosIds,
-        dimension,
+      parseByLocationResult(
+        () =>
+          redem.consult.getFinanceByLocation(
+            Number(initialYear),
+            Number(finalYear),
+            unidadesEleitoraisIds,
+            isElected,
+            partidos,
+            categoriasOcupacoes,
+            cargosIds,
+            dimension,
+          ),
+        'Distribuição Financiamento',
+        {
+          sigla_unidade_federacao: 'uf',
+          total_doacoes: 'value',
+        },
+        'Total de Doações',
       ),
       redem.consult.getFinanceByParty(
         Number(initialYear),

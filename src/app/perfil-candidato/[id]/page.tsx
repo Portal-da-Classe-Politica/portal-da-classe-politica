@@ -5,7 +5,7 @@ import { ButtonStyled, Container, Heading, Icon, Text } from '@base';
 import { Header } from '@components/sections/Header';
 import { GetInContact } from '@components/sections/GetInContact';
 
-import { MapComponent } from '@components/map/MapComponent';
+import { LastElectionMap } from '@components/map/LastElectionMap';
 import { SpecialContents } from '@components/sections/SpecialContents';
 import CandidateProfile from '@components/cadidates/CandidateProfile';
 import { Divider } from '@components/Divider';
@@ -127,7 +127,7 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
               <Heading headingLevel={2} className="text-grayMix4 my-4">
                 Mapa da votação do 1º turno
               </Heading>
-              <MapComponent state={lastElectionState} candidateId={id} />
+              <LastElectionMap state={lastElectionState} candidateId={id} />
             </div>
           </Container>
         </section>

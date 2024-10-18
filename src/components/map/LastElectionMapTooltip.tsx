@@ -1,4 +1,4 @@
-export const Tooltip = ({ id, name, votes }: any) => {
+export const LastElectionMapTooltip = ({ id, name, votes }: any) => {
   return (
     <div className="min-w-[250px] flex flex-col bg-white rounded-xl shadow-lg p-4">
       <div className="flex gap-2">

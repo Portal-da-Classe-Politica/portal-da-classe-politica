@@ -1,6 +1,7 @@
 import { logError } from '@utils/logError';
 import { redem } from '../redem';
 import { AxiosError } from 'axios';
+import { parseByLocationResult } from './parseByLocationResult';
 
 export const consultElections = async ({
   initialYear = 2020,
@@ -34,15 +35,24 @@ export const consultElections = async ({
 
   try {
     const responses = await Promise.allSettled([
-      redem.consult.getElectionsByLocation(
-        Number(initialYear),
-        Number(finalYear),
-        dimension,
-        unidadesEleitoraisIds,
-        isElected,
-        partidos,
-        categoriasOcupacoes,
-        cargosIds,
+      parseByLocationResult(
+        () =>
+          redem.consult.getElectionsByLocation(
+            Number(initialYear),
+            Number(finalYear),
+            dimension,
+            unidadesEleitoraisIds,
+            isElected,
+            partidos,
+            categoriasOcupacoes,
+            cargosIds,
+          ),
+        'Distribuição Eleitoral',
+        {
+          sigla_unidade_federacao: 'uf',
+          mediana: 'value',
+        },
+        'Mediana',
       ),
       redem.consult.getElectionsTopCandidates(
         Number(initialYear),

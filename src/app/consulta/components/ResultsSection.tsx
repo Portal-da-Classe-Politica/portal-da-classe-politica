@@ -5,6 +5,7 @@ import { ButtonStyled } from '@base/buttons';
 import { Icon } from '@base/Icon';
 import { LineChartCard } from '@components/charts/LineChartCard';
 import { DonutChartCard } from '@components/charts/DonutChartCard';
+import { MapResultCard } from './MapResultCard';
 
 export const ResultsSection = ({ results }: { results: any[] }) => {
   return (
@@ -50,6 +51,17 @@ export const ResultsSection = ({ results }: { results: any[] }) => {
 
         const data = result.data;
         switch (data.type) {
+          case 'map': {
+            return (
+              <MapResultCard
+                key={idx}
+                className="mt-12"
+                title={data.title}
+                label={data.label}
+                series={data.series}
+              />
+            );
+          }
           case 'line': {
             return (
               <LineChartCard

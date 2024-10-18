@@ -1215,14 +1215,13 @@ paths:
           required: true
           description: Ano final do intervalo.
         - in: query
-          name: UF
+          name: unidadesEleitoraisIds
           schema:
             type: array
             items:
               type: string
           required: false
-          description: só envie caso deseje agregar por municipio, caso for enviar deve ser a string da UF. Exemplo RS.
-          example: 'RS'
+          description: IDs das unidades eleitorais desejadas.
         - in: query
           name: isElected
           schema:
@@ -1268,7 +1267,7 @@ paths:
                 type: object
 
   # Consult - Elections
-  /noauth/elections/kpis:
+  /noauth/cruzamentos/elections/kpis:
     get:
       operationId: 'getElectionsKpis'
       tags:
