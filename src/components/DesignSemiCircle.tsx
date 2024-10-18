@@ -28,7 +28,7 @@ const DesignSemiCircle = ({
   return (
     <>
       <div
-        className={`absolute felx flex-col w-[233px] -right-3 ${semiCircleVariant({ position })} hidden design:block`}
+        className={`absolute flex flex-col w-[233px] right-0 ${semiCircleVariant({ position })} hidden design:block`}
       >
         <div className="mb-5 ">
           <SemiCircle height={223} width={223} alt="" className={` ${semiCircleVariant({ theme })}`} />
