@@ -59,6 +59,7 @@ export const Select = ({
   };
 
   useEffect(() => {
+    console.log({ defaultValue });
     setSelectedOption(options.find(op => op.value === defaultValue));
   }, [options, defaultValue]);
 

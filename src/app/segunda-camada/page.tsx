@@ -7,8 +7,6 @@ import { SecondLayerChart } from '@components/charts/SecondLayerChart';
 import DesignSemiCircle from '@components/DesignSemiCircle';
 import { AllCharts } from './components/AllCharts';
 import { useCallback, useEffect, useState } from 'react';
-import { consultSearchParam } from '@routes';
-import { Filter } from '../types';
 
 const dataSeries = {
   electoral: {
@@ -66,113 +64,62 @@ const dataSeries = {
 } as Record<string, any>;
 
 type filterObjectType = {
-  years: {
-    type: string;
-    values: number[];
-  };
-  dimensions: Filter;
-  sideFilters: Filter[];
-};
-
-const emptyFilter: filterObjectType = {
-  years: {
-    type: '',
-    values: [],
-  },
-  dimensions: {
-    type: '',
-    title: '',
-    key: '',
-    values: [],
-  },
-  sideFilters: [],
+  years: number[];
+  ufs: string[];
 };
 
 const Page = () => {
-  const [dataFilter, setDataFilter] = useState<filterObjectType>(emptyFilter);
-  const [selectedOptions, setSelectedOptions] = useState<any>({});
-  const [loadingSideFilters, setLoadingSideFilters] = useState(true);
-  const [consultType, setConsultType] = useState(
-    consultSearchParam['ElectionResult' as keyof typeof consultSearchParam] ||
-      consultSearchParam.CandidateProfile,
-  );
+  const [staticFilter, setStaticFilter] = useState<filterObjectType>({
+    years: [],
+    ufs: [],
+  });
+  const [loadingStaticFilters, setLoadingStaticFilters] = useState(true);
 
-  // const [results, setResults] = useState([]);
+  const [indicatorFilters, setIndicatorFilters] = useState({ indicators: [], jobs: [] });
+  const [loadingIndicatorFilters, setLoadingIndicatorFilters] = useState(true);
+
   const [loadingResults, setLoadingResults] = useState(false);
 
-  const loadFilters = useCallback(() => {
-    setLoadingSideFilters(true);
+  const loadStaticFilters = useCallback(async () => {
+    setLoadingStaticFilters(true);
 
-    fetch(`/api/consult/filters`)
-      .then(res => res.json())
-      .then(data => {
-        setDataFilter(data);
-        setLoadingSideFilters(false);
-      });
+    const data = await fetch(`/api/consult/filters`).then(res => res.json());
+    const ufs = data.sideFilters.find((filter: any) => filter.title === 'Estado')?.values;
+    setStaticFilter({ years: data.years.values, ufs });
+
+    setLoadingStaticFilters(false);
   }, []);
 
   useEffect(() => {
-    loadFilters();
-  }, [loadFilters]);
+    loadStaticFilters();
+    fetch(`/api/indicators/party`)
+      .then(res => res.json())
+      .then(data => {
+        setIndicatorFilters(data);
+      })
+      .finally(() => setLoadingIndicatorFilters(false));
+  }, [loadStaticFilters]);
 
-  const handleFilterChange = (filterName: any, value: any) => {
-    console.log('allala', filterName, value);
-    setSelectedOptions((prevFilters: any) => {
-      return {
-        ...prevFilters,
-        [filterName]: value,
-      };
-    });
+  const onTabChange = (tab: any) => {
+    setLoadingIndicatorFilters(true);
+    fetch(tab.fetchFilter)
+      .then(res => res.json())
+      .then(data => {
+        setIndicatorFilters(data);
+      })
+      .finally(() => setLoadingIndicatorFilters(false));
   };
 
-  const onTabChange = (value: string) => {
-    setConsultType(value);
-  };
-
-  const getAllUfs = () => {
-    const allUfs = dataFilter.sideFilters.find(filter => filter.title === 'Estado')?.values;
-    return allUfs;
-  };
-
-  const sendConsult = () => {
+  const onConsult = (consultFilters: any) => {
     if (loadingResults) {
       return;
     }
-    fetch('/api/partidario')
-      .then(res => res.json())
-      .then(resp => {
-        let modifiedvalue: any = resp.data.indicators.map((indicator: any) => ({
-          label: indicator.nome,
-          value: indicator.id,
-          cargos: indicator.cargos,
-        }));
-
-        setDataFilter({
-          ...dataFilter,
-          dimensions: { key: 'partidarios', title: 'partidarios', type: 'select', values: modifiedvalue },
-        });
-        console.log('vai dar boa', resp);
-        console.log('vai dar boa2', dataFilter);
-
-        console.log('respo', modifiedvalue);
-      });
 
     setLoadingResults(true);
-
-    const search = Object.entries(selectedOptions).reduce((r, [key, value]: [string, any]) => {
-      const _value = Array.isArray(value) ? value.map(v => v.value).join(',') : value;
-      const param = typeof _value === 'object' ? _value.value : _value;
-      return `${r}&${key}=${param}`;
-    }, `type=${consultType}`);
-
-    fetch(`/api/consult?${search}`)
-      .then(res => res.json())
-      .then(data => {
-        console.log('data consult', data);
-        // setResults(data);
-      })
-      .finally(() => setLoadingResults(false));
+    console.log(consultFilters);
+    setLoadingResults(false);
   };
+
   return (
     <main className="font-montserrat">
       <section className="pb-12 pt-4 relative bg-orange overflow-hidden">
@@ -195,15 +142,13 @@ const Page = () => {
       <section className="mt-20 mb-20">
         <Container>
           <AllCharts
-            loading={loadingSideFilters}
-            initialConsult={'ElectionResult'}
-            years={dataFilter.years}
-            onConsult={sendConsult}
-            dimensions={dataFilter?.dimensions}
-            handleFilterChange={handleFilterChange}
-            selectedOption={selectedOptions}
+            loading={loadingStaticFilters || loadingIndicatorFilters}
+            years={staticFilter.years}
+            ufs={staticFilter?.ufs}
+            indicators={indicatorFilters.indicators}
+            jobs={indicatorFilters.jobs}
+            onConsult={onConsult}
             onTabChange={value => onTabChange(value)}
-            ufs={getAllUfs()}
           />
 
           <hr className="border-t-[1px] border-orange mt-16" />

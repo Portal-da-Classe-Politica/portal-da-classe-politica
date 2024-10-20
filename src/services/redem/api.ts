@@ -1168,6 +1168,31 @@ export interface GetElectoralUnit500Response {
 /**
  *
  * @export
+ * @interface GetPartyIndicator05200Response
+ */
+export interface GetPartyIndicator05200Response {
+  /**
+   *
+   * @type {boolean}
+   * @memberof GetPartyIndicator05200Response
+   */
+  success?: boolean;
+  /**
+   *
+   * @type {string}
+   * @memberof GetPartyIndicator05200Response
+   */
+  message?: string;
+  /**
+   *
+   * @type {Array<object>}
+   * @memberof GetPartyIndicator05200Response
+   */
+  data?: Array<object>;
+}
+/**
+ *
+ * @export
  * @interface GetPartyIndicators200Response
  */
 export interface GetPartyIndicators200Response {
@@ -1185,10 +1210,10 @@ export interface GetPartyIndicators200Response {
   message?: string;
   /**
    *
-   * @type {Array<object>}
+   * @type {object}
    * @memberof GetPartyIndicators200Response
    */
-  data?: Array<object>;
+  data?: object;
 }
 /**
  *
@@ -5101,7 +5126,7 @@ export const IndicatorsApiFp = function (configuration?: Configuration) {
       cargoId?: number,
       unidadesEleitorais?: Array<string>,
       options?: RawAxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPartyIndicators200Response>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPartyIndicator05200Response>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.getFinanceIndicator13(
         initialYear,
         finalYear,
@@ -5136,7 +5161,7 @@ export const IndicatorsApiFp = function (configuration?: Configuration) {
       cargoId?: number,
       unidadesEleitorais?: Array<string>,
       options?: RawAxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPartyIndicators200Response>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPartyIndicator05200Response>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.getFinanceIndicator14(
         initialYear,
         finalYear,
@@ -5171,7 +5196,7 @@ export const IndicatorsApiFp = function (configuration?: Configuration) {
       cargoId?: number,
       unidadesEleitorais?: Array<string>,
       options?: RawAxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPartyIndicators200Response>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPartyIndicator05200Response>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.getFinanceIndicator16(
         initialYear,
         finalYear,
@@ -5198,7 +5223,7 @@ export const IndicatorsApiFp = function (configuration?: Configuration) {
      */
     async getFinanceIndicators(
       options?: RawAxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPartyIndicators200Response>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPartyIndicator05200Response>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.getFinanceIndicators(options);
       const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
       const localVarOperationServerBasePath =
@@ -5227,7 +5252,7 @@ export const IndicatorsApiFp = function (configuration?: Configuration) {
       cargoId?: number,
       unidadesEleitorais?: Array<string>,
       options?: RawAxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPartyIndicators200Response>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPartyIndicator05200Response>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.getPartyIndicator05(
         initialYear,
         finalYear,
@@ -5262,7 +5287,7 @@ export const IndicatorsApiFp = function (configuration?: Configuration) {
       cargoId?: number,
       unidadesEleitorais?: Array<string>,
       options?: RawAxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPartyIndicators200Response>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPartyIndicator05200Response>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.getPartyIndicator06(
         initialYear,
         finalYear,
@@ -5297,7 +5322,7 @@ export const IndicatorsApiFp = function (configuration?: Configuration) {
       cargoId?: number,
       unidadesEleitorais?: Array<string>,
       options?: RawAxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPartyIndicators200Response>> {
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPartyIndicator05200Response>> {
       const localVarAxiosArgs = await localVarAxiosParamCreator.getPartyIndicator08(
         initialYear,
         finalYear,
@@ -5367,7 +5392,7 @@ export const IndicatorsApiFactory = function (
       cargoId?: number,
       unidadesEleitorais?: Array<string>,
       options?: RawAxiosRequestConfig,
-    ): AxiosPromise<GetPartyIndicators200Response> {
+    ): AxiosPromise<GetPartyIndicator05200Response> {
       return localVarFp
         .getFinanceIndicator13(initialYear, finalYear, cargoId, unidadesEleitorais, options)
         .then(request => request(axios, basePath));
@@ -5388,7 +5413,7 @@ export const IndicatorsApiFactory = function (
       cargoId?: number,
       unidadesEleitorais?: Array<string>,
       options?: RawAxiosRequestConfig,
-    ): AxiosPromise<GetPartyIndicators200Response> {
+    ): AxiosPromise<GetPartyIndicator05200Response> {
       return localVarFp
         .getFinanceIndicator14(initialYear, finalYear, cargoId, unidadesEleitorais, options)
         .then(request => request(axios, basePath));
@@ -5409,7 +5434,7 @@ export const IndicatorsApiFactory = function (
       cargoId?: number,
       unidadesEleitorais?: Array<string>,
       options?: RawAxiosRequestConfig,
-    ): AxiosPromise<GetPartyIndicators200Response> {
+    ): AxiosPromise<GetPartyIndicator05200Response> {
       return localVarFp
         .getFinanceIndicator16(initialYear, finalYear, cargoId, unidadesEleitorais, options)
         .then(request => request(axios, basePath));
@@ -5420,7 +5445,7 @@ export const IndicatorsApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getFinanceIndicators(options?: RawAxiosRequestConfig): AxiosPromise<GetPartyIndicators200Response> {
+    getFinanceIndicators(options?: RawAxiosRequestConfig): AxiosPromise<GetPartyIndicator05200Response> {
       return localVarFp.getFinanceIndicators(options).then(request => request(axios, basePath));
     },
     /**
@@ -5439,7 +5464,7 @@ export const IndicatorsApiFactory = function (
       cargoId?: number,
       unidadesEleitorais?: Array<string>,
       options?: RawAxiosRequestConfig,
-    ): AxiosPromise<GetPartyIndicators200Response> {
+    ): AxiosPromise<GetPartyIndicator05200Response> {
       return localVarFp
         .getPartyIndicator05(initialYear, finalYear, cargoId, unidadesEleitorais, options)
         .then(request => request(axios, basePath));
@@ -5460,7 +5485,7 @@ export const IndicatorsApiFactory = function (
       cargoId?: number,
       unidadesEleitorais?: Array<string>,
       options?: RawAxiosRequestConfig,
-    ): AxiosPromise<GetPartyIndicators200Response> {
+    ): AxiosPromise<GetPartyIndicator05200Response> {
       return localVarFp
         .getPartyIndicator06(initialYear, finalYear, cargoId, unidadesEleitorais, options)
         .then(request => request(axios, basePath));
@@ -5481,7 +5506,7 @@ export const IndicatorsApiFactory = function (
       cargoId?: number,
       unidadesEleitorais?: Array<string>,
       options?: RawAxiosRequestConfig,
-    ): AxiosPromise<GetPartyIndicators200Response> {
+    ): AxiosPromise<GetPartyIndicator05200Response> {
       return localVarFp
         .getPartyIndicator08(initialYear, finalYear, cargoId, unidadesEleitorais, options)
         .then(request => request(axios, basePath));
