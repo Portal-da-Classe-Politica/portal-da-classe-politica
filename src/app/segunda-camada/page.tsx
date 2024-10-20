@@ -116,6 +116,7 @@ const Page = () => {
   }, [loadFilters]);
 
   const handleFilterChange = (filterName: any, value: any) => {
+    console.log('allala', filterName, value);
     setSelectedOptions((prevFilters: any) => {
       return {
         ...prevFilters,
@@ -128,10 +129,33 @@ const Page = () => {
     setConsultType(value);
   };
 
+  const getAllUfs = () => {
+    const allUfs = dataFilter.sideFilters.find(filter => filter.title === 'Estado')?.values;
+    return allUfs;
+  };
+
   const sendConsult = () => {
     if (loadingResults) {
       return;
     }
+    fetch('/api/partidario')
+      .then(res => res.json())
+      .then(resp => {
+        let modifiedvalue: any = resp.data.indicators.map((indicator: any) => ({
+          label: indicator.nome,
+          value: indicator.id,
+          cargos: indicator.cargos,
+        }));
+
+        setDataFilter({
+          ...dataFilter,
+          dimensions: { key: 'partidarios', title: 'partidarios', type: 'select', values: modifiedvalue },
+        });
+        console.log('vai dar boa', resp);
+        console.log('vai dar boa2', dataFilter);
+
+        console.log('respo', modifiedvalue);
+      });
 
     setLoadingResults(true);
 
@@ -179,6 +203,7 @@ const Page = () => {
             handleFilterChange={handleFilterChange}
             selectedOption={selectedOptions}
             onTabChange={value => onTabChange(value)}
+            ufs={getAllUfs()}
           />
 
           <hr className="border-t-[1px] border-orange mt-16" />

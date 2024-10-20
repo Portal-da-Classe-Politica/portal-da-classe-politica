@@ -3,15 +3,15 @@
 import React, { useState } from 'react';
 import { Text } from '../base';
 import { Heading } from '@base';
-import { Checkbox } from '../base/forms/Checkbox';
+// import { Checkbox } from '../base/forms/Checkbox';
 import { Chart } from './Chart';
 
 export interface ChartSectionProps {
   title: string;
   description: string;
   chartTitle: string;
-  seriesTitle: string;
-  seriesDescription: string;
+  seriesTitle?: string;
+  seriesDescription?: string;
   series: Record<
     string,
     {
@@ -28,17 +28,17 @@ export const SecondLayerChart = ({
   description,
   chartTitle,
   series,
-  seriesTitle,
-  seriesDescription,
+  // seriesTitle,
+  // seriesDescription,
 }: ChartSectionProps) => {
-  const [selectedSeries, setSelectedSeries] = useState({
+  const [selectedSeries /*setSelectedSeries*/] = useState({
     electoral: true,
     parliamentary: true,
   } as Record<string, boolean>);
 
-  const toggleSeries = (checked: boolean, value: string) => {
-    setSelectedSeries(prev => ({ ...prev, [value]: checked }));
-  };
+  // const toggleSeries = (checked: boolean, value: string) => {
+  //   setSelectedSeries(prev => ({ ...prev, [value]: checked }));
+  // };
 
   const seriesToShow = Object.keys(selectedSeries)
     .filter((key: string) => selectedSeries[key])
@@ -54,7 +54,7 @@ export const SecondLayerChart = ({
       </div>
 
       <div className="flex flex-col-reverse md:flex-row mt-10 md:mt-16">
-        <div className="flex md:w-[30%] md:mr-8 max-w-[300px]">
+        {/* <div className="flex md:w-[30%] md:mr-8 max-w-[300px]">
           <div className="flex flex-col">
             <Text size="B1" className="font-bold">
               {seriesTitle}
@@ -74,7 +74,7 @@ export const SecondLayerChart = ({
               ))}
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div
           className={`flex flex-1 flex-col h-max-[657px] min-w-[70%] p-4 bg-white drop-shadow-lg rounded-lg mb-10 md:mb-0`}
