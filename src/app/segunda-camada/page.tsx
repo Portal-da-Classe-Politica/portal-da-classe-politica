@@ -5,7 +5,7 @@ import { Header } from '@components/sections/Header';
 import { GetInContact } from '@components/sections/GetInContact';
 import { SecondLayerChart } from '@components/charts/SecondLayerChart';
 import DesignSemiCircle from '@components/DesignSemiCircle';
-import { AllCharts } from './components/AllCharts';
+import { SecondLayerFilter } from './components/SecondLayerFilter';
 import { useCallback, useEffect, useState } from 'react';
 
 const dataSeries = {
@@ -141,7 +141,7 @@ const Page = () => {
 
       <section className="mt-20 mb-20">
         <Container>
-          <AllCharts
+          <SecondLayerFilter
             loading={loadingStaticFilters || loadingIndicatorFilters}
             years={staticFilter.years}
             ufs={staticFilter?.ufs}

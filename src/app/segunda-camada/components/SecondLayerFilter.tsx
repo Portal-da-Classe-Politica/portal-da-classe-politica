@@ -9,7 +9,6 @@ import { consultSearchParam } from '@routes';
 import { useState } from 'react';
 
 interface FilterProps {
-  loading: boolean;
   onConsult: (_filters: any) => void;
   filters: SecondLayerFilters;
 }
@@ -29,48 +28,44 @@ interface SecondLayerFilters {
   >;
 }
 
-const FilterCandidateProfile = ({ loading, onConsult, filters }: FilterProps) => {
+const FilterCandidateProfile = ({ onConsult, filters }: FilterProps) => {
   return (
     <FilterComponent
       description="São quatro instrumentos úteis para analisar e compreender a dinâmica das eleições e do sistema eleitoral."
       category="Perfil dos Candidatos"
-      loading={loading}
       onConsult={onConsult}
       filters={filters}
     />
   );
 };
 
-const FilterElectionResult = ({ loading, onConsult, filters }: FilterProps) => {
+const FilterElectionResult = ({ onConsult, filters }: FilterProps) => {
   return (
     <FilterComponent
       description="São quatro instrumentos úteis para analisar e compreender as aspirações e estratégias de carreira dos candidatos."
       category="Resultados das Eleições"
-      loading={loading}
       onConsult={onConsult}
       filters={filters}
     />
   );
 };
 
-const FilterVote = ({ loading, onConsult, filters }: FilterProps) => {
+const FilterVote = ({ onConsult, filters }: FilterProps) => {
   return (
     <FilterComponent
       description="São quatro instrumentos úteis para analisar e compreender a distribuição espacial dos votos e a competitividade regional."
       category="Financiamento de Campanha"
-      loading={loading}
       onConsult={onConsult}
       filters={filters}
     />
   );
 };
 
-const FilterFinancing = ({ loading, onConsult, filters }: FilterProps) => {
+const FilterFinancing = ({ onConsult, filters }: FilterProps) => {
   return (
     <FilterComponent
       description="São quatro instrumentos úteis para analisar e compreender as dinâmicas econômica e financeira das campanhas eleitorais."
       category="Financiamento de Campanha"
-      loading={loading}
       onConsult={onConsult}
       filters={filters}
     />
@@ -81,14 +76,12 @@ const FilterComponent = ({
   description,
   longDescription = '',
   category = '',
-  loading,
   onConsult,
   filters,
 }: {
   description: string;
   longDescription?: string;
   category?: string;
-  loading: boolean;
   onConsult: (_filters: any) => void;
   filters: SecondLayerFilters;
 }) => {
@@ -106,13 +99,11 @@ const FilterComponent = ({
   };
 
   const onJobChange = (v: any) => {
-    console.log({ job: v });
     setJob(v);
     setUf('');
   };
 
   const onUfChange = (v: any) => {
-    console.log({ uf: v });
     setUf(v);
   };
 
@@ -120,75 +111,82 @@ const FilterComponent = ({
     onConsult({ indicator, job, uf, finalYear, initialYear });
   };
 
+  const getSelectedJob = () => {
+    return filters.jobs[indicator]?.find(j => j.value === job);
+  };
+
+  console.log({ indicator, job, uf, finalYear, initialYear });
   return (
-    <div className="text-white w-full">
+    <div className="text-white w-full min-h-[220px]">
       <Text>{description}</Text>
       <Text>{category}</Text>
-      <div className="flex flex-col xl:flex-row gap-8 mt-8 justify-between">
-        <div className="flex flex-col md:flex-row gap-8 flex-wrap">
-          {loading ? (
-            <div className="flex flex-1">
-              <Loader />
-            </div>
-          ) : (
-            <>
-              <div className="grow">
-                <Select
-                  options={filters.indicators}
-                  defaultValue={indicator}
-                  placeholder="Sem cruzamento"
-                  className="inline"
-                  buttonProps={{ style: 'fillGray', className: 'px-2 w-full' }}
-                  prefixComponent={
-                    <>
-                      <BoxIcon
-                        icon="Table"
-                        size={6}
-                        iconSize="sm"
-                        className="bg-white text-orange drop-shadow-md rounded-md mr-2"
-                      />
-                      <Text className="font-normal border-black border-r-2 pr-2 mr-2" textType="span">
-                        Indicador
-                      </Text>
-                    </>
-                  }
-                  suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
-                  onSelect={onIndicatorChange}
-                />
-              </div>
-
-              {indicator && filters.jobs[indicator] && (
-                <div className="grow">
-                  <Select
-                    options={filters.jobs[indicator]}
-                    defaultValue={job}
-                    placeholder="Sem cargo"
-                    className="inline"
-                    buttonProps={{ style: 'fillGray', className: 'px-2 w-full' }}
-                    prefixComponent={
-                      <>
-                        <BoxIcon
-                          icon="Table"
-                          size={6}
-                          iconSize="sm"
-                          className="bg-white text-orange drop-shadow-md rounded-md mr-2"
-                        />
-                        <Text className="font-normal border-black border-r-2 pr-2 mr-2" textType="span">
-                          Cargo
-                        </Text>
-                      </>
-                    }
-                    suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
-                    onSelect={onJobChange}
+      <div className="flex gap-4 mt-8 justify-between">
+        <div className="flex flex-1 flex-col gap-4">
+          <div className="flex gap-4">
+            <Select
+              options={filters.indicators}
+              defaultValue={indicator}
+              placeholder="Sem cruzamento"
+              className="inline grow"
+              buttonProps={{ style: 'fillGray', className: 'px-2 w-full' }}
+              prefixComponent={
+                <>
+                  <BoxIcon
+                    icon="Table"
+                    size={6}
+                    iconSize="sm"
+                    className="bg-white text-orange drop-shadow-md rounded-md mr-2"
                   />
-                </div>
-              )}
+                  <Text className="font-normal border-black border-r-2 pr-2 mr-2" textType="span">
+                    Indicador
+                  </Text>
+                </>
+              }
+              suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
+              onSelect={onIndicatorChange}
+            />
 
+            <DatePicker
+              optionsValue={filters.years}
+              onSelectStart={start => setInitialYear(Number(start))}
+              onSelectEnd={end => setFinalYear(Number(end))}
+              startYearAPI={initialYear}
+              endYearAPI={finalYear}
+            />
+          </div>
+
+          <div className="flex gap-4">
+            {indicator && filters.jobs[indicator] && (
+              <Select
+                options={filters.jobs[indicator]}
+                defaultValue={job}
+                placeholder="Sem cargo"
+                className="inline w-[40%] min-w-[50px]"
+                buttonProps={{ style: 'fillGray', className: 'px-2 w-full' }}
+                prefixComponent={
+                  <>
+                    <BoxIcon
+                      icon="Table"
+                      size={6}
+                      iconSize="sm"
+                      className="bg-white text-orange drop-shadow-md rounded-md mr-2"
+                    />
+                    <Text className="font-normal border-black border-r-2 pr-2 mr-2" textType="span">
+                      Cargo
+                    </Text>
+                  </>
+                }
+                suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
+                onSelect={onJobChange}
+              />
+            )}
+
+            {(getSelectedJob()?.filterByUf || getSelectedJob()?.filterByCity) && (
               <Select
                 options={filters.ufs}
                 defaultValue={uf}
                 placeholder="Selecione estado"
-                className="inline"
+                className="inline w-[40%] min-w-[50px]"
                 buttonProps={{ style: 'fillGray', className: 'px-2 w-full' }}
                 prefixComponent={
                   <>
@@ -206,22 +204,12 @@ const FilterComponent = ({
                 suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
                 onSelect={onUfChange}
               />
+            )}
+          </div>
 
-              <div className="grow md:self-center">
-                <DatePicker
-                  optionsValue={filters.years}
-                  onSelectStart={start => setInitialYear(Number(start))}
-                  onSelectEnd={end => setFinalYear(Number(end))}
-                  startYearAPI={initialYear}
-                  endYearAPI={finalYear}
-                />
-              </div>
-
-              <ButtonStyled style="fillBlack" size="small" onClick={onSubmit}>
-                <Text>Gerar Cruzamento</Text>
-              </ButtonStyled>
-            </>
-          )}
+          <ButtonStyled style="fillBlack" size="small" onClick={onSubmit}>
+            <Text>Gerar Cruzamento</Text>
+          </ButtonStyled>
         </div>
       </div>
 
@@ -230,7 +218,7 @@ const FilterComponent = ({
   );
 };
 
-export const AllCharts = ({
+export const SecondLayerFilter = ({
   initialConsult = 'Eleitorais & Partidários',
   years,
   ufs,
@@ -286,12 +274,15 @@ export const AllCharts = ({
         </div>
       ))}
       contents={tabs.map(({ value, Comp }) => (
-        <Comp
-          key={value}
-          loading={loading}
-          onConsult={onConsult}
-          filters={{ years, indicators, jobs, ufs }}
-        />
+        <div key={value} className="text-white w-full">
+          {loading ? (
+            <div className="flex flex-1 min-h-[220px]">
+              <Loader />
+            </div>
+          ) : (
+            <Comp onConsult={onConsult} filters={{ years, indicators, jobs, ufs }} />
+          )}
+        </div>
       ))}
       unSelectedClassName="!text-black"
       onTabChange={idx => onTabChange(tabs[idx])}
