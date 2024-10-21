@@ -205,6 +205,31 @@ const FilterComponent = ({
                 onSelect={onUfChange}
               />
             )}
+
+            {getSelectedJob()?.filterByCity && (
+              <Select
+                options={filters.ufs}
+                defaultValue={uf}
+                placeholder="Selecione estado"
+                className="inline w-[40%] min-w-[50px]"
+                buttonProps={{ style: 'fillGray', className: 'px-2 w-full' }}
+                prefixComponent={
+                  <>
+                    <BoxIcon
+                      icon="Table"
+                      size={6}
+                      iconSize="sm"
+                      className="bg-white text-orange drop-shadow-md rounded-md mr-2"
+                    />
+                    <Text className="font-normal border-black border-r-2 pr-2 mr-2" textType="span">
+                      Estado
+                    </Text>
+                  </>
+                }
+                suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
+                onSelect={onUfChange}
+              />
+            )}
           </div>
 
           <ButtonStyled style="fillBlack" size="small" onClick={onSubmit}>
@@ -276,7 +301,7 @@ export const SecondLayerFilter = ({
       contents={tabs.map(({ value, Comp }) => (
         <div key={value} className="text-white w-full">
           {loading ? (
-            <div className="flex flex-1 min-h-[220px]">
+            <div className="flex flex-1 min-h-[220px] justify-center items-center">
               <Loader />
             </div>
           ) : (
