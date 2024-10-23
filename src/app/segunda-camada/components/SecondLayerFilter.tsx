@@ -1,12 +1,13 @@
 'use client';
 
-import { ButtonStyled, Icon, Loader, Text } from '@base';
-import { Select } from '@base/forms';
-import { BoxIcon } from '@components/box/BoxIcon';
+import { ButtonStyled, Loader, Text } from '@base';
 import { CarouselTabs } from '@components/CarouselTabs';
 import { DatePicker } from '@components/DatePicker';
+import { Constants } from '@constants';
+import { useObjReducer } from '@hooks/useObjReducer';
 import { consultSearchParam } from '@routes';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
+import { FilterSelect } from './FilterSelect';
 
 interface FilterProps {
   onConsult: (_filters: any) => void;
@@ -85,37 +86,96 @@ const FilterComponent = ({
   onConsult: (_filters: any) => void;
   filters: SecondLayerFilters;
 }) => {
-  const [indicator, setIndicator] = useState(filters?.indicators[0]?.value ?? '');
-  const [job, setJob] = useState('');
-  const [uf, setUf] = useState('');
+  const [values, setValues] = useObjReducer({
+    initialYear: filters.years[filters.years.length - 2] ?? 2020,
+    finalYear: filters.years[filters.years.length - 1] ?? 2024,
+    indicator: filters?.indicators[0]?.value ?? '',
+    job: '',
+    uf: '',
+    electoralUnit: '',
+  });
 
-  const [initialYear, setInitialYear] = useState(filters.years[filters.years.length - 2] ?? 2020);
-  const [finalYear, setFinalYear] = useState(filters.years[filters.years.length - 1] ?? 2024);
+  const [errors, setErrors] = useObjReducer({
+    indicator: '',
+    job: '',
+    uf: '',
+    electoralUnit: '',
+  });
 
+  const [electoralUnits, setElectoralUnits] = useState([]);
+  const [loadingElectoralUnits, setLoadingElectoralUnits] = useState(false);
+
+  const loadElectoralUnits = useCallback((ufId: string) => {
+    setLoadingElectoralUnits(true);
+    fetch(`/api/electoralUnit?abrangecyId=${Constants.abrangency.municipal}&uf=${ufId}`)
+      .then(res => res.json())
+      .then(data => {
+        setElectoralUnits(data);
+      })
+      .finally(() => setLoadingElectoralUnits(false));
+  }, []);
+
+  // :: Change Handlers
   const onIndicatorChange = (value: any) => {
-    setIndicator(value);
-    setJob('');
-    setUf('');
+    setValues({ indicator: value, job: '', uf: '', electoralUnit: '' });
   };
 
-  const onJobChange = (v: any) => {
-    setJob(v);
-    setUf('');
+  const onJobChange = (value: any) => {
+    setValues({ job: value, uf: '', electoralUnit: '' });
   };
 
-  const onUfChange = (v: any) => {
-    setUf(v);
+  const onUfChange = (value: any) => {
+    setValues({ uf: value, electoralUnit: '' });
+
+    if (getJob(value)?.filterByCity) {
+      loadElectoralUnits(value);
+    }
+  };
+
+  const onElectoralUnitChange = (value: any) => {
+    setValues({ electoralUnit: value });
+  };
+
+  // :: Form Validation and Submit
+  const validateForm = () => {
+    const errors = { indicator: '', job: '', uf: '', electoralUnit: '' };
+
+    if (!values.indicator) {
+      errors.indicator = 'Selecione um indicador';
+    }
+
+    if (!values.job) {
+      errors.job = 'Selecione um cargo';
+    }
+
+    if ((getSelectedJob()?.filterByUf || getSelectedJob()?.filterByCity) && !values.uf) {
+      errors.uf = 'Selecione um estado';
+    }
+
+    if (getSelectedJob()?.filterByCity && !values.electoralUnit) {
+      errors.electoralUnit = 'Selecione uma cidade';
+    }
+
+    setErrors(errors);
+    return errors;
   };
 
   const onSubmit = () => {
-    onConsult({ indicator, job, uf, finalYear, initialYear });
+    const errors = validateForm();
+    if (Object.values(errors).some(v => Boolean(v))) {
+      return;
+    }
+
+    onConsult(values);
   };
 
-  const getSelectedJob = () => {
-    return filters.jobs[indicator]?.find(j => j.value === job);
+  // :: Gets
+  const getJob = (value: any) => {
+    return filters.jobs[values.indicator]?.find(j => j.value === value);
   };
 
-  console.log({ indicator, job, uf, finalYear, initialYear });
+  const getSelectedJob = () => getJob(values.job);
+
   return (
     <div className="text-white w-full min-h-[220px]">
       <Text>{description}</Text>
@@ -123,113 +183,69 @@ const FilterComponent = ({
       <div className="flex gap-4 mt-8 justify-between">
         <div className="flex flex-1 flex-col gap-4">
           <div className="flex gap-4">
-            <Select
-              options={filters.indicators}
-              defaultValue={indicator}
-              placeholder="Sem cruzamento"
-              className="inline grow"
-              buttonProps={{ style: 'fillGray', className: 'px-2 w-full' }}
-              prefixComponent={
-                <>
-                  <BoxIcon
-                    icon="Table"
-                    size={6}
-                    iconSize="sm"
-                    className="bg-white text-orange drop-shadow-md rounded-md mr-2"
-                  />
-                  <Text className="font-normal border-black border-r-2 pr-2 mr-2" textType="span">
-                    Indicador
-                  </Text>
-                </>
-              }
-              suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
-              onSelect={onIndicatorChange}
-            />
+            <div className="flex flex-1">
+              <FilterSelect
+                options={filters.indicators}
+                defaultValue={values.indicator}
+                placeholder="Sem cruzamento"
+                className="inline grow"
+                label="Indicador"
+                onSelect={onIndicatorChange}
+                error={errors.indicator}
+              />
+            </div>
 
             <DatePicker
               optionsValue={filters.years}
-              onSelectStart={start => setInitialYear(Number(start))}
-              onSelectEnd={end => setFinalYear(Number(end))}
-              startYearAPI={initialYear}
-              endYearAPI={finalYear}
+              onSelectStart={start => setValues({ initialYear: Number(start) })}
+              onSelectEnd={end => setValues({ finalYear: Number(end) })}
+              startYearAPI={values.initialYear}
+              endYearAPI={values.finalYear}
             />
           </div>
 
           <div className="flex gap-4">
-            {indicator && filters.jobs[indicator] && (
-              <Select
-                options={filters.jobs[indicator]}
-                defaultValue={job}
-                placeholder="Sem cargo"
-                className="inline w-[40%] min-w-[50px]"
-                buttonProps={{ style: 'fillGray', className: 'px-2 w-full' }}
-                prefixComponent={
-                  <>
-                    <BoxIcon
-                      icon="Table"
-                      size={6}
-                      iconSize="sm"
-                      className="bg-white text-orange drop-shadow-md rounded-md mr-2"
-                    />
-                    <Text className="font-normal border-black border-r-2 pr-2 mr-2" textType="span">
-                      Cargo
-                    </Text>
-                  </>
-                }
-                suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
-                onSelect={onJobChange}
-              />
+            {values.indicator && filters.jobs[values.indicator] && (
+              <div className="inline w-[40%] min-w-[50px]">
+                <FilterSelect
+                  options={filters.jobs[values.indicator]}
+                  defaultValue={values.job}
+                  placeholder="Sem cargo"
+                  label="Cargo"
+                  onSelect={onJobChange}
+                  error={errors.job}
+                />
+              </div>
             )}
 
             {(getSelectedJob()?.filterByUf || getSelectedJob()?.filterByCity) && (
-              <Select
-                options={filters.ufs}
-                defaultValue={uf}
-                placeholder="Selecione estado"
-                className="inline w-[40%] min-w-[50px]"
-                buttonProps={{ style: 'fillGray', className: 'px-2 w-full' }}
-                prefixComponent={
-                  <>
-                    <BoxIcon
-                      icon="Table"
-                      size={6}
-                      iconSize="sm"
-                      className="bg-white text-orange drop-shadow-md rounded-md mr-2"
-                    />
-                    <Text className="font-normal border-black border-r-2 pr-2 mr-2" textType="span">
-                      Estado
-                    </Text>
-                  </>
-                }
-                suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
-                onSelect={onUfChange}
-              />
+              <div className="inline w-[40%] min-w-[50px]">
+                <FilterSelect
+                  options={filters.ufs}
+                  defaultValue={values.uf}
+                  placeholder="Selecione um estado"
+                  label="Estado"
+                  onSelect={onUfChange}
+                  error={errors.uf}
+                />
+              </div>
             )}
 
-            {getSelectedJob()?.filterByCity && (
-              <Select
-                options={filters.ufs}
-                defaultValue={uf}
-                placeholder="Selecione estado"
-                className="inline w-[40%] min-w-[50px]"
-                buttonProps={{ style: 'fillGray', className: 'px-2 w-full' }}
-                prefixComponent={
-                  <>
-                    <BoxIcon
-                      icon="Table"
-                      size={6}
-                      iconSize="sm"
-                      className="bg-white text-orange drop-shadow-md rounded-md mr-2"
-                    />
-                    <Text className="font-normal border-black border-r-2 pr-2 mr-2" textType="span">
-                      Estado
-                    </Text>
-                  </>
-                }
-                suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
-                onSelect={onUfChange}
-              />
-            )}
+            {getSelectedJob()?.filterByCity &&
+              (loadingElectoralUnits ? (
+                <Loader />
+              ) : (
+                <div className="inline w-[40%] min-w-[50px]">
+                  <FilterSelect
+                    options={electoralUnits}
+                    defaultValue={values.electoralUnit}
+                    placeholder="Selecione um cidade"
+                    label="Cidade"
+                    onSelect={onElectoralUnitChange}
+                    error={errors.electoralUnit}
+                  />
+                </div>
+              ))}
           </div>
 
           <ButtonStyled style="fillBlack" size="small" onClick={onSubmit}>

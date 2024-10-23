@@ -115,9 +115,17 @@ const Page = () => {
       return;
     }
 
+    const params = new URLSearchParams();
+    params.append('initialYear', consultFilters.initialYear);
+    params.append('finalYear', consultFilters.initialYear);
+    params.append('cargoId', consultFilters.job);
+    params.append('unidadesEleitorais', consultFilters.electoralUnit);
+
     setLoadingResults(true);
-    console.log(consultFilters);
-    setLoadingResults(false);
+    fetch(`/api/indicators/${consultFilters.indicator}?${params.toString()}`)
+      .then(res => res.json())
+      .then(data => console.log({ data }))
+      .finally(() => setLoadingResults(false));
   };
 
   return (
