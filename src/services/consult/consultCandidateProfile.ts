@@ -34,6 +34,15 @@ export const consultCandidateProfile = async ({
 
   try {
     const responses = await Promise.allSettled([
+      redem.consult.getCandidateProfileKpis(
+        Number(initialYear),
+        Number(finalYear),
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+      ),
       redem.consult.getCandidateProfileByGender(
         Number(initialYear),
         Number(finalYear),
@@ -58,15 +67,6 @@ export const consultCandidateProfile = async ({
         Number(initialYear),
         Number(finalYear),
         dimension,
-        unidadesEleitoraisIds,
-        isElected,
-        partidos,
-        categoriasOcupacoes,
-        cargosIds,
-      ),
-      redem.consult.getCandidateProfileKpis(
-        Number(initialYear),
-        Number(finalYear),
         unidadesEleitoraisIds,
         isElected,
         partidos,

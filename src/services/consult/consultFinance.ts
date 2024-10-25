@@ -35,24 +35,15 @@ export const consultFinance = async ({
 
   try {
     const responses = await Promise.allSettled([
-      parseByLocationResult(
-        () =>
-          redem.consult.getFinanceByLocation(
-            Number(initialYear),
-            Number(finalYear),
-            unidadesEleitoraisIds,
-            isElected,
-            partidos,
-            categoriasOcupacoes,
-            cargosIds,
-            dimension,
-          ),
-        'Distribuição Financiamento',
-        {
-          sigla_unidade_federacao: 'uf',
-          total_doacoes: 'value',
-        },
-        'Total de Doações',
+      redem.consult.getFinanceKpis(
+        Number(initialYear),
+        Number(finalYear),
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+        dimension,
       ),
       redem.consult.getFinanceByParty(
         Number(initialYear),
@@ -74,15 +65,24 @@ export const consultFinance = async ({
         cargosIds,
         dimension,
       ),
-      redem.consult.getFinanceKpis(
-        Number(initialYear),
-        Number(finalYear),
-        unidadesEleitoraisIds,
-        isElected,
-        partidos,
-        categoriasOcupacoes,
-        cargosIds,
-        dimension,
+      parseByLocationResult(
+        () =>
+          redem.consult.getFinanceByLocation(
+            Number(initialYear),
+            Number(finalYear),
+            unidadesEleitoraisIds,
+            isElected,
+            partidos,
+            categoriasOcupacoes,
+            cargosIds,
+            dimension,
+          ),
+        'Distribuição Financiamento',
+        {
+          sigla_unidade_federacao: 'uf',
+          total_doacoes: 'value',
+        },
+        'Total de Doações',
       ),
     ]);
 

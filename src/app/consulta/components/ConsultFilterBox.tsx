@@ -172,10 +172,10 @@ const FilterComponent = ({
               {filtersData?.years?.values && (
                 <div className="grow md:self-center">
                   <DatePicker
+                    optionsValue={filtersData.years.values}
                     onSelectEnd={end => {
                       return handleFilterChange('finalYear', end);
                     }}
-                    optionsValue={filtersData.years.values}
                     onSelectStart={start => handleFilterChange('initialYear', start)}
                     startYearAPI={filtersData.years.values[filtersData.years.values.length - 2]}
                     endYearAPI={filtersData.years.values[filtersData.years.values.length - 1]}

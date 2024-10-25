@@ -116,12 +116,6 @@ export const ResultsSection = ({ results }: { results: any[] }) => {
             Baixar Cruzamentos em .PDF
           </>
         </ButtonStyled>
-        <ButtonStyled>
-          <>
-            <Icon type="Download" className="mx-2" size="xl" />
-            Baixar Cruzamentos em .CSV
-          </>
-        </ButtonStyled>
       </div>
     </>
   );

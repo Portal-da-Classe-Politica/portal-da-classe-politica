@@ -15,7 +15,7 @@ export async function GET() {
     jobs[ind.id] = ind.cargos.map((c: any) => ({
       value: c.id,
       label: c.name,
-      filterByUf: c.filter_by === 'UF',
+      filterByUf: c.filter_by === 'UF' || c.agregacao_regional.includes('UF'),
       filterByCity: c.filter_by === 'MUNICIPIO',
     }));
   }

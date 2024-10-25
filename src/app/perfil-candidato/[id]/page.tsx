@@ -141,12 +141,6 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
                   Baixar Cruzamentos em .PDF
                 </>
               </ButtonStyled>
-              <ButtonStyled>
-                <>
-                  <Icon type="Download" className="mx-2" size="xl" />
-                  Baixar Cruzamentos em .CSV
-                </>
-              </ButtonStyled>
             </div>
           </Container>
         </section>

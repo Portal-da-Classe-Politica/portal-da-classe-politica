@@ -35,25 +35,7 @@ export const consultElections = async ({
 
   try {
     const responses = await Promise.allSettled([
-      parseByLocationResult(
-        () =>
-          redem.consult.getElectionsByLocation(
-            Number(initialYear),
-            Number(finalYear),
-            dimension,
-            unidadesEleitoraisIds,
-            isElected,
-            partidos,
-            categoriasOcupacoes,
-            cargosIds,
-          ),
-        'Distribuição Eleitoral',
-        {
-          sigla_unidade_federacao: 'uf',
-          mediana: 'value',
-        },
-        'Mediana',
-      ),
+      redem.consult.getElectionsKpis(Number(initialYear), Number(finalYear)),
       redem.consult.getElectionsTopCandidates(
         Number(initialYear),
         Number(finalYear),
@@ -74,7 +56,25 @@ export const consultElections = async ({
         categoriasOcupacoes,
         cargosIds,
       ),
-      redem.consult.getElectionsKpis(Number(initialYear), Number(finalYear)),
+      parseByLocationResult(
+        () =>
+          redem.consult.getElectionsByLocation(
+            Number(initialYear),
+            Number(finalYear),
+            dimension,
+            unidadesEleitoraisIds,
+            isElected,
+            partidos,
+            categoriasOcupacoes,
+            cargosIds,
+          ),
+        'Distribuição Eleitoral',
+        {
+          sigla_unidade_federacao: 'uf',
+          mediana: 'value',
+        },
+        'Mediana',
+      ),
     ]);
 
     const result = [];
