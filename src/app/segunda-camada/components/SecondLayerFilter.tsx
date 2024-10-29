@@ -87,7 +87,7 @@ const FilterComponent = ({
   filters: SecondLayerFilters;
 }) => {
   const [values, setValues] = useObjReducer({
-    initialYear: filters.years[filters.years.length - 2] ?? 2020,
+    initialYear: filters.years[0] ?? 2020,
     finalYear: filters.years[filters.years.length - 1] ?? 2024,
     indicator: filters?.indicators[0]?.value ?? '',
     job: '',
@@ -292,13 +292,13 @@ export const SecondLayerFilter = ({
       value: consultSearchParam.ElectionResult,
       Comp: FilterElectionResult,
       title: 'Carreira & Representação Política',
-      fetchFilter: '/api/indicators/party',
+      fetchFilter: '/api/indicators/electoral',
     },
     {
       value: consultSearchParam.Financing,
       Comp: FilterVote,
       title: 'Espacial de Votos',
-      fetchFilter: '/api/indicators/party',
+      fetchFilter: '/api/indicators/geographical',
     },
     {
       value: consultSearchParam.Financing,
