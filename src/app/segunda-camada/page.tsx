@@ -3,65 +3,10 @@
 import { Container, Heading, Loader, Text } from '@base';
 import { Header } from '@components/sections/Header';
 import { GetInContact } from '@components/sections/GetInContact';
-import { SecondLayerChart } from '@components/charts/SecondLayerChart';
 import DesignSemiCircle from '@components/DesignSemiCircle';
 import { SecondLayerFilter } from './components/SecondLayerFilter';
 import { useCallback, useEffect, useState } from 'react';
-
-const dataSeries = {
-  electoral: {
-    initial: true,
-    name: 'Número Efetivo de Partidos Eleitoral',
-    data: [400, 500, 800, 200, 300, 600, 700],
-    color: '#FF5733', // Warm Orange
-  },
-  parliamentary: {
-    initial: true,
-    name: 'Número Efetivo de Partidos Parlamentar',
-    data: [200, 400, 600, 300, 500, 700, 800],
-    color: '#33FF57', // Vibrant Green
-  },
-  series1: {
-    name: 'Índice de Fracionalização de RAE',
-    data: [100, 200, 300, 400, 500, 600, 700],
-    color: '#3357FF', // Bright Blue
-  },
-  series2: {
-    name: 'Número de Partidos',
-    data: [150, 250, 350, 450, 550, 650, 750],
-    color: '#FF33A1', // Hot Pink
-  },
-  series3: {
-    name: 'Variação Eleitoral Média dos Partidos',
-    data: [200, 300, 400, 500, 600, 700, 800],
-    color: '#FF9633', // Soft Orange
-  },
-  series4: {
-    name: 'Índice de Volatilidade Eleitoral (Pedersen)',
-    data: [250, 350, 450, 550, 650, 750, 850],
-    color: '#33FFF3', // Aqua
-  },
-  series5: {
-    name: 'Maioria Parlamentar Mínima (RAE)',
-    data: [300, 400, 500, 600, 700, 800, 900],
-    color: '#C733FF', // Purple
-  },
-  series6: {
-    name: 'Índice de Laakso e Taagepera',
-    data: [350, 450, 550, 650, 750, 850, 950],
-    color: '#FFD133', // Golden Yellow
-  },
-  series7: {
-    name: 'Quociente Eleitoral',
-    data: [100, 450, 350, 500, 600, 750, 650],
-    color: '#33A1FF', // Sky Blue
-  },
-  series8: {
-    name: 'Quociente Partidário',
-    data: [250, 700, 300, 850, 450, 600, 400],
-    color: '#FF5733', // Coral
-  },
-} as Record<string, any>;
+import { LineChartCard } from '@components/charts/LineChartCard';
 
 type filterObjectType = {
   years: number[];
@@ -79,13 +24,13 @@ const Page = () => {
   const [loadingIndicatorFilters, setLoadingIndicatorFilters] = useState(true);
 
   const [loadingResults, setLoadingResults] = useState(false);
+  const [result, setResult] = useState<any>(null);
 
   const loadStaticFilters = useCallback(async () => {
     setLoadingStaticFilters(true);
 
-    const data = await fetch(`/api/consult/filters`).then(res => res.json());
-    const ufs = data.sideFilters.find((filter: any) => filter.title === 'Estado')?.values;
-    setStaticFilter({ years: data.years.values, ufs });
+    const data = await fetch(`/api/indicators/static-filters`).then(res => res.json());
+    setStaticFilter({ years: data.years, ufs: data.ufs });
 
     setLoadingStaticFilters(false);
   }, []);
@@ -117,14 +62,17 @@ const Page = () => {
 
     const params = new URLSearchParams();
     params.append('initialYear', consultFilters.initialYear);
-    params.append('finalYear', consultFilters.initialYear);
+    params.append('finalYear', consultFilters.finalYear);
     params.append('cargoId', consultFilters.job);
-    params.append('unidadesEleitorais', consultFilters.electoralUnit);
+
+    const unidadesEleitorais = [consultFilters.uf, consultFilters.electoralUnit];
+    params.append('unidadesEleitorais', unidadesEleitorais.join(','));
 
     setLoadingResults(true);
     fetch(`/api/indicators/${consultFilters.indicator}?${params.toString()}`)
       .then(res => res.json())
-      .then(data => console.log({ data }))
+      .then(data => setResult(data.data))
+      .catch(error => console.error('Failed to fetch indicators', error))
       .finally(() => setLoadingResults(false));
   };
 
@@ -168,15 +116,16 @@ const Page = () => {
                 <div className="flex flex-1 justify-center items-center">
                   <Loader variant="Sync" color="#EB582F" />
                 </div>
-              ) : (
-                <SecondLayerChart
-                  title="Eleitorais & Partidários"
-                  description="São quatro instrumentos úteis para analisar e compreender a dinâmica das eleições e do sistema eleitoral."
-                  seriesTitle="Adicione indicadores ao gráfico:"
-                  seriesDescription="Os indicadores podem ser visualizados simultaneamente."
-                  chartTitle="Dimensão eleitoral"
-                  series={dataSeries}
+              ) : result ? (
+                <LineChartCard
+                  title={result.title}
+                  yAxisTitle={result.extraData.yAxisLabel}
+                  xAxisTitle={result.extraData.xAxisLabel}
+                  categories={result.xAxis}
+                  series={result.series}
                 />
+              ) : (
+                <></>
               )}
             </div>
           </div>

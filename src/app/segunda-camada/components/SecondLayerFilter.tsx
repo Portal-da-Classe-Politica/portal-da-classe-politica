@@ -112,6 +112,7 @@ const FilterComponent = ({
       .then(data => {
         setElectoralUnits(data);
       })
+      .catch(error => console.info(error))
       .finally(() => setLoadingElectoralUnits(false));
   }, []);
 
@@ -124,11 +125,11 @@ const FilterComponent = ({
     setValues({ job: value, uf: '', electoralUnit: '' });
   };
 
-  const onUfChange = (value: any) => {
+  const onUfChange = (value: any, uf: any) => {
     setValues({ uf: value, electoralUnit: '' });
 
-    if (getJob(value)?.filterByCity) {
-      loadElectoralUnits(value);
+    if (getSelectedJob()?.filterByCity) {
+      loadElectoralUnits(uf.code);
     }
   };
 
@@ -233,7 +234,9 @@ const FilterComponent = ({
 
             {getSelectedJob()?.filterByCity &&
               (loadingElectoralUnits ? (
-                <Loader />
+                <div className="flex items-center justify-center">
+                  <Loader />
+                </div>
               ) : (
                 <div className="inline w-[40%] min-w-[50px]">
                   <FilterSelect
