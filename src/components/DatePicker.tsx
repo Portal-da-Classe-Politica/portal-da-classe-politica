@@ -60,7 +60,9 @@ export const DatePicker = ({
               .filter(val => val.value < endDate)}
             buttonProps={{ size: 'small', className: 'px-2' }}
           />
-          <Text className="flex self-end">até </Text>
+          <Text className="flex self-end" size="B2">
+            até{' '}
+          </Text>
           <SelectBasic
             placeholder={years[years.length - 1].label}
             defaultValue={years[years.length - 1].label}

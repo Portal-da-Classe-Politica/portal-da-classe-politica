@@ -36,7 +36,7 @@ export const FilterSelect = ({
               iconSize="sm"
               className="bg-white text-orange drop-shadow-md rounded-md mr-2"
             />
-            <Text className="font-normal border-black border-r-2 pr-2 mr-2" textType="span">
+            <Text className="font-normal border-black border-r-2 pr-2 mr-2" size="B2" textType="span">
               {label}
             </Text>
           </>

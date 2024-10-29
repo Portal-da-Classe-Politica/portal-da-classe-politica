@@ -67,7 +67,9 @@ export const SelectBasic = ({
         onClick={onButtonClick}
         className={`flex justify-center items-center px-2 ${buttonProps.className}`}
       >
-        <Text className="font-bold">{selectedOption?.label || placeholder}</Text>
+        <Text className="font-bold" size="B2">
+          {selectedOption?.label || placeholder}
+        </Text>
         <Icon type="ArrowDownShort" size={'lg'} className="ml-2" />
       </div>
       {showOptions && (

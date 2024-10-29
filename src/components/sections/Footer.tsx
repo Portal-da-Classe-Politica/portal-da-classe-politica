@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { Container, Heading, Text } from '@base';
+import { Container, Text } from '@base';
 import { BoxIcon } from '@components/box/BoxIcon';
 import { routes } from '@routes';
 import { Constants } from '@constants';
@@ -39,10 +39,10 @@ export const Footer = () => {
   return (
     <footer className="bg-black text-white">
       <Container>
-        <div className="flex flex-col lg:flex-row py-16 justify-between">
+        <div className="flex flex-col lg:flex-row py-8 justify-between">
           <div className="lg:max-w-[340px] py-4">
             <Image src="/img/Logo.svg" alt="Logo" width={154} height={80} />
-            <Text className="text-4 my-6">
+            <Text className="text-4 my-6" size="B2">
               Universidade Federal do Paraná{'\n'}
               Departamento de Ciência Política{'\n'}
               INCT ReDem{'\n'}
@@ -69,15 +69,21 @@ export const Footer = () => {
           <div className="flex flex-col gap-10 md:flex-row py-4">
             {sections.map(section => (
               <div key={section.title} className={section.className}>
-                <Heading headingLevel={3} size={'H6'} className="font-bold mb-10">
+                <Text size={'B1'} className="font-bold mb-10">
                   {section.title}
-                </Heading>
-                {section.text && <Text className="text-4 my-6">{section.text}</Text>}
+                </Text>
+                {section.text && (
+                  <Text className="text-4 my-6" size="B2">
+                    {section.text}
+                  </Text>
+                )}
                 <ul className="space-y-2">
                   {section.links.map(link => (
                     <li key={link.text}>
                       <Link href={link.href}>
-                        <Text className="text-4">{link.text}</Text>
+                        <Text className="text-4" size="B2">
+                          {link.text}
+                        </Text>
                       </Link>
                     </li>
                   ))}
@@ -90,8 +96,8 @@ export const Footer = () => {
 
       <div className="w-full h-[1px] bg-white"></div>
       <Container>
-        <div className="text-center py-7">
-          <Text size={'L1'}>
+        <div className="text-center py-4">
+          <Text size={'C2'}>
             Copyright © 2024 INCT REDEM. Todos os direitos reservados. Desenvolvido por{' '}
             <Link href={Constants.links.arwPoliticalAdvisory} className="underline underline-offset-1">
               ARW POLITICAL ADVISORY
