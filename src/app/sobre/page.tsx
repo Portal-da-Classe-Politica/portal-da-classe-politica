@@ -59,8 +59,8 @@ const avatarMock = [
     text: 'Desenvolvedor Portal da Classe Política e pesquisador INCT ReDem. Bacharel em Ciências Contábeis (FURG) e Análise e desenvolvimento de Sistemas (IFRS) ',
     src: '/img/author/LuizSebastiao.png',
     social: {
-      linkedin: '',
-      instagram: ' https://www.linkedin.com/in/luizdavilaf/ ',
+      linkedin: 'https://www.linkedin.com/in/luizdavilaf/',
+      instagram: '',
       email: 'mailto:luizdavilaf@gmail.com',
       facebook: '',
     },

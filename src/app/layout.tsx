@@ -23,8 +23,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" style={{ height: '100%' }}>
+      <body className={`${inter.className} flex flex-col`} style={{ height: '100%' }}>
         <AccessibilityHeader />
         {children}
         <Footer />

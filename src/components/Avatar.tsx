@@ -2,7 +2,6 @@ import Image from 'next/image';
 import { cva } from 'cva';
 
 import { Heading, Text, Icon } from '@base';
-import Link from 'next/link';
 
 type CardIconTextProps = {
   title: string;
@@ -53,24 +52,24 @@ const Avatar = ({ title, text, src, type = 'top', social }: CardIconTextProps) =
         </div>
         <div className="flex gap-3 text-orange text-left">
           {social?.facebook && (
-            <Link href={social?.facebook || ''}>
+            <a href={social?.facebook || ''} target="_blank">
               <Icon type="Facebook" />
-            </Link>
+            </a>
           )}
           {social?.instagram && (
-            <Link href={social?.instagram || ''}>
+            <a href={social?.instagram || ''} target="_blank">
               <Icon type="Instagram" />
-            </Link>
+            </a>
           )}
           {social?.linkedin && (
-            <Link href={social?.linkedin || ''}>
+            <a href={social?.linkedin || ''} target="_blank">
               <Icon type="LinkedIn" />
-            </Link>
+            </a>
           )}
           {social?.email && (
-            <Link href={social?.email || ''}>
+            <a href={social?.email || ''} target="_blank">
               <Icon type="Email" />
-            </Link>
+            </a>
           )}
         </div>
       </div>

@@ -88,7 +88,7 @@ const Page = () => {
           />
 
           <TextParagraphImage
-            link="/blog/part-feml-lid"
+            link="/blog/part-fem-lid"
             src="/img/blog/airplane.png"
             header={
               'A participação feminina na liderança partidária e o cumprimento das cotas financeiras para mulheres'

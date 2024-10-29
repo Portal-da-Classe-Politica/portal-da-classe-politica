@@ -20,7 +20,7 @@ export const Select = ({
   suffixComponent,
   staticOptions = false,
   disabled = false,
-  sizeInsideText = 'B1',
+  sizeInsideText = 'B2',
   biggerList = false,
 }: {
   options: Option[];
@@ -59,6 +59,7 @@ export const Select = ({
   };
 
   useEffect(() => {
+    console.log({ defaultValue });
     setSelectedOption(options.find(op => op.value === defaultValue));
   }, [options, defaultValue]);
 
@@ -74,7 +75,7 @@ export const Select = ({
       <ButtonStyled
         {...buttonProps}
         onClick={onButtonClick}
-        className={`flex justify-center items-center  ${buttonProps.className}`}
+        className={`flex justify-center items-center ${buttonProps.className}`}
       >
         {prefixComponent}
         <Text className={staticOptions ? '' : 'font-bold'} size={sizeInsideText}>

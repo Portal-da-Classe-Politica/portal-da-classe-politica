@@ -34,6 +34,15 @@ export const consultCandidateProfile = async ({
 
   try {
     const responses = await Promise.allSettled([
+      redem.consult.getCandidateProfileKpis(
+        Number(initialYear),
+        Number(finalYear),
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+      ),
       redem.consult.getCandidateProfileByGender(
         Number(initialYear),
         Number(finalYear),
@@ -64,15 +73,6 @@ export const consultCandidateProfile = async ({
         categoriasOcupacoes,
         cargosIds,
       ),
-      redem.consult.getCandidateProfileKpis(
-        Number(initialYear),
-        Number(finalYear),
-        unidadesEleitoraisIds,
-        isElected,
-        partidos,
-        categoriasOcupacoes,
-        cargosIds,
-      ),
     ]);
 
     const result = [];
@@ -80,14 +80,14 @@ export const consultCandidateProfile = async ({
       if (resp.status === 'fulfilled') {
         result.push(resp.value.data);
       } else {
-        logError('Failed to candidateProfile', resp.reason as AxiosError);
+        logError('Failed to consultCandidateProfile', resp.reason as AxiosError);
         result.push(resp.reason?.response?.data || { success: false });
       }
     }
 
     return result;
   } catch (error) {
-    logError('Failed to candidateProfile', error as Error);
+    logError('Failed to consultCandidateProfile', error as Error);
     return {};
   }
 };

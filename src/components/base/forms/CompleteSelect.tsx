@@ -71,18 +71,18 @@ const CustomSingleValue = ({ children, size, prefixComponent, ...props }: any) =
 const CustomPlaceholder = ({ children, prefixComponent, placeholder, ...props }: any) => (
   <components.Placeholder {...props}>
     {prefixComponent && (
-      <Text size="B1" className="mr-2">
+      <Text size="B2" className="mr-2">
         {prefixComponent?.prefixText}|{' '}
       </Text>
     )}
-    <Text size="B1">{placeholder}</Text>
+    <Text size="B2">{placeholder}</Text>
   </components.Placeholder>
 );
 
 const CompleteSelect = ({
   placeholder,
   prefixComponent,
-  size = 'B1',
+  size = 'B2',
   options,
   selectedOption,
   multiSelect,

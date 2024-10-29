@@ -12,16 +12,16 @@ import VectorSource from 'ol/source/Vector';
 import GeoJSON from 'ol/format/GeoJSON';
 import Overlay from 'ol/Overlay';
 
-import { FeatureStyle } from './Styles';
+import { LastElectionStyle } from './Styles';
 import { getCenter } from 'ol/extent';
-import { Tooltip } from './Tooltip';
+import { LastElectionMapTooltip } from './LastElectionMapTooltip';
 
-export interface MapComponentProps {
+export interface LastElectionMapProps {
   state: string;
   candidateId: string | number;
 }
 
-export const MapComponent = ({ state, candidateId }: MapComponentProps) => {
+export const LastElectionMap = ({ state, candidateId }: LastElectionMapProps) => {
   const mapRef = useRef<Map | null>(null);
   const mapElement = useRef<HTMLDivElement>(null);
 
@@ -38,7 +38,7 @@ export const MapComponent = ({ state, candidateId }: MapComponentProps) => {
           format: new GeoJSON(),
           url: `/api/map?state=${state}&candidateId=${candidateId}`,
         }),
-        style: FeatureStyle,
+        style: LastElectionStyle,
         visible: true,
       });
 
@@ -89,7 +89,8 @@ export const MapComponent = ({ state, candidateId }: MapComponentProps) => {
     }
   }, [state, candidateId]);
 
-  const tooltipPortal = tooltipVisible && tooltipProperties ? <Tooltip {...tooltipProperties} /> : null;
+  const tooltipPortal =
+    tooltipVisible && tooltipProperties ? <LastElectionMapTooltip {...tooltipProperties} /> : null;
 
   return (
     <>
@@ -105,4 +106,4 @@ export const MapComponent = ({ state, candidateId }: MapComponentProps) => {
   );
 };
 
-export default MapComponent;
+export default LastElectionMap;

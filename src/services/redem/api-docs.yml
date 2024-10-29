@@ -769,7 +769,7 @@ paths:
           schema:
             type: array
             items:
-              type: string+
+              type: string
           required: false
           description: IDs dos cargos (1,2,3...)
       responses:
@@ -924,7 +924,7 @@ paths:
           schema:
             type: array
             items:
-              type: string+
+              type: string
           required: false
           description: IDs dos cargos (1,2,3...)
       responses:
@@ -991,3 +991,1464 @@ paths:
       responses:
         '200':
           description: Resposta bem-sucedida com o perfil dos candidatos por ocupação.
+
+  # Consult - Finance
+  /noauth/cruzamentos/finance/kpis:
+    get:
+      operationId: 'getFinanceKpis'
+      tags:
+        - consult
+      summary: KPIs para página de cruzamentos financiamento de campanhas
+      description: Retorna os kpis  do perfil dos financimanento.
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: unidadesEleitoraisIds
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: IDs das unidades eleitorais desejadas.
+        - in: query
+          name: isElected
+          schema:
+            type: integer
+          required: false
+          description: Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+        - in: query
+          name: partidos
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: IDs dos partidos
+        - in: query
+          name: categoriasOcupacoes
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Categoria 1 das ocupações (1,2 ...)
+        - in: query
+          name: cargosIds
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: IDs dos cargos (1,2,3...)
+        - in: query
+          name: dimension
+          schema:
+            type: number
+          required: false
+          description: medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+      responses:
+        '200':
+          description: Resposta bem-sucedida.
+  /noauth/cruzamentos/finance/by-year:
+    get:
+      operationId: 'getFinanceByYear'
+      tags:
+        - consult
+      summary: Cruzamentos financiamento de campanhas por ano
+      description: Retorna ruzamentos financiamento de campanhas por ano
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: unidadesEleitoraisIds
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: IDs das unidades eleitorais desejadas.
+        - in: query
+          name: isElected
+          schema:
+            type: integer
+          required: false
+          description: Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+        - in: query
+          name: partidos
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: IDs dos partidos
+        - in: query
+          name: categoriasOcupacoes
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Categoria 1 das ocupações (1,2 ...)
+        - in: query
+          name: cargosIds
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: IDs dos cargos (1,2,3...)
+        - in: query
+          name: dimension
+          schema:
+            type: number
+          required: false
+          description: medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+      responses:
+        '200':
+          description: Resposta bem-sucedida.
+  /noauth/cruzamentos/finance/by-party:
+    get:
+      operationId: 'getFinanceByParty'
+      tags:
+        - consult
+      summary: Cruzamentos financiamento de campanhas por partido
+      description: Cruzamentos financiamento de campanhas por partido
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: unidadesEleitoraisIds
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: IDs das unidades eleitorais desejadas.
+        - in: query
+          name: isElected
+          schema:
+            type: integer
+          required: false
+          description: Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+        - in: query
+          name: partidos
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: IDs dos partidos
+        - in: query
+          name: categoriasOcupacoes
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Categoria 1 das ocupações (1,2 ...)
+        - in: query
+          name: cargosIds
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: IDs dos cargos (1,2,3...)
+        - in: query
+          name: dimension
+          schema:
+            type: number
+          required: false
+          description: medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+      responses:
+        '200':
+          description: Resposta bem-sucedida com o perfil dos candidatos por ocupação.
+  /noauth/cruzamentos/finance/by-location:
+    get:
+      operationId: 'getFinanceByLocation'
+      tags:
+        - consult
+      summary: Cruzamentos financiamento de campanhas por municpio ou estado
+      description: Cruzamentos financiamento de campanhas por municpio ou estado
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: unidadesEleitoraisIds
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: IDs das unidades eleitorais desejadas.
+        - in: query
+          name: isElected
+          schema:
+            type: integer
+          required: false
+          description: Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+        - in: query
+          name: partidos
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: IDs dos partidos
+        - in: query
+          name: categoriasOcupacoes
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Categoria 1 das ocupações (1,2 ...)
+        - in: query
+          name: cargosIds
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: IDs dos cargos (1,2,3...)
+        - in: query
+          name: dimension
+          schema:
+            type: number
+          required: false
+          description: medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+      responses:
+        '200':
+          description: Resposta bem-sucedida .
+          content:
+            application/json:
+              schema:
+                type: object
+
+  # Consult - Elections
+  /noauth/cruzamentos/elections/kpis:
+    get:
+      operationId: 'getElectionsKpis'
+      tags:
+        - consult
+      summary: KPIs para a página de eleições
+      description: Retorna os KPIs relacionados às eleições.
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os KPIs das eleições.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'KPIs das eleições encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+  /noauth/cruzamentos/elections/competition-by-year:
+    get:
+      operationId: 'getElectionsCompetitionByYear'
+      tags:
+        - consult
+      summary: Competição por ano nas eleições
+      description: Retorna dados de competição por ano nas eleições.
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: dimension
+          schema:
+            type: integer
+          required: false
+          description: Dimensão de agregação (1, 2, 3).
+        - in: query
+          name: unidadesEleitoraisIds
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: IDs das unidades eleitorais desejadas.
+        - in: query
+          name: isElected
+          schema:
+            type: integer
+          required: false
+          description: Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+        - in: query
+          name: partidos
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: IDs dos partidos
+        - in: query
+          name: categoriasOcupacoes
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Categoria 1 das ocupações (1,2 ...)
+        - in: query
+          name: cargosIds
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: IDs dos cargos (1,2,3...)
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os dados de competição por ano.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Dados de competição por ano encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+  /noauth/cruzamentos/elections/top-candidates:
+    get:
+      operationId: 'getElectionsTopCandidates'
+      tags:
+        - consult
+      summary: Principais candidatos nas eleições
+      description: Retorna os principais candidatos nas eleições.
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: dimension
+          schema:
+            type: integer
+          required: false
+          description: Dimensão de agregação (1, 2, 3).
+        - in: query
+          name: unidadesEleitoraisIds
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: IDs das unidades eleitorais desejadas.
+        - in: query
+          name: isElected
+          schema:
+            type: integer
+          required: false
+          description: Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+        - in: query
+          name: partidos
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: IDs dos partidos
+        - in: query
+          name: categoriasOcupacoes
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Categoria 1 das ocupações (1,2 ...)
+        - in: query
+          name: cargosIds
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: IDs dos cargos (1,2,3...)
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os principais candidatos.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Principais candidatos encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+  /noauth/cruzamentos/elections/by-location:
+    get:
+      operationId: 'getElectionsByLocation'
+      tags:
+        - consult
+      summary: Votos por localização nas eleições
+      description: Retorna os votos por localização nas eleições.
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: dimension
+          schema:
+            type: integer
+          required: false
+          description: Dimensão de agregação (1, 2, 3).
+        - in: query
+          name: unidadesEleitoraisIds
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: IDs das unidades eleitorais desejadas.
+        - in: query
+          name: isElected
+          schema:
+            type: integer
+          required: false
+          description: Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+        - in: query
+          name: partidos
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: IDs dos partidos
+        - in: query
+          name: categoriasOcupacoes
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Categoria 1 das ocupações (1,2 ...)
+        - in: query
+          name: cargosIds
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: IDs dos cargos (1,2,3...)
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os votos por localização.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Votos por localização encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+
+  # Indicators - Electoral
+  /noauth/indicadores/eleitorais:
+    get:
+      operationId: 'getElectoralIndicators'
+      tags:
+        - indicators
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os indicadores possiveis.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Indicadores encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+  /noauth/indicadores/eleitorais/1:
+    get:
+      operationId: 'getElectoral01'
+      tags:
+        - indicators
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: cargoId
+          schema:
+            type: integer
+          required: false
+          description: cargo desejado
+        - in: query
+          name: unidadesEleitorais
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Ids das unidades eleitorais desejadas
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os indicadores possiveis.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Indicadores encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+  /noauth/indicadores/eleitorais/2:
+    get:
+      operationId: 'getElectoral02'
+      tags:
+        - indicators
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: cargoId
+          schema:
+            type: integer
+          required: false
+          description: cargo desejado
+        - in: query
+          name: unidadesEleitorais
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Ids das unidades eleitorais desejadas
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os indicadores possiveis.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Indicadores encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+  /noauth/indicadores/eleitorais/3:
+    get:
+      operationId: 'getElectoral03'
+      tags:
+        - indicators
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: cargoId
+          schema:
+            type: integer
+          required: false
+          description: cargo desejado
+        - in: query
+          name: unidadesEleitorais
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Ids das unidades eleitorais desejadas
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os indicadores possiveis.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Indicadores encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+  /noauth/indicadores/eleitorais/4:
+    get:
+      operationId: 'getElectoral04'
+      tags:
+        - indicators
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: cargoId
+          schema:
+            type: integer
+          required: false
+          description: cargo desejado
+        - in: query
+          name: unidadesEleitorais
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Ids das unidades eleitorais desejadas
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os indicadores possiveis.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Indicadores encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+
+
+  # Indicators - Party
+  /noauth/indicadores/partidarios:
+    get:
+      operationId: 'getPartyIndicators'
+      tags:
+        - indicators
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os indicadores possiveis.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Indicadores encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+  /noauth/indicadores/partidarios/5:
+    get:
+      operationId: 'getPartyIndicator05'
+      tags:
+        - indicators
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: cargoId
+          schema:
+            type: integer
+          required: false
+          description: cargo desejado
+        - in: query
+          name: unidadesEleitorais
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Ids das unidades eleitorais desejadas
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os indicadores possiveis.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Indicadores encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+  /noauth/indicadores/partidarios/6:
+    get:
+      operationId: 'getPartyIndicator06'
+      tags:
+        - indicators
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: cargoId
+          schema:
+            type: integer
+          required: false
+          description: cargo desejado
+        - in: query
+          name: unidadesEleitorais
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Ids das unidades eleitorais desejadas
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os indicadores possiveis.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Indicadores encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+  /noauth/indicadores/partidarios/7:
+    get:
+      operationId: 'getPartyIndicator07'
+      tags:
+        - indicators
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: cargoId
+          schema:
+            type: integer
+          required: false
+          description: cargo desejado
+        - in: query
+          name: unidadesEleitorais
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Ids das unidades eleitorais desejadas
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os indicadores possiveis.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Indicadores encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+  /noauth/indicadores/partidarios/8:
+    get:
+      operationId: 'getPartyIndicator08'
+      tags:
+        - indicators
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: cargoId
+          schema:
+            type: integer
+          required: false
+          description: cargo desejado
+        - in: query
+          name: unidadesEleitorais
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Ids das unidades eleitorais desejadas
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os indicadores possiveis.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Indicadores encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+
+  # Indicators - Geographical
+  /noauth/indicadores/geograficos:
+    get:
+      operationId: 'getGeographicalIndicators'
+      tags:
+        - indicators
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os indicadores possiveis.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Indicadores encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+  /noauth/indicadores/geograficos/9:
+    get:
+      operationId: 'getGeographical09'
+      tags:
+        - indicators
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: cargoId
+          schema:
+            type: integer
+          required: false
+          description: cargo desejado
+        - in: query
+          name: unidadesEleitorais
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Ids das unidades eleitorais desejadas
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os indicadores possiveis.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Indicadores encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+  /noauth/indicadores/geograficos/10:
+    get:
+      operationId: 'getGeographical10'
+      tags:
+        - indicators
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: cargoId
+          schema:
+            type: integer
+          required: false
+          description: cargo desejado
+        - in: query
+          name: unidadesEleitorais
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Ids das unidades eleitorais desejadas
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os indicadores possiveis.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Indicadores encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+  /noauth/indicadores/geograficos/11:
+    get:
+      operationId: 'getGeographical11'
+      tags:
+        - indicators
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: cargoId
+          schema:
+            type: integer
+          required: false
+          description: cargo desejado
+        - in: query
+          name: unidadesEleitorais
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Ids das unidades eleitorais desejadas
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os indicadores possiveis.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Indicadores encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+  /noauth/indicadores/geograficos/12:
+    get:
+      operationId: 'getGeographical12'
+      tags:
+        - indicators
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: cargoId
+          schema:
+            type: integer
+          required: false
+          description: cargo desejado
+        - in: query
+          name: unidadesEleitorais
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Ids das unidades eleitorais desejadas
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os indicadores possiveis.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Indicadores encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+
+  # Indicators - Fianance
+  /noauth/indicadores/financeiros:
+    get:
+      operationId: 'getFinanceIndicators'
+      tags:
+        - indicators
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os indicadores possiveis.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Indicadores encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+  /noauth/indicadores/financeiros/13:
+    get:
+      operationId: 'getFinanceIndicator13'
+      tags:
+        - indicators
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: cargoId
+          schema:
+            type: integer
+          required: false
+          description: cargo desejado
+        - in: query
+          name: unidadesEleitorais
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Ids das unidades eleitorais desejadas
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os indicadores possiveis.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Indicadores encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+  /noauth/indicadores/financeiros/14:
+    get:
+      operationId: 'getFinanceIndicator14'
+      tags:
+        - indicators
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: cargoId
+          schema:
+            type: integer
+          required: false
+          description: cargo desejado
+        - in: query
+          name: unidadesEleitorais
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Ids das unidades eleitorais desejadas
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os indicadores possiveis.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Indicadores encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+  /noauth/indicadores/financeiros/15:
+    get:
+      operationId: 'getFinanceIndicator15'
+      tags:
+        - indicators
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: cargoId
+          schema:
+            type: integer
+          required: false
+          description: cargo desejado
+        - in: query
+          name: unidadesEleitorais
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Ids das unidades eleitorais desejadas
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os indicadores possiveis.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Indicadores encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+  /noauth/indicadores/financeiros/16:
+    get:
+      operationId: 'getFinanceIndicator16'
+      tags:
+        - indicators
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: cargoId
+          schema:
+            type: integer
+          required: false
+          description: cargo desejado
+        - in: query
+          name: unidadesEleitorais
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Ids das unidades eleitorais desejadas
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os indicadores possiveis.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Indicadores encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object

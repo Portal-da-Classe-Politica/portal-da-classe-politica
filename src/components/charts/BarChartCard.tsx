@@ -12,7 +12,7 @@ export const BarChartCard = ({
 }: {
   title?: string;
   categories: string[];
-  series: ApexOptions['series'];
+  series: { name: string; data: any[] }[];
   metaData: { value: string | number; label: string }[];
   className?: string;
 }) => {
@@ -22,6 +22,14 @@ export const BarChartCard = ({
         borderRadius: 10,
         horizontal: true,
         distributed: true,
+      },
+    },
+    dataLabels: {
+      enabled: true,
+      style: {
+        colors: ['#000'],
+        fontSize: '12px',
+        fontWeight: 'bold',
       },
     },
     grid: {
@@ -52,23 +60,24 @@ export const BarChartCard = ({
       },
       labels: {
         offsetX: -10,
-        align: 'center',
+        align: 'left',
         style: {
           fontSize: 'medium',
         },
       },
     },
   };
+  const height = (series[0].data?.length || 10) * 40;
 
   return (
     <div
-      className={`flex flex-col w-full max-h-[800px] p-3 md:p-12 bg-white drop-shadow-lg rounded-lg ${className}`}
+      className={`flex flex-col w-full min-h-[300px] p-4 md:p-12 bg-white drop-shadow-lg rounded-lg ${className}`}
     >
       <div className="w-full">
         <Heading headingLevel={2} className="text-grayMix4 my-4">
           {title}
         </Heading>
-        <Chart series={series} type="bar" options={options} height={300} />
+        <Chart series={series} type="bar" options={options} height={height} />
         <div className="flex flex-col md:flex-row gap-8 mt-8">
           {metaData.map(({ value, label }, idx) => (
             <div key={idx} className="flex flex-col">

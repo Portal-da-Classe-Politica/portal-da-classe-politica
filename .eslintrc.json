@@ -12,6 +12,7 @@
     "no-mixed-spaces-and-tabs": "error",
     "no-multiple-empty-lines": "error",
     "no-unexpected-multiline": "error",
+    "react/no-unescaped-entities": "off",
     "curly": ["error", "all"],
     "keyword-spacing": "error",
     "default-param-last": "error",

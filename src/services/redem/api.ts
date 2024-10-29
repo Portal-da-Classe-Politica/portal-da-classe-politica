@@ -999,6 +999,131 @@ export interface GetCandidates500Response {
 /**
  *
  * @export
+ * @interface GetElectionsByLocation200Response
+ */
+export interface GetElectionsByLocation200Response {
+  /**
+   *
+   * @type {boolean}
+   * @memberof GetElectionsByLocation200Response
+   */
+  success?: boolean;
+  /**
+   *
+   * @type {string}
+   * @memberof GetElectionsByLocation200Response
+   */
+  message?: string;
+  /**
+   *
+   * @type {Array<object>}
+   * @memberof GetElectionsByLocation200Response
+   */
+  data?: Array<object>;
+}
+/**
+ *
+ * @export
+ * @interface GetElectionsCompetitionByYear200Response
+ */
+export interface GetElectionsCompetitionByYear200Response {
+  /**
+   *
+   * @type {boolean}
+   * @memberof GetElectionsCompetitionByYear200Response
+   */
+  success?: boolean;
+  /**
+   *
+   * @type {string}
+   * @memberof GetElectionsCompetitionByYear200Response
+   */
+  message?: string;
+  /**
+   *
+   * @type {Array<object>}
+   * @memberof GetElectionsCompetitionByYear200Response
+   */
+  data?: Array<object>;
+}
+/**
+ *
+ * @export
+ * @interface GetElectionsKpis200Response
+ */
+export interface GetElectionsKpis200Response {
+  /**
+   *
+   * @type {boolean}
+   * @memberof GetElectionsKpis200Response
+   */
+  success?: boolean;
+  /**
+   *
+   * @type {string}
+   * @memberof GetElectionsKpis200Response
+   */
+  message?: string;
+  /**
+   *
+   * @type {Array<object>}
+   * @memberof GetElectionsKpis200Response
+   */
+  data?: Array<object>;
+}
+/**
+ *
+ * @export
+ * @interface GetElectionsTopCandidates200Response
+ */
+export interface GetElectionsTopCandidates200Response {
+  /**
+   *
+   * @type {boolean}
+   * @memberof GetElectionsTopCandidates200Response
+   */
+  success?: boolean;
+  /**
+   *
+   * @type {string}
+   * @memberof GetElectionsTopCandidates200Response
+   */
+  message?: string;
+  /**
+   *
+   * @type {Array<object>}
+   * @memberof GetElectionsTopCandidates200Response
+   */
+  data?: Array<object>;
+}
+/**
+ *
+ * @export
+ * @interface GetElectoralIndicators200Response
+ */
+export interface GetElectoralIndicators200Response {
+  /**
+   *
+   * @type {boolean}
+   * @memberof GetElectoralIndicators200Response
+   */
+  success?: boolean;
+  /**
+   *
+   * @type {string}
+   * @memberof GetElectoralIndicators200Response
+   */
+  message?: string;
+  /**
+   *
+   * @type {Array<object>}
+   * @memberof GetElectoralIndicators200Response
+   */
+  data?: Array<object>;
+}
+/**
+ *
+ * @export
  * @interface GetElectoralUnit200Response
  */
 export interface GetElectoralUnit200Response {
@@ -1218,7 +1343,7 @@ export const AbrangencyApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getAbrangency(options?: any): AxiosPromise<GetAbrangency200Response> {
+    getAbrangency(options?: RawAxiosRequestConfig): AxiosPromise<GetAbrangency200Response> {
       return localVarFp.getAbrangency(options).then(request => request(axios, basePath));
     },
   };
@@ -1589,7 +1714,10 @@ export const CandidateApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCandidate(candidatoId: string, options?: any): AxiosPromise<GetCandidate200Response> {
+    getCandidate(
+      candidatoId: string,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetCandidate200Response> {
       return localVarFp.getCandidate(candidatoId, options).then(request => request(axios, basePath));
     },
     /**
@@ -1601,7 +1729,7 @@ export const CandidateApiFactory = function (
      */
     getCandidateLastElectionVoteByRegion(
       candidatoId: string,
-      options?: any,
+      options?: RawAxiosRequestConfig,
     ): AxiosPromise<GetCandidateLastElectionVoteByRegion200Response> {
       return localVarFp
         .getCandidateLastElectionVoteByRegion(candidatoId, options)
@@ -1616,7 +1744,7 @@ export const CandidateApiFactory = function (
      */
     getCandidateLastFiveElectionVotes(
       candidatoId: string,
-      options?: any,
+      options?: RawAxiosRequestConfig,
     ): AxiosPromise<GetCandidateLastFiveElectionVotes200Response> {
       return localVarFp
         .getCandidateLastFiveElectionVotes(candidatoId, options)
@@ -1639,7 +1767,7 @@ export const CandidateApiFactory = function (
       abrangencyId?: string,
       electoralUnitId?: string,
       page?: number,
-      options?: any,
+      options?: RawAxiosRequestConfig,
     ): AxiosPromise<GetCandidates200Response> {
       return localVarFp
         .getCandidates(name, uF, abrangencyId, electoralUnitId, page, options)
@@ -2099,6 +2227,658 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
         options: localVarRequestOptions,
       };
     },
+    /**
+     * Retorna os votos por localização nas eleições.
+     * @summary Votos por localização nas eleições
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getElectionsByLocation: async (
+      initialYear: number,
+      finalYear: number,
+      dimension?: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getElectionsByLocation', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getElectionsByLocation', 'finalYear', finalYear);
+      const localVarPath = `/noauth/cruzamentos/elections/by-location`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (dimension !== undefined) {
+        localVarQueryParameter['dimension'] = dimension;
+      }
+
+      if (unidadesEleitoraisIds) {
+        localVarQueryParameter['unidadesEleitoraisIds'] = unidadesEleitoraisIds;
+      }
+
+      if (isElected !== undefined) {
+        localVarQueryParameter['isElected'] = isElected;
+      }
+
+      if (partidos) {
+        localVarQueryParameter['partidos'] = partidos;
+      }
+
+      if (categoriasOcupacoes) {
+        localVarQueryParameter['categoriasOcupacoes'] = categoriasOcupacoes;
+      }
+
+      if (cargosIds) {
+        localVarQueryParameter['cargosIds'] = cargosIds;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Retorna dados de competição por ano nas eleições.
+     * @summary Competição por ano nas eleições
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getElectionsCompetitionByYear: async (
+      initialYear: number,
+      finalYear: number,
+      dimension?: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getElectionsCompetitionByYear', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getElectionsCompetitionByYear', 'finalYear', finalYear);
+      const localVarPath = `/noauth/cruzamentos/elections/competition-by-year`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (dimension !== undefined) {
+        localVarQueryParameter['dimension'] = dimension;
+      }
+
+      if (unidadesEleitoraisIds) {
+        localVarQueryParameter['unidadesEleitoraisIds'] = unidadesEleitoraisIds;
+      }
+
+      if (isElected !== undefined) {
+        localVarQueryParameter['isElected'] = isElected;
+      }
+
+      if (partidos) {
+        localVarQueryParameter['partidos'] = partidos;
+      }
+
+      if (categoriasOcupacoes) {
+        localVarQueryParameter['categoriasOcupacoes'] = categoriasOcupacoes;
+      }
+
+      if (cargosIds) {
+        localVarQueryParameter['cargosIds'] = cargosIds;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Retorna os KPIs relacionados às eleições.
+     * @summary KPIs para a página de eleições
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getElectionsKpis: async (
+      initialYear: number,
+      finalYear: number,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getElectionsKpis', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getElectionsKpis', 'finalYear', finalYear);
+      const localVarPath = `/noauth/cruzamentos/elections/kpis`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Retorna os principais candidatos nas eleições.
+     * @summary Principais candidatos nas eleições
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getElectionsTopCandidates: async (
+      initialYear: number,
+      finalYear: number,
+      dimension?: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getElectionsTopCandidates', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getElectionsTopCandidates', 'finalYear', finalYear);
+      const localVarPath = `/noauth/cruzamentos/elections/top-candidates`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (dimension !== undefined) {
+        localVarQueryParameter['dimension'] = dimension;
+      }
+
+      if (unidadesEleitoraisIds) {
+        localVarQueryParameter['unidadesEleitoraisIds'] = unidadesEleitoraisIds;
+      }
+
+      if (isElected !== undefined) {
+        localVarQueryParameter['isElected'] = isElected;
+      }
+
+      if (partidos) {
+        localVarQueryParameter['partidos'] = partidos;
+      }
+
+      if (categoriasOcupacoes) {
+        localVarQueryParameter['categoriasOcupacoes'] = categoriasOcupacoes;
+      }
+
+      if (cargosIds) {
+        localVarQueryParameter['cargosIds'] = cargosIds;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Cruzamentos financiamento de campanhas por municpio ou estado
+     * @summary Cruzamentos financiamento de campanhas por municpio ou estado
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {number} [dimension] medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFinanceByLocation: async (
+      initialYear: number,
+      finalYear: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      dimension?: number,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getFinanceByLocation', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getFinanceByLocation', 'finalYear', finalYear);
+      const localVarPath = `/noauth/cruzamentos/finance/by-location`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (unidadesEleitoraisIds) {
+        localVarQueryParameter['unidadesEleitoraisIds'] = unidadesEleitoraisIds;
+      }
+
+      if (isElected !== undefined) {
+        localVarQueryParameter['isElected'] = isElected;
+      }
+
+      if (partidos) {
+        localVarQueryParameter['partidos'] = partidos;
+      }
+
+      if (categoriasOcupacoes) {
+        localVarQueryParameter['categoriasOcupacoes'] = categoriasOcupacoes;
+      }
+
+      if (cargosIds) {
+        localVarQueryParameter['cargosIds'] = cargosIds;
+      }
+
+      if (dimension !== undefined) {
+        localVarQueryParameter['dimension'] = dimension;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Cruzamentos financiamento de campanhas por partido
+     * @summary Cruzamentos financiamento de campanhas por partido
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {number} [dimension] medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFinanceByParty: async (
+      initialYear: number,
+      finalYear: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      dimension?: number,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getFinanceByParty', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getFinanceByParty', 'finalYear', finalYear);
+      const localVarPath = `/noauth/cruzamentos/finance/by-party`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (unidadesEleitoraisIds) {
+        localVarQueryParameter['unidadesEleitoraisIds'] = unidadesEleitoraisIds;
+      }
+
+      if (isElected !== undefined) {
+        localVarQueryParameter['isElected'] = isElected;
+      }
+
+      if (partidos) {
+        localVarQueryParameter['partidos'] = partidos;
+      }
+
+      if (categoriasOcupacoes) {
+        localVarQueryParameter['categoriasOcupacoes'] = categoriasOcupacoes;
+      }
+
+      if (cargosIds) {
+        localVarQueryParameter['cargosIds'] = cargosIds;
+      }
+
+      if (dimension !== undefined) {
+        localVarQueryParameter['dimension'] = dimension;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Retorna ruzamentos financiamento de campanhas por ano
+     * @summary Cruzamentos financiamento de campanhas por ano
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {number} [dimension] medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFinanceByYear: async (
+      initialYear: number,
+      finalYear: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      dimension?: number,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getFinanceByYear', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getFinanceByYear', 'finalYear', finalYear);
+      const localVarPath = `/noauth/cruzamentos/finance/by-year`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (unidadesEleitoraisIds) {
+        localVarQueryParameter['unidadesEleitoraisIds'] = unidadesEleitoraisIds;
+      }
+
+      if (isElected !== undefined) {
+        localVarQueryParameter['isElected'] = isElected;
+      }
+
+      if (partidos) {
+        localVarQueryParameter['partidos'] = partidos;
+      }
+
+      if (categoriasOcupacoes) {
+        localVarQueryParameter['categoriasOcupacoes'] = categoriasOcupacoes;
+      }
+
+      if (cargosIds) {
+        localVarQueryParameter['cargosIds'] = cargosIds;
+      }
+
+      if (dimension !== undefined) {
+        localVarQueryParameter['dimension'] = dimension;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Retorna os kpis  do perfil dos financimanento.
+     * @summary KPIs para página de cruzamentos financiamento de campanhas
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {number} [dimension] medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFinanceKpis: async (
+      initialYear: number,
+      finalYear: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      dimension?: number,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getFinanceKpis', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getFinanceKpis', 'finalYear', finalYear);
+      const localVarPath = `/noauth/cruzamentos/finance/kpis`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (unidadesEleitoraisIds) {
+        localVarQueryParameter['unidadesEleitoraisIds'] = unidadesEleitoraisIds;
+      }
+
+      if (isElected !== undefined) {
+        localVarQueryParameter['isElected'] = isElected;
+      }
+
+      if (partidos) {
+        localVarQueryParameter['partidos'] = partidos;
+      }
+
+      if (categoriasOcupacoes) {
+        localVarQueryParameter['categoriasOcupacoes'] = categoriasOcupacoes;
+      }
+
+      if (cargosIds) {
+        localVarQueryParameter['cargosIds'] = cargosIds;
+      }
+
+      if (dimension !== undefined) {
+        localVarQueryParameter['dimension'] = dimension;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
   };
 };
 
@@ -2317,6 +3097,370 @@ export const ConsultApiFp = function (configuration?: Configuration) {
           configuration,
         )(axios, localVarOperationServerBasePath || basePath);
     },
+    /**
+     * Retorna os votos por localização nas eleições.
+     * @summary Votos por localização nas eleições
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getElectionsByLocation(
+      initialYear: number,
+      finalYear: number,
+      dimension?: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetElectionsByLocation200Response>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getElectionsByLocation(
+        initialYear,
+        finalYear,
+        dimension,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['ConsultApi.getElectionsByLocation']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * Retorna dados de competição por ano nas eleições.
+     * @summary Competição por ano nas eleições
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getElectionsCompetitionByYear(
+      initialYear: number,
+      finalYear: number,
+      dimension?: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetElectionsCompetitionByYear200Response>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getElectionsCompetitionByYear(
+        initialYear,
+        finalYear,
+        dimension,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['ConsultApi.getElectionsCompetitionByYear']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * Retorna os KPIs relacionados às eleições.
+     * @summary KPIs para a página de eleições
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getElectionsKpis(
+      initialYear: number,
+      finalYear: number,
+      options?: RawAxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetElectionsKpis200Response>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getElectionsKpis(
+        initialYear,
+        finalYear,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['ConsultApi.getElectionsKpis']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * Retorna os principais candidatos nas eleições.
+     * @summary Principais candidatos nas eleições
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getElectionsTopCandidates(
+      initialYear: number,
+      finalYear: number,
+      dimension?: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetElectionsTopCandidates200Response>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getElectionsTopCandidates(
+        initialYear,
+        finalYear,
+        dimension,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['ConsultApi.getElectionsTopCandidates']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * Cruzamentos financiamento de campanhas por municpio ou estado
+     * @summary Cruzamentos financiamento de campanhas por municpio ou estado
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {number} [dimension] medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getFinanceByLocation(
+      initialYear: number,
+      finalYear: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      dimension?: number,
+      options?: RawAxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<object>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getFinanceByLocation(
+        initialYear,
+        finalYear,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+        dimension,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['ConsultApi.getFinanceByLocation']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * Cruzamentos financiamento de campanhas por partido
+     * @summary Cruzamentos financiamento de campanhas por partido
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {number} [dimension] medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getFinanceByParty(
+      initialYear: number,
+      finalYear: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      dimension?: number,
+      options?: RawAxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getFinanceByParty(
+        initialYear,
+        finalYear,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+        dimension,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['ConsultApi.getFinanceByParty']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * Retorna ruzamentos financiamento de campanhas por ano
+     * @summary Cruzamentos financiamento de campanhas por ano
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {number} [dimension] medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getFinanceByYear(
+      initialYear: number,
+      finalYear: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      dimension?: number,
+      options?: RawAxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getFinanceByYear(
+        initialYear,
+        finalYear,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+        dimension,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['ConsultApi.getFinanceByYear']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * Retorna os kpis  do perfil dos financimanento.
+     * @summary KPIs para página de cruzamentos financiamento de campanhas
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {number} [dimension] medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getFinanceKpis(
+      initialYear: number,
+      finalYear: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      dimension?: number,
+      options?: RawAxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getFinanceKpis(
+        initialYear,
+        finalYear,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+        dimension,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['ConsultApi.getFinanceKpis']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
   };
 };
 
@@ -2337,7 +3481,7 @@ export const ConsultApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCandidateFilters(options?: any): AxiosPromise<GetCandidateFilters200Response> {
+    getCandidateFilters(options?: RawAxiosRequestConfig): AxiosPromise<GetCandidateFilters200Response> {
       return localVarFp.getCandidateFilters(options).then(request => request(axios, basePath));
     },
     /**
@@ -2363,7 +3507,7 @@ export const ConsultApiFactory = function (
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
-      options?: any,
+      options?: RawAxiosRequestConfig,
     ): AxiosPromise<void> {
       return localVarFp
         .getCandidateProfileByGender(
@@ -2402,7 +3546,7 @@ export const ConsultApiFactory = function (
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
-      options?: any,
+      options?: RawAxiosRequestConfig,
     ): AxiosPromise<void> {
       return localVarFp
         .getCandidateProfileByOccupation(
@@ -2441,7 +3585,7 @@ export const ConsultApiFactory = function (
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
-      options?: any,
+      options?: RawAxiosRequestConfig,
     ): AxiosPromise<GetCandidateProfileByYear200Response> {
       return localVarFp
         .getCandidateProfileByYear(
@@ -2478,7 +3622,7 @@ export const ConsultApiFactory = function (
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
-      options?: any,
+      options?: RawAxiosRequestConfig,
     ): AxiosPromise<void> {
       return localVarFp
         .getCandidateProfileKpis(
@@ -2489,6 +3633,296 @@ export const ConsultApiFactory = function (
           partidos,
           categoriasOcupacoes,
           cargosIds,
+          options,
+        )
+        .then(request => request(axios, basePath));
+    },
+    /**
+     * Retorna os votos por localização nas eleições.
+     * @summary Votos por localização nas eleições
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getElectionsByLocation(
+      initialYear: number,
+      finalYear: number,
+      dimension?: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetElectionsByLocation200Response> {
+      return localVarFp
+        .getElectionsByLocation(
+          initialYear,
+          finalYear,
+          dimension,
+          unidadesEleitoraisIds,
+          isElected,
+          partidos,
+          categoriasOcupacoes,
+          cargosIds,
+          options,
+        )
+        .then(request => request(axios, basePath));
+    },
+    /**
+     * Retorna dados de competição por ano nas eleições.
+     * @summary Competição por ano nas eleições
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getElectionsCompetitionByYear(
+      initialYear: number,
+      finalYear: number,
+      dimension?: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetElectionsCompetitionByYear200Response> {
+      return localVarFp
+        .getElectionsCompetitionByYear(
+          initialYear,
+          finalYear,
+          dimension,
+          unidadesEleitoraisIds,
+          isElected,
+          partidos,
+          categoriasOcupacoes,
+          cargosIds,
+          options,
+        )
+        .then(request => request(axios, basePath));
+    },
+    /**
+     * Retorna os KPIs relacionados às eleições.
+     * @summary KPIs para a página de eleições
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getElectionsKpis(
+      initialYear: number,
+      finalYear: number,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetElectionsKpis200Response> {
+      return localVarFp
+        .getElectionsKpis(initialYear, finalYear, options)
+        .then(request => request(axios, basePath));
+    },
+    /**
+     * Retorna os principais candidatos nas eleições.
+     * @summary Principais candidatos nas eleições
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getElectionsTopCandidates(
+      initialYear: number,
+      finalYear: number,
+      dimension?: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetElectionsTopCandidates200Response> {
+      return localVarFp
+        .getElectionsTopCandidates(
+          initialYear,
+          finalYear,
+          dimension,
+          unidadesEleitoraisIds,
+          isElected,
+          partidos,
+          categoriasOcupacoes,
+          cargosIds,
+          options,
+        )
+        .then(request => request(axios, basePath));
+    },
+    /**
+     * Cruzamentos financiamento de campanhas por municpio ou estado
+     * @summary Cruzamentos financiamento de campanhas por municpio ou estado
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {number} [dimension] medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFinanceByLocation(
+      initialYear: number,
+      finalYear: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      dimension?: number,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<object> {
+      return localVarFp
+        .getFinanceByLocation(
+          initialYear,
+          finalYear,
+          unidadesEleitoraisIds,
+          isElected,
+          partidos,
+          categoriasOcupacoes,
+          cargosIds,
+          dimension,
+          options,
+        )
+        .then(request => request(axios, basePath));
+    },
+    /**
+     * Cruzamentos financiamento de campanhas por partido
+     * @summary Cruzamentos financiamento de campanhas por partido
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {number} [dimension] medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFinanceByParty(
+      initialYear: number,
+      finalYear: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      dimension?: number,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .getFinanceByParty(
+          initialYear,
+          finalYear,
+          unidadesEleitoraisIds,
+          isElected,
+          partidos,
+          categoriasOcupacoes,
+          cargosIds,
+          dimension,
+          options,
+        )
+        .then(request => request(axios, basePath));
+    },
+    /**
+     * Retorna ruzamentos financiamento de campanhas por ano
+     * @summary Cruzamentos financiamento de campanhas por ano
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {number} [dimension] medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFinanceByYear(
+      initialYear: number,
+      finalYear: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      dimension?: number,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .getFinanceByYear(
+          initialYear,
+          finalYear,
+          unidadesEleitoraisIds,
+          isElected,
+          partidos,
+          categoriasOcupacoes,
+          cargosIds,
+          dimension,
+          options,
+        )
+        .then(request => request(axios, basePath));
+    },
+    /**
+     * Retorna os kpis  do perfil dos financimanento.
+     * @summary KPIs para página de cruzamentos financiamento de campanhas
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+     * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {Array<string>} [partidos] IDs dos partidos
+     * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+     * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+     * @param {number} [dimension] medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFinanceKpis(
+      initialYear: number,
+      finalYear: number,
+      unidadesEleitoraisIds?: Array<string>,
+      isElected?: number,
+      partidos?: Array<string>,
+      categoriasOcupacoes?: Array<string>,
+      cargosIds?: Array<string>,
+      dimension?: number,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .getFinanceKpis(
+          initialYear,
+          finalYear,
+          unidadesEleitoraisIds,
+          isElected,
+          partidos,
+          categoriasOcupacoes,
+          cargosIds,
+          dimension,
           options,
         )
         .then(request => request(axios, basePath));
@@ -2676,6 +4110,308 @@ export class ConsultApi extends BaseAPI {
       )
       .then(request => request(this.axios, this.basePath));
   }
+
+  /**
+   * Retorna os votos por localização nas eleições.
+   * @summary Votos por localização nas eleições
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
+   * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+   * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+   * @param {Array<string>} [partidos] IDs dos partidos
+   * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+   * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ConsultApi
+   */
+  public getElectionsByLocation(
+    initialYear: number,
+    finalYear: number,
+    dimension?: number,
+    unidadesEleitoraisIds?: Array<string>,
+    isElected?: number,
+    partidos?: Array<string>,
+    categoriasOcupacoes?: Array<string>,
+    cargosIds?: Array<string>,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return ConsultApiFp(this.configuration)
+      .getElectionsByLocation(
+        initialYear,
+        finalYear,
+        dimension,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+        options,
+      )
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Retorna dados de competição por ano nas eleições.
+   * @summary Competição por ano nas eleições
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
+   * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+   * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+   * @param {Array<string>} [partidos] IDs dos partidos
+   * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+   * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ConsultApi
+   */
+  public getElectionsCompetitionByYear(
+    initialYear: number,
+    finalYear: number,
+    dimension?: number,
+    unidadesEleitoraisIds?: Array<string>,
+    isElected?: number,
+    partidos?: Array<string>,
+    categoriasOcupacoes?: Array<string>,
+    cargosIds?: Array<string>,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return ConsultApiFp(this.configuration)
+      .getElectionsCompetitionByYear(
+        initialYear,
+        finalYear,
+        dimension,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+        options,
+      )
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Retorna os KPIs relacionados às eleições.
+   * @summary KPIs para a página de eleições
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ConsultApi
+   */
+  public getElectionsKpis(initialYear: number, finalYear: number, options?: RawAxiosRequestConfig) {
+    return ConsultApiFp(this.configuration)
+      .getElectionsKpis(initialYear, finalYear, options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Retorna os principais candidatos nas eleições.
+   * @summary Principais candidatos nas eleições
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
+   * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+   * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+   * @param {Array<string>} [partidos] IDs dos partidos
+   * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+   * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ConsultApi
+   */
+  public getElectionsTopCandidates(
+    initialYear: number,
+    finalYear: number,
+    dimension?: number,
+    unidadesEleitoraisIds?: Array<string>,
+    isElected?: number,
+    partidos?: Array<string>,
+    categoriasOcupacoes?: Array<string>,
+    cargosIds?: Array<string>,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return ConsultApiFp(this.configuration)
+      .getElectionsTopCandidates(
+        initialYear,
+        finalYear,
+        dimension,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+        options,
+      )
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Cruzamentos financiamento de campanhas por municpio ou estado
+   * @summary Cruzamentos financiamento de campanhas por municpio ou estado
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+   * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+   * @param {Array<string>} [partidos] IDs dos partidos
+   * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+   * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+   * @param {number} [dimension] medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ConsultApi
+   */
+  public getFinanceByLocation(
+    initialYear: number,
+    finalYear: number,
+    unidadesEleitoraisIds?: Array<string>,
+    isElected?: number,
+    partidos?: Array<string>,
+    categoriasOcupacoes?: Array<string>,
+    cargosIds?: Array<string>,
+    dimension?: number,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return ConsultApiFp(this.configuration)
+      .getFinanceByLocation(
+        initialYear,
+        finalYear,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+        dimension,
+        options,
+      )
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Cruzamentos financiamento de campanhas por partido
+   * @summary Cruzamentos financiamento de campanhas por partido
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+   * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+   * @param {Array<string>} [partidos] IDs dos partidos
+   * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+   * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+   * @param {number} [dimension] medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ConsultApi
+   */
+  public getFinanceByParty(
+    initialYear: number,
+    finalYear: number,
+    unidadesEleitoraisIds?: Array<string>,
+    isElected?: number,
+    partidos?: Array<string>,
+    categoriasOcupacoes?: Array<string>,
+    cargosIds?: Array<string>,
+    dimension?: number,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return ConsultApiFp(this.configuration)
+      .getFinanceByParty(
+        initialYear,
+        finalYear,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+        dimension,
+        options,
+      )
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Retorna ruzamentos financiamento de campanhas por ano
+   * @summary Cruzamentos financiamento de campanhas por ano
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+   * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+   * @param {Array<string>} [partidos] IDs dos partidos
+   * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+   * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+   * @param {number} [dimension] medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ConsultApi
+   */
+  public getFinanceByYear(
+    initialYear: number,
+    finalYear: number,
+    unidadesEleitoraisIds?: Array<string>,
+    isElected?: number,
+    partidos?: Array<string>,
+    categoriasOcupacoes?: Array<string>,
+    cargosIds?: Array<string>,
+    dimension?: number,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return ConsultApiFp(this.configuration)
+      .getFinanceByYear(
+        initialYear,
+        finalYear,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+        dimension,
+        options,
+      )
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Retorna os kpis  do perfil dos financimanento.
+   * @summary KPIs para página de cruzamentos financiamento de campanhas
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
+   * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+   * @param {Array<string>} [partidos] IDs dos partidos
+   * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
+   * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
+   * @param {number} [dimension] medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ConsultApi
+   */
+  public getFinanceKpis(
+    initialYear: number,
+    finalYear: number,
+    unidadesEleitoraisIds?: Array<string>,
+    isElected?: number,
+    partidos?: Array<string>,
+    categoriasOcupacoes?: Array<string>,
+    cargosIds?: Array<string>,
+    dimension?: number,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return ConsultApiFp(this.configuration)
+      .getFinanceKpis(
+        initialYear,
+        finalYear,
+        unidadesEleitoraisIds,
+        isElected,
+        partidos,
+        categoriasOcupacoes,
+        cargosIds,
+        dimension,
+        options,
+      )
+      .then(request => request(this.axios, this.basePath));
+  }
 }
 
 /**
@@ -2845,7 +4581,7 @@ export const ElectoralUnitApiFactory = function (
     getElectoralUnit(
       abrangencyId: number,
       uF?: string,
-      options?: any,
+      options?: RawAxiosRequestConfig,
     ): AxiosPromise<GetElectoralUnit200Response> {
       return localVarFp.getElectoralUnit(abrangencyId, uF, options).then(request => request(axios, basePath));
     },
@@ -2855,7 +4591,7 @@ export const ElectoralUnitApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getUfs(options?: any): AxiosPromise<GetUfs200Response> {
+    getUfs(options?: RawAxiosRequestConfig): AxiosPromise<GetUfs200Response> {
       return localVarFp.getUfs(options).then(request => request(axios, basePath));
     },
   };
@@ -2893,6 +4629,2565 @@ export class ElectoralUnitApi extends BaseAPI {
   public getUfs(options?: RawAxiosRequestConfig) {
     return ElectoralUnitApiFp(this.configuration)
       .getUfs(options)
+      .then(request => request(this.axios, this.basePath));
+  }
+}
+
+/**
+ * IndicatorsApi - axios parameter creator
+ * @export
+ */
+export const IndicatorsApiAxiosParamCreator = function (configuration?: Configuration) {
+  return {
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getElectoral01: async (
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getElectoral01', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getElectoral01', 'finalYear', finalYear);
+      const localVarPath = `/noauth/indicadores/eleitorais/1`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (cargoId !== undefined) {
+        localVarQueryParameter['cargoId'] = cargoId;
+      }
+
+      if (unidadesEleitorais) {
+        localVarQueryParameter['unidadesEleitorais'] = unidadesEleitorais;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getElectoral02: async (
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getElectoral02', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getElectoral02', 'finalYear', finalYear);
+      const localVarPath = `/noauth/indicadores/eleitorais/2`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (cargoId !== undefined) {
+        localVarQueryParameter['cargoId'] = cargoId;
+      }
+
+      if (unidadesEleitorais) {
+        localVarQueryParameter['unidadesEleitorais'] = unidadesEleitorais;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getElectoral03: async (
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getElectoral03', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getElectoral03', 'finalYear', finalYear);
+      const localVarPath = `/noauth/indicadores/eleitorais/3`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (cargoId !== undefined) {
+        localVarQueryParameter['cargoId'] = cargoId;
+      }
+
+      if (unidadesEleitorais) {
+        localVarQueryParameter['unidadesEleitorais'] = unidadesEleitorais;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getElectoral04: async (
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getElectoral04', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getElectoral04', 'finalYear', finalYear);
+      const localVarPath = `/noauth/indicadores/eleitorais/4`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (cargoId !== undefined) {
+        localVarQueryParameter['cargoId'] = cargoId;
+      }
+
+      if (unidadesEleitorais) {
+        localVarQueryParameter['unidadesEleitorais'] = unidadesEleitorais;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getElectoralIndicators: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+      const localVarPath = `/noauth/indicadores/eleitorais`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFinanceIndicator13: async (
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getFinanceIndicator13', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getFinanceIndicator13', 'finalYear', finalYear);
+      const localVarPath = `/noauth/indicadores/financeiros/13`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (cargoId !== undefined) {
+        localVarQueryParameter['cargoId'] = cargoId;
+      }
+
+      if (unidadesEleitorais) {
+        localVarQueryParameter['unidadesEleitorais'] = unidadesEleitorais;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFinanceIndicator14: async (
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getFinanceIndicator14', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getFinanceIndicator14', 'finalYear', finalYear);
+      const localVarPath = `/noauth/indicadores/financeiros/14`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (cargoId !== undefined) {
+        localVarQueryParameter['cargoId'] = cargoId;
+      }
+
+      if (unidadesEleitorais) {
+        localVarQueryParameter['unidadesEleitorais'] = unidadesEleitorais;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFinanceIndicator15: async (
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getFinanceIndicator15', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getFinanceIndicator15', 'finalYear', finalYear);
+      const localVarPath = `/noauth/indicadores/financeiros/15`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (cargoId !== undefined) {
+        localVarQueryParameter['cargoId'] = cargoId;
+      }
+
+      if (unidadesEleitorais) {
+        localVarQueryParameter['unidadesEleitorais'] = unidadesEleitorais;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFinanceIndicator16: async (
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getFinanceIndicator16', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getFinanceIndicator16', 'finalYear', finalYear);
+      const localVarPath = `/noauth/indicadores/financeiros/16`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (cargoId !== undefined) {
+        localVarQueryParameter['cargoId'] = cargoId;
+      }
+
+      if (unidadesEleitorais) {
+        localVarQueryParameter['unidadesEleitorais'] = unidadesEleitorais;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFinanceIndicators: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+      const localVarPath = `/noauth/indicadores/financeiros`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getGeographical09: async (
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getGeographical09', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getGeographical09', 'finalYear', finalYear);
+      const localVarPath = `/noauth/indicadores/geograficos/9`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (cargoId !== undefined) {
+        localVarQueryParameter['cargoId'] = cargoId;
+      }
+
+      if (unidadesEleitorais) {
+        localVarQueryParameter['unidadesEleitorais'] = unidadesEleitorais;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getGeographical10: async (
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getGeographical10', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getGeographical10', 'finalYear', finalYear);
+      const localVarPath = `/noauth/indicadores/geograficos/10`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (cargoId !== undefined) {
+        localVarQueryParameter['cargoId'] = cargoId;
+      }
+
+      if (unidadesEleitorais) {
+        localVarQueryParameter['unidadesEleitorais'] = unidadesEleitorais;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getGeographical11: async (
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getGeographical11', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getGeographical11', 'finalYear', finalYear);
+      const localVarPath = `/noauth/indicadores/geograficos/11`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (cargoId !== undefined) {
+        localVarQueryParameter['cargoId'] = cargoId;
+      }
+
+      if (unidadesEleitorais) {
+        localVarQueryParameter['unidadesEleitorais'] = unidadesEleitorais;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getGeographical12: async (
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getGeographical12', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getGeographical12', 'finalYear', finalYear);
+      const localVarPath = `/noauth/indicadores/geograficos/12`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (cargoId !== undefined) {
+        localVarQueryParameter['cargoId'] = cargoId;
+      }
+
+      if (unidadesEleitorais) {
+        localVarQueryParameter['unidadesEleitorais'] = unidadesEleitorais;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getGeographicalIndicators: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+      const localVarPath = `/noauth/indicadores/geograficos`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPartyIndicator05: async (
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getPartyIndicator05', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getPartyIndicator05', 'finalYear', finalYear);
+      const localVarPath = `/noauth/indicadores/partidarios/5`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (cargoId !== undefined) {
+        localVarQueryParameter['cargoId'] = cargoId;
+      }
+
+      if (unidadesEleitorais) {
+        localVarQueryParameter['unidadesEleitorais'] = unidadesEleitorais;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPartyIndicator06: async (
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getPartyIndicator06', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getPartyIndicator06', 'finalYear', finalYear);
+      const localVarPath = `/noauth/indicadores/partidarios/6`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (cargoId !== undefined) {
+        localVarQueryParameter['cargoId'] = cargoId;
+      }
+
+      if (unidadesEleitorais) {
+        localVarQueryParameter['unidadesEleitorais'] = unidadesEleitorais;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPartyIndicator07: async (
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getPartyIndicator07', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getPartyIndicator07', 'finalYear', finalYear);
+      const localVarPath = `/noauth/indicadores/partidarios/7`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (cargoId !== undefined) {
+        localVarQueryParameter['cargoId'] = cargoId;
+      }
+
+      if (unidadesEleitorais) {
+        localVarQueryParameter['unidadesEleitorais'] = unidadesEleitorais;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPartyIndicator08: async (
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getPartyIndicator08', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getPartyIndicator08', 'finalYear', finalYear);
+      const localVarPath = `/noauth/indicadores/partidarios/8`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (cargoId !== undefined) {
+        localVarQueryParameter['cargoId'] = cargoId;
+      }
+
+      if (unidadesEleitorais) {
+        localVarQueryParameter['unidadesEleitorais'] = unidadesEleitorais;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPartyIndicators: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+      const localVarPath = `/noauth/indicadores/partidarios`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+  };
+};
+
+/**
+ * IndicatorsApi - functional programming interface
+ * @export
+ */
+export const IndicatorsApiFp = function (configuration?: Configuration) {
+  const localVarAxiosParamCreator = IndicatorsApiAxiosParamCreator(configuration);
+  return {
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getElectoral01(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetElectoralIndicators200Response>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getElectoral01(
+        initialYear,
+        finalYear,
+        cargoId,
+        unidadesEleitorais,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['IndicatorsApi.getElectoral01']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getElectoral02(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetElectoralIndicators200Response>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getElectoral02(
+        initialYear,
+        finalYear,
+        cargoId,
+        unidadesEleitorais,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['IndicatorsApi.getElectoral02']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getElectoral03(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetElectoralIndicators200Response>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getElectoral03(
+        initialYear,
+        finalYear,
+        cargoId,
+        unidadesEleitorais,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['IndicatorsApi.getElectoral03']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getElectoral04(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetElectoralIndicators200Response>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getElectoral04(
+        initialYear,
+        finalYear,
+        cargoId,
+        unidadesEleitorais,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['IndicatorsApi.getElectoral04']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getElectoralIndicators(
+      options?: RawAxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetElectoralIndicators200Response>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getElectoralIndicators(options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['IndicatorsApi.getElectoralIndicators']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getFinanceIndicator13(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetElectoralIndicators200Response>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getFinanceIndicator13(
+        initialYear,
+        finalYear,
+        cargoId,
+        unidadesEleitorais,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['IndicatorsApi.getFinanceIndicator13']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getFinanceIndicator14(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetElectoralIndicators200Response>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getFinanceIndicator14(
+        initialYear,
+        finalYear,
+        cargoId,
+        unidadesEleitorais,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['IndicatorsApi.getFinanceIndicator14']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getFinanceIndicator15(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetElectoralIndicators200Response>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getFinanceIndicator15(
+        initialYear,
+        finalYear,
+        cargoId,
+        unidadesEleitorais,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['IndicatorsApi.getFinanceIndicator15']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getFinanceIndicator16(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetElectoralIndicators200Response>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getFinanceIndicator16(
+        initialYear,
+        finalYear,
+        cargoId,
+        unidadesEleitorais,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['IndicatorsApi.getFinanceIndicator16']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getFinanceIndicators(
+      options?: RawAxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetElectoralIndicators200Response>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getFinanceIndicators(options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['IndicatorsApi.getFinanceIndicators']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getGeographical09(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetElectoralIndicators200Response>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getGeographical09(
+        initialYear,
+        finalYear,
+        cargoId,
+        unidadesEleitorais,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['IndicatorsApi.getGeographical09']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getGeographical10(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetElectoralIndicators200Response>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getGeographical10(
+        initialYear,
+        finalYear,
+        cargoId,
+        unidadesEleitorais,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['IndicatorsApi.getGeographical10']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getGeographical11(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetElectoralIndicators200Response>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getGeographical11(
+        initialYear,
+        finalYear,
+        cargoId,
+        unidadesEleitorais,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['IndicatorsApi.getGeographical11']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getGeographical12(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetElectoralIndicators200Response>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getGeographical12(
+        initialYear,
+        finalYear,
+        cargoId,
+        unidadesEleitorais,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['IndicatorsApi.getGeographical12']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getGeographicalIndicators(
+      options?: RawAxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetElectoralIndicators200Response>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getGeographicalIndicators(options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['IndicatorsApi.getGeographicalIndicators']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getPartyIndicator05(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetElectoralIndicators200Response>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getPartyIndicator05(
+        initialYear,
+        finalYear,
+        cargoId,
+        unidadesEleitorais,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['IndicatorsApi.getPartyIndicator05']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getPartyIndicator06(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetElectoralIndicators200Response>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getPartyIndicator06(
+        initialYear,
+        finalYear,
+        cargoId,
+        unidadesEleitorais,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['IndicatorsApi.getPartyIndicator06']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getPartyIndicator07(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetElectoralIndicators200Response>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getPartyIndicator07(
+        initialYear,
+        finalYear,
+        cargoId,
+        unidadesEleitorais,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['IndicatorsApi.getPartyIndicator07']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getPartyIndicator08(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetElectoralIndicators200Response>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getPartyIndicator08(
+        initialYear,
+        finalYear,
+        cargoId,
+        unidadesEleitorais,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['IndicatorsApi.getPartyIndicator08']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getPartyIndicators(
+      options?: RawAxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetElectoralIndicators200Response>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getPartyIndicators(options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['IndicatorsApi.getPartyIndicators']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+  };
+};
+
+/**
+ * IndicatorsApi - factory interface
+ * @export
+ */
+export const IndicatorsApiFactory = function (
+  configuration?: Configuration,
+  basePath?: string,
+  axios?: AxiosInstance,
+) {
+  const localVarFp = IndicatorsApiFp(configuration);
+  return {
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getElectoral01(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetElectoralIndicators200Response> {
+      return localVarFp
+        .getElectoral01(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+        .then(request => request(axios, basePath));
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getElectoral02(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetElectoralIndicators200Response> {
+      return localVarFp
+        .getElectoral02(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+        .then(request => request(axios, basePath));
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getElectoral03(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetElectoralIndicators200Response> {
+      return localVarFp
+        .getElectoral03(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+        .then(request => request(axios, basePath));
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getElectoral04(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetElectoralIndicators200Response> {
+      return localVarFp
+        .getElectoral04(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+        .then(request => request(axios, basePath));
+    },
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getElectoralIndicators(options?: RawAxiosRequestConfig): AxiosPromise<GetElectoralIndicators200Response> {
+      return localVarFp.getElectoralIndicators(options).then(request => request(axios, basePath));
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFinanceIndicator13(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetElectoralIndicators200Response> {
+      return localVarFp
+        .getFinanceIndicator13(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+        .then(request => request(axios, basePath));
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFinanceIndicator14(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetElectoralIndicators200Response> {
+      return localVarFp
+        .getFinanceIndicator14(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+        .then(request => request(axios, basePath));
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFinanceIndicator15(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetElectoralIndicators200Response> {
+      return localVarFp
+        .getFinanceIndicator15(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+        .then(request => request(axios, basePath));
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFinanceIndicator16(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetElectoralIndicators200Response> {
+      return localVarFp
+        .getFinanceIndicator16(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+        .then(request => request(axios, basePath));
+    },
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFinanceIndicators(options?: RawAxiosRequestConfig): AxiosPromise<GetElectoralIndicators200Response> {
+      return localVarFp.getFinanceIndicators(options).then(request => request(axios, basePath));
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getGeographical09(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetElectoralIndicators200Response> {
+      return localVarFp
+        .getGeographical09(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+        .then(request => request(axios, basePath));
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getGeographical10(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetElectoralIndicators200Response> {
+      return localVarFp
+        .getGeographical10(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+        .then(request => request(axios, basePath));
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getGeographical11(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetElectoralIndicators200Response> {
+      return localVarFp
+        .getGeographical11(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+        .then(request => request(axios, basePath));
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getGeographical12(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetElectoralIndicators200Response> {
+      return localVarFp
+        .getGeographical12(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+        .then(request => request(axios, basePath));
+    },
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getGeographicalIndicators(
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetElectoralIndicators200Response> {
+      return localVarFp.getGeographicalIndicators(options).then(request => request(axios, basePath));
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPartyIndicator05(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetElectoralIndicators200Response> {
+      return localVarFp
+        .getPartyIndicator05(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+        .then(request => request(axios, basePath));
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPartyIndicator06(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetElectoralIndicators200Response> {
+      return localVarFp
+        .getPartyIndicator06(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+        .then(request => request(axios, basePath));
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPartyIndicator07(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetElectoralIndicators200Response> {
+      return localVarFp
+        .getPartyIndicator07(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+        .then(request => request(axios, basePath));
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPartyIndicator08(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetElectoralIndicators200Response> {
+      return localVarFp
+        .getPartyIndicator08(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+        .then(request => request(axios, basePath));
+    },
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPartyIndicators(options?: RawAxiosRequestConfig): AxiosPromise<GetElectoralIndicators200Response> {
+      return localVarFp.getPartyIndicators(options).then(request => request(axios, basePath));
+    },
+  };
+};
+
+/**
+ * IndicatorsApi - object-oriented interface
+ * @export
+ * @class IndicatorsApi
+ * @extends {BaseAPI}
+ */
+export class IndicatorsApi extends BaseAPI {
+  /**
+   *
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {number} [cargoId] cargo desejado
+   * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IndicatorsApi
+   */
+  public getElectoral01(
+    initialYear: number,
+    finalYear: number,
+    cargoId?: number,
+    unidadesEleitorais?: Array<string>,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return IndicatorsApiFp(this.configuration)
+      .getElectoral01(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   *
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {number} [cargoId] cargo desejado
+   * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IndicatorsApi
+   */
+  public getElectoral02(
+    initialYear: number,
+    finalYear: number,
+    cargoId?: number,
+    unidadesEleitorais?: Array<string>,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return IndicatorsApiFp(this.configuration)
+      .getElectoral02(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   *
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {number} [cargoId] cargo desejado
+   * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IndicatorsApi
+   */
+  public getElectoral03(
+    initialYear: number,
+    finalYear: number,
+    cargoId?: number,
+    unidadesEleitorais?: Array<string>,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return IndicatorsApiFp(this.configuration)
+      .getElectoral03(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   *
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {number} [cargoId] cargo desejado
+   * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IndicatorsApi
+   */
+  public getElectoral04(
+    initialYear: number,
+    finalYear: number,
+    cargoId?: number,
+    unidadesEleitorais?: Array<string>,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return IndicatorsApiFp(this.configuration)
+      .getElectoral04(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   *
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IndicatorsApi
+   */
+  public getElectoralIndicators(options?: RawAxiosRequestConfig) {
+    return IndicatorsApiFp(this.configuration)
+      .getElectoralIndicators(options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   *
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {number} [cargoId] cargo desejado
+   * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IndicatorsApi
+   */
+  public getFinanceIndicator13(
+    initialYear: number,
+    finalYear: number,
+    cargoId?: number,
+    unidadesEleitorais?: Array<string>,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return IndicatorsApiFp(this.configuration)
+      .getFinanceIndicator13(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   *
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {number} [cargoId] cargo desejado
+   * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IndicatorsApi
+   */
+  public getFinanceIndicator14(
+    initialYear: number,
+    finalYear: number,
+    cargoId?: number,
+    unidadesEleitorais?: Array<string>,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return IndicatorsApiFp(this.configuration)
+      .getFinanceIndicator14(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   *
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {number} [cargoId] cargo desejado
+   * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IndicatorsApi
+   */
+  public getFinanceIndicator15(
+    initialYear: number,
+    finalYear: number,
+    cargoId?: number,
+    unidadesEleitorais?: Array<string>,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return IndicatorsApiFp(this.configuration)
+      .getFinanceIndicator15(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   *
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {number} [cargoId] cargo desejado
+   * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IndicatorsApi
+   */
+  public getFinanceIndicator16(
+    initialYear: number,
+    finalYear: number,
+    cargoId?: number,
+    unidadesEleitorais?: Array<string>,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return IndicatorsApiFp(this.configuration)
+      .getFinanceIndicator16(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   *
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IndicatorsApi
+   */
+  public getFinanceIndicators(options?: RawAxiosRequestConfig) {
+    return IndicatorsApiFp(this.configuration)
+      .getFinanceIndicators(options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   *
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {number} [cargoId] cargo desejado
+   * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IndicatorsApi
+   */
+  public getGeographical09(
+    initialYear: number,
+    finalYear: number,
+    cargoId?: number,
+    unidadesEleitorais?: Array<string>,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return IndicatorsApiFp(this.configuration)
+      .getGeographical09(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   *
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {number} [cargoId] cargo desejado
+   * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IndicatorsApi
+   */
+  public getGeographical10(
+    initialYear: number,
+    finalYear: number,
+    cargoId?: number,
+    unidadesEleitorais?: Array<string>,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return IndicatorsApiFp(this.configuration)
+      .getGeographical10(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   *
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {number} [cargoId] cargo desejado
+   * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IndicatorsApi
+   */
+  public getGeographical11(
+    initialYear: number,
+    finalYear: number,
+    cargoId?: number,
+    unidadesEleitorais?: Array<string>,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return IndicatorsApiFp(this.configuration)
+      .getGeographical11(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   *
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {number} [cargoId] cargo desejado
+   * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IndicatorsApi
+   */
+  public getGeographical12(
+    initialYear: number,
+    finalYear: number,
+    cargoId?: number,
+    unidadesEleitorais?: Array<string>,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return IndicatorsApiFp(this.configuration)
+      .getGeographical12(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   *
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IndicatorsApi
+   */
+  public getGeographicalIndicators(options?: RawAxiosRequestConfig) {
+    return IndicatorsApiFp(this.configuration)
+      .getGeographicalIndicators(options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   *
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {number} [cargoId] cargo desejado
+   * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IndicatorsApi
+   */
+  public getPartyIndicator05(
+    initialYear: number,
+    finalYear: number,
+    cargoId?: number,
+    unidadesEleitorais?: Array<string>,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return IndicatorsApiFp(this.configuration)
+      .getPartyIndicator05(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   *
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {number} [cargoId] cargo desejado
+   * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IndicatorsApi
+   */
+  public getPartyIndicator06(
+    initialYear: number,
+    finalYear: number,
+    cargoId?: number,
+    unidadesEleitorais?: Array<string>,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return IndicatorsApiFp(this.configuration)
+      .getPartyIndicator06(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   *
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {number} [cargoId] cargo desejado
+   * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IndicatorsApi
+   */
+  public getPartyIndicator07(
+    initialYear: number,
+    finalYear: number,
+    cargoId?: number,
+    unidadesEleitorais?: Array<string>,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return IndicatorsApiFp(this.configuration)
+      .getPartyIndicator07(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   *
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {number} [cargoId] cargo desejado
+   * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IndicatorsApi
+   */
+  public getPartyIndicator08(
+    initialYear: number,
+    finalYear: number,
+    cargoId?: number,
+    unidadesEleitorais?: Array<string>,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return IndicatorsApiFp(this.configuration)
+      .getPartyIndicator08(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   *
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IndicatorsApi
+   */
+  public getPartyIndicators(options?: RawAxiosRequestConfig) {
+    return IndicatorsApiFp(this.configuration)
+      .getPartyIndicators(options)
       .then(request => request(this.axios, this.basePath));
   }
 }
