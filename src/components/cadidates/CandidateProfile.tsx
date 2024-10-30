@@ -26,7 +26,6 @@ const CandidateProfile = ({ src, candidate }: CandidateProfileProps) => {
         <Text textType="span" size="L2" className="text-orange font-bold">
           {candidate.nome_atual}
         </Text>
-        <>{console.log('opaa', candidate)}</>
         <Heading headingLevel={2} size="H4" className="font-bold mb-2">
           {candidate.nome}
         </Heading>

@@ -1,6 +1,7 @@
 import { logError } from '@utils/logError';
 import { redem } from '../redem';
 import { AxiosError } from 'axios';
+import { parseKpisResult } from './parseKpisResult';
 
 export const consultCandidateProfile = async ({
   initialYear = 2020,
@@ -34,14 +35,16 @@ export const consultCandidateProfile = async ({
 
   try {
     const responses = await Promise.allSettled([
-      redem.consult.getCandidateProfileKpis(
-        Number(initialYear),
-        Number(finalYear),
-        unidadesEleitoraisIds,
-        isElected,
-        partidos,
-        categoriasOcupacoes,
-        cargosIds,
+      parseKpisResult(() =>
+        redem.consult.getCandidateProfileKpis(
+          Number(initialYear),
+          Number(finalYear),
+          unidadesEleitoraisIds,
+          isElected,
+          partidos,
+          categoriasOcupacoes,
+          cargosIds,
+        ),
       ),
       redem.consult.getCandidateProfileByGender(
         Number(initialYear),

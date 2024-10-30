@@ -2,6 +2,7 @@ import { logError } from '@utils/logError';
 import { redem } from '../redem';
 import { AxiosError } from 'axios';
 import { parseByLocationResult } from './parseByLocationResult';
+import { parseKpisResult } from './parseKpisResult';
 
 export const consultElections = async ({
   initialYear = 2020,
@@ -35,7 +36,7 @@ export const consultElections = async ({
 
   try {
     const responses = await Promise.allSettled([
-      redem.consult.getElectionsKpis(Number(initialYear), Number(finalYear)),
+      parseKpisResult(() => redem.consult.getElectionsKpis(Number(initialYear), Number(finalYear))),
       redem.consult.getElectionsTopCandidates(
         Number(initialYear),
         Number(finalYear),
