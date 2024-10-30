@@ -12,7 +12,7 @@ import VectorSource from 'ol/source/Vector';
 import GeoJSON from 'ol/format/GeoJSON';
 import Overlay from 'ol/Overlay';
 
-import { SeriesMapStyle } from './Styles';
+import { createSeriesStyle } from './Styles';
 import { SeriesMapTooltip } from './SeriesMapTooltip';
 
 export interface SeriesMapProps {
@@ -32,14 +32,16 @@ export const SeriesMap = ({ series, label }: SeriesMapProps) => {
 
   useEffect(() => {
     if (mapElement.current && !mapRef.current) {
-      console.log(series);
-      const featureLayers = series.map(serie => {
+      const values = series.map(s => Number(s.value ?? 0));
+      const styles = createSeriesStyle(values);
+
+      const featureLayers = series.map((serie, idx) => {
         return new VectorLayer({
           source: new VectorSource({
             format: new GeoJSON(),
             url: `/api/map/${serie.uf}`,
           }),
-          style: SeriesMapStyle,
+          style: styles[idx],
           visible: true,
         });
       });

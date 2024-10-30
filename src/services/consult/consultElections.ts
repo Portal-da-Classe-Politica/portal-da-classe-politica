@@ -74,7 +74,7 @@ export const consultElections = async ({
           sigla_unidade_federacao: 'uf',
           mediana: 'value',
         },
-        'Mediana',
+        'Votos',
       ),
     ]);
 
