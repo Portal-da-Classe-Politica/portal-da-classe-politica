@@ -183,7 +183,7 @@ const FilterComponent = ({
       <Text>{category}</Text>
       <div className="flex gap-4 mt-8 justify-between">
         <div className="flex flex-1 flex-col gap-4">
-          <div className="flex gap-4">
+          <div className="flex gap-4 flex-col md:flex-row">
             <div className="flex flex-1">
               <FilterSelect
                 options={filters.indicators}
@@ -205,9 +205,9 @@ const FilterComponent = ({
             />
           </div>
 
-          <div className="flex gap-4">
+          <div className="flex gap-4 flex-col md:flex-row">
             {values.indicator && filters.jobs[values.indicator] && (
-              <div className="inline w-[40%] min-w-[50px]">
+              <div className="inline md:w-[40%] min-w-[50px]">
                 <FilterSelect
                   options={filters.jobs[values.indicator]}
                   defaultValue={values.job}
@@ -220,7 +220,7 @@ const FilterComponent = ({
             )}
 
             {(getSelectedJob()?.filterByUf || getSelectedJob()?.filterByCity) && (
-              <div className="inline w-[40%] min-w-[50px]">
+              <div className="inline md:w-[40%] min-w-[50px]">
                 <FilterSelect
                   options={filters.ufs}
                   defaultValue={values.uf}
@@ -238,7 +238,7 @@ const FilterComponent = ({
                   <Loader />
                 </div>
               ) : (
-                <div className="inline w-[40%] min-w-[50px]">
+                <div className="inline md:w-[40%] min-w-[50px]">
                   <FilterSelect
                     options={electoralUnits}
                     defaultValue={values.electoralUnit}

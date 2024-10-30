@@ -7,7 +7,7 @@ const headingVariants = cva('font-montserrat', {
       D1: 'text-h1 md:text-d1 font-bold',
       D2: 'text-h3 md:text-d2 font-medium',
       H1: 'text-h5 md:text-h1 font-bold',
-      H2: 'text-h2',
+      H2: 'text-h6 md:text-h2',
       H3: 'text-h3',
       H4: 'text-h4',
       H5: 'text-h5',

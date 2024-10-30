@@ -81,6 +81,7 @@ export const consultCandidateProfile = async ({
     const result = [];
     for (const resp of responses) {
       if (resp.status === 'fulfilled') {
+        console.log('responses', responses);
         result.push(resp.value.data);
       } else {
         logError('Failed to consultCandidateProfile', resp.reason as AxiosError);

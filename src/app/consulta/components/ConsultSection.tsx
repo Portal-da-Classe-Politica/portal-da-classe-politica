@@ -111,7 +111,7 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
       </Container>
 
       <Container className="pt-16">
-        <div className="flex flex-col md:flex-row">
+        <div className="flex flex-col md:flex-row gap-4">
           <div className="w-full md:w-[25%]">
             <FilterSidebar
               loading={loadingSideFilters}

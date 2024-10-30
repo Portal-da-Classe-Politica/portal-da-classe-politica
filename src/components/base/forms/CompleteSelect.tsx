@@ -26,6 +26,7 @@ type CompleteSelectType = {
 const customStyles: StylesConfig<OptionType, false> = {
   option: () => ({
     padding: 5,
+    cursor: 'pointer',
   }),
   control: provided => ({
     ...provided,
