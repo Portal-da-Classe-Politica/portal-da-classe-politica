@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { ElectoralUnitService } from '@services/electoralUnit/ElectoralUnitService';
 import { NextRequest, NextResponse } from 'next/server';
 

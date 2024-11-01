@@ -86,10 +86,11 @@ const FilterComponent = ({
   onConsult: (_filters: any) => void;
   filters: SecondLayerFilters;
 }) => {
+  console.log('filters carai', filters);
   const [values, setValues] = useObjReducer({
-    initialYear: filters.years[0] ?? 2020,
-    finalYear: filters.years[filters.years.length - 1] ?? 2024,
-    indicator: filters?.indicators[0]?.value ?? '',
+    initialYear: (filters?.years && filters?.years[0]) ?? 2020,
+    finalYear: (filters?.years && filters?.years[filters.years.length - 1]) ?? 2024,
+    indicator: (filters?.indicators && filters?.indicators[0]?.value) ?? '',
     job: '',
     uf: '',
     electoralUnit: '',

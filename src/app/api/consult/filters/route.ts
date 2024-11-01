@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { ConsultService } from '@services/consult/ConsultService';
 import { NextResponse } from 'next/server';
 

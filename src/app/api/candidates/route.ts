@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { CandidateService } from '@services/candidates/CandidateService';
 import { NextRequest, NextResponse } from 'next/server';
 

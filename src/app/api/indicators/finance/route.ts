@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { IndicatorsService } from '@services/indicators/IndicatorsService';
 import { redem } from '@services/redem';
 import { NextResponse } from 'next/server';

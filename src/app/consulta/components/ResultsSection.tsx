@@ -116,14 +116,16 @@ export const ResultsSection = ({ results }: { results: any[] }) => {
         }
       })}
 
-      <div className="flex flex-col md:flex-row gap-4 mt-4 md:mt-16 mb-8 md:mb-16">
-        <ButtonStyled onClick={() => saveToPdf()}>
-          <>
-            <Icon type="Download" className="mx-2" size="xl" />
-            Baixar Cruzamentos em .PDF
-          </>
-        </ButtonStyled>
-      </div>
+      {results.length > 0 && (
+        <div className="flex flex-col md:flex-row gap-4 mt-4 md:mt-16 mb-8 md:mb-16">
+          <ButtonStyled onClick={() => saveToPdf()}>
+            <>
+              <Icon type="Download" className="mx-2" size="xl" />
+              Baixar Cruzamentos em .PDF
+            </>
+          </ButtonStyled>
+        </div>
+      )}
     </>
   );
 };

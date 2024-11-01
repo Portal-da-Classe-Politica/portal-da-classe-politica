@@ -46,8 +46,8 @@ export const CarouselTabs = ({
               }}
               className={`${
                 currentTab === idx
-                  ? `bg-orange text-white text-b1 md:text-4 font-bold rounded-t-[10px] py-4 px-8 ${selectedClassName}`
-                  : `text-orange text-b1 md:text-4 py-4 px-8 ${unSelectedClassName}`
+                  ? `bg-orange text-white text-b1 md:text-4 font-bold rounded-t-[10px] py-4 px-8 cursor-pointer ${selectedClassName}`
+                  : `text-orange text-b1 md:text-4 py-4 px-8 cursor-pointer ${unSelectedClassName}`
               }`}
             >
               {item}
