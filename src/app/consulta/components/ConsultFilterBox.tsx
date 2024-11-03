@@ -20,6 +20,8 @@ interface FilterProps {
   };
   handleFilterChange: (_a: any, _b: any) => void;
   selectedOption: any;
+  allCargo: any;
+  errors: any;
 }
 
 const showDimension = (dimensionId: any) => {
@@ -41,6 +43,8 @@ const FilterCandidateProfile = ({
   selectedOption,
   filtersData,
   loading,
+  allCargo,
+  errors,
 }: FilterProps) => {
   return (
     <FilterComponent
@@ -49,7 +53,7 @@ const FilterCandidateProfile = ({
         <>
           O resultado do cruzamento entre{' '}
           <Text className="font-bold" textType="span">
-            Perfil dos Candidatos & ${showDimension(selectedOption.dimension)}{' '}
+            Perfil dos Candidatos & {showDimension(selectedOption.dimension)}{' '}
           </Text>
           nos trás informações sobre.
         </>
@@ -60,6 +64,8 @@ const FilterCandidateProfile = ({
       handleFilterChange={handleFilterChange}
       selectedOption={selectedOption}
       loading={loading}
+      allCargo={allCargo}
+      errors={errors}
     />
   );
 };
@@ -70,6 +76,8 @@ const FilterElectionResult = ({
   selectedOption,
   filtersData,
   loading,
+  allCargo,
+  errors,
 }: FilterProps) => {
   return (
     <FilterComponent
@@ -79,7 +87,7 @@ const FilterElectionResult = ({
           O resultado do cruzamento entre{' '}
           <Text className="font-bold" textType="span">
             {' '}
-            Resultados das Eleições & ${showDimension(selectedOption.dimension)}
+            Resultados das Eleições & {showDimension(selectedOption.dimension)}
           </Text>{' '}
           nos trás informações sobre.
         </>
@@ -90,6 +98,8 @@ const FilterElectionResult = ({
       handleFilterChange={handleFilterChange}
       selectedOption={selectedOption}
       loading={loading}
+      allCargo={allCargo}
+      errors={errors}
     />
   );
 };
@@ -100,13 +110,15 @@ const FilterFinancing = ({
   selectedOption,
   filtersData,
   loading,
+  allCargo,
+  errors,
 }: FilterProps) => {
   return (
     <FilterComponent
       description="Carregamos nesta página os dados do Financiamento de Campanha. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
       longDescription={
         <>
-          O resultado do cruzamento entre Financiamento de Campanha & $
+          O resultado do cruzamento entre Financiamento de Campanha &{' '}
           {showDimension(selectedOption.dimension)} nos trás informações sobre.
         </>
       }
@@ -116,6 +128,8 @@ const FilterFinancing = ({
       handleFilterChange={handleFilterChange}
       selectedOption={selectedOption}
       loading={loading}
+      allCargo={allCargo}
+      errors={errors}
     />
   );
 };
@@ -129,6 +143,8 @@ const FilterComponent = ({
   filtersData,
   handleFilterChange,
   selectedOption,
+  allCargo,
+  errors,
 }: {
   loading: boolean;
   description: string;
@@ -144,22 +160,25 @@ const FilterComponent = ({
     dimensions: { type: string; values: { value: number; label: string }[] };
   };
   selectedOption: any;
+  allCargo: any;
+  errors: any;
 }) => {
   return (
     <div className="text-white cursor-pointer">
       <Text>{description}</Text>
+      <div className="flex flex-col xl:flex-row gap-8 my-8 justify-between items-center flex-wrap">
+        <div className="flex flex-1 w-full basis-1/4">
+          <ButtonStyled style="fillBlack" size="small" className="w-full">
+            <Text className="font-normal border-white border-r-2 pr-2" textType="span">
+              Categoria
+            </Text>
+            <Text className="font-bold ml-2" textType="span">
+              {category}
+            </Text>
+          </ButtonStyled>
+        </div>
 
-      <div className="flex flex-col xl:flex-row gap-8 my-8 justify-between">
-        <ButtonStyled style="fillBlack" size="small">
-          <Text className="font-normal border-white border-r-2 pr-2" textType="span">
-            Categoria
-          </Text>
-          <Text className="font-bold ml-2" textType="span">
-            {category}
-          </Text>
-        </ButtonStyled>
-
-        <div className="flex flex-col md:flex-row gap-8">
+        <div className="flex flex-1 flex-col lg:flex-row gap-8 w-full items-center basis-1/4">
           {loading ? (
             <div className="flex flex-1">
               <Loader />
@@ -189,10 +208,11 @@ const FilterComponent = ({
                     suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
                     onSelect={category => handleFilterChange('dimension', category)}
                   />
+                  <Text>{errors?.dimension}</Text>
                 </div>
               )}
               {filtersData?.years?.values && (
-                <div className="grow md:self-center">
+                <div className="grow lg:self-center">
                   <DatePicker
                     optionsValue={filtersData.years.values}
                     onSelectEnd={end => {
@@ -206,23 +226,47 @@ const FilterComponent = ({
               )}
             </>
           )}
+          <div className="flex flex-col">
+            <Select
+              options={allCargo?.values}
+              placeholder="Sem cargo"
+              className="inline"
+              buttonProps={{ style: 'fillGray', className: 'px-2 w-full' }}
+              prefixComponent={
+                <>
+                  <BoxIcon
+                    icon="Table"
+                    size={6}
+                    iconSize="sm"
+                    className="bg-white text-orange drop-shadow-md rounded-md mr-2"
+                  />
+                  <Text className="font-normal border-black border-r-2 pr-2 mr-2" textType="span">
+                    Cargo
+                  </Text>
+                </>
+              }
+              suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
+              onSelect={category => handleFilterChange(allCargo.key, category)}
+            />
+            <Text>{errors?.cargosIds}</Text>
+          </div>
         </div>
-
-        <ButtonStyled
-          style="fillBlack"
-          size="small"
-          onClick={() =>
-            onConsult({
-              initialYear: selectedOption.initialYear,
-              finalYear: selectedOption.finalYear,
-              dimension: selectedOption.dimension,
-            })
-          }
-        >
-          <Text>Gerar Cruzamento</Text>
-        </ButtonStyled>
+        <div className="flex flex-1 w-full">
+          <ButtonStyled
+            style="fillBlack"
+            className="w-full"
+            onClick={() =>
+              onConsult({
+                initialYear: selectedOption.initialYear,
+                finalYear: selectedOption.finalYear,
+                dimension: selectedOption.dimension,
+              })
+            }
+          >
+            <Text>Gerar Cruzamento</Text>
+          </ButtonStyled>
+        </div>
       </div>
-
       <Text>{longDescription}</Text>
     </div>
   );
@@ -237,6 +281,8 @@ export const ConsultFilterBox = ({
   selectedOption,
   loading = false,
   onTabChange = () => {},
+  allCargo,
+  errors,
 }: {
   initialConsult?: string;
   // eslint-disable-next-line no-unused-vars
@@ -250,6 +296,8 @@ export const ConsultFilterBox = ({
   selectedOption: any;
   loading: boolean;
   onTabChange?: (_tab: string) => void;
+  allCargo: any;
+  errors: any;
 }) => {
   const tabs = [
     {
@@ -279,6 +327,7 @@ export const ConsultFilterBox = ({
       tabs={tabs.map(({ title, bold }, idx) => (
         <div key={idx} className="flex">
           <Text className="text-nowrap mr-1">{title}</Text>
+          <>{console.log('ueeeeeeeeeeeeeeeeee', allCargo)}</>
           <Text className="font-bold text-nowrap">{bold}</Text>
         </div>
       ))}
@@ -290,6 +339,8 @@ export const ConsultFilterBox = ({
           filtersData={{ years, dimensions: dimensions }}
           handleFilterChange={handleFilterChange}
           selectedOption={selectedOption}
+          allCargo={allCargo}
+          errors={errors}
         />
       ))}
       unSelectedClassName="!text-black"

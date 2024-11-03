@@ -95,7 +95,7 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
               biggerList
               options={[
                 { value: routes.consult, label: 'CRUZAMENTOS' },
-                { value: routes.projections, label: 'PROJEÇÕES' },
+                { value: routes.projections, label: 'INDICES' },
                 { value: routes.candidates, label: 'PERFIL DOS CANDIDATOS' },
               ]}
               onSelect={(myValue, _) => {
@@ -158,7 +158,7 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
                 <HeaderTopic label="CRUZAMENTOS" href={routes.consult} currentPath={pathname} />
               </li>
               <li>
-                <HeaderTopic label="PROJEÇÕES" href={routes.projections} currentPath={pathname} />
+                <HeaderTopic label="INDICES" href={routes.projections} currentPath={pathname} />
               </li>
               <li>
                 <HeaderTopic label="PERFIL DOS CANDIDATOS" href={routes.candidates} currentPath={pathname} />

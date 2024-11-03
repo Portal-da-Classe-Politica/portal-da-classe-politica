@@ -41,6 +41,7 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
     consultSearchParam[initialConsult as keyof typeof consultSearchParam] ||
       consultSearchParam.CandidateProfile,
   );
+  const [errors, setErrors] = useState<any>({ cargosIds: '', dimension: '' });
 
   const [results, setResults] = useState([]);
   const [loadingResults, setLoadingResults] = useState(false);
@@ -67,10 +68,13 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
         [filterName]: value,
       };
     });
+    setErrors({ cargosIds: '', dimension: '' });
   };
 
   const onTabChange = (value: string) => {
     setConsultType(value);
+    setSelectedOptions({});
+    setErrors({ cargosIds: '', dimension: '' });
   };
 
   const sendConsult = () => {
@@ -95,6 +99,31 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
       .finally(() => setLoadingResults(false));
   };
 
+  const validateForm = () => {
+    const errors = { cargosIds: '', dimension: '' };
+
+    if (!selectedOptions.cargosIds) {
+      errors.cargosIds = 'Selecione o cargo';
+    }
+
+    if (!selectedOptions.dimension && typeof selectedOptions.dimension !== 'number') {
+      errors.dimension = 'Selecione a categoria';
+    }
+    setErrors(errors);
+
+    console.log('errors', errors);
+    return errors;
+  };
+
+  const onSubmit = () => {
+    const errors = validateForm();
+    if (Object.values(errors).some(v => Boolean(v))) {
+      return;
+    }
+
+    sendConsult();
+  };
+
   return (
     <section className="bg-grayMix1">
       <Container className="pt-16">
@@ -102,14 +131,16 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
           loading={loadingSideFilters}
           initialConsult={initialConsult}
           years={dataFilter.years}
-          onConsult={sendConsult}
+          onConsult={onSubmit}
           dimensions={dataFilter?.dimensions}
           handleFilterChange={handleFilterChange}
           selectedOption={selectedOptions}
           onTabChange={value => onTabChange(value)}
+          allCargo={dataFilter.sideFilters.filter(filter => filter.title === 'Cargos')[0]}
+          errors={errors}
         />
       </Container>
-
+      {/* */}
       <Container className="pt-16">
         <div className="flex flex-col md:flex-row gap-4">
           <div className="w-full md:w-[25%]">
