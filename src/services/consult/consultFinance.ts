@@ -2,6 +2,7 @@ import { logError } from '@utils/logError';
 import { redem } from '../redem';
 import { AxiosError } from 'axios';
 import { parseByLocationResult } from './parseByLocationResult';
+import { parseKpisResult } from './parseKpisResult';
 
 export const consultFinance = async ({
   initialYear = 2020,
@@ -35,15 +36,17 @@ export const consultFinance = async ({
 
   try {
     const responses = await Promise.allSettled([
-      redem.consult.getFinanceKpis(
-        Number(initialYear),
-        Number(finalYear),
-        unidadesEleitoraisIds,
-        isElected,
-        partidos,
-        categoriasOcupacoes,
-        cargosIds,
-        dimension,
+      parseKpisResult(() =>
+        redem.consult.getFinanceKpis(
+          Number(initialYear),
+          Number(finalYear),
+          unidadesEleitoraisIds,
+          isElected,
+          partidos,
+          categoriasOcupacoes,
+          cargosIds,
+          dimension,
+        ),
       ),
       redem.consult.getFinanceByParty(
         Number(initialYear),

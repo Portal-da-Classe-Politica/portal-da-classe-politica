@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { AbrangencyService } from '@services/abrangency/AbrangencyService';
 import { NextResponse } from 'next/server';
 

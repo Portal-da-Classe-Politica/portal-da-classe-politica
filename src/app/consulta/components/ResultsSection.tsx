@@ -1,52 +1,56 @@
-import { Text } from '@base/text';
-import { Heading } from '@base/Heading';
 import { BarChartCard } from '@components/charts/BarChartCard';
 import { ButtonStyled } from '@base/buttons';
 import { Icon } from '@base/Icon';
 import { LineChartCard } from '@components/charts/LineChartCard';
 import { DonutChartCard } from '@components/charts/DonutChartCard';
 import { MapResultCard } from './MapResultCard';
+import { KpiSection } from './KpiSecrtion';
+import html2canvas from 'html2canvas';
+import { jsPDF } from 'jspdf';
 
 export const ResultsSection = ({ results }: { results: any[] }) => {
+  const saveToPdf = () => {
+    const input = document.getElementById('capture')!;
+    html2canvas(input, {
+      scale: 2,
+      useCORS: true,
+    }).then((canvas: any) => {
+      const imgData: HTMLImageElement = canvas.toDataURL('image/jpeg', 0.7);
+      const pdf = new jsPDF('p', 'px', 'a4');
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const pageHeight = pdf.internal.pageSize.getHeight();
+
+      const imgWidth = canvas.width;
+      const imgHeight = canvas.height;
+
+      const scaleFactor = pageWidth / imgWidth;
+      const scaledImgWidth = imgWidth * scaleFactor;
+      const scaledImgHeight = imgHeight * scaleFactor;
+
+      const totalPages = Math.ceil(scaledImgHeight / pageHeight);
+
+      for (let i = 0; i < totalPages; i++) {
+        const yOffset = -i * pageHeight;
+
+        pdf.addImage(imgData, 'JPEG', 0, yOffset, scaledImgWidth, scaledImgHeight);
+
+        if (i < totalPages - 1) {
+          pdf.addPage();
+        }
+      }
+      pdf.save('Consulta.pdf');
+    });
+  };
+
   return (
     <>
-      <div className="bg-white rounded-xl shadow-xl p-8">
-        <Heading headingLevel={2} size="H1" className="font-bold">
-          Sitamet massa lobortis celeris ue vulputate mollis
-        </Heading>
-        <div className="flex flex-col md:flex-row justify-between">
-          <div className="flex flex-col md:flex-row gap-2 mt-4">
-            <div>
-              <Heading headingLevel={2} size="H2" className="font-bold text-orange">
-                303%
-              </Heading>
-              <Heading headingLevel={2} size="H2" className="font-bold">
-                vulputate ipsum
-              </Heading>
-            </div>
-            <Text className="mx-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet{' '}
-            </Text>
-          </div>
-          <div className="flex flex-col md:flex-row gap-2 mt-4">
-            <div>
-              <Heading headingLevel={2} size="H2" className="font-bold text-orange">
-                +1042
-              </Heading>
-              <Heading headingLevel={2} size="H2" className="font-bold">
-                vulputate ipsum
-              </Heading>
-            </div>
-            <Text className="mx-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non odio sit amet{' '}
-            </Text>
-          </div>
-        </div>
-      </div>
-
       {results.map((result, idx) => {
         if (!result?.success || !result.data) {
           return null;
+        }
+
+        if (result.type === 'kpi') {
+          return <KpiSection data={result.data} key={idx} />;
         }
 
         const data = result.data;
@@ -109,14 +113,16 @@ export const ResultsSection = ({ results }: { results: any[] }) => {
         }
       })}
 
-      <div className="flex flex-col md:flex-row gap-4 mt-4 md:mt-16 mb-8 md:mb-16">
-        <ButtonStyled>
-          <>
-            <Icon type="Download" className="mx-2" size="xl" />
-            Baixar Cruzamentos em .PDF
-          </>
-        </ButtonStyled>
-      </div>
+      {results.length > 0 && (
+        <div className="flex flex-col md:flex-row gap-4 mt-4 md:mt-16 mb-8 md:mb-16">
+          <ButtonStyled onClick={() => saveToPdf()}>
+            <>
+              <Icon type="Download" className="mx-2" size="xl" />
+              Baixar Cruzamentos em .PDF
+            </>
+          </ButtonStyled>
+        </div>
+      )}
     </>
   );
 };

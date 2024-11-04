@@ -15,7 +15,7 @@ const cards = [
 
 const Page = ({ searchParams }: { searchParams: { consulta: string | undefined } }) => {
   return (
-    <main className="font-montserrat">
+    <main className="font-montserrat" id="capture">
       <div className="relative">
         <section className="bg-white pb-12 pt-4 ">
           <DesignSemiCircle theme="dark" />
@@ -41,7 +41,7 @@ const Page = ({ searchParams }: { searchParams: { consulta: string | undefined }
               </div>
             </div>
           </Container>
-          <Container className="mb-12">
+          <Container className="my-12">
             <div className="flex justify-center md:justify-normal flex-wrap gap-8">
               {cards.map((card, idx) => (
                 <BoxImageText key={idx} text={card.text} src={card.src} />

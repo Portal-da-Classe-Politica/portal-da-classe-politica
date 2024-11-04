@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { BlogService } from '@services/blog/BlogService';
 import { NextRequest, NextResponse } from 'next/server';
 

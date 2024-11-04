@@ -29,21 +29,23 @@ const FilterSidebar = ({
       {loading ? (
         <Loader />
       ) : (
-        <div className="hidden-button opacity-0 md:opacity-100 transition-all duration-500 md:max-h-max max-h-0">
-          {sideFilters.map((filter, index: number) => {
-            return (
-              <div className="max-w-[280px] mb-4" key={index}>
-                <h3 className="font-semibold mb-1">{filter.title}</h3>
-                <CompleteSelect
-                  placeholder="Selecione..."
-                  multiSelect={filter.type}
-                  options={filter.values}
-                  selectedOption={selectedOptions[filter.key]}
-                  onSelect={value => handleFilterChange(filter.key, value)}
-                />
-              </div>
-            );
-          })}
+        <div className="hidden-button opacity-0 md:opacity-100 transition-all w-full duration-500 md:max-h-max max-h-0">
+          {sideFilters
+            .filter(filter => filter.title !== 'Cargos')
+            .map((filter, index: number) => {
+              return (
+                <div className="w-full md:max-w-[280px] mb-4" key={index}>
+                  <h3 className="font-semibold mb-1">{filter.title}</h3>
+                  <CompleteSelect
+                    placeholder="Selecione..."
+                    multiSelect={filter.type}
+                    options={filter.values}
+                    selectedOption={selectedOptions[filter.key]}
+                    onSelect={value => handleFilterChange(filter.key, value)}
+                  />
+                </div>
+              );
+            })}
 
           <ButtonStyled
             style="outlinedOrange"
