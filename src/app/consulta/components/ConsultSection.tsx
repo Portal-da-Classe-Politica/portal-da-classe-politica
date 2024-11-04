@@ -111,7 +111,6 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
     }
     setErrors(errors);
 
-    console.log('errors', errors);
     return errors;
   };
 

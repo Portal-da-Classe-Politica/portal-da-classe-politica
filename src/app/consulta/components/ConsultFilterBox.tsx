@@ -327,7 +327,6 @@ export const ConsultFilterBox = ({
       tabs={tabs.map(({ title, bold }, idx) => (
         <div key={idx} className="flex">
           <Text className="text-nowrap mr-1">{title}</Text>
-          <>{console.log('ueeeeeeeeeeeeeeeeee', allCargo)}</>
           <Text className="font-bold text-nowrap">{bold}</Text>
         </div>
       ))}

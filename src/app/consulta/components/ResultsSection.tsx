@@ -10,10 +10,7 @@ import { jsPDF } from 'jspdf';
 
 export const ResultsSection = ({ results }: { results: any[] }) => {
   const saveToPdf = () => {
-    console.log('what');
-
     const input = document.getElementById('capture')!;
-    console.log('what');
     html2canvas(input, {
       scale: 2,
       useCORS: true,
