@@ -185,9 +185,9 @@ const FilterComponent = ({
           </ButtonStyled>
         </div>
 
-        <div className="flex flex-1 flex-col lg:flex-row gap-8 w-full items-center basis-1/4">
+        <div className="flex flex-1 flex-col lg:flex-row gap-8 w-full items-center basis-1/4 ">
           {loading ? (
-            <div className="flex flex-1">
+            <div className="flex flex-1 justify-center">
               <Loader />
             </div>
           ) : (
@@ -232,32 +232,32 @@ const FilterComponent = ({
                   />
                 </div>
               )}
+              <div className="flex flex-col w-full">
+                <Select
+                  options={allCargo?.values}
+                  placeholder="Sem cargo"
+                  className="inline"
+                  buttonProps={{ style: 'fillGray', className: 'px-2 w-full' }}
+                  prefixComponent={
+                    <>
+                      <BoxIcon
+                        icon="Table"
+                        size={6}
+                        iconSize="sm"
+                        className="bg-white text-orange drop-shadow-md rounded-md mr-2"
+                      />
+                      <Text className="font-normal border-black border-r-2 pr-2 mr-2" textType="span">
+                        Cargo
+                      </Text>
+                    </>
+                  }
+                  suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
+                  onSelect={category => handleFilterChange(allCargo.key, category)}
+                />
+                <Text>{errors?.cargosIds}</Text>
+              </div>
             </>
           )}
-          <div className="flex flex-col w-full">
-            <Select
-              options={allCargo?.values}
-              placeholder="Sem cargo"
-              className="inline"
-              buttonProps={{ style: 'fillGray', className: 'px-2 w-full' }}
-              prefixComponent={
-                <>
-                  <BoxIcon
-                    icon="Table"
-                    size={6}
-                    iconSize="sm"
-                    className="bg-white text-orange drop-shadow-md rounded-md mr-2"
-                  />
-                  <Text className="font-normal border-black border-r-2 pr-2 mr-2" textType="span">
-                    Cargo
-                  </Text>
-                </>
-              }
-              suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
-              onSelect={category => handleFilterChange(allCargo.key, category)}
-            />
-            <Text>{errors?.cargosIds}</Text>
-          </div>
         </div>
         <div className="flex flex-1 w-full">
           <ButtonStyled
