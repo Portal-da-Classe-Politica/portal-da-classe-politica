@@ -10,7 +10,7 @@ import DesignSemiCircle from '@components/DesignSemiCircle';
 const cards = [
   { text: 'Perfil dos Candidatos', src: '/img/consulta/Profile.png' },
   { text: 'Resultados das Eleições', src: '/img/consulta/Chart.png ' },
-  { text: 'Filiação Partidária', src: '/img/consulta/ShakeHand.png' },
+  { text: 'Financiamento de Campanha', src: '/img/consulta/ShakeHand.png' },
 ];
 
 const Page = ({ searchParams }: { searchParams: { consulta: string | undefined } }) => {
