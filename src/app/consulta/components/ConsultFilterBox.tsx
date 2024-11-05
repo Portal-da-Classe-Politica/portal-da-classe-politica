@@ -11,30 +11,23 @@ import { Filter } from '../../types';
 interface FilterProps {
   loading: boolean;
   onConsult: (_filters: any) => void;
-  filtersData: {
-    years: {
-      type: string;
-      values: number[];
-    };
-    dimensions: Filter;
-  };
+  filtersData: FiltersData;
   handleFilterChange: (_a: any, _b: any) => void;
   selectedOption: any;
   allCargo: any;
   errors: any;
 }
 
-const showDimension = (dimensionId: any) => {
-  switch (dimensionId) {
-    case 0:
-      return 'Quantidade';
-    case 1:
-      return 'Votos';
-    case 2:
-      return 'Bens Declarados';
-    default:
-      return '{Categoria Selecionada}';
-  }
+interface FiltersData {
+  years: {
+    type: string;
+    values: number[];
+  };
+  dimensions: Filter;
+}
+
+const showDimension = (dimensionId: any, filtersData: FiltersData) => {
+  return filtersData?.dimensions?.values?.find(op => op.value === dimensionId)?.label ?? '';
 };
 
 const FilterCandidateProfile = ({
@@ -50,13 +43,17 @@ const FilterCandidateProfile = ({
     <FilterComponent
       description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
       longDescription={
-        <>
-          O resultado do cruzamento entre{' '}
-          <Text className="font-bold" textType="span">
-            Perfil dos Candidatos & {showDimension(selectedOption.dimension)}{' '}
-          </Text>
-          nos trás informações sobre.
-        </>
+        selectedOption.dimension ? (
+          <>
+            O resultado do cruzamento entre{' '}
+            <Text className="font-bold" textType="span">
+              Perfil dos Candidatos & {showDimension(selectedOption.dimension, filtersData)}{' '}
+            </Text>
+            nos trás informações sobre.
+          </>
+        ) : (
+          <></>
+        )
       }
       category="Perfil dos Candidatos"
       onConsult={onConsult}
@@ -83,14 +80,17 @@ const FilterElectionResult = ({
     <FilterComponent
       description="Carregamos nesta página os dados do Resultados das Eleições. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
       longDescription={
-        <>
-          O resultado do cruzamento entre{' '}
-          <Text className="font-bold" textType="span">
-            {' '}
-            Resultados das Eleições & {showDimension(selectedOption.dimension)}
-          </Text>{' '}
-          nos trás informações sobre.
-        </>
+        selectedOption.dimension ? (
+          <>
+            O resultado do cruzamento entre{' '}
+            <Text className="font-bold" textType="span">
+              Resultados das Eleições & {showDimension(selectedOption.dimension, filtersData)}
+            </Text>{' '}
+            nos trás informações sobre.
+          </>
+        ) : (
+          <></>
+        )
       }
       category="Resultados das Eleições"
       onConsult={onConsult}
@@ -117,10 +117,17 @@ const FilterFinancing = ({
     <FilterComponent
       description="Carregamos nesta página os dados do Financiamento de Campanha. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
       longDescription={
-        <>
-          O resultado do cruzamento entre Financiamento de Campanha &{' '}
-          {showDimension(selectedOption.dimension)} nos trás informações sobre.
-        </>
+        selectedOption.dimension ? (
+          <>
+            O resultado do cruzamento entre{' '}
+            <Text className="font-bold" textType="span">
+              Financiamento de Campanha & {showDimension(selectedOption.dimension, filtersData)}
+            </Text>
+            nos trás informações sobre.
+          </>
+        ) : (
+          <></>
+        )
       }
       category="Financiamento de Campanha"
       onConsult={onConsult}

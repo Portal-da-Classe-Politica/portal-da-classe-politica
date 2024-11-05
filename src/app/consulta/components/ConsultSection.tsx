@@ -55,7 +55,7 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
         setDataFilter(data);
 
         const firstDimension = data?.dimensions.values[0];
-        setSelectedOptions({ dimension: firstDimension });
+        setSelectedOptions({ dimension: firstDimension.value });
 
         setLoadingSideFilters(false);
       });
@@ -79,7 +79,7 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
     setConsultType(value);
 
     const firstDimension = dataFilter?.dimensions.values[0];
-    setSelectedOptions({ dimension: firstDimension });
+    setSelectedOptions({ dimension: firstDimension.value });
 
     setErrors({ cargosIds: '', dimension: '' });
   };

@@ -242,7 +242,7 @@ const FilterComponent = ({
                   <FilterSelect
                     options={electoralUnits}
                     defaultValue={values.electoralUnit}
-                    placeholder="Selecione um cidade"
+                    placeholder="Selecione uma cidade"
                     label="Cidade"
                     onSelect={onElectoralUnitChange}
                     error={errors.electoralUnit}
