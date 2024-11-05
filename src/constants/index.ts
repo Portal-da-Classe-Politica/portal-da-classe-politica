@@ -6,6 +6,7 @@ export const Constants = {
     estatudal: '1',
     municipal: '2',
   },
+  brazil: 28,
   links: {
     privacyPolicy:
       'https://docs.google.com/document/d/1xnkVr0zzVOcoM_dpdcg3sFIaMELNvzFuyFVOIjiCgb8/edit?usp=sharing',

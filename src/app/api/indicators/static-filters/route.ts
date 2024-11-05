@@ -9,11 +9,7 @@ export async function GET() {
 
     const filters = {
       years: data?.data?.anos?.values || [],
-      ufs: data.data?.estado?.values?.map((uf: any) => ({
-        label: uf.nome,
-        value: uf.id,
-        code: uf.sigla_unidade_eleitoral,
-      })),
+      ufs: parseUfs(data.data?.estado?.values),
     };
     console.info('get:indicators/static-filters filters', filters);
 
@@ -23,3 +19,30 @@ export async function GET() {
     return NextResponse.json({ error: 'Failed to fetch filters' }, { status: 500 });
   }
 }
+
+const parseUfs = (ufs: any) => {
+  const parsedUfs = ufs?.map((uf: any) => ({
+    label: uf.nome,
+    value: uf.id,
+    code: uf.sigla_unidade_eleitoral,
+  }));
+
+  return parsedUfs.sort((a: any, b: any) => {
+    if (b.code === 'BR') {
+      return 1;
+    }
+
+    if (a.code === 'BR') {
+      return -1;
+    }
+
+    if (a.label < b.label) {
+      return -1;
+    }
+
+    if (a.label > b.label) {
+      return 1;
+    }
+    return 0;
+  });
+};

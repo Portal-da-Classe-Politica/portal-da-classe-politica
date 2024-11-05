@@ -128,7 +128,7 @@ const FilterComponent = ({
   const onUfChange = (value: any, uf: any) => {
     setValues({ uf: value, electoralUnit: '' });
 
-    if (getSelectedJob()?.filterByCity) {
+    if (getSelectedJob()?.filterByCity && Number(value) !== Constants.brazil) {
       loadElectoralUnits(uf.code);
     }
   };
@@ -153,7 +153,7 @@ const FilterComponent = ({
       errors.uf = 'Selecione um estado';
     }
 
-    if (getSelectedJob()?.filterByCity && !values.electoralUnit) {
+    if (isFilterByCityRequired() && !values.electoralUnit) {
       errors.electoralUnit = 'Selecione uma cidade';
     }
 
@@ -176,6 +176,10 @@ const FilterComponent = ({
   };
 
   const getSelectedJob = () => getJob(values.job);
+
+  const isFilterByCityRequired = () => {
+    return getSelectedJob()?.filterByCity && Number(values.uf) !== Constants.brazil;
+  };
 
   return (
     <div className="text-white w-full min-h-[220px]">
@@ -232,7 +236,7 @@ const FilterComponent = ({
               </div>
             )}
 
-            {getSelectedJob()?.filterByCity &&
+            {isFilterByCityRequired() &&
               (loadingElectoralUnits ? (
                 <div className="flex items-center justify-center">
                   <Loader />

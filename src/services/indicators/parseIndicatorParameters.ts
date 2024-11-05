@@ -1,9 +1,9 @@
-const BRAZIL = '28';
+import { Constants } from '@constants';
 
 export const parseIndicatorParameters = (params: URLSearchParams) => {
   const electoralUnit = params.get('electoralUnit');
   const uf = params.get('uf');
-  const unidadesEleitorais = uf === BRAZIL ? [] : [uf, electoralUnit];
+  const unidadesEleitorais = uf === String(Constants.brazil) ? [] : [uf, electoralUnit];
 
   return {
     initialYear: Number(params.get('initialYear')),
