@@ -1777,7 +1777,6 @@ paths:
                     items:
                       type: object
 
-
   # Indicators - Party
   /noauth/indicadores/partidarios:
     get:

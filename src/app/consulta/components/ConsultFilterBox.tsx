@@ -186,9 +186,10 @@ const FilterComponent = ({
           ) : (
             <>
               {filtersData?.dimensions?.values && (
-                <div className="!grow">
+                <div className="!grow w-full">
                   <Select
                     options={filtersData.dimensions.values}
+                    defaultValue={filtersData.dimensions.values[0].value}
                     placeholder="Sem cruzamento"
                     className="inline"
                     buttonProps={{ style: 'fillGray', className: 'px-2 w-full' }}
@@ -212,21 +213,21 @@ const FilterComponent = ({
                 </div>
               )}
               {filtersData?.years?.values && (
-                <div className="grow lg:self-center">
+                <div className="grow lg:self-center w-full">
                   <DatePicker
                     optionsValue={filtersData.years.values}
                     onSelectEnd={end => {
                       return handleFilterChange('finalYear', end);
                     }}
                     onSelectStart={start => handleFilterChange('initialYear', start)}
-                    startYearAPI={filtersData.years.values[filtersData.years.values.length - 2]}
+                    startYearAPI={filtersData.years.values[filtersData.years.values.length - 3]}
                     endYearAPI={filtersData.years.values[filtersData.years.values.length - 1]}
                   />
                 </div>
               )}
             </>
           )}
-          <div className="flex flex-col">
+          <div className="flex flex-col w-full">
             <Select
               options={allCargo?.values}
               placeholder="Sem cargo"

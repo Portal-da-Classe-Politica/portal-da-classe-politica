@@ -53,6 +53,10 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
       .then(res => res.json())
       .then(data => {
         setDataFilter(data);
+
+        const firstDimension = data?.dimensions.values[0];
+        setSelectedOptions({ dimension: firstDimension });
+
         setLoadingSideFilters(false);
       });
   }, []);
@@ -73,7 +77,10 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
 
   const onTabChange = (value: string) => {
     setConsultType(value);
-    setSelectedOptions({});
+
+    const firstDimension = dataFilter?.dimensions.values[0];
+    setSelectedOptions({ dimension: firstDimension });
+
     setErrors({ cargosIds: '', dimension: '' });
   };
 
