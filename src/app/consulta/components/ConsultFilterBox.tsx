@@ -5,7 +5,7 @@ import { Select } from '@base/forms';
 import { BoxIcon } from '@components/box/BoxIcon';
 import { CarouselTabs } from '@components/CarouselTabs';
 import { DatePicker } from '@components/DatePicker';
-import { consultSearchParam } from '@routes';
+import { consultDimensions, consultSearchParam } from '@routes';
 import { Filter } from '../../types';
 
 interface FilterProps {
@@ -303,31 +303,34 @@ export const ConsultFilterBox = ({
   handleFilterChange: (_a: any, _b: any) => void;
   selectedOption: any;
   loading: boolean;
-  onTabChange?: (_tab: string) => void;
+  onTabChange?: (_consultType: string, _dimension: string) => void;
   allCargo: any;
   errors: any;
 }) => {
   const tabs = [
     {
-      value: consultSearchParam.CandidateProfile,
+      consultType: consultSearchParam.CandidateProfile,
+      dimension: consultDimensions.CandidateProfile,
       Comp: FilterCandidateProfile,
       title: 'Perfil dos',
       bold: 'Candidatos',
     },
     {
-      value: consultSearchParam.ElectionResult,
+      consultType: consultSearchParam.ElectionResult,
+      dimension: consultDimensions.ElectionResult,
       Comp: FilterElectionResult,
       title: 'Resultados das',
       bold: 'Eleições',
     },
     {
-      value: consultSearchParam.Financing,
+      consultType: consultSearchParam.Financing,
+      dimension: consultDimensions.Financing,
       Comp: FilterFinancing,
       title: 'Financiamento de',
       bold: 'Campanha',
     },
   ];
-  const initialTab = tabs.findIndex(t => t.value === initialConsult);
+  const initialTab = tabs.findIndex(t => t.consultType === initialConsult);
 
   return (
     <CarouselTabs
@@ -338,11 +341,11 @@ export const ConsultFilterBox = ({
           <Text className="font-bold text-nowrap">{bold}</Text>
         </div>
       ))}
-      contents={tabs.map(({ value, Comp }) => (
+      contents={tabs.map(({ Comp }, idx) => (
         <Comp
-          key={value}
+          key={idx}
           loading={loading}
-          onConsult={values => onConsult({ ...values, filter: value })}
+          onConsult={values => onConsult({ ...values })}
           filtersData={{ years, dimensions: dimensions }}
           handleFilterChange={handleFilterChange}
           selectedOption={selectedOption}
@@ -351,7 +354,10 @@ export const ConsultFilterBox = ({
         />
       ))}
       unSelectedClassName="!text-black"
-      onTabChange={idx => onTabChange(tabs[idx].value)}
+      onTabChange={idx => {
+        const { consultType, dimension } = tabs[idx];
+        onTabChange(consultType, dimension);
+      }}
     />
   );
 };

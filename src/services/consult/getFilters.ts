@@ -1,9 +1,9 @@
+import { redem } from '@services/redem';
 import { logError } from '@utils/logError';
-import { redem } from '../redem';
 
-export const getFilters = async () => {
+export const getFilters = async (dimension: string) => {
   try {
-    const response = await redem.consult.getCandidateFilters();
+    const response = await redem.consult.getCandidateFilters(dimension);
     const filterData = response?.data?.data;
     console.info('getFilters - filterData', filterData);
 

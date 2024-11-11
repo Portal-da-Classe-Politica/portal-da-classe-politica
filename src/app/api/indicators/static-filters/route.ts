@@ -1,11 +1,12 @@
 export const dynamic = 'force-dynamic';
 
-import { redem } from '@services/redem';
 import { NextResponse } from 'next/server';
+
+import { redem } from '@services/redem';
 
 export async function GET() {
   try {
-    const { data } = await redem.consult.getCandidateFilters();
+    const { data } = await redem.consult.getCandidateFilters('');
 
     const filters = {
       years: data?.data?.anos?.values || [],

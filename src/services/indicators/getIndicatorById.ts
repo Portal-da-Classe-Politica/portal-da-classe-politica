@@ -4,7 +4,7 @@ export interface IndicatorParams {
   initialYear: number;
   finalYear: number;
   cargoId: number;
-  unidadesEleitorais?: string[];
+  unidadesEleitorais?: number[];
 }
 
 const indicatorsMap = {

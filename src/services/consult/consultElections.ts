@@ -23,7 +23,7 @@ export const consultElections = async ({
   categoriasOcupacoes?: string[];
   cargosIds?: string[];
 }) => {
-  console.log('consultElections', {
+  console.info('consultElections', {
     initialYear,
     finalYear,
     dimension,

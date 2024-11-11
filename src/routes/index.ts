@@ -4,6 +4,12 @@ export const consultSearchParam = {
   Financing: 'Financing',
 };
 
+export const consultDimensions = {
+  CandidateProfile: 'candidates',
+  ElectionResult: 'elections',
+  Financing: 'donations',
+};
+
 export const routes = {
   home: '/',
 
