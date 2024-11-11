@@ -5,36 +5,29 @@ import { Select } from '@base/forms';
 import { BoxIcon } from '@components/box/BoxIcon';
 import { CarouselTabs } from '@components/CarouselTabs';
 import { DatePicker } from '@components/DatePicker';
-import { consultSearchParam } from '@routes';
+import { consultDimensions, consultSearchParam } from '@routes';
 import { Filter } from '../../types';
 
 interface FilterProps {
   loading: boolean;
   onConsult: (_filters: any) => void;
-  filtersData: {
-    years: {
-      type: string;
-      values: number[];
-    };
-    dimensions: Filter;
-  };
+  filtersData: FiltersData;
   handleFilterChange: (_a: any, _b: any) => void;
   selectedOption: any;
   allCargo: any;
   errors: any;
 }
 
-const showDimension = (dimensionId: any) => {
-  switch (dimensionId) {
-    case 0:
-      return 'Quantidade';
-    case 1:
-      return 'Votos';
-    case 2:
-      return 'Bens Declarados';
-    default:
-      return '{Categoria Selecionada}';
-  }
+interface FiltersData {
+  years: {
+    type: string;
+    values: number[];
+  };
+  dimensions: Filter;
+}
+
+const showDimension = (dimensionId: any, filtersData: FiltersData) => {
+  return filtersData?.dimensions?.values?.find(op => op.value === dimensionId)?.label ?? '';
 };
 
 const FilterCandidateProfile = ({
@@ -50,13 +43,17 @@ const FilterCandidateProfile = ({
     <FilterComponent
       description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
       longDescription={
-        <>
-          O resultado do cruzamento entre{' '}
-          <Text className="font-bold" textType="span">
-            Perfil dos Candidatos & {showDimension(selectedOption.dimension)}{' '}
-          </Text>
-          nos trás informações sobre.
-        </>
+        selectedOption.dimension ? (
+          <>
+            O resultado do cruzamento entre{' '}
+            <Text className="font-bold" textType="span">
+              Perfil dos Candidatos & {showDimension(selectedOption.dimension, filtersData)}{' '}
+            </Text>
+            nos trás informações sobre.
+          </>
+        ) : (
+          <></>
+        )
       }
       category="Perfil dos Candidatos"
       onConsult={onConsult}
@@ -83,14 +80,17 @@ const FilterElectionResult = ({
     <FilterComponent
       description="Carregamos nesta página os dados do Resultados das Eleições. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
       longDescription={
-        <>
-          O resultado do cruzamento entre{' '}
-          <Text className="font-bold" textType="span">
-            {' '}
-            Resultados das Eleições & {showDimension(selectedOption.dimension)}
-          </Text>{' '}
-          nos trás informações sobre.
-        </>
+        selectedOption.dimension ? (
+          <>
+            O resultado do cruzamento entre{' '}
+            <Text className="font-bold" textType="span">
+              Resultados das Eleições & {showDimension(selectedOption.dimension, filtersData)}
+            </Text>{' '}
+            nos trás informações sobre.
+          </>
+        ) : (
+          <></>
+        )
       }
       category="Resultados das Eleições"
       onConsult={onConsult}
@@ -117,10 +117,17 @@ const FilterFinancing = ({
     <FilterComponent
       description="Carregamos nesta página os dados do Financiamento de Campanha. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
       longDescription={
-        <>
-          O resultado do cruzamento entre Financiamento de Campanha &{' '}
-          {showDimension(selectedOption.dimension)} nos trás informações sobre.
-        </>
+        selectedOption.dimension ? (
+          <>
+            O resultado do cruzamento entre{' '}
+            <Text className="font-bold" textType="span">
+              Financiamento de Campanha & {showDimension(selectedOption.dimension, filtersData)}
+            </Text>
+            nos trás informações sobre.
+          </>
+        ) : (
+          <></>
+        )
       }
       category="Financiamento de Campanha"
       onConsult={onConsult}
@@ -178,17 +185,18 @@ const FilterComponent = ({
           </ButtonStyled>
         </div>
 
-        <div className="flex flex-1 flex-col lg:flex-row gap-8 w-full items-center basis-1/4">
+        <div className="flex flex-1 flex-col lg:flex-row gap-8 w-full items-center basis-1/4 ">
           {loading ? (
-            <div className="flex flex-1">
+            <div className="flex flex-1 justify-center">
               <Loader />
             </div>
           ) : (
             <>
               {filtersData?.dimensions?.values && (
-                <div className="!grow">
+                <div className="!grow w-full">
                   <Select
                     options={filtersData.dimensions.values}
+                    defaultValue={filtersData.dimensions.values[0].value}
                     placeholder="Sem cruzamento"
                     className="inline"
                     buttonProps={{ style: 'fillGray', className: 'px-2 w-full' }}
@@ -212,44 +220,44 @@ const FilterComponent = ({
                 </div>
               )}
               {filtersData?.years?.values && (
-                <div className="grow lg:self-center">
+                <div className="grow lg:self-center w-full">
                   <DatePicker
                     optionsValue={filtersData.years.values}
                     onSelectEnd={end => {
                       return handleFilterChange('finalYear', end);
                     }}
                     onSelectStart={start => handleFilterChange('initialYear', start)}
-                    startYearAPI={filtersData.years.values[filtersData.years.values.length - 2]}
+                    startYearAPI={filtersData.years.values[filtersData.years.values.length - 3]}
                     endYearAPI={filtersData.years.values[filtersData.years.values.length - 1]}
                   />
                 </div>
               )}
+              <div className="flex flex-col w-full">
+                <Select
+                  options={allCargo?.values}
+                  placeholder="Sem cargo"
+                  className="inline"
+                  buttonProps={{ style: 'fillGray', className: 'px-2 w-full' }}
+                  prefixComponent={
+                    <>
+                      <BoxIcon
+                        icon="Table"
+                        size={6}
+                        iconSize="sm"
+                        className="bg-white text-orange drop-shadow-md rounded-md mr-2"
+                      />
+                      <Text className="font-normal border-black border-r-2 pr-2 mr-2" textType="span">
+                        Cargo
+                      </Text>
+                    </>
+                  }
+                  suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
+                  onSelect={category => handleFilterChange(allCargo.key, category)}
+                />
+                <Text>{errors?.cargosIds}</Text>
+              </div>
             </>
           )}
-          <div className="flex flex-col">
-            <Select
-              options={allCargo?.values}
-              placeholder="Sem cargo"
-              className="inline"
-              buttonProps={{ style: 'fillGray', className: 'px-2 w-full' }}
-              prefixComponent={
-                <>
-                  <BoxIcon
-                    icon="Table"
-                    size={6}
-                    iconSize="sm"
-                    className="bg-white text-orange drop-shadow-md rounded-md mr-2"
-                  />
-                  <Text className="font-normal border-black border-r-2 pr-2 mr-2" textType="span">
-                    Cargo
-                  </Text>
-                </>
-              }
-              suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
-              onSelect={category => handleFilterChange(allCargo.key, category)}
-            />
-            <Text>{errors?.cargosIds}</Text>
-          </div>
         </div>
         <div className="flex flex-1 w-full">
           <ButtonStyled
@@ -295,31 +303,34 @@ export const ConsultFilterBox = ({
   handleFilterChange: (_a: any, _b: any) => void;
   selectedOption: any;
   loading: boolean;
-  onTabChange?: (_tab: string) => void;
+  onTabChange?: (_consultType: string, _dimension: string) => void;
   allCargo: any;
   errors: any;
 }) => {
   const tabs = [
     {
-      value: consultSearchParam.CandidateProfile,
+      consultType: consultSearchParam.CandidateProfile,
+      dimension: consultDimensions.CandidateProfile,
       Comp: FilterCandidateProfile,
       title: 'Perfil dos',
       bold: 'Candidatos',
     },
     {
-      value: consultSearchParam.ElectionResult,
+      consultType: consultSearchParam.ElectionResult,
+      dimension: consultDimensions.ElectionResult,
       Comp: FilterElectionResult,
       title: 'Resultados das',
       bold: 'Eleições',
     },
     {
-      value: consultSearchParam.Financing,
+      consultType: consultSearchParam.Financing,
+      dimension: consultDimensions.Financing,
       Comp: FilterFinancing,
       title: 'Financiamento de',
       bold: 'Campanha',
     },
   ];
-  const initialTab = tabs.findIndex(t => t.value === initialConsult);
+  const initialTab = tabs.findIndex(t => t.consultType === initialConsult);
 
   return (
     <CarouselTabs
@@ -330,11 +341,11 @@ export const ConsultFilterBox = ({
           <Text className="font-bold text-nowrap">{bold}</Text>
         </div>
       ))}
-      contents={tabs.map(({ value, Comp }) => (
+      contents={tabs.map(({ Comp }, idx) => (
         <Comp
-          key={value}
+          key={idx}
           loading={loading}
-          onConsult={values => onConsult({ ...values, filter: value })}
+          onConsult={values => onConsult({ ...values })}
           filtersData={{ years, dimensions: dimensions }}
           handleFilterChange={handleFilterChange}
           selectedOption={selectedOption}
@@ -343,7 +354,10 @@ export const ConsultFilterBox = ({
         />
       ))}
       unSelectedClassName="!text-black"
-      onTabChange={idx => onTabChange(tabs[idx].value)}
+      onTabChange={idx => {
+        const { consultType, dimension } = tabs[idx];
+        onTabChange(consultType, dimension);
+      }}
     />
   );
 };

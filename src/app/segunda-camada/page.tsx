@@ -64,9 +64,8 @@ const Page = () => {
     params.append('initialYear', consultFilters.initialYear);
     params.append('finalYear', consultFilters.finalYear);
     params.append('cargoId', consultFilters.job);
-
-    const unidadesEleitorais = [consultFilters.uf, consultFilters.electoralUnit];
-    params.append('unidadesEleitorais', unidadesEleitorais.join(','));
+    params.append('electoralUnit', consultFilters.electoralUnit);
+    params.append('uf', consultFilters.uf);
 
     setLoadingResults(true);
     fetch(`/api/indicators/${consultFilters.indicator}?${params.toString()}`)

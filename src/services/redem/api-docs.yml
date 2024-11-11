@@ -544,6 +544,13 @@ paths:
         - consult
       summary: Obter filtros de candidatos
       description: Retorna os filtros disponíveis para candidatos.
+      parameters:
+        - in: query
+          name: dimension
+          schema:
+            type: string
+            nullable: true
+          required: true
       responses:
         '200':
           description: Sucesso
@@ -1776,7 +1783,6 @@ paths:
                     type: array
                     items:
                       type: object
-
 
   # Indicators - Party
   /noauth/indicadores/partidarios:

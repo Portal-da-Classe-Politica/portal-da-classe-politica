@@ -59,7 +59,6 @@ export const Select = ({
   };
 
   useEffect(() => {
-    console.log({ defaultValue });
     setSelectedOption(options.find(op => op.value === defaultValue));
   }, [options, defaultValue]);
 
@@ -79,7 +78,7 @@ export const Select = ({
       >
         {prefixComponent}
         <Text className={staticOptions ? '' : 'font-bold'} size={sizeInsideText}>
-          {staticOptions ? placeholder : selectedOption?.label ?? placeholder}
+          {staticOptions ? placeholder : (selectedOption?.label ?? placeholder)}
         </Text>
         {suffixComponent}
       </ButtonStyled>

@@ -6,7 +6,7 @@ import FilterSidebar from './FilterSideBar';
 
 import { useCallback, useEffect, useState } from 'react';
 import { Filter } from '../../types';
-import { consultSearchParam } from '@routes';
+import { consultDimensions, consultSearchParam } from '@routes';
 import { ResultsSection } from './ResultsSection';
 import { Loader } from '@base/Loader';
 
@@ -46,19 +46,23 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
   const [results, setResults] = useState([]);
   const [loadingResults, setLoadingResults] = useState(false);
 
-  const loadFilters = useCallback(() => {
+  const loadFilters = useCallback((dimension: string) => {
     setLoadingSideFilters(true);
 
-    fetch(`/api/consult/filters`)
+    fetch(`/api/consult/filters?dimension=${dimension}`)
       .then(res => res.json())
       .then(data => {
         setDataFilter(data);
+
+        const firstDimension = data?.dimensions.values[0];
+        setSelectedOptions({ dimension: firstDimension.value });
+
         setLoadingSideFilters(false);
       });
   }, []);
 
   useEffect(() => {
-    loadFilters();
+    loadFilters(consultDimensions.CandidateProfile);
   }, [loadFilters]);
 
   const handleFilterChange = (filterName: any, value: any) => {
@@ -71,9 +75,9 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
     setErrors({ cargosIds: '', dimension: '' });
   };
 
-  const onTabChange = (value: string) => {
-    setConsultType(value);
-    setSelectedOptions({});
+  const onTabChange = (consultType: string, dimension: string) => {
+    setConsultType(consultType);
+    loadFilters(dimension);
     setErrors({ cargosIds: '', dimension: '' });
   };
 
@@ -93,7 +97,6 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
     fetch(`/api/consult?${search}`)
       .then(res => res.json())
       .then(data => {
-        console.log('data consult', data);
         setResults(data);
       })
       .finally(() => setLoadingResults(false));
@@ -134,12 +137,11 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
           dimensions={dataFilter?.dimensions}
           handleFilterChange={handleFilterChange}
           selectedOption={selectedOptions}
-          onTabChange={value => onTabChange(value)}
+          onTabChange={onTabChange}
           allCargo={dataFilter.sideFilters.filter(filter => filter.title === 'Cargos')[0]}
           errors={errors}
         />
       </Container>
-      {/* */}
       <Container className="pt-16">
         <div className="flex flex-col md:flex-row gap-4">
           <div className="w-full md:w-[25%]">

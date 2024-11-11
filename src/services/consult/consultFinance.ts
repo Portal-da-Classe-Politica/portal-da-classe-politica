@@ -23,7 +23,7 @@ export const consultFinance = async ({
   categoriasOcupacoes?: string[];
   cargosIds?: string[];
 }) => {
-  console.log('consultFinance', {
+  console.info('consultFinance', {
     initialYear,
     finalYear,
     dimension,

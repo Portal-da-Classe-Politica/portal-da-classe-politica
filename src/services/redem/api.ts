@@ -1860,10 +1860,16 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
     /**
      * Retorna os filtros disponíveis para candidatos.
      * @summary Obter filtros de candidatos
+     * @param {string | null} dimension
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCandidateFilters: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+    getCandidateFilters: async (
+      dimension: string | null,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'dimension' is not null or undefined
+      assertParamExists('getCandidateFilters', 'dimension', dimension);
       const localVarPath = `/noauth/candidate/get-filters`;
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1875,6 +1881,10 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
       const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
+
+      if (dimension !== undefined) {
+        localVarQueryParameter['dimension'] = dimension;
+      }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter);
       let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -2892,13 +2902,15 @@ export const ConsultApiFp = function (configuration?: Configuration) {
     /**
      * Retorna os filtros disponíveis para candidatos.
      * @summary Obter filtros de candidatos
+     * @param {string | null} dimension
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async getCandidateFilters(
+      dimension: string | null,
       options?: RawAxiosRequestConfig,
     ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetCandidateFilters200Response>> {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.getCandidateFilters(options);
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getCandidateFilters(dimension, options);
       const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
       const localVarOperationServerBasePath =
         operationServerMap['ConsultApi.getCandidateFilters']?.[localVarOperationServerIndex]?.url;
@@ -3478,11 +3490,15 @@ export const ConsultApiFactory = function (
     /**
      * Retorna os filtros disponíveis para candidatos.
      * @summary Obter filtros de candidatos
+     * @param {string | null} dimension
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCandidateFilters(options?: RawAxiosRequestConfig): AxiosPromise<GetCandidateFilters200Response> {
-      return localVarFp.getCandidateFilters(options).then(request => request(axios, basePath));
+    getCandidateFilters(
+      dimension: string | null,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetCandidateFilters200Response> {
+      return localVarFp.getCandidateFilters(dimension, options).then(request => request(axios, basePath));
     },
     /**
      * Retorna o perfil dos candidatos agrupado por gênero.
@@ -3940,13 +3956,14 @@ export class ConsultApi extends BaseAPI {
   /**
    * Retorna os filtros disponíveis para candidatos.
    * @summary Obter filtros de candidatos
+   * @param {string | null} dimension
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ConsultApi
    */
-  public getCandidateFilters(options?: RawAxiosRequestConfig) {
+  public getCandidateFilters(dimension: string | null, options?: RawAxiosRequestConfig) {
     return ConsultApiFp(this.configuration)
-      .getCandidateFilters(options)
+      .getCandidateFilters(dimension, options)
       .then(request => request(this.axios, this.basePath));
   }
 

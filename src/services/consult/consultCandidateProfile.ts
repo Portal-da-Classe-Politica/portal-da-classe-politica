@@ -22,7 +22,7 @@ export const consultCandidateProfile = async ({
   categoriasOcupacoes?: string[];
   cargosIds?: string[];
 }) => {
-  console.log('consultCandidateProfile', {
+  console.info('consultCandidateProfile', {
     initialYear,
     finalYear,
     dimension,
@@ -81,7 +81,6 @@ export const consultCandidateProfile = async ({
     const result = [];
     for (const resp of responses) {
       if (resp.status === 'fulfilled') {
-        console.log('responses', responses);
         result.push(resp.value.data);
       } else {
         logError('Failed to consultCandidateProfile', resp.reason as AxiosError);
