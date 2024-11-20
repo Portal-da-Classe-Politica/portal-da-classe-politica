@@ -78,16 +78,14 @@ const TableComponent = ({
           {values.length > 0 && (
             <ReactPaginate
               breakLabel="..."
-              nextLabel={<Icon type="ArrowRight" />}
-              onPageChange={e => {
-                pageChange(e.selected + 1);
-              }}
+              onPageChange={e => pageChange(e.selected + 1)}
               forcePage={currentPage - 1}
               className="flex gap-2 text-orange place-items-center mt-4 justify-end"
               activeClassName={'font-bold'}
-              pageClassName={'border border-orange rounded-full px-2'}
+              pageClassName={'border border-orange rounded-full px-2 hover:bg-orange hover:text-white'}
               pageRangeDisplayed={5}
               pageCount={totalPages}
+              nextLabel={<Icon type="ArrowRight" />}
               previousLabel={<Icon type="ArrowLeft" />}
               renderOnZeroPageCount={null}
             />

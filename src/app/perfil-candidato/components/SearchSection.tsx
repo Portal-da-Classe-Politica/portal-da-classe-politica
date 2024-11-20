@@ -162,7 +162,6 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
                 {result?.results?.length || 0} candidatos
               </Text>
             </div>
-            {/** sem ordenação ainda */}
             {result.length > 0 && (
               <div>
                 <Text textType="span" size="L1" className="mr-2">
