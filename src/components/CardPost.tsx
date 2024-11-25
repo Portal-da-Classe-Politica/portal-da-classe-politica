@@ -87,7 +87,7 @@ export const CardPost = <T extends BaseProps>({
       href={href}
       className={`flex flex-1 flex-col h-full bg-white w-full items-center rounded-[10px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] ${className} hover:shadow-lg`}
     >
-      <div className={`flex flex-1 w-full ${imgSize}`}>
+      <div className={`flex flex-1 w-full ${imgSize} relative`}>
         <div style={{ width: '100%', height: '100%', position: 'relative' }}>
           <Image src={src} fill className="rounded-t-[10px] object-cover h-auto w-auto" alt={alt} />
         </div>

@@ -34,9 +34,6 @@ const Page = async () => {
                 category={['Leitura de 5min']}
                 customHeight={250}
                 title={' Eleição 2024: A Persistente Sub-Representação de Mulheres na Política'}
-                subTitle={
-                  'Subtítulo: Partidos controlam recursos políticos vitais e desde 2009, devem investir 5% do Fundo Partidário anual para fomentar a participação feminina na política.'
-                }
                 src={'/img/blog/mic.png'}
                 type="Primary"
                 href="/blog/reputacao-mulher"
