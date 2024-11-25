@@ -16,7 +16,7 @@ export const AccessibilityHeader = () => {
             </Link>
           </li>
           <li>
-            <Link target="_blank" href={Constants.links.userTerms}>
+            <Link target="_blank" href={'/termos-de-uso'}>
               <Text size="C2" className="text-grayMix4">
                 Termos de Uso
               </Text>
