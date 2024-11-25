@@ -37,7 +37,7 @@ const termsSections = [
   },
   {
     title: '11. Contato',
-    text: 'Se você tiver alguma dúvida sobre estes Termos de Uso, entre em contato conosco através do nosso e-mail de suporte: inct.redem@gmail.com.',
+    text: 'Se você tiver alguma dúvida sobre estes Termos de Uso, entre em contato conosco através do nosso e-mail de suporte: inct.redem@gmail.com',
   },
 ];
 
@@ -61,10 +61,10 @@ const Page = () => {
             </Text>
             {termsSections.map(({ title, text }) => (
               <div key={title}>
-                <Text size="B1" className="mt-6 font-bold">
+                <Text size="B1" className="mt-4 font-bold">
                   {title}
                 </Text>
-                <Text size="B1" className="mt-6">
+                <Text size="B1" className="mt-2">
                   {text}
                 </Text>
               </div>

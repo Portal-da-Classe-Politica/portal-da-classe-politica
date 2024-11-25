@@ -1,7 +1,6 @@
 import Link from 'next/link';
 
 import { Container, Text } from '@base';
-import { Constants } from '@constants';
 
 export const AccessibilityHeader = () => {
   return (
@@ -9,7 +8,7 @@ export const AccessibilityHeader = () => {
       <Container className={'my-5'}>
         <ul className="flex">
           <li>
-            <Link target="_blank" href={Constants.links.privacyPolicy}>
+            <Link target="_blank" href={'/politicas-de-privacidade'}>
               <Text size="C2" className="text-grayMix4 mr-4">
                 Políticas de Privacidade
               </Text>
