@@ -19,7 +19,7 @@ const Page = () => {
           <Heading size="H2" className="font-bold">
             A Persistente Sub-Representação de Mulheres na Política
           </Heading>
-          <Text size="C1" className="ml-auto mb-4">
+          <Text size="C1" className="ml-auto mb-4 mt-2">
             Maria Cecília Eduardo e Karolina Roeder
           </Text>
           <Text className="mb-3">
@@ -29,13 +29,15 @@ const Page = () => {
             capital homossocial e as normas políticas liberais contribuem para a exclusão das mulheres. Além
             disso, analisa as medidas que têm sido implementadas para mitigar essas desigualdades e sugere a
             necessidade de uma abordagem crítica e inclusiva para alcançar uma representação política
-            verdadeiramente democrática.Apesar dos avanços nas últimas décadas, as mulheres ainda enfrentam
-            uma sub-representação significativa na política. Este texto explora as razões históricas,
-            culturais e estruturais que perpetuam essa desigualdade, destacando como a divisão entre as
-            esferas pública e privada, o capital homossocial e as normas políticas liberais contribuem para a
-            exclusão das mulheres. Além disso, analisa as medidas que têm sido implementadas para mitigar
-            essas desigualdades e sugere a necessidade de uma abordagem crítica e inclusiva para alcançar uma
-            representação política verdadeiramente democrática.
+            verdadeiramente democrática. Apesar dos avanços nas últimas décadas, as mulheres ainda enfrentam
+            uma sub-representação significativa na política.
+          </Text>
+          <Text className="mb-3">
+            Este texto explora as razões históricas, culturais e estruturais que perpetuam essa desigualdade,
+            destacando como a divisão entre as esferas pública e privada, o capital homossocial e as normas
+            políticas liberais contribuem para a exclusão das mulheres. Além disso, analisa as medidas que têm
+            sido implementadas para mitigar essas desigualdades e sugere a necessidade de uma abordagem
+            crítica e inclusiva para alcançar uma representação política verdadeiramente democrática.
           </Text>
           <Text className="mb-3">
             A participação das mulheres na política é um tema que precisa ser visto sob a perspectiva da
@@ -125,57 +127,6 @@ const Page = () => {
             Coleman, J. S. (1990) Foundations of Social Theory, Cambridge, MA, and London, UK, The Belknap
             Press of Harvard University Press.
           </p>
-          <p className="w-full mb-2">
-            Fraser, Nancy. Rethinking the public sphere: a contribution to the critique of actually existing
-            democracy”. In: Calhoun, Craig. (Ed.). Habermas and the public sphere. Cambridge: MIT Press, 1992.
-          </p>
-          <p className="w-full mb-2">
-            Collinson, D. L. & J. Hearn (2005) Men and Masculinities in Work, Organizations, and Management.
-            IN E. Kimmel, J. Hearn & B. Connell (Eds.) Handbook of Studies on Men and Masculinities. Thousand
-            Oaks, London, New Delhi, Sage.
-          </p>
-          <p className="w-full mb-2">
-            Mansbridge, Jane. Should blacks represent blacks and women represent women? A contingent ‘yes’.
-            Journal of Politics, Chicago, v. 61, n. 3, p. 628-657, 1999.{' '}
-          </p>
-          <p className="w-full mb-2">
-            Holgersson, C. (2003) Rekrytering av företagsledare: En studie i homosocialitet, Stockholm,
-            Ekonomiska forskningsinstitutet vid Handelshögskolan (EFI).{' '}
-          </p>
-          <p className="w-full mb-2">
-            Kanter, R. M. (1977) Men and Women ofthe Corporation, New York, BasicBooks.
-          </p>
-          <p className="w-full mb-2">
-            Wylie, K. (2020). Taking bread off the table: race, gender, resources and political ambition in
-            Brazil. European Journal of Politics and Gender, 3(1), 121-142.
-          </p>
-
-          <p className="w-full mb-2">
-            Pateman, Carole. O contrato sexual. São Paulo: Editora Paz e Terra, 1993.
-          </p>
-
-          <p className="w-full mb-2">
-            Putnam, R. (1993) Making Democracy Work: Civic Traditions in Modern Italy, Princeton, NJ,
-            Princeton University Press.
-          </p>
-
-          <p className="w-full mb-2">
-            Phillips, Anne. The Politics of Presence. Oxford: Clarendon Press, 1995.
-          </p>
-
-          <p className="w-full mb-2">
-            Phillips, Anne. Which Equalities Matter? Cambridge: Polity Press, 1999.
-          </p>
-
-          <p className="w-full mb-2">
-            Putnam, R. (2000) Bowling Alone: The Collapse and Revival ofAmerican Community, New York, Simon &
-            Schuster.
-          </p>
-
-          <p className="w-full mb-2">
-            Sacchet, Teresa. Representação política, representação de grupos e política de cotas: perspectivas
-            e contendas feministas. Revista Estudos Feministas, Florianópolis, v. 20, n. 2, p. 399-431, 2012.
-          </p>
 
           <p className="w-full mb-2">
             Verge, T., Claveria, S., & Waylen, G. (2017). Party office, male homosocial capital and gendered
@@ -217,7 +168,7 @@ const Page = () => {
         <Container>
           <hr className="border-t-[3px] border-graMix2" />
 
-          <SpecialContents title="Publicações relacionadasPublicações relacionadas" />
+          <SpecialContents title="Publicações relacionadas" />
         </Container>
       </section>
 

@@ -57,7 +57,7 @@ const Page = () => {
           <div className="flex flex-col md:flex-row mt-8 ">
             <div className="flex flex-col md:flex-row mb-3 md:mb-0">
               <Text size="B1">Autor:</Text>
-              <Text size="B1" className="font-bold md:ml-1 ">
+              <Text size="B1" className="font-bold md:ml-1 mt-2">
                 Maria Cecília Eduardo e Karolina Roeder
               </Text>
             </div>
@@ -233,7 +233,7 @@ const Page = () => {
         <Container>
           <hr className="border-t-[3px] border-graMix2" />
 
-          <SpecialContents title="Publicações relacionadasPublicações relacionadas" />
+          <SpecialContents title="Publicações relacionadas" />
         </Container>
       </section>
 

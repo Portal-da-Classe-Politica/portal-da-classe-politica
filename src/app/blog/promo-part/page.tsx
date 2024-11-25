@@ -20,7 +20,7 @@ const Page = () => {
           <Heading size="H2" className="font-bold">
             A promoção da participação política das mulheres parcialmente realizada pelos partidos políticos
           </Heading>
-          <Text size="C1" className="ml-auto mb-4">
+          <Text size="C1" className="ml-auto mb-4 mt-2">
             Karolina Roeder
           </Text>
           <Text className="mb-3">
@@ -48,7 +48,7 @@ const Page = () => {
             Dados Abertos do TSE. Após a coleta e organização dos dados, buscamos aqueles que mencionassem
             “mulher” na prestação.
           </Text>
-          <Text className="mb-3">
+          <Text className="mb-6">
             Foi somente em 2009, ano da promulgação da lei complementar, que um partido destinou recursos para
             esse fim, o PSB (1,3%). Já em 2010, três partidos destinaram (PT com 0,6%; PSB com 4,3% e PV com
             5,9%) e apenas o PV acima do mínimo. No gráfico 1 abaixo estão os percentuais por ano, de cada
@@ -69,7 +69,7 @@ const Page = () => {
           <Text size={'C2'} className="w-full mb-1">
             Fonte: Prestação de contas anual partidária disponível no Tribunal Superior Eleitoral
           </Text>
-          <Text size={'C2'} className="mb-3">
+          <Text size={'C2'} className="mb-6">
             <span>
               Notas: Os dados de 2017 e 2018 divulgados pelo TSE estão sem a categoria de origem das receitas,
               o que impossibilitou a análise por fonte. Estão ausentes os valores do PPS 2003; PDT 2004, 2005
@@ -125,14 +125,9 @@ const Page = () => {
             uma forma de subverter as regras formais que buscam incluir mais mulheres na política. Enquanto
             isso, o papel de formação política acaba sendo ocupado por organizações sociais e think tanks.
           </Text>
-          <Heading headingLevel={3} size={'H5'} className="w-full font-bold mb-3">
-            Leia o capítulo completo do livro Gênero e Eleições:
-          </Heading>
-          <p className="w-full">
-            Roeder, Karolina. A distribuição de recursos partidários para a promoção da participação política
-            das mulheres. Gênero e Eleições . 2024. No prelo.
-          </p>
+
           <Divider bottom="small" top="verysmall" type="orange" />
+
           <div className="w-full">
             <Text size="C1">
               <a href="#ftnt_ref1" id="ftnt1" className=" text-orange hover:text-orangeDark2">
@@ -156,7 +151,7 @@ const Page = () => {
         <Container>
           <hr className="border-t-[3px] border-graMix2" />
 
-          <SpecialContents title="Publicações relacionadasPublicações relacionadas" />
+          <SpecialContents title="Publicações relacionadas" />
         </Container>
       </section>
 

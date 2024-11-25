@@ -35,7 +35,7 @@ const HeaderTopic = ({
 }) => {
   const selected = verifyPathSelect(href, currentPath);
   return (
-    <Link href={href}>
+    <Link target="_blank" href={href}>
       <Text size={'L2'} className={selected ? 'font-bold' : ''}>
         {label}
       </Text>
