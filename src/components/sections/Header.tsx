@@ -81,7 +81,9 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
       <nav className="hidden xl:block ">
         <ul className="flex">
           <li>
-            <LogoIcon type={logoType} />
+            <Link href={'/'}>
+              <LogoIcon type={logoType} />
+            </Link>
           </li>
           <li className={`ml-auto self-center mr-5 ${classes}`}>
             <HeaderTopic label="HOME" href={routes.home} currentPath={pathname} />
@@ -89,13 +91,13 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
           <li className={`flex self-center ${classes} mr-5 inline justify-center items-center`}>
             <Select
               className="p-0"
-              placeholder="CONSULTA"
+              placeholder="CONSULTAS"
               staticOptions
               sizeInsideText="L2"
               biggerList
               options={[
                 { value: routes.consult, label: 'CRUZAMENTOS' },
-                { value: routes.projections, label: 'INDICES' },
+                { value: routes.projections, label: 'ÍNDICES' },
                 { value: routes.candidates, label: 'PERFIL DOS CANDIDATOS' },
               ]}
               onSelect={(myValue, _) => {
@@ -117,7 +119,7 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
             <HeaderTopic label="BLOG" href={routes.blog} currentPath={pathname} />
           </li>
           <li className={`self-center ${classes}`}>
-            <Link href={routes.elections2024}>
+            <Link target="_blank" href={routes.elections2024}>
               <Button text="ELEIÇÕES 2024" style="fillBlack" />
             </Link>
           </li>
@@ -158,7 +160,7 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
                 <HeaderTopic label="CRUZAMENTOS" href={routes.consult} currentPath={pathname} />
               </li>
               <li>
-                <HeaderTopic label="INDICES" href={routes.projections} currentPath={pathname} />
+                <HeaderTopic label="ÍNDICES" href={routes.projections} currentPath={pathname} />
               </li>
               <li>
                 <HeaderTopic label="PERFIL DOS CANDIDATOS" href={routes.candidates} currentPath={pathname} />
@@ -172,7 +174,7 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
               <HeaderTopic label="BLOG" href={routes.blog} currentPath={pathname} />
             </li>
             <li>
-              <Link href={routes.elections2024}>
+              <Link target="_blank" href={routes.elections2024}>
                 <Button text="ELEIÇÕES 2024" style="fillBlack" />
               </Link>
             </li>

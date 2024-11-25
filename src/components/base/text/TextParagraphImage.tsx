@@ -33,7 +33,7 @@ export const TextParagraphImage = ({
           </Text>
         ))}
         {link && (
-          <Link href={link}>
+          <Link target="_blank" href={link}>
             <Text size="B1" className="mt-6 text-orange">
               Leia mais
             </Text>

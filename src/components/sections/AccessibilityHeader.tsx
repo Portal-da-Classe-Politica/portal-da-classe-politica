@@ -9,14 +9,14 @@ export const AccessibilityHeader = () => {
       <Container className={'my-5'}>
         <ul className="flex">
           <li>
-            <Link href={Constants.links.privacyPolicy} target="__blank">
+            <Link href={Constants.links.privacyPolicy} target="_blank">
               <Text size="C2" className="text-grayMix4 mr-4">
                 Políticas de Privacidade
               </Text>
             </Link>
           </li>
           <li>
-            <Link href={Constants.links.userTerms} target="__blank">
+            <Link href={Constants.links.userTerms} target="_blank">
               <Text size="C2" className="text-grayMix4">
                 Termos de Uso
               </Text>

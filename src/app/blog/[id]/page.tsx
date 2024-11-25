@@ -23,7 +23,7 @@ const Page = ({ params: { id } }: { params: { id: string } }) => {
         <Container>
           <hr className="border-t-[3px] border-graMix2" />
 
-          <SpecialContents title="Publicações relacionadasPublicações relacionadas" />
+          <SpecialContents title="Publicações relacionadas" />
         </Container>
       </section>
 

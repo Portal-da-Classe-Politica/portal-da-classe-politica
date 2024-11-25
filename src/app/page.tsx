@@ -4,7 +4,6 @@ import { BoxData } from '@components/box/BoxData';
 import { CardPost } from '@components/CardPost';
 import { Header } from '@components/sections/Header';
 import { GetInContact } from '@components/sections/GetInContact';
-import { HowToCrossing } from '@components/sections/HowToCrossing';
 import { SpecialContents } from '@components/sections/SpecialContents';
 import { routes } from '@routes';
 import DesignSemiCircle from '@components/DesignSemiCircle';
@@ -86,11 +85,8 @@ const Home = () => {
               <CardPost
                 alt={' Eleição 2024: A Persistente Sub-Representação de Mulheres na Política'}
                 category={['Leitura de 5min']}
-                customHeight={250}
+                customHeight={270}
                 title={' Eleição 2024: A Persistente Sub-Representação de Mulheres na Política'}
-                subTitle={
-                  'Subtítulo: Partidos controlam recursos políticos vitais e desde 2009, devem investir 5% do Fundo Partidário anual para fomentar a participação feminina na política.'
-                }
                 src={'/img/blog/mic.png'}
                 type="Primary"
                 href="/blog/reputacao-mulher"
@@ -174,8 +170,6 @@ const Home = () => {
           </div>
         </Container>
       </section>
-
-      <HowToCrossing className="pt-8 md:pt-16 pb-8 md:pb-16" />
 
       <section className="mt-6 md:mt-20 mb-10 md:mb-20">
         <Container>

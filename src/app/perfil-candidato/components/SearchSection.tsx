@@ -211,7 +211,7 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
                     key: '',
                     render: (_, row) => {
                       return (
-                        <Link href={routes.candidate(row.candidatoId)}>
+                        <Link target="_blank" href={routes.candidate(row.candidatoId)}>
                           <ButtonStyled size="small" style="fillOrange" className="w-[210px]">
                             <Text textType="span" size="L2">
                               MAIS INFORMAÇÕES

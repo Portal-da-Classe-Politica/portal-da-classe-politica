@@ -290,13 +290,13 @@ export const SecondLayerFilter = ({
       value: consultSearchParam.CandidateProfile,
       Comp: FilterCandidateProfile,
       title: 'Eleitorais & Partidários',
-      fetchFilter: '/api/indicators/party',
+      fetchFilter: '/api/indicators/electoral',
     },
     {
       value: consultSearchParam.ElectionResult,
       Comp: FilterElectionResult,
       title: 'Carreira & Representação Política',
-      fetchFilter: '/api/indicators/electoral',
+      fetchFilter: '/api/indicators/party',
     },
     {
       value: consultSearchParam.Financing,

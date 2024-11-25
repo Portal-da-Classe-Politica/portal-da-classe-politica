@@ -2,7 +2,9 @@
 
 import { CarouselTabs } from '../CarouselTabs';
 import { Container, ButtonStyled, Heading, Text } from '../base';
-
+/**
+ * Removed on Meeting - 2024-11-25
+ */
 export const HowToCrossing = ({ className }: { className?: string }) => {
   const tabs = [
     {

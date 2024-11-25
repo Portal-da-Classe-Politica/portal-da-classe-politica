@@ -114,7 +114,7 @@ const TableComponent = ({
                   );
                 })}
                 <div className="p-2 text-center">
-                  <Link href={routes.candidate(value.candidatoId)}>
+                  <Link target="_blank" href={routes.candidate(value.candidatoId)}>
                     <ButtonStyled size="small" style="fillOrange" className="w-[210px]">
                       <Text textType="span" size="L2">
                         MAIS INFORMAÇÕES

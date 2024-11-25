@@ -80,7 +80,7 @@ export const Footer = () => {
                 <ul className="space-y-2">
                   {section.links.map(link => (
                     <li key={link.text}>
-                      <Link href={link.href}>
+                      <Link target="_blank" href={link.href}>
                         <Text className="text-4" size="B2">
                           {link.text}
                         </Text>
@@ -99,7 +99,11 @@ export const Footer = () => {
         <div className="text-center py-4">
           <Text size={'C2'}>
             Copyright © 2024 INCT REDEM. Todos os direitos reservados. Desenvolvido por{' '}
-            <Link href={Constants.links.arwPoliticalAdvisory} className="underline underline-offset-1">
+            <Link
+              target="_blank"
+              href={Constants.links.arwPoliticalAdvisory}
+              className="underline underline-offset-1"
+            >
               ARW POLITICAL ADVISORY
             </Link>
           </Text>
