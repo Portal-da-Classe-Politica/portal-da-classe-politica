@@ -33,7 +33,6 @@ const FilterCandidateProfile = ({ onConsult, filters }: FilterProps) => {
   return (
     <FilterComponent
       description="São quatro instrumentos úteis para analisar e compreender a dinâmica das eleições e do sistema eleitoral."
-      category="Perfil dos Candidatos"
       onConsult={onConsult}
       filters={filters}
     />
@@ -44,7 +43,6 @@ const FilterElectionResult = ({ onConsult, filters }: FilterProps) => {
   return (
     <FilterComponent
       description="São quatro instrumentos úteis para analisar e compreender as aspirações e estratégias de carreira dos candidatos."
-      category="Resultados das Eleições"
       onConsult={onConsult}
       filters={filters}
     />
@@ -55,7 +53,6 @@ const FilterVote = ({ onConsult, filters }: FilterProps) => {
   return (
     <FilterComponent
       description="São quatro instrumentos úteis para analisar e compreender a distribuição espacial dos votos e a competitividade regional."
-      category="Financiamento de Campanha"
       onConsult={onConsult}
       filters={filters}
     />
@@ -66,7 +63,6 @@ const FilterFinancing = ({ onConsult, filters }: FilterProps) => {
   return (
     <FilterComponent
       description="São quatro instrumentos úteis para analisar e compreender as dinâmicas econômica e financeira das campanhas eleitorais."
-      category="Financiamento de Campanha"
       onConsult={onConsult}
       filters={filters}
     />
@@ -76,13 +72,11 @@ const FilterFinancing = ({ onConsult, filters }: FilterProps) => {
 const FilterComponent = ({
   description,
   longDescription = '',
-  category = '',
   onConsult,
   filters,
 }: {
   description: string;
   longDescription?: string;
-  category?: string;
   onConsult: (_filters: any) => void;
   filters: SecondLayerFilters;
 }) => {
@@ -184,7 +178,6 @@ const FilterComponent = ({
   return (
     <div className="text-white w-full min-h-[220px]">
       <Text>{description}</Text>
-      <Text>{category}</Text>
       <div className="flex gap-4 mt-8 justify-between">
         <div className="flex flex-1 flex-col gap-4">
           <div className="flex gap-4 flex-col md:flex-row">
@@ -267,7 +260,7 @@ const FilterComponent = ({
 };
 
 export const SecondLayerFilter = ({
-  initialConsult = 'Eleitorais & Partidários',
+  initialConsult = 'Eleitorais Partidários',
   years,
   ufs,
   indicators,
@@ -289,13 +282,13 @@ export const SecondLayerFilter = ({
     {
       value: consultSearchParam.CandidateProfile,
       Comp: FilterCandidateProfile,
-      title: 'Eleitorais & Partidários',
+      title: 'Eleitorais e Partidários',
       fetchFilter: '/api/indicators/electoral',
     },
     {
       value: consultSearchParam.ElectionResult,
       Comp: FilterElectionResult,
-      title: 'Carreira & Representação Política',
+      title: 'Carreira e Representação Política',
       fetchFilter: '/api/indicators/party',
     },
     {
@@ -307,7 +300,7 @@ export const SecondLayerFilter = ({
     {
       value: consultSearchParam.Financing,
       Comp: FilterFinancing,
-      title: 'Econômicos & Financeiros',
+      title: 'Econômicos e Financeiros',
       fetchFilter: '/api/indicators/finance',
     },
   ];

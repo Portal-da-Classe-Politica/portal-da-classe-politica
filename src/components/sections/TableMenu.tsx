@@ -127,7 +127,7 @@ const TableMenu = () => {
         }}
         className="text-left mb-12 cursor-pointer"
       >
-        Três pilares do Portal da classe Políticae
+        Três pilares do Portal da classe Política
       </Heading>
       <div className="flex flex-col-reverse md:flex-row gap-8">
         <div className="max-w-[300px]">

@@ -1,6 +1,6 @@
 'use client';
 
-import { Container, Heading, Text, TextParagraphImage } from '@base';
+import { Container, Heading, Icon, Text, TextParagraphImage } from '@base';
 import { Header } from '@components/sections/Header';
 import { GetInContact } from '@components/sections/GetInContact';
 import CardIconText from '@components/CardIconText';
@@ -15,26 +15,32 @@ const TableMenu = dynamic(() => import('@components/sections/TableMenu'), {
 const cardIconTexts = [
   {
     title: 'O que é a página Perfil dos Candidatos?',
+    icon: <Icon type="One" />,
     text: 'A página Perfil dos Candidatos oferece um perfil detalhado de cada candidato que disputou cargos em uma determinada eleição. Aqui, você encontrará informações essenciais como nome, partido, cargo e situação da candidatura. ',
   },
   {
     title: 'Para que serve a página perfil dos Candidatos? ',
+    icon: <Icon type="Two" />,
     text: 'A Página de Candidatos permite que os usuários explorem informações detalhadas sobre os candidatos, facilitando a análise de perfis e a comparação entre eles. Ideal para eleitores, pesquisadores e jornalistas que buscam uma visão sistematizada das candidaturas. ',
   },
   {
     title: 'O que são Cruzamentos de Variáveis? ',
+    icon: <Icon type="Three" />,
     text: 'Cruzamentos de variáveis são combinações de diferentes conjuntos de dados para revelar relações e padrões que não são visíveis quando se analisa cada variável separadamente. No Portal, são 33 variáveis dividias em 4 dimensões: perfil social, votação obtida, prestação de contas e financiamento de campanha. ',
   },
   {
     title: 'Para que servem os Cruzamentos de Variáveis? ',
+    icon: <Icon type="Four" />,
     text: 'Os Cruzamentos de Variáveis ajudam a identificar tendências, correlações e insights detalhados sobre a dinâmica eleitoral e política, gerando informações úteis para análises mais aprofundadas e a formulação de estratégias baseadas em dados concreto',
   },
   {
     title: 'O que são os Indicadores? ',
+    icon: <Icon type="Five" />,
     text: 'Os Indicadores são métricas específicas que fornecem uma medida de aspectos-chave das eleições e da política. O Portal disponibiliza 16 índices divididos em quatro dimensões: eleitoral, de ambição política, geográfica e de financiamento eleitoral. ',
   },
   {
     title: 'Para que servem os Indicadores? ',
+    icon: <Icon type="Six" />,
     text: 'Os Indicadores ajudam a medir e avaliar diferentes aspectos do cenário político e eleitoral, permitindo o acompanhamento de tendências ao longo do tempo. Eles podem ser ferramentas valiosas para pesquisadores, analistas, jornalistas e formuladores de políticas. ',
   },
 ];
@@ -65,8 +71,22 @@ const Page = () => {
             Perfil dos Candidatos, variáveis e indicadores
           </Heading>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {cardIconTexts.map((value, i) => {
-              return <CardIconText key={'c' + i} title={value.title} text={value.text} iconType="Mountain" />;
+            {cardIconTexts.map((v, i) => {
+              return (
+                <CardIconText
+                  key={'c' + i}
+                  title={v.title}
+                  text={v.text}
+                  customIcon={
+                    <>
+                      {v?.icon}
+                      <div className="icon-o">
+                        <Icon type="O" />
+                      </div>
+                    </>
+                  }
+                />
+              );
             })}
           </div>
         </Container>
