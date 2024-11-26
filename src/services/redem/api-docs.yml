@@ -958,6 +958,12 @@ paths:
           required: true
           description: Ano final do intervalo.
         - in: query
+          name: dimension
+          schema:
+            type: integer
+          required: false
+          description: Dimensão de agregação (1, 2, 3).
+        - in: query
           name: unidadesEleitoraisIds
           schema:
             type: array

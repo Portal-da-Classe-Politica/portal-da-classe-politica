@@ -2162,6 +2162,7 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
      * @summary KPIs para página de cruzamentos Perfil dos candidatos
      * @param {number} initialYear Ano inicial do intervalo.
      * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
      * @param {Array<string>} [partidos] IDs dos partidos
@@ -2173,6 +2174,7 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
     getCandidateProfileKpis: async (
       initialYear: number,
       finalYear: number,
+      dimension?: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
       partidos?: Array<string>,
@@ -2202,6 +2204,10 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
 
       if (finalYear !== undefined) {
         localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (dimension !== undefined) {
+        localVarQueryParameter['dimension'] = dimension;
       }
 
       if (unidadesEleitoraisIds) {
@@ -3106,6 +3112,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
      * @summary KPIs para página de cruzamentos Perfil dos candidatos
      * @param {number} initialYear Ano inicial do intervalo.
      * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
      * @param {Array<string>} [partidos] IDs dos partidos
@@ -3117,6 +3124,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
     async getCandidateProfileKpis(
       initialYear: number,
       finalYear: number,
+      dimension?: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
       partidos?: Array<string>,
@@ -3127,6 +3135,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
       const localVarAxiosArgs = await localVarAxiosParamCreator.getCandidateProfileKpis(
         initialYear,
         finalYear,
+        dimension,
         unidadesEleitoraisIds,
         isElected,
         partidos,
@@ -3676,6 +3685,7 @@ export const ConsultApiFactory = function (
      * @summary KPIs para página de cruzamentos Perfil dos candidatos
      * @param {number} initialYear Ano inicial do intervalo.
      * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
      * @param {Array<string>} [partidos] IDs dos partidos
@@ -3687,6 +3697,7 @@ export const ConsultApiFactory = function (
     getCandidateProfileKpis(
       initialYear: number,
       finalYear: number,
+      dimension?: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
       partidos?: Array<string>,
@@ -3698,6 +3709,7 @@ export const ConsultApiFactory = function (
         .getCandidateProfileKpis(
           initialYear,
           finalYear,
+          dimension,
           unidadesEleitoraisIds,
           isElected,
           partidos,
@@ -4171,6 +4183,7 @@ export class ConsultApi extends BaseAPI {
    * @summary KPIs para página de cruzamentos Perfil dos candidatos
    * @param {number} initialYear Ano inicial do intervalo.
    * @param {number} finalYear Ano final do intervalo.
+   * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
    * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
    * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
    * @param {Array<string>} [partidos] IDs dos partidos
@@ -4183,6 +4196,7 @@ export class ConsultApi extends BaseAPI {
   public getCandidateProfileKpis(
     initialYear: number,
     finalYear: number,
+    dimension?: number,
     unidadesEleitoraisIds?: Array<string>,
     isElected?: number,
     partidos?: Array<string>,
@@ -4194,6 +4208,7 @@ export class ConsultApi extends BaseAPI {
       .getCandidateProfileKpis(
         initialYear,
         finalYear,
+        dimension,
         unidadesEleitoraisIds,
         isElected,
         partidos,
