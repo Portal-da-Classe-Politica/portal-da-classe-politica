@@ -57,7 +57,7 @@ const Page = () => {
           <div className="flex flex-col md:flex-row mt-8 ">
             <div className="flex flex-col md:flex-row mb-3 md:mb-0">
               <Text size="B1">Autor:</Text>
-              <Text size="B1" className="font-bold md:ml-1 ">
+              <Text size="B1" className="font-bold md:ml-1">
                 Maria Cecília Eduardo e Karolina Roeder
               </Text>
             </div>
@@ -69,14 +69,15 @@ const Page = () => {
             </div>
           </div>
 
-          <div className="mt-8">
-            <Image
-              src="/img/blog/mic.png"
-              className="rounded-t-[10px] w-full"
-              width={1300}
-              height={400}
-              alt="foto microfone"
-            />
+          <div className="mt-8 mx-auto">
+            <div className="w-full h-[400px] relative">
+              <Image
+                src="/img/blog/mic.png"
+                className="rounded-[10px] object-cover"
+                fill
+                alt="foto microfone"
+              />
+            </div>
           </div>
 
           <div className="mt-8">
@@ -97,7 +98,7 @@ const Page = () => {
               democracia exige a participação equitativa das mulheres, rompendo com tradições excludentes e
               promovendo uma representação política mais justa e representativa.
             </Text>
-            <Link href={'/blog/reputacao-mulher'}>
+            <Link target="_blank" href={'/blog/reputacao-mulher'}>
               <Text size="B1" className="mt-6 text-orange">
                 Leia mais
               </Text>
@@ -233,7 +234,7 @@ const Page = () => {
         <Container>
           <hr className="border-t-[3px] border-graMix2" />
 
-          <SpecialContents title="Publicações relacionadasPublicações relacionadas" />
+          <SpecialContents title="Publicações relacionadas" />
         </Container>
       </section>
 

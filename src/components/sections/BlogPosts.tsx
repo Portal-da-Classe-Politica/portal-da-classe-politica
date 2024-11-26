@@ -144,7 +144,6 @@ const BlogPost = () => {
                   type="Tertiary"
                   title={values.title}
                   category={values.categories}
-                  customHeight={90}
                   subTitle={values.description}
                   src={values.img}
                   href={`/blog/${values.id}`}

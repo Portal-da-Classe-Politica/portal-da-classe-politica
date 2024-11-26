@@ -162,7 +162,6 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
                 {result?.results?.length || 0} candidatos
               </Text>
             </div>
-            {/** sem ordenação ainda */}
             {result.length > 0 && (
               <div>
                 <Text textType="span" size="L1" className="mr-2">
@@ -212,7 +211,7 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
                     key: '',
                     render: (_, row) => {
                       return (
-                        <Link href={routes.candidate(row.candidatoId)}>
+                        <Link target="_blank" href={routes.candidate(row.candidatoId)}>
                           <ButtonStyled size="small" style="fillOrange" className="w-[210px]">
                             <Text textType="span" size="L2">
                               MAIS INFORMAÇÕES

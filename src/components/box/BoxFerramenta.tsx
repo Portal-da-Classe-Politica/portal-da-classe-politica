@@ -29,7 +29,7 @@ export const BoxFerramenta = ({
         <Text size={'B2'} className="text-center">
           {subTitle}
         </Text>
-        <Link href={href}>
+        <Link target="_blank" href={href}>
           <Text size={'C2'} className="text-orange flex">
             Acessar Ferramenta
             <Icon type="ArrowRight" className="ml-2" />

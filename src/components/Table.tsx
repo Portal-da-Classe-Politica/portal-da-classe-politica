@@ -78,16 +78,14 @@ const TableComponent = ({
           {values.length > 0 && (
             <ReactPaginate
               breakLabel="..."
-              nextLabel={<Icon type="ArrowRight" />}
-              onPageChange={e => {
-                pageChange(e.selected + 1);
-              }}
+              onPageChange={e => pageChange(e.selected + 1)}
               forcePage={currentPage - 1}
               className="flex gap-2 text-orange place-items-center mt-4 justify-end"
               activeClassName={'font-bold'}
-              pageClassName={'border border-orange rounded-full px-2'}
+              pageClassName={'border border-orange rounded-full px-2 hover:bg-orange hover:text-white'}
               pageRangeDisplayed={5}
               pageCount={totalPages}
+              nextLabel={<Icon type="ArrowRight" />}
               previousLabel={<Icon type="ArrowLeft" />}
               renderOnZeroPageCount={null}
             />
@@ -116,7 +114,7 @@ const TableComponent = ({
                   );
                 })}
                 <div className="p-2 text-center">
-                  <Link href={routes.candidate(value.candidatoId)}>
+                  <Link target="_blank" href={routes.candidate(value.candidatoId)}>
                     <ButtonStyled size="small" style="fillOrange" className="w-[210px]">
                       <Text textType="span" size="L2">
                         MAIS INFORMAÇÕES

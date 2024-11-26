@@ -14,17 +14,17 @@ export const GetInContact = () => {
         </div>
         <div className="flex flex-wrap items-center  justify-evenly  gap-4 md:gap-4">
           <div className="w-[160px] h-[160px]">
-            <Link href={routes.support}>
+            <Link target="_blank" href={routes.support}>
               <BoxIconText text="Atendimento Redem" iconType="Headset" />
             </Link>
           </div>
           <div className="w-[160px] h-[160px]">
-            <Link href={routes.support}>
+            <Link target="_blank" href={routes.support}>
               <BoxIconText text="Reportar Erro" iconType="Error" />
             </Link>
           </div>
           <div className="w-[160px] h-[160px]">
-            <Link href={routes.support}>
+            <Link target="_blank" href={routes.support}>
               <BoxIconText text="Elogios ao projeto" iconType="Star" />
             </Link>
           </div>

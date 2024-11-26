@@ -26,18 +26,18 @@ export const SpecialContents = async ({ title = 'Conteúdos especiais' }: { titl
         <Heading headingLevel={2} size={'H2'} className="font-bold ">
           {title}
         </Heading>
-        <Link href={routes.blog} className="text-orange content-end ml-auto flex">
+        <Link target="_blank" href={routes.blog} className="text-orange content-end ml-auto flex">
           <Text size={'C1'} className="flex font-bold">
             Ver todos artigos
             <Icon type="ArrowRightShort" className="ml-4" />
           </Text>
         </Link>
       </div>
-      <div className="flex flex-col flex-wrap gap-4 items-center md:flex-row md:justify-between md:gap-3">
+      <div className="flex flex-col flex-wrap gap-2 items-center md:flex-row md:justify-between md:gap-3">
         {blogs.map(
           (blog, idx) =>
             blog && (
-              <div key={idx} className="w-[280px] h-[370px]">
+              <div key={idx} className="w-[280px] h-[400px]">
                 <CardPost
                   href={routes.blogPost(blog.id)}
                   type="Tertiary"

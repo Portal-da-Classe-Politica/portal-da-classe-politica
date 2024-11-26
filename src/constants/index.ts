@@ -8,10 +8,6 @@ export const Constants = {
   },
   brazil: 28,
   links: {
-    privacyPolicy:
-      'https://docs.google.com/document/d/1xnkVr0zzVOcoM_dpdcg3sFIaMELNvzFuyFVOIjiCgb8/edit?usp=sharing',
-    userTerms:
-      'https://docs.google.com/document/d/16DFSKoLyxKJXZHh2pPFIyg2nkEGtVGcgR-qWUFrXYzA/edit?usp=sharing',
     instagram: 'https://www.instagram.com/redem.inct',
     facebook: 'https://www.facebook.com/people/INCT-ReDem/61552965411509',
     linkedin:

@@ -43,7 +43,7 @@ const FilterCandidateProfile = ({
     <FilterComponent
       description="Carregamos nesta página os dados do Perfil dos Candidatos. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
       longDescription={
-        selectedOption.dimension ? (
+        showDimension(selectedOption.dimension, filtersData) ? (
           <>
             O resultado do cruzamento entre{' '}
             <Text className="font-bold" textType="span">
@@ -117,7 +117,7 @@ const FilterFinancing = ({
     <FilterComponent
       description="Carregamos nesta página os dados do Financiamento de Campanha. Para fazer um cruzamento escolha uma categoria e o período abaixo:"
       longDescription={
-        selectedOption.dimension ? (
+        showDimension(selectedOption.dimension, filtersData) ? (
           <>
             O resultado do cruzamento entre{' '}
             <Text className="font-bold" textType="span">
@@ -171,23 +171,23 @@ const FilterComponent = ({
   errors: any;
 }) => {
   return (
-    <div className="text-white cursor-pointer">
+    <div className="flex flex-1 flex-col text-white cursor-pointer min-h-[160px]">
       <Text>{description}</Text>
-      <div className="flex flex-col xl:flex-row gap-8 my-8 justify-between items-center flex-wrap">
-        <div className="flex flex-1 w-full basis-1/4">
-          <ButtonStyled style="fillBlack" size="small" className="w-full">
+      <div className="flex flex-col xl:flex-row gap-4 mt-4 justify-between items-center flex-wrap">
+        <div className="flex">
+          <ButtonStyled style="fillBlack" className="w-full px-2">
             <Text className="font-normal border-white border-r-2 pr-2" textType="span">
               Categoria
             </Text>
-            <Text className="font-bold ml-2" textType="span">
+            <Text className="font-bold ml-2 text-sm" textType="span">
               {category}
             </Text>
           </ButtonStyled>
         </div>
 
-        <div className="flex flex-1 flex-col lg:flex-row gap-8 w-full items-center basis-1/4 ">
+        <div className="flex flex-1 flex-col lg:flex-row gap-4 w-full items-center">
           {loading ? (
-            <div className="flex flex-1 justify-center">
+            <div className="flex flex-1 w-full justify-center">
               <Loader />
             </div>
           ) : (
@@ -259,23 +259,27 @@ const FilterComponent = ({
             </>
           )}
         </div>
-        <div className="flex flex-1 w-full">
-          <ButtonStyled
-            style="fillBlack"
-            className="w-full"
-            onClick={() =>
-              onConsult({
-                initialYear: selectedOption.initialYear,
-                finalYear: selectedOption.finalYear,
-                dimension: selectedOption.dimension,
-              })
-            }
-          >
-            <Text>Gerar Cruzamento</Text>
-          </ButtonStyled>
-        </div>
       </div>
-      <Text>{longDescription}</Text>
+
+      <div className="flex flex-1 w-full mt-4">
+        <ButtonStyled
+          style="fillBlack"
+          className="w-full"
+          onClick={() =>
+            onConsult({
+              initialYear: selectedOption.initialYear,
+              finalYear: selectedOption.finalYear,
+              dimension: selectedOption.dimension,
+            })
+          }
+        >
+          <Text>Gerar Cruzamento</Text>
+        </ButtonStyled>
+      </div>
+
+      <div className="flex flex-1 w-full mt-4">
+        <Text>{longDescription}</Text>
+      </div>
     </div>
   );
 };

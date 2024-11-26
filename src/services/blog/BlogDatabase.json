@@ -58,7 +58,7 @@
   },
   {
     "id": "4",
-    "title": "Tutoriais sobre os indicadores: dimensão 1",
+    "title": "Indicadores “Eleitorais e Partidários”",
     "description": "Apresenta indicadores úteis para compreender a dinâmica das eleições.",
     "img": "/img/blog/graphs.png",
     "categories": ["Indicadores"],
@@ -77,7 +77,7 @@
   },
   {
     "id": "5",
-    "title": "Tutoriais sobre os indicadores: dimensão 2 ",
+    "title": "Indicadores “Carreira e Representação Política”",
     "description": "Apresenta indicadores úteis para analisar as aspirações e estratégias dos candidatos",
     "img": "/img/blog/lampIdea.png",
     "categories": ["Indicadores"],
@@ -96,7 +96,7 @@
   },
   {
     "id": "6",
-    "title": "Tutoriais sobre os indicadores: dimensão 3 ",
+    "title": "Indicadores “Espacial de Votos”",
     "description": "Entenda a distribuição dos votos e a competitividade regional nas eleições.",
     "img": "/img/blog/vote.png",
     "categories": ["Perfil dos candidatos"],
@@ -115,7 +115,7 @@
   },
   {
     "id": "7",
-    "title": "Tutoriais sobre os indicadores: dimensão 4 ",
+    "title": "Indicadores “Econômicos e Financeiros”",
     "description": "Apresenta indicadores úteis para entender a dinâmica financeira das campanhas eleitorais.",
     "img": "/img/blog/study.png",
     "categories": ["Blog e conteúdos especiais"],
@@ -134,7 +134,7 @@
   },
   {
     "id": "8",
-    "title": "Tutorial: Como Utilizar a Seção do Blog no Portal da Classe Política",
+    "title": "Como Utilizar a Seção de Conteúdos Especiais do Portal da Classe Política",
     "description": " Fique atualizado com posts regulares, categorizados por temas e autores, promovendo interação e compartilhamento de informações.",
     "img": "/img/blog/books.png",
     "categories": ["Blog e conteúdos especiais"],

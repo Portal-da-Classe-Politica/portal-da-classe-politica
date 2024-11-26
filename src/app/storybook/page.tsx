@@ -29,7 +29,7 @@ const Page = () => {
           <ul className="list-disc pl-8">
             {storybookLinks.map(({ link, title }) => (
               <li key={link} className="mt-4 hover:text-blue-500">
-                <Link href={link} target="_blank">
+                <Link target="_blank" href={link}>
                   <Text className="list-item">{title}</Text>
                 </Link>
               </li>

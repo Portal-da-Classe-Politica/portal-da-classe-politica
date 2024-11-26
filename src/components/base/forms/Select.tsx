@@ -90,7 +90,7 @@ export const Select = ({
             {options.map(option => (
               <div
                 key={option.value}
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left cursor-pointer"
+                className="block px-4 py-2 text-xs text-gray-700 hover:bg-gray-100 w-full text-left cursor-pointer"
                 onClick={() => onOptionSelected(option)}
               >
                 {option.label}

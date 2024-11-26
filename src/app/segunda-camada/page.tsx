@@ -37,7 +37,7 @@ const Page = () => {
 
   useEffect(() => {
     loadStaticFilters();
-    fetch(`/api/indicators/party`)
+    fetch(`/api/indicators/electoral`)
       .then(res => res.json())
       .then(data => {
         setIndicatorFilters(data);

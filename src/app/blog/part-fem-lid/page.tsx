@@ -19,7 +19,7 @@ const Page = () => {
             A participação feminina na liderança partidária e o cumprimento das cotas financeiras para
             mulheres
           </Heading>
-          <Text size="C1" className="ml-auto mb-4">
+          <Text size="C1" className="ml-auto mb-4 mt-2">
             Maria Cecília Eduardo
           </Text>
           <Text className="mb-3">
@@ -52,9 +52,9 @@ const Page = () => {
             baixa, como podemos ver na tabela abaixo. No geral, as mulheres ocupam menos de um quinto do total
             de cargos analisados.
           </Text>
-          <Text className="mb-3">
-            Presença das mulheres nas executivas estaduais dos partidos brasileirosPresença das mulheres nas
-            executivas estaduais dos partidos brasileiros
+
+          <Text className="mb-6">
+            Presença das mulheres nas executivas estaduais dos partidos brasileiros.
           </Text>
           <table className="table-auto">
             <thead>
@@ -160,7 +160,8 @@ const Page = () => {
               </tr>
             </thead>
           </table>
-          <Text className="mb-3">
+
+          <Text className="mt-6 mb-3">
             Esse panorama reflete a necessidade urgente de transformar a cultura política e as estruturas
             partidárias para promover a inclusão e a igualdade de gênero, garantindo que as mulheres tenham as
             mesmas oportunidades de competir e vencer nas eleições. A mudança começa com a reestruturação
@@ -183,14 +184,6 @@ const Page = () => {
             presença feminina nesses cargos aumenta a chance de os partidos cumprirem as cotas de gênero no
             financiamento público de campanha.
           </Text>
-          <Heading headingLevel={3} size="H5" className="w-full font-bold mb-3">
-            Leia o capítulo completo do livro Gênero e Eleições:
-          </Heading>
-          <Text className="mb-3">
-            Eduardo, Maria Cecília e Bruno Fernando da Silva. Mulheres nas Estruturas de Poder Partidário: a
-            participação feminina nos partidos e a chance de adesão às cotas. Gênero e Eleições. (no prelo).
-            2024.
-          </Text>
           <div className="w-full mt-6">
             <Avatar
               type="left"
@@ -205,7 +198,7 @@ const Page = () => {
         <Container>
           <hr className="border-t-[3px] border-graMix2" />
 
-          <SpecialContents title="Publicações relacionadasPublicações relacionadas" />
+          <SpecialContents title="Publicações relacionadas" />
         </Container>
       </section>
 

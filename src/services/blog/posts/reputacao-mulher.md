@@ -1,6 +1,6 @@
 # A Persistente Sub-Representação de Mulheres na Política
 
-<p style="text-align: right; font-size: 0.875em">Maria Cecília Eduardo e Karolina Roeder</p>
+<p style="text-align: right; font-size: 0.875em margin-top: 8px">Maria Cecília Eduardo e Karolina Roeder</p>
 
 Apesar dos avanços nas últimas décadas, as mulheres ainda enfrentam uma sub-representação significativa na política. Este texto explora as razões históricas, culturais e estruturais que perpetuam essa desigualdade, destacando como a divisão entre as esferas pública e privada, o capital homossocial e as normas políticas liberais contribuem para a exclusão das mulheres. Além disso, analisa as medidas que têm sido implementadas para mitigar essas desigualdades e sugere a necessidade de uma abordagem crítica e inclusiva para alcançar uma representação política verdadeiramente democrática.
 

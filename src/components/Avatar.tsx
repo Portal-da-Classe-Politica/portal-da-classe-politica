@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { cva } from 'cva';
 
-import { Heading, Text, Icon } from '@base';
+import { Text, Icon } from '@base';
 
 type CardIconTextProps = {
   title: string;
@@ -45,10 +45,10 @@ const Avatar = ({ title, text, src, type = 'top', social }: CardIconTextProps) =
       </div>
       <div>
         <div className={textVariants({ textContainer: type })}>
-          <Heading size="S1" className="font-bold my-4" headingLevel={2}>
+          <Text size="B1" className="font-bold my-4">
             {title}
-          </Heading>
-          <Text size="B1">{text}</Text>
+          </Text>
+          <Text size="C1">{text}</Text>
         </div>
         <div className="flex gap-3 text-orange text-left">
           {social?.facebook && (
