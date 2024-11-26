@@ -39,6 +39,7 @@ export const consultCandidateProfile = async ({
         redem.consult.getCandidateProfileKpis(
           Number(initialYear),
           Number(finalYear),
+          dimension,
           unidadesEleitoraisIds,
           isElected,
           partidos,

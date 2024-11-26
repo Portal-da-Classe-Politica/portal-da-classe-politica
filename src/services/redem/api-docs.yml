@@ -958,6 +958,12 @@ paths:
           required: true
           description: Ano final do intervalo.
         - in: query
+          name: dimension
+          schema:
+            type: integer
+          required: false
+          description: Dimensão de agregação (1, 2, 3).
+        - in: query
           name: unidadesEleitoraisIds
           schema:
             type: array
@@ -1294,6 +1300,50 @@ paths:
             type: integer
           required: true
           description: Ano final do intervalo.
+        - in: query
+          name: dimension
+          schema:
+            type: integer
+          required: false
+          description: Dimensão de agregação (1, 2, 3).
+        - in: query
+          name: unidadesEleitoraisIds
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: IDs das unidades eleitorais desejadas.
+        - in: query
+          name: isElected
+          schema:
+            type: integer
+          required: false
+          description: Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+        - in: query
+          name: partidos
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: IDs dos partidos
+        - in: query
+          name: categoriasOcupacoes
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Categoria 1 das ocupações (1,2 ...)
+        - in: query
+          name: cargosIds
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: IDs dos cargos (1,2,3...)
       responses:
         '200':
           description: Resposta bem-sucedida com os KPIs das eleições.
