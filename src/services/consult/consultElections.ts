@@ -36,7 +36,18 @@ export const consultElections = async ({
 
   try {
     const responses = await Promise.allSettled([
-      parseKpisResult(() => redem.consult.getElectionsKpis(Number(initialYear), Number(finalYear))),
+      parseKpisResult(() =>
+        redem.consult.getElectionsKpis(
+          Number(initialYear),
+          Number(finalYear),
+          dimension,
+          unidadesEleitoraisIds,
+          isElected,
+          partidos,
+          categoriasOcupacoes,
+          cargosIds,
+        ),
+      ),
       redem.consult.getElectionsTopCandidates(
         Number(initialYear),
         Number(finalYear),
