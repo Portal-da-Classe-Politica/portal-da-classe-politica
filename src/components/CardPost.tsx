@@ -1,9 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
-
-import { Text, Heading } from '@base';
-import { ChipContainer } from './ChipContainer';
 import Link from 'next/link';
+
+import { Heading, Text } from '@base';
+import { ChipContainer } from './ChipContainer';
 
 type BaseProps = {
   title: string;
@@ -24,26 +24,20 @@ type Props<T extends BaseProps> = T & ConditionalProps<T>;
 const Primary = ({ title, subTitle }: { title: string; subTitle?: string; href: string }) => {
   return (
     <>
-      <div className="flex flex-col lg:flex-row items-start md:items-center">
-        <div className="self-start md:w-[80%]">
-          <Text className="font-bold md:text-s1 text-b1 mb-2">{title}</Text>
-          {subTitle && (
-            <Text size={'B2'} className=" flex-1 mr-5">
-              {subTitle}
-            </Text>
-          )}
-        </div>
+      <div className="flex flex-1 flex-col items-start md:items-center">
+        <Text className="font-bold md:text-s1 text-b1 mb-2">{title}</Text>
+        {subTitle && (
+          <Text size={'B2'} className="flex-1">
+            {subTitle}
+          </Text>
+        )}
       </div>
     </>
   );
 };
 
 const Secondary = ({ title }: { title: string; href: string }) => {
-  return (
-    <Heading headingLevel={6} size="H6" className="font-bold ">
-      {title}
-    </Heading>
-  );
+  return <Text className="font-bold md:text-s1 text-b1">{title}</Text>;
 };
 
 const Tertiary = ({ title, subTitle }: { title: string; subTitle?: string; href: string }) => {
