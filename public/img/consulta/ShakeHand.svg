@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Camada_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 290 189.35">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #e74517;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 2px;
+      }
+
+      .cls-2 {
+        fill: url(#Gradiente_sem_nome_66);
+      }
+
+      .cls-3 {
+        fill: url(#Gradiente_sem_nome_92);
+      }
+
+      .cls-4 {
+        fill: #f18f74;
+      }
+
+      .cls-5 {
+        fill: url(#Gradiente_sem_nome_94);
+      }
+
+      .cls-6 {
+        fill: url(#Gradiente_sem_nome_69);
+      }
+    </style>
+    <linearGradient id="Gradiente_sem_nome_92" data-name="Gradiente sem nome 92" x1="116.56" y1="109.77" x2="223.92" y2="109.77" gradientUnits="userSpaceOnUse">
+      <stop offset=".7" stop-color="#e74517"/>
+      <stop offset=".73" stop-color="#e04316"/>
+      <stop offset=".78" stop-color="#cf3f16"/>
+      <stop offset=".82" stop-color="#b23816"/>
+      <stop offset=".88" stop-color="#8a2f16"/>
+      <stop offset=".93" stop-color="#572315"/>
+      <stop offset=".99" stop-color="#1a1415"/>
+      <stop offset="1" stop-color="#141315"/>
+    </linearGradient>
+    <linearGradient id="Gradiente_sem_nome_94" data-name="Gradiente sem nome 94" x1="129.11" y1="73.79" x2="207.8" y2="73.79" gradientTransform="translate(38.43 203.85) rotate(-68.66)" gradientUnits="userSpaceOnUse">
+      <stop offset=".7" stop-color="#e74517"/>
+      <stop offset=".76" stop-color="#e44416"/>
+      <stop offset=".81" stop-color="#da4216"/>
+      <stop offset=".84" stop-color="#cb3e16"/>
+      <stop offset=".88" stop-color="#b53916"/>
+      <stop offset=".91" stop-color="#983216"/>
+      <stop offset=".94" stop-color="#752a15"/>
+      <stop offset=".97" stop-color="#4c2015"/>
+      <stop offset=".99" stop-color="#1d1515"/>
+      <stop offset="1" stop-color="#141315"/>
+    </linearGradient>
+    <linearGradient id="Gradiente_sem_nome_69" data-name="Gradiente sem nome 69" x1="235.82" y1="117.17" x2="200.38" y2="55.8" gradientUnits="userSpaceOnUse">
+      <stop offset=".46" stop-color="#f18f74"/>
+      <stop offset=".62" stop-color="#ee7d5d"/>
+      <stop offset=".93" stop-color="#e84f24"/>
+      <stop offset="1" stop-color="#e74517"/>
+    </linearGradient>
+    <linearGradient id="Gradiente_sem_nome_66" data-name="Gradiente sem nome 66" x1="49.15" y1="112.9" x2="94.66" y2="67.39" gradientUnits="userSpaceOnUse">
+      <stop offset=".46" stop-color="#141315"/>
+      <stop offset=".54" stop-color="#2a1815"/>
+      <stop offset=".69" stop-color="#642615"/>
+      <stop offset=".91" stop-color="#c03b16"/>
+      <stop offset="1" stop-color="#e74517"/>
+    </linearGradient>
+  </defs>
+  <path class="cls-3" d="M223.16,102.89l-1.5-3.19c-1.18-2.51-3.52-4.14-6.09-4.53.63-1.9.58-4.04-.34-5.98l-1.5-3.19c-.93-1.98-2.59-3.41-4.5-4.12.16-1.43-.06-2.91-.71-4.29l-1.5-3.19c-1.89-4.02-6.73-5.76-10.75-3.86l-75.07,35.37c-4.02,1.89-5.76,6.73-3.86,10.75l1.5,3.19c.93,1.98,2.59,3.41,4.5,4.12-.16,1.43.06,2.91.71,4.29l1.5,3.19c1.18,2.51,3.52,4.14,6.09,4.53-.63,1.9-.58,4.04.34,5.98l1.5,3.19c1.89,4.02,6.73,5.76,10.75,3.86l75.07-35.37c4.02-1.89,5.76-6.73,3.86-10.75Z"/>
+  <rect class="cls-4" x="96.27" y="32.27" width="21.93" height="81.63" rx="9" ry="9" transform="translate(189.09 -27.61) rotate(94.83)"/>
+  <rect class="cls-4" x="115.57" y="41.15" width="19.68" height="99.14" rx="8.08" ry="8.08" transform="translate(226.37 -26.6) rotate(94.83)"/>
+  <rect class="cls-4" x="115.57" y="56.99" width="19.68" height="99.14" rx="8.08" ry="8.08" transform="translate(242.15 -9.43) rotate(94.83)"/>
+  <rect class="cls-4" x="115.57" y="70.39" width="19.68" height="99.14" rx="8.08" ry="8.08" transform="translate(255.5 5.1) rotate(94.83)"/>
+  <rect class="cls-5" x="157.49" y="32.98" width="21.93" height="81.63" rx="9" ry="9" transform="translate(175.9 -109.97) rotate(68.66)"/>
+  <rect class="cls-6" x="204.7" y="50.55" width="26.8" height="71.88" rx="6.52" ry="6.52"/>
+  <rect class="cls-2" x="58.5" y="54.2" width="26.8" height="71.88" rx="6.52" ry="6.52"/>
+  <line class="cls-1" x1="122.55" y1="98.97" x2="171.95" y2="101.08"/>
+  <line class="cls-1" x1="124.99" y1="113.58" x2="174.39" y2="115.7"/>
+  <line class="cls-1" x1="106.71" y1="75.82" x2="156.11" y2="77.93"/>
+</svg>

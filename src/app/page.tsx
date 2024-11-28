@@ -41,28 +41,28 @@ const Home = () => {
           <div className="flex flex-col gap-6 items-center md:gap-2 md:flex-row md:justify-between mt-12 md:mt-24">
             <BoxFerramenta
               alt="Cruzamentos e Dados Eleitorais"
-              src={'/img/Cruzdados.png'}
+              src={'/img/Cruzdados.svg'}
               title={'Cruzamentos e Dados Eleitorais'}
               subTitle={'Cruze e analise dezenas de variáveis eleitorais.'}
               href={routes.consult}
             />
             <BoxFerramenta
               alt="Indicadores e Índices Especiais"
-              src={'/img/Indicadores.png'}
+              src={'/img/Indicadores.svg'}
               title={'Indicadores e Índices Especiais'}
               subTitle={'Trinta índices construídos com variáveis eleitorais.'}
               href={routes.projections}
             />
             <BoxFerramenta
               alt="Aprenda a usar os Indicadores"
-              src={'/img/Aprenda.png'}
+              src={'/img/Aprenda.svg'}
               title={'Aprenda a usar os Indicadores'}
               subTitle={'Diversos tutoriais para ajudar você explorar ao máximo o Portal.'}
               href={routes.aboutCrossing}
             />
             <BoxFerramenta
               alt="Comunicação Científica"
-              src={'/img/Comunicacao.png'}
+              src={'/img/Comunicacao.svg'}
               title={'Comunicação Científica'}
               subTitle={'Nosso blog traz análises relevantes e acessíveis sobre a política nacional.'}
               href={routes.blog}
@@ -83,10 +83,13 @@ const Home = () => {
           <div className="flex flex-col h-full md:flex-row gap-4 md:gap-14">
             <div className="h-[370px] md:h-[480px]">
               <CardPost
-                alt={' Eleição 2024: A Persistente Sub-Representação de Mulheres na Política'}
+                alt={'Eleição 2024: A Persistente Sub-Representação de Mulheres na Política'}
                 category={['Leitura de 5min']}
                 customHeight={270}
-                title={' Eleição 2024: A Persistente Sub-Representação de Mulheres na Política'}
+                title={'Eleição 2024: A Persistente Sub-Representação de Mulheres na Política'}
+                subTitle={
+                  'Partidos controlam recursos políticos vitais e desde 2009, devem investir 5% do Fundo Partidário anual para fomentar a participação feminina na política.'
+                }
                 src={'/img/blog/mic.png'}
                 type="Primary"
                 href="/blog/reputacao-mulher"
@@ -101,7 +104,7 @@ const Home = () => {
                   }
                   type="Secondary"
                   category={['Leitura de 5min']}
-                  customHeight={90}
+                  customHeight={270}
                   title={
                     'A promoção da participação política das mulheres parcialmente realizada pelos partidos políticos'
                   }
@@ -116,7 +119,7 @@ const Home = () => {
                   }
                   type="Secondary"
                   category={['Leitura de 5min']}
-                  customHeight={90}
+                  customHeight={270}
                   title={
                     'A participação feminina na liderança partidária e o cumprimento das cotas financeiras para mulheres '
                   }
