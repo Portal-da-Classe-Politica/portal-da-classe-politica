@@ -6,7 +6,7 @@ import { Header } from '@components/sections/Header';
 import { GetInContact } from '@components/sections/GetInContact';
 import { SpecialContents } from '@components/sections/SpecialContents';
 import { routes } from '@routes';
-import DesignSemiCircle from '@components/DesignSemiCircle';
+import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
 
 const Home = () => {
   return (

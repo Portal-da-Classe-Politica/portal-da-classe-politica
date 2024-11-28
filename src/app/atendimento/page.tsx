@@ -4,7 +4,7 @@ import { ButtonStyled, Container, Heading, Text, Input, TextArea, TextParagraphI
 import { Header } from '@components/sections/Header';
 import { LineItem } from '@components/LineItem';
 import { BoxIconText } from '@components/box/BoxIconText';
-import DesignSemiCircle from '@components/DesignSemiCircle';
+import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
 
 const Atendimento = () => {
   return (

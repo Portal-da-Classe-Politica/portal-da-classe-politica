@@ -1,12 +1,13 @@
 'use client';
 
 import Image from 'next/image';
+
 import { Container, Heading, Text, TextParagraph, TextParagraphImage } from '@base';
 import { Header } from '@components/sections/Header';
 import Avatar from '@components/Avatar';
 import Timeline from '@components/timeline/Timeline';
 import { GetInContact } from '@components/sections/GetInContact';
-import DesignSemiCircle from '@components/DesignSemiCircle';
+import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
 
 const headerText = [
   {

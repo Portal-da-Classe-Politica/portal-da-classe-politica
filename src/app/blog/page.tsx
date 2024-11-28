@@ -4,7 +4,8 @@ import { GetInContact } from '@components/sections/GetInContact';
 import { CardPost } from '@components/CardPost';
 import { Divider } from '@components/Divider';
 import dynamic from 'next/dynamic';
-import DesignSemiCircle from '@components/DesignSemiCircle';
+import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
+
 const BlogPost = dynamic(() => import('@components/sections/BlogPosts'), {
   ssr: false,
 });

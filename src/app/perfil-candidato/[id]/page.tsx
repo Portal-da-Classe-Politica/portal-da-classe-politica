@@ -17,7 +17,7 @@ import { CandidateService } from '@services/candidates/CandidateService';
 import { formatCurrency } from '@utils/formatCurrency';
 
 import { LastElectionsChart } from '@components/charts/LastElectionsChart';
-import DesignSemiCircle from '@components/DesignSemiCircle';
+import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
 
 const Page = async ({ params: { id } }: { params: { id: string } }) => {
   const candidate = await CandidateService.getCandidateById(id);

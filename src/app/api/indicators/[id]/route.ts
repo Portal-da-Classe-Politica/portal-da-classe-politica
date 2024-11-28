@@ -11,7 +11,7 @@ export async function GET(req: NextRequest, { params: { id } }: { params: { id: 
   console.info(`get:indicators/[${id}] parsedParams`, parsedParams);
 
   const result = await IndicatorsService.getIndicatorById(id, parsedParams);
-  console.info(`get:indicators/[${id}]`, result);
+  console.info(`get:indicators/[${id}]`, JSON.stringify(result));
 
   return NextResponse.json(result);
 }

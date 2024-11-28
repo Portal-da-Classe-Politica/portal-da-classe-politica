@@ -5,7 +5,7 @@ import { BoxImageText } from '@components/box/BoxImageText';
 import { GetInContact } from '@components/sections/GetInContact';
 import { SpecialContents } from '@components/sections/SpecialContents';
 import { ConsultSection } from './components/ConsultSection';
-import DesignSemiCircle from '@components/DesignSemiCircle';
+import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
 
 const cards = [
   { text: 'Perfil dos Candidatos', src: '/img/consulta/Profile.svg' },

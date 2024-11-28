@@ -1,12 +1,14 @@
 'use client';
 
+import { useCallback, useEffect, useState } from 'react';
+
 import { Container, Heading, Loader, Text } from '@base';
 import { Header } from '@components/sections/Header';
 import { GetInContact } from '@components/sections/GetInContact';
-import DesignSemiCircle from '@components/DesignSemiCircle';
+import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
+
 import { SecondLayerFilter } from './components/SecondLayerFilter';
-import { useCallback, useEffect, useState } from 'react';
-import { LineChartCard } from '@components/charts/LineChartCard';
+import { ConsultResultDisplay } from '@components/consult/ConsultResultDisplay';
 
 type filterObjectType = {
   years: number[];
@@ -70,7 +72,7 @@ const Page = () => {
     setLoadingResults(true);
     fetch(`/api/indicators/${consultFilters.indicator}?${params.toString()}`)
       .then(res => res.json())
-      .then(data => setResult(data.data))
+      .then(data => setResult(data))
       .catch(error => console.error('Failed to fetch indicators', error))
       .finally(() => setLoadingResults(false));
   };
@@ -116,13 +118,7 @@ const Page = () => {
                   <Loader variant="Sync" color="#EB582F" />
                 </div>
               ) : result ? (
-                <LineChartCard
-                  title={result.title}
-                  yAxisTitle={result.extraData.yAxisLabel}
-                  xAxisTitle={result.extraData.xAxisLabel}
-                  categories={result.xAxis}
-                  series={result.series}
-                />
+                <ConsultResultDisplay result={result} />
               ) : (
                 <></>
               )}

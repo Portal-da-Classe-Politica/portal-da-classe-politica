@@ -1,15 +1,16 @@
 'use client';
 
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+
+import { routes } from '@routes';
+import { Constants } from '@constants';
 import { ButtonStyled, Container, Heading, Icon, Input, Select, Text } from '@base';
 import TableComponent from '@components/Table';
 import { Divider } from '@components/Divider';
+import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
 import { useObjReducer } from '@hooks/useObjReducer';
 import { cleanString } from '@utils/cleanString';
-import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { routes } from '@routes';
-import { Constants } from '@constants';
-import DesignSemiCircle from '@components/DesignSemiCircle';
 
 export const SearchSection = ({ title, filters }: { title: string; filters: any }) => {
   const [search, setSearch] = useObjReducer({ uf: '', name: '', abrangencyId: '', electoralUnitId: '' });
