@@ -64,7 +64,7 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
                     <TextBetween title="Partido" text={candidate?.nome_atual} />
                     <TextBetween title="Coligação" text={candidate?.coligacao} />
                     <TextBetween
-                      title="Bens Declarados"
+                      title="Bens declarados na última eleição disputada"
                       text={candidate?.bens_declarados ? formatCurrency(candidate?.bens_declarados) : '-'}
                     />
                   </div>
@@ -125,7 +125,7 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
           <Container className="flex flex-col items-center">
             <div className={`flex flex-col w-full max-h-[800px] p-12 bg-white drop-shadow-lg rounded-lg `}>
               <Heading headingLevel={2} className="text-grayMix4 my-4">
-                Mapa da votação do 1º turno
+                Mapa da votação da última eleição disputada
               </Heading>
               <LastElectionMap state={lastElectionState} candidateId={id} />
             </div>
