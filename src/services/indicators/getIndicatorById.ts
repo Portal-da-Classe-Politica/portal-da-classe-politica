@@ -34,12 +34,12 @@ export const getIndicatorById = async (id: string, params: IndicatorParams) => {
     return { success: false, data: null, message: 'Invalid Indicator' };
   }
 
-  const { data } = await indicatorsMap[id](
+  const { request, data } = await indicatorsMap[id](
     params.initialYear,
     params.finalYear,
     params.cargoId,
     params.unidadesEleitorais,
   );
 
-  return data;
+  return { path: request.path, data };
 };

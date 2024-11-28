@@ -1,12 +1,13 @@
 'use client';
 
+import dynamic from 'next/dynamic';
+
 import { Container, Heading, Icon, Text, TextParagraphImage } from '@base';
 import { Header } from '@components/sections/Header';
 import { GetInContact } from '@components/sections/GetInContact';
 import CardIconText from '@components/CardIconText';
 import { Divider } from '@components/Divider';
-import dynamic from 'next/dynamic';
-import DesignSemiCircle from '@components/DesignSemiCircle';
+import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
 
 const TableMenu = dynamic(() => import('@components/sections/TableMenu'), {
   ssr: false,

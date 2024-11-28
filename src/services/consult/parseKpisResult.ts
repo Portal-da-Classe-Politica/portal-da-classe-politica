@@ -4,8 +4,8 @@ export const parseKpisResult = async (redemApiCall: any) => {
   return {
     data: {
       success: true,
-      type: 'kpi',
       data: {
+        type: 'kpi',
         title: response?.data?.title,
         extraData: response?.data?.data ?? [],
       },

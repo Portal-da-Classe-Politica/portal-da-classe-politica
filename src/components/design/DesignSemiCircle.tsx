@@ -1,5 +1,6 @@
-import SemiCircle from './design/SemiCircle';
 import { cva } from 'cva';
+
+import SemiCircle from './SemiCircle';
 
 const semiCircleVariant = cva('', {
   variants: {
@@ -18,7 +19,7 @@ const semiCircleVariant = cva('', {
   },
 });
 
-const DesignSemiCircle = ({
+export const DesignSemiCircle = ({
   theme,
   position,
 }: {
@@ -62,5 +63,3 @@ const DesignSemiCircle = ({
     </div>
   );
 };
-
-export default DesignSemiCircle;

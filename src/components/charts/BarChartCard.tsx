@@ -67,7 +67,7 @@ export const BarChartCard = ({
       },
     },
   };
-  const height = (series[0].data?.length || 10) * 40;
+  const height = Math.max(300, (series[0].data?.length || 10) * 40);
 
   return (
     <div

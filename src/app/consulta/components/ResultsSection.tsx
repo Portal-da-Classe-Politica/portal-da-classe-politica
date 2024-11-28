@@ -1,12 +1,10 @@
-import { BarChartCard } from '@components/charts/BarChartCard';
-import { ButtonStyled } from '@base/buttons';
-import { Icon } from '@base/Icon';
-import { LineChartCard } from '@components/charts/LineChartCard';
-import { DonutChartCard } from '@components/charts/DonutChartCard';
-import { MapResultCard } from './MapResultCard';
-import { KpiSection } from './KpiSecrtion';
-import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
+
+import { Icon } from '@base/Icon';
+import { ButtonStyled } from '@base/buttons';
+
+import { ConsultResultDisplay } from '@components/consult/ConsultResultDisplay';
 
 export const ResultsSection = ({ results }: { results: any[] }) => {
   const saveToPdf = () => {
@@ -44,74 +42,9 @@ export const ResultsSection = ({ results }: { results: any[] }) => {
 
   return (
     <>
-      {results.map((result, idx) => {
-        if (!result?.success || !result.data) {
-          return null;
-        }
-
-        if (result.type === 'kpi') {
-          return <KpiSection data={result.data} key={idx} />;
-        }
-
-        const data = result.data;
-        switch (data.type) {
-          case 'map': {
-            return (
-              <MapResultCard
-                key={idx}
-                className="mt-12"
-                title={data.title}
-                label={data.label}
-                series={data.series}
-              />
-            );
-          }
-          case 'line': {
-            return (
-              <LineChartCard
-                key={idx}
-                className="mt-12"
-                title={data.title}
-                yAxisTitle={data.extraData.yAxisLabel}
-                xAxisTitle={data.extraData.xAxisLabel}
-                categories={data.xAxis}
-                series={data.series}
-              />
-            );
-          }
-          case 'bar': {
-            return (
-              <BarChartCard
-                key={idx}
-                className="mt-12"
-                title={data.title}
-                categories={data.series.map(({ name }: any) => name)}
-                series={[
-                  {
-                    name: data.seriesName,
-                    data: data.series.map(({ value }: any) => value),
-                  },
-                ]}
-                metaData={data?.extraData?.bigNumbers}
-              />
-            );
-          }
-          case 'donut': {
-            return (
-              <DonutChartCard
-                key={idx}
-                className="mt-12"
-                title={data.title}
-                labels={data.series.map(({ name }: any) => name)}
-                series={data.series.map(({ value }: any) => value)}
-                topics={data.extraData}
-              />
-            );
-          }
-          default:
-            return <></>;
-        }
-      })}
+      {results.map((result, idx) => (
+        <ConsultResultDisplay key={idx} result={result} className="mt-12" />
+      ))}
 
       {results.length > 0 && (
         <div className="flex flex-col md:flex-row gap-4 mt-4 md:mt-16 mb-8 md:mb-16">
