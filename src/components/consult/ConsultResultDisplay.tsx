@@ -10,12 +10,11 @@ export const ConsultResultDisplay = ({ className = '', result }: { className?: s
     return null;
   }
 
-  if (result.type === 'kpi' || result.data.type === 'kpi') {
-    return <KpiSection data={result.data} />;
-  }
-
   const data = result.data;
   switch (data.type) {
+    case 'kpi': {
+      return <KpiSection data={result.data} />;
+    }
     case 'map': {
       return (
         <MapResultCard className={className} title={data.title} label={data.label} series={data.series} />

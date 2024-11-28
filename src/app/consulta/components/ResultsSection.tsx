@@ -42,9 +42,9 @@ export const ResultsSection = ({ results }: { results: any[] }) => {
 
   return (
     <>
-      {results.map((result, idx) => {
-        <ConsultResultDisplay key={idx} result={result} className="mt-12" />;
-      })}
+      {results.map((result, idx) => (
+        <ConsultResultDisplay key={idx} result={result} className="mt-12" />
+      ))}
 
       {results.length > 0 && (
         <div className="flex flex-col md:flex-row gap-4 mt-4 md:mt-16 mb-8 md:mb-16">

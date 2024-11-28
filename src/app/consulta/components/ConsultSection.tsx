@@ -97,6 +97,7 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
     fetch(`/api/consult?${search}`)
       .then(res => res.json())
       .then(data => {
+        console.debug('Resulatado consulta', data);
         setResults(data);
       })
       .finally(() => setLoadingResults(false));
