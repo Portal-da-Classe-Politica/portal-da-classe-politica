@@ -2,13 +2,14 @@
 
 import { useCallback, useEffect, useState } from 'react';
 
-import { Container, Heading, Loader, Text } from '@base';
+import { Container, Heading, Icon, Loader, Text } from '@base';
 import { Header } from '@components/sections/Header';
 import { GetInContact } from '@components/sections/GetInContact';
 import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
 
 import { SecondLayerFilter } from './components/SecondLayerFilter';
 import { ConsultResultDisplay } from '@components/consult/ConsultResultDisplay';
+import { useObjReducer } from '@hooks/useObjReducer';
 
 type filterObjectType = {
   years: number[];
@@ -25,8 +26,7 @@ const Page = () => {
   const [indicatorFilters, setIndicatorFilters] = useState({ indicators: [], jobs: [] });
   const [loadingIndicatorFilters, setLoadingIndicatorFilters] = useState(true);
 
-  const [loadingResults, setLoadingResults] = useState(false);
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useObjReducer({ loading: false, data: null, error: null });
 
   const loadStaticFilters = useCallback(async () => {
     setLoadingStaticFilters(true);
@@ -58,7 +58,7 @@ const Page = () => {
   };
 
   const onConsult = (consultFilters: any) => {
-    if (loadingResults) {
+    if (result.loading) {
       return;
     }
 
@@ -69,12 +69,19 @@ const Page = () => {
     params.append('electoralUnit', consultFilters.electoralUnit);
     params.append('uf', consultFilters.uf);
 
-    setLoadingResults(true);
-    fetch(`/api/indicators/${consultFilters.indicator}?${params.toString()}`)
+    setResult({ loading: true, data: null });
+
+    const url = `/api/indicators/${consultFilters.indicator}?${params.toString()}`;
+    fetch(url)
       .then(res => res.json())
-      .then(data => setResult(data))
-      .catch(error => console.error('Failed to fetch indicators', error))
-      .finally(() => setLoadingResults(false));
+      .then(data => {
+        console.debug('Resultados', data);
+        setResult({ loading: false, data: data.result, error: null });
+      })
+      .catch(error => {
+        console.error('Error', error);
+        setResult({ loading: false, data: null, error });
+      });
   };
 
   return (
@@ -113,12 +120,20 @@ const Page = () => {
         <Container className="pt-16">
           <div className="flex flex-col md:flex-row">
             <div className="flex flex-col w-full ">
-              {loadingResults ? (
+              {result.loading ? (
                 <div className="flex flex-1 justify-center items-center">
                   <Loader variant="Sync" color="#EB582F" />
                 </div>
-              ) : result ? (
-                <ConsultResultDisplay result={result} />
+              ) : result.data ? (
+                <ConsultResultDisplay result={result.data} />
+              ) : result.error ? (
+                <div className="flex flex-1 justify-center items-center drop-shadow-lg rounded-lg bg-white py-5 px-7 rounded-[10px]">
+                  <Icon type="Error" size="2x" className="text-orange mr-4" />
+                  <Text>
+                    Infelizmente esse indicador não está disponível no momento. Por favor, escolha outros
+                    filtros.
+                  </Text>
+                </div>
               ) : (
                 <></>
               )}

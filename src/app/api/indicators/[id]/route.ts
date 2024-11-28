@@ -10,8 +10,8 @@ export async function GET(req: NextRequest, { params: { id } }: { params: { id: 
   const parsedParams = IndicatorsService.parseIndicatorParameters(req.nextUrl.searchParams);
   console.info(`get:indicators/[${id}] parsedParams`, parsedParams);
 
-  const result = await IndicatorsService.getIndicatorById(id, parsedParams);
-  console.info(`get:indicators/[${id}]`, JSON.stringify(result));
+  const { data, path } = await IndicatorsService.getIndicatorById(id, parsedParams);
+  console.info(`get:indicators/[${id}]`, JSON.stringify(data));
 
-  return NextResponse.json(result);
+  return NextResponse.json({ request: path, result: data });
 }
