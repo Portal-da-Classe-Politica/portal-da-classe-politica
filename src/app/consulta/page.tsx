@@ -8,9 +8,9 @@ import { ConsultSection } from './components/ConsultSection';
 import DesignSemiCircle from '@components/DesignSemiCircle';
 
 const cards = [
-  { text: 'Perfil dos Candidatos', src: '/img/consulta/Profile.png' },
-  { text: 'Resultados das Eleições', src: '/img/consulta/Chart.png' },
-  { text: 'Financiamento de Campanha', src: '/img/consulta/ShakeHand.png' },
+  { text: 'Perfil dos Candidatos', src: '/img/consulta/Profile.svg' },
+  { text: 'Resultados das Eleições', src: '/img/consulta/Chart.svg' },
+  { text: 'Financiamento de Campanha', src: '/img/consulta/ShakeHand.svg' },
 ];
 
 const Page = ({ searchParams }: { searchParams: { consulta: string | undefined } }) => {

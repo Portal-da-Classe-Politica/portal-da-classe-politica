@@ -41,28 +41,28 @@ const Home = () => {
           <div className="flex flex-col gap-6 items-center md:gap-2 md:flex-row md:justify-between mt-12 md:mt-24">
             <BoxFerramenta
               alt="Cruzamentos e Dados Eleitorais"
-              src={'/img/Cruzdados.png'}
+              src={'/img/Cruzdados.svg'}
               title={'Cruzamentos e Dados Eleitorais'}
               subTitle={'Cruze e analise dezenas de variáveis eleitorais.'}
               href={routes.consult}
             />
             <BoxFerramenta
               alt="Indicadores e Índices Especiais"
-              src={'/img/Indicadores.png'}
+              src={'/img/Indicadores.svg'}
               title={'Indicadores e Índices Especiais'}
               subTitle={'Trinta índices construídos com variáveis eleitorais.'}
               href={routes.projections}
             />
             <BoxFerramenta
               alt="Aprenda a usar os Indicadores"
-              src={'/img/Aprenda.png'}
+              src={'/img/Aprenda.svg'}
               title={'Aprenda a usar os Indicadores'}
               subTitle={'Diversos tutoriais para ajudar você explorar ao máximo o Portal.'}
               href={routes.aboutCrossing}
             />
             <BoxFerramenta
               alt="Comunicação Científica"
-              src={'/img/Comunicacao.png'}
+              src={'/img/Comunicacao.svg'}
               title={'Comunicação Científica'}
               subTitle={'Nosso blog traz análises relevantes e acessíveis sobre a política nacional.'}
               href={routes.blog}
