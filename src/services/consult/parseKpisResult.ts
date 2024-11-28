@@ -11,5 +11,6 @@ export const parseKpisResult = async (redemApiCall: any) => {
       },
       message: response?.data?.message,
     },
+    request: response.request,
   };
 };

@@ -92,7 +92,7 @@ export const consultFinance = async ({
     const result = [];
     for (const resp of responses) {
       if (resp.status === 'fulfilled') {
-        result.push(resp.value.data);
+        result.push({ ...resp.value.data, request: resp.value?.request?.path });
       } else {
         logError('Failed to consultFinance', resp.reason as AxiosError);
         result.push(resp.reason?.response?.data || { success: false });
