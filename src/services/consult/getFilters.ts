@@ -25,7 +25,7 @@ export const getFilters = async (dimension: string) => {
         toFilter('Genero', 'genero', filterData?.genero, 'nome_genero', 'id'),
         toFilter('Estado', 'unidadesEleitoraisIds', filterData?.estado, 'nome', 'id'),
         toFilter('Ocupação', 'categoriasOcupacoes', filterData?.categorias, 'nome', 'id'),
-        toFilter('Partido', 'partidos', filterData?.partidos, 'nome_atual', 'id'),
+        toFilter('Partido', 'partidos', filterData?.partidos, 'sigla', 'id'),
       ],
     };
 
