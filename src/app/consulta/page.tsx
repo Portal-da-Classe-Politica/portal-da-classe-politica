@@ -15,7 +15,7 @@ const cards = [
 
 const Page = ({ searchParams }: { searchParams: { consulta: string | undefined } }) => {
   return (
-    <main className="font-montserrat" id="capture">
+    <main className="font-montserrat">
       <div className="relative">
         <section className="bg-white pb-12 pt-4 ">
           <DesignSemiCircle theme="dark" />

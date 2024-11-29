@@ -128,7 +128,7 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
   };
 
   return (
-    <section className="bg-grayMix1">
+    <section className="bg-grayMix1" id="consult-section">
       <Container className="pt-16">
         <ConsultFilterBox
           loading={loadingSideFilters}
@@ -160,7 +160,7 @@ export const ConsultSection = ({ initialConsult }: { initialConsult: string }) =
                 <Loader variant="Sync" color="#EB582F" />
               </div>
             ) : (
-              <ResultsSection results={results} />
+              <ResultsSection results={results} pdfId="consult-section" />
             )}
           </div>
         </div>

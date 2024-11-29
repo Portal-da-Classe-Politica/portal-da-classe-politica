@@ -34,7 +34,7 @@ export const consultCandidateProfile = async ({
   });
 
   try {
-    const responses = await Promise.allSettled([
+    const responses: any[] = await Promise.allSettled([
       parseKpisResult(() =>
         redem.consult.getCandidateProfileKpis(
           Number(initialYear),
@@ -82,7 +82,7 @@ export const consultCandidateProfile = async ({
     const result = [];
     for (const resp of responses) {
       if (resp.status === 'fulfilled') {
-        result.push(resp.value.data);
+        result.push({ ...resp.value.data, request: resp.value?.request?.path });
       } else {
         logError('Failed to consultCandidateProfile', resp.reason as AxiosError);
         result.push(resp.reason?.response?.data || { success: false });
