@@ -16,6 +16,7 @@ export const consult = async (type: string, params: URLSearchParams) => {
     dimension: Number(params.get('dimension')),
     unidadesEleitoraisIds: getParamAsArray(params, 'unidadesEleitoraisIds'),
     isElected: Number(params.get('isElected')),
+    round: Number(params.get('turnos')),
     partidos: getParamAsArray(params, 'partidos'),
     categoriasOcupacoes: getParamAsArray(params, 'categoriasOcupacoes'),
     cargosIds: getParamAsArray(params, 'cargosIds'),

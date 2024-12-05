@@ -311,6 +311,12 @@ export interface GetCandidateFilters200ResponseData {
   foiEleito?: GetCandidateFilters200ResponseDataFoiEleito;
   /**
    *
+   * @type {GetCandidateFilters200ResponseDataFoiEleito}
+   * @memberof GetCandidateFilters200ResponseData
+   */
+  turnos?: GetCandidateFilters200ResponseDataFoiEleito;
+  /**
+   *
    * @type {GetCandidateFilters200ResponseDataGenero}
    * @memberof GetCandidateFilters200ResponseData
    */
@@ -1907,6 +1913,7 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
      * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {number} [round]
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
      * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -1919,6 +1926,7 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
       dimension?: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
+      round?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
@@ -1960,6 +1968,10 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
         localVarQueryParameter['isElected'] = isElected;
       }
 
+      if (round !== undefined) {
+        localVarQueryParameter['round'] = round;
+      }
+
       if (partidos) {
         localVarQueryParameter['partidos'] = partidos;
       }
@@ -1993,6 +2005,7 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
      * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {number} [round]
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
      * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -2005,6 +2018,7 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
       dimension?: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
+      round?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
@@ -2046,6 +2060,10 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
         localVarQueryParameter['isElected'] = isElected;
       }
 
+      if (round !== undefined) {
+        localVarQueryParameter['round'] = round;
+      }
+
       if (partidos) {
         localVarQueryParameter['partidos'] = partidos;
       }
@@ -2079,6 +2097,7 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
      * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {number} [round]
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
      * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -2091,6 +2110,7 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
       dimension?: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
+      round?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
@@ -2132,6 +2152,10 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
         localVarQueryParameter['isElected'] = isElected;
       }
 
+      if (round !== undefined) {
+        localVarQueryParameter['round'] = round;
+      }
+
       if (partidos) {
         localVarQueryParameter['partidos'] = partidos;
       }
@@ -2165,6 +2189,7 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
      * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {number} [round]
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
      * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -2177,6 +2202,7 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
       dimension?: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
+      round?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
@@ -2218,6 +2244,10 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
         localVarQueryParameter['isElected'] = isElected;
       }
 
+      if (round !== undefined) {
+        localVarQueryParameter['round'] = round;
+      }
+
       if (partidos) {
         localVarQueryParameter['partidos'] = partidos;
       }
@@ -2251,6 +2281,7 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
      * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {number} [round]
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
      * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -2263,6 +2294,7 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
       dimension?: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
+      round?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
@@ -2304,6 +2336,10 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
         localVarQueryParameter['isElected'] = isElected;
       }
 
+      if (round !== undefined) {
+        localVarQueryParameter['round'] = round;
+      }
+
       if (partidos) {
         localVarQueryParameter['partidos'] = partidos;
       }
@@ -2337,6 +2373,7 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
      * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {number} [round]
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
      * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -2349,6 +2386,7 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
       dimension?: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
+      round?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
@@ -2390,6 +2428,10 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
         localVarQueryParameter['isElected'] = isElected;
       }
 
+      if (round !== undefined) {
+        localVarQueryParameter['round'] = round;
+      }
+
       if (partidos) {
         localVarQueryParameter['partidos'] = partidos;
       }
@@ -2423,6 +2465,7 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
      * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {number} [round]
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
      * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -2435,6 +2478,7 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
       dimension?: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
+      round?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
@@ -2476,6 +2520,10 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
         localVarQueryParameter['isElected'] = isElected;
       }
 
+      if (round !== undefined) {
+        localVarQueryParameter['round'] = round;
+      }
+
       if (partidos) {
         localVarQueryParameter['partidos'] = partidos;
       }
@@ -2509,6 +2557,7 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
      * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {number} [round]
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
      * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -2521,6 +2570,7 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
       dimension?: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
+      round?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
@@ -2562,6 +2612,10 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
         localVarQueryParameter['isElected'] = isElected;
       }
 
+      if (round !== undefined) {
+        localVarQueryParameter['round'] = round;
+      }
+
       if (partidos) {
         localVarQueryParameter['partidos'] = partidos;
       }
@@ -2594,6 +2648,7 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
      * @param {number} finalYear Ano final do intervalo.
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {number} [round]
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
      * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -2606,6 +2661,7 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
       finalYear: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
+      round?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
@@ -2644,6 +2700,10 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
         localVarQueryParameter['isElected'] = isElected;
       }
 
+      if (round !== undefined) {
+        localVarQueryParameter['round'] = round;
+      }
+
       if (partidos) {
         localVarQueryParameter['partidos'] = partidos;
       }
@@ -2680,6 +2740,7 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
      * @param {number} finalYear Ano final do intervalo.
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {number} [round]
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
      * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -2692,6 +2753,7 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
       finalYear: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
+      round?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
@@ -2730,6 +2792,10 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
         localVarQueryParameter['isElected'] = isElected;
       }
 
+      if (round !== undefined) {
+        localVarQueryParameter['round'] = round;
+      }
+
       if (partidos) {
         localVarQueryParameter['partidos'] = partidos;
       }
@@ -2766,6 +2832,7 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
      * @param {number} finalYear Ano final do intervalo.
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {number} [round]
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
      * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -2778,6 +2845,7 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
       finalYear: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
+      round?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
@@ -2816,6 +2884,10 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
         localVarQueryParameter['isElected'] = isElected;
       }
 
+      if (round !== undefined) {
+        localVarQueryParameter['round'] = round;
+      }
+
       if (partidos) {
         localVarQueryParameter['partidos'] = partidos;
       }
@@ -2852,6 +2924,7 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
      * @param {number} finalYear Ano final do intervalo.
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {number} [round]
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
      * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -2864,6 +2937,7 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
       finalYear: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
+      round?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
@@ -2900,6 +2974,10 @@ export const ConsultApiAxiosParamCreator = function (configuration?: Configurati
 
       if (isElected !== undefined) {
         localVarQueryParameter['isElected'] = isElected;
+      }
+
+      if (round !== undefined) {
+        localVarQueryParameter['round'] = round;
       }
 
       if (partidos) {
@@ -2972,6 +3050,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
      * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {number} [round]
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
      * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -2984,6 +3063,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
       dimension?: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
+      round?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
@@ -2995,6 +3075,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
         dimension,
         unidadesEleitoraisIds,
         isElected,
+        round,
         partidos,
         categoriasOcupacoes,
         cargosIds,
@@ -3019,6 +3100,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
      * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {number} [round]
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
      * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -3031,6 +3113,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
       dimension?: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
+      round?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
@@ -3042,6 +3125,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
         dimension,
         unidadesEleitoraisIds,
         isElected,
+        round,
         partidos,
         categoriasOcupacoes,
         cargosIds,
@@ -3066,6 +3150,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
      * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {number} [round]
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
      * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -3078,6 +3163,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
       dimension?: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
+      round?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
@@ -3091,6 +3177,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
         dimension,
         unidadesEleitoraisIds,
         isElected,
+        round,
         partidos,
         categoriasOcupacoes,
         cargosIds,
@@ -3115,6 +3202,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
      * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {number} [round]
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
      * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -3127,6 +3215,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
       dimension?: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
+      round?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
@@ -3138,6 +3227,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
         dimension,
         unidadesEleitoraisIds,
         isElected,
+        round,
         partidos,
         categoriasOcupacoes,
         cargosIds,
@@ -3162,6 +3252,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
      * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {number} [round]
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
      * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -3174,6 +3265,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
       dimension?: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
+      round?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
@@ -3187,6 +3279,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
         dimension,
         unidadesEleitoraisIds,
         isElected,
+        round,
         partidos,
         categoriasOcupacoes,
         cargosIds,
@@ -3211,6 +3304,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
      * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {number} [round]
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
      * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -3223,6 +3317,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
       dimension?: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
+      round?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
@@ -3236,6 +3331,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
         dimension,
         unidadesEleitoraisIds,
         isElected,
+        round,
         partidos,
         categoriasOcupacoes,
         cargosIds,
@@ -3260,6 +3356,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
      * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {number} [round]
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
      * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -3272,6 +3369,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
       dimension?: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
+      round?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
@@ -3283,6 +3381,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
         dimension,
         unidadesEleitoraisIds,
         isElected,
+        round,
         partidos,
         categoriasOcupacoes,
         cargosIds,
@@ -3307,6 +3406,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
      * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {number} [round]
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
      * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -3319,6 +3419,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
       dimension?: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
+      round?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
@@ -3332,6 +3433,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
         dimension,
         unidadesEleitoraisIds,
         isElected,
+        round,
         partidos,
         categoriasOcupacoes,
         cargosIds,
@@ -3355,6 +3457,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
      * @param {number} finalYear Ano final do intervalo.
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {number} [round]
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
      * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -3367,6 +3470,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
       finalYear: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
+      round?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
@@ -3378,6 +3482,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
         finalYear,
         unidadesEleitoraisIds,
         isElected,
+        round,
         partidos,
         categoriasOcupacoes,
         cargosIds,
@@ -3402,6 +3507,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
      * @param {number} finalYear Ano final do intervalo.
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {number} [round]
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
      * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -3414,6 +3520,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
       finalYear: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
+      round?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
@@ -3425,6 +3532,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
         finalYear,
         unidadesEleitoraisIds,
         isElected,
+        round,
         partidos,
         categoriasOcupacoes,
         cargosIds,
@@ -3449,6 +3557,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
      * @param {number} finalYear Ano final do intervalo.
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {number} [round]
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
      * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -3461,6 +3570,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
       finalYear: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
+      round?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
@@ -3472,6 +3582,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
         finalYear,
         unidadesEleitoraisIds,
         isElected,
+        round,
         partidos,
         categoriasOcupacoes,
         cargosIds,
@@ -3496,6 +3607,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
      * @param {number} finalYear Ano final do intervalo.
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {number} [round]
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
      * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -3508,6 +3620,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
       finalYear: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
+      round?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
@@ -3519,6 +3632,7 @@ export const ConsultApiFp = function (configuration?: Configuration) {
         finalYear,
         unidadesEleitoraisIds,
         isElected,
+        round,
         partidos,
         categoriasOcupacoes,
         cargosIds,
@@ -3571,6 +3685,7 @@ export const ConsultApiFactory = function (
      * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {number} [round]
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
      * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -3583,6 +3698,7 @@ export const ConsultApiFactory = function (
       dimension?: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
+      round?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
@@ -3595,6 +3711,7 @@ export const ConsultApiFactory = function (
           dimension,
           unidadesEleitoraisIds,
           isElected,
+          round,
           partidos,
           categoriasOcupacoes,
           cargosIds,
@@ -3610,6 +3727,7 @@ export const ConsultApiFactory = function (
      * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {number} [round]
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
      * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -3622,6 +3740,7 @@ export const ConsultApiFactory = function (
       dimension?: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
+      round?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
@@ -3634,6 +3753,7 @@ export const ConsultApiFactory = function (
           dimension,
           unidadesEleitoraisIds,
           isElected,
+          round,
           partidos,
           categoriasOcupacoes,
           cargosIds,
@@ -3649,6 +3769,7 @@ export const ConsultApiFactory = function (
      * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {number} [round]
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
      * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -3661,6 +3782,7 @@ export const ConsultApiFactory = function (
       dimension?: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
+      round?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
@@ -3673,6 +3795,7 @@ export const ConsultApiFactory = function (
           dimension,
           unidadesEleitoraisIds,
           isElected,
+          round,
           partidos,
           categoriasOcupacoes,
           cargosIds,
@@ -3688,6 +3811,7 @@ export const ConsultApiFactory = function (
      * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {number} [round]
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
      * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -3700,6 +3824,7 @@ export const ConsultApiFactory = function (
       dimension?: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
+      round?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
@@ -3712,6 +3837,7 @@ export const ConsultApiFactory = function (
           dimension,
           unidadesEleitoraisIds,
           isElected,
+          round,
           partidos,
           categoriasOcupacoes,
           cargosIds,
@@ -3727,6 +3853,7 @@ export const ConsultApiFactory = function (
      * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {number} [round]
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
      * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -3739,6 +3866,7 @@ export const ConsultApiFactory = function (
       dimension?: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
+      round?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
@@ -3751,6 +3879,7 @@ export const ConsultApiFactory = function (
           dimension,
           unidadesEleitoraisIds,
           isElected,
+          round,
           partidos,
           categoriasOcupacoes,
           cargosIds,
@@ -3766,6 +3895,7 @@ export const ConsultApiFactory = function (
      * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {number} [round]
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
      * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -3778,6 +3908,7 @@ export const ConsultApiFactory = function (
       dimension?: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
+      round?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
@@ -3790,6 +3921,7 @@ export const ConsultApiFactory = function (
           dimension,
           unidadesEleitoraisIds,
           isElected,
+          round,
           partidos,
           categoriasOcupacoes,
           cargosIds,
@@ -3805,6 +3937,7 @@ export const ConsultApiFactory = function (
      * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {number} [round]
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
      * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -3817,6 +3950,7 @@ export const ConsultApiFactory = function (
       dimension?: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
+      round?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
@@ -3829,6 +3963,7 @@ export const ConsultApiFactory = function (
           dimension,
           unidadesEleitoraisIds,
           isElected,
+          round,
           partidos,
           categoriasOcupacoes,
           cargosIds,
@@ -3844,6 +3979,7 @@ export const ConsultApiFactory = function (
      * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {number} [round]
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
      * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -3856,6 +3992,7 @@ export const ConsultApiFactory = function (
       dimension?: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
+      round?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
@@ -3868,6 +4005,7 @@ export const ConsultApiFactory = function (
           dimension,
           unidadesEleitoraisIds,
           isElected,
+          round,
           partidos,
           categoriasOcupacoes,
           cargosIds,
@@ -3882,6 +4020,7 @@ export const ConsultApiFactory = function (
      * @param {number} finalYear Ano final do intervalo.
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {number} [round]
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
      * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -3894,6 +4033,7 @@ export const ConsultApiFactory = function (
       finalYear: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
+      round?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
@@ -3906,6 +4046,7 @@ export const ConsultApiFactory = function (
           finalYear,
           unidadesEleitoraisIds,
           isElected,
+          round,
           partidos,
           categoriasOcupacoes,
           cargosIds,
@@ -3921,6 +4062,7 @@ export const ConsultApiFactory = function (
      * @param {number} finalYear Ano final do intervalo.
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {number} [round]
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
      * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -3933,6 +4075,7 @@ export const ConsultApiFactory = function (
       finalYear: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
+      round?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
@@ -3945,6 +4088,7 @@ export const ConsultApiFactory = function (
           finalYear,
           unidadesEleitoraisIds,
           isElected,
+          round,
           partidos,
           categoriasOcupacoes,
           cargosIds,
@@ -3960,6 +4104,7 @@ export const ConsultApiFactory = function (
      * @param {number} finalYear Ano final do intervalo.
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {number} [round]
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
      * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -3972,6 +4117,7 @@ export const ConsultApiFactory = function (
       finalYear: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
+      round?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
@@ -3984,6 +4130,7 @@ export const ConsultApiFactory = function (
           finalYear,
           unidadesEleitoraisIds,
           isElected,
+          round,
           partidos,
           categoriasOcupacoes,
           cargosIds,
@@ -3999,6 +4146,7 @@ export const ConsultApiFactory = function (
      * @param {number} finalYear Ano final do intervalo.
      * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
      * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+     * @param {number} [round]
      * @param {Array<string>} [partidos] IDs dos partidos
      * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
      * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -4011,6 +4159,7 @@ export const ConsultApiFactory = function (
       finalYear: number,
       unidadesEleitoraisIds?: Array<string>,
       isElected?: number,
+      round?: number,
       partidos?: Array<string>,
       categoriasOcupacoes?: Array<string>,
       cargosIds?: Array<string>,
@@ -4023,6 +4172,7 @@ export const ConsultApiFactory = function (
           finalYear,
           unidadesEleitoraisIds,
           isElected,
+          round,
           partidos,
           categoriasOcupacoes,
           cargosIds,
@@ -4063,6 +4213,7 @@ export class ConsultApi extends BaseAPI {
    * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
    * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
    * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+   * @param {number} [round]
    * @param {Array<string>} [partidos] IDs dos partidos
    * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
    * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -4076,6 +4227,7 @@ export class ConsultApi extends BaseAPI {
     dimension?: number,
     unidadesEleitoraisIds?: Array<string>,
     isElected?: number,
+    round?: number,
     partidos?: Array<string>,
     categoriasOcupacoes?: Array<string>,
     cargosIds?: Array<string>,
@@ -4088,6 +4240,7 @@ export class ConsultApi extends BaseAPI {
         dimension,
         unidadesEleitoraisIds,
         isElected,
+        round,
         partidos,
         categoriasOcupacoes,
         cargosIds,
@@ -4104,6 +4257,7 @@ export class ConsultApi extends BaseAPI {
    * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
    * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
    * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+   * @param {number} [round]
    * @param {Array<string>} [partidos] IDs dos partidos
    * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
    * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -4117,6 +4271,7 @@ export class ConsultApi extends BaseAPI {
     dimension?: number,
     unidadesEleitoraisIds?: Array<string>,
     isElected?: number,
+    round?: number,
     partidos?: Array<string>,
     categoriasOcupacoes?: Array<string>,
     cargosIds?: Array<string>,
@@ -4129,6 +4284,7 @@ export class ConsultApi extends BaseAPI {
         dimension,
         unidadesEleitoraisIds,
         isElected,
+        round,
         partidos,
         categoriasOcupacoes,
         cargosIds,
@@ -4145,6 +4301,7 @@ export class ConsultApi extends BaseAPI {
    * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
    * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
    * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+   * @param {number} [round]
    * @param {Array<string>} [partidos] IDs dos partidos
    * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
    * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -4158,6 +4315,7 @@ export class ConsultApi extends BaseAPI {
     dimension?: number,
     unidadesEleitoraisIds?: Array<string>,
     isElected?: number,
+    round?: number,
     partidos?: Array<string>,
     categoriasOcupacoes?: Array<string>,
     cargosIds?: Array<string>,
@@ -4170,6 +4328,7 @@ export class ConsultApi extends BaseAPI {
         dimension,
         unidadesEleitoraisIds,
         isElected,
+        round,
         partidos,
         categoriasOcupacoes,
         cargosIds,
@@ -4186,6 +4345,7 @@ export class ConsultApi extends BaseAPI {
    * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
    * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
    * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+   * @param {number} [round]
    * @param {Array<string>} [partidos] IDs dos partidos
    * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
    * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -4199,6 +4359,7 @@ export class ConsultApi extends BaseAPI {
     dimension?: number,
     unidadesEleitoraisIds?: Array<string>,
     isElected?: number,
+    round?: number,
     partidos?: Array<string>,
     categoriasOcupacoes?: Array<string>,
     cargosIds?: Array<string>,
@@ -4211,6 +4372,7 @@ export class ConsultApi extends BaseAPI {
         dimension,
         unidadesEleitoraisIds,
         isElected,
+        round,
         partidos,
         categoriasOcupacoes,
         cargosIds,
@@ -4227,6 +4389,7 @@ export class ConsultApi extends BaseAPI {
    * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
    * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
    * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+   * @param {number} [round]
    * @param {Array<string>} [partidos] IDs dos partidos
    * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
    * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -4240,6 +4403,7 @@ export class ConsultApi extends BaseAPI {
     dimension?: number,
     unidadesEleitoraisIds?: Array<string>,
     isElected?: number,
+    round?: number,
     partidos?: Array<string>,
     categoriasOcupacoes?: Array<string>,
     cargosIds?: Array<string>,
@@ -4252,6 +4416,7 @@ export class ConsultApi extends BaseAPI {
         dimension,
         unidadesEleitoraisIds,
         isElected,
+        round,
         partidos,
         categoriasOcupacoes,
         cargosIds,
@@ -4268,6 +4433,7 @@ export class ConsultApi extends BaseAPI {
    * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
    * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
    * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+   * @param {number} [round]
    * @param {Array<string>} [partidos] IDs dos partidos
    * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
    * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -4281,6 +4447,7 @@ export class ConsultApi extends BaseAPI {
     dimension?: number,
     unidadesEleitoraisIds?: Array<string>,
     isElected?: number,
+    round?: number,
     partidos?: Array<string>,
     categoriasOcupacoes?: Array<string>,
     cargosIds?: Array<string>,
@@ -4293,6 +4460,7 @@ export class ConsultApi extends BaseAPI {
         dimension,
         unidadesEleitoraisIds,
         isElected,
+        round,
         partidos,
         categoriasOcupacoes,
         cargosIds,
@@ -4309,6 +4477,7 @@ export class ConsultApi extends BaseAPI {
    * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
    * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
    * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+   * @param {number} [round]
    * @param {Array<string>} [partidos] IDs dos partidos
    * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
    * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -4322,6 +4491,7 @@ export class ConsultApi extends BaseAPI {
     dimension?: number,
     unidadesEleitoraisIds?: Array<string>,
     isElected?: number,
+    round?: number,
     partidos?: Array<string>,
     categoriasOcupacoes?: Array<string>,
     cargosIds?: Array<string>,
@@ -4334,6 +4504,7 @@ export class ConsultApi extends BaseAPI {
         dimension,
         unidadesEleitoraisIds,
         isElected,
+        round,
         partidos,
         categoriasOcupacoes,
         cargosIds,
@@ -4350,6 +4521,7 @@ export class ConsultApi extends BaseAPI {
    * @param {number} [dimension] Dimensão de agregação (1, 2, 3).
    * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
    * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+   * @param {number} [round]
    * @param {Array<string>} [partidos] IDs dos partidos
    * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
    * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -4363,6 +4535,7 @@ export class ConsultApi extends BaseAPI {
     dimension?: number,
     unidadesEleitoraisIds?: Array<string>,
     isElected?: number,
+    round?: number,
     partidos?: Array<string>,
     categoriasOcupacoes?: Array<string>,
     cargosIds?: Array<string>,
@@ -4375,6 +4548,7 @@ export class ConsultApi extends BaseAPI {
         dimension,
         unidadesEleitoraisIds,
         isElected,
+        round,
         partidos,
         categoriasOcupacoes,
         cargosIds,
@@ -4390,6 +4564,7 @@ export class ConsultApi extends BaseAPI {
    * @param {number} finalYear Ano final do intervalo.
    * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
    * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+   * @param {number} [round]
    * @param {Array<string>} [partidos] IDs dos partidos
    * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
    * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -4403,6 +4578,7 @@ export class ConsultApi extends BaseAPI {
     finalYear: number,
     unidadesEleitoraisIds?: Array<string>,
     isElected?: number,
+    round?: number,
     partidos?: Array<string>,
     categoriasOcupacoes?: Array<string>,
     cargosIds?: Array<string>,
@@ -4415,6 +4591,7 @@ export class ConsultApi extends BaseAPI {
         finalYear,
         unidadesEleitoraisIds,
         isElected,
+        round,
         partidos,
         categoriasOcupacoes,
         cargosIds,
@@ -4431,6 +4608,7 @@ export class ConsultApi extends BaseAPI {
    * @param {number} finalYear Ano final do intervalo.
    * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
    * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+   * @param {number} [round]
    * @param {Array<string>} [partidos] IDs dos partidos
    * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
    * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -4444,6 +4622,7 @@ export class ConsultApi extends BaseAPI {
     finalYear: number,
     unidadesEleitoraisIds?: Array<string>,
     isElected?: number,
+    round?: number,
     partidos?: Array<string>,
     categoriasOcupacoes?: Array<string>,
     cargosIds?: Array<string>,
@@ -4456,6 +4635,7 @@ export class ConsultApi extends BaseAPI {
         finalYear,
         unidadesEleitoraisIds,
         isElected,
+        round,
         partidos,
         categoriasOcupacoes,
         cargosIds,
@@ -4472,6 +4652,7 @@ export class ConsultApi extends BaseAPI {
    * @param {number} finalYear Ano final do intervalo.
    * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
    * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+   * @param {number} [round]
    * @param {Array<string>} [partidos] IDs dos partidos
    * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
    * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -4485,6 +4666,7 @@ export class ConsultApi extends BaseAPI {
     finalYear: number,
     unidadesEleitoraisIds?: Array<string>,
     isElected?: number,
+    round?: number,
     partidos?: Array<string>,
     categoriasOcupacoes?: Array<string>,
     cargosIds?: Array<string>,
@@ -4497,6 +4679,7 @@ export class ConsultApi extends BaseAPI {
         finalYear,
         unidadesEleitoraisIds,
         isElected,
+        round,
         partidos,
         categoriasOcupacoes,
         cargosIds,
@@ -4513,6 +4696,7 @@ export class ConsultApi extends BaseAPI {
    * @param {number} finalYear Ano final do intervalo.
    * @param {Array<string>} [unidadesEleitoraisIds] IDs das unidades eleitorais desejadas.
    * @param {number} [isElected] Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+   * @param {number} [round]
    * @param {Array<string>} [partidos] IDs dos partidos
    * @param {Array<string>} [categoriasOcupacoes] Categoria 1 das ocupações (1,2 ...)
    * @param {Array<string>} [cargosIds] IDs dos cargos (1,2,3...)
@@ -4526,6 +4710,7 @@ export class ConsultApi extends BaseAPI {
     finalYear: number,
     unidadesEleitoraisIds?: Array<string>,
     isElected?: number,
+    round?: number,
     partidos?: Array<string>,
     categoriasOcupacoes?: Array<string>,
     cargosIds?: Array<string>,
@@ -4538,6 +4723,7 @@ export class ConsultApi extends BaseAPI {
         finalYear,
         unidadesEleitoraisIds,
         isElected,
+        round,
         partidos,
         categoriasOcupacoes,
         cargosIds,

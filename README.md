@@ -12,7 +12,8 @@
   - Latest version of the Open Api Spec for Redem API. Retrieved on Backend Repo.
 - `api-docs.yml`
   - File used to generate the API used on the frontend.
-  - Some modifications were applied, like changing the operationId on the endpoints.
+  - Many modifications were applied as the one provide on the backend is long out of date.
+  - Modifications were made based on notes provided on meetings.
 
 ## Useful Links
 

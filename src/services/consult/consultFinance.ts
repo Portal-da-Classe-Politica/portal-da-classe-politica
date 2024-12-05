@@ -13,6 +13,7 @@ export const consultFinance = async ({
   partidos = undefined,
   categoriasOcupacoes = undefined,
   cargosIds = undefined,
+  round = undefined,
 }: {
   initialYear?: number;
   finalYear?: number;
@@ -22,6 +23,7 @@ export const consultFinance = async ({
   partidos?: string[];
   categoriasOcupacoes?: string[];
   cargosIds?: string[];
+  round?: number;
 }) => {
   console.info('consultFinance', {
     initialYear,
@@ -42,6 +44,7 @@ export const consultFinance = async ({
           Number(finalYear),
           unidadesEleitoraisIds,
           isElected,
+          round,
           partidos,
           categoriasOcupacoes,
           cargosIds,
@@ -53,6 +56,7 @@ export const consultFinance = async ({
         Number(finalYear),
         unidadesEleitoraisIds,
         isElected,
+        round,
         partidos,
         categoriasOcupacoes,
         cargosIds,
@@ -63,6 +67,7 @@ export const consultFinance = async ({
         Number(finalYear),
         unidadesEleitoraisIds,
         isElected,
+        round,
         partidos,
         categoriasOcupacoes,
         cargosIds,
@@ -75,6 +80,7 @@ export const consultFinance = async ({
             Number(finalYear),
             unidadesEleitoraisIds,
             isElected,
+            round,
             partidos,
             categoriasOcupacoes,
             cargosIds,
@@ -95,7 +101,8 @@ export const consultFinance = async ({
         result.push({ ...resp.value.data, request: resp.value?.request?.path });
       } else {
         logError('Failed to consultFinance', resp.reason as AxiosError);
-        result.push(resp.reason?.response?.data || { success: false });
+        const data = resp.reason?.response?.data || { success: false };
+        result.push({ ...data, request: resp.reason?.request?.path });
       }
     }
 

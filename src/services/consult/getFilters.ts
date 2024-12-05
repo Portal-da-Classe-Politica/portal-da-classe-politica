@@ -20,12 +20,13 @@ export const getFilters = async (dimension: string) => {
         values: filterData?.anos?.values,
       },
       sideFilters: [
+        toFilter('Turnos', 'turnos', filterData?.turnos, 'label', 'id'),
         toFilter('Cargos', 'cargosIds', filterData?.cargo, 'nome_cargo', 'id'),
-        toFilter('Eleito', 'isElected', filterData?.foiEleito, 'label', 'id'),
-        toFilter('Genero', 'genero', filterData?.genero, 'nome_genero', 'id'),
         toFilter('Estado', 'unidadesEleitoraisIds', filterData?.estado, 'nome', 'id'),
-        toFilter('Ocupação', 'categoriasOcupacoes', filterData?.categorias, 'nome', 'id'),
+        toFilter('Eleito', 'isElected', filterData?.foiEleito, 'label', 'id'),
         toFilter('Partido', 'partidos', filterData?.partidos, 'sigla', 'id'),
+        toFilter('Genero', 'genero', filterData?.genero, 'nome_genero', 'id'),
+        toFilter('Ocupação', 'categoriasOcupacoes', filterData?.categorias, 'nome', 'id'),
       ],
     };
 

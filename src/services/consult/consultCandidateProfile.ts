@@ -12,6 +12,7 @@ export const consultCandidateProfile = async ({
   partidos = undefined,
   categoriasOcupacoes = undefined,
   cargosIds = undefined,
+  round = undefined,
 }: {
   initialYear?: number;
   finalYear?: number;
@@ -21,6 +22,7 @@ export const consultCandidateProfile = async ({
   partidos?: string[];
   categoriasOcupacoes?: string[];
   cargosIds?: string[];
+  round?: number;
 }) => {
   console.info('consultCandidateProfile', {
     initialYear,
@@ -31,6 +33,7 @@ export const consultCandidateProfile = async ({
     partidos,
     categoriasOcupacoes,
     cargosIds,
+    round,
   });
 
   try {
@@ -42,6 +45,7 @@ export const consultCandidateProfile = async ({
           dimension,
           unidadesEleitoraisIds,
           isElected,
+          round,
           partidos,
           categoriasOcupacoes,
           cargosIds,
@@ -53,6 +57,7 @@ export const consultCandidateProfile = async ({
         dimension,
         unidadesEleitoraisIds,
         isElected,
+        round,
         partidos,
         categoriasOcupacoes,
         cargosIds,
@@ -63,6 +68,7 @@ export const consultCandidateProfile = async ({
         dimension,
         unidadesEleitoraisIds,
         isElected,
+        round,
         partidos,
         categoriasOcupacoes,
         cargosIds,
@@ -73,6 +79,7 @@ export const consultCandidateProfile = async ({
         dimension,
         unidadesEleitoraisIds,
         isElected,
+        round,
         partidos,
         categoriasOcupacoes,
         cargosIds,
@@ -85,7 +92,8 @@ export const consultCandidateProfile = async ({
         result.push({ ...resp.value.data, request: resp.value?.request?.path });
       } else {
         logError('Failed to consultCandidateProfile', resp.reason as AxiosError);
-        result.push(resp.reason?.response?.data || { success: false });
+        const data = resp.reason?.response?.data || { success: false };
+        result.push({ ...data, request: resp.reason?.request?.path });
       }
     }
 
