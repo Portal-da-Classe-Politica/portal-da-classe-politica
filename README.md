@@ -21,6 +21,8 @@
 - [GitHub](https://github.com/Portal-da-Classe-Politica/portal-da-classse-politica)
 - [GitHub - Backend](https://github.com/Portal-da-Classe-Politica/portal-da-classe-back/tree/main)
 - [Backend Host](https://portal-da-classe-back.onrender.com)
+- [GeoJson](https://github.com/tbrugz/geodata-br?tab=readme-ov-file)
+- [GeoJson - BR](https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR?formato=application/vnd.geo+json)
 
 ## Generate API
 

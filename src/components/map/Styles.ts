@@ -22,7 +22,8 @@ export const createSeriesStyle = (values: number[]) => {
   const max = values.reduce((r, v) => Math.max(r, v), -Infinity);
 
   return values.map(v => (_feature: FeatureLike, _: number) => {
-    const opacity = 0.2 + ((v - min) * (0.9 - 0.2)) / (max - min);
+    const opacity = 0.2 + ((v - min) * (0.9 - 0.2)) / (max - min || 1);
+
     return new Style({
       fill: new Fill({
         color: `rgba(243, 162, 139, ${opacity})`,
