@@ -25,6 +25,7 @@ import DF from './DF.json';
 import GO from './GO.json';
 import MT from './MT.json';
 import MS from './MS.json';
+import BR from './BR.json';
 
 export const GeoJsonMap = {
   AC,
@@ -54,4 +55,5 @@ export const GeoJsonMap = {
   GO,
   MT,
   MS,
+  BR,
 };

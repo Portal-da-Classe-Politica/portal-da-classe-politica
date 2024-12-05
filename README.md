@@ -12,7 +12,8 @@
   - Latest version of the Open Api Spec for Redem API. Retrieved on Backend Repo.
 - `api-docs.yml`
   - File used to generate the API used on the frontend.
-  - Some modifications were applied, like changing the operationId on the endpoints.
+  - Many modifications were applied as the one provide on the backend is long out of date.
+  - Modifications were made based on notes provided on meetings.
 
 ## Useful Links
 
@@ -20,6 +21,8 @@
 - [GitHub](https://github.com/Portal-da-Classe-Politica/portal-da-classse-politica)
 - [GitHub - Backend](https://github.com/Portal-da-Classe-Politica/portal-da-classe-back/tree/main)
 - [Backend Host](https://portal-da-classe-back.onrender.com)
+- [GeoJson](https://github.com/tbrugz/geodata-br?tab=readme-ov-file)
+- [GeoJson - BR](https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR?formato=application/vnd.geo+json)
 
 ## Generate API
 
