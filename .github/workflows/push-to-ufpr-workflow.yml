@@ -29,5 +29,5 @@ jobs:
             git pull origin main
             npm install --production
             npm run prepare
-            pm2 restart 2
+            pm2 restart "portal front"
           EOF
