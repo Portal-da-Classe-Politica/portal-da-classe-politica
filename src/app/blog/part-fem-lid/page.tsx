@@ -3,6 +3,8 @@ import { Header } from '@components/sections/Header';
 import { GetInContact } from '@components/sections/GetInContact';
 import { SpecialContents } from '@components/sections/SpecialContents';
 import Avatar from '@components/Avatar';
+import { Constants } from '@constants';
+import Image from 'next/image';
 
 const Page = () => {
   return (
@@ -22,6 +24,19 @@ const Page = () => {
           <Text size="C1" className="ml-auto mb-4 mt-2">
             Maria Cecília Eduardo
           </Text>
+          <div
+            style={{ width: '100%', maxHeight: '400px', overflow: 'hidden', borderRadius: '10px' }}
+            className="mb-4"
+          >
+            <Image
+              src={Constants.images.partFemLid}
+              layout="responsive"
+              width={700}
+              height={400}
+              objectFit="cover"
+              alt={'vote'}
+            />
+          </div>
           <Text className="mb-3">
             A persistente sub-representação feminina na política é uma questão de grande relevância e
             complexidade. Pesquisas sobre essa temática têm apontado o financiamento de campanhas como um

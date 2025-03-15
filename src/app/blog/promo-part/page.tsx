@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Divider } from '@components/Divider';
 import { SpecialContents } from '@components/sections/SpecialContents';
 import Avatar from '@components/Avatar';
+import { Constants } from '@constants';
 
 const Page = () => {
   return (
@@ -23,6 +24,19 @@ const Page = () => {
           <Text size="C1" className="ml-auto mb-4 mt-2">
             Karolina Roeder
           </Text>
+          <div
+            style={{ width: '100%', maxHeight: '400px', overflow: 'hidden', borderRadius: '10px' }}
+            className="mb-4"
+          >
+            <Image
+              src={Constants.images.promoPart}
+              layout="responsive"
+              width={700}
+              height={400}
+              objectFit="cover"
+              alt={'vote'}
+            />
+          </div>
           <Text className="mb-3">
             Os partidos políticos controlam os principais recursos presentes hoje na política: além de cargos
             no Executivo e Legislativo, eles recrutam, selecionam candidatos e distribuem todo o dinheiro
