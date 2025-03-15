@@ -130,29 +130,33 @@ const Page = () => {
           <Heading headingLevel={3} size={'H5'} className="w-full font-bold mb-3">
             Referências Bibliográficas
           </Heading>
-          <p className="w-full mb-2">
+          <p className="w-full mb-2 text-[12px]">
             Araújo, Clara. Gênero e acesso ao poder legislativo no Brasil: as cotas entre as instituições e a
             cultura. Revista Brasileira de Ciência Política, Brasília, n. 2, p. 23-59, jul.-dez. 2009.
           </p>
-          <p className="w-full mb-2">
+          <p className="w-full mb-2 text-[12px]">
             Biroli, Flávia. Gênero e Política no Noticiário das Revistas Semanais Brasileiras: ausências e
             estereótipos. Cadernos Pagu, São Paulo, v. 34, p. 269-299, 2009.{' '}
           </p>
-          <p className="w-full mb-2">
+          <p className="w-full mb-2 text-[12px]">
             Coleman, J. S. (1990) Foundations of Social Theory, Cambridge, MA, and London, UK, The Belknap
             Press of Harvard University Press.
           </p>
 
-          <p className="w-full mb-2">
+          <p className="w-full mb-2 text-[12px]">
             Verge, T., Claveria, S., & Waylen, G. (2017). Party office, male homosocial capital and gendered
             political recruitment. Gender and Informal Institutions, 91-114.
           </p>
 
-          <p className="w-full mb-2">Walby, Sylvia. Gender transformations. London: Routledge, 1997.</p>
+          <p className="w-full mb-2 text-[12px]">
+            Walby, Sylvia. Gender transformations. London: Routledge, 1997.
+          </p>
 
-          <p className="w-full mb-2">Walby, Sylvia. The future of feminism. London: Polity Press, 2011.</p>
+          <p className="w-full mb-2 text-[12px]">
+            Walby, Sylvia. The future of feminism. London: Polity Press, 2011.
+          </p>
 
-          <p className="w-full mb-2">
+          <p className="w-full mb-2 text-[12px]">
             Young, Iris M. Justice and the Politics of Difference. Princeton: Princeton University Press,
             1990.
           </p>

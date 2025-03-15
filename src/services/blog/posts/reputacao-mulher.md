@@ -4,7 +4,6 @@
   <img src="/img/blog/votepeople.png" alt="Blog Image" style="max-height: 100%; max-width: 100%; object-fit: contain;">
 </div>
 
-
 <p style="text-align: right; font-size: 0.875em margin-top: 8px">Maria Cecília Eduardo e Karolina Roeder</p>
 
 Apesar dos avanços nas últimas décadas, as mulheres ainda enfrentam uma sub-representação significativa na política. Este texto explora as razões históricas, culturais e estruturais que perpetuam essa desigualdade, destacando como a divisão entre as esferas pública e privada, o capital homossocial e as normas políticas liberais contribuem para a exclusão das mulheres. Além disso, analisa as medidas que têm sido implementadas para mitigar essas desigualdades e sugere a necessidade de uma abordagem crítica e inclusiva para alcançar uma representação política verdadeiramente democrática.
@@ -33,40 +32,42 @@ Em suma, o gênero molda as interações sociais nas instituições políticas, 
 
 ## Referências Bibliográficas
 
+<p style="font-size: 12px">
 Araújo, Clara. Gênero e acesso ao poder legislativo no Brasil: as cotas entre as instituições e a cultura. Revista Brasileira de Ciência Política, Brasília, n. 2, p. 23-59, jul.-dez. 2009.
+</p>
 
-Biroli, Flávia. Gênero e Política no Noticiário das Revistas Semanais Brasileiras: ausências e estereótipos. Cadernos Pagu, São Paulo, v. 34, p. 269-299, 2009.
+<p style="font-size: 12px">Biroli, Flávia. Gênero e Política no Noticiário das Revistas Semanais Brasileiras: ausências e estereótipos. Cadernos Pagu, São Paulo, v. 34, p. 269-299, 2009.</p>
 
-Coleman, J. S. (1990) Foundations of Social Theory, Cambridge, MA, and London, UK, The Belknap Press of Harvard University Press.
+<p style="font-size: 12px">Coleman, J. S. (1990) Foundations of Social Theory, Cambridge, MA, and London, UK, The Belknap Press of Harvard University Press.</p>
 
-Fraser, Nancy. Rethinking the public sphere: a contribution to the critique of actually existing democracy”. In: Calhoun, Craig. (Ed.). Habermas and the public sphere. Cambridge: MIT Press, 1992.
+<p style="font-size: 12px">Fraser, Nancy. Rethinking the public sphere: a contribution to the critique of actually existing democracy”. In: Calhoun, Craig. (Ed.). Habermas and the public sphere. Cambridge: MIT Press, 1992.</p>
 
-Collinson, D. L. & J. Hearn (2005) Men and Masculinities in Work, Organizations, and Management. IN E. Kimmel, J. Hearn & B. Connell (Eds.) Handbook of Studies on Men and Masculinities. Thousand Oaks, London, New Delhi, Sage.
+<p style="font-size: 12px">Collinson, D. L. & J. Hearn (2005) Men and Masculinities in Work, Organizations, and Management. IN E. Kimmel, J. Hearn & B. Connell (Eds.) Handbook of Studies on Men and Masculinities. Thousand Oaks, London, New Delhi, Sage.</p>
 
-Mansbridge, Jane. Should blacks represent blacks and women represent women? A contingent ‘yes’. Journal of Politics, Chicago, v. 61, n. 3, p. 628-657, 1999.
+<p style="font-size: 12px">Mansbridge, Jane. Should blacks represent blacks and women represent women? A contingent ‘yes’. Journal of Politics, Chicago, v. 61, n. 3, p. 628-657, 1999.</p>
 
-Holgersson, C. (2003) Rekrytering av företagsledare: En studie i homosocialitet, Stockholm, Ekonomiska forskningsinstitutet vid Handelshögskolan (EFI).
+<p style="font-size: 12px">Holgersson, C. (2003) Rekrytering av företagsledare: En studie i homosocialitet, Stockholm, Ekonomiska forskningsinstitutet vid Handelshögskolan (EFI).</p>
 
-Kanter, R. M. (1977) Men and Women ofthe Corporation, New York, BasicBooks.
+<p style="font-size: 12px">Kanter, R. M. (1977) Men and Women ofthe Corporation, New York, BasicBooks.</p>
 
-Wylie, K. (2020). Taking bread off the table: race, gender, resources and political ambition in Brazil. European Journal of Politics and Gender, 3(1), 121-142.
+<p style="font-size: 12px">Wylie, K. (2020). Taking bread off the table: race, gender, resources and political ambition in Brazil. European Journal of Politics and Gender, 3(1), 121-142.</p>
 
-Pateman, Carole. O contrato sexual. São Paulo: Editora Paz e Terra, 1993.
+<p style="font-size: 12px">Pateman, Carole. O contrato sexual. São Paulo: Editora Paz e Terra, 1993.</p>
 
-Putnam, R. (1993) Making Democracy Work: Civic Traditions in Modern Italy, Princeton, NJ, Princeton University Press.
+<p style="font-size: 12px">Putnam, R. (1993) Making Democracy Work: Civic Traditions in Modern Italy, Princeton, NJ, Princeton University Press.</p>
 
-Phillips, Anne. The Politics of Presence. Oxford: Clarendon Press, 1995.
+<p style="font-size: 12px">Phillips, Anne. The Politics of Presence. Oxford: Clarendon Press, 1995.</p>
 
-Phillips, Anne. Which Equalities Matter? Cambridge: Polity Press, 1999.
+<p style="font-size: 12px">Phillips, Anne. Which Equalities Matter? Cambridge: Polity Press, 1999.</p>
 
-Putnam, R. (2000) Bowling Alone: The Collapse and Revival ofAmerican Community, New York, Simon & Schuster.
+<p style="font-size: 12px">Putnam, R. (2000) Bowling Alone: The Collapse and Revival ofAmerican Community, New York, Simon & Schuster.</p>
 
-Sacchet, Teresa. Representação política, representação de grupos e política de cotas: perspectivas e contendas feministas. Revista Estudos Feministas, Florianópolis, v. 20, n. 2, p. 399-431, 2012.
+<p style="font-size: 12px">Sacchet, Teresa. Representação política, representação de grupos e política de cotas: perspectivas e contendas feministas. Revista Estudos Feministas, Florianópolis, v. 20, n. 2, p. 399-431, 2012.</p>
 
-Verge, T., Claveria, S., & Waylen, G. (2017). Party office, male homosocial capital and gendered political recruitment. Gender and Informal Institutions, 91-114.
+<p style="font-size: 12px">Verge, T., Claveria, S., & Waylen, G. (2017). Party office, male homosocial capital and gendered political recruitment. Gender and Informal Institutions, 91-114.</p>
 
-Walby, Sylvia. Gender transformations. London: Routledge, 1997.
+<p style="font-size: 12px">Walby, Sylvia. Gender transformations. London: Routledge, 1997.</p>
 
-Walby, Sylvia. The future of feminism. London: Polity Press, 2011.
+<p style="font-size: 12px">Walby, Sylvia. The future of feminism. London: Polity Press, 2011.</p>
 
-Young, Iris M. Justice and the Politics of Difference. Princeton: Princeton University Press, 1990.
+<p style="font-size: 12px">Young, Iris M. Justice and the Politics of Difference. Princeton: Princeton University Press, 1990.</p>
