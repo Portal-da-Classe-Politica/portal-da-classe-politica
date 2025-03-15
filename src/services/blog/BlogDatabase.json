@@ -22,7 +22,7 @@
     "id": "2",
     "title": "Como Utilizar a Página de Perfil dos Candidatos",
     "description": " Aprenda a acessar e usar facilmente as informações dos candidatos no Portal da Classe Política",
-    "img": "/img/blog/people.png",
+    "img": "/img/blog/urna.png",
     "categories": ["Indicadores"],
     "year": "2024",
     "author": {
@@ -41,7 +41,7 @@
     "id": "3",
     "title": "Como Utilizar a Seção de Conteúdos Especiais do Portal da Classe Política",
     "description": "Descubra como acessar e aproveitar materiais exclusivos sobre a participação das mulheres na política.",
-    "img": "/img/blog/lines.png",
+    "img": "/img/blog/livro.png",
     "categories": ["Indicadores"],
     "year": "2024",
     "author": {
@@ -60,7 +60,7 @@
     "id": "4",
     "title": "Indicadores “Eleitorais e Partidários”",
     "description": "Apresenta indicadores úteis para compreender a dinâmica das eleições.",
-    "img": "/img/blog/graphs.png",
+    "img": "/img/blog/acoes.png",
     "categories": ["Indicadores"],
     "year": "2024",
     "author": {
@@ -79,7 +79,7 @@
     "id": "5",
     "title": "Indicadores “Carreira e Representação Política”",
     "description": "Apresenta indicadores úteis para analisar as aspirações e estratégias dos candidatos",
-    "img": "/img/blog/lampIdea.png",
+    "img": "/img/blog/photomic.png",
     "categories": ["Indicadores"],
     "year": "2024",
     "author": {
@@ -98,7 +98,7 @@
     "id": "6",
     "title": "Indicadores “Espacial de Votos”",
     "description": "Entenda a distribuição dos votos e a competitividade regional nas eleições.",
-    "img": "/img/blog/vote.png",
+    "img": "/img/blog/voting.png",
     "categories": ["Perfil dos candidatos"],
     "year": "2024",
     "author": {
@@ -117,26 +117,7 @@
     "id": "7",
     "title": "Indicadores “Econômicos e Financeiros”",
     "description": "Apresenta indicadores úteis para entender a dinâmica financeira das campanhas eleitorais.",
-    "img": "/img/blog/study.png",
-    "categories": ["Blog e conteúdos especiais"],
-    "year": "2024",
-    "author": {
-      "name": "",
-      "description": "",
-      "img": "",
-      "social": [
-        {
-          "type": "",
-          "value": ""
-        }
-      ]
-    }
-  },
-  {
-    "id": "8",
-    "title": "Como Utilizar a Seção de Conteúdos Especiais do Portal da Classe Política",
-    "description": " Fique atualizado com posts regulares, categorizados por temas e autores, promovendo interação e compartilhamento de informações.",
-    "img": "/img/blog/books.png",
+    "img": "/img/blog/real.png",
     "categories": ["Blog e conteúdos especiais"],
     "year": "2024",
     "author": {

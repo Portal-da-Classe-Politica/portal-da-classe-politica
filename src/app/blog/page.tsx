@@ -5,6 +5,7 @@ import { CardPost } from '@components/CardPost';
 import { Divider } from '@components/Divider';
 import dynamic from 'next/dynamic';
 import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
+import { Constants } from '@constants';
 
 const BlogPost = dynamic(() => import('@components/sections/BlogPosts'), {
   ssr: false,
@@ -38,7 +39,7 @@ const Page = async () => {
                 subTitle={
                   'Partidos controlam recursos políticos vitais e desde 2009, devem investir 5% do Fundo Partidário anual para fomentar a participação feminina na política.'
                 }
-                src={'/img/blog/mic.png'}
+                src={Constants.images.reputacaoMulher}
                 type="Primary"
                 href="/blog/reputacao-mulher"
               />
@@ -56,7 +57,7 @@ const Page = async () => {
                   title={
                     'A promoção da participação política das mulheres parcialmente realizada pelos partidos políticos'
                   }
-                  src={'/img/blog/smile.png'}
+                  src={Constants.images.promoPart}
                   href="/blog/promo-part"
                 />
               </div>
@@ -71,7 +72,7 @@ const Page = async () => {
                   title={
                     'A participação feminina na liderança partidária e o cumprimento das cotas financeiras para mulheres '
                   }
-                  src={'/img/blog/airplane.png'}
+                  src={Constants.images.partFemLid}
                   href="/blog/part-fem-lid"
                 />
               </div>

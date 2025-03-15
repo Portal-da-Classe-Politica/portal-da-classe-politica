@@ -4,6 +4,8 @@ import { GetInContact } from '@components/sections/GetInContact';
 import { Divider } from '@components/Divider';
 import { SpecialContents } from '@components/sections/SpecialContents';
 import Avatar from '@components/Avatar';
+import Image from 'next/image';
+import { Constants } from '@constants';
 /* eslint-disable no-use-before-define */
 const Page = () => {
   return (
@@ -22,6 +24,19 @@ const Page = () => {
           <Text size="C1" className="ml-auto mb-4 mt-2">
             Maria Cecília Eduardo e Karolina Roeder
           </Text>
+          <div
+            style={{ width: '100%', maxHeight: '400px', overflow: 'hidden', borderRadius: '10px' }}
+            className="mb-4"
+          >
+            <Image
+              src={Constants.images.reputacaoMulher}
+              layout="responsive"
+              width={700}
+              height={400}
+              objectFit="cover"
+              alt={'vote'}
+            />
+          </div>
           <Text className="mb-3">
             Apesar dos avanços nas últimas décadas, as mulheres ainda enfrentam uma sub-representação
             significativa na política. Este texto explora as razões históricas, culturais e estruturais que
