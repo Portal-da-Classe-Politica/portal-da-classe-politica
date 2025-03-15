@@ -1,6 +1,6 @@
 export const Constants = {
   api: {
-    baseURL: 'https://portal-da-classe-back.onrender.com',
+    baseURL: 'http://redem.c3sl.ufpr.br/v1/api',
   },
   abrangency: {
     estatudal: '1',

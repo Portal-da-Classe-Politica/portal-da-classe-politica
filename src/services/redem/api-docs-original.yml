@@ -8,7 +8,11 @@ servers:
     description: 'Servidor Local'
   - url: https://portal-da-classe-back.onrender.com
     description: 'Servidor de desenvolvimento'
+  - url: http://redem.c3sl.ufpr.br/v1/api
+    description: 'Servidor de produção'
 tags:
+  - name: filtros
+    description: Rotas utilizar nos filtros
   - name: abrangencia
     description: Rotas para buscar abrangencias
   - name: unidade eleitoral
@@ -25,6 +29,110 @@ tags:
     description: Rotas para indicadores de carreira e representacao
   - name: indicadores financeiros
     description: Rotas para indicadores financeiros
+  - name: indicares espaciais de votos
+    description: Rotas para indicadores espaciais de votos
+
+components:
+  schemas:
+    Raca:
+      type: integer
+      enum: [0, 1, 2, 3, 4, 5, 6]
+    isElected:
+      type: integer
+      enum: [0, 1, 2]
+    cargos:
+      type: integer
+      enum: [1, 2, 3, 4, 6, 8, 9, 10, 11, 12, 13, 14, 15]
+    dimensao_cruzamentos_candidato:
+      type: integer
+      enum: [0, 1, 2]
+    dimensao_cruzamentos_financiamento:
+      type: number
+      enum: [0, 1, 2, 3, 4]
+    dimensao_cruzamentos_eleicoes:
+      type: integer
+      enum: [0, 1]
+  parameters:
+    RacaParam:
+      in: query
+      name: raca
+      required: false
+      schema:
+        $ref: '#/components/schemas/Raca'
+      description: |
+        Raça do candidato:
+        - `0` para todas
+        - `1` para não divulgável
+        - `2` para parda
+        - `3` para branca
+        - `4` para amarela
+        - `5` para preta
+        - `6` para indígena
+    IsElectedParam:
+      in: query
+      name: isElected
+      required: false
+      schema:
+        $ref: '#/components/schemas/isElected'
+      description: |
+        Situação se foi deleito:
+        - `0` para ambos
+        - `1` para sim
+        - `2` para não eleitos
+    CargosParam:
+      in: query
+      name: cargosIds
+      required: false
+      schema:
+        $ref: '#/components/schemas/cargos'
+      description: |
+        ID do cargo disponível para consulta. Opções:  
+        - `1`: DEPUTADO ESTADUAL  
+        - `2`: DEPUTADO FEDERAL  
+        - `3`: VICE-GOVERNADOR  
+        - `4`: SENADOR          
+        - `6`: DEPUTADO DISTRITAL         
+        - `8`: GOVERNADOR  
+        - `9`: PRESIDENTE  
+        - `10`: VICE-PRESIDENTE  
+        - `11`: VEREADOR
+        - `12`: PREFEITO
+        - `13`: VICE-PREFEITO
+        - `14`: 2º SUPLENTE
+        - `15`: 1º SUPLENTE
+    DimensaoCruzamentosCandidatoParam:
+      in: query
+      name: dimension
+      required: false
+      schema:
+        $ref: '#/components/schemas/dimensao_cruzamentos_candidato'
+      description: |
+        - `0`: Quantidade
+        - `1`: Votos
+        - `2`: Bens declarados
+    DimensaoCruzamentosFinanciamentoParam:
+      in: query
+      name: dimension
+      required: false
+      schema:
+        $ref: '#/components/schemas/dimensao_cruzamentos_financiamento'
+      description: |
+        medidas para dimensao:
+        - `0` : volume total doacoes
+        - `1` : quantidade doacoes
+        - `2` : fundo eleitoral
+        - `3` : volume fundo partidario
+        - `4` : volume financiamento privado
+    DimensaoCruzamentosEleicoesParam:
+      in: query
+      name: dimension
+      required: false
+      schema:
+        $ref: '#/components/schemas/dimensao_cruzamentos_eleicoes'
+      description: |
+        Dimensão de agregação:
+        - `0`: Quantidade
+        - `1`: Votos
 
 paths:
   /noauth/abrangency:
@@ -90,9 +198,23 @@ paths:
     get:
       operationId: '2'
       tags:
-        - candidato
+        - filtros
       summary: Obter filtros de candidatos
       description: Retorna os filtros disponíveis para candidatos.
+      parameters:
+        - in: query
+          name: dimension
+          schema:
+            type: string
+            enum: [candidates, donations, elections]
+          required: true
+          description: candidates, donations, elections
+        - in: query
+          name: cargoId
+          schema:
+            type: integer
+          required: false
+          description: Id do cargo para retornar os anos possiveis
       responses:
         '200':
           description: Sucesso
@@ -723,6 +845,67 @@ paths:
                   data:
                     type: object
                     example: {}
+  /noauth/candidate/cargos:
+    get:
+      operationId: '27'
+      tags:
+        - filtros
+      summary: Busca cargos cruzamentos
+      description: Busca todos os cargos disponíveis para candidatos.
+      parameters:
+        - in: query
+          name: dimension
+          schema:
+            type: string
+            enum: [candidates, donations, elections]
+          required: true
+          description: candidates, donations, elections
+      responses:
+        '200':
+          description: Lista de cargos encontrada
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        nome_cargo:
+                          type: string
+                          example: 'DEPUTADO ESTADUAL'
+                        abrangenciumId:
+                          type: integer
+                          example: 1
+                  message:
+                    type: string
+                    example: 'Cargos encontrados com sucesso.'
+        '400':
+          description: Requisição inválida
+        '500':
+          description: Erro interno do servidor
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  data:
+                    type: object
+                    example: {}
+                  message:
+                    type: string
+                    example: 'Erro ao buscar os cargos dos candidatos'
   /noauth/cruzamentos/candidates-profile/by-year:
     get:
       operationId: '10' # New operation ID
@@ -743,24 +926,14 @@ paths:
             type: integer
           required: true
           description: Ano final do intervalo.
-        - in: query
-          name: dimension
-          schema:
-            type: integer
-          required: false
-          description: Dimensão de agregação (1, 2, 3).
+        - $ref: '#/components/parameters/DimensaoCruzamentosCandidatoParam'
         - in: query
           name: unidadesEleitoraisIds
           schema:
             type: array
           required: false
           description: IDs das unidades eleitorais desejadas.
-        - in: query
-          name: isElected
-          schema:
-            type: integer
-          required: false
-          description: Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+        - $ref: '#/components/parameters/IsElectedParam'
         - in: query
           name: partidos
           schema:
@@ -773,12 +946,8 @@ paths:
             type: array
           required: false
           description: Categoria 1 das ocupações (1,2 ...)
-        - in: query
-          name: cargosIds
-          schema:
-            type: array
-          required: false
-          description: IDs dos cargos (1,2,3...)
+        - $ref: '#/components/parameters/CargosParam'
+        - $ref: '#/components/parameters/RacaParam'
       responses:
         '200':
           description: Resposta bem-sucedida com o perfil dos candidatos por ano.
@@ -821,24 +990,14 @@ paths:
             type: integer
           required: true
           description: Ano final do intervalo.
-        - in: query
-          name: dimension
-          schema:
-            type: integer
-          required: false
-          description: Dimensão de agregação (1, 2, 3).
+        - $ref: '#/components/parameters/DimensaoCruzamentosCandidatoParam'
         - in: query
           name: unidadesEleitoraisIds
           schema:
             type: array
           required: false
           description: IDs das unidades eleitorais desejadas.
-        - in: query
-          name: isElected
-          schema:
-            type: integer
-          required: false
-          description: Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+        - $ref: '#/components/parameters/IsElectedParam'
         - in: query
           name: partidos
           schema:
@@ -851,12 +1010,8 @@ paths:
             type: array
           required: false
           description: Categoria 1 das ocupações (1,2 ...)
-        - in: query
-          name: cargosIds
-          schema:
-            type: array
-          required: false
-          description: IDs dos cargos (1,2,3...)
+        - $ref: '#/components/parameters/CargosParam'
+        - $ref: '#/components/parameters/RacaParam'
       responses:
         '200':
           description: Resposta bem-sucedida com o perfil dos candidatos por gênero.
@@ -880,24 +1035,14 @@ paths:
             type: integer
           required: true
           description: Ano final do intervalo.
-        - in: query
-          name: dimension
-          schema:
-            type: integer
-          required: false
-          description: Dimensão de agregação (1, 2, 3).
+        - $ref: '#/components/parameters/DimensaoCruzamentosCandidatoParam'
         - in: query
           name: unidadesEleitoraisIds
           schema:
             type: array
           required: false
           description: IDs das unidades eleitorais desejadas.
-        - in: query
-          name: isElected
-          schema:
-            type: integer
-          required: false
-          description: Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+        - $ref: '#/components/parameters/IsElectedParam'
         - in: query
           name: partidos
           schema:
@@ -910,12 +1055,8 @@ paths:
             type: array
           required: false
           description: Categoria 1 das ocupações (1,2 ...)
-        - in: query
-          name: cargosIds
-          schema:
-            type: array
-          required: false
-          description: IDs dos cargos (1,2,3...)
+        - $ref: '#/components/parameters/CargosParam'
+        - $ref: '#/components/parameters/RacaParam'
       responses:
         '200':
           description: Resposta bem-sucedida com o perfil dos candidatos por ocupação.
@@ -945,12 +1086,7 @@ paths:
             type: array
           required: false
           description: IDs das unidades eleitorais desejadas.
-        - in: query
-          name: isElected
-          schema:
-            type: integer
-          required: false
-          description: Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+        - $ref: '#/components/parameters/IsElectedParam'
         - in: query
           name: partidos
           schema:
@@ -963,12 +1099,8 @@ paths:
             type: array
           required: false
           description: Categoria 1 das ocupações (1,2 ...)
-        - in: query
-          name: cargosIds
-          schema:
-            type: array
-          required: false
-          description: IDs dos cargos (1,2,3...)
+        - $ref: '#/components/parameters/CargosParam'
+        - $ref: '#/components/parameters/RacaParam'
       responses:
         '200':
           description: Resposta bem-sucedida com o perfil dos candidatos por ocupação.
@@ -998,12 +1130,8 @@ paths:
             type: array
           required: false
           description: IDs das unidades eleitorais desejadas.
-        - in: query
-          name: isElected
-          schema:
-            type: integer
-          required: false
-          description: Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+        - $ref: '#/components/parameters/IsElectedParam'
+        - $ref: '#/components/parameters/DimensaoCruzamentosFinanciamentoParam'
         - in: query
           name: partidos
           schema:
@@ -1016,18 +1144,8 @@ paths:
             type: array
           required: false
           description: Categoria 1 das ocupações (1,2 ...)
-        - in: query
-          name: cargosIds
-          schema:
-            type: array
-          required: false
-          description: IDs dos cargos (1,2,3...)
-        - in: query
-          name: dimension
-          schema:
-            type: number
-          required: false
-          description: medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+        - $ref: '#/components/parameters/CargosParam'
+        - $ref: '#/components/parameters/RacaParam'
       responses:
         '200':
           description: Resposta bem-sucedida.
@@ -1057,12 +1175,8 @@ paths:
             type: array
           required: false
           description: IDs das unidades eleitorais desejadas.
-        - in: query
-          name: isElected
-          schema:
-            type: integer
-          required: false
-          description: Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+        - $ref: '#/components/parameters/DimensaoCruzamentosFinanciamentoParam'
+        - $ref: '#/components/parameters/IsElectedParam'
         - in: query
           name: partidos
           schema:
@@ -1075,18 +1189,8 @@ paths:
             type: array
           required: false
           description: Categoria 1 das ocupações (1,2 ...)
-        - in: query
-          name: cargosIds
-          schema:
-            type: array
-          required: false
-          description: IDs dos cargos (1,2,3...)
-        - in: query
-          name: dimension
-          schema:
-            type: number
-          required: false
-          description: medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+        - $ref: '#/components/parameters/CargosParam'
+        - $ref: '#/components/parameters/RacaParam'
       responses:
         '200':
           description: Resposta bem-sucedida.
@@ -1116,12 +1220,8 @@ paths:
             type: array
           required: false
           description: IDs das unidades eleitorais desejadas.
-        - in: query
-          name: isElected
-          schema:
-            type: integer
-          required: false
-          description: Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+        - $ref: '#/components/parameters/IsElectedParam'
+        - $ref: '#/components/parameters/DimensaoCruzamentosFinanciamentoParam'
         - in: query
           name: partidos
           schema:
@@ -1134,18 +1234,8 @@ paths:
             type: array
           required: false
           description: Categoria 1 das ocupações (1,2 ...)
-        - in: query
-          name: cargosIds
-          schema:
-            type: array
-          required: false
-          description: IDs dos cargos (1,2,3...)
-        - in: query
-          name: dimension
-          schema:
-            type: number
-          required: false
-          description: medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+        - $ref: '#/components/parameters/CargosParam'
+        - $ref: '#/components/parameters/RacaParam'
       responses:
         '200':
           description: Resposta bem-sucedida com o perfil dos candidatos por ocupação.
@@ -1175,12 +1265,8 @@ paths:
             type: array
           required: false
           description: só envie caso deseje agregar por municipio, caso for enviar deve ser a string da UF. Exemplo RS.
-        - in: query
-          name: isElected
-          schema:
-            type: integer
-          required: false
-          description: Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+        - $ref: '#/components/parameters/DimensaoCruzamentosFinanciamentoParam'
+        - $ref: '#/components/parameters/IsElectedParam'
         - in: query
           name: partidos
           schema:
@@ -1193,22 +1279,12 @@ paths:
             type: array
           required: false
           description: Categoria 1 das ocupações (1,2 ...)
-        - in: query
-          name: cargosIds
-          schema:
-            type: array
-          required: false
-          description: IDs dos cargos (1,2,3...)
-        - in: query
-          name: dimension
-          schema:
-            type: number
-          required: false
-          description: medidas para dimensao, 0 volume total doacoes, 1 quantidade doacoes, 2 fundo eleitoral, 3 volume fundo partidario, 4 volume financiamento privado
+        - $ref: '#/components/parameters/CargosParam'
+        - $ref: '#/components/parameters/RacaParam'
       responses:
         '200':
           description: Resposta bem-sucedida .
-  /noauth/elections/kpis:
+  /noauth/cruzamentos/elections/kpis:
     get:
       operationId: '18' # New operation ID
       tags:
@@ -1228,6 +1304,9 @@ paths:
             type: integer
           required: true
           description: Ano final do intervalo.
+        - $ref: '#/components/parameters/DimensaoCruzamentosEleicoesParam'
+        - $ref: '#/components/parameters/CargosParam'
+        - $ref: '#/components/parameters/RacaParam'
       responses:
         '200':
           description: Resposta bem-sucedida com os KPIs das eleições.
@@ -1246,7 +1325,6 @@ paths:
                     type: array
                     items:
                       type: object
-
   /noauth/cruzamentos/elections/competition-by-year:
     get:
       operationId: '19' # New operation ID
@@ -1268,23 +1346,13 @@ paths:
           required: true
           description: Ano final do intervalo.
         - in: query
-          name: dimension
-          schema:
-            type: integer
-          required: false
-          description: Dimensão de agregação (1, 2, 3).
-        - in: query
           name: unidadesEleitoraisIds
           schema:
             type: array
           required: false
           description: IDs das unidades eleitorais desejadas.
-        - in: query
-          name: isElected
-          schema:
-            type: integer
-          required: false
-          description: Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+        - $ref: '#/components/parameters/DimensaoCruzamentosEleicoesParam'
+        - $ref: '#/components/parameters/IsElectedParam'
         - in: query
           name: partidos
           schema:
@@ -1297,12 +1365,8 @@ paths:
             type: array
           required: false
           description: Categoria 1 das ocupações (1,2 ...)
-        - in: query
-          name: cargosIds
-          schema:
-            type: array
-          required: false
-          description: IDs dos cargos (1,2,3...)
+        - $ref: '#/components/parameters/CargosParam'
+        - $ref: '#/components/parameters/RacaParam'
       responses:
         '200':
           description: Resposta bem-sucedida com os dados de competição por ano.
@@ -1342,23 +1406,13 @@ paths:
           required: true
           description: Ano final do intervalo.
         - in: query
-          name: dimension
-          schema:
-            type: integer
-          required: false
-          description: Dimensão de agregação (1, 2, 3).
-        - in: query
           name: unidadesEleitoraisIds
           schema:
             type: array
           required: false
           description: IDs das unidades eleitorais desejadas.
-        - in: query
-          name: isElected
-          schema:
-            type: integer
-          required: false
-          description: Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+        - $ref: '#/components/parameters/IsElectedParam'
+        - $ref: '#/components/parameters/DimensaoCruzamentosEleicoesParam'
         - in: query
           name: partidos
           schema:
@@ -1371,13 +1425,8 @@ paths:
             type: array
           required: false
           description: Categoria 1 das ocupações (1,2 ...)
-        - in: query
-          name: cargosIds
-          schema:
-            type: array
-          required: false
-          description: IDs dos cargos (1,2,3...)
-
+        - $ref: '#/components/parameters/CargosParam'
+        - $ref: '#/components/parameters/RacaParam'
       responses:
         '200':
           description: Resposta bem-sucedida com os principais candidatos.
@@ -1416,24 +1465,14 @@ paths:
             type: integer
           required: true
           description: Ano final do intervalo.
-        - in: query
-          name: dimension
-          schema:
-            type: integer
-          required: false
-          description: Dimensão de agregação (1, 2, 3).
+        - $ref: '#/components/parameters/DimensaoCruzamentosEleicoesParam'
         - in: query
           name: unidadesEleitoraisIds
           schema:
             type: array
           required: false
           description: IDs das unidades eleitorais desejadas.
-        - in: query
-          name: isElected
-          schema:
-            type: integer
-          required: false
-          description: Situação se foi deleito (0 para ambos, 1, para sim; 2 para não eleitos)
+        - $ref: '#/components/parameters/IsElectedParam'
         - in: query
           name: partidos
           schema:
@@ -1446,12 +1485,8 @@ paths:
             type: array
           required: false
           description: Categoria 1 das ocupações (1,2 ...)
-        - in: query
-          name: cargosIds
-          schema:
-            type: array
-          required: false
-          description: IDs dos cargos (1,2,3...)
+        - $ref: '#/components/parameters/CargosParam'
+        - $ref: '#/components/parameters/RacaParam'
       responses:
         '200':
           description: Resposta bem-sucedida com os votos por localização.
@@ -1470,7 +1505,6 @@ paths:
                     type: array
                     items:
                       type: object
-
   /noauth/indicadores/partidarios:
     get:
       operationId: '22' # New operation ID
@@ -1646,7 +1680,6 @@ paths:
                     type: array
                     items:
                       type: object
-
   /noauth/indicadores/financeiros:
     get:
       operationId: '26' # New operation ID
@@ -1822,3 +1855,330 @@ paths:
                     type: array
                     items:
                       type: object
+  #  /noauth/indicadores/financeiros/15:
+  /noauth/indicadores/geographical-filters/uf-votes:
+    get:
+      operationId: '30'
+      tags:
+        - filtros
+      summary: Votos por UF
+      description: |
+        - Retorna os estados de votação para utilizar nos filtros. 
+        Caso escolha Brasil, não será necessário buscar as cidades 
+        e o agrupamento será por estado e o parametro UF não deve ser enviado.
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os estados de votação.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Siglas agrupadoras de locais de votação'
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        UF:
+                          type: string
+                          example: 'SP'
+                        label:
+                          type: string
+                          example: 'São Paulo'
+        '500':
+          description: Erro interno do servidor
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Erro interno do servidor'
+  /noauth/indicadores/geographical-filters/uf-votes/{uf}:
+    get:
+      operationId: '31'
+      tags:
+        - filtros
+      summary: Votos por cidades de um estado
+      description: |
+        Retorna as cidades de votação para um estado específico para utilizar nos filtros.
+      parameters:
+        - in: path
+          name: uf
+          required: true
+          schema:
+            type: string
+          description: Sigla do estado (UF) para buscar as cidades de votação.
+      responses:
+        '200':
+          description: Resposta bem-sucedida com as cidades de votação do estado.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Cidades de votação do estado SP'
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        cidade:
+                          type: string
+                          example: 'São Paulo'
+                        votos:
+                          type: integer
+                          example: 12345
+        '500':
+          description: Erro interno do servidor
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Erro interno do servidor'
+  /noauth/indicadores/geograficos/9:
+    get:
+      operationId: '32' # New operation ID
+      tags:
+        - indicares espaciais de votos
+      summary: Distribuição de votos por região
+      description: 'Permite identificar se os candidatos pertencem predominantemente a classes econômicas mais altas ou se há uma diversidade econômica entre eles.É útil para analisar o impacto de fatores como classe social e ocupação profissional na representatividade política.Pode ser utilizado para avaliar a necessidade de medidas que promovam a diversidade no perfil dos candidatos.'
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: cargoId
+          schema:
+            type: integer
+          required: false
+          description: cargo desejado
+        - in: query
+          name: unidadesEleitorais
+          schema:
+            type: array
+          required: false
+          description: Ids das unidades eleitorais desejadas
+        - in: query
+          name: UF
+          schema:
+            type: string
+          required: false
+          description: UF desejada
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os indicadores possiveis.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Indicadores encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+  /noauth/indicadores/geograficos/10:
+    get:
+      operationId: '33' # New operation ID
+      tags:
+        - indicares espaciais de votos
+      summary: Índice de Concentração regional do voto
+      description: 'Permite identificar se os candidatos pertencem predominantemente a classes econômicas mais altas ou se há uma diversidade econômica entre eles.É útil para analisar o impacto de fatores como classe social e ocupação profissional na representatividade política.Pode ser utilizado para avaliar a necessidade de medidas que promovam a diversidade no perfil dos candidatos.'
+      parameters:
+        - in: query
+          name: initialYear
+          schema:
+            type: integer
+          required: true
+          description: Ano inicial do intervalo.
+        - in: query
+          name: finalYear
+          schema:
+            type: integer
+          required: true
+          description: Ano final do intervalo.
+        - in: query
+          name: cargoId
+          schema:
+            type: integer
+          required: false
+          description: cargo desejado
+        - in: query
+          name: unidadesEleitorais
+          schema:
+            type: array
+          required: false
+          description: Ids dos locais de votacao desejadas
+        - in: query
+          name: UF
+          schema:
+            type: string
+          required: false
+          description: UF desejada
+        - in: query
+          name: partyId
+          schema:
+            type: string
+          required: false
+          description: id do partido desejado
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os indicadores possiveis.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Indicadores encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+  /noauth/party:
+    get:
+      operationId: '34' # New operation ID
+      tags:
+        - filtros
+      summary: Partidos
+      description: Retorna todos os partidos.
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os partidos.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Partidos encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+  /noauth/indicadores/{type}:
+    get:
+      operationId: '35' # New operation ID
+      tags:
+        - filtros
+      summary: Indicadores possíveis de votos
+      description: Retorna todos indicadores possíveis para o grupo de votos
+      parameters:
+        - in: path
+          name: type
+          required: true
+          schema:
+            type: string
+            enum: [eleitorais, partidarios, geograficos, financeiros]
+          description: Tipo de indicador desejado
+      responses:
+        '200':
+          description: Resposta bem-sucedida com os indicadores possíveis.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Indicadores do grupo {type} encontrados com sucesso.'
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: '1'
+                        nome:
+                          type: string
+                          example: 'Número Efetivo de Partidos (Legislativo)'
+                        grupo:
+                          type: string
+                          example: 'eleitoral'
+                        cargos:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                                example: 'DEPUTADO ESTADUAL'
+                              id:
+                                type: integer
+                                example: 1
+                              agregacao_regional:
+                                type: array
+                                items:
+                                  type: string
+                                  example: 'UF'
+                              filter_by:
+                                type: string
+                                example: 'UF'
+                              abrangencia:
+                                type: integer
+                                example: 1
+                              optional_steps:
+                                type: array
+                                description: Passos opcionais para obter o indicador
+                                items:
+                                  type: string
+                                  example: 'party'
+                              required_steps:
+                                type: array
+                                description: Passos necessários para obter o indicador
+                                items:
+                                  type: string
+                                  example: 'UF'
+
+        '500':
+          description: Erro interno do servidor
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Erro interno do servidor'

@@ -41,7 +41,7 @@ export const ConsultResultDisplay = ({ className = '', result }: { className?: s
           series={[
             {
               name: data.seriesName,
-              data: data.series.map(({ value }: any) => value),
+              data: data.series.map(({ value }: any) => Number(value ?? 0).toFixed(2)),
             },
           ]}
           metaData={data?.extraData?.bigNumbers}
@@ -54,7 +54,7 @@ export const ConsultResultDisplay = ({ className = '', result }: { className?: s
           className={className}
           title={data.title}
           labels={data.series.map(({ name }: any) => name)}
-          series={data.series.map(({ value }: any) => value)}
+          series={data.series.map(({ value }: any) => Number(value ?? 0).toFixed(2))}
           topics={data.extraData}
         />
       );

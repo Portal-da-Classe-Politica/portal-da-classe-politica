@@ -11,7 +11,10 @@ export const KpiSection = ({ data }: { data: any }) => {
       <div className="flex flex-col md:flex-row justify-between flex-wrap">
         {data.extraData.map((singleData: any, index: number) => {
           return (
-            <div className="flex flex-col md:flex-row gap-2 mt-4 md:w-[50%] p-2" key={`kpi-${index}`}>
+            <div
+              className="flex flex-col flex-wrap md:flex-row gap-2 mt-4 md:w-[50%] p-2"
+              key={`kpi-${index}`}
+            >
               <div className="flex-1">
                 <Heading headingLevel={2} size="H1" className="font-bold text-orange">
                   {singleData.value}
@@ -21,7 +24,7 @@ export const KpiSection = ({ data }: { data: any }) => {
                 </Heading>
               </div>
               <div className="flex-1">
-                <Text className="mx-4">{singleData.description}</Text>
+                <Text>{singleData.description}</Text>
               </div>
             </div>
           );

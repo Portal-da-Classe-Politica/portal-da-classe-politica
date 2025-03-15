@@ -89,7 +89,7 @@ export const consultFinance = async ({
         'Distribuição Financiamento',
         {
           sigla_unidade_federacao: 'uf',
-          total_doacoes: 'value',
+          mediana: 'value',
         },
         'Total de Doações',
       ),
