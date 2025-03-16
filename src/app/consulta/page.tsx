@@ -8,9 +8,9 @@ import { ConsultSection } from './components/ConsultSection';
 import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
 
 const cards = [
-  { text: 'Perfil dos Candidatos', src: '/img/consulta/Profile.svg' },
-  { text: 'Resultados das Eleições', src: '/img/consulta/Chart.svg' },
-  { text: 'Financiamento de Campanha', src: '/img/consulta/ShakeHand.svg' },
+  { text: 'Perfil dos Candidatos', src: '/img/consulta/Head.svg', imgWidth: 130, imgHeight: 110 },
+  { text: 'Resultados das Eleições', src: '/img/consulta/Chart.svg', imgWidth: 200, imgHeight: 110 },
+  { text: 'Financiamento de Campanha', src: '/img/consulta/Circles.svg', imgWidth: 130, imgHeight: 110 },
 ];
 
 const Page = ({ searchParams }: { searchParams: { consulta: string | undefined } }) => {
@@ -41,10 +41,17 @@ const Page = ({ searchParams }: { searchParams: { consulta: string | undefined }
               </div>
             </div>
           </Container>
-          <Container className="my-12">
+          <Container className="my-12 pb-12">
             <div className="flex justify-center md:justify-normal flex-wrap gap-8">
               {cards.map((card, idx) => (
-                <BoxImageText key={idx} text={card.text} src={card.src} />
+                <BoxImageText
+                  key={idx}
+                  text={card.text}
+                  src={card.src}
+                  imgClassName="pt-4"
+                  imgWidth={card.imgWidth}
+                  imgHeight={card.imgHeight}
+                />
               ))}
             </div>
           </Container>

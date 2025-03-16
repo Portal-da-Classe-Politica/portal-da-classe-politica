@@ -1,69 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg id="Camada_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 234.6 154.34">
-  <defs>
-    <style>
-      .cls-1 {
-        fill: url(#Gradiente_sem_nome_32-2);
-      }
-
-      .cls-2 {
-        fill: url(#Gradiente_sem_nome_11);
-      }
-
-      .cls-3 {
-        fill: #fff;
-      }
-
-      .cls-4 {
-        fill: #f5b5a2;
-      }
-
-      .cls-5 {
-        fill: none;
-        stroke: #e74517;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        stroke-width: 3px;
-      }
-
-      .cls-6 {
-        fill: #e74517;
-      }
-
-      .cls-7 {
-        fill: url(#Gradiente_sem_nome_32);
-      }
-    </style>
-    <linearGradient id="Gradiente_sem_nome_32" data-name="Gradiente sem nome 32" x1="57.94" y1="118.56" x2="10.41" y2="91.12" gradientUnits="userSpaceOnUse">
-      <stop offset=".72" stop-color="#141315"/>
-      <stop offset=".75" stop-color="#2a1815"/>
-      <stop offset=".84" stop-color="#642615"/>
-      <stop offset=".95" stop-color="#c03b16"/>
-      <stop offset="1" stop-color="#e74517"/>
-    </linearGradient>
-    <linearGradient id="Gradiente_sem_nome_11" data-name="Gradiente sem nome 11" x1="132.17" y1="154.34" x2="132.17" y2="52.34" gradientUnits="userSpaceOnUse">
-      <stop offset=".58" stop-color="#e74517"/>
-      <stop offset=".66" stop-color="#e44416"/>
-      <stop offset=".71" stop-color="#da4115"/>
-      <stop offset=".77" stop-color="#ca3c14"/>
-      <stop offset=".81" stop-color="#b33511"/>
-      <stop offset=".86" stop-color="#962c0e"/>
-      <stop offset=".9" stop-color="#72220b"/>
-      <stop offset=".94" stop-color="#471507"/>
-      <stop offset=".98" stop-color="#170702"/>
-      <stop offset="1" stop-color="#000"/>
-    </linearGradient>
-    <linearGradient id="Gradiente_sem_nome_32-2" data-name="Gradiente sem nome 32" x1="202.72" y1="86.18" x2="142.63" y2="51.49" xlink:href="#Gradiente_sem_nome_32"/>
-  </defs>
-  <g id="Camada_2-2" data-name="Camada_2">
-    <path class="cls-4" d="M48.67,16.82C14.65,24.62-8.03,74.32,2.67,87.82c12.58,15.87,70.6-19.12,88,3,3.75,4.77,1.81,7.36,5,15,9.97,23.86,47.62,43.29,81,35,45.07-11.2,67.57-69.29,54-89-12.66-18.39-48.6,8.47-110-10-39.5-11.88-48.87-30.3-72-25Z"/>
-    <rect class="cls-7" x="20.17" y="68.34" width="28" height="73" rx="8" ry="8"/>
-    <rect class="cls-2" x="118.17" y="52.34" width="28" height="102" rx="8" ry="8"/>
-    <g>
-      <path class="cls-5" d="M15.17,69.34c6.96-8.26,18.98-19.87,36-23,31.93-5.86,49.19,24.07,77,16,12.07-3.5,11-9.78,43-36,11.54-9.46,21.74-16.89,29.32-22.15"/>
-      <polygon class="cls-6" points="199.55 19.98 196.61 19.38 199.59 4.89 184.92 2.98 185.31 0 203.18 2.34 199.55 19.98"/>
-    </g>
-    <rect class="cls-3" x="69.17" y="35.34" width="28" height="84" rx="8" ry="8"/>
-    <rect class="cls-1" x="158.67" y="17.84" width="28" height="102" rx="8" ry="8"/>
-  </g>
+<svg width="108" height="107" viewBox="0 0 108 107" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3654_2272)">
+<path d="M54.09 24.481V1.14099C83.04 1.14099 106.5 24.611 106.5 53.551H83.16C83.16 37.491 70.14 24.481 54.09 24.481Z" stroke="#F55A2A" stroke-width="2" stroke-miterlimit="10"/>
+<path d="M1.67999 24.481V1.14099C30.63 1.14099 54.09 24.611 54.09 53.551H30.75C30.75 37.491 17.73 24.481 1.67999 24.481Z" stroke="#F55A2A" stroke-width="2" stroke-miterlimit="10"/>
+<path d="M53.91 76.891V53.551C82.86 53.551 106.32 77.021 106.32 105.961H82.98C82.98 89.901 69.96 76.891 53.91 76.891Z" stroke="#F55A2A" stroke-width="2" stroke-miterlimit="10"/>
+<path d="M1.5 76.891V53.551C30.45 53.551 53.91 77.021 53.91 105.961H30.57C30.57 89.901 17.55 76.891 1.5 76.891Z" stroke="#F55A2A" stroke-width="2" stroke-miterlimit="10"/>
+</g>
+<defs>
+<clipPath id="clip0_3654_2272">
+<rect width="107" height="106.82" fill="white" transform="translate(0.5 0.140991)"/>
+</clipPath>
+</defs>
 </svg>
