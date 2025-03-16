@@ -18,9 +18,19 @@ import { formatCurrency } from '@utils/formatCurrency';
 
 import { LastElectionsChart } from '@components/charts/LastElectionsChart';
 import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
+import { CandidateKpi } from '@services/candidates/getCandidateKpiById';
 
 const Page = async ({ params: { id } }: { params: { id: string } }) => {
   const candidate = await CandidateService.getCandidateById(id);
+  const kpis = await CandidateService.getCandidateKpiById(id);
+
+  const boxHeader = (kpi: CandidateKpi) => {
+    return kpi.unity === 'text' ? kpi.name : `${kpi.unity} ${kpi.value}`;
+  };
+
+  const boxTitle = (kpi: CandidateKpi) => {
+    return kpi.unity === 'text' ? String(kpi.value) : kpi.name;
+  };
 
   const formatAge = (age: string | undefined) => {
     return age ? `${dayjs(age).age()} anos (${dayjs(age).format('DD/MM/YYYY')})` : '-';
@@ -76,39 +86,19 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
                     <TextBetween title="Ocupação" text={candidate?.ocupacao} />
                   </div>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-2 xl:grid-cols-4 gap-4 mt-10 justify-center justify-items-center">
-                  <div className="h-[190px] w-[210px]">
-                    <BoxData
-                      content="Consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis"
-                      title="Lorem ipsum dolor"
-                      header="+35,7%"
-                      variant="orange"
-                    />
-                  </div>
-                  <div className="h-[190px] w-[210px]">
-                    <BoxData
-                      content="Consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis"
-                      title="Lorem ipsum dolor"
-                      header="+35,7%"
-                      variant="orange"
-                    />
-                  </div>
-                  <div className="h-[190px] w-[210px]">
-                    <BoxData
-                      content="Consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis"
-                      title="Lorem ipsum dolor"
-                      header="+35,7%"
-                      variant="orange"
-                    />
-                  </div>
-                  <div className="h-[190px] w-[210px]">
-                    <BoxData
-                      content="Consectetur adipiscing elit. Suspendisse non odio sit amet massa lobortis"
-                      title="Lorem ipsum dolor"
-                      header="+35,7%"
-                      variant="orange"
-                    />
-                  </div>
+                <div className="mt-10 grid grid-cols-2 gap-4 ">
+                  {kpis?.map((kpi, idx) => {
+                    return kpi.value ? (
+                      <div key={idx} className="">
+                        <BoxData
+                          header={boxHeader(kpi)}
+                          title={boxTitle(kpi)}
+                          content={kpi.description}
+                          variant="orange"
+                        />
+                      </div>
+                    ) : null;
+                  })}
                 </div>
               </div>
             </div>
@@ -124,7 +114,7 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
         <section className="mt-8">
           <Container className="flex flex-col items-center">
             <div
-              className={`flex flex-col w-full max-h-[800px] p-4 md:p-12 bg-white drop-shadow-lg rounded-lg `}
+              className={`flex flex-col w-full max-h-[800px] p-4 md:p-12 bg-white drop-shadow-lg rounded-lg`}
             >
               <Heading headingLevel={2} className="text-grayMix4 my-4">
                 Mapa da votação da última eleição disputada
