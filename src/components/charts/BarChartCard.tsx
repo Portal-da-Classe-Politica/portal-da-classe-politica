@@ -139,26 +139,22 @@ export const BarChartCard = ({
   const height = Math.max(300, (series[0].data?.length || 10) * 40);
 
   return (
-    <div
-      className={`flex flex-col w-full min-h-[300px] p-4 md:p-12 bg-white drop-shadow-lg rounded-lg ${className}`}
-    >
-      <div className="w-full">
-        <Heading headingLevel={2} className="text-grayMix4 my-4">
-          {title}
-        </Heading>
-        <Chart series={series} type="bar" options={options} height={height} />
-        <div className="flex flex-col md:flex-row gap-8 mt-8">
-          {metaData.map(({ value, label }, idx) => (
-            <div key={idx} className="flex flex-col">
-              <Heading headingLevel={3} size="H3" className="font-bold">
-                {value}
-              </Heading>
-              <Heading headingLevel={6} size="H6" className="font-bold">
-                {label}
-              </Heading>
-            </div>
-          ))}
-        </div>
+    <div className={`w-full ${className}`}>
+      <Heading headingLevel={2} className="text-grayMix4 my-4">
+        {title}
+      </Heading>
+      <Chart series={series} type="bar" options={options} height={height} />
+      <div className="flex flex-col md:flex-row gap-8 mt-8">
+        {metaData.map(({ value, label }, idx) => (
+          <div key={idx} className="flex flex-col">
+            <Heading headingLevel={3} size="H3" className="font-bold">
+              {value}
+            </Heading>
+            <Heading headingLevel={6} size="H6" className="font-bold">
+              {label}
+            </Heading>
+          </div>
+        ))}
       </div>
     </div>
   );

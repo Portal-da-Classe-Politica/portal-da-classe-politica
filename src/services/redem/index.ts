@@ -12,9 +12,9 @@ const axiosInstance = axios.create({
 const config = new Configuration({ basePath: Constants.api.baseURL });
 
 export const redem = {
-  abrangency: new AbrangencyApi(config, '', axiosInstance),
-  candidate: new CandidateApi(config, '', axiosInstance),
-  electoralUnit: new ElectoralUnitApi(config, '', axiosInstance),
-  consult: new ConsultApi(config, '', axiosInstance),
-  indicators: new IndicatorsApi(config, '', axiosInstance),
+  abrangency: new AbrangencyApi(config, Constants.api.baseURL, axiosInstance),
+  candidate: new CandidateApi(config, Constants.api.baseURL, axiosInstance),
+  electoralUnit: new ElectoralUnitApi(config, Constants.api.baseURL, axiosInstance),
+  consult: new ConsultApi(config, Constants.api.baseURL, axiosInstance),
+  indicators: new IndicatorsApi(config, Constants.api.baseURL, axiosInstance),
 };

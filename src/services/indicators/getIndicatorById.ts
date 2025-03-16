@@ -41,5 +41,17 @@ export const getIndicatorById = async (id: string, params: IndicatorParams) => {
     params.unidadesEleitorais,
   );
 
-  return { path: request.path, data };
+  const details = [
+    {
+      title: 'Para que serve este Indicador?',
+      text: data.data?.indicator_detail?.indicator_purpose,
+    },
+    {
+      title: 'Como Interpretar?',
+      text: data.data?.indicator_detail?.how_to_interpretate,
+    },
+  ].filter(d => d.text && d.title);
+
+  const parsed = { ...data, details };
+  return { path: request.path, data: parsed };
 };
