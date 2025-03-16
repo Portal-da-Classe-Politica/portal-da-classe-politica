@@ -6,6 +6,7 @@ import { Divider } from '@components/Divider';
 import dynamic from 'next/dynamic';
 import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
 import { Constants } from '@constants';
+import { CarouselView } from '@components/CarouselView';
 
 const BlogPost = dynamic(() => import('@components/sections/BlogPosts'), {
   ssr: false,
@@ -30,30 +31,32 @@ const Page = async () => {
       <section className="pb-12 pt-12 md:pt-32">
         <Container className="flex flex-col items-center">
           <div className="flex flex-col h-full md:flex-row gap-4 md:gap-14">
-            <div className="h-[370px] md:h-[480px]">
-              <CardPost
-                alt={' Eleição 2024: A Persistente Sub-Representação de Mulheres na Política'}
-                category={['Leitura de 5min']}
-                customHeight={250}
-                title={'Eleição 2024: A Persistente Sub-Representação de Mulheres na Política'}
-                subTitle={
-                  'Partidos controlam recursos políticos vitais e desde 2009, devem investir 5% do Fundo Partidário anual para fomentar a participação feminina na política.'
-                }
-                src={Constants.images.reputacaoMulher}
-                type="Primary"
-                href="/blog/reputacao-mulher"
-              />
-            </div>
-
-            <div className="flex flex-col gap-6">
-              <div className="md:h-[227px]">
+            <CarouselView>
+              <div className="h-[370px] md:h-[480px]">
+                <CardPost
+                  alt={'Eleição 2024: A Persistente Sub-Representação de Mulheres na Política'}
+                  category={['Leitura de 5min']}
+                  customHeight={270}
+                  title={'Eleição 2024: A Persistente Sub-Representação de Mulheres na Política'}
+                  subTitle={
+                    'Partidos controlam recursos políticos vitais e desde 2009, devem investir 5% do Fundo Partidário anual para fomentar a participação feminina na política.'
+                  }
+                  src={Constants.images.reputacaoMulher}
+                  type="Primary"
+                  href="/blog/reputacao-mulher"
+                />
+              </div>
+              <div className="h-[370px] md:h-[480px]">
                 <CardPost
                   alt={
                     'A promoção da participação política das mulheres parcialmente realizada pelos partidos políticos'
                   }
-                  type="Secondary"
+                  type="Primary"
                   category={['Leitura de 5min']}
-                  customHeight={90}
+                  customHeight={270}
+                  subTitle={
+                    'Os partidos políticos controlam os principais recursos presentes hoje na política'
+                  }
                   title={
                     'A promoção da participação política das mulheres parcialmente realizada pelos partidos políticos'
                   }
@@ -61,22 +64,24 @@ const Page = async () => {
                   href="/blog/promo-part"
                 />
               </div>
-              <div className="md:h-[227px]">
+              <div className="h-[370px] md:h-[480px]">
                 <CardPost
                   alt={
                     'A participação feminina na liderança partidária e o cumprimento das cotas financeiras para mulheres '
                   }
-                  type="Secondary"
+                  type="Primary"
                   category={['Leitura de 5min']}
-                  customHeight={90}
+                  customHeight={270}
                   title={
                     'A participação feminina na liderança partidária e o cumprimento das cotas financeiras para mulheres '
                   }
+                  subTitle=" A persistente sub-representação feminina na política é uma questão de grande relevância e
+                        complexidade"
                   src={Constants.images.partFemLid}
                   href="/blog/part-fem-lid"
                 />
               </div>
-            </div>
+            </CarouselView>
           </div>
           <Divider type="darkerGray" top="small" bottom="small" />
           <BlogPost />
