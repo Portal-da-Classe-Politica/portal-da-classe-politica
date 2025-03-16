@@ -24,10 +24,10 @@ type Props<T extends BaseProps> = T & ConditionalProps<T>;
 const Primary = ({ title, subTitle }: { title: string; subTitle?: string; href: string }) => {
   return (
     <>
-      <div className="flex flex-1 flex-col items-start md:items-center">
-        <Text className="font-bold md:text-s1 text-b1 mb-2">{title}</Text>
+      <div className="flex flex-1 flex-col items-start">
+        <Text className="font-bold md:text-s1 text-b1 mb-2 text-left">{title}</Text>
         {subTitle && (
-          <Text size={'B2'} className="flex-1">
+          <Text size={'B2'} className="flex-1 text-left">
             {subTitle}
           </Text>
         )}
