@@ -3,7 +3,7 @@ import { redem } from '../redem';
 
 export const getFilters = async () => {
   try {
-    const response = await redem.consult.getCandidateFilters('candidate');
+    const response = await redem.consult.getCandidateFilters('candidates');
     return {
       estados: filterToOptions(response.data.data?.estado?.values || [], 'sigla_unidade_federacao', 'nome'),
       cargos: filterToOptions(response.data.data?.cargo?.values || [], 'id', 'nome_cargo'),
