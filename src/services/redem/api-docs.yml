@@ -535,6 +535,37 @@ paths:
                     type: string
                     example: Erro ao buscar os votos
 
+  /noauth//candidate/kpis/{candidatoId}:
+    get:
+      operationId: 'getCandidateKpis'
+      tags:
+        - candidate
+      summary: KPIs candidato pelo id
+      parameters:
+        - in: path
+          name: candidatoId
+          schema:
+            type: string
+          required: true
+          example: '415180'
+          description: Id do candidato para detalhe
+      responses:
+        '200':
+          description: Resposta bem-sucedida com detalhes do candidato.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                  message:
+                    type: string
+                    example: 'Candidato encontrado com sucesso.'
+
   # Consult
   # Consult - Filters
   /noauth/candidate/get-filters:

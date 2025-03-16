@@ -687,6 +687,31 @@ export interface GetCandidateFilters500Response {
 /**
  *
  * @export
+ * @interface GetCandidateKpis200Response
+ */
+export interface GetCandidateKpis200Response {
+  /**
+   *
+   * @type {boolean}
+   * @memberof GetCandidateKpis200Response
+   */
+  success?: boolean;
+  /**
+   *
+   * @type {object}
+   * @memberof GetCandidateKpis200Response
+   */
+  data?: object;
+  /**
+   *
+   * @type {string}
+   * @memberof GetCandidateKpis200Response
+   */
+  message?: string;
+}
+/**
+ *
+ * @export
  * @interface GetCandidateLastElectionVoteByRegion200Response
  */
 export interface GetCandidateLastElectionVoteByRegion200Response {
@@ -1421,6 +1446,47 @@ export const CandidateApiAxiosParamCreator = function (configuration?: Configura
       };
     },
     /**
+     *
+     * @summary KPIs candidato pelo id
+     * @param {string} candidatoId Id do candidato para detalhe
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCandidateKpis: async (
+      candidatoId: string,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'candidatoId' is not null or undefined
+      assertParamExists('getCandidateKpis', 'candidatoId', candidatoId);
+      const localVarPath = `/noauth//candidate/kpis/{candidatoId}`.replace(
+        `{${'candidatoId'}}`,
+        encodeURIComponent(String(candidatoId)),
+      );
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
      * Busca candidato com base no id
      * @summary Votos por cidade da ultima eleicao do candidato
      * @param {string} candidatoId Id do candidato para detalhe
@@ -1600,6 +1666,29 @@ export const CandidateApiFp = function (configuration?: Configuration) {
         )(axios, localVarOperationServerBasePath || basePath);
     },
     /**
+     *
+     * @summary KPIs candidato pelo id
+     * @param {string} candidatoId Id do candidato para detalhe
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getCandidateKpis(
+      candidatoId: string,
+      options?: RawAxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetCandidateKpis200Response>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getCandidateKpis(candidatoId, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['CandidateApi.getCandidateKpis']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
      * Busca candidato com base no id
      * @summary Votos por cidade da ultima eleicao do candidato
      * @param {string} candidatoId Id do candidato para detalhe
@@ -1727,6 +1816,19 @@ export const CandidateApiFactory = function (
       return localVarFp.getCandidate(candidatoId, options).then(request => request(axios, basePath));
     },
     /**
+     *
+     * @summary KPIs candidato pelo id
+     * @param {string} candidatoId Id do candidato para detalhe
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCandidateKpis(
+      candidatoId: string,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetCandidateKpis200Response> {
+      return localVarFp.getCandidateKpis(candidatoId, options).then(request => request(axios, basePath));
+    },
+    /**
      * Busca candidato com base no id
      * @summary Votos por cidade da ultima eleicao do candidato
      * @param {string} candidatoId Id do candidato para detalhe
@@ -1800,6 +1902,20 @@ export class CandidateApi extends BaseAPI {
   public getCandidate(candidatoId: string, options?: RawAxiosRequestConfig) {
     return CandidateApiFp(this.configuration)
       .getCandidate(candidatoId, options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   *
+   * @summary KPIs candidato pelo id
+   * @param {string} candidatoId Id do candidato para detalhe
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CandidateApi
+   */
+  public getCandidateKpis(candidatoId: string, options?: RawAxiosRequestConfig) {
+    return CandidateApiFp(this.configuration)
+      .getCandidateKpis(candidatoId, options)
       .then(request => request(this.axios, this.basePath));
   }
 
