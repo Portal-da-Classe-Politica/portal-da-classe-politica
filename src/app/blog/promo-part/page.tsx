@@ -37,14 +37,14 @@ const Page = () => {
               alt={'vote'}
             />
           </div>
-          <Text className="mb-3">
+          <Text className="mb-6 text-blog">
             Os partidos políticos controlam os principais recursos presentes hoje na política: além de cargos
             no Executivo e Legislativo, eles recrutam, selecionam candidatos e distribuem todo o dinheiro
             público que é destinado às eleições e à formação política. Os partidos brasileiros são obrigados,
             desde 2009, a destinar ao menos 5% do Fundo Partidário anual à criação e manutenção de programas
             que incentivem a participação de mulheres na política.
           </Text>
-          <Text className="mb-3">
+          <Text className="mb-6 text-blog">
             A partir de 2015 há uma mudança gradativa na legislação para que esse recurso seja gerido pela
             secretaria da mulher do partido ou instituto presidido por ela, tendo CNPJ próprio e autonomia em
             relação às decisões partidárias. Apesar de haver incentivo na legislação, não há obrigação
@@ -53,7 +53,7 @@ const Page = () => {
             se os partidos distribuem os recursos para a promoção da participação da mulher na política,
             analisamos as prestações de contas anuais de dez partidos políticos, de 1996 a 2021
           </Text>
-          <Text className="mb-3">
+          <Text className="mb-6 text-blog">
             Os partidos políticos são obrigados, além das prestações de contas eleitorais, a realizar a
             prestação de contas de seus recursos próprios e do Fundo Partidário anualmente. Essas despesas são
             relativas à manutenção da organização. Até 2015 as prestações do órgão nacional dos partidos eram
@@ -101,7 +101,7 @@ const Page = () => {
               </a>
             </span>
           </Text>
-          <Text className="mb-3">
+          <Text className="mb-6 text-blog">
             Há uma variação considerável nas proporções, como o alto investimento (19 e 22%) do PL em 2020 e
             2021, e nulo nos dois anos anteriores. A partir de 2019 o PT passa a investir mais que 5%, mas nos
             anos anteriores é ínfimo o repasse. O não cumprimento generalizado do repasse pode ser fruto da
@@ -115,7 +115,7 @@ const Page = () => {
               </a>
             </sup>
           </Text>
-          <Text className="mb-3">
+          <Text className="mb-6 text-blog">
             Os incentivos institucionais, mais presentes na última década, pressionam a elite partidária -
             predominantemente branca e masculina - a mudar a sua atuação. Contudo, alguns estudos já têm
             mostrado que os partidos acabam subvertendo as regras formais para continuar o jogando da forma
@@ -128,7 +128,7 @@ const Page = () => {
           <Heading headingLevel={2} size={'H5'} className="w-full mb-3 font-bold">
             Resumo
           </Heading>
-          <Text className="mb-3">
+          <Text className="mb-6 text-blog">
             Os partidos políticos desempenham um papel crucial na política, controlando recursos importantes
             como cargos, seleção de candidatos (as) e financiamento. Desde 2009, a legislação brasileira
             obriga os partidos a destinar pelo menos 5% do Fundo Partidário anual para incentivar a

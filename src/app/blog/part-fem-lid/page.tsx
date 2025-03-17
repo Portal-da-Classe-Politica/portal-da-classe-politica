@@ -37,7 +37,7 @@ const Page = () => {
               alt={'vote'}
             />
           </div>
-          <Text className="mb-3">
+          <Text className="mb-6 text-blog">
             A persistente sub-representação feminina na política é uma questão de grande relevância e
             complexidade. Pesquisas sobre essa temática têm apontado o financiamento de campanhas como um
             fator central na manutenção da desigualdade de gênero nesse processo. Numa disputa eleitoral, a
@@ -45,7 +45,7 @@ const Page = () => {
             apoio partidário e tendo redes de financiamento mais restritas. Além disso, muitas vezes investem
             menos recursos próprios em suas campanhas, o que limita suas chances de sucesso eleitoral.
           </Text>
-          <Text className="mb-3">
+          <Text className="mb-6 text-blog">
             Dentro desse cenário, investigamos como a participação feminina na estrutura organizacional dos
             partidos políticos pode influenciar a distribuição de recursos financeiros de campanha a favor das
             candidatas. Evidências anteriores já indicaram que partidos com maior presença feminina tendem a
@@ -53,13 +53,13 @@ const Page = () => {
             partidária tem sido relacionada com o aumento no número de candidatas e a probabilidade de eleição
             de mulheres, variando conforme o contexto institucional.
           </Text>
-          <Text className="mb-3">
+          <Text className="mb-6 text-blog">
             Nas eleições de 2018 e 2022, observamos um aumento significativo na centralidade dos partidos
             políticos. Esse fenômeno se evidenciou pelo fato da maior parte dos fundos mobilizados para as
             disputas eleitorais ter sido direcionada pelas lideranças partidárias. Tal fato destaca o papel
             central dos partidos na gestão e distribuição dos recursos de campanha.
           </Text>
-          <Text className="mb-3">
+          <Text className="mb-6 text-blog">
             Nosso levantamento mostrou que a presença de mulheres na presidência estadual e na secretaria
             geral dos partidos está correlacionada a um aumento significativo nos recursos destinados às
             candidatas e na chance de os partidos cumprirem as cotas de gênero no financiamento público de
@@ -176,7 +176,7 @@ const Page = () => {
             </thead>
           </table>
 
-          <Text className="mt-6 mb-3">
+          <Text className="mt-6 mb-6 text-blog">
             Esse panorama reflete a necessidade urgente de transformar a cultura política e as estruturas
             partidárias para promover a inclusão e a igualdade de gênero, garantindo que as mulheres tenham as
             mesmas oportunidades de competir e vencer nas eleições. A mudança começa com a reestruturação
@@ -186,14 +186,14 @@ const Page = () => {
           <Heading headingLevel={2} size="H5" className="w-full font-bold mb-3">
             Resumo
           </Heading>
-          <Text className="mb-3">
+          <Text className="mb-6 text-blog">
             Na disputa eleitoral, mulheres, em geral, enfrentam desafios mais rigorosos em comparação aos
             homens, recebendo menor apoio partidário e possuindo redes de financiamento mais restritas. Este
             texto mostra como a participação feminina na estrutura organizacional partidária pode atuar como
             um catalisador da representação política de mulheres por meio da distribuição de recursos
             financeiros de campanha.
           </Text>
-          <Text className="mb-3">
+          <Text className="mb-6 text-blog">
             Os dados analisados apontam que diretórios estaduais nos quais mulheres ocuparam a presidência ou
             a secretaria geral destinaram mais recursos públicos eleitorais às suas candidatas. Além disso, a
             presença feminina nesses cargos aumenta a chance de os partidos cumprirem as cotas de gênero no

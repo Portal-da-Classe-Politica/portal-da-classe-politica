@@ -44,6 +44,7 @@ const config: Config = {
         c1: ['0.875em', '1.2143em'], // 14px - 17px
         c2: ['0.75em', '1em'], // 12px - 12px
         min: ['0.625em', '1.2em'], // 10px - 12px
+        blog: ['1em', '2em'], // 16px - 32px
       },
       colors: {
         orangeLight1: '#F9D1C5',

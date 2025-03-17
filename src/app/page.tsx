@@ -71,7 +71,7 @@ const Home = () => {
         </Container>
       </section>
 
-      <section className=" pt-10 md:pt-20 pb-14 md:pb-28">
+      <section className=" pt-10 md:pt-20 pb-14 md:pb-20">
         <Container>
           <div className=" md:max-w-[854px] mb-8">
             <Heading headingLevel={2}>Análises e Treinamentos </Heading>

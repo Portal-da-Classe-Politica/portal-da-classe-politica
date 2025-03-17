@@ -50,7 +50,7 @@ const MarkdownSection = ({ id }: { id: string }) => {
                     font-family: Montserrat;
                   }
                   .markdown-body p {
-
+                    line-height: 32px
                   }
                 `}
                 </style>

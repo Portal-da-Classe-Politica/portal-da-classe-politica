@@ -10,7 +10,6 @@ import { SpecialContents } from '@components/sections/SpecialContents';
 import CandidateProfile from '@components/cadidates/CandidateProfile';
 import { Divider } from '@components/Divider';
 import TextBetween from '@components/base/text/TextBetween';
-import { BoxData } from '@components/box/BoxData';
 
 import { cleanString, dayjs } from '@utils';
 import { CandidateService } from '@services/candidates/CandidateService';
@@ -18,19 +17,12 @@ import { formatCurrency } from '@utils/formatCurrency';
 
 import { LastElectionsChart } from '@components/charts/LastElectionsChart';
 import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
-import { CandidateKpi } from '@services/candidates/getCandidateKpiById';
+
+import { KpiBox } from './components/KpiBox';
 
 const Page = async ({ params: { id } }: { params: { id: string } }) => {
   const candidate = await CandidateService.getCandidateById(id);
   const kpis = await CandidateService.getCandidateKpiById(id);
-
-  const boxHeader = (kpi: CandidateKpi) => {
-    return kpi.unity === 'text' ? kpi.name : `${kpi.unity} ${kpi.value}`;
-  };
-
-  const boxTitle = (kpi: CandidateKpi) => {
-    return kpi.unity === 'text' ? String(kpi.value) : kpi.name;
-  };
 
   const formatAge = (age: string | undefined) => {
     return age ? `${dayjs(age).age()} anos (${dayjs(age).format('DD/MM/YYYY')})` : '-';
@@ -62,8 +54,8 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
           <Container className="flex flex-col items-center mt-24">
             <div className="flex flex-col lg:flex-row w-full gap-8">
               <div className="w-full">
-                <div className="flex gap-6 flex-col xl:flex-row place-content-center">
-                  <CandidateProfile src={'/img/Person.png'} candidate={candidate} />
+                <div className="flex w-full gap-6 flex-col xl:flex-row place-content-center">
+                  <CandidateProfile candidate={candidate} />
                 </div>
 
                 <Divider type="orange" bottom="small" top="small" />
@@ -88,14 +80,9 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
                 </div>
                 <div className="mt-10 grid grid-cols-2 gap-4 ">
                   {kpis?.map((kpi, idx) => {
-                    return kpi.value ? (
+                    return kpi.value !== '' ? (
                       <div key={idx} className="">
-                        <BoxData
-                          header={boxHeader(kpi)}
-                          title={boxTitle(kpi)}
-                          content={kpi.description}
-                          variant="orange"
-                        />
+                        <KpiBox kpi={kpi} variant="orange" />
                       </div>
                     ) : null;
                   })}

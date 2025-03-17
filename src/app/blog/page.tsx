@@ -27,10 +27,13 @@ const Page = async () => {
       </section>
 
       <section className="pb-12 pt-12 md:pt-20">
-        <Container className="flex flex-col items-center">
-          <div className="flex flex-col h-full md:flex-row gap-4 md:gap-14">
+        <Container>
+          <div className="m-auto">
             <Carousel />
           </div>
+        </Container>
+
+        <Container className="flex flex-col items-center">
           <Divider type="darkerGray" top="small" bottom="small" />
           <BlogPost />
         </Container>

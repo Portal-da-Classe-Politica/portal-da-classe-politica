@@ -1,13 +1,14 @@
 import { Constants } from '@constants';
-
-import { CardPost } from '@components/CardPost';
 import { CarouselView } from '@components/carousel/CarouselView';
+
+import { CarouselItem } from './CarouselItem';
 
 export const Carousel = () => {
   return (
     <CarouselView>
       <div className="h-[370px] md:h-[480px]">
-        <CardPost
+        <CarouselItem
+          className="rounded-b-[0px]"
           alt={'Eleição 2024: A Persistente Sub-Representação de Mulheres na Política'}
           category={['Leitura de 5min']}
           customHeight={270}
@@ -21,7 +22,8 @@ export const Carousel = () => {
         />
       </div>
       <div className="h-[370px] md:h-[480px]">
-        <CardPost
+        <CarouselItem
+          className="rounded-b-[0px]"
           alt={
             'A promoção da participação política das mulheres parcialmente realizada pelos partidos políticos'
           }
@@ -37,7 +39,8 @@ export const Carousel = () => {
         />
       </div>
       <div className="h-[370px] md:h-[480px]">
-        <CardPost
+        <CarouselItem
+          className="rounded-b-[0px]"
           alt={
             'A participação feminina na liderança partidária e o cumprimento das cotas financeiras para mulheres '
           }
