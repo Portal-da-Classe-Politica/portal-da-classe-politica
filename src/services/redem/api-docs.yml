@@ -2612,3 +2612,179 @@ paths:
                     type: array
                     items:
                       type: object
+  /noauth/candidate/biggest-donors/{candidatoId}:
+    get:
+      operationId: 'getCandidateBiggestDonors'
+      tags:
+        - candidato
+      summary: Maiores doadores de um candidato
+      description: Retorna os principais doadores de um candidato.
+      parameters:
+        - in: path
+          name: candidatoId
+          required: true
+          schema:
+            type: string
+          description: ID do candidato
+      responses:
+        '200':
+          description: Lista de doadores.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        doador:
+                          type: string
+                        valor:
+                          type: number
+        '400':
+          description: Requisição inválida.
+
+  /noauth/candidate/cargos:
+    get:
+      operationId: 'getCandidatePositions'
+      tags:
+        - candidato
+      summary: Lista de cargos dos candidatos
+      description: Retorna os cargos políticos disponíveis.
+      responses:
+        '200':
+          description: Lista de cargos encontrados.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        nome:
+                          type: string
+
+  /noauth/indicadores/geographical-filters/uf-votes:
+    get:
+      operationId: 'getUfVotes'
+      tags:
+        - indicadores
+      summary: Votos por UF
+      description: Retorna a contagem de votos por estado.
+      responses:
+        '200':
+          description: Lista de votos por UF.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        uf:
+                          type: string
+                        votos:
+                          type: integer
+
+  /noauth/indicadores/geographical-filters/uf-votes/{uf}:
+    get:
+      operationId: 'getVotesByUf'
+      tags:
+        - indicadores
+      summary: Votos por estado específico
+      description: Retorna os votos para um estado específico.
+      parameters:
+        - in: path
+          name: uf
+          required: true
+          schema:
+            type: string
+          description: Sigla do estado 
+      responses:
+        '200':
+          description: Lista de votos do estado.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+                    properties:
+                      uf:
+                        type: string
+                      votos:
+                        type: integer
+  /noauth/indicadores/{type}:
+    get:
+      operationId: 'getIndicatorsByType'
+      tags:
+        - indicadores
+      summary: Indicadores por tipo
+      description: Retorna indicadores políticos com base no tipo.
+      parameters:
+        - in: path
+          name: type
+          required: true
+          schema:
+            type: string
+          description: Tipo de indicador 
+      responses:
+        '200':
+          description: Lista de indicadores.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+
+  /noauth/party:
+    get:
+      operationId: 'getParties'
+      tags:
+        - partido
+      summary: Lista de partidos políticos
+      description: Retorna uma lista de todos os partidos registrados.
+      responses:
+        '200':
+          description: Lista de partidos.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        nome:
+                          type: string
+                        sigla:
+                          type: string
