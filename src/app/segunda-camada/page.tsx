@@ -70,7 +70,7 @@ const Page = () => {
     params.append('uf', consultFilters.uf);
 
     setResult({ loading: true, data: null });
-
+    console.log('chama carai');
     const url = `/api/indicators/${consultFilters.indicator}?${params.toString()}`;
     fetch(url)
       .then(res => res.json())

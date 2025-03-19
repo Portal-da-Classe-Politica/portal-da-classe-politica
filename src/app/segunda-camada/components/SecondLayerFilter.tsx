@@ -6,7 +6,7 @@ import { DatePicker } from '@components/DatePicker';
 import { Constants } from '@constants';
 import { useObjReducer } from '@hooks/useObjReducer';
 import { consultSearchParam } from '@routes';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { FilterSelect } from './FilterSelect';
 
 interface FilterProps {
@@ -35,6 +35,7 @@ const FilterCandidateProfile = ({ onConsult, filters }: FilterProps) => {
       description="São quatro instrumentos úteis para analisar e compreender a dinâmica das eleições e do sistema eleitoral."
       onConsult={onConsult}
       filters={filters}
+      pos={1}
     />
   );
 };
@@ -45,6 +46,7 @@ const FilterElectionResult = ({ onConsult, filters }: FilterProps) => {
       description="São quatro instrumentos úteis para analisar e compreender as aspirações e estratégias de carreira dos candidatos."
       onConsult={onConsult}
       filters={filters}
+      pos={2}
     />
   );
 };
@@ -55,6 +57,7 @@ const FilterVote = ({ onConsult, filters }: FilterProps) => {
       description="São quatro instrumentos úteis para analisar e compreender a distribuição espacial dos votos e a competitividade regional."
       onConsult={onConsult}
       filters={filters}
+      pos={3}
     />
   );
 };
@@ -65,6 +68,7 @@ const FilterFinancing = ({ onConsult, filters }: FilterProps) => {
       description="São quatro instrumentos úteis para analisar e compreender as dinâmicas econômica e financeira das campanhas eleitorais."
       onConsult={onConsult}
       filters={filters}
+      pos={4}
     />
   );
 };
@@ -74,11 +78,13 @@ const FilterComponent = ({
   longDescription = '',
   onConsult,
   filters,
+  pos,
 }: {
   description: string;
   longDescription?: string;
   onConsult: (_filters: any) => void;
   filters: SecondLayerFilters;
+  pos: number;
 }) => {
   const [values, setValues] = useObjReducer({
     initialYear: (filters?.years && filters?.years[0]) ?? 2020,
@@ -98,16 +104,36 @@ const FilterComponent = ({
 
   const [electoralUnits, setElectoralUnits] = useState([]);
   const [loadingElectoralUnits, setLoadingElectoralUnits] = useState(false);
+  const [ufVotes, setUfVotes] = useState([]);
+
+  useEffect(() => {
+    if (pos === 3) {
+      fetch('/api/indicators/ufvotes')
+        .then(res => res.json())
+        .then(data => setUfVotes(data));
+    }
+  }, []);
 
   const loadElectoralUnits = useCallback((ufId: string) => {
     setLoadingElectoralUnits(true);
-    fetch(`/api/electoralUnit?abrangecyId=${Constants.abrangency.municipal}&uf=${ufId}`)
-      .then(res => res.json())
-      .then(data => {
-        setElectoralUnits(data);
-      })
-      .catch(error => console.info(error))
-      .finally(() => setLoadingElectoralUnits(false));
+    console.log('vdr', isDVR);
+    if (isDVR) {
+      fetch(`/api/indicators/ufvotes/${ufId}`)
+        .then(res => res.json())
+        .then(data => {
+          setElectoralUnits(data);
+        })
+        .catch(error => console.info(error))
+        .finally(() => setLoadingElectoralUnits(false));
+    } else {
+      fetch(`/api/electoralUnit?abrangecyId=${Constants.abrangency.municipal}&uf=${ufId}`)
+        .then(res => res.json())
+        .then(data => {
+          setElectoralUnits(data);
+        })
+        .catch(error => console.info(error))
+        .finally(() => setLoadingElectoralUnits(false));
+    }
   }, []);
 
   // :: Change Handlers
@@ -122,8 +148,11 @@ const FilterComponent = ({
   const onUfChange = (value: any, uf: any) => {
     setValues({ uf: value, electoralUnit: '' });
 
-    if (getSelectedJob()?.filterByCity && Number(value) !== Constants.brazil) {
-      loadElectoralUnits(uf.code);
+    if (
+      (getSelectedJob()?.filterByCity && Number(value) !== Constants.brazil) ||
+      (isDVR && value !== 'Brasil')
+    ) {
+      loadElectoralUnits(uf.code || uf.value);
     }
   };
 
@@ -147,7 +176,11 @@ const FilterComponent = ({
       errors.uf = 'Selecione um estado';
     }
 
-    if (isFilterByCityRequired() && !values.electoralUnit) {
+    if (
+      (isFilterByCityRequired() && !values.electoralUnit) ||
+      (isDVR && !values.electoralUnit && values.uf !== 'Brasil')
+    ) {
+      console.log('oioioioioio', values.uf);
       errors.electoralUnit = 'Selecione uma cidade';
     }
 
@@ -166,6 +199,8 @@ const FilterComponent = ({
 
   // :: Gets
   const getJob = (value: any) => {
+    console.log('getjob', filters.jobs);
+    //indicator é o indicador pra fazer o filtro
     return filters.jobs[values.indicator]?.find(j => j.value === value);
   };
 
@@ -174,6 +209,12 @@ const FilterComponent = ({
   const isFilterByCityRequired = () => {
     return getSelectedJob()?.filterByCity && Number(values.uf) !== Constants.brazil;
   };
+
+  //distribuição de votos por regiao
+  const isDVR = values.indicator === '9';
+
+  //indicie de concentração regional
+  //const isICRV = values.indicator === '10';
 
   return (
     <div className="text-white w-full min-h-[220px]">
@@ -215,8 +256,8 @@ const FilterComponent = ({
                 />
               </div>
             )}
-
-            {(getSelectedJob()?.filterByUf || getSelectedJob()?.filterByCity) && (
+            <>{console.log('o ufs', filters.ufs)}</>
+            {(getSelectedJob()?.filterByUf || getSelectedJob()?.filterByCity) && !isDVR && (
               <div className="inline md:w-[40%] min-w-[50px]">
                 <FilterSelect
                   options={filters.ufs}
@@ -229,7 +270,41 @@ const FilterComponent = ({
               </div>
             )}
 
+            {isDVR && (
+              <div className="inline md:w-[40%] min-w-[50px]">
+                <FilterSelect
+                  options={ufVotes}
+                  defaultValue={values.uf}
+                  placeholder="Selecione um estado"
+                  label="Estado"
+                  onSelect={onUfChange}
+                  error={errors.uf}
+                />
+              </div>
+            )}
+
+            {values.uf &&
+              values.uf !== 'Brasil' &&
+              isDVR &&
+              (loadingElectoralUnits ? (
+                <div className="flex items-center justify-center">
+                  <Loader />
+                </div>
+              ) : (
+                <div className="inline md:w-[40%] min-w-[50px]">
+                  <FilterSelect
+                    options={electoralUnits}
+                    defaultValue={values.electoralUnit}
+                    placeholder="Selecione uma cidade"
+                    label="Cidade"
+                    onSelect={onElectoralUnitChange}
+                    error={errors.electoralUnit}
+                  />
+                </div>
+              ))}
+
             {isFilterByCityRequired() &&
+              !isDVR &&
               (loadingElectoralUnits ? (
                 <div className="flex items-center justify-center">
                   <Loader />

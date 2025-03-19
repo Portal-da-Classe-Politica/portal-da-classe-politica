@@ -9,6 +9,10 @@ export const parseIndicatorParameters = (params: URLSearchParams) => {
     initialYear: Number(params.get('initialYear')),
     finalYear: Number(params.get('finalYear')),
     cargoId: Number(params.get('cargoId')),
-    unidadesEleitorais: unidadesEleitorais.filter(n => Boolean(n)).map(n => Number(n)),
+    unidadesEleitorais: unidadesEleitorais
+      .filter(n => Boolean(n))
+      .map(n => Number(n))
+      .filter(n => !isNaN(n)),
+    uf: uf || '',
   };
 };

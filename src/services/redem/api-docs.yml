@@ -2219,6 +2219,11 @@ paths:
               type: string
           required: false
           description: Ids das unidades eleitorais desejadas
+        - in: query
+          name: UF
+          schema:
+            type: string
+          required: false
       responses:
         '200':
           description: Resposta bem-sucedida com os indicadores possiveis.

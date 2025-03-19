@@ -5,6 +5,7 @@ export interface IndicatorParams {
   finalYear: number;
   cargoId: number;
   unidadesEleitorais?: number[];
+  uf?: string;
 }
 
 const indicatorsMap = {
@@ -39,6 +40,7 @@ export const getIndicatorById = async (id: string, params: IndicatorParams) => {
     params.finalYear,
     params.cargoId,
     params.unidadesEleitorais,
+    params.uf,
   );
 
   const details = [

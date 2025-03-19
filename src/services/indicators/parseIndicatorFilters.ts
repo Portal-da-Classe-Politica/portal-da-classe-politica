@@ -7,7 +7,10 @@ export const parseIndicatorFilters = (indicators: any) => {
     jobs: {},
   };
 
+  console.log('INDICATOOOOR', indicators);
+
   for (const ind of indicators || []) {
+    console.log('indpo', ind);
     result.indicators.push({ value: ind.id, label: ind.nome });
     result.jobs[ind.id] = ind.cargos.map((c: any) => ({
       value: c.id,

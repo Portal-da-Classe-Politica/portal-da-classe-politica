@@ -6311,6 +6311,7 @@ export const IndicatorsApiAxiosParamCreator = function (configuration?: Configur
      * @param {number} finalYear Ano final do intervalo.
      * @param {number} [cargoId] cargo desejado
      * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {string} [uF]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -6319,6 +6320,7 @@ export const IndicatorsApiAxiosParamCreator = function (configuration?: Configur
       finalYear: number,
       cargoId?: number,
       unidadesEleitorais?: Array<string>,
+      uF?: string,
       options: RawAxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       // verify required parameter 'initialYear' is not null or undefined
@@ -6351,6 +6353,10 @@ export const IndicatorsApiAxiosParamCreator = function (configuration?: Configur
 
       if (unidadesEleitorais) {
         localVarQueryParameter['unidadesEleitorais'] = unidadesEleitorais;
+      }
+
+      if (uF !== undefined) {
+        localVarQueryParameter['UF'] = uF;
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -7203,6 +7209,7 @@ export const IndicatorsApiFp = function (configuration?: Configuration) {
      * @param {number} finalYear Ano final do intervalo.
      * @param {number} [cargoId] cargo desejado
      * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {string} [uF]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -7211,6 +7218,7 @@ export const IndicatorsApiFp = function (configuration?: Configuration) {
       finalYear: number,
       cargoId?: number,
       unidadesEleitorais?: Array<string>,
+      uF?: string,
       options?: RawAxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetElectoralIndicators200Response>
@@ -7220,6 +7228,7 @@ export const IndicatorsApiFp = function (configuration?: Configuration) {
         finalYear,
         cargoId,
         unidadesEleitorais,
+        uF,
         options,
       );
       const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
@@ -7725,6 +7734,7 @@ export const IndicatorsApiFactory = function (
      * @param {number} finalYear Ano final do intervalo.
      * @param {number} [cargoId] cargo desejado
      * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {string} [uF]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -7733,10 +7743,11 @@ export const IndicatorsApiFactory = function (
       finalYear: number,
       cargoId?: number,
       unidadesEleitorais?: Array<string>,
+      uF?: string,
       options?: RawAxiosRequestConfig,
     ): AxiosPromise<GetElectoralIndicators200Response> {
       return localVarFp
-        .getGeographical09(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+        .getGeographical09(initialYear, finalYear, cargoId, unidadesEleitorais, uF, options)
         .then(request => request(axios, basePath));
     },
     /**
@@ -8113,6 +8124,7 @@ export class IndicatorsApi extends BaseAPI {
    * @param {number} finalYear Ano final do intervalo.
    * @param {number} [cargoId] cargo desejado
    * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+   * @param {string} [uF]
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IndicatorsApi
@@ -8122,10 +8134,11 @@ export class IndicatorsApi extends BaseAPI {
     finalYear: number,
     cargoId?: number,
     unidadesEleitorais?: Array<string>,
+    uF?: string,
     options?: RawAxiosRequestConfig,
   ) {
     return IndicatorsApiFp(this.configuration)
-      .getGeographical09(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+      .getGeographical09(initialYear, finalYear, cargoId, unidadesEleitorais, uF, options)
       .then(request => request(this.axios, this.basePath));
   }
 
