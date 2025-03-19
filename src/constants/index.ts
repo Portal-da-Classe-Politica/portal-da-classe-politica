@@ -1,6 +1,6 @@
 export const Constants = {
   api: {
-    baseURL: process.env.REDEM_API,
+    baseURL: 'http://locahost:7000',
   },
   abrangency: {
     estatudal: '1',
