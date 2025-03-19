@@ -10,6 +10,7 @@ export const FilterSelect = ({
   label,
   error,
   onSelect,
+  searchable = false,
 }: {
   className?: string;
   options: Option[];
@@ -19,6 +20,7 @@ export const FilterSelect = ({
   error: string;
   // eslint-disable-next-line no-unused-vars
   onSelect: (value: number | string, option: Option) => void;
+  searchable?: boolean;
 }) => {
   return (
     <>
@@ -43,6 +45,7 @@ export const FilterSelect = ({
         }
         suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
         onSelect={onSelect}
+        searchable={searchable}
       />
       {error && <Text className="text-white font-bold">{error}</Text>}
     </>
