@@ -2,15 +2,7 @@ import axios from 'axios';
 
 import { Constants } from '@constants';
 import { Configuration } from './configuration';
-import {
-  AbrangencyApi,
-  CandidateApi,
-  ConsultApi,
-  ElectoralUnitApi,
-  IndicadoresApi,
-  IndicatorsApi,
-  PartidoApi,
-} from './api';
+import { AbrangencyApi, CandidateApi, ConsultApi, ElectoralUnitApi, IndicatorsApi, PartidoApi } from './api';
 
 const axiosInstance = axios.create({
   baseURL: Constants.api.baseURL,
@@ -25,6 +17,5 @@ export const redem = {
   electoralUnit: new ElectoralUnitApi(config, Constants.api.baseURL, axiosInstance),
   consult: new ConsultApi(config, Constants.api.baseURL, axiosInstance),
   indicators: new IndicatorsApi(config, Constants.api.baseURL, axiosInstance),
-  indicadores: new IndicadoresApi(config, Constants.api.baseURL, axiosInstance),
   parties: new PartidoApi(config, Constants.api.baseURL, axiosInstance),
 };

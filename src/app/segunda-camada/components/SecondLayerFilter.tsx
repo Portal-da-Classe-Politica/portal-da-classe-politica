@@ -6,7 +6,7 @@ import { DatePicker } from '@components/DatePicker';
 import { Constants } from '@constants';
 import { useObjReducer } from '@hooks/useObjReducer';
 import { consultSearchParam } from '@routes';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { FilterSelect } from './FilterSelect';
 
 interface FilterProps {
@@ -14,9 +14,28 @@ interface FilterProps {
   filters: SecondLayerFilters;
 }
 
+export interface SecondLayerStaticFilters {
+  years: number[];
+  ufs: { label: string; value: string }[];
+  ufVotes: { value: string; label: string }[];
+  parties: { value: string; label: string }[];
+}
+
+export interface SecondLayerSearchValues {
+  initialYear: string;
+  finalYear: string;
+  indicator: string;
+  job: string;
+  uf: string;
+  electoralUnit: string;
+  partyId: string;
+}
+
 interface SecondLayerFilters {
   years: number[];
   ufs: { label: string; value: string }[];
+  ufVotes: { value: string; label: string }[];
+  parties: { value: string; label: string }[];
   indicators: { label: string; value: string }[];
   jobs: Record<
     string,
@@ -35,7 +54,6 @@ const FilterCandidateProfile = ({ onConsult, filters }: FilterProps) => {
       description="São quatro instrumentos úteis para analisar e compreender a dinâmica das eleições e do sistema eleitoral."
       onConsult={onConsult}
       filters={filters}
-      pos={1}
     />
   );
 };
@@ -46,7 +64,6 @@ const FilterElectionResult = ({ onConsult, filters }: FilterProps) => {
       description="São quatro instrumentos úteis para analisar e compreender as aspirações e estratégias de carreira dos candidatos."
       onConsult={onConsult}
       filters={filters}
-      pos={2}
     />
   );
 };
@@ -57,7 +74,6 @@ const FilterVote = ({ onConsult, filters }: FilterProps) => {
       description="São quatro instrumentos úteis para analisar e compreender a distribuição espacial dos votos e a competitividade regional."
       onConsult={onConsult}
       filters={filters}
-      pos={3}
     />
   );
 };
@@ -68,7 +84,6 @@ const FilterFinancing = ({ onConsult, filters }: FilterProps) => {
       description="São quatro instrumentos úteis para analisar e compreender as dinâmicas econômica e financeira das campanhas eleitorais."
       onConsult={onConsult}
       filters={filters}
-      pos={4}
     />
   );
 };
@@ -78,13 +93,12 @@ const FilterComponent = ({
   longDescription = '',
   onConsult,
   filters,
-  pos,
 }: {
   description: string;
   longDescription?: string;
   onConsult: (_filters: any) => void;
   filters: SecondLayerFilters;
-  pos: number;
+  requiresUfVotes?: boolean;
 }) => {
   const [values, setValues] = useObjReducer({
     initialYear: (filters?.years && filters?.years[0]) ?? 2020,
@@ -93,6 +107,7 @@ const FilterComponent = ({
     job: '',
     uf: '',
     electoralUnit: '',
+    partyId: '',
   });
 
   const [errors, setErrors] = useObjReducer({
@@ -100,25 +115,23 @@ const FilterComponent = ({
     job: '',
     uf: '',
     electoralUnit: '',
+    partyId: '',
   });
 
   const [electoralUnits, setElectoralUnits] = useState([]);
   const [loadingElectoralUnits, setLoadingElectoralUnits] = useState(false);
-  const [ufVotes, setUfVotes] = useState([]);
 
-  useEffect(() => {
-    if (pos === 3) {
-      fetch('/api/indicators/ufvotes')
-        .then(res => res.json())
-        .then(data => setUfVotes(data));
-    }
-  }, []);
+  // Distribuição de votos por regiao ou Índice de Concentração Regional do Voto
+  const isDVR = ['9', '10'].includes(values.indicator);
+
+  // Índice de Concentração Regional do Voto
+  const isCVR = ['10'].includes(values.indicator);
 
   const loadElectoralUnits = useCallback((ufId: string) => {
     setLoadingElectoralUnits(true);
-    console.log('vdr', isDVR);
+
     if (isDVR) {
-      fetch(`/api/indicators/ufvotes/${ufId}`)
+      fetch(`/api/indicators/static-filters/ufVotes/${ufId}`)
         .then(res => res.json())
         .then(data => {
           setElectoralUnits(data);
@@ -160,9 +173,13 @@ const FilterComponent = ({
     setValues({ electoralUnit: value });
   };
 
+  const onPartyChange = (value: any) => {
+    setValues({ partyId: value });
+  };
+
   // :: Form Validation and Submit
   const validateForm = () => {
-    const errors = { indicator: '', job: '', uf: '', electoralUnit: '' };
+    const errors = { indicator: '', job: '', uf: '', electoralUnit: '', partyId: '' };
 
     if (!values.indicator) {
       errors.indicator = 'Selecione um indicador';
@@ -180,8 +197,11 @@ const FilterComponent = ({
       (isFilterByCityRequired() && !values.electoralUnit) ||
       (isDVR && !values.electoralUnit && values.uf !== 'Brasil')
     ) {
-      console.log('oioioioioio', values.uf);
       errors.electoralUnit = 'Selecione uma cidade';
+    }
+
+    if (isCVR && !values.partyId) {
+      errors.partyId = 'Selecione um Partido';
     }
 
     setErrors(errors);
@@ -199,8 +219,6 @@ const FilterComponent = ({
 
   // :: Gets
   const getJob = (value: any) => {
-    console.log('getjob', filters.jobs);
-    //indicator é o indicador pra fazer o filtro
     return filters.jobs[values.indicator]?.find(j => j.value === value);
   };
 
@@ -209,12 +227,6 @@ const FilterComponent = ({
   const isFilterByCityRequired = () => {
     return getSelectedJob()?.filterByCity && Number(values.uf) !== Constants.brazil;
   };
-
-  //distribuição de votos por regiao
-  const isDVR = values.indicator === '9';
-
-  //indicie de concentração regional
-  //const isICRV = values.indicator === '10';
 
   return (
     <div className="text-white w-full min-h-[220px]">
@@ -256,71 +268,89 @@ const FilterComponent = ({
                 />
               </div>
             )}
-            <>{console.log('o ufs', filters.ufs)}</>
-            {(getSelectedJob()?.filterByUf || getSelectedJob()?.filterByCity) && !isDVR && (
+
+            {isCVR && (
               <div className="inline md:w-[40%] min-w-[50px]">
                 <FilterSelect
-                  options={filters.ufs}
-                  defaultValue={values.uf}
-                  placeholder="Selecione um estado"
-                  label="Estado"
-                  onSelect={onUfChange}
-                  error={errors.uf}
+                  options={filters.parties}
+                  defaultValue={values.partyId}
+                  placeholder="Partido"
+                  label="Partido"
+                  onSelect={onPartyChange}
+                  error={errors.partyId}
                 />
               </div>
             )}
 
-            {isDVR && (
-              <div className="inline md:w-[40%] min-w-[50px]">
-                <FilterSelect
-                  options={ufVotes}
-                  defaultValue={values.uf}
-                  placeholder="Selecione um estado"
-                  label="Estado"
-                  onSelect={onUfChange}
-                  error={errors.uf}
-                />
-              </div>
+            {isDVR ? (
+              <>
+                {values.job && (
+                  <div className="inline md:w-[40%] min-w-[50px]">
+                    <FilterSelect
+                      options={filters.ufVotes}
+                      defaultValue={values.uf}
+                      placeholder="Selecione um estado"
+                      label="Estado"
+                      onSelect={onUfChange}
+                      error={errors.uf}
+                    />
+                  </div>
+                )}
+
+                {values.uf &&
+                  values.uf !== 'Brasil' &&
+                  (loadingElectoralUnits ? (
+                    <div className="flex items-center justify-center">
+                      <Loader />
+                    </div>
+                  ) : (
+                    <div className="inline md:w-[40%] min-w-[50px]">
+                      <FilterSelect
+                        options={electoralUnits}
+                        defaultValue={values.electoralUnit}
+                        placeholder="Selecione uma cidade"
+                        label="Cidade"
+                        onSelect={onElectoralUnitChange}
+                        error={errors.electoralUnit}
+                      />
+                    </div>
+                  ))}
+              </>
+            ) : (
+              <>
+                {(getSelectedJob()?.filterByUf || getSelectedJob()?.filterByCity) && (
+                  <div className="inline md:w-[40%] min-w-[50px]">
+                    <FilterSelect
+                      options={filters.ufs}
+                      defaultValue={values.uf}
+                      placeholder="Selecione um estado"
+                      label="Estado"
+                      onSelect={onUfChange}
+                      error={errors.uf}
+                    />
+                  </div>
+                )}
+
+                {values.uf &&
+                  isFilterByCityRequired() &&
+                  (loadingElectoralUnits ? (
+                    <div className="flex items-center justify-center">
+                      <Loader />
+                    </div>
+                  ) : (
+                    <div className="inline md:w-[40%] min-w-[50px]">
+                      <FilterSelect
+                        options={electoralUnits}
+                        defaultValue={values.electoralUnit}
+                        placeholder="Selecione uma cidade"
+                        label="Cidade"
+                        onSelect={onElectoralUnitChange}
+                        error={errors.electoralUnit}
+                      />
+                    </div>
+                  ))}
+              </>
             )}
-
-            {values.uf &&
-              values.uf !== 'Brasil' &&
-              isDVR &&
-              (loadingElectoralUnits ? (
-                <div className="flex items-center justify-center">
-                  <Loader />
-                </div>
-              ) : (
-                <div className="inline md:w-[40%] min-w-[50px]">
-                  <FilterSelect
-                    options={electoralUnits}
-                    defaultValue={values.electoralUnit}
-                    placeholder="Selecione uma cidade"
-                    label="Cidade"
-                    onSelect={onElectoralUnitChange}
-                    error={errors.electoralUnit}
-                  />
-                </div>
-              ))}
-
-            {isFilterByCityRequired() &&
-              !isDVR &&
-              (loadingElectoralUnits ? (
-                <div className="flex items-center justify-center">
-                  <Loader />
-                </div>
-              ) : (
-                <div className="inline md:w-[40%] min-w-[50px]">
-                  <FilterSelect
-                    options={electoralUnits}
-                    defaultValue={values.electoralUnit}
-                    placeholder="Selecione uma cidade"
-                    label="Cidade"
-                    onSelect={onElectoralUnitChange}
-                    error={errors.electoralUnit}
-                  />
-                </div>
-              ))}
           </div>
 
           <ButtonStyled style="fillBlack" size="small" onClick={onSubmit}>
@@ -336,8 +366,7 @@ const FilterComponent = ({
 
 export const SecondLayerFilter = ({
   initialConsult = 'Eleitorais Partidários',
-  years,
-  ufs,
+  staticFilters,
   indicators,
   jobs,
   onConsult = () => {},
@@ -345,8 +374,7 @@ export const SecondLayerFilter = ({
   loading = false,
 }: {
   initialConsult?: string;
-  years: number[];
-  ufs: any;
+  staticFilters: SecondLayerStaticFilters;
   indicators: any;
   jobs: any;
   onTabChange?: (_tab: any) => void;
@@ -396,7 +424,17 @@ export const SecondLayerFilter = ({
               <Loader />
             </div>
           ) : (
-            <Comp onConsult={onConsult} filters={{ years, indicators, jobs, ufs }} />
+            <Comp
+              onConsult={onConsult}
+              filters={{
+                years: staticFilters.years,
+                indicators,
+                jobs,
+                ufs: staticFilters.ufs,
+                ufVotes: staticFilters.ufVotes,
+                parties: staticFilters.parties,
+              }}
+            />
           )}
         </div>
       ))}

@@ -2274,6 +2274,19 @@ paths:
               type: string
           required: false
           description: Ids das unidades eleitorais desejadas
+        - in: query
+          name: UF
+          schema:
+            type: string
+          required: false
+        - in: query
+          name: partyId
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Ids das unidades eleitorais desejadas
       responses:
         '200':
           description: Resposta bem-sucedida com os indicadores possiveis.
@@ -2684,7 +2697,7 @@ paths:
     get:
       operationId: 'getUfVotes'
       tags:
-        - indicadores
+        - indicators
       summary: Votos por UF
       description: Retorna a contagem de votos por estado.
       responses:
@@ -2711,7 +2724,7 @@ paths:
     get:
       operationId: 'getVotesByUf'
       tags:
-        - indicadores
+        - indicators
       summary: Votos por estado específico
       description: Retorna os votos para um estado específico.
       parameters:
@@ -2720,7 +2733,7 @@ paths:
           required: true
           schema:
             type: string
-          description: Sigla do estado 
+          description: Sigla do estado
       responses:
         '200':
           description: Lista de votos do estado.
@@ -2742,7 +2755,7 @@ paths:
     get:
       operationId: 'getIndicatorsByType'
       tags:
-        - indicadores
+        - indicators
       summary: Indicadores por tipo
       description: Retorna indicadores políticos com base no tipo.
       parameters:
@@ -2751,7 +2764,7 @@ paths:
           required: true
           schema:
             type: string
-          description: Tipo de indicador 
+          description: Tipo de indicador
       responses:
         '200':
           description: Lista de indicadores.

@@ -2,7 +2,8 @@ import { Constants } from '@constants';
 
 export const parseIndicatorParameters = (params: URLSearchParams) => {
   const electoralUnit = params.get('electoralUnit');
-  const uf = params.get('uf');
+  const uf = params.get('uf') || '';
+  const partyId = params.get('partyId') || '';
   const unidadesEleitorais = uf === String(Constants.brazil) ? [] : [uf, electoralUnit];
 
   return {
@@ -13,6 +14,7 @@ export const parseIndicatorParameters = (params: URLSearchParams) => {
       .filter(n => Boolean(n))
       .map(n => Number(n))
       .filter(n => !isNaN(n)),
-    uf: uf || '',
+    uf,
+    partyId,
   };
 };

@@ -5461,295 +5461,6 @@ export class ElectoralUnitApi extends BaseAPI {
 }
 
 /**
- * IndicadoresApi - axios parameter creator
- * @export
- */
-export const IndicadoresApiAxiosParamCreator = function (configuration?: Configuration) {
-  return {
-    /**
-     * Retorna indicadores políticos com base no tipo.
-     * @summary Indicadores por tipo
-     * @param {string} type Tipo de indicador
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getIndicatorsByType: async (type: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-      // verify required parameter 'type' is not null or undefined
-      assertParamExists('getIndicatorsByType', 'type', type);
-      const localVarPath = `/noauth/indicadores/{type}`.replace(
-        `{${'type'}}`,
-        encodeURIComponent(String(type)),
-      );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Retorna a contagem de votos por estado.
-     * @summary Votos por UF
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getUfVotes: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-      const localVarPath = `/noauth/indicadores/geographical-filters/uf-votes`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Retorna os votos para um estado específico.
-     * @summary Votos por estado específico
-     * @param {string} uf Sigla do estado
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getVotesByUf: async (uf: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-      // verify required parameter 'uf' is not null or undefined
-      assertParamExists('getVotesByUf', 'uf', uf);
-      const localVarPath = `/noauth/indicadores/geographical-filters/uf-votes/{uf}`.replace(
-        `{${'uf'}}`,
-        encodeURIComponent(String(uf)),
-      );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-  };
-};
-
-/**
- * IndicadoresApi - functional programming interface
- * @export
- */
-export const IndicadoresApiFp = function (configuration?: Configuration) {
-  const localVarAxiosParamCreator = IndicadoresApiAxiosParamCreator(configuration);
-  return {
-    /**
-     * Retorna indicadores políticos com base no tipo.
-     * @summary Indicadores por tipo
-     * @param {string} type Tipo de indicador
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async getIndicatorsByType(
-      type: string,
-      options?: RawAxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetIndicatorsByType200Response>> {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.getIndicatorsByType(type, options);
-      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-      const localVarOperationServerBasePath =
-        operationServerMap['IndicadoresApi.getIndicatorsByType']?.[localVarOperationServerIndex]?.url;
-      return (axios, basePath) =>
-        createRequestFunction(
-          localVarAxiosArgs,
-          globalAxios,
-          BASE_PATH,
-          configuration,
-        )(axios, localVarOperationServerBasePath || basePath);
-    },
-    /**
-     * Retorna a contagem de votos por estado.
-     * @summary Votos por UF
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async getUfVotes(
-      options?: RawAxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetUfVotes200Response>> {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.getUfVotes(options);
-      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-      const localVarOperationServerBasePath =
-        operationServerMap['IndicadoresApi.getUfVotes']?.[localVarOperationServerIndex]?.url;
-      return (axios, basePath) =>
-        createRequestFunction(
-          localVarAxiosArgs,
-          globalAxios,
-          BASE_PATH,
-          configuration,
-        )(axios, localVarOperationServerBasePath || basePath);
-    },
-    /**
-     * Retorna os votos para um estado específico.
-     * @summary Votos por estado específico
-     * @param {string} uf Sigla do estado
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async getVotesByUf(
-      uf: string,
-      options?: RawAxiosRequestConfig,
-    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetVotesByUf200Response>> {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.getVotesByUf(uf, options);
-      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-      const localVarOperationServerBasePath =
-        operationServerMap['IndicadoresApi.getVotesByUf']?.[localVarOperationServerIndex]?.url;
-      return (axios, basePath) =>
-        createRequestFunction(
-          localVarAxiosArgs,
-          globalAxios,
-          BASE_PATH,
-          configuration,
-        )(axios, localVarOperationServerBasePath || basePath);
-    },
-  };
-};
-
-/**
- * IndicadoresApi - factory interface
- * @export
- */
-export const IndicadoresApiFactory = function (
-  configuration?: Configuration,
-  basePath?: string,
-  axios?: AxiosInstance,
-) {
-  const localVarFp = IndicadoresApiFp(configuration);
-  return {
-    /**
-     * Retorna indicadores políticos com base no tipo.
-     * @summary Indicadores por tipo
-     * @param {string} type Tipo de indicador
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getIndicatorsByType(
-      type: string,
-      options?: RawAxiosRequestConfig,
-    ): AxiosPromise<GetIndicatorsByType200Response> {
-      return localVarFp.getIndicatorsByType(type, options).then(request => request(axios, basePath));
-    },
-    /**
-     * Retorna a contagem de votos por estado.
-     * @summary Votos por UF
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getUfVotes(options?: RawAxiosRequestConfig): AxiosPromise<GetUfVotes200Response> {
-      return localVarFp.getUfVotes(options).then(request => request(axios, basePath));
-    },
-    /**
-     * Retorna os votos para um estado específico.
-     * @summary Votos por estado específico
-     * @param {string} uf Sigla do estado
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getVotesByUf(uf: string, options?: RawAxiosRequestConfig): AxiosPromise<GetVotesByUf200Response> {
-      return localVarFp.getVotesByUf(uf, options).then(request => request(axios, basePath));
-    },
-  };
-};
-
-/**
- * IndicadoresApi - object-oriented interface
- * @export
- * @class IndicadoresApi
- * @extends {BaseAPI}
- */
-export class IndicadoresApi extends BaseAPI {
-  /**
-   * Retorna indicadores políticos com base no tipo.
-   * @summary Indicadores por tipo
-   * @param {string} type Tipo de indicador
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof IndicadoresApi
-   */
-  public getIndicatorsByType(type: string, options?: RawAxiosRequestConfig) {
-    return IndicadoresApiFp(this.configuration)
-      .getIndicatorsByType(type, options)
-      .then(request => request(this.axios, this.basePath));
-  }
-
-  /**
-   * Retorna a contagem de votos por estado.
-   * @summary Votos por UF
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof IndicadoresApi
-   */
-  public getUfVotes(options?: RawAxiosRequestConfig) {
-    return IndicadoresApiFp(this.configuration)
-      .getUfVotes(options)
-      .then(request => request(this.axios, this.basePath));
-  }
-
-  /**
-   * Retorna os votos para um estado específico.
-   * @summary Votos por estado específico
-   * @param {string} uf Sigla do estado
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof IndicadoresApi
-   */
-  public getVotesByUf(uf: string, options?: RawAxiosRequestConfig) {
-    return IndicadoresApiFp(this.configuration)
-      .getVotesByUf(uf, options)
-      .then(request => request(this.axios, this.basePath));
-  }
-}
-
-/**
  * IndicatorsApi - axios parameter creator
  * @export
  */
@@ -6378,6 +6089,8 @@ export const IndicatorsApiAxiosParamCreator = function (configuration?: Configur
      * @param {number} finalYear Ano final do intervalo.
      * @param {number} [cargoId] cargo desejado
      * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {string} [uF]
+     * @param {Array<string>} [partyId] Ids das unidades eleitorais desejadas
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -6386,6 +6099,8 @@ export const IndicatorsApiAxiosParamCreator = function (configuration?: Configur
       finalYear: number,
       cargoId?: number,
       unidadesEleitorais?: Array<string>,
+      uF?: string,
+      partyId?: Array<string>,
       options: RawAxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
       // verify required parameter 'initialYear' is not null or undefined
@@ -6418,6 +6133,14 @@ export const IndicatorsApiAxiosParamCreator = function (configuration?: Configur
 
       if (unidadesEleitorais) {
         localVarQueryParameter['unidadesEleitorais'] = unidadesEleitorais;
+      }
+
+      if (uF !== undefined) {
+        localVarQueryParameter['UF'] = uF;
+      }
+
+      if (partyId) {
+        localVarQueryParameter['partyId'] = partyId;
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -6562,6 +6285,44 @@ export const IndicatorsApiAxiosParamCreator = function (configuration?: Configur
      */
     getGeographicalIndicators: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
       const localVarPath = `/noauth/indicadores/geograficos`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Retorna indicadores políticos com base no tipo.
+     * @summary Indicadores por tipo
+     * @param {string} type Tipo de indicador
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getIndicatorsByType: async (type: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+      // verify required parameter 'type' is not null or undefined
+      assertParamExists('getIndicatorsByType', 'type', type);
+      const localVarPath = `/noauth/indicadores/{type}`.replace(
+        `{${'type'}}`,
+        encodeURIComponent(String(type)),
+      );
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
       let baseOptions;
@@ -6837,6 +6598,76 @@ export const IndicatorsApiAxiosParamCreator = function (configuration?: Configur
      */
     getPartyIndicators: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
       const localVarPath = `/noauth/indicadores/partidarios`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Retorna a contagem de votos por estado.
+     * @summary Votos por UF
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getUfVotes: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+      const localVarPath = `/noauth/indicadores/geographical-filters/uf-votes`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Retorna os votos para um estado específico.
+     * @summary Votos por estado específico
+     * @param {string} uf Sigla do estado
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getVotesByUf: async (uf: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+      // verify required parameter 'uf' is not null or undefined
+      assertParamExists('getVotesByUf', 'uf', uf);
+      const localVarPath = `/noauth/indicadores/geographical-filters/uf-votes/{uf}`.replace(
+        `{${'uf'}}`,
+        encodeURIComponent(String(uf)),
+      );
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
       let baseOptions;
@@ -7248,6 +7079,8 @@ export const IndicatorsApiFp = function (configuration?: Configuration) {
      * @param {number} finalYear Ano final do intervalo.
      * @param {number} [cargoId] cargo desejado
      * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {string} [uF]
+     * @param {Array<string>} [partyId] Ids das unidades eleitorais desejadas
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -7256,6 +7089,8 @@ export const IndicatorsApiFp = function (configuration?: Configuration) {
       finalYear: number,
       cargoId?: number,
       unidadesEleitorais?: Array<string>,
+      uF?: string,
+      partyId?: Array<string>,
       options?: RawAxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetElectoralIndicators200Response>
@@ -7265,6 +7100,8 @@ export const IndicatorsApiFp = function (configuration?: Configuration) {
         finalYear,
         cargoId,
         unidadesEleitorais,
+        uF,
+        partyId,
         options,
       );
       const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
@@ -7364,6 +7201,29 @@ export const IndicatorsApiFp = function (configuration?: Configuration) {
       const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
       const localVarOperationServerBasePath =
         operationServerMap['IndicatorsApi.getGeographicalIndicators']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * Retorna indicadores políticos com base no tipo.
+     * @summary Indicadores por tipo
+     * @param {string} type Tipo de indicador
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getIndicatorsByType(
+      type: string,
+      options?: RawAxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetIndicatorsByType200Response>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getIndicatorsByType(type, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['IndicatorsApi.getIndicatorsByType']?.[localVarOperationServerIndex]?.url;
       return (axios, basePath) =>
         createRequestFunction(
           localVarAxiosArgs,
@@ -7530,6 +7390,50 @@ export const IndicatorsApiFp = function (configuration?: Configuration) {
       const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
       const localVarOperationServerBasePath =
         operationServerMap['IndicatorsApi.getPartyIndicators']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * Retorna a contagem de votos por estado.
+     * @summary Votos por UF
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getUfVotes(
+      options?: RawAxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetUfVotes200Response>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getUfVotes(options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['IndicatorsApi.getUfVotes']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     * Retorna os votos para um estado específico.
+     * @summary Votos por estado específico
+     * @param {string} uf Sigla do estado
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getVotesByUf(
+      uf: string,
+      options?: RawAxiosRequestConfig,
+    ): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetVotesByUf200Response>> {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getVotesByUf(uf, options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['IndicatorsApi.getVotesByUf']?.[localVarOperationServerIndex]?.url;
       return (axios, basePath) =>
         createRequestFunction(
           localVarAxiosArgs,
@@ -7756,6 +7660,8 @@ export const IndicatorsApiFactory = function (
      * @param {number} finalYear Ano final do intervalo.
      * @param {number} [cargoId] cargo desejado
      * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {string} [uF]
+     * @param {Array<string>} [partyId] Ids das unidades eleitorais desejadas
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -7764,10 +7670,12 @@ export const IndicatorsApiFactory = function (
       finalYear: number,
       cargoId?: number,
       unidadesEleitorais?: Array<string>,
+      uF?: string,
+      partyId?: Array<string>,
       options?: RawAxiosRequestConfig,
     ): AxiosPromise<GetElectoralIndicators200Response> {
       return localVarFp
-        .getGeographical10(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+        .getGeographical10(initialYear, finalYear, cargoId, unidadesEleitorais, uF, partyId, options)
         .then(request => request(axios, basePath));
     },
     /**
@@ -7819,6 +7727,19 @@ export const IndicatorsApiFactory = function (
       options?: RawAxiosRequestConfig,
     ): AxiosPromise<GetElectoralIndicators200Response> {
       return localVarFp.getGeographicalIndicators(options).then(request => request(axios, basePath));
+    },
+    /**
+     * Retorna indicadores políticos com base no tipo.
+     * @summary Indicadores por tipo
+     * @param {string} type Tipo de indicador
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getIndicatorsByType(
+      type: string,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetIndicatorsByType200Response> {
+      return localVarFp.getIndicatorsByType(type, options).then(request => request(axios, basePath));
     },
     /**
      *
@@ -7907,6 +7828,25 @@ export const IndicatorsApiFactory = function (
      */
     getPartyIndicators(options?: RawAxiosRequestConfig): AxiosPromise<GetElectoralIndicators200Response> {
       return localVarFp.getPartyIndicators(options).then(request => request(axios, basePath));
+    },
+    /**
+     * Retorna a contagem de votos por estado.
+     * @summary Votos por UF
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getUfVotes(options?: RawAxiosRequestConfig): AxiosPromise<GetUfVotes200Response> {
+      return localVarFp.getUfVotes(options).then(request => request(axios, basePath));
+    },
+    /**
+     * Retorna os votos para um estado específico.
+     * @summary Votos por estado específico
+     * @param {string} uf Sigla do estado
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getVotesByUf(uf: string, options?: RawAxiosRequestConfig): AxiosPromise<GetVotesByUf200Response> {
+      return localVarFp.getVotesByUf(uf, options).then(request => request(axios, basePath));
     },
   };
 };
@@ -8148,6 +8088,8 @@ export class IndicatorsApi extends BaseAPI {
    * @param {number} finalYear Ano final do intervalo.
    * @param {number} [cargoId] cargo desejado
    * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+   * @param {string} [uF]
+   * @param {Array<string>} [partyId] Ids das unidades eleitorais desejadas
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IndicatorsApi
@@ -8157,10 +8099,12 @@ export class IndicatorsApi extends BaseAPI {
     finalYear: number,
     cargoId?: number,
     unidadesEleitorais?: Array<string>,
+    uF?: string,
+    partyId?: Array<string>,
     options?: RawAxiosRequestConfig,
   ) {
     return IndicatorsApiFp(this.configuration)
-      .getGeographical10(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+      .getGeographical10(initialYear, finalYear, cargoId, unidadesEleitorais, uF, partyId, options)
       .then(request => request(this.axios, this.basePath));
   }
 
@@ -8217,6 +8161,20 @@ export class IndicatorsApi extends BaseAPI {
   public getGeographicalIndicators(options?: RawAxiosRequestConfig) {
     return IndicatorsApiFp(this.configuration)
       .getGeographicalIndicators(options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Retorna indicadores políticos com base no tipo.
+   * @summary Indicadores por tipo
+   * @param {string} type Tipo de indicador
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IndicatorsApi
+   */
+  public getIndicatorsByType(type: string, options?: RawAxiosRequestConfig) {
+    return IndicatorsApiFp(this.configuration)
+      .getIndicatorsByType(type, options)
       .then(request => request(this.axios, this.basePath));
   }
 
@@ -8317,6 +8275,33 @@ export class IndicatorsApi extends BaseAPI {
   public getPartyIndicators(options?: RawAxiosRequestConfig) {
     return IndicatorsApiFp(this.configuration)
       .getPartyIndicators(options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Retorna a contagem de votos por estado.
+   * @summary Votos por UF
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IndicatorsApi
+   */
+  public getUfVotes(options?: RawAxiosRequestConfig) {
+    return IndicatorsApiFp(this.configuration)
+      .getUfVotes(options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Retorna os votos para um estado específico.
+   * @summary Votos por estado específico
+   * @param {string} uf Sigla do estado
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IndicatorsApi
+   */
+  public getVotesByUf(uf: string, options?: RawAxiosRequestConfig) {
+    return IndicatorsApiFp(this.configuration)
+      .getVotesByUf(uf, options)
       .then(request => request(this.axios, this.basePath));
   }
 }
