@@ -4,8 +4,8 @@ info:
   version: 1.0.0
   description: API portal da classe politica
 servers:
-  - url: http://redem.c3sl.ufpr.br/v1/api
-    description: 'Servidor de desenvolvimento'
+  - url: http://localhost:7000
+    description: 'Servidor Local'
 tags:
   - name: abrangency
     description: Rotas para buscar abrangencias

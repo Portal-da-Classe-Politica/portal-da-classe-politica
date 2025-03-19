@@ -6,10 +6,6 @@ info:
 servers:
   - url: http://localhost:7000
     description: 'Servidor Local'
-  - url: https://portal-da-classe-back.onrender.com
-    description: 'Servidor de desenvolvimento'
-  - url: http://redem.c3sl.ufpr.br/v1/api
-    description: 'Servidor de produção'
 tags:
   - name: filtros
     description: Rotas utilizar nos filtros

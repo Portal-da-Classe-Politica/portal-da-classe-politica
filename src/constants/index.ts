@@ -1,6 +1,6 @@
 export const Constants = {
   api: {
-    baseURL: 'http://redem.c3sl.ufpr.br/v1/api',
+    baseURL: process.env.REDEM_API,
   },
   abrangency: {
     estatudal: '1',
