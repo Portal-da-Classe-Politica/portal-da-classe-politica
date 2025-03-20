@@ -293,9 +293,9 @@ const FilterComponent = ({
                   <div className="inline md:w-[40%] min-w-[50px]">
                     <FilterSelect
                       options={
-                        String(values.job) !== presidentId
-                          ? filters.ufVotes.filter(op => !ufVotesPresidentOnly.includes(op.value))
-                          : filters.ufVotes
+                        String(values.job) === presidentId
+                          ? filters.ufVotes
+                          : filters.ufVotes.filter(op => !ufVotesPresidentOnly.includes(op.value))
                       }
                       defaultValue={values.uf}
                       placeholder="Selecione um estado"
