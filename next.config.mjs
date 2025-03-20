@@ -19,6 +19,11 @@ const nextConfig = {
       ...config.resolve.alias,
       "@base": path.resolve(__dirname, "src/components/base"),
       "@components": path.resolve(__dirname, "src/components"),
+      "@constants": path.resolve(__dirname,"src/constants"),
+      "@hooks": path.resolve(__dirname,"src/hooks/"),
+      "@routes": path.resolve(__dirname,"src/routes"),
+      "@services": path.resolve(__dirname,"src/services"),
+      "@utils": path.resolve(__dirname,"src/utils")
     };
 
     return config;
