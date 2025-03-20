@@ -30,6 +30,7 @@ jobs:
             git checkout .
             git pull origin main
             npm install --production
+            npm run build
             npm run prepare
             pm2 restart "portal front"
           EOF
