@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { GeoJsonMap } from '../../../../components/map/geojson/states';
+import { GeoJsonMap } from '@components/map/geojson/states';
 
 export async function GET(_req: NextRequest, { params: { uf } }: { params: { uf: string } }) {
   console.info('get:map', { uf });
