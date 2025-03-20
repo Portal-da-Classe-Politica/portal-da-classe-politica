@@ -10,8 +10,7 @@ const nextConfig = {
   webpack: (config, { isServer }) => {
     config.performance = {
       ...config.performance,
-      maxAssetSize: 3000000, // 3MB limit (adjust as needed)
-      maxEntrypointSize: 3000000, // Increase entrypoint size too
+      maxAssetSize: 3000000,
     };
 
     // Add raw-loader for Markdown files
