@@ -16,12 +16,35 @@ export async function GET(req: NextRequest) {
   const layer = GeoJsonMap[state as keyof typeof GeoJsonMap] as { type: string; features: any[] };
   const votes = await CandidateService.getCandidateLastElectionVoteByRegion(candidateId);
 
-  votes.forEach(vote => {
-    const feature = layer.features.find(feat => feat.properties.id === vote.codigo_ibge);
-    if (feature) {
-      feature.properties.votes = vote.votos;
-    }
+  // Create a ReadableStream to send chunks
+  const stream = new ReadableStream({
+    async start(controller) {
+      controller.enqueue(`{"type": "FeatureCollection", "features": [`);
+
+      for (let i = 0; i < layer.features.length; i++) {
+        const feature = layer.features[i];
+
+        const vote = votes.find(v => v.codigo_ibge === feature.properties.id);
+        if (vote) {
+          feature.properties.votes = vote.votos;
+        }
+
+        controller.enqueue(JSON.stringify(feature));
+
+        if (i < layer.features.length - 1) {
+          controller.enqueue(',');
+        }
+      }
+
+      controller.enqueue(']}');
+      controller.close();
+    },
   });
 
-  return NextResponse.json(layer);
+  return new NextResponse(stream, {
+    headers: {
+      'Content-Type': 'text/plain',
+      'Transfer-Encoding': 'chunked',
+    },
+  });
 }
