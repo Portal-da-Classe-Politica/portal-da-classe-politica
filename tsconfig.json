@@ -17,18 +17,19 @@
         "name": "next"
       }
     ],
+    "baseUrl": "./src",
     "paths": {
-      "@base/*": ["./src/components/base/*"],
-      "@base": ["./src/components/base/index"],
-      "@components/*": ["./src/components/*"],
-      "@components": ["./src/components/index"],
-      "@constants": ["./src/constants/index"],
-      "@hooks/*": ["./src/hooks/*"],
-      "@routes": ["./src/routes/index"],
-      "@services/*": ["./src/services/*"],
-      "@services": ["./src/services/index"],
-      "@utils/*": ["./src/utils/*"],
-      "@utils": ["./src/utils/index"]
+      "@base/*": ["components/base/*"],
+      "@base": ["components/base/index"],
+      "@components/*": ["components/*"],
+      "@components": ["components/index"],
+      "@constants": ["constants/index"],
+      "@hooks/*": ["hooks/*"],
+      "@routes": ["routes/index"],
+      "@services/*": ["services/*"],
+      "@services": ["services/index"],
+      "@utils/*": ["utils/*"],
+      "@utils": ["utils/index"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "declarations.d.ts"],
