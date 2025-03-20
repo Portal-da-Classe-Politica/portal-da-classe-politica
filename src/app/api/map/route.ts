@@ -1,7 +1,7 @@
 export const dynamic = 'force-dynamic';
 
 import { NextRequest, NextResponse } from 'next/server';
-import { GeoJsonMap } from '@components/map/geojson';
+import { GeoJsonMap } from '../../../components/map/geojson';
 import { CandidateService } from '@services/candidates/CandidateService';
 
 export async function GET(req: NextRequest) {
