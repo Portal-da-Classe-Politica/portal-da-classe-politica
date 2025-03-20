@@ -1,0 +1,35 @@
+name: Push-to-UFPR-server
+
+# Trigger deployment only on push to main branch
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🔄 Checkout do Código
+        uses: actions/checkout@v3
+
+      - name: 🔑 Configurar SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+      - name: 🚀 Fazer deploy no servidor
+        run: |
+          ssh root@${{ secrets.SSH_HOST }} << 'EOF'
+            cd portal-da-classe-politica
+            source ~/.bashrc
+            git checkout .
+            git pull origin main
+            npm install --production
+            npm run prepare
+            pm2 restart "portal front"
+          EOF
