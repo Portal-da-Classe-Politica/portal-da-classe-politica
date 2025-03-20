@@ -7,6 +7,11 @@ const __dirname = dirname(__filename);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  api: {
+    bodyParser: {
+      sizeLimit: '10mb',
+    },
+  },
   webpack: (config, { isServer }) => {
     // Add raw-loader for Markdown files
     config.module.rules.push({
