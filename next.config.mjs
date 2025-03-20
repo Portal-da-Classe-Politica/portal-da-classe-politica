@@ -7,12 +7,12 @@ const __dirname = dirname(__filename);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '15mb',
+    },
+  },
   webpack: (config, { isServer }) => {
-    config.performance = {
-      ...config.performance,
-      maxAssetSize: 3000000,
-    };
-
     // Add raw-loader for Markdown files
     config.module.rules.push({
       test: /\.md$/,
