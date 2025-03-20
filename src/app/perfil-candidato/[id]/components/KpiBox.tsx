@@ -30,11 +30,14 @@ export const KpiBox = ({ variant = 'orange', kpi }: { variant?: 'white' | 'orang
     if (kpi.unity === 'text') {
       return kpi.name;
     }
-    return kpi.unity === '%' ? `${kpi.value}${kpi.unity}` : `${kpi.unity} ${kpi.value}`;
+
+    const value = kpi.value ?? 0;
+    return kpi.unity === '%' ? `${value}${kpi.unity}` : `${kpi.unity} ${value}`;
   };
 
   const buildTitle = () => {
-    return kpi.unity === 'text' ? String(kpi.value) : kpi.name;
+    const value = kpi.value ?? 0;
+    return kpi.unity === 'text' ? String(value) : kpi.name;
   };
 
   return (

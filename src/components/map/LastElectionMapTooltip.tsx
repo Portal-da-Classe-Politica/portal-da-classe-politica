@@ -1,3 +1,5 @@
+'use client';
+
 export const LastElectionMapTooltip = ({ id, name, votes }: any) => {
   return (
     <div className="min-w-[250px] flex flex-col bg-white rounded-xl shadow-lg p-4">

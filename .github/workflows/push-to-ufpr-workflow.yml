@@ -27,10 +27,11 @@ jobs:
           ssh root@${{ secrets.SSH_HOST }} << 'EOF'
             cd portal-da-classe-politica
             source ~/.bashrc
-            git checkout .
+            pm2 stop "portal front"
+            git reset --hard
             git pull origin main
+            rm -rf .next node_modules
             npm install
             npm run build
-            npm run prepare
             pm2 restart "portal front"
           EOF
