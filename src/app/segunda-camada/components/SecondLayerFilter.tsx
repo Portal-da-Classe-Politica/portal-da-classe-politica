@@ -14,9 +14,28 @@ interface FilterProps {
   filters: SecondLayerFilters;
 }
 
+export interface SecondLayerStaticFilters {
+  years: number[];
+  ufs: { label: string; value: string }[];
+  ufVotes: { value: string; label: string }[];
+  parties: { value: string; label: string }[];
+}
+
+export interface SecondLayerSearchValues {
+  initialYear: string;
+  finalYear: string;
+  indicator: string;
+  job: string;
+  uf: string;
+  electoralUnit: string;
+  partyId: string;
+}
+
 interface SecondLayerFilters {
   years: number[];
   ufs: { label: string; value: string }[];
+  ufVotes: { value: string; label: string }[];
+  parties: { value: string; label: string }[];
   indicators: { label: string; value: string }[];
   jobs: Record<
     string,
@@ -79,6 +98,7 @@ const FilterComponent = ({
   longDescription?: string;
   onConsult: (_filters: any) => void;
   filters: SecondLayerFilters;
+  requiresUfVotes?: boolean;
 }) => {
   const [values, setValues] = useObjReducer({
     initialYear: (filters?.years && filters?.years[0]) ?? 2020,
@@ -87,6 +107,7 @@ const FilterComponent = ({
     job: '',
     uf: '',
     electoralUnit: '',
+    partyId: '',
   });
 
   const [errors, setErrors] = useObjReducer({
@@ -94,20 +115,39 @@ const FilterComponent = ({
     job: '',
     uf: '',
     electoralUnit: '',
+    partyId: '',
   });
 
   const [electoralUnits, setElectoralUnits] = useState([]);
   const [loadingElectoralUnits, setLoadingElectoralUnits] = useState(false);
 
+  // Distribuição de votos por regiao ou Índice de Concentração Regional do Voto
+  const isDVR = ['9', '10'].includes(values.indicator);
+
+  // Índice de Concentração Regional do Voto
+  const isCVR = ['10'].includes(values.indicator);
+
   const loadElectoralUnits = useCallback((ufId: string) => {
     setLoadingElectoralUnits(true);
-    fetch(`/api/electoralUnit?abrangecyId=${Constants.abrangency.municipal}&uf=${ufId}`)
-      .then(res => res.json())
-      .then(data => {
-        setElectoralUnits(data);
-      })
-      .catch(error => console.info(error))
-      .finally(() => setLoadingElectoralUnits(false));
+
+    if (isDVR) {
+      fetch(`/api/indicators/static-filters/ufVotes/${ufId}`)
+        .then(res => res.json())
+        .then(data => {
+          setElectoralUnits(data);
+        })
+        .catch(error => console.info(error))
+        .finally(() => setLoadingElectoralUnits(false));
+    } else {
+      fetch(`/api/electoralUnit?abrangecyId=${Constants.abrangency.municipal}&uf=${ufId}`)
+        .then(res => res.json())
+        .then(data => {
+          setElectoralUnits(data);
+        })
+        .catch(error => console.info(error))
+        .finally(() => setLoadingElectoralUnits(false));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // :: Change Handlers
@@ -122,8 +162,11 @@ const FilterComponent = ({
   const onUfChange = (value: any, uf: any) => {
     setValues({ uf: value, electoralUnit: '' });
 
-    if (getSelectedJob()?.filterByCity && Number(value) !== Constants.brazil) {
-      loadElectoralUnits(uf.code);
+    if (
+      (getSelectedJob()?.filterByCity && Number(value) !== Constants.brazil) ||
+      (isDVR && value !== 'Brasil')
+    ) {
+      loadElectoralUnits(uf.code || uf.value);
     }
   };
 
@@ -131,9 +174,13 @@ const FilterComponent = ({
     setValues({ electoralUnit: value });
   };
 
+  const onPartyChange = (value: any) => {
+    setValues({ partyId: value });
+  };
+
   // :: Form Validation and Submit
   const validateForm = () => {
-    const errors = { indicator: '', job: '', uf: '', electoralUnit: '' };
+    const errors = { indicator: '', job: '', uf: '', electoralUnit: '', partyId: '' };
 
     if (!values.indicator) {
       errors.indicator = 'Selecione um indicador';
@@ -147,8 +194,15 @@ const FilterComponent = ({
       errors.uf = 'Selecione um estado';
     }
 
-    if (isFilterByCityRequired() && !values.electoralUnit) {
+    if (
+      (isFilterByCityRequired() && !values.electoralUnit) ||
+      (isDVR && !values.electoralUnit && values.uf !== 'Brasil')
+    ) {
       errors.electoralUnit = 'Selecione uma cidade';
+    }
+
+    if (isCVR && !values.partyId) {
+      errors.partyId = 'Selecione um Partido';
     }
 
     setErrors(errors);
@@ -216,36 +270,93 @@ const FilterComponent = ({
               </div>
             )}
 
-            {(getSelectedJob()?.filterByUf || getSelectedJob()?.filterByCity) && (
+            {isCVR && (
               <div className="inline md:w-[40%] min-w-[50px]">
                 <FilterSelect
-                  options={filters.ufs}
-                  defaultValue={values.uf}
-                  placeholder="Selecione um estado"
-                  label="Estado"
-                  onSelect={onUfChange}
-                  error={errors.uf}
+                  options={filters.parties}
+                  defaultValue={values.partyId}
+                  placeholder="Partido"
+                  label="Partido"
+                  onSelect={onPartyChange}
+                  error={errors.partyId}
+                  searchable
                 />
               </div>
             )}
 
-            {isFilterByCityRequired() &&
-              (loadingElectoralUnits ? (
-                <div className="flex items-center justify-center">
-                  <Loader />
-                </div>
-              ) : (
-                <div className="inline md:w-[40%] min-w-[50px]">
-                  <FilterSelect
-                    options={electoralUnits}
-                    defaultValue={values.electoralUnit}
-                    placeholder="Selecione uma cidade"
-                    label="Cidade"
-                    onSelect={onElectoralUnitChange}
-                    error={errors.electoralUnit}
-                  />
-                </div>
-              ))}
+            {isDVR ? (
+              <>
+                {values.job && (
+                  <div className="inline md:w-[40%] min-w-[50px]">
+                    <FilterSelect
+                      options={filters.ufVotes}
+                      defaultValue={values.uf}
+                      placeholder="Selecione um estado"
+                      label="Estado"
+                      onSelect={onUfChange}
+                      error={errors.uf}
+                      searchable
+                    />
+                  </div>
+                )}
+
+                {values.uf &&
+                  values.uf !== 'Brasil' &&
+                  (loadingElectoralUnits ? (
+                    <div className="flex items-center justify-center">
+                      <Loader />
+                    </div>
+                  ) : (
+                    <div className="inline md:w-[40%] min-w-[50px]">
+                      <FilterSelect
+                        options={electoralUnits}
+                        defaultValue={values.electoralUnit}
+                        placeholder="Selecione uma cidade"
+                        label="Cidade"
+                        onSelect={onElectoralUnitChange}
+                        error={errors.electoralUnit}
+                        searchable
+                      />
+                    </div>
+                  ))}
+              </>
+            ) : (
+              <>
+                {(getSelectedJob()?.filterByUf || getSelectedJob()?.filterByCity) && (
+                  <div className="inline md:w-[40%] min-w-[50px]">
+                    <FilterSelect
+                      options={filters.ufs}
+                      defaultValue={values.uf}
+                      placeholder="Selecione um estado"
+                      label="Estado"
+                      onSelect={onUfChange}
+                      error={errors.uf}
+                      searchable
+                    />
+                  </div>
+                )}
+
+                {values.uf &&
+                  isFilterByCityRequired() &&
+                  (loadingElectoralUnits ? (
+                    <div className="flex items-center justify-center">
+                      <Loader />
+                    </div>
+                  ) : (
+                    <div className="inline md:w-[40%] min-w-[50px]">
+                      <FilterSelect
+                        options={electoralUnits}
+                        defaultValue={values.electoralUnit}
+                        placeholder="Selecione uma cidade"
+                        label="Cidade"
+                        onSelect={onElectoralUnitChange}
+                        error={errors.electoralUnit}
+                        searchable
+                      />
+                    </div>
+                  ))}
+              </>
+            )}
           </div>
 
           <ButtonStyled style="fillBlack" size="small" onClick={onSubmit}>
@@ -261,8 +372,7 @@ const FilterComponent = ({
 
 export const SecondLayerFilter = ({
   initialConsult = 'Eleitorais Partidários',
-  years,
-  ufs,
+  staticFilters,
   indicators,
   jobs,
   onConsult = () => {},
@@ -270,8 +380,7 @@ export const SecondLayerFilter = ({
   loading = false,
 }: {
   initialConsult?: string;
-  years: number[];
-  ufs: any;
+  staticFilters: SecondLayerStaticFilters;
   indicators: any;
   jobs: any;
   onTabChange?: (_tab: any) => void;
@@ -321,7 +430,17 @@ export const SecondLayerFilter = ({
               <Loader />
             </div>
           ) : (
-            <Comp onConsult={onConsult} filters={{ years, indicators, jobs, ufs }} />
+            <Comp
+              onConsult={onConsult}
+              filters={{
+                years: staticFilters.years,
+                indicators,
+                jobs,
+                ufs: staticFilters.ufs,
+                ufVotes: staticFilters.ufVotes,
+                parties: staticFilters.parties,
+              }}
+            />
           )}
         </div>
       ))}

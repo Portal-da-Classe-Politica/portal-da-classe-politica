@@ -26,6 +26,8 @@ jobs:
         run: |
           ssh root@${{ secrets.SSH_HOST }} << 'EOF'
             cd portal-da-classe-politica
+            source ~/.bashrc
+            git checkout .
             git pull origin main
             npm install --production
             npm run prepare

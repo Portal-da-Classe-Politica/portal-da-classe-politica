@@ -4,8 +4,8 @@ info:
   version: 1.0.0
   description: API portal da classe politica
 servers:
-  - url: https://portal-da-classe-back.onrender.com
-    description: 'Servidor de desenvolvimento'
+  - url: http://localhost:7000
+    description: 'Servidor Local'
 tags:
   - name: abrangency
     description: Rotas para buscar abrangencias
@@ -534,6 +534,37 @@ paths:
                   message:
                     type: string
                     example: Erro ao buscar os votos
+
+  /noauth//candidate/kpis/{candidatoId}:
+    get:
+      operationId: 'getCandidateKpis'
+      tags:
+        - candidate
+      summary: KPIs candidato pelo id
+      parameters:
+        - in: path
+          name: candidatoId
+          schema:
+            type: string
+          required: true
+          example: '415180'
+          description: Id do candidato para detalhe
+      responses:
+        '200':
+          description: Resposta bem-sucedida com detalhes do candidato.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                  message:
+                    type: string
+                    example: 'Candidato encontrado com sucesso.'
 
   # Consult
   # Consult - Filters
@@ -2188,6 +2219,11 @@ paths:
               type: string
           required: false
           description: Ids das unidades eleitorais desejadas
+        - in: query
+          name: UF
+          schema:
+            type: string
+          required: false
       responses:
         '200':
           description: Resposta bem-sucedida com os indicadores possiveis.
@@ -2232,6 +2268,19 @@ paths:
           description: cargo desejado
         - in: query
           name: unidadesEleitorais
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          description: Ids das unidades eleitorais desejadas
+        - in: query
+          name: UF
+          schema:
+            type: string
+          required: false
+        - in: query
+          name: partyId
           schema:
             type: array
             items:
@@ -2581,3 +2630,179 @@ paths:
                     type: array
                     items:
                       type: object
+  /noauth/candidate/biggest-donors/{candidatoId}:
+    get:
+      operationId: 'getCandidateBiggestDonors'
+      tags:
+        - candidato
+      summary: Maiores doadores de um candidato
+      description: Retorna os principais doadores de um candidato.
+      parameters:
+        - in: path
+          name: candidatoId
+          required: true
+          schema:
+            type: string
+          description: ID do candidato
+      responses:
+        '200':
+          description: Lista de doadores.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        doador:
+                          type: string
+                        valor:
+                          type: number
+        '400':
+          description: Requisição inválida.
+
+  /noauth/candidate/cargos:
+    get:
+      operationId: 'getCandidatePositions'
+      tags:
+        - candidato
+      summary: Lista de cargos dos candidatos
+      description: Retorna os cargos políticos disponíveis.
+      responses:
+        '200':
+          description: Lista de cargos encontrados.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        nome:
+                          type: string
+
+  /noauth/indicadores/geographical-filters/uf-votes:
+    get:
+      operationId: 'getUfVotes'
+      tags:
+        - indicators
+      summary: Votos por UF
+      description: Retorna a contagem de votos por estado.
+      responses:
+        '200':
+          description: Lista de votos por UF.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        uf:
+                          type: string
+                        votos:
+                          type: integer
+
+  /noauth/indicadores/geographical-filters/uf-votes/{uf}:
+    get:
+      operationId: 'getVotesByUf'
+      tags:
+        - indicators
+      summary: Votos por estado específico
+      description: Retorna os votos para um estado específico.
+      parameters:
+        - in: path
+          name: uf
+          required: true
+          schema:
+            type: string
+          description: Sigla do estado
+      responses:
+        '200':
+          description: Lista de votos do estado.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+                    properties:
+                      uf:
+                        type: string
+                      votos:
+                        type: integer
+  /noauth/indicadores/{type}:
+    get:
+      operationId: 'getIndicatorsByType'
+      tags:
+        - indicators
+      summary: Indicadores por tipo
+      description: Retorna indicadores políticos com base no tipo.
+      parameters:
+        - in: path
+          name: type
+          required: true
+          schema:
+            type: string
+          description: Tipo de indicador
+      responses:
+        '200':
+          description: Lista de indicadores.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+
+  /noauth/party:
+    get:
+      operationId: 'getParties'
+      tags:
+        - partido
+      summary: Lista de partidos políticos
+      description: Retorna uma lista de todos os partidos registrados.
+      responses:
+        '200':
+          description: Lista de partidos.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        nome:
+                          type: string
+                        sigla:
+                          type: string

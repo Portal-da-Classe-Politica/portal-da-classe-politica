@@ -13,6 +13,7 @@ export const logError = (msg: string, error: AxiosError | Error) => {
       url: error?.config?.url,
       params: error?.config?.params,
       data: error?.config?.data,
+      baseURL: error?.config?.baseURL,
     });
   } else {
     console.error(msg, error);

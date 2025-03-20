@@ -5,6 +5,7 @@ import { Header } from '@components/sections/Header';
 import { LineItem } from '@components/LineItem';
 import { BoxIconText } from '@components/box/BoxIconText';
 import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
+import { Constants } from '@constants';
 
 const Atendimento = () => {
   return (
@@ -110,7 +111,7 @@ const Atendimento = () => {
           </div>
           <TextParagraphImage
             link="/blog/promo-part"
-            src="/img/blog/smile.png"
+            src={Constants.images.promoPart}
             header={
               'A promoção da participação política das mulheres parcialmente realizada pelos partidos políticos'
             }

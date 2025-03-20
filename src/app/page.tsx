@@ -1,12 +1,12 @@
 import { Container, Heading, Display, Text } from '@base';
 import { BoxFerramenta } from '@components/box/BoxFerramenta';
 import { BoxData } from '@components/box/BoxData';
-import { CardPost } from '@components/CardPost';
 import { Header } from '@components/sections/Header';
 import { GetInContact } from '@components/sections/GetInContact';
 import { SpecialContents } from '@components/sections/SpecialContents';
 import { routes } from '@routes';
 import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
+import { Carousel } from '@components/carousel/Carousel';
 
 const Home = () => {
   return (
@@ -71,7 +71,7 @@ const Home = () => {
         </Container>
       </section>
 
-      <section className=" pt-10 md:pt-20 pb-14 md:pb-28">
+      <section className=" pt-10 md:pt-20 pb-14 md:pb-20">
         <Container>
           <div className=" md:max-w-[854px] mb-8">
             <Heading headingLevel={2}>Análises e Treinamentos </Heading>
@@ -80,54 +80,8 @@ const Home = () => {
               experiência nos uso dos dados eleitorais mais intuitiva e fundamentada.
             </Text>
           </div>
-          <div className="flex flex-col h-full md:flex-row gap-4 md:gap-14">
-            <div className="h-[370px] md:h-[480px]">
-              <CardPost
-                alt={'Eleição 2024: A Persistente Sub-Representação de Mulheres na Política'}
-                category={['Leitura de 5min']}
-                customHeight={270}
-                title={'Eleição 2024: A Persistente Sub-Representação de Mulheres na Política'}
-                subTitle={
-                  'Partidos controlam recursos políticos vitais e desde 2009, devem investir 5% do Fundo Partidário anual para fomentar a participação feminina na política.'
-                }
-                src={'/img/blog/mic.png'}
-                type="Primary"
-                href="/blog/reputacao-mulher"
-              />
-            </div>
-
-            <div className="flex flex-col gap-6">
-              <div className="md:h-[227px]">
-                <CardPost
-                  alt={
-                    'A promoção da participação política das mulheres parcialmente realizada pelos partidos políticos'
-                  }
-                  type="Secondary"
-                  category={['Leitura de 5min']}
-                  customHeight={270}
-                  title={
-                    'A promoção da participação política das mulheres parcialmente realizada pelos partidos políticos'
-                  }
-                  src={'/img/blog/smile.png'}
-                  href="/blog/promo-part"
-                />
-              </div>
-              <div className="md:h-[227px]">
-                <CardPost
-                  alt={
-                    'A participação feminina na liderança partidária e o cumprimento das cotas financeiras para mulheres '
-                  }
-                  type="Secondary"
-                  category={['Leitura de 5min']}
-                  customHeight={270}
-                  title={
-                    'A participação feminina na liderança partidária e o cumprimento das cotas financeiras para mulheres '
-                  }
-                  src={'/img/blog/airplane.png'}
-                  href="/blog/part-fem-lid"
-                />
-              </div>
-            </div>
+          <div className="m-auto">
+            <Carousel />
           </div>
         </Container>
       </section>

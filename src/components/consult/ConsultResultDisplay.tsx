@@ -4,6 +4,7 @@ import { DonutChartCard } from '@components/charts/DonutChartCard';
 
 import { MapResultCard } from './MapResultCard';
 import { KpiSection } from './KpiSection';
+import { ResultCard } from './ResultCard';
 
 export const ConsultResultDisplay = ({ className = '', result }: { className?: string; result: any }) => {
   if (!result?.success || !result.data) {
@@ -17,46 +18,51 @@ export const ConsultResultDisplay = ({ className = '', result }: { className?: s
     }
     case 'map': {
       return (
-        <MapResultCard className={className} title={data.title} label={data.label} series={data.series} />
+        <ResultCard className={className} details={result.details}>
+          <MapResultCard title={data.title} label={data.label} series={data.series} />
+        </ResultCard>
       );
     }
     case 'line': {
       return (
-        <LineChartCard
-          className={className}
-          title={data.title}
-          yAxisTitle={data?.extraData?.yAxisLabel}
-          xAxisTitle={data?.extraData?.xAxisLabel}
-          categories={data.xAxis}
-          series={data.series}
-        />
+        <ResultCard className={className} details={result.details}>
+          <LineChartCard
+            title={data.title}
+            yAxisTitle={data?.extraData?.yAxisLabel}
+            xAxisTitle={data?.extraData?.xAxisLabel}
+            categories={data.xAxis}
+            series={data.series}
+          />
+        </ResultCard>
       );
     }
     case 'bar': {
       return (
-        <BarChartCard
-          className={className}
-          title={data.title}
-          categories={data.series.map(({ name }: any) => name)}
-          series={[
-            {
-              name: data.seriesName,
-              data: data.series.map(({ value }: any) => value),
-            },
-          ]}
-          metaData={data?.extraData?.bigNumbers}
-        />
+        <ResultCard className={`min-h-[300px] ${className}`} details={result.details}>
+          <BarChartCard
+            title={data.title}
+            categories={data.series.map(({ name }: any) => name)}
+            series={[
+              {
+                name: data.seriesName,
+                data: data.series.map(({ value }: any) => Number(value ?? 0).toFixed(2)),
+              },
+            ]}
+            metaData={data?.extraData?.bigNumbers}
+          />
+        </ResultCard>
       );
     }
     case 'donut': {
       return (
-        <DonutChartCard
-          className={className}
-          title={data.title}
-          labels={data.series.map(({ name }: any) => name)}
-          series={data.series.map(({ value }: any) => value)}
-          topics={data.extraData}
-        />
+        <ResultCard className={className} details={result.details}>
+          <DonutChartCard
+            title={data.title}
+            labels={data.series.map(({ name }: any) => name)}
+            series={data.series.map(({ value }: any) => Number(value ?? 0).toFixed(2))}
+            topics={data.extraData}
+          />
+        </ResultCard>
       );
     }
     default:

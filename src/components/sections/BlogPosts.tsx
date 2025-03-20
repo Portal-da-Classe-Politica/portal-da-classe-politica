@@ -135,7 +135,7 @@ const BlogPost = () => {
             </div>
           </div>
         </div>
-        <div className="inline-flex flex-1 flex-wrap gap-4 lg:justify-center justify-center">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(302px,1fr))] gap-4 place-items-center">
           {blogPost.sort(sortedMethod).map((values: any, index: number) => {
             return (
               <div className="md:h-[370px] w-[302px] " key={index}>

@@ -8,6 +8,7 @@ import { GetInContact } from '@components/sections/GetInContact';
 import CardIconText from '@components/CardIconText';
 import { Divider } from '@components/Divider';
 import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
+import { Constants } from '@constants';
 
 const TableMenu = dynamic(() => import('@components/sections/TableMenu'), {
   ssr: false,
@@ -98,7 +99,7 @@ const Page = () => {
           <Divider />
           <TextParagraphImage
             link="/blog/promo-part"
-            src="/img/blog/smile.png"
+            src={Constants.images.promoPart}
             header={
               'A promoção da participação política das mulheres parcialmente realizada pelos partidos políticos'
             }
@@ -110,7 +111,7 @@ const Page = () => {
 
           <TextParagraphImage
             link="/blog/part-fem-lid"
-            src="/img/blog/airplane.png"
+            src={Constants.images.partFemLid}
             header={
               'A participação feminina na liderança partidária e o cumprimento das cotas financeiras para mulheres'
             }

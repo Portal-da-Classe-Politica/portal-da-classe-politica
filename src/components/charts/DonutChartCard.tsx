@@ -41,23 +41,19 @@ export const DonutChartCard = ({
   };
 
   return (
-    <div
-      className={`flex flex-col w-full max-h-[800px] p-4 md:p-12 bg-white drop-shadow-lg rounded-lg ${className}`}
-    >
-      <div className="flex w-full flex-col">
-        <Chart className="flex flex-1 w-fit" series={series} type="donut" options={options} height={350} />
-        <div className="flex flex-col">
-          <Heading headingLevel={2} size="H2" className="text-grayMix4 my-4 font-bold">
-            {title}
-          </Heading>
-          <ul className="list-disc pl-4 marker:text-orange">
-            {topics.map((topic, idx) => (
-              <li key={idx} className="list-item my-4">
-                <Text className="text-grayMix4">{topic}</Text>
-              </li>
-            ))}
-          </ul>
-        </div>
+    <div className={`flex w-full flex-col ${className}`}>
+      <Chart className="flex flex-1 w-fit" series={series} type="donut" options={options} height={350} />
+      <div className="flex flex-col">
+        <Heading headingLevel={2} size="H2" className="text-grayMix4 my-4 font-bold">
+          {title}
+        </Heading>
+        <ul className="list-disc pl-4 marker:text-orange">
+          {topics.map((topic, idx) => (
+            <li key={idx} className="list-item my-4">
+              <Text className="text-grayMix4">{topic}</Text>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 export const Constants = {
   api: {
-    baseURL: 'https://portal-da-classe-back.onrender.com',
+    baseURL: 'http://localhost:7000',
   },
   abrangency: {
     estatudal: '1',
@@ -15,6 +15,11 @@ export const Constants = {
     xTwitter: 'https://x.com/INCT_ReDem',
     youtube: 'https://www.youtube.com/@INCTReDem',
     arwPoliticalAdvisory: 'https://www.arwpoliticaladvisory.com',
+  },
+  images: {
+    promoPart: '/img/blog/leque.png',
+    reputacaoMulher: '/img/blog/votepeople.png',
+    partFemLid: '/img/blog/planalto.png',
   },
   loremTitle: 'Consectetur adipiscing elit Suspendisse non odio',
   lorem:

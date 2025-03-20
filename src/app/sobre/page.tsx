@@ -8,6 +8,7 @@ import Avatar from '@components/Avatar';
 import Timeline from '@components/timeline/Timeline';
 import { GetInContact } from '@components/sections/GetInContact';
 import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
+import { Constants } from '@constants';
 
 const headerText = [
   {
@@ -179,7 +180,7 @@ const Page = () => {
           <div className="mt-12 md:mt-24 mb-12 md:mb-48">
             <TextParagraphImage
               link="/blog/promo-part"
-              src="/img/blog/smile.png"
+              src={Constants.images.promoPart}
               header={
                 'A promoção da participação política das mulheres parcialmente realizada pelos partidos políticos'
               }

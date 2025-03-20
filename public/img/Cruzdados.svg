@@ -1,79 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg id="Camada_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 253.31 154.15">
-  <defs>
-    <style>
-      .cls-1 {
-        fill: url(#Gradiente_sem_nome_32-2);
-      }
-
-      .cls-2, .cls-3 {
-        fill: #f5b5a2;
-      }
-
-      .cls-4 {
-        fill: url(#Gradiente_sem_nome_48);
-      }
-
-      .cls-5 {
-        fill: url(#Gradiente_sem_nome_34);
-      }
-
-      .cls-6 {
-        fill: url(#Gradiente_sem_nome_34-2);
-      }
-
-      .cls-7 {
-        fill: none;
-      }
-
-      .cls-7, .cls-3 {
-        stroke: #e74517;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        stroke-width: 3px;
-      }
-
-      .cls-8 {
-        fill: url(#Gradiente_sem_nome_32);
-      }
-    </style>
-    <linearGradient id="Gradiente_sem_nome_48" data-name="Gradiente sem nome 48" x1="68.64" y1="84.5" x2="33.99" y2="64.5" gradientUnits="userSpaceOnUse">
-      <stop offset=".63" stop-color="#fff"/>
-      <stop offset=".73" stop-color="#fadcd4"/>
-      <stop offset=".85" stop-color="#f5b2a0"/>
-      <stop offset=".95" stop-color="#f29880"/>
-      <stop offset="1" stop-color="#f18f74"/>
-    </linearGradient>
-    <linearGradient id="Gradiente_sem_nome_32" data-name="Gradiente sem nome 32" x1="223.31" y1="91.18" x2="243.32" y2="125.82" gradientUnits="userSpaceOnUse">
-      <stop offset=".72" stop-color="#141315"/>
-      <stop offset=".75" stop-color="#2a1815"/>
-      <stop offset=".84" stop-color="#642615"/>
-      <stop offset=".95" stop-color="#c03b16"/>
-      <stop offset="1" stop-color="#e74517"/>
-    </linearGradient>
-    <linearGradient id="Gradiente_sem_nome_34" data-name="Gradiente sem nome 34" x1="130.07" y1="133.25" x2="109.56" y2="112.75" gradientUnits="userSpaceOnUse">
-      <stop offset=".25" stop-color="#e74517"/>
-      <stop offset=".39" stop-color="#e44416"/>
-      <stop offset=".5" stop-color="#da4115"/>
-      <stop offset=".59" stop-color="#ca3c14"/>
-      <stop offset=".67" stop-color="#b33511"/>
-      <stop offset=".75" stop-color="#962c0e"/>
-      <stop offset=".83" stop-color="#72220b"/>
-      <stop offset=".9" stop-color="#471507"/>
-      <stop offset=".97" stop-color="#170702"/>
-      <stop offset="1" stop-color="#000"/>
-    </linearGradient>
-    <linearGradient id="Gradiente_sem_nome_34-2" data-name="Gradiente sem nome 34" x1="212.03" y1="16.22" x2="198.6" y2="2.78" xlink:href="#Gradiente_sem_nome_34"/>
-    <linearGradient id="Gradiente_sem_nome_32-2" data-name="Gradiente sem nome 32" x1="175.56" y1="41.44" x2="190.07" y2="66.56" xlink:href="#Gradiente_sem_nome_32"/>
-  </defs>
-  <g id="Camada_2-2" data-name="Camada_2">
-    <path class="cls-2" d="M.95,122.59c8.46,29.2,72.75,31.32,80.99,31.51,71.09,1.68,158.36-39.98,157.18-83.33-1.12-41.09-81.57-79.39-99.81-63.98-12.12,10.24,9.83,38.59-4.7,56.42-20.56,25.23-79.85-12.76-116.14,17.5C6.18,90.96-3.07,108.71.95,122.59Z"/>
-    <path class="cls-7" d="M233.31,108.5l-50.5-54.5-131.5,20.5,68.5,48.5,63-69"/>
-    <circle class="cls-4" cx="51.31" cy="74.5" r="20"/>
-    <circle class="cls-8" cx="233.31" cy="108.5" r="20"/>
-    <circle class="cls-5" cx="119.81" cy="123" r="14.5"/>
-    <path class="cls-3" d="M205.81,10c-7.67,14.67-15.33,29.33-23,44"/>
-    <circle class="cls-6" cx="205.31" cy="9.5" r="9.5"/>
-    <circle class="cls-1" cx="182.81" cy="54" r="14.5"/>
-  </g>
+<svg width="108" height="108" viewBox="0 0 108 108" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3654_2265)">
+<path d="M63.71 39.121V20.071C87.34 20.071 106.5 39.231 106.5 62.861H87.45C87.45 49.751 76.82 39.121 63.71 39.121Z" stroke="#F55A2A" stroke-width="2" stroke-miterlimit="10"/>
+<path d="M63.71 20.191V1.14099C40.08 1.14099 20.92 20.301 20.92 43.931H39.97C39.97 30.821 50.6 20.191 63.71 20.191Z" stroke="#F55A2A" stroke-width="2" stroke-miterlimit="10"/>
+<path d="M44.29 68.981V88.031C20.66 88.031 1.5 68.871 1.5 45.241H20.55C20.55 58.351 31.18 68.981 44.29 68.981Z" stroke="#F55A2A" stroke-width="2" stroke-miterlimit="10"/>
+<path d="M44.29 87.911V106.961C67.92 106.961 87.08 87.801 87.08 64.171H68.03C68.03 77.281 57.4 87.911 44.29 87.911Z" stroke="#F55A2A" stroke-width="2" stroke-miterlimit="10"/>
+</g>
+<defs>
+<clipPath id="clip0_3654_2265">
+<rect width="107" height="107.82" fill="white" transform="translate(0.5 0.140991)"/>
+</clipPath>
+</defs>
 </svg>

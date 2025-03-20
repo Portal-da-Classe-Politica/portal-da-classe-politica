@@ -7,19 +7,21 @@ import { Header } from '@components/sections/Header';
 import { GetInContact } from '@components/sections/GetInContact';
 import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
 
-import { SecondLayerFilter } from './components/SecondLayerFilter';
 import { ConsultResultDisplay } from '@components/consult/ConsultResultDisplay';
 import { useObjReducer } from '@hooks/useObjReducer';
 
-type filterObjectType = {
-  years: number[];
-  ufs: string[];
-};
+import {
+  SecondLayerFilter,
+  SecondLayerSearchValues,
+  SecondLayerStaticFilters,
+} from './components/SecondLayerFilter';
 
 const Page = () => {
-  const [staticFilter, setStaticFilter] = useState<filterObjectType>({
+  const [staticFilters, setStaticFilters] = useState<SecondLayerStaticFilters>({
     years: [],
     ufs: [],
+    ufVotes: [],
+    parties: [],
   });
   const [loadingStaticFilters, setLoadingStaticFilters] = useState(true);
 
@@ -32,7 +34,7 @@ const Page = () => {
     setLoadingStaticFilters(true);
 
     const data = await fetch(`/api/indicators/static-filters`).then(res => res.json());
-    setStaticFilter({ years: data.years, ufs: data.ufs });
+    setStaticFilters(data);
 
     setLoadingStaticFilters(false);
   }, []);
@@ -57,7 +59,7 @@ const Page = () => {
       .finally(() => setLoadingIndicatorFilters(false));
   };
 
-  const onConsult = (consultFilters: any) => {
+  const onConsult = (consultFilters: SecondLayerSearchValues) => {
     if (result.loading) {
       return;
     }
@@ -68,6 +70,7 @@ const Page = () => {
     params.append('cargoId', consultFilters.job);
     params.append('electoralUnit', consultFilters.electoralUnit);
     params.append('uf', consultFilters.uf);
+    params.append('partyId', consultFilters.partyId);
 
     setResult({ loading: true, data: null });
 
@@ -107,8 +110,7 @@ const Page = () => {
         <Container>
           <SecondLayerFilter
             loading={loadingStaticFilters || loadingIndicatorFilters}
-            years={staticFilter.years}
-            ufs={staticFilter?.ufs}
+            staticFilters={staticFilters}
             indicators={indicatorFilters.indicators}
             jobs={indicatorFilters.jobs}
             onConsult={onConsult}

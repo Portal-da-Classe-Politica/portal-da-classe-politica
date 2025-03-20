@@ -6,11 +6,17 @@ import { redem } from '@services/redem';
 
 export async function GET() {
   try {
-    const { data } = await redem.consult.getCandidateFilters('');
+    const [{ data: candidateFilters }, { data: ufVotes }, { data: parties }] = await Promise.all([
+      redem.consult.getCandidateFilters(''),
+      redem.indicators.getUfVotes(),
+      redem.parties.getParties(),
+    ]);
 
     const filters = {
-      years: data?.data?.anos?.values || [],
-      ufs: parseUfs(data.data?.estado?.values),
+      years: candidateFilters?.data?.anos?.values || [],
+      ufs: parseUfs(candidateFilters.data?.estado?.values),
+      ufVotes: (ufVotes?.data as any).map((d: any) => ({ value: d.UF || d.label, label: d.label })),
+      parties: (parties?.data as any).map((d: any) => ({ value: d.id, label: d.sigla })),
     };
     console.info('get:indicators/static-filters filters', filters);
 
