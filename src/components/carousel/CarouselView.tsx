@@ -9,6 +9,7 @@ export const CarouselView = ({ children }: any) => {
       autoPlay
       infiniteLoop
       showStatus={false}
+      showThumbs={false}
       className="bg-white rounded-[10px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] self-center"
     >
       {children}
