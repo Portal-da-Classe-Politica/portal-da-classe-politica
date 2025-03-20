@@ -19,8 +19,7 @@ const nextConfig = {
 
     config.module.rules.push({
       test: /\.json$/,
-      type: 'javascript/auto',
-      use: [{ loader: 'json-loader' }],
+      type: 'json',
     });
 
     // Define aliases with absolute paths
