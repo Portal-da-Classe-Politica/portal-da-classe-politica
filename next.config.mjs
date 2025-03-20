@@ -14,6 +14,9 @@ const nextConfig = {
       use: "raw-loader",
     });
 
+    // 'ol' external
+    config.externals = [...(config.externals || []), "ol"];
+
     // Define aliases with absolute paths
     config.resolve.alias = {
       ...config.resolve.alias,
