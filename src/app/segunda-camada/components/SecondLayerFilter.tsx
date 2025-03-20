@@ -147,6 +147,7 @@ const FilterComponent = ({
         .catch(error => console.info(error))
         .finally(() => setLoadingElectoralUnits(false));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // :: Change Handlers
@@ -278,6 +279,7 @@ const FilterComponent = ({
                   label="Partido"
                   onSelect={onPartyChange}
                   error={errors.partyId}
+                  searchable
                 />
               </div>
             )}
@@ -293,6 +295,7 @@ const FilterComponent = ({
                       label="Estado"
                       onSelect={onUfChange}
                       error={errors.uf}
+                      searchable
                     />
                   </div>
                 )}
@@ -312,6 +315,7 @@ const FilterComponent = ({
                         label="Cidade"
                         onSelect={onElectoralUnitChange}
                         error={errors.electoralUnit}
+                        searchable
                       />
                     </div>
                   ))}
@@ -327,6 +331,7 @@ const FilterComponent = ({
                       label="Estado"
                       onSelect={onUfChange}
                       error={errors.uf}
+                      searchable
                     />
                   </div>
                 )}
@@ -346,6 +351,7 @@ const FilterComponent = ({
                         label="Cidade"
                         onSelect={onElectoralUnitChange}
                         error={errors.electoralUnit}
+                        searchable
                       />
                     </div>
                   ))}
