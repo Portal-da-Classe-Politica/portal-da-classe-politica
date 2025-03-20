@@ -40,9 +40,9 @@ jobs:
             echo "Build step..."
             echo "Node: $(node -v)"
             echo "Npm: $(npm -v)"
-            npm install
+            npm install --include=dev
 
             echo "npm build"
             npm run build
-            pm2 restart "portal front"
+            pm2 start "portal front"
           EOF
