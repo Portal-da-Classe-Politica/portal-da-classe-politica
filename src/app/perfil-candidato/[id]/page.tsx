@@ -1,11 +1,18 @@
 import { Suspense } from 'react';
+import dynamic from 'next/dynamic';
 
 import { ButtonStyled, Container, Heading, Icon, Text } from '@base';
 
 import { Header } from '@components/sections/Header';
 import { GetInContact } from '@components/sections/GetInContact';
 
-import { LastElectionMap } from '@components/map/LastElectionMap';
+const LastElectionMap = dynamic(
+  () => import('@components/map/LastElectionMap').then(mod => mod.LastElectionMap),
+  {
+    ssr: false,
+  },
+);
+
 import { SpecialContents } from '@components/sections/SpecialContents';
 import CandidateProfile from '@components/cadidates/CandidateProfile';
 import { Divider } from '@components/Divider';

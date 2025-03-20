@@ -9,6 +9,9 @@ import { consultSearchParam } from '@routes';
 import { useCallback, useState } from 'react';
 import { FilterSelect } from './FilterSelect';
 
+const presidentId = '9';
+const ufVotesPresidentOnly = ['ZZ'];
+
 interface FilterProps {
   onConsult: (_filters: any) => void;
   filters: SecondLayerFilters;
@@ -289,7 +292,11 @@ const FilterComponent = ({
                 {values.job && (
                   <div className="inline md:w-[40%] min-w-[50px]">
                     <FilterSelect
-                      options={filters.ufVotes}
+                      options={
+                        String(values.job) !== presidentId
+                          ? filters.ufVotes.filter(op => !ufVotesPresidentOnly.includes(op.value))
+                          : filters.ufVotes
+                      }
                       defaultValue={values.uf}
                       placeholder="Selecione um estado"
                       label="Estado"
