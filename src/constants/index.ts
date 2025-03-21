@@ -1,6 +1,6 @@
 export const Constants = {
   api: {
-    baseURL: 'http://localhost:7000',
+    baseURL: 'http://redem.c3sl.ufpr.br/v1/api',
   },
   abrangency: {
     estatudal: '1',
@@ -17,7 +17,7 @@ export const Constants = {
     arwPoliticalAdvisory: 'https://www.arwpoliticaladvisory.com',
   },
   images: {
-    promoPart: '/img/blog/leque.png',
+    promoPart: '/img/blog/hand.png',
     reputacaoMulher: '/img/blog/votepeople.png',
     partFemLid: '/img/blog/planalto.png',
   },

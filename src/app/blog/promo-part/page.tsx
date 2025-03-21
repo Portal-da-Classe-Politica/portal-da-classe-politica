@@ -93,7 +93,7 @@ const Page = () => {
             </span>
             <span>
               <a
-                className="underline text-orange ml-2 hover:text-orangeDark2"
+                className="underline text-orange ml-2 hover:text-orangeDark2 break-all"
                 target="_blank"
                 href="https://www.google.com/url?q=https://osf.io/pjkxv/files/osfstorage/65d3e2476c2a400645187a47&amp;sa=D&amp;source=editors&amp;ust=1720886571235971&amp;usg=AOvVaw3P4ajrIm_NaxpDv7RjuE4Y"
               >
