@@ -12,7 +12,6 @@ const nextConfig = {
       bodySizeLimit: '15mb',
     },
   },
-  compress: false,
   webpack: (config, { isServer }) => {
     // Add raw-loader for Markdown files
     config.module.rules.push({
