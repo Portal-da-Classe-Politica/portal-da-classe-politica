@@ -5,10 +5,9 @@ import Style from 'ol/style/Style';
 
 export const LastElectionStyle = (feature: FeatureLike, _: number) => {
   const votes = feature.get('votes');
-
   return new Style({
     fill: new Fill({
-      color: `rgba(243, 162, 139, ${votes ? 1 : 0})`,
+      color: `rgba(243, 162, 139, ${votes ? '0.8' : '0.2'})`,
     }),
     stroke: new Stroke({
       color: '#ED7451',

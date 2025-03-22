@@ -5,23 +5,25 @@ import { createPortal } from 'react-dom';
 
 import Map from 'ol/Map';
 import View from 'ol/View';
+import { createEmpty, isEmpty, extend } from 'ol/extent';
 import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
 import GeoJSON from 'ol/format/GeoJSON';
 import Overlay from 'ol/Overlay';
+import Feature from 'ol/Feature';
 
 import { LastElectionStyle } from './Styles';
-import { getCenter } from 'ol/extent';
 import { LastElectionMapTooltip } from './LastElectionMapTooltip';
 
-export interface LastElectionMapProps {
-  state: string;
-  candidateId: string | number;
-}
-
-export const LastElectionMap = ({ state, candidateId }: LastElectionMapProps) => {
+export const LastElectionMap = ({
+  votesByState,
+  candidateId,
+}: {
+  votesByState: Record<string, any>;
+  candidateId: string;
+}) => {
   const mapRef = useRef<Map | null>(null);
   const mapElement = useRef<HTMLDivElement>(null);
 
@@ -32,15 +34,51 @@ export const LastElectionMap = ({ state, candidateId }: LastElectionMapProps) =>
   const [tooltipVisible, setTooltipVisible] = useState<boolean>(false);
 
   useEffect(() => {
-    if (mapElement.current && !mapRef.current) {
-      const featureLayers = new VectorLayer({
-        source: new VectorSource({
-          format: new GeoJSON(),
-          url: `/api/map?state=${state}&candidateId=${candidateId}`,
-        }),
-        style: LastElectionStyle,
-        visible: true,
-      });
+    if (votesByState && mapElement.current && !mapRef.current) {
+      const featureLayers: any[] = [];
+      for (const stateVotes of Object.values(votesByState)) {
+        const stateLayer = new VectorLayer({
+          source: new VectorSource({
+            format: new GeoJSON(),
+            url: `/api/map/${stateVotes.uf}`,
+          }),
+          maxZoom: 7,
+          style: LastElectionStyle,
+          visible: true,
+        });
+        stateLayer.getSource()?.on('featuresloadend', event => {
+          const source = event.target;
+          source.getFeatures().forEach((feature: Feature) => {
+            feature.set('votes', stateVotes.total);
+            feature.set('name', stateVotes.uf);
+          });
+        });
+
+        const citiesLayer = new VectorLayer({
+          source: new VectorSource({
+            format: new GeoJSON(),
+            url: `/api/map/${stateVotes.uf}/cities`,
+          }),
+          style: LastElectionStyle,
+          minZoom: 7,
+          visible: true,
+        });
+        citiesLayer.getSource()?.on('featuresloadend', event => {
+          const source = event.target;
+          source.getFeatures().forEach((feature: Feature) => {
+            const cityVotes = stateVotes.votes.find((v: any) => {
+              const props = feature.getProperties();
+              return v.codigo_ibge === props.id;
+            });
+
+            feature.set('name', cityVotes?.municipio ? String(cityVotes?.municipio).toLowerCase() : '-');
+            feature.set('votes', cityVotes?.votos ?? 0);
+            feature.set('id', cityVotes?.codigo_ibge ?? '');
+          });
+        });
+
+        featureLayers.push(stateLayer, citiesLayer);
+      }
 
       mapRef.current = new Map({
         target: mapElement.current,
@@ -48,15 +86,28 @@ export const LastElectionMap = ({ state, candidateId }: LastElectionMapProps) =>
           projection: 'EPSG:4326',
           center: [-51.9253, -14.235],
           zoom: 5,
+          minZoom: 4,
         }),
-        layers: [new TileLayer({ source: new OSM() }), featureLayers],
+        layers: [new TileLayer({ source: new OSM() }), ...featureLayers],
       });
 
       mapRef.current.once('loadend', () => {
-        const view = mapRef.current?.getView();
-        const ext = featureLayers.getSource()?.getExtent();
-        if (view && ext) {
-          view.animate({ center: getCenter(ext), duration: 2000, zoom: 7 });
+        let extent = createEmpty();
+
+        featureLayers.forEach((layer: any) => {
+          if (layer instanceof VectorLayer) {
+            const source = layer.getSource();
+            if (source) {
+              const layerExtent = source.getExtent();
+              if (!isEmpty(layerExtent)) {
+                extend(extent, layerExtent); // Merge extents
+              }
+            }
+          }
+        });
+
+        if (!isEmpty(extent)) {
+          mapRef.current?.getView().fit(extent, { padding: [50, 50, 50, 50], duration: 1000 });
         }
       });
 
@@ -87,7 +138,7 @@ export const LastElectionMap = ({ state, candidateId }: LastElectionMapProps) =>
         });
       }
     }
-  }, [state, candidateId]);
+  }, [votesByState, candidateId]);
 
   const tooltipPortal =
     tooltipVisible && tooltipProperties ? <LastElectionMapTooltip {...tooltipProperties} /> : null;
