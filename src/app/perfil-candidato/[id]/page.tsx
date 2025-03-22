@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import dynamic from 'next/dynamic';
 
-import { ButtonStyled, Container, Heading, Icon, Text } from '@base';
+import { Container, Heading, Text } from '@base';
 
 import { Header } from '@components/sections/Header';
 import { GetInContact } from '@components/sections/GetInContact';
@@ -117,20 +117,6 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
             </div>
           </Container>
         </section>
-
-        <section className="mt-4 md:mt-16 mb-8 md:mb-16">
-          <Container>
-            <div className="flex gap-4">
-              <ButtonStyled>
-                <>
-                  <Icon type="Download" className="mx-2" size="xl" />
-                  Baixar Cruzamentos em .PDF
-                </>
-              </ButtonStyled>
-            </div>
-          </Container>
-        </section>
-
         <section className="mt-6 md:mt-20 mb-10 md:mb-20">
           <Container>
             <SpecialContents />

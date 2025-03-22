@@ -17,7 +17,7 @@ export const Constants = {
     arwPoliticalAdvisory: 'https://www.arwpoliticaladvisory.com',
   },
   images: {
-    promoPart: '/img/blog/leque.png',
+    promoPart: '/img/blog/hand.png',
     reputacaoMulher: '/img/blog/votepeople.png',
     partFemLid: '/img/blog/planalto.png',
   },

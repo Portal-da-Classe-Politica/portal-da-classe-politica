@@ -39,6 +39,7 @@ const nextConfig = {
       '@utils': path.resolve(__dirname, 'src/utils'),
     };
 
+
     return config;
   },
 };
