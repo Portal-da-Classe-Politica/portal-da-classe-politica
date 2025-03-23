@@ -27,16 +27,17 @@ export const LastElectionMapSection = ({
   lastJob?: string;
   candidateId: string;
 }) => {
-  const [votesByState, setVotesByState] = useState({ loading: true, data: null, error: null });
+  const [votesByState, setVotesByState] = useState({ loading: true, data: null, error: null, show: false });
 
   const fetchMap = useCallback(() => {
     fetch(`/api/map/candidateLastElection?candidateId=${candidateId}`)
       .then(res => res.json())
       .then(data => {
-        setVotesByState({ loading: false, data, error: null });
+        const show = Boolean(Object.keys(data).length);
+        setVotesByState({ loading: false, data, error: null, show });
       })
       .catch(error => {
-        setVotesByState({ loading: false, data: null, error });
+        setVotesByState({ loading: false, data: null, error, show: false });
       });
   }, [candidateId]);
 
@@ -44,7 +45,7 @@ export const LastElectionMapSection = ({
     fetchMap();
   }, [fetchMap]);
 
-  return votesByState.data ? (
+  return votesByState.show && votesByState.data ? (
     <section className="mt-8">
       <Container className="flex flex-col items-center">
         <div className={`flex flex-col w-full max-h-[800px] p-4 md:p-12 bg-white drop-shadow-lg rounded-lg`}>
