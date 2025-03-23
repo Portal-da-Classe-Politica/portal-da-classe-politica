@@ -16,6 +16,19 @@ export const LastElectionStyle = (feature: FeatureLike, _: number) => {
   });
 };
 
+export const LastCityElectionStyle = (feature: FeatureLike, _: number) => {
+  const votes = feature.get('votes');
+  return new Style({
+    fill: new Fill({
+      color: `rgba(243, 162, 139, ${votes ? '0.9' : '0'})`,
+    }),
+    stroke: new Stroke({
+      color: votes ? '#ED7451' : `rgba(0, 0, 0, 0)`,
+      width: 1,
+    }),
+  });
+};
+
 export const createSeriesStyle = (values: number[]) => {
   const min = values.reduce((r, v) => Math.min(r, v), Infinity);
   const max = values.reduce((r, v) => Math.max(r, v), -Infinity);
