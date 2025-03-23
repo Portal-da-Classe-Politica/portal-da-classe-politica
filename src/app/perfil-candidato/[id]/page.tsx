@@ -1,24 +1,16 @@
 import { Suspense } from 'react';
-import dynamic from 'next/dynamic';
 
 import { Container, Heading, Text } from '@base';
 
 import { Header } from '@components/sections/Header';
 import { GetInContact } from '@components/sections/GetInContact';
 
-const LastElectionMap = dynamic(
-  () => import('@components/map/LastElectionMap').then(mod => mod.LastElectionMap),
-  {
-    ssr: false,
-  },
-);
-
 import { SpecialContents } from '@components/sections/SpecialContents';
 import CandidateProfile from '@components/cadidates/CandidateProfile';
 import { Divider } from '@components/Divider';
 import TextBetween from '@components/base/text/TextBetween';
 
-import { cleanString, dayjs } from '@utils';
+import { dayjs } from '@utils';
 import { CandidateService } from '@services/candidates/CandidateService';
 import { formatCurrency } from '@utils/formatCurrency';
 
@@ -26,6 +18,7 @@ import { LastElectionsChart } from '@components/charts/LastElectionsChart';
 import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
 
 import { KpiBox } from './components/KpiBox';
+import { LastElectionMapSection } from './components/LastElectionMapSection';
 
 const Page = async ({ params: { id } }: { params: { id: string } }) => {
   const candidate = await CandidateService.getCandidateById(id);
@@ -34,8 +27,6 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
   const formatAge = (age: string | undefined) => {
     return age ? `${dayjs(age).age()} anos (${dayjs(age).format('DD/MM/YYYY')})` : '-';
   };
-
-  const lastElectionState = cleanString(candidate?.ultima_unidade_eleitoral?.split('-')[0]);
 
   return (
     <main className="font-montserrat bg-grayMix1">
@@ -105,18 +96,8 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
           </Container>
         </section>
 
-        <section className="mt-8">
-          <Container className="flex flex-col items-center">
-            <div
-              className={`flex flex-col w-full max-h-[800px] p-4 md:p-12 bg-white drop-shadow-lg rounded-lg`}
-            >
-              <Heading headingLevel={2} className="text-grayMix4 my-4">
-                Mapa da votação da última eleição disputada
-              </Heading>
-              <LastElectionMap state={lastElectionState} candidateId={id} />
-            </div>
-          </Container>
-        </section>
+        <LastElectionMapSection candidateId={id} />
+
         <section className="mt-6 md:mt-20 mb-10 md:mb-20">
           <Container>
             <SpecialContents />
