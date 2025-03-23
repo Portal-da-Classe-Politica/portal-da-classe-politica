@@ -111,6 +111,7 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
                   }
                   suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
                   onSelect={value => setSearch({ uf: String(value) })}
+                  searchable
                 />
               </div>
               {search.abrangencyId === Constants.abrangency.municipal && (
@@ -128,6 +129,7 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
                     }
                     suffixComponent={<Icon type="ArrowDown" className="ml-2" />}
                     onSelect={value => setSearch({ electoralUnitId: String(value) })}
+                    searchable
                   />
                 </div>
               )}
