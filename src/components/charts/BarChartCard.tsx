@@ -1,3 +1,5 @@
+'use client';
+
 import { ApexOptions } from 'apexcharts';
 import { Heading } from '@base/Heading';
 
@@ -100,6 +102,7 @@ export const BarChartCard = ({
         borderColor: '#FFF',
       },
       offsetX: 45,
+      formatter: value => value.toLocaleString('pt-BR'),
     },
     grid: {
       show: false,
@@ -133,6 +136,7 @@ export const BarChartCard = ({
         style: {
           fontSize: 'medium',
         },
+        formatter: value => value.toLocaleString('pt-BR'),
       },
     },
   };

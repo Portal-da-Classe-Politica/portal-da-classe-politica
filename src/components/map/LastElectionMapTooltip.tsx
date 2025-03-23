@@ -9,7 +9,7 @@ export const LastElectionMapTooltip = ({ id, name, votes }: any) => {
       </div>
       <div className="flex gap-2">
         <p className="font-bold">Votos:</p>
-        <p>{votes ?? '-'}</p>
+        <p>{votes?.toLocaleString('pt-BR') ?? '-'}</p>
       </div>
       {id && (
         <div className="flex gap-2">
