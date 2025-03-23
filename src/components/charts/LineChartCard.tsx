@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Text } from '../base';
 import { Heading } from '@base';
@@ -30,6 +32,11 @@ export const LineChartCard = ({
       <Chart
         series={series}
         options={{
+          yaxis: {
+            labels: {
+              formatter: value => value?.toLocaleString('pt-BR'),
+            },
+          },
           xaxis: {
             categories: categories,
           },

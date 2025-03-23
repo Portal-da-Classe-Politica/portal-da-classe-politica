@@ -7,7 +7,7 @@ export const LastElectionStyle = (feature: FeatureLike, _: number) => {
   const votes = feature.get('votes');
   return new Style({
     fill: new Fill({
-      color: `rgba(243, 162, 139, ${votes ? '0.8' : '0.2'})`,
+      color: `rgba(243, 162, 139, ${votes ? '0.9' : '0'})`,
     }),
     stroke: new Stroke({
       color: '#ED7451',
