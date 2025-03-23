@@ -98,9 +98,13 @@ export const LastElectionMap = ({
 
         // Mouse move event to display tooltip
         mapRef.current.on('pointermove', event => {
+          let properties;
           const feature = mapRef.current!.forEachFeatureAtPixel(event.pixel, feature => feature);
           if (feature) {
-            const { geometry: _geometry, ...properties } = feature.getProperties();
+            properties = feature.getProperties();
+          }
+
+          if (properties?.votes !== undefined) {
             setTooltipProperties(properties);
             setTooltipVisible(true);
             tooltipOverlayRef.current!.setPosition(event.coordinate);
