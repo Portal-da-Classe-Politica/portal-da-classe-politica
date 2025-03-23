@@ -96,7 +96,7 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
           </Container>
         </section>
 
-        <LastElectionMapSection candidateId={id} />
+        <LastElectionMapSection lastJob={candidate?.ultimo_cargo} candidateId={id} />
 
         <section className="mt-6 md:mt-20 mb-10 md:mb-20">
           <Container>

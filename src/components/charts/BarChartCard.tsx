@@ -144,7 +144,7 @@ export const BarChartCard = ({
 
   return (
     <div className={`w-full ${className}`}>
-      <Heading headingLevel={2} className="text-grayMix4 my-4">
+      <Heading headingLevel={2} className="text-grayMix4 mb-4">
         {title}
       </Heading>
       <Chart series={series} type="bar" options={options} height={height} />
