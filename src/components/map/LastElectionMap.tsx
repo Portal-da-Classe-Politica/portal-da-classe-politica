@@ -66,12 +66,13 @@ export const LastElectionMap = ({
         citiesLayer.getSource()?.on('featuresloadend', event => {
           const source = event.target;
           source.getFeatures().forEach((feature: Feature) => {
+            const properties = feature.getProperties();
+
             const cityVotes = stateVotes.votes.find((v: any) => {
-              const props = feature.getProperties();
-              return v.codigo_ibge === props.id;
+              return v.codigo_ibge === properties.id;
             });
 
-            feature.set('name', cityVotes?.municipio ? String(cityVotes?.municipio).toLowerCase() : '-');
+            feature.set('name', String(cityVotes?.municipio || properties.name || '-').toLowerCase());
             feature.set('votes', cityVotes?.votos ?? 0);
             feature.set('id', cityVotes?.codigo_ibge ?? '');
           });
