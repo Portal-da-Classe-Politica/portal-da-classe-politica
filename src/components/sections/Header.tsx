@@ -97,6 +97,7 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
               biggerList
               options={[
                 { value: routes.consult, label: 'CRUZAMENTOS' },
+                { value: routes.cruzamento2, label: 'CRUZAMENTOS 2.0' },
                 { value: routes.projections, label: 'ÍNDICES' },
                 { value: routes.candidates, label: 'PERFIL DOS CANDIDATOS' },
               ]}
@@ -160,6 +161,9 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
             <ul className="text-black flex flex-col justify-start pl-4 gap-2">
               <li>
                 <HeaderTopic label="CRUZAMENTOS" href={routes.consult} currentPath={pathname} />
+              </li>
+              <li>
+                <HeaderTopic label="CRUZAMENTOS 2.0" href={routes.cruzamento2} currentPath={pathname} />
               </li>
               <li>
                 <HeaderTopic label="ÍNDICES" href={routes.projections} currentPath={pathname} />
