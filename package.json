@@ -19,6 +19,7 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "apexcharts": "^3.49.2",
     "axios": "^1.8.3",
+    "chart.js": "^4.4.9",
     "cva": "npm:class-variance-authority@^0.7.0",
     "dayjs": "^1.11.11",
     "github-markdown-css": "^5.6.1",
@@ -27,9 +28,11 @@
     "markdown-to-jsx": "^7.4.7",
     "next": "14.2.4",
     "ol": "^9.2.4",
+    "postcss": "^8",
     "raw-loader": "^4.0.2",
     "react": "^18",
     "react-apexcharts": "^1.4.1",
+    "react-chartjs-2": "^5.3.0",
     "react-datepicker": "^7.1.0",
     "react-dom": "^18",
     "react-loading-skeleton": "^3.4.0",
@@ -38,7 +41,6 @@
     "react-responsive-carousel": "^3.2.23",
     "react-select": "^5.8.0",
     "react-spinners": "^0.14.1",
-    "postcss": "^8",
     "tailwindcss": "^3.4.1"
   },
   "devDependencies": {
