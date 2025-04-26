@@ -15,6 +15,7 @@ type CompleteSelectType = {
     typeIcon?: IconType;
     prefixText?: string;
   };
+  disabled?: boolean;
   size?: 'B1' | 'B2';
   options: any;
   // eslint-disable-next-line no-unused-vars
@@ -85,6 +86,7 @@ const CompleteSelect = ({
   prefixComponent,
   size = 'B2',
   options,
+  disabled,
   selectedOption,
   multiSelect,
   onSelect,
@@ -96,6 +98,7 @@ const CompleteSelect = ({
       isMulti={(multiSelect === 'multiselect') as false} //typescript + lib com tipo errado por isso esse as false
       options={options}
       placeholder={placeholder}
+      isDisabled={disabled}
       styles={customStyles}
       components={{
         SingleValue: props => <CustomSingleValue size={size} prefixComponent={prefixComponent} {...props} />,
