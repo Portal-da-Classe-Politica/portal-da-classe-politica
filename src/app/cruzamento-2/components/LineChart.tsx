@@ -9,6 +9,7 @@ const Line = dynamic(() => import('react-chartjs-2').then(mod => mod.Line), {
 
 const options = {
   responsive: true,
+  maintainAspectRatio: false,
   plugins: {
     legend: {
       labels: {
@@ -53,7 +54,6 @@ const options = {
 
 interface LineChartProps {
   graphData: GraphData;
-  title?: string;
 }
 
 const binaryColorMap = new Map([
@@ -73,7 +73,7 @@ const multiCategoryColorMap = new Map([
   [8, '#79742B'], // Amarelo mostarda escuro
 ]);
 
-const LineChart = ({ graphData, title = 'Teste' }: LineChartProps) => {
+const LineChart = ({ graphData }: LineChartProps) => {
   const [chartData, setChartData] = useState<any>(null);
 
   useEffect(() => {
@@ -106,10 +106,7 @@ const LineChart = ({ graphData, title = 'Teste' }: LineChartProps) => {
   }, [graphData]);
 
   return (
-    <div style={{ width: '700px', height: '700px' }}>
-      <h1>{title}</h1>
-      {chartData && <Line data={chartData} options={options as any} />}
-    </div>
+    <div className="w-full h-full">{chartData && <Line data={chartData} options={options as any} />}</div>
   );
 };
 
