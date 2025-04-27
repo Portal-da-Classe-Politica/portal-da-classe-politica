@@ -21,6 +21,7 @@ export const routes = {
   consultList: [],
   projections: '/segunda-camada',
   candidates: '/perfil-candidato',
+  cruzamentos: '/cruzamentos',
   candidate: (id: string) => `/perfil-candidato/${id}`,
   about: '/sobre',
   blog: '/blog',

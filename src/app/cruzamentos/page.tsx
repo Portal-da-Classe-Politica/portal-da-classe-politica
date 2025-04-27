@@ -1,0 +1,96 @@
+'use client';
+
+import { Container, Heading, Text } from '@base';
+import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
+import { Header } from '@components/sections/Header';
+import LineChart from './components/LineChart';
+import { GraphData } from '@services/consult/getGraph';
+import { BoxImageText } from '@components/box/BoxImageText';
+import Image from 'next/image';
+import Filters from './components/Filters';
+import { useState } from 'react';
+
+const cards = [
+  { text: 'Perfil dos Candidatos', src: '/img/consulta/Head.svg', imgWidth: 130, imgHeight: 110 },
+  { text: 'Resultados das Eleições', src: '/img/consulta/Chart.svg', imgWidth: 200, imgHeight: 110 },
+  { text: 'Financiamento de Campanha', src: '/img/consulta/Circles.svg', imgWidth: 130, imgHeight: 110 },
+];
+
+const Page = () => {
+  const [graphData, setGraphData] = useState<GraphData | null>(null);
+
+  return (
+    <main className="font-montserrat">
+      <div className="relative">
+        <section className="bg-white pb-12 pt-4 ">
+          <DesignSemiCircle theme="dark" />
+          <Container>
+            <Header style="dark" />
+          </Container>
+        </section>
+
+        <section>
+          <Container>
+            <div className="flex flex-col justify-between items-center md:flex-row">
+              <div className="flex flex-2 flex-col">
+                <Heading size="D1" className="text-orange">
+                  Explorando Dados Eleitorais
+                </Heading>
+                <Heading size="D2">Cruzamento e Visualização</Heading>
+              </div>
+              <div className="flex flex-1 pt-4 md:p-[30px]">
+                <Text size="S1">
+                  Utilize filtros e variáveis para criar gráficos e mapas eleitorais personalizados
+                </Text>
+              </div>
+            </div>
+          </Container>
+          <Container className="my-12 pb-12">
+            <div className="flex justify-center md:justify-normal flex-wrap gap-8">
+              {cards.map((card, idx) => (
+                <BoxImageText
+                  key={idx}
+                  text={card.text}
+                  src={card.src}
+                  imgClassName="pt-4"
+                  imgWidth={card.imgWidth}
+                  imgHeight={card.imgHeight}
+                />
+              ))}
+            </div>
+          </Container>
+        </section>
+      </div>
+
+      <section className="bg-grayMix1 py-[40px]" id="consult-section">
+        <Container>
+          <Filters sendGraphData={data => setGraphData(data)} />
+        </Container>
+      </section>
+
+      <section className="bg-grayMix1 pb-10" id="graph-section">
+        <Container>
+          <div className="rounded-lg p-[5px] h-[400px] bg-white shadow-lg border md:p-[30px] md:h-[600px]">
+            {graphData ? (
+              <LineChart graphData={graphData} />
+            ) : (
+              <div className="flex flex-col gap-5 justify-center w-full h-full items-center">
+                <Image
+                  src={require('../../../public/img/GraphIcon.svg')}
+                  alt="Ícone de gráfico"
+                  width={100}
+                  height={100}
+                />
+                <Text size="B1" textType="span" className="text-gray">
+                  O gráfico será exibido aqui
+                </Text>
+              </div>
+            )}
+          </div>
+        </Container>
+      </section>
+    </main>
+  );
+};
+
+export default Page;
