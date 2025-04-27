@@ -1,5 +1,6 @@
 import { ButtonStyled } from '@base/buttons';
 import CompleteSelect from '@base/forms/CompleteSelect';
+import { Loader } from '@base/Loader';
 import { Text } from '@base/text';
 import { BoxIcon } from '@components/box/BoxIcon';
 import { CrossCriteriaPossibilitie, CrossCriterias } from '@services/consult/getFiltersByRole';
@@ -15,7 +16,8 @@ const Filters = ({ sendGraphData }: { sendGraphData: (_data: GraphData) => void 
   const [earlyYears, setEarlyYears] = useState<number[]>();
   const [finalYears, setFinalYearss] = useState<number[]>();
 
-  // const [loading, setLoading] = useState(false);
+  const [initialLoading, setInitialLoading] = useState<boolean>(false);
+  const [graphLoading, setGraphLoading] = useState<boolean>(false);
 
   const [cargo, setCargo] = useState<Cargo>();
   const [dimension, setDimension] = useState<Dimension>();
@@ -29,13 +31,15 @@ const Filters = ({ sendGraphData }: { sendGraphData: (_data: GraphData) => void 
   }, []);
 
   async function getData() {
+    setInitialLoading(true);
     fetch(`/api/consult/filters/initial`)
       .then(res => res.json())
       .then(data => {
         const initialFilters = data.data as InitialFiltersData;
         setCargos(initialFilters.cargos);
         setDimensions(initialFilters.possibilities);
-      });
+      })
+      .finally(() => setInitialLoading(false));
   }
 
   async function getFiltersByRole(role: number) {
@@ -51,6 +55,10 @@ const Filters = ({ sendGraphData }: { sendGraphData: (_data: GraphData) => void 
   }
 
   async function getGraph() {
+    if (graphLoading) {
+      return;
+    }
+
     let params = '';
 
     params += `dimension=${dimension!.value}`;
@@ -68,11 +76,16 @@ const Filters = ({ sendGraphData }: { sendGraphData: (_data: GraphData) => void 
       });
     }
 
+    setGraphLoading(true);
+
     fetch(`/api/consult/graph?${params}`)
       .then(res => res.json())
       .then(data => {
         const graph = data.data as GraphData;
         sendGraphData(graph);
+      })
+      .finally(() => {
+        setGraphLoading(false);
       });
   }
 
@@ -135,129 +148,140 @@ const Filters = ({ sendGraphData }: { sendGraphData: (_data: GraphData) => void 
         <BoxIcon icon="Filter" iconSize="lg" className="bg-white shadow-lg text-orange" />
         <Text className="font-bold ml-2 text-center text-white">Filtros</Text>
       </label>
-      <div>
-        <Text size="B1" textType="span" className="text-white">
-          Selecione os filtros desejados para gerar o gráfico
-        </Text>
-      </div>
-      <div className="flex gap-5 md:flex-row flex-col">
-        {cargos.length ? (
+
+      {initialLoading ? (
+        <div className="flex flex-col gap-[20px] justify-center items-center w-full h-[100px]">
+          <Loader variant="Beat" color="white" />
+          <Text size="B1" textType="span" className="text-white">
+            Carregando filtros...
+          </Text>
+        </div>
+      ) : (
+        <>
+          <div>
+            <Text size="B1" textType="span" className="text-white">
+              Selecione os filtros desejados para gerar o gráfico
+            </Text>
+          </div>
+          <div className="flex gap-5 md:flex-row flex-col">
+            {cargos.length ? (
+              <div className="w-full">
+                <h3 className="font-semibold mb-1 text-white">Cargo disputado</h3>
+                <CompleteSelect
+                  placeholder="Selecione uma opção"
+                  multiSelect={false}
+                  options={getCargosOptions()}
+                  selectedOption={getCargosOptions().find(c => c.value === cargo?.id)}
+                  onSelect={(value: any) => selectCargo(value.value)}
+                />
+              </div>
+            ) : null}
+
+            <div className="w-full">
+              <h3 className="font-semibold mb-1 text-white">Estado (opcional)</h3>
+              <CompleteSelect
+                placeholder="Selecione uma opção"
+                multiSelect={false}
+                disabled={!states}
+                options={states?.map(state => ({ label: state, value: state }))}
+                selectedOption={states
+                  ?.map(state => ({ label: state, value: state }))
+                  .find(c => c.value == selectedState)}
+                onSelect={(value: any) => setSelectedState(value.value)}
+              />
+            </div>
+
+            <div className="w-full">
+              <h3 className="font-semibold mb-1 text-white">Ano inicial</h3>
+              <CompleteSelect
+                placeholder="Selecione uma opção"
+                multiSelect={false}
+                disabled={!earlyYears}
+                options={earlyYears?.map(year => ({ label: year, value: year }))}
+                selectedOption={earlyYears
+                  ?.map(year => ({ label: year, value: year }))
+                  .find(c => c.value === selectedEarlyYear)}
+                onSelect={(value: any) => checkEarlyDate(value.value)}
+              />
+            </div>
+
+            <div className="w-full">
+              <h3 className="font-semibold mb-1 text-white">Ano final</h3>
+              <CompleteSelect
+                placeholder="Selecione uma opção"
+                multiSelect={false}
+                disabled={!finalYears}
+                options={finalYears?.map(year => ({ label: year, value: year }))}
+                selectedOption={finalYears
+                  ?.map(year => ({ label: year, value: year }))
+                  .find(c => c.value === selectedFinalYear)}
+                onSelect={(value: any) => checkFinalDate(value.value)}
+              />
+            </div>
+          </div>
+
+          <div className="flex gap-4 select-none md:flex-row flex-col">
+            <h3 className="font-semibold mb-1 text-white">O que deseja analisar:</h3>
+            {dimensions.map((dim: any, idx: number) => (
+              <label key={idx} className="flex items-center cursor-pointer ">
+                <input
+                  type="radio"
+                  className="hidden peer"
+                  name="dimension"
+                  value={dim.value}
+                  onChange={(event: any) => setDimension(dimensions.find(d => d.value == event.target.value))}
+                />
+                <div className="w-5 h-5 border-[3px] rounded-full flex items-center justify-center mr-2 peer-checked:bg-black peer-checked:border-white peer-checked:border-[3px]"></div>
+                <Text size="B1" textType="span" className="text-white">
+                  {dim.label}
+                </Text>
+              </label>
+            ))}
+          </div>
+
           <div className="w-full">
-            <h3 className="font-semibold mb-1 text-white">Cargo disputado</h3>
+            <h3 className="font-semibold mb-1 text-white">Cruzamento com até 3 variáveis</h3>
             <CompleteSelect
-              placeholder="Selecione uma opção"
-              multiSelect={false}
-              options={getCargosOptions()}
-              selectedOption={getCargosOptions().find(c => c.value === cargo?.id)}
-              onSelect={(value: any) => selectCargo(value.value)}
+              placeholder="Selecione os cruzamentos"
+              multiSelect={'multiselect'}
+              disabled={!crossCriterias}
+              options={crossCriterias?.possibilities.map(data => ({
+                label: data.label,
+                value: data.parameter,
+              }))}
+              selectedOption={crossCriterias?.possibilities
+                .map(data => ({ label: data.label, value: data.parameter }))
+                .filter(c => selectedCriterias.map(s => s.parameter).includes(c.value))}
+              onSelect={(value: any) => selectCriteria(value)}
             />
           </div>
-        ) : null}
 
-        <div className="w-full">
-          <h3 className="font-semibold mb-1 text-white">Estado (opcional)</h3>
-          <CompleteSelect
-            placeholder="Selecione uma opção"
-            multiSelect={false}
-            disabled={!states}
-            options={states?.map(state => ({ label: state, value: state }))}
-            selectedOption={states
-              ?.map(state => ({ label: state, value: state }))
-              .find(c => c.value == selectedState)}
-            onSelect={(value: any) => setSelectedState(value.value)}
-          />
-        </div>
-
-        <div className="w-full">
-          <h3 className="font-semibold mb-1 text-white">Ano inicial</h3>
-          <CompleteSelect
-            placeholder="Selecione uma opção"
-            multiSelect={false}
-            disabled={!earlyYears}
-            options={earlyYears?.map(year => ({ label: year, value: year }))}
-            selectedOption={earlyYears
-              ?.map(year => ({ label: year, value: year }))
-              .find(c => c.value === selectedEarlyYear)}
-            onSelect={(value: any) => checkEarlyDate(value.value)}
-          />
-        </div>
-
-        <div className="w-full">
-          <h3 className="font-semibold mb-1 text-white">Ano final</h3>
-          <CompleteSelect
-            placeholder="Selecione uma opção"
-            multiSelect={false}
-            disabled={!finalYears}
-            options={finalYears?.map(year => ({ label: year, value: year }))}
-            selectedOption={finalYears
-              ?.map(year => ({ label: year, value: year }))
-              .find(c => c.value === selectedFinalYear)}
-            onSelect={(value: any) => checkFinalDate(value.value)}
-          />
-        </div>
-      </div>
-
-      <div className="flex gap-4 select-none md:flex-row flex-col">
-        <h3 className="font-semibold mb-1 text-white">O que deseja analisar:</h3>
-        {dimensions.map((dim: any, idx: number) => (
-          <label key={idx} className="flex items-center cursor-pointer ">
-            <input
-              type="radio"
-              className="hidden peer"
-              name="dimension"
-              value={dim.value}
-              onChange={(event: any) => setDimension(dimensions.find(d => d.value == event.target.value))}
-            />
-            <div className="w-5 h-5 border-[3px] rounded-full flex items-center justify-center mr-2 peer-checked:bg-black peer-checked:border-white peer-checked:border-[3px]"></div>
-            <Text size="B1" textType="span" className="text-white">
-              {dim.label}
-            </Text>
-          </label>
-        ))}
-      </div>
-
-      <div className="w-full">
-        <h3 className="font-semibold mb-1 text-white">Cruzamento com até 3 variáveis</h3>
-        <CompleteSelect
-          placeholder="Selecione os cruzamentos"
-          multiSelect={'multiselect'}
-          disabled={!crossCriterias}
-          options={crossCriterias?.possibilities.map(data => ({
-            label: data.label,
-            value: data.parameter,
-          }))}
-          selectedOption={crossCriterias?.possibilities
-            .map(data => ({ label: data.label, value: data.parameter }))
-            .filter(c => selectedCriterias.map(s => s.parameter).includes(c.value))}
-          onSelect={(value: any) => selectCriteria(value)}
-        />
-      </div>
-
-      <div className="flex gap-5 md:flex-row flex-col">
-        {selectedCriterias.length
-          ? selectedCriterias.map((criteria, idx) => {
-              return (
-                <div key={idx} className="w-full">
-                  <h3 className="font-semibold mb-1 text-white">{criteria.label}</h3>
-                  <CompleteSelect
-                    placeholder="Selecione uma opção"
-                    multiSelect={criteria.type == 'multi_select' ? 'multiselect' : false}
-                    options={criteria.values.map((data: any) => ({
-                      label: data.label,
-                      value: data.id,
-                    }))}
-                    selectedOption={criteria.selections}
-                    onSelect={(value: any) => updateCriteriasSelections(value, criteria.parameter)}
-                  />
-                </div>
-              );
-            })
-          : null}
-      </div>
-
-      <ButtonStyled style="fillBlack" className="w-full" onClick={getGraph} disabled={false}>
-        <Text>Aplicar Filtros</Text>
-      </ButtonStyled>
+          <div className="flex gap-5 md:flex-row flex-col">
+            {selectedCriterias.length
+              ? selectedCriterias.map((criteria, idx) => {
+                  return (
+                    <div key={idx} className="w-full">
+                      <h3 className="font-semibold mb-1 text-white">{criteria.label}</h3>
+                      <CompleteSelect
+                        placeholder="Selecione uma opção"
+                        multiSelect={criteria.type == 'multi_select' ? 'multiselect' : false}
+                        options={criteria.values.map((data: any) => ({
+                          label: data.label,
+                          value: data.id,
+                        }))}
+                        selectedOption={criteria.selections}
+                        onSelect={(value: any) => updateCriteriasSelections(value, criteria.parameter)}
+                      />
+                    </div>
+                  );
+                })
+              : null}
+          </div>
+          <ButtonStyled style="fillBlack" className="w-full" onClick={getGraph} disabled={false}>
+            {graphLoading ? <Loader variant="Beat" color="white" /> : <Text>Aplicar Filtros</Text>}
+          </ButtonStyled>
+        </>
+      )}
     </div>
   );
 };
