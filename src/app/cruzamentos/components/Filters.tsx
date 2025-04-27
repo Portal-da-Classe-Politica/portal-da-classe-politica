@@ -13,22 +13,41 @@ const Filters = ({ sendGraphData }: { sendGraphData: (_data: GraphData) => void 
   const [dimensions, setDimensions] = useState<Dimension[]>([]);
   const [crossCriterias, setCrossCriterias] = useState<CrossCriterias>();
   const [states, setStates] = useState<string[]>();
+  const [electoralUnits, setElectoralUnits] = useState<{ label: string; value: string }[]>();
   const [earlyYears, setEarlyYears] = useState<number[]>();
   const [finalYears, setFinalYearss] = useState<number[]>();
 
   const [initialLoading, setInitialLoading] = useState<boolean>(true);
+  const [electoralLoading, setElectoralLoading] = useState<boolean>(false);
   const [graphLoading, setGraphLoading] = useState<boolean>(false);
 
   const [cargo, setCargo] = useState<Cargo>();
   const [dimension, setDimension] = useState<Dimension>();
   const [selectedCriterias, setSelectedCriterias] = useState<CrossCriteriaPossibilitie[]>([]);
   const [selectedState, setSelectedState] = useState<string>();
+  const [selectedUnit, setSelectedUnit] = useState<string>();
   const [selectedEarlyYear, setSelectedearlyYear] = useState<number>();
   const [selectedFinalYear, setSelectedFinalYear] = useState<number>();
 
   useEffect(() => {
     getInitialData();
   }, []);
+
+  useEffect(() => {
+    const isValid = cargo && [12, 11, 13].includes(cargo.id);
+
+    if (cargo && selectedState && isValid) {
+      setElectoralLoading(true);
+      fetch(`/api/electoralUnit?abrangecyId=${cargo?.abrangenciumId}&uf=${selectedState}`)
+        .then(res => res.json())
+        .then(data => {
+          setElectoralUnits(data);
+        })
+        .finally(() => {
+          setElectoralLoading(false);
+        });
+    }
+  }, [cargo, selectedState]);
 
   async function getInitialData() {
     setInitialLoading(true);
@@ -69,6 +88,9 @@ const Filters = ({ sendGraphData }: { sendGraphData: (_data: GraphData) => void 
     if (selectedState) {
       params += `&uf=${selectedState}`;
     }
+    if (selectedUnit) {
+      params += `&eleitoral_id=${selectedUnit}`;
+    }
     if (selectedCriterias.length) {
       selectedCriterias.forEach(criteria => {
         criteria.selections?.forEach(selection => {
@@ -93,6 +115,7 @@ const Filters = ({ sendGraphData }: { sendGraphData: (_data: GraphData) => void 
   function resetOptions() {
     setSelectedCriterias([]);
     setSelectedState(undefined);
+    setSelectedUnit(undefined);
     setSelectedearlyYear(undefined);
     setSelectedFinalYear(undefined);
     setStates([]);
@@ -220,6 +243,20 @@ const Filters = ({ sendGraphData }: { sendGraphData: (_data: GraphData) => void 
                 onSelect={(value: any) => setSelectedState(value.value)}
               />
             </div>
+
+            {electoralUnits?.length ? (
+              <div className="w-full">
+                <h3 className="font-semibold mb-1 text-white">Município (opcional)</h3>
+                <CompleteSelect
+                  placeholder="Selecione uma opção"
+                  multiSelect={false}
+                  disabled={electoralLoading}
+                  options={electoralUnits?.map(state => state)}
+                  selectedOption={electoralUnits.find(c => c.value == selectedUnit)}
+                  onSelect={(value: any) => setSelectedUnit(value.value)}
+                />
+              </div>
+            ) : null}
 
             <div className="w-full">
               <h3 className="font-semibold mb-1 text-white">Ano inicial</h3>
