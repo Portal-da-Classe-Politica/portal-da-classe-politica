@@ -89,7 +89,7 @@ const Filters = ({ sendGraphData }: { sendGraphData: (_data: GraphData) => void 
       params += `&uf=${selectedState}`;
     }
     if (selectedUnit) {
-      params += `&eleitoral_id=${selectedUnit}`;
+      params += `&unidade_eleitoral_id=${selectedUnit}`;
     }
     if (selectedCriterias.length) {
       selectedCriterias.forEach(criteria => {
