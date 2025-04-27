@@ -139,7 +139,7 @@ const Filters = ({ sendGraphData }: { sendGraphData: (_data: GraphData) => void 
     if (selectedCriterias.length) {
       return selectedCriterias.every(criterias => criterias.selections?.length);
     }
-    return false;
+    return true;
   }
 
   function getCargosOptions() {
@@ -307,7 +307,7 @@ const Filters = ({ sendGraphData }: { sendGraphData: (_data: GraphData) => void 
           </div>
 
           <div className="w-full">
-            <h3 className="font-semibold mb-1 text-white">Cruzamento com até 3 variáveis</h3>
+            <h3 className="font-semibold mb-1 text-white">Cruzamento com até 3 variáveis (opcional)</h3>
             <CompleteSelect
               placeholder="Selecione os cruzamentos"
               multiSelect={'multiselect'}
