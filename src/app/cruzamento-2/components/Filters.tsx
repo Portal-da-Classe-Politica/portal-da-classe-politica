@@ -114,12 +114,9 @@ const Filters = ({ sendGraphData }: { sendGraphData: (_data: GraphData) => void 
       return false;
     }
     if (selectedCriterias.length) {
-      const valid = selectedCriterias.some(criterias => criterias.selections?.length);
-
-      return valid;
-    } else {
-      return false;
+      return selectedCriterias.every(criterias => criterias.selections?.length);
     }
+    return false;
   }
 
   function getCargosOptions() {
