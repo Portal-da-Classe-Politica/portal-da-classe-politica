@@ -130,17 +130,17 @@ const Filters = ({ sendGraphData }: { sendGraphData: (_data: GraphData) => void 
   }
 
   return (
-    <div className="bg-orange p-5 rounded-lg shadow-lg">
+    <div className="flex flex-col gap-[18px] bg-orange p-5 rounded-lg shadow-lg">
       <label htmlFor="toggle" className="flex items-center mb-4 cursor-pointer md:cursor-default">
         <BoxIcon icon="Filter" iconSize="lg" className="bg-white shadow-lg text-orange" />
         <Text className="font-bold ml-2 text-center text-white">Filtros</Text>
       </label>
-      <div className="mb-[15px]">
+      <div>
         <Text size="B1" textType="span" className="text-white">
           Selecione os filtros desejados para gerar o gráfico
         </Text>
       </div>
-      <div className="flex gap-5 mb-[15px]">
+      <div className="flex gap-5 md:flex-row flex-col">
         {cargos.length ? (
           <div className="w-full">
             <h3 className="font-semibold mb-1 text-white">Cargo disputado</h3>
@@ -197,7 +197,7 @@ const Filters = ({ sendGraphData }: { sendGraphData: (_data: GraphData) => void 
         </div>
       </div>
 
-      <div className="flex gap-4 select-none mb-[15px]">
+      <div className="flex gap-4 select-none md:flex-row flex-col">
         <h3 className="font-semibold mb-1 text-white">O que deseja analisar:</h3>
         {dimensions.map((dim: any, idx: number) => (
           <label key={idx} className="flex items-center cursor-pointer ">
@@ -216,26 +216,24 @@ const Filters = ({ sendGraphData }: { sendGraphData: (_data: GraphData) => void 
         ))}
       </div>
 
-      <div className="w-full mb-[15px]">
-        <div className="w-full">
-          <h3 className="font-semibold mb-1 text-white">Cruzamento com até 3 variáveis</h3>
-          <CompleteSelect
-            placeholder="Selecione os cruzamentos"
-            multiSelect={'multiselect'}
-            disabled={!crossCriterias}
-            options={crossCriterias?.possibilities.map(data => ({
-              label: data.label,
-              value: data.parameter,
-            }))}
-            selectedOption={crossCriterias?.possibilities
-              .map(data => ({ label: data.label, value: data.parameter }))
-              .filter(c => selectedCriterias.map(s => s.parameter).includes(c.value))}
-            onSelect={(value: any) => selectCriteria(value)}
-          />
-        </div>
+      <div className="w-full">
+        <h3 className="font-semibold mb-1 text-white">Cruzamento com até 3 variáveis</h3>
+        <CompleteSelect
+          placeholder="Selecione os cruzamentos"
+          multiSelect={'multiselect'}
+          disabled={!crossCriterias}
+          options={crossCriterias?.possibilities.map(data => ({
+            label: data.label,
+            value: data.parameter,
+          }))}
+          selectedOption={crossCriterias?.possibilities
+            .map(data => ({ label: data.label, value: data.parameter }))
+            .filter(c => selectedCriterias.map(s => s.parameter).includes(c.value))}
+          onSelect={(value: any) => selectCriteria(value)}
+        />
       </div>
 
-      <div className="flex gap-5 mb-[30px]">
+      <div className="flex gap-5 md:flex-row flex-col">
         {selectedCriterias.length
           ? selectedCriterias.map((criteria, idx) => {
               return (
