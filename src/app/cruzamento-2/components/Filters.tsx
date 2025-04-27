@@ -16,7 +16,7 @@ const Filters = ({ sendGraphData }: { sendGraphData: (_data: GraphData) => void 
   const [earlyYears, setEarlyYears] = useState<number[]>();
   const [finalYears, setFinalYearss] = useState<number[]>();
 
-  const [initialLoading, setInitialLoading] = useState<boolean>(false);
+  const [initialLoading, setInitialLoading] = useState<boolean>(true);
   const [graphLoading, setGraphLoading] = useState<boolean>(false);
 
   const [cargo, setCargo] = useState<Cargo>();
@@ -27,10 +27,10 @@ const Filters = ({ sendGraphData }: { sendGraphData: (_data: GraphData) => void 
   const [selectedFinalYear, setSelectedFinalYear] = useState<number>();
 
   useEffect(() => {
-    getData();
+    getInitialData();
   }, []);
 
-  async function getData() {
+  async function getInitialData() {
     setInitialLoading(true);
     fetch(`/api/consult/filters/initial`)
       .then(res => res.json())
@@ -47,6 +47,7 @@ const Filters = ({ sendGraphData }: { sendGraphData: (_data: GraphData) => void 
       .then(res => res.json())
       .then(data => {
         const filtersByRole = data.data;
+        resetOptions();
         setCrossCriterias(filtersByRole.cross_criterias);
         setStates(filtersByRole.filters.find((f: any) => f.parameter === 'uf')?.values);
         setEarlyYears(filtersByRole.filters.find((f: any) => f.parameter === 'initial_year')?.values);
@@ -55,7 +56,7 @@ const Filters = ({ sendGraphData }: { sendGraphData: (_data: GraphData) => void 
   }
 
   async function getGraph() {
-    if (graphLoading) {
+    if (graphLoading || !validateOptions()) {
       return;
     }
 
@@ -66,7 +67,7 @@ const Filters = ({ sendGraphData }: { sendGraphData: (_data: GraphData) => void 
     params += `&initial_year=${selectedEarlyYear}`;
     params += `&final_year=${selectedFinalYear}`;
     if (selectedState) {
-      params += `&UF=${selectedState}`;
+      params += `&uf=${selectedState}`;
     }
     if (selectedCriterias.length) {
       selectedCriterias.forEach(criteria => {
@@ -87,6 +88,38 @@ const Filters = ({ sendGraphData }: { sendGraphData: (_data: GraphData) => void 
       .finally(() => {
         setGraphLoading(false);
       });
+  }
+
+  function resetOptions() {
+    setSelectedCriterias([]);
+    setSelectedState(undefined);
+    setSelectedearlyYear(undefined);
+    setSelectedFinalYear(undefined);
+    setStates([]);
+    setEarlyYears([]);
+    setFinalYearss([]);
+  }
+
+  function validateOptions(): boolean {
+    if (!cargo) {
+      return false;
+    }
+    if (!dimension) {
+      return false;
+    }
+    if (!selectedEarlyYear) {
+      return false;
+    }
+    if (!selectedFinalYear) {
+      return false;
+    }
+    if (selectedCriterias.length) {
+      const valid = selectedCriterias.some(criterias => criterias.selections?.length);
+
+      return valid;
+    } else {
+      return false;
+    }
   }
 
   function getCargosOptions() {
@@ -277,7 +310,12 @@ const Filters = ({ sendGraphData }: { sendGraphData: (_data: GraphData) => void 
                 })
               : null}
           </div>
-          <ButtonStyled style="fillBlack" className="w-full" onClick={getGraph} disabled={false}>
+          <ButtonStyled
+            style="fillBlack"
+            className="w-full"
+            onClick={getGraph}
+            disabled={!validateOptions() ? true : false}
+          >
             {graphLoading ? <Loader variant="Beat" color="white" /> : <Text>Aplicar Filtros</Text>}
           </ButtonStyled>
         </>

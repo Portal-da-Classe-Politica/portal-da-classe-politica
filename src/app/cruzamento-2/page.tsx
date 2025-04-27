@@ -68,9 +68,9 @@ const Page = () => {
         </Container>
       </section>
 
-      <section className="bg-grayMix1 pb-20" id="graph-section">
+      <section className="bg-grayMix1 pb-10" id="graph-section">
         <Container>
-          <div className="rounded-lg p-[30px] h-[600px] bg-white shadow-lg border">
+          <div className="rounded-lg p-[5px] h-[400px] bg-white shadow-lg border md:p-[30px] md:h-[600px]">
             {graphData ? (
               <LineChart graphData={graphData} />
             ) : (
