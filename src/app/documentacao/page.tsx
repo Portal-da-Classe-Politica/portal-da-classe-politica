@@ -26,7 +26,7 @@ const Page = () => {
       <section className="bg-white">
         <Container>
           <h2 className="text-2xl font-semibold mb-4 pt-8">1. Resumo Executivo</h2>
-          <h3 className="text-xl font-medium mb-2">Contextualização</h3>
+          <h3 className="text-xl font-semibold mb-2">Contextualização</h3>
           <p className="leading-8 py-4 text-justify">
             A confiança nas instituições eleitorais está ameaçada por desinformação e narrativas de fraude. A
             transparência e o acesso a dados eleitorais confiáveis são cruciais para reconstruir a confiança
@@ -34,7 +34,7 @@ const Page = () => {
             desde 2009 através do Repositório de Dados Eleitorais (RDE), mas o acesso direto exige
             conhecimento técnico.
           </p>
-          <h3 className="text-xl font-medium mt-4 mb-2">Objetivos do Projeto</h3>
+          <h3 className="text-xl font-semibold mt-4 mb-2">Objetivos do Projeto</h3>
           <p className="leading-8 py-4 text-justify">
             O Portal da Classe Política é uma plataforma digital interativa que transforma dados brutos do TSE
             em informações acessíveis, organizando-os em um banco relacional com visualizações, filtros e
@@ -43,7 +43,7 @@ const Page = () => {
             educação política através da visualização de informações e apoiar a confiança nas instituições
             democráticas via transparência de dados.
           </p>
-          <h3 className="text-xl font-medium mt-4 mb-2">Metodologia</h3>
+          <h3 className="text-xl font-semibold mt-4 mb-2">Metodologia</h3>
           <p className="leading-8 py-4 text-justify">
             A metodologia adotada no Portal da Classe Política combina técnicas avançadas de engenharia de
             dados com fundamentos da Ciência Política empírica. O projeto parte de uma base robusta que
@@ -56,7 +56,7 @@ const Page = () => {
             literatura de Ciência Política e Sociologia Eleitoral, além de métricas autorais elaboradas pela
             equipe técnica.
           </p>
-          <h3 className="text-xl font-medium mt-4 mb-2">Impactos gerados</h3>
+          <h3 className="text-xl font-semibold mt-4 mb-2">Impactos gerados</h3>
           <p className="leading-8 py-4 text-justify">
             O Portal da Classe Política gera impactos em frentes estratégicas para o fortalecimento
             democrático. No campo da transparência eleitoral, amplia o acesso público a dados organizados,
@@ -232,9 +232,8 @@ const Page = () => {
           <div className="text-center py-8">
             <img
               src="img/documentacao/print-1.png"
-              style={{ maxWidth: '800px' }}
+              className="mx-auto rounded shadow w-full max-w-[800px] h-auto"
               alt="Figura 1 – Mapa de objetivos e impactos do Portal da Classe Política UFPR – INCT ReDem"
-              className="mx-auto rounded shadow"
             />
             <p className="text-sm text-gray-700 mt-2 italic">
               Figura 1 – Mapa de objetivos e impactos do Portal da Classe Política UFPR – INCT ReDem
@@ -340,7 +339,7 @@ const Page = () => {
           </p>
 
           <div className="overflow-x-auto mt-6" style={{ maxWidth: '600px', margin: '0 auto' }}>
-            <table className="min-w-full border border-gray-500 text-sm text-left">
+            <table className="min-w-full border border-gray-500 text-sm text-left py-8">
               <caption className="caption-top text-center text-sm text-gray-600 italic mb-2">
                 Tabela 1 – Bibliotecas em <span className="italic">JavaScript</span> utilizadas na arquitetura
                 do projeto
@@ -403,7 +402,7 @@ const Page = () => {
             O banco de dados em uso é relacional (através do PostgreSQL), organizado em tabelas que refletem
             entidades do domínio eleitoral. A modelagem inclui, entre outros:
           </p>
-          <ul className="list-disc px-20 space-y-2">
+          <ul className="list-disc px-4 md:px-20 space-y-2">
             <li>
               Candidato: informações pessoais básicas dos candidatos (nome, data de nascimento, município de
               nascimento etc.), além de identificadores como CPF e título de eleitor.
@@ -509,9 +508,8 @@ const Page = () => {
           <div className="text-center py-8">
             <img
               src="img/documentacao/print-2.png"
-              style={{ maxWidth: '800px' }}
+              className="mx-auto rounded shadow w-full max-w-[800px] h-auto"
               alt="Figura 2 – Simulação de usuário ao analisar o Número Efetivo de Partidos no Portal"
-              className="mx-auto rounded shadow"
             />
             <p className="text-sm text-gray-700 mt-2 italic">
               Figura 2 – Simulação de usuário ao analisar o Número Efetivo de Partidos no Portal
@@ -544,9 +542,8 @@ const Page = () => {
           <div className="text-center py-8">
             <img
               src="img/documentacao/print-3.png"
-              style={{ maxWidth: '800px' }}
+              className="mx-auto rounded shadow w-full max-w-[800px] h-auto"
               alt="Figura 3 – Simulação de usuário ao analisar a média e mediana de patrimônio no Portal da Classe Política"
-              className="mx-auto rounded shadow"
             />
             <p className="text-sm text-gray-700 mt-2 italic">
               Figura 3 – Simulação de usuário ao analisar a média e mediana de patrimônio no Portal da Classe
@@ -585,9 +582,8 @@ const Page = () => {
           <div className="text-center py-8">
             <img
               src="img/documentacao/print-4.png"
-              style={{ maxWidth: '800px' }}
               alt="Figura 4 – Simulação de usuário ao consultar uma candidatura no Portal da Classe Política"
-              className="mx-auto rounded shadow"
+              className="mx-auto rounded shadow w-full max-w-[800px] h-auto"
             />
             <p className="text-sm text-gray-700 mt-2 italic">
               Figura 4 – Simulação de usuário ao consultar uma candidatura no Portal da Classe Política
