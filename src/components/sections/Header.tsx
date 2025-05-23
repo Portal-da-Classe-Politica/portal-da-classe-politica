@@ -118,6 +118,9 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
           <li className={`self-center ${classes} mr-5`}>
             <HeaderTopic label="BLOG" href={routes.blog} currentPath={pathname} />
           </li>
+          <li className={`self-center ${classes} mr-5`}>
+            <HeaderTopic label="DOCUMENTAÇÃO" href={routes.documentation} currentPath={pathname} />
+          </li>
           <li className={`self-center ${classes}`}>
             <Link target="_blank" href={routes.elections2024}>
               <Button text="ELEIÇÕES 2024" style="fillBlack" />
