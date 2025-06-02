@@ -24,7 +24,7 @@ const CandidateProfile = ({ candidate }: CandidateProfileProps) => {
         {candidate.nome}
       </Heading>
       <Divider type="orange" bottom="small" />
-      <div className="mb-3 flex flex-col gap-2">
+      <div className="mb-3 flex flex-col gap-2 md:w-[50%] md:pr-[32px] ">
         <TextBetween text={candidate.ultimo_cargo} title="Cargo" />
         <TextBetween text={candidate.ultima_unidade_eleitoral} title="Estado" />
         <TextBetween text={candidate.ultima_situacao_candidatura} title="Situação" />
