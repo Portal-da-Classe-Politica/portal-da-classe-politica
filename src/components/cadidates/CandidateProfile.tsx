@@ -1,6 +1,5 @@
 import { Heading, Text } from '../base';
 import { Divider } from '../Divider';
-import { BoxIcon } from '../box/BoxIcon';
 import TextBetween from '../base/text/TextBetween';
 import { cleanString } from '@utils';
 import { ChipContainer } from '@components/ChipContainer';
@@ -28,28 +27,6 @@ const CandidateProfile = ({ candidate }: CandidateProfileProps) => {
         <TextBetween text={candidate.ultimo_cargo} title="Cargo" />
         <TextBetween text={candidate.ultima_unidade_eleitoral} title="Estado" />
         <TextBetween text={candidate.ultima_situacao_candidatura} title="Situação" />
-      </div>
-      <div className="flex flex-col-reverse md:flex-row gap-4">
-        <div className="flex gap-4">
-          <BoxIcon
-            icon="Instagram"
-            size={9}
-            iconSize="lg"
-            className="bg-white border-orange border-[1px] text-orange rounded-md"
-          />
-          <BoxIcon
-            icon="Twitter"
-            size={9}
-            iconSize="lg"
-            className="bg-white border-orange border-[1px] text-orange rounded-md"
-          />
-          <BoxIcon
-            icon="Facebook"
-            size={9}
-            iconSize="lg"
-            className="bg-white border-orange border-[1px] text-orange rounded-md"
-          />
-        </div>
       </div>
       <div>
         <Text size="B1" className="mb-2 font-bold mt-2">
