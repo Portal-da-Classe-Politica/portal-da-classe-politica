@@ -1,11 +1,11 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { ButtonStyled, Container, Heading, Text, Input, TextArea, TextParagraphImage } from '@base';
 import { Header } from '@components/sections/Header';
 import { LineItem } from '@components/LineItem';
 import { BoxIconText } from '@components/box/BoxIconText';
 import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
 import { Constants } from '@constants';
+import Link from 'next/link';
+import { BoxIcon } from '@components/box/BoxIcon';
 
 const Atendimento = () => {
   return (
@@ -76,16 +76,16 @@ const Atendimento = () => {
                 <Text size="B1" className="font-bold mb-2">
                   Redes Sociais
                 </Text>
-                <div className="flex justify-between text-orange">
-                  <Text textType="a">
-                    <FontAwesomeIcon icon={faFacebook} size="2x" />
-                  </Text>
-                  <Text textType="a">
-                    <FontAwesomeIcon icon={faInstagram} size="2x" />
-                  </Text>
-                  <Text textType="a">
-                    <FontAwesomeIcon icon={faLinkedin} size="2x" />
-                  </Text>
+                <div className="flex gap-2 justify-between text-orange">
+                  <Link target="_blank" href={Constants.links.facebook}>
+                    <BoxIcon icon="Facebook" iconSize="2xl" />
+                  </Link>
+                  <Link target="_blank" href={Constants.links.instagram}>
+                    <BoxIcon icon="Instagram" iconSize="2xl" />
+                  </Link>
+                  <Link target="_blank" href={Constants.links.linkedin}>
+                    <BoxIcon icon="LinkedIn" iconSize="2xl" />
+                  </Link>
                 </div>
               </LineItem>
             </div>
