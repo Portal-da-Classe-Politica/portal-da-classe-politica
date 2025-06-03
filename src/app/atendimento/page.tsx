@@ -63,7 +63,7 @@ const Atendimento = () => {
                 <Text size="B1" className="font-bold mb-2">
                   E-mail
                 </Text>
-                <Text>contato@rwbincorporadora.com.br</Text>
+                <Text>portaldaclassepolitica@gmail.com</Text>
               </LineItem>
               <LineItem className="mb-7">
                 <Text size="B1" className="font-bold mb-2">
