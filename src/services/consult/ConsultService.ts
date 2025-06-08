@@ -6,6 +6,7 @@ import { getFilters } from './getFilters';
 import { getInitialFilters } from './getInitialFilters';
 import { getFiltersByRole } from './getFiltersByRole';
 import { getGraph } from './getGraph';
+import { getGraphCsv } from './getGraphCsv';
 
 export const ConsultService = {
   consult,
@@ -16,4 +17,5 @@ export const ConsultService = {
   getInitialFilters,
   getFiltersByRole,
   getGraph,
+  getGraphCsv,
 };
