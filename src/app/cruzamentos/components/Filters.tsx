@@ -8,7 +8,12 @@ import { GraphData } from '@services/consult/getGraph';
 import { Cargo, Dimension, InitialFiltersData } from '@services/consult/getInitialFilters';
 import { useEffect, useState } from 'react';
 
-const Filters = ({ sendGraphData }: { sendGraphData: (_data: GraphData) => void }) => {
+interface FiltersProps {
+  sendGraphData: (_graph: GraphData) => void;
+  onParamsChange: (_str: string) => void;
+}
+
+const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
   const [cargos, setCargos] = useState<Cargo[]>([]);
   const [dimensions, setDimensions] = useState<Dimension[]>([]);
   const [crossCriterias, setCrossCriterias] = useState<CrossCriterias>();
@@ -79,12 +84,30 @@ const Filters = ({ sendGraphData }: { sendGraphData: (_data: GraphData) => void 
       return;
     }
 
+    setGraphLoading(true);
+    const params = mountParams();
+
+    onParamsChange(params);
+
+    fetch(`/api/consult/graph?${params}`)
+      .then(res => res.json())
+      .then(data => {
+        const graph = data.data as GraphData;
+        sendGraphData(graph);
+      })
+      .finally(() => {
+        setGraphLoading(false);
+      });
+  }
+
+  function mountParams(): string {
     let params = '';
 
     params += `dimension=${dimension!.value}`;
     params += `&cargoId=${cargo!.id}`;
     params += `&initial_year=${selectedEarlyYear}`;
     params += `&final_year=${selectedFinalYear}`;
+
     if (selectedState) {
       params += `&uf=${selectedState}`;
     }
@@ -99,17 +122,7 @@ const Filters = ({ sendGraphData }: { sendGraphData: (_data: GraphData) => void 
       });
     }
 
-    setGraphLoading(true);
-
-    fetch(`/api/consult/graph?${params}`)
-      .then(res => res.json())
-      .then(data => {
-        const graph = data.data as GraphData;
-        sendGraphData(graph);
-      })
-      .finally(() => {
-        setGraphLoading(false);
-      });
+    return params;
   }
 
   function resetOptions() {

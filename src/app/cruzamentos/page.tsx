@@ -1,6 +1,6 @@
 'use client';
 
-import { Container, Heading, Text } from '@base';
+import { Container, Heading, Icon, Text } from '@base';
 import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
 import { Header } from '@components/sections/Header';
 import LineChart from './components/LineChart';
@@ -8,7 +8,8 @@ import { GraphData } from '@services/consult/getGraph';
 import { BoxImageText } from '@components/box/BoxImageText';
 import Image from 'next/image';
 import Filters from './components/Filters';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import html2canvas from 'html2canvas';
 
 const cards = [
   { text: 'Perfil dos Candidatos', src: '/img/consulta/Head.svg', imgWidth: 130, imgHeight: 110 },
@@ -18,6 +19,45 @@ const cards = [
 
 const Page = () => {
   const [graphData, setGraphData] = useState<GraphData | null>(null);
+  const [params, setParams] = useState<string>('');
+
+  const chartRef = useRef<HTMLDivElement>(null);
+
+  const handleExportImage = async () => {
+    if (chartRef.current) {
+      chartRef.current.style.display = 'inline';
+      const canvas = await html2canvas(chartRef.current);
+      const link = document.createElement('a');
+      link.download = 'redem-grafico.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+      chartRef.current.style.display = 'none';
+    }
+  };
+
+  const extractCsv = (textCsv: string) => {
+    const blob = new Blob([textCsv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'redem-grafico.csv';
+    try {
+      document.body.appendChild(link);
+      link.click();
+    } finally {
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }
+  };
+
+  const getCsvFile = async () => {
+    fetch(`/api/consult/graph-csv?${params}`)
+      .then(res => res.json())
+      .then(data => {
+        const textCsv = data as string;
+        extractCsv(textCsv);
+      });
+  };
 
   return (
     <main className="font-montserrat">
@@ -64,15 +104,38 @@ const Page = () => {
 
       <section className="bg-grayMix1 py-[40px]" id="consult-section">
         <Container>
-          <Filters sendGraphData={data => setGraphData(data)} />
+          Parametros: {params}
+          <Filters sendGraphData={data => setGraphData(data)} onParamsChange={str => setParams(str)} />
         </Container>
       </section>
 
       <section className="bg-grayMix1 pb-10" id="graph-section">
         <Container>
-          <div className="rounded-lg p-[5px] h-[400px] bg-white shadow-lg border md:p-[30px] md:h-[600px]">
+          <div className="rounded-lg p-[5px] h-[500px] bg-white shadow-lg border md:p-[30px] md:h-[700px]">
             {graphData ? (
-              <LineChart graphData={graphData} />
+              <div className="flex flex-col justify-center items-center w-full h-full">
+                <div className="flex justify-end items-center w-full px-4 gap-4 py-4">
+                  <button
+                    className="flex items-center gap-2 text-orange border border-orange px-4 py-2 rounded-md hover:bg-orange hover:text-white transition-colors"
+                    onClick={handleExportImage}
+                  >
+                    <Icon type="Image" />
+                    <Text>Exportar imagem</Text>
+                  </button>
+                  <button
+                    className="flex items-center gap-2 text-orange border border-orange px-4 py-2 rounded-md hover:bg-orange hover:text-white transition-colors"
+                    onClick={getCsvFile}
+                  >
+                    <Icon type="CSV" />
+                    <Text>Exportar Dados</Text>
+                  </button>
+                </div>
+                <LineChart graphData={graphData} />
+                {/* Export refer */}
+                <div ref={chartRef} className="w-[800px] h-[400px] fixed top-100 left-100 bg-white hidden">
+                  <LineChart graphData={graphData} />
+                </div>
+              </div>
             ) : (
               <div className="flex flex-col gap-5 justify-center w-full h-full items-center">
                 <Image
