@@ -25,13 +25,13 @@ const Page = () => {
 
   const handleExportImage = async () => {
     if (chartRef.current) {
-      chartRef.current.style.display = 'inline';
+      chartRef.current.style.opacity = '100%';
       const canvas = await html2canvas(chartRef.current);
       const link = document.createElement('a');
       link.download = 'redem-grafico.png';
       link.href = canvas.toDataURL('image/png');
       link.click();
-      chartRef.current.style.display = 'none';
+      chartRef.current.style.opacity = '0%';
     }
   };
 
@@ -104,7 +104,6 @@ const Page = () => {
 
       <section className="bg-grayMix1 py-[40px]" id="consult-section">
         <Container>
-          Parametros: {params}
           <Filters sendGraphData={data => setGraphData(data)} onParamsChange={str => setParams(str)} />
         </Container>
       </section>
@@ -114,6 +113,7 @@ const Page = () => {
           <div className="rounded-lg p-[5px] h-[500px] bg-white shadow-lg border md:p-[30px] md:h-[700px]">
             {graphData ? (
               <div className="flex flex-col justify-center items-center w-full h-full">
+                <Heading size="H2">{graphData.title}</Heading>
                 <div className="flex justify-end items-center w-full px-4 gap-4 py-4">
                   <button
                     className="flex items-center gap-2 text-orange border border-orange px-4 py-2 rounded-md hover:bg-orange hover:text-white transition-colors"
@@ -132,7 +132,7 @@ const Page = () => {
                 </div>
                 <LineChart graphData={graphData} />
                 {/* Export refer */}
-                <div ref={chartRef} className="w-[800px] h-[400px] fixed top-100 left-100 bg-white hidden">
+                <div ref={chartRef} className="w-[800px] h-[400px] fixed top-100 left-100 bg-white opacity-0">
                   <LineChart graphData={graphData} />
                 </div>
               </div>
