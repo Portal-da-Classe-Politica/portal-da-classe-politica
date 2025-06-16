@@ -7,7 +7,6 @@ import { Header } from '@components/sections/Header';
 import { GetInContact } from '@components/sections/GetInContact';
 import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
 
-import { ConsultResultDisplay } from '@components/consult/ConsultResultDisplay';
 import { useObjReducer } from '@hooks/useObjReducer';
 
 import {
@@ -15,6 +14,9 @@ import {
   SecondLayerSearchValues,
   SecondLayerStaticFilters,
 } from './components/SecondLayerFilter';
+import LineChart from 'app/cruzamentos/components/LineChart';
+import { GraphDataResponse } from '@services/consult/getGraph';
+import Collapse from '@base/Collapse';
 
 const Page = () => {
   const [staticFilters, setStaticFilters] = useState<SecondLayerStaticFilters>({
@@ -28,7 +30,11 @@ const Page = () => {
   const [indicatorFilters, setIndicatorFilters] = useState({ indicators: [], jobs: [] });
   const [loadingIndicatorFilters, setLoadingIndicatorFilters] = useState(true);
 
-  const [result, setResult] = useObjReducer({ loading: false, data: null, error: null });
+  const [result, setResult] = useObjReducer<{
+    loading: boolean;
+    data: GraphDataResponse | null;
+    error: any | null;
+  }>({ loading: false, data: null, error: null });
 
   const loadStaticFilters = useCallback(async () => {
     setLoadingStaticFilters(true);
@@ -127,7 +133,16 @@ const Page = () => {
                   <Loader variant="Sync" color="#EB582F" />
                 </div>
               ) : result.data ? (
-                <ConsultResultDisplay result={result.data} />
+                <div className="rounded-lg bg-white shadow-lg border size-max w-full p-[5px] md:p-[30px] size-max w-full">
+                  <LineChart graphData={result.data.data} />
+                  <div className="flex flex-1 flex-col mt-8">
+                    {result.data.details.map(({ title, text }) => (
+                      <Collapse key={title} title={title} className="mt-4">
+                        {text}
+                      </Collapse>
+                    ))}
+                  </div>
+                </div>
               ) : result.error ? (
                 <div className="flex flex-1 justify-center items-center drop-shadow-lg rounded-lg bg-white py-5 px-7 rounded-[10px]">
                   <Icon type="Error" size="2x" className="text-orange mr-4" />

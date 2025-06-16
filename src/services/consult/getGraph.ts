@@ -9,6 +9,16 @@ export interface GraphData {
   xAxis: number[];
 }
 
+export interface GraphDataResponse {
+  details: Detail[];
+  data: GraphData;
+}
+
+export interface Detail {
+  title: string;
+  text: string;
+}
+
 export interface ExtraDataGraph {
   generalLegend: string;
   xAxisLabel: string;
