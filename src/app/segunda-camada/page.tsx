@@ -29,6 +29,9 @@ const Page = () => {
 
   const [indicatorFilters, setIndicatorFilters] = useState({ indicators: [], jobs: [] });
   const [loadingIndicatorFilters, setLoadingIndicatorFilters] = useState(true);
+  const [strParams, setStrParams] = useState('');
+  const [indicators, setIndicators] = useState('');
+  const [textCsv, setTextCsv] = useState('');
 
   const [result, setResult] = useObjReducer<{
     loading: boolean;
@@ -78,7 +81,11 @@ const Page = () => {
     params.append('uf', consultFilters.uf);
     params.append('partyId', consultFilters.partyId);
 
+    setStrParams(params.toString());
+
     setResult({ loading: true, data: null });
+
+    setIndicators(consultFilters.indicator);
 
     const url = `/api/indicators/${consultFilters.indicator}?${params.toString()}`;
     fetch(url)
@@ -90,6 +97,20 @@ const Page = () => {
       .catch(error => {
         console.error('Error', error);
         setResult({ loading: false, data: null, error });
+      });
+  };
+
+  const getCsvFile = () => {
+    const url = `/api/indicators/${indicators}?${strParams}&exportcsv=true`;
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        console.log('CSV Data', data);
+        const textCsv = data as string;
+        setTextCsv(textCsv);
+      })
+      .catch(error => {
+        console.error('Error', error);
       });
   };
 
@@ -134,7 +155,7 @@ const Page = () => {
                 </div>
               ) : result.data ? (
                 <div className="rounded-lg bg-white shadow-lg border size-max w-full p-[5px] md:p-[30px] size-max w-full">
-                  <LineChart graphData={result.data.data} />
+                  <LineChart graphData={result.data.data} onGetCsvFile={getCsvFile} textCsv={textCsv} />
                   <div className="flex flex-1 flex-col mt-8">
                     {result.data.details.map(({ title, text }) => (
                       <Collapse key={title} title={title} className="mt-4">
