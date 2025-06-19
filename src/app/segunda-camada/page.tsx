@@ -101,7 +101,7 @@ const Page = () => {
   };
 
   const getCsvFile = () => {
-    const url = `/api/indicators/${indicators}?${strParams}&exportcsv=true`;
+    const url = `/api/indicators/csv/${indicators}?${strParams}`;
     fetch(url)
       .then(res => res.json())
       .then(data => {
