@@ -14,7 +14,7 @@ import {
   SecondLayerSearchValues,
   SecondLayerStaticFilters,
 } from './components/SecondLayerFilter';
-import LineChart from 'app/cruzamentos/components/LineChart';
+import LineChart from '@components/charts/LineChart';
 import { GraphDataResponse } from '@services/consult/getGraph';
 import Collapse from '@base/Collapse';
 
@@ -85,13 +85,14 @@ const Page = () => {
 
     setResult({ loading: true, data: null });
 
+    setTextCsv('');
+
     setIndicators(consultFilters.indicator);
 
     const url = `/api/indicators/${consultFilters.indicator}?${params.toString()}`;
     fetch(url)
       .then(res => res.json())
       .then(data => {
-        console.debug('Resultados', data);
         setResult({ loading: false, data: data.result, error: null });
       })
       .catch(error => {
@@ -156,9 +157,9 @@ const Page = () => {
               ) : result.data ? (
                 <div className="rounded-lg bg-white shadow-lg border size-max w-full p-[5px] md:p-[30px] size-max w-full">
                   <LineChart graphData={result.data.data} onGetCsvFile={getCsvFile} textCsv={textCsv} />
-                  <div className="flex flex-1 flex-col mt-8">
+                  <div className="flex flex-1 flex-col mt-5 p-[5px]">
                     {result.data.details.map(({ title, text }) => (
-                      <Collapse key={title} title={title} className="mt-4">
+                      <Collapse key={title} title={title} className="mb-5">
                         {text}
                       </Collapse>
                     ))}

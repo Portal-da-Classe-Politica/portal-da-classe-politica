@@ -4,7 +4,7 @@ import axios from 'axios';
 export interface GraphData {
   title: string;
   type: string;
-  extraData: ExtraDataGraph[];
+  extraData: ExtraDataGraph;
   series: { name: string; data: string[] }[];
   xAxis: number[];
 }
@@ -20,9 +20,9 @@ export interface Detail {
 }
 
 export interface ExtraDataGraph {
-  generalLegend: string;
-  xAxisLabel: string;
-  yAxisLabel: string;
+  generalLegend?: string;
+  xAxisLabel?: string;
+  yAxisLabel?: string;
 }
 
 export const getGraph = async (filters: string): Promise<GraphData> => {

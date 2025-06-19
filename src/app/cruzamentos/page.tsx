@@ -3,7 +3,7 @@
 import { Container, Heading, Text } from '@base';
 import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
 import { Header } from '@components/sections/Header';
-import LineChart from './components/LineChart';
+import LineChart from '../../components/charts/LineChart';
 import { GraphData } from '@services/consult/getGraph';
 import { BoxImageText } from '@components/box/BoxImageText';
 import Image from 'next/image';

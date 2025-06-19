@@ -3,7 +3,6 @@ import 'chart.js/auto';
 import { GraphData } from '@services/consult/getGraph';
 import { useEffect, useRef, useState } from 'react';
 import html2canvas from 'html2canvas';
-import { Heading } from '@base/Heading';
 import { Icon } from '@base/Icon';
 import { Text } from '@base/text';
 
@@ -151,30 +150,40 @@ const LineChart = ({ graphData, onGetCsvFile, textCsv }: LineChartProps) => {
   return (
     chartData && (
       <div className="flex flex-col justify-center items-center">
-        <div className="flex justify-end items-center w-full px-4 gap-4 py-4">
-          <button
-            className="flex items-center gap-2 text-orange border border-orange px-4 py-2 rounded-md hover:bg-orange hover:text-white transition-colors"
-            onClick={handleExportImage}
-          >
-            <Icon type="Image" />
-            <Text>Exportar imagem</Text>
-          </button>
-          <button
-            className="flex items-center gap-2 text-orange border border-orange px-4 py-2 rounded-md hover:bg-orange hover:text-white transition-colors"
-            onClick={() => onGetCsvFile && onGetCsvFile('csv')}
-          >
-            <Icon type="CSV" />
-            <Text>Exportar Dados</Text>
-          </button>
+        <div className="w-full flex flex-col md:flex-row justify-between items-center pt-4 gap-4">
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-800 text-center md:text-left">
+            {graphData?.title}
+          </h1>
+          <div className="flex flex-col md:flex-row justify-end items-center px-4 gap-4 py-4 w-full md:w-auto">
+            <button
+              className="flex items-center justify-center gap-2 text-orange border border-orange px-4 py-2 rounded-md hover:bg-orange hover:text-white transition-colors w-full md:w-auto"
+              onClick={handleExportImage}
+            >
+              <Icon type="Image" />
+              <Text>Exportar imagem</Text>
+            </button>
+            <button
+              className="flex items-center justify-center gap-2 text-orange border border-orange px-4 py-2 rounded-md hover:bg-orange hover:text-white transition-colors w-full md:w-auto"
+              onClick={() => onGetCsvFile && onGetCsvFile('csv')}
+            >
+              <Icon type="CSV" />
+              <Text>Exportar Dados</Text>
+            </button>
+          </div>
         </div>
-        <Heading size="H2">{graphData?.title}</Heading>
-        <div className="w-full h-[600px] pt-5">
+        <div className="w-full h-[500px] pt-5">
           <Line data={chartData} options={options as any} />
           {/* Export refer */}
           <div ref={chartRef} className="w-[800px] h-[400px] fixed top-100 left-100 bg-white opacity-0">
             <Line data={chartData} options={options as any} />
           </div>
         </div>
+        {graphData?.extraData ? (
+          <div className="flex gap-2 items-center justify-center mt-5">
+            <Text size="B2">{graphData.extraData.yAxisLabel}</Text>|
+            <Text size="B2">{graphData.extraData.xAxisLabel}</Text>
+          </div>
+        ) : null}
       </div>
     )
   );
