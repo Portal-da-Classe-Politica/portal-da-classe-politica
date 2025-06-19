@@ -229,6 +229,26 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
               Selecione os filtros desejados para gerar o gráfico
             </Text>
           </div>
+
+          <div className="flex gap-4 select-none md:flex-row flex-col">
+            <h3 className="font-semibold mb-1 text-white">O que deseja analisar: *</h3>
+            {dimensions.map((dim: any, idx: number) => (
+              <label key={idx} className="flex items-center cursor-pointer ">
+                <input
+                  type="radio"
+                  className="hidden peer"
+                  name="dimension"
+                  value={dim.value}
+                  onChange={(event: any) => setDimension(dimensions.find(d => d.value == event.target.value))}
+                />
+                <div className="w-5 h-5 border-[3px] rounded-full flex items-center justify-center mr-2 peer-checked:bg-black peer-checked:border-white peer-checked:border-[3px]"></div>
+                <Text size="B1" textType="span" className="text-white">
+                  {dim.label}
+                </Text>
+              </label>
+            ))}
+          </div>
+
           <div className="flex gap-5 md:flex-row flex-col">
             {cargos.length ? (
               <div className="w-full">
@@ -298,25 +318,6 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
                 onSelect={(value: any) => checkFinalDate(value.value)}
               />
             </div>
-          </div>
-
-          <div className="flex gap-4 select-none md:flex-row flex-col">
-            <h3 className="font-semibold mb-1 text-white">O que deseja analisar:</h3>
-            {dimensions.map((dim: any, idx: number) => (
-              <label key={idx} className="flex items-center cursor-pointer ">
-                <input
-                  type="radio"
-                  className="hidden peer"
-                  name="dimension"
-                  value={dim.value}
-                  onChange={(event: any) => setDimension(dimensions.find(d => d.value == event.target.value))}
-                />
-                <div className="w-5 h-5 border-[3px] rounded-full flex items-center justify-center mr-2 peer-checked:bg-black peer-checked:border-white peer-checked:border-[3px]"></div>
-                <Text size="B1" textType="span" className="text-white">
-                  {dim.label}
-                </Text>
-              </label>
-            ))}
           </div>
 
           <div className="w-full">
