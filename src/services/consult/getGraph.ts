@@ -5,8 +5,25 @@ export interface GraphData {
   title: string;
   type: string;
   extraData: ExtraDataGraph;
-  series: { name: string; data: string[] }[];
+  indicator_detail: IndicatorDetail;
+  series: Serie[];
   xAxis: number[];
+}
+
+export interface Serie {
+  name: string;
+  data: string[];
+  color: string; // rgb(14, 11, 142)}
+}
+export interface IndicatorDetail {
+  title: string;
+  indicator_purpose: string;
+  how_to_interpretate: string;
+  unit: string;
+  party_indicator: boolean;
+  indicator_t1: boolean;
+  xAxisLabel: string;
+  yAxisLabel: string;
 }
 
 export interface GraphDataResponse {

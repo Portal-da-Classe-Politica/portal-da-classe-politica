@@ -93,25 +93,42 @@ const LineChart = ({ graphData, onGetCsvFile, textCsv }: LineChartProps) => {
 
   useEffect(() => {
     const isBinary = graphData.series.length === 2;
+    const isPartyIndicator = graphData.indicator_detail?.party_indicator;
+    let topSeries = null;
+
+    if (isPartyIndicator) {
+      topSeries = graphData.series
+        .map(serie => ({
+          ...serie,
+          data: serie.data.map(value => parseFloat(value)),
+          total: serie.data.reduce((sum, value) => sum + parseFloat(value), 0),
+        }))
+        .sort((a, b) => b.total - a.total)
+        .slice(0, 5);
+    }
 
     const data = {
       labels: graphData.xAxis,
       datasets: graphData.series.map((serie, index) => {
-        const primaryColor = isBinary ? binaryColorMap.get(index) : multiCategoryColorMap.get(index);
-        // const opacity = `${primaryColor}20`;
+        let primaryColor;
+        if (isPartyIndicator) {
+          primaryColor = serie.color;
+        } else {
+          primaryColor = isBinary ? binaryColorMap.get(index) : multiCategoryColorMap.get(index);
+        }
 
         return {
+          hidden: topSeries != null ? !topSeries.some(topSerie => topSerie.name === serie.name) : false,
           label: serie.name,
           data: serie.data.map(value => parseFloat(value)),
           borderColor: primaryColor,
           backgroundColor: 'transparent',
-          // backgroundColor: opacity,
           pointBackgroundColor: primaryColor,
           pointBorderColor: 'white',
           pointHoverBackgroundColor: 'white',
           pointHoverBorderColor: primaryColor,
-          pointRadius: 4, // Tamanho do ponto
-          pointHoverRadius: 6, // Tamanho ao passar o mouse
+          pointRadius: 4,
+          pointHoverRadius: 6,
           fill: true,
           tension: 0.3,
         };
