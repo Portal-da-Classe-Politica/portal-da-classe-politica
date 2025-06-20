@@ -51,14 +51,14 @@ const FilterModal: React.FC<FilterModalProps> = ({
             <h3 className="mb-2">Filtrar por Partido:</h3>
             <div className="flex flex-col gap-2 max-h-48 overflow-y-auto border border-gray-300 rounded-md p-2">
               {series.map(serie => (
-                <label key={serie.name} className="flex items-center gap-2">
+                <label key={serie.name} className="flex items-center gap-1 p-2">
                   <input
                     type="checkbox"
-                    className="form-checkbox h-5 w-5 text-orange-500 border-gray-300 rounded focus:ring-orange-500"
+                    className="form-checkbox h-5 w-5 text-orange accent-orange"
                     checked={selectedSeries.includes(serie.name)}
                     onChange={() => handleCheckboxChange(serie.name)}
                   />
-                  {serie.name}
+                  <span className="text-sm font-medium">{serie.name}</span>
                 </label>
               ))}
             </div>
