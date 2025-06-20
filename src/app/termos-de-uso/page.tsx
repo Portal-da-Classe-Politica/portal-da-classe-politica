@@ -37,7 +37,7 @@ const termsSections = [
   },
   {
     title: '11. Contato',
-    text: 'Se você tiver alguma dúvida sobre estes Termos de Uso, entre em contato conosco através do nosso e-mail de suporte: portalredem@gmail.com',
+    text: 'Se você tiver alguma dúvida sobre estes Termos de Uso, entre em contato conosco através do nosso e-mail de suporte: portaldaclassepolitica@gmail.com',
   },
 ];
 

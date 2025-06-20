@@ -33,7 +33,7 @@ const sections = [
   },
   {
     title: '8. Contato',
-    text: 'Se tiver alguma dúvida sobre esta política de privacidade, entre em contato conosco através do nosso e-mail de suporte: portalredem@gmail.com',
+    text: 'Se tiver alguma dúvida sobre esta política de privacidade, entre em contato conosco através do nosso e-mail de suporte: portaldaclassepolitica@gmail.com',
   },
 ];
 
