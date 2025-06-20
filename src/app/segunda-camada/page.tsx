@@ -7,7 +7,6 @@ import { Header } from '@components/sections/Header';
 import { GetInContact } from '@components/sections/GetInContact';
 import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
 
-import { ConsultResultDisplay } from '@components/consult/ConsultResultDisplay';
 import { useObjReducer } from '@hooks/useObjReducer';
 
 import {
@@ -15,6 +14,9 @@ import {
   SecondLayerSearchValues,
   SecondLayerStaticFilters,
 } from './components/SecondLayerFilter';
+import LineChart from '@components/charts/LineChart';
+import { GraphDataResponse } from '@services/consult/getGraph';
+import Collapse from '@base/Collapse';
 
 const Page = () => {
   const [staticFilters, setStaticFilters] = useState<SecondLayerStaticFilters>({
@@ -27,8 +29,15 @@ const Page = () => {
 
   const [indicatorFilters, setIndicatorFilters] = useState({ indicators: [], jobs: [] });
   const [loadingIndicatorFilters, setLoadingIndicatorFilters] = useState(true);
+  const [strParams, setStrParams] = useState('');
+  const [indicators, setIndicators] = useState('');
+  const [textCsv, setTextCsv] = useState('');
 
-  const [result, setResult] = useObjReducer({ loading: false, data: null, error: null });
+  const [result, setResult] = useObjReducer<{
+    loading: boolean;
+    data: GraphDataResponse | null;
+    error: any | null;
+  }>({ loading: false, data: null, error: null });
 
   const loadStaticFilters = useCallback(async () => {
     setLoadingStaticFilters(true);
@@ -72,18 +81,37 @@ const Page = () => {
     params.append('uf', consultFilters.uf);
     params.append('partyId', consultFilters.partyId);
 
+    setStrParams(params.toString());
+
     setResult({ loading: true, data: null });
+
+    setTextCsv('');
+
+    setIndicators(consultFilters.indicator);
 
     const url = `/api/indicators/${consultFilters.indicator}?${params.toString()}`;
     fetch(url)
       .then(res => res.json())
       .then(data => {
-        console.debug('Resultados', data);
         setResult({ loading: false, data: data.result, error: null });
       })
       .catch(error => {
         console.error('Error', error);
         setResult({ loading: false, data: null, error });
+      });
+  };
+
+  const getCsvFile = () => {
+    const url = `/api/indicators/csv/${indicators}?${strParams}`;
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        console.log('CSV Data', data);
+        const textCsv = data as string;
+        setTextCsv(textCsv);
+      })
+      .catch(error => {
+        console.error('Error', error);
       });
   };
 
@@ -127,7 +155,16 @@ const Page = () => {
                   <Loader variant="Sync" color="#EB582F" />
                 </div>
               ) : result.data ? (
-                <ConsultResultDisplay result={result.data} />
+                <div className="rounded-lg bg-white shadow-lg border size-max w-full p-[5px] md:p-[30px] size-max w-full">
+                  <LineChart graphData={result.data.data} onGetCsvFile={getCsvFile} textCsv={textCsv} />
+                  <div className="flex flex-1 flex-col mt-5 p-[5px]">
+                    {result.data.details.map(({ title, text }) => (
+                      <Collapse key={title} title={title} className="mb-5">
+                        {text}
+                      </Collapse>
+                    ))}
+                  </div>
+                </div>
               ) : result.error ? (
                 <div className="flex flex-1 justify-center items-center drop-shadow-lg rounded-lg bg-white py-5 px-7 rounded-[10px]">
                   <Icon type="Error" size="2x" className="text-orange mr-4" />

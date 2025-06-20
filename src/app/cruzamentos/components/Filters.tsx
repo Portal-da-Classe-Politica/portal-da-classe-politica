@@ -8,7 +8,12 @@ import { GraphData } from '@services/consult/getGraph';
 import { Cargo, Dimension, InitialFiltersData } from '@services/consult/getInitialFilters';
 import { useEffect, useState } from 'react';
 
-const Filters = ({ sendGraphData }: { sendGraphData: (_data: GraphData) => void }) => {
+interface FiltersProps {
+  sendGraphData: (_graph: GraphData) => void;
+  onParamsChange: (_str: string) => void;
+}
+
+const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
   const [cargos, setCargos] = useState<Cargo[]>([]);
   const [dimensions, setDimensions] = useState<Dimension[]>([]);
   const [crossCriterias, setCrossCriterias] = useState<CrossCriterias>();
@@ -79,12 +84,30 @@ const Filters = ({ sendGraphData }: { sendGraphData: (_data: GraphData) => void 
       return;
     }
 
+    setGraphLoading(true);
+    const params = mountParams();
+
+    onParamsChange(params);
+
+    fetch(`/api/consult/graph?${params}`)
+      .then(res => res.json())
+      .then(data => {
+        const graph = data.data as GraphData;
+        sendGraphData(graph);
+      })
+      .finally(() => {
+        setGraphLoading(false);
+      });
+  }
+
+  function mountParams(): string {
     let params = '';
 
     params += `dimension=${dimension!.value}`;
     params += `&cargoId=${cargo!.id}`;
     params += `&initial_year=${selectedEarlyYear}`;
     params += `&final_year=${selectedFinalYear}`;
+
     if (selectedState) {
       params += `&uf=${selectedState}`;
     }
@@ -99,17 +122,7 @@ const Filters = ({ sendGraphData }: { sendGraphData: (_data: GraphData) => void 
       });
     }
 
-    setGraphLoading(true);
-
-    fetch(`/api/consult/graph?${params}`)
-      .then(res => res.json())
-      .then(data => {
-        const graph = data.data as GraphData;
-        sendGraphData(graph);
-      })
-      .finally(() => {
-        setGraphLoading(false);
-      });
+    return params;
   }
 
   function resetOptions() {
@@ -216,6 +229,26 @@ const Filters = ({ sendGraphData }: { sendGraphData: (_data: GraphData) => void 
               Selecione os filtros desejados para gerar o gráfico
             </Text>
           </div>
+
+          <div className="flex gap-4 select-none md:flex-row flex-col">
+            <h3 className="font-semibold mb-1 text-white">O que deseja analisar: *</h3>
+            {dimensions.map((dim: any, idx: number) => (
+              <label key={idx} className="flex items-center cursor-pointer ">
+                <input
+                  type="radio"
+                  className="hidden peer"
+                  name="dimension"
+                  value={dim.value}
+                  onChange={(event: any) => setDimension(dimensions.find(d => d.value == event.target.value))}
+                />
+                <div className="w-5 h-5 border-[3px] rounded-full flex items-center justify-center mr-2 peer-checked:bg-black peer-checked:border-white peer-checked:border-[3px]"></div>
+                <Text size="B1" textType="span" className="text-white">
+                  {dim.label}
+                </Text>
+              </label>
+            ))}
+          </div>
+
           <div className="flex gap-5 md:flex-row flex-col">
             {cargos.length ? (
               <div className="w-full">
@@ -285,25 +318,6 @@ const Filters = ({ sendGraphData }: { sendGraphData: (_data: GraphData) => void 
                 onSelect={(value: any) => checkFinalDate(value.value)}
               />
             </div>
-          </div>
-
-          <div className="flex gap-4 select-none md:flex-row flex-col">
-            <h3 className="font-semibold mb-1 text-white">O que deseja analisar:</h3>
-            {dimensions.map((dim: any, idx: number) => (
-              <label key={idx} className="flex items-center cursor-pointer ">
-                <input
-                  type="radio"
-                  className="hidden peer"
-                  name="dimension"
-                  value={dim.value}
-                  onChange={(event: any) => setDimension(dimensions.find(d => d.value == event.target.value))}
-                />
-                <div className="w-5 h-5 border-[3px] rounded-full flex items-center justify-center mr-2 peer-checked:bg-black peer-checked:border-white peer-checked:border-[3px]"></div>
-                <Text size="B1" textType="span" className="text-white">
-                  {dim.label}
-                </Text>
-              </label>
-            ))}
           </div>
 
           <div className="w-full">

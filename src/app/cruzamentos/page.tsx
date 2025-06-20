@@ -3,7 +3,7 @@
 import { Container, Heading, Text } from '@base';
 import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
 import { Header } from '@components/sections/Header';
-import LineChart from './components/LineChart';
+import LineChart from '../../components/charts/LineChart';
 import { GraphData } from '@services/consult/getGraph';
 import { BoxImageText } from '@components/box/BoxImageText';
 import Image from 'next/image';
@@ -18,6 +18,17 @@ const cards = [
 
 const Page = () => {
   const [graphData, setGraphData] = useState<GraphData | null>(null);
+  const [textCsv, setTextCsv] = useState<string>();
+  const [params, setParams] = useState<string>('');
+
+  const getCsvFile = async () => {
+    fetch(`/api/consult/graph-csv?${params}`)
+      .then(res => res.json())
+      .then(data => {
+        const textCsv = data as string;
+        setTextCsv(textCsv);
+      });
+  };
 
   return (
     <main className="font-montserrat">
@@ -64,17 +75,17 @@ const Page = () => {
 
       <section className="bg-grayMix1 py-[40px]" id="consult-section">
         <Container>
-          <Filters sendGraphData={data => setGraphData(data)} />
+          <Filters sendGraphData={data => setGraphData(data)} onParamsChange={str => setParams(str)} />
         </Container>
       </section>
 
       <section className="bg-grayMix1 pb-10" id="graph-section">
         <Container>
-          <div className="rounded-lg p-[5px] h-[400px] bg-white shadow-lg border md:p-[30px] md:h-[600px]">
+          <div className="rounded-lg bg-white shadow-lg border p-[5px] md:p-[30px] size-max w-full">
             {graphData ? (
-              <LineChart graphData={graphData} />
+              <LineChart graphData={graphData} onGetCsvFile={getCsvFile} textCsv={textCsv} />
             ) : (
-              <div className="flex flex-col gap-5 justify-center w-full h-full items-center">
+              <div className="flex flex-col gap-5 justify-center w-full h-[400px] items-center">
                 <Image
                   src={require('../../../public/img/GraphIcon.svg')}
                   alt="Ícone de gráfico"

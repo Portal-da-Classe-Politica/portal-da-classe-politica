@@ -1,13 +1,78 @@
+'use client';
+
 import { ButtonStyled, Container, Heading, Text, Input, TextArea, TextParagraphImage } from '@base';
 import { Header } from '@components/sections/Header';
 import { LineItem } from '@components/LineItem';
 import { BoxIconText } from '@components/box/BoxIconText';
 import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
 import { Constants } from '@constants';
+import { useState } from 'react';
+import { EmailBodyData } from '@services/contact/sendEmail';
 import Link from 'next/link';
 import { BoxIcon } from '@components/box/BoxIcon';
 
 const Atendimento = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    topic: '',
+    message: '',
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      alert('Por favor, insira um email válido.');
+      return;
+    }
+
+    if (formData.name.length > 100) {
+      alert('O nome não pode exceder 100 caracteres.');
+      return;
+    }
+
+    if (formData.topic.length > 100) {
+      alert('O assunto não pode exceder 100 caracteres.');
+      return;
+    }
+
+    if (formData.message.length > 800) {
+      alert('A mensagem não pode exceder 800 caracteres.');
+      return;
+    }
+
+    const body: EmailBodyData = {
+      nome: formData.name,
+      email: formData.email,
+      mensagem: formData.message,
+      assunto: formData.topic,
+    };
+
+    try {
+      const response = await fetch('/api/contact/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+
+      if (response.ok) {
+        alert('Email enviado com sucesso!');
+        setFormData({ name: '', email: '', topic: '', message: '' });
+      } else {
+        alert('Falha ao enviar o email. Por favor, tente novamente mais tarde.');
+      }
+    } catch (error) {
+      console.error('Erro ao enviar o email:', error);
+      alert('Erro ao enviar o email.');
+    }
+  };
+
   return (
     <main>
       <div className="relative">
@@ -93,20 +158,48 @@ const Atendimento = () => {
               <Text size="S1" className="font-bold hidden md:flex">
                 Informações de Contato
               </Text>
-              <form className="flex flex-col gap-7 mt-6 mb-9">
+              <form className="flex flex-col gap-7 mt-6 mb-9" onSubmit={handleSubmit}>
                 <div className="flex gap-5 flex-col md:flex-row">
-                  <Input placeholder="Nome Completo" label="name" />
-                  <Input placeholder="Email" label="email" />
+                  <Input
+                    placeholder="Nome Completo"
+                    label="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    maxLength={100}
+                  />
+                  <Input
+                    placeholder="Email"
+                    label="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                  />
                 </div>
                 <div className="flex gap-5 flex-col md:flex-row">
-                  <Input placeholder="Celular (DDD + telefone)" label="phone" />
-                  <Input placeholder="Assunto" label="topic" />
+                  <Input
+                    placeholder="Assunto"
+                    label="topic"
+                    name="topic"
+                    value={formData.topic}
+                    onChange={handleChange}
+                    maxLength={100}
+                  />
                 </div>
                 <div>
-                  <TextArea placeholder="Mensagem" label="message" />
+                  <TextArea
+                    placeholder="Mensagem"
+                    label="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    maxLength={800}
+                  />
                 </div>
+                <ButtonStyled style="fillOrange" type="submit">
+                  Enviar
+                </ButtonStyled>
               </form>
-              <ButtonStyled style="fillOrange">Enviar </ButtonStyled>
             </div>
           </div>
           <TextParagraphImage

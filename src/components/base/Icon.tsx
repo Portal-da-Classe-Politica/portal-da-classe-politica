@@ -27,12 +27,14 @@ import {
   faArrowLeftLong,
   faArrowRightLong,
   faAngleUp,
+  faImage,
   faAngleDown,
   faAngleLeft,
   faAngleRight,
   faSliders,
   faCloudDownload,
   faTable,
+  faFileCsv,
   fa1,
   fa2,
   fa3,
@@ -64,6 +66,8 @@ const sourceMap = {
   Table: faTable,
   UnChecked: faPlus,
   Location: faLocationDot,
+  Image: faImage,
+  CSV: faFileCsv,
 
   // Social
   Email: faEnvelope,
