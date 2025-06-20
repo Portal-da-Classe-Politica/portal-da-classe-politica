@@ -3,11 +3,13 @@ export const TextArea = ({
   name,
   placeholder,
   label,
+  ...props
 }: {
   id?: string;
   name?: string;
   placeholder: string;
   label: string;
+  [key: string]: any;
 }) => {
   return (
     <textarea
@@ -18,6 +20,7 @@ export const TextArea = ({
       aria-label={label}
       rows={5}
       cols={33}
+      {...props}
     />
   );
 };
