@@ -23,7 +23,7 @@ const sections = [
     title: 'ATENDIMENTO',
     className: '',
     text: `Tel: +55 (41) 3360-5065
-E-mail: portalredem@gmail.com`,
+E-mail: portaldaclassepolitica@gmail.com`,
     links: [{ text: 'Contato', href: routes.support }],
   },
   {
