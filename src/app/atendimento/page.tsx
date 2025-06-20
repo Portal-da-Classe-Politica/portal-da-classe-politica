@@ -1,7 +1,5 @@
 'use client';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { ButtonStyled, Container, Heading, Text, Input, TextArea, TextParagraphImage } from '@base';
 import { Header } from '@components/sections/Header';
 import { LineItem } from '@components/LineItem';
@@ -10,6 +8,8 @@ import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
 import { Constants } from '@constants';
 import { useState } from 'react';
 import { EmailBodyData } from '@services/contact/sendEmail';
+import Link from 'next/link';
+import { BoxIcon } from '@components/box/BoxIcon';
 
 const Atendimento = () => {
   const [formData, setFormData] = useState({
@@ -128,7 +128,7 @@ const Atendimento = () => {
                 <Text size="B1" className="font-bold mb-2">
                   E-mail
                 </Text>
-                <Text>contato@rwbincorporadora.com.br</Text>
+                <Text>portaldaclassepolitica@gmail.com</Text>
               </LineItem>
               <LineItem className="mb-7">
                 <Text size="B1" className="font-bold mb-2">
@@ -141,16 +141,16 @@ const Atendimento = () => {
                 <Text size="B1" className="font-bold mb-2">
                   Redes Sociais
                 </Text>
-                <div className="flex justify-between text-orange">
-                  <Text textType="a">
-                    <FontAwesomeIcon icon={faFacebook} size="2x" />
-                  </Text>
-                  <Text textType="a">
-                    <FontAwesomeIcon icon={faInstagram} size="2x" />
-                  </Text>
-                  <Text textType="a">
-                    <FontAwesomeIcon icon={faLinkedin} size="2x" />
-                  </Text>
+                <div className="flex gap-2 justify-between text-orange">
+                  <Link target="_blank" href={Constants.links.facebook}>
+                    <BoxIcon icon="Facebook" iconSize="2xl" />
+                  </Link>
+                  <Link target="_blank" href={Constants.links.instagram}>
+                    <BoxIcon icon="Instagram" iconSize="2xl" />
+                  </Link>
+                  <Link target="_blank" href={Constants.links.linkedin}>
+                    <BoxIcon icon="LinkedIn" iconSize="2xl" />
+                  </Link>
                 </div>
               </LineItem>
             </div>
