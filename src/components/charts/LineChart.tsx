@@ -1,10 +1,11 @@
 import dynamic from 'next/dynamic';
 import 'chart.js/auto';
-import { GraphData } from '@services/consult/getGraph';
+import { GraphData, Serie } from '@services/consult/getGraph';
 import { useEffect, useRef, useState } from 'react';
 import html2canvas from 'html2canvas';
 import { Icon } from '@base/Icon';
 import { Text } from '@base/text';
+import FilterModal from '@components/modals/FilterModal';
 
 const Line = dynamic(() => import('react-chartjs-2').then(mod => mod.Line), {
   ssr: false,
@@ -80,72 +81,84 @@ interface LineChartProps {
 
 const LineChart = ({ graphData, onGetCsvFile, textCsv }: LineChartProps) => {
   const [chartData, setChartData] = useState<any>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [filteredSeries, setFilteredSeries] = useState<Serie[] | undefined>(undefined);
 
   const chartRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!textCsv) {
-      return;
+    if (textCsv) {
+      extractCsv(textCsv);
     }
-
-    extractCsv(textCsv);
   }, [textCsv]);
 
   useEffect(() => {
     const isBinary = graphData.series.length === 2;
     const isPartyIndicator = graphData.indicator_detail?.party_indicator;
-    let topSeries = null;
 
-    if (isPartyIndicator) {
-      topSeries = graphData.series
-        .map(serie => ({
-          ...serie,
-          data: serie.data.map(value => parseFloat(value)),
-          total: serie.data.reduce((sum, value) => sum + parseFloat(value), 0),
-        }))
-        .sort((a, b) => b.total - a.total)
-        .slice(0, 5);
+    if (!filteredSeries && isPartyIndicator) {
+      if (isPartyIndicator) {
+        const sortedSeries = graphData.series
+          .map(serie => ({
+            ...serie,
+            data: serie.data.map(value => parseFloat(value).toString()),
+            total: serie.data.reduce((sum, value) => sum + parseFloat(value), 0),
+          }))
+          .sort((a, b) => b.total - a.total)
+          .slice(0, 5);
+        setFilteredSeries(sortedSeries);
+      } else {
+        setFilteredSeries(graphData.series);
+      }
+    }
+
+    if (!isPartyIndicator) {
+      setFilteredSeries(graphData.series);
     }
 
     const data = {
       labels: graphData.xAxis,
-      datasets: graphData.series.map((serie, index) => {
-        let primaryColor;
-        if (isPartyIndicator) {
-          primaryColor = serie.color;
-        } else {
-          primaryColor = isBinary ? binaryColorMap.get(index) : multiCategoryColorMap.get(index);
-        }
+      datasets:
+        filteredSeries?.map((serie, index) => {
+          const primaryColor =
+            isPartyIndicator && serie?.color
+              ? serie.color
+              : isBinary
+                ? binaryColorMap.get(index)
+                : multiCategoryColorMap.get(index);
 
-        return {
-          hidden: topSeries != null ? !topSeries.some(topSerie => topSerie.name === serie.name) : false,
-          label: serie.name,
-          data: serie.data.map(value => parseFloat(value)),
-          borderColor: primaryColor,
-          backgroundColor: 'transparent',
-          pointBackgroundColor: primaryColor,
-          pointBorderColor: 'white',
-          pointHoverBackgroundColor: 'white',
-          pointHoverBorderColor: primaryColor,
-          pointRadius: 4,
-          pointHoverRadius: 6,
-          fill: true,
-          tension: 0.3,
-        };
-      }),
+          return {
+            label: serie.name,
+            data: serie.data,
+            borderColor: primaryColor,
+            backgroundColor: 'transparent',
+            pointBackgroundColor: primaryColor,
+            pointBorderColor: 'white',
+            pointHoverBackgroundColor: 'white',
+            pointHoverBorderColor: primaryColor,
+            pointRadius: 4,
+            pointHoverRadius: 6,
+            fill: true,
+            tension: 0.3,
+          };
+        }) || [],
     };
     setChartData(data);
-  }, [graphData]);
+  }, [graphData, filteredSeries]);
+
+  const handleApplyFilters = (newFilters: { selectedSeries: Serie[] }) => {
+    setFilteredSeries(newFilters.selectedSeries);
+  };
 
   const handleExportImage = async () => {
     if (chartRef.current) {
-      chartRef.current.style.opacity = '100%';
+      chartRef.current.style.opacity = '1';
       const canvas = await html2canvas(chartRef.current);
       const link = document.createElement('a');
       link.download = 'redem-grafico.png';
       link.href = canvas.toDataURL('image/png');
       link.click();
-      chartRef.current.style.opacity = '0%';
+      chartRef.current.style.opacity = '0';
     }
   };
 
@@ -155,14 +168,13 @@ const LineChart = ({ graphData, onGetCsvFile, textCsv }: LineChartProps) => {
     const link = document.createElement('a');
     link.href = url;
     link.download = 'redem-grafico.csv';
-    try {
-      document.body.appendChild(link);
-      link.click();
-    } finally {
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
-    }
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
   };
+
+  const isFilterApplied = filteredSeries?.length !== graphData.series.length;
 
   return (
     chartData && (
@@ -172,15 +184,28 @@ const LineChart = ({ graphData, onGetCsvFile, textCsv }: LineChartProps) => {
             {graphData?.title}
           </h1>
           <div className="flex flex-col md:flex-row justify-end items-center px-4 gap-4 py-4 w-full md:w-auto">
+            {graphData?.indicator_detail?.party_indicator && (
+              <button
+                className={`flex items-center justify-center gap-2 px-4 py-2 rounded-md transition-colors w-full md:w-auto h-12 ${
+                  isFilterApplied
+                    ? 'bg-orange text-white border border-orange'
+                    : 'bg-white text-orange border border-orange hover:bg-orange hover:text-white'
+                }`}
+                onClick={() => setIsModalOpen(true)}
+              >
+                <Icon type="Filter" />
+                <Text>Filtro de partido</Text>
+              </button>
+            )}
             <button
-              className="flex items-center justify-center gap-2 text-orange border border-orange px-4 py-2 rounded-md hover:bg-orange hover:text-white transition-colors w-full md:w-auto"
+              className="flex items-center justify-center gap-2 text-orange border border-orange px-4 py-2 rounded-md hover:bg-orange hover:text-white transition-colors w-full md:w-auto h-12"
               onClick={handleExportImage}
             >
               <Icon type="Image" />
               <Text>Exportar imagem</Text>
             </button>
             <button
-              className="flex items-center justify-center gap-2 text-orange border border-orange px-4 py-2 rounded-md hover:bg-orange hover:text-white transition-colors w-full md:w-auto"
+              className="flex items-center justify-center gap-2 text-orange border border-orange px-4 py-2 rounded-md hover:bg-orange hover:text-white transition-colors w-full md:w-auto h-12"
               onClick={() => onGetCsvFile && onGetCsvFile('csv')}
             >
               <Icon type="CSV" />
@@ -190,17 +215,25 @@ const LineChart = ({ graphData, onGetCsvFile, textCsv }: LineChartProps) => {
         </div>
         <div className="w-full h-[500px] pt-5">
           <Line data={chartData} options={options as any} />
-          {/* Export refer */}
           <div ref={chartRef} className="w-[800px] h-[400px] fixed top-100 left-100 bg-white opacity-0">
             <Line data={chartData} options={options as any} />
           </div>
         </div>
-        {graphData?.extraData ? (
+        {graphData?.extraData && (
           <div className="flex gap-2 items-center justify-center mt-5">
             <Text size="B2">{graphData.extraData.yAxisLabel}</Text>|
             <Text size="B2">{graphData.extraData.xAxisLabel}</Text>
           </div>
-        ) : null}
+        )}
+        {graphData?.indicator_detail?.party_indicator && (
+          <FilterModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            onApplyFilters={handleApplyFilters}
+            series={graphData.series}
+            filteredSeries={filteredSeries}
+          />
+        )}
       </div>
     )
   );

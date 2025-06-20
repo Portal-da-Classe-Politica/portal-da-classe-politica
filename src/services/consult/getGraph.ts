@@ -5,7 +5,7 @@ export interface GraphData {
   title: string;
   type: string;
   extraData: ExtraDataGraph;
-  indicator_detail: IndicatorDetail;
+  indicator_detail?: IndicatorDetail;
   series: Serie[];
   xAxis: number[];
 }
