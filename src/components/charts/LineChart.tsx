@@ -6,55 +6,11 @@ import html2canvas from 'html2canvas';
 import { Icon } from '@base/Icon';
 import { Text } from '@base/text';
 import FilterModal from '@components/modals/FilterModal';
+import { ChartOptions } from 'chart.js';
 
 const Line = dynamic(() => import('react-chartjs-2').then(mod => mod.Line), {
   ssr: false,
 });
-
-const options = {
-  responsive: true,
-  maintainAspectRatio: false,
-  plugins: {
-    legend: {
-      labels: {
-        color: '#333',
-        font: {
-          size: 12,
-          family: 'Arial, sans-serif',
-        },
-      },
-    },
-    tooltip: {
-      backgroundColor: 'rgba(0, 0, 0, 0.7)',
-      titleColor: '#fff',
-      bodyColor: '#fff',
-    },
-  },
-  scales: {
-    x: {
-      ticks: {
-        color: '#555',
-        font: {
-          size: 12,
-        },
-      },
-      grid: {
-        color: 'rgba(167, 167, 167, 0.2)',
-      },
-    },
-    y: {
-      ticks: {
-        color: '#555',
-        font: {
-          size: 12,
-        },
-      },
-      grid: {
-        color: 'rgba(200, 200, 200, 0.2)',
-      },
-    },
-  },
-};
 
 const binaryColorMap = new Map([
   [0, '#264653'], // Azul petróleo escuro
@@ -93,8 +49,7 @@ const LineChart = ({ graphData, onGetCsvFile, textCsv }: LineChartProps) => {
   }, [textCsv]);
 
   useEffect(() => {
-    const isBinary = graphData.series.length === 2;
-    const isPartyIndicator = graphData.indicator_detail?.party_indicator;
+    const isPartyIndicator: boolean = !!graphData.indicator_detail?.party_indicator;
 
     if (!filteredSeries && isPartyIndicator) {
       if (isPartyIndicator) {
@@ -116,7 +71,14 @@ const LineChart = ({ graphData, onGetCsvFile, textCsv }: LineChartProps) => {
       setFilteredSeries(graphData.series);
     }
 
-    const data = {
+    const data = _mountData(isPartyIndicator);
+    setChartData(data);
+  }, [graphData, filteredSeries]);
+
+  const _mountData = (isPartyIndicator: boolean) => {
+    const isBinary: boolean = graphData.series.length === 2;
+
+    return {
       labels: graphData.xAxis,
       datasets:
         filteredSeries?.map((serie, index) => {
@@ -143,8 +105,108 @@ const LineChart = ({ graphData, onGetCsvFile, textCsv }: LineChartProps) => {
           };
         }) || [],
     };
-    setChartData(data);
-  }, [graphData, filteredSeries]);
+  };
+
+  const _mountOptions = (): ChartOptions<'line'> => {
+    const unit = graphData.indicator_detail?.unit;
+
+    const options: ChartOptions<'line'> = {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          labels: {
+            color: '#333',
+            font: {
+              size: 12,
+              family: 'Arial, sans-serif',
+            },
+          },
+        },
+        tooltip: {
+          backgroundColor: 'rgb(245, 245, 245, 0.9)', //
+          borderWidth: 1,
+          borderColor: 'rgba(235, 88, 47, 1)',
+          titleColor: 'rgb(31, 31, 31)',
+          bodyColor: 'rgb(31, 31, 31)',
+          padding: 18,
+          usePointStyle: true,
+          displayColors: true,
+          bodyFont: {
+            size: 14,
+          },
+          titleFont: {
+            size: 15,
+            weight: 'bold',
+          },
+          callbacks: {
+            label: function (context: any) {
+              let value = context.parsed.y;
+              if (unit === 'money') {
+                value = value.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                return `${context.dataset.label}: R$ ${value}`;
+              }
+              if (unit === 'percentage' || unit === 'percent' || unit === 'Porcentagem') {
+                value = value.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+                return `${context.dataset.label}: % ${value}`;
+              }
+              return `${context.dataset.label}: ${value}`;
+            },
+            title: function (context: any) {
+              return context[0]?.label || '';
+            },
+          },
+        },
+      },
+      scales: {
+        x: {
+          ticks: {
+            color: '#555',
+            font: {
+              size: 12,
+            },
+          },
+          grid: {
+            color: 'rgba(167, 167, 167, 0.2)',
+          },
+        },
+        y: {
+          ticks: {
+            color: '#555',
+            font: {
+              size: 12,
+            },
+            callback: function (value: number | string) {
+              let formattedValue = value;
+
+              const numericValue = typeof value === 'string' ? Number(value) : value;
+
+              if (unit === 'money') {
+                formattedValue = numericValue.toLocaleString('pt-BR', {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                });
+                return `R$ ${formattedValue}`;
+              }
+              if (unit === 'percentage' || unit === 'percent' || unit === 'Porcentagem') {
+                formattedValue = numericValue.toLocaleString('pt-BR', {
+                  minimumFractionDigits: 1,
+                  maximumFractionDigits: 1,
+                });
+                return `% ${formattedValue}`;
+              }
+              return formattedValue;
+            },
+          },
+          grid: {
+            color: 'rgba(200, 200, 200, 0.2)',
+          },
+        },
+      },
+    };
+
+    return options;
+  };
 
   const handleApplyFilters = (newFilters: { selectedSeries: Serie[] }) => {
     setFilteredSeries(newFilters.selectedSeries);
@@ -214,14 +276,17 @@ const LineChart = ({ graphData, onGetCsvFile, textCsv }: LineChartProps) => {
           </div>
         </div>
         <div className="w-full h-[500px] pt-5">
-          <Line data={chartData} options={options as any} />
+          <Line data={chartData} options={_mountOptions()} />
           <div ref={chartRef} className="w-[800px] h-[400px] fixed top-100 left-100 bg-white opacity-0">
-            <Line data={chartData} options={options as any} />
+            <Line data={chartData} options={_mountOptions()} />
           </div>
         </div>
         {graphData?.extraData && (
-          <div className="flex gap-2 items-center justify-center mt-5">
-            <Text size="B2">{graphData.extraData.yAxisLabel}</Text>|
+          <div className="flex flex-col items-center justify-center mt-5 md:flex-row md:gap-2">
+            <span className="text-orange font-semibold whitespace-nowrap">Eixo Y:</span>
+            <Text size="B2">{graphData.extraData.yAxisLabel}</Text>
+            <span className="invisible md:visible">|</span>
+            <span className="text-orange font-semibold whitespace-nowrap">Eixo X:</span>
             <Text size="B2">{graphData.extraData.xAxisLabel}</Text>
           </div>
         )}
