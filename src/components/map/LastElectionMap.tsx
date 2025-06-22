@@ -16,12 +16,13 @@ import Feature from 'ol/Feature';
 
 import { LastElectionStyle } from './Styles';
 import { LastElectionMapTooltip } from './LastElectionMapTooltip';
+import { VotesByState } from 'app/perfil-candidato/[id]/components/LastElectionMapSection';
 
 export const LastElectionMap = ({
   votesByState,
   candidateId,
 }: {
-  votesByState: Record<string, any>;
+  votesByState: Record<string, VotesByState>;
   candidateId: string;
 }) => {
   const mapRef = useRef<Map | null>(null);
@@ -50,6 +51,7 @@ export const LastElectionMap = ({
           const source = event.target;
           source.getFeatures().forEach((feature: Feature) => {
             feature.set('votes', stateVotes.total);
+            feature.set('isMultiState', Object.keys(votesByState).length > 1);
             feature.set('name', stateVotes.uf);
           });
         });
@@ -74,6 +76,7 @@ export const LastElectionMap = ({
 
             feature.set('name', String(cityVotes?.municipio || properties.name || '-').toLowerCase());
             feature.set('votes', cityVotes?.votos ?? 0);
+            feature.set('isMultiState', Object.keys(votesByState).length > 1);
             feature.set('id', cityVotes?.codigo_ibge ?? '');
           });
         });
