@@ -15,12 +15,13 @@ import Feature from 'ol/Feature';
 
 import { LastCityElectionStyle } from './Styles';
 import { LastElectionMapTooltip } from './LastElectionMapTooltip';
+import { VotesByState } from 'app/perfil-candidato/[id]/components/LastElectionMapSection';
 
 export const LastElectionMap = ({
   votesByState,
   candidateId,
 }: {
-  votesByState: Record<string, any>;
+  votesByState: Record<string, VotesByState>;
   candidateId: string;
 }) => {
   const mapRef = useRef<Map | null>(null);
@@ -56,6 +57,7 @@ export const LastElectionMap = ({
             if (cityVotes?.votos) {
               feature.set('name', cityVotes?.municipio ? String(cityVotes?.municipio).toLowerCase() : '-');
               feature.set('votes', cityVotes?.votos ?? 0);
+              feature.set('isMultiState', Object.keys(votesByState).length > 1);
               feature.set('id', cityVotes?.codigo_ibge ?? '');
 
               electionCityFeature = feature;

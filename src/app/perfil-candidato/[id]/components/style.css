@@ -1,0 +1,29 @@
+.last-election-info-grid {
+    display: grid;
+    grid-template-areas:
+		"ga-0 ga-4 ga-8 ga-12"
+		"ga-1 ga-5 ga-9 ga-13"
+		"ga-2 ga-6 ga-10 ga-14"
+		"ga-3 ga-7 ga-11 ga-15";
+}
+
+@media (max-width: 768px) {
+    .last-election-info-grid {
+        grid-template-areas:
+            "ga-0 ga-4"
+            "ga-1 ga-5"
+            "ga-2 ga-6"
+            "ga-3 ga-7"
+            "ga-8 ga-12"
+            "ga-9 ga-13"
+            "ga-10 ga-14"
+            "ga-11 ga-15";
+    }
+}
+
+@media (max-width: 425px) {
+    .last-election-info-grid {
+        display: flex;
+        flex-direction: column;
+    }
+}

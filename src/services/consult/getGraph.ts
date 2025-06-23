@@ -13,13 +13,13 @@ export interface GraphData {
 export interface Serie {
   name: string;
   data: string[];
-  color: string; // rgb(14, 11, 142)}
+  color?: string; // rgb(14, 11, 142)}
 }
 export interface IndicatorDetail {
   title: string;
   indicator_purpose: string;
   how_to_interpretate: string;
-  unit: string;
+  unit: string; // 'money'
   party_indicator: boolean;
   indicator_t1: boolean;
   xAxisLabel: string;

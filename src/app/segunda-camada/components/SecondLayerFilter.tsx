@@ -197,9 +197,12 @@ const FilterComponent = ({
       errors.uf = 'Selecione um estado';
     }
 
+    const isRegionalConcentrationVote = values.indicator === '10';
+
     if (
-      (isFilterByCityRequired() && !values.electoralUnit) ||
-      (isDVR && !values.electoralUnit && values.uf !== 'Brasil')
+      ((isFilterByCityRequired() && !values.electoralUnit) ||
+        (isDVR && !values.electoralUnit && values.uf !== 'Brasil')) &&
+      !isRegionalConcentrationVote
     ) {
       errors.electoralUnit = 'Selecione uma cidade';
     }
