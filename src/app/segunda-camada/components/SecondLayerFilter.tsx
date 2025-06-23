@@ -197,13 +197,6 @@ const FilterComponent = ({
       errors.uf = 'Selecione um estado';
     }
 
-    if (
-      (isFilterByCityRequired() && !values.electoralUnit) ||
-      (isDVR && !values.electoralUnit && values.uf !== 'Brasil')
-    ) {
-      errors.electoralUnit = 'Selecione uma cidade';
-    }
-
     if (isCVR && !values.partyId) {
       errors.partyId = 'Selecione um Partido';
     }
