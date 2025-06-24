@@ -42,7 +42,7 @@ const BarChart = ({ graphData, onGetCsvFile, textCsv }: BarChartProps) => {
         {
           axis: 'y',
           label: graphData.seriesName,
-          data: graphData.series.map((serie: Serie) => serie.value),
+          data: graphData.series.map((serie: Serie) => parseFloat(serie.value || '0')),
           backgroundColor: graphData.series.map(() => primaryColor),
           borderColor: graphData.series.map(() => primaryColor),
           borderWidth: 1,

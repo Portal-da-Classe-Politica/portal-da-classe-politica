@@ -156,7 +156,7 @@ const Page = () => {
                   <Loader variant="Sync" color="#EB582F" />
                 </div>
               ) : result.data ? (
-                <div className="rounded-lg bg-white shadow-lg border size-max w-full p-[5px] md:p-[30px] size-max w-full">
+                <div className="rounded-lg bg-white shadow-lg border size-max w-full p-[5px] md:p-[30px]">
                   {result.data.data.type === 'line' ? (
                     <LineChart graphData={result.data.data} onGetCsvFile={getCsvFile} textCsv={textCsv} />
                   ) : (
