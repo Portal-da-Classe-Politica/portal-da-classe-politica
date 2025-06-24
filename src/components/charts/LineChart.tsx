@@ -56,10 +56,10 @@ const LineChart = ({ graphData, onGetCsvFile, textCsv }: LineChartProps) => {
         const sortedSeries = graphData.series
           .map(serie => ({
             ...serie,
-            data: serie.data.map(value => parseFloat(value).toString()),
-            total: serie.data.reduce((sum, value) => sum + parseFloat(value), 0),
+            data: serie.data?.map(value => parseFloat(value).toString()),
+            total: serie.data?.reduce((sum, value) => sum + parseFloat(value), 0),
           }))
-          .sort((a, b) => b.total - a.total)
+          .sort((a, b) => (b.total ?? 0) - (a.total ?? 0))
           .slice(0, 5);
         setFilteredSeries(sortedSeries);
       } else {
