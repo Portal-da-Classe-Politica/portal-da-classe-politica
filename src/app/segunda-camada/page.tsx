@@ -15,6 +15,7 @@ import {
   SecondLayerStaticFilters,
 } from './components/SecondLayerFilter';
 import LineChart from '@components/charts/LineChart';
+import BarChart from '@components/charts/BarChart';
 import { GraphDataResponse } from '@services/consult/getGraph';
 import Collapse from '@base/Collapse';
 
@@ -156,7 +157,11 @@ const Page = () => {
                 </div>
               ) : result.data ? (
                 <div className="rounded-lg bg-white shadow-lg border size-max w-full p-[5px] md:p-[30px] size-max w-full">
-                  <LineChart graphData={result.data.data} onGetCsvFile={getCsvFile} textCsv={textCsv} />
+                  {result.data.data.type === 'line' ? (
+                    <LineChart graphData={result.data.data} onGetCsvFile={getCsvFile} textCsv={textCsv} />
+                  ) : (
+                    <BarChart graphData={result.data.data} onGetCsvFile={getCsvFile} textCsv={textCsv} />
+                  )}
                   <div className="flex flex-1 flex-col mt-5 p-[5px]">
                     {result.data.details.map(({ title, text }) => (
                       <Collapse key={title} title={title} className="mb-5">

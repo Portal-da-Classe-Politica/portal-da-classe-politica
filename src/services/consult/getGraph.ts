@@ -6,13 +6,15 @@ export interface GraphData {
   type: string;
   extraData: ExtraDataGraph;
   indicator_detail?: IndicatorDetail;
+  seriesName?: string;
   series: Serie[];
   xAxis: number[];
 }
 
 export interface Serie {
   name: string;
-  data: string[];
+  data?: string[];
+  value?: string;
   color?: string; // rgb(14, 11, 142)}
 }
 export interface IndicatorDetail {
