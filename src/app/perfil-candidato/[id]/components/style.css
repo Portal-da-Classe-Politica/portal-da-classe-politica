@@ -1,3 +1,52 @@
+
+.term-container {
+    background: linear-gradient(
+        to top, 
+        rgba(255,224,217,0),
+        rgba(255,224,217,0.7),
+        rgba(255,210,200,0.7),
+        rgba(255,190,170,0.7),
+        rgba(255,170,140,0.7),
+        rgba(255,148,109,0.7),
+        rgba(255,120,80,0.7),
+        rgba(255,102,58,0.7),
+        rgba(245,85,40,0.7),
+        rgba(235,88,47,0.7),
+        rgba(200,70,30,0.7),
+        rgba(180,60,25,0.7),
+        rgba(160,50,20,0.7),
+        rgba(140,40,15,0.7),
+        rgba(120,30,10,0.7),
+        rgba(80,20,5,0.7),
+        rgba(60,10,2,0.7)
+    );
+}
+
+@media (max-width: 768px) {
+    .term-container {
+        background: linear-gradient(
+            to left, 
+            rgba(255,224,217,0),
+            rgba(255,224,217,0.7),
+            rgba(255,210,200,0.7),
+            rgba(255,190,170,0.7),
+            rgba(255,170,140,0.7),
+            rgba(255,148,109,0.7),
+            rgba(255,120,80,0.7),
+            rgba(255,102,58,0.7),
+            rgba(245,85,40,0.7),
+            rgba(235,88,47,0.7),
+            rgba(200,70,30,0.7),
+            rgba(180,60,25,0.7),
+            rgba(160,50,20,0.7),
+            rgba(140,40,15,0.7),
+            rgba(120,30,10,0.7),
+            rgba(80,20,5,0.7),
+            rgba(60,10,2,0.7)
+        );
+    }
+}
+
 .last-election-info-grid {
     display: grid;
     grid-template-areas:

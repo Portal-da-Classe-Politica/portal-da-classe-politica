@@ -12,17 +12,18 @@ import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
 import { useObjReducer } from '@hooks/useObjReducer';
 import { cleanString } from '@utils/cleanString';
 
-export const SearchSection = ({ title, filters }: { title: string; filters: any }) => {
+// export const SearchSection = ({ title, filters }: { title: string; filters: any }) => {
+export const SearchSection = ({ title }: { title: string; filters: any }) => {
   const [search, setSearch] = useObjReducer({ uf: '', name: '', abrangencyId: '', electoralUnitId: '' });
   const [result, setResult] = useState<any>([]);
   const [electoralUnits, setElectoralUnits] = useState([]);
-  const [abrangencyFilter, setAbrangencyFilter] = useState<
-    {
-      label: string;
-      value: string;
-      description: string;
-    }[]
-  >([]);
+  // const [abrangencyFilter, setAbrangencyFilter] = useState<
+  //   {
+  //     label: string;
+  //     value: string;
+  //     description: string;
+  //   }[]
+  // >([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -48,14 +49,14 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
       })
       .then(data => {
         setSearch({ abrangencyId: data[0].value });
-        setAbrangencyFilter(data);
+        // setAbrangencyFilter(data);
       });
     // eslint-disable-next-line
   }, []);
 
-  const preSelectAbrangency = () => {
-    return abrangencyFilter.filter(myAbra => String(myAbra?.value) === search.abrangencyId)[0]?.label;
-  };
+  // const preSelectAbrangency = () => {
+  //   return abrangencyFilter.filter(myAbra => String(myAbra?.value) === search.abrangencyId)[0]?.label;
+  // };
 
   useEffect(() => {
     if (search.abrangencyId === Constants.abrangency.municipal && search.uf) {
@@ -81,9 +82,9 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
               {title}
             </Heading>
           </div>
-          <div className="flex flex-col gap-2 items-center mt-16">
+          <div className="flex flex-col gap-2 items-center my-4">
             <div className="flex flex-col md:flex-row gap-2 items-center text-center w-full">
-              <div className="w-full ">
+              {/* <div className="w-full ">
                 <Select
                   placeholder={search.abrangencyId ? preSelectAbrangency() || '' : 'Selecionar Abrangencia'}
                   className="w-full"
@@ -113,7 +114,7 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
                   onSelect={value => setSearch({ uf: String(value) })}
                   searchable
                 />
-              </div>
+              </div> */}
               {search.abrangencyId === Constants.abrangency.municipal && (
                 <div className="w-full ">
                   <Select
@@ -142,7 +143,7 @@ export const SearchSection = ({ title, filters }: { title: string; filters: any 
                 setSearch({ name: cleanString(evt.target.value) });
               }}
             />
-            <div className="flex">
+            <div className="flex mt-4">
               <ButtonStyled style="fillBlack" className="w-[200px]" onClick={() => onSearch()}>
                 <Text textType="span" size="L2">
                   FAZER PESQUISA
