@@ -92,7 +92,7 @@ function _getColorByVotes(votes: number, isMultiState: boolean): string {
 
   let idx = 0;
   switch (true) {
-    case votes >= 200000:
+    case votes >= 500000:
       idx = 6;
       break;
     case votes >= 100000:
