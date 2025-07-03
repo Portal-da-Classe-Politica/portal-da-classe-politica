@@ -4,7 +4,7 @@ import axios from 'axios';
 export interface GraphData {
   title: string;
   type: string;
-  extraData: ExtraDataGraph;
+  extraData?: ExtraDataGraph;
   indicator_detail?: IndicatorDetail;
   seriesName?: string;
   series: Serie[];

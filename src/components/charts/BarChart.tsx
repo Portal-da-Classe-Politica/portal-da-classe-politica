@@ -1,3 +1,5 @@
+'use client';
+
 import dynamic from 'next/dynamic';
 import 'chart.js/auto';
 import { GraphData, Serie } from '@services/consult/getGraph';
@@ -34,7 +36,6 @@ const BarChart = ({ graphData, onGetCsvFile, textCsv }: BarChartProps) => {
 
   const _mountData = () => {
     const primaryColor = 'rgb(255,102,58)';
-    console.log('graphData', graphData);
 
     return {
       labels: graphData.series.map((serie: Serie) => String(serie.name)), // Convert names to strings
@@ -141,13 +142,16 @@ const BarChart = ({ graphData, onGetCsvFile, textCsv }: BarChartProps) => {
               <Icon type="Image" />
               <Text>Exportar imagem</Text>
             </button>
-            <button
-              className="flex items-center justify-center gap-2 text-orange border border-orange px-4 py-2 rounded-md hover:bg-orange hover:text-white transition-colors w-full md:w-auto h-12"
-              onClick={() => onGetCsvFile && onGetCsvFile('csv')}
-            >
-              <Icon type="CSV" />
-              <Text>Exportar Dados</Text>
-            </button>
+
+            {onGetCsvFile && (
+              <button
+                className="flex items-center justify-center gap-2 text-orange border border-orange px-4 py-2 rounded-md hover:bg-orange hover:text-white transition-colors w-full md:w-auto h-12"
+                onClick={() => onGetCsvFile('csv')}
+              >
+                <Icon type="CSV" />
+                <Text>Exportar Dados</Text>
+              </button>
+            )}
           </div>
         </div>
         <div className="w-full h-[500px] pt-5">
