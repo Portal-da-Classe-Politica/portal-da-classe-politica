@@ -44,7 +44,7 @@ const Home = () => {
               src={'/img/Cruzdados.svg'}
               title={'Cruzamentos e Dados Eleitorais'}
               subTitle={'Cruze e analise dezenas de variáveis eleitorais.'}
-              href={routes.consult}
+              href={routes.cruzamentos}
             />
             <BoxFerramenta
               alt="Indicadores e Índices Especiais"
