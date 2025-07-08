@@ -163,7 +163,7 @@ export const SearchSection = ({ title }: { title: string; filters: any }) => {
                 Resultados encontrados:
               </Text>
               <Text textType="span" size="L1" className="font-bold">
-                {result?.results?.length || 0} candidatos
+                {result?.totalResults || 0} candidatos
               </Text>
             </div>
             {result.length > 0 && (
