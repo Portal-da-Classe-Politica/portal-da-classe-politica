@@ -264,7 +264,10 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
             ) : null}
 
             <div className="w-full">
-              <h3 className="font-semibold mb-1 text-white">Estado (opcional)</h3>
+              <div className="flex items-center gap-1 mb-1">
+                <h3 className="font-semibold text-white">Estado</h3>
+                <span className="text-white text-sm font-normal">(opcional)</span>
+              </div>
               <CompleteSelect
                 placeholder="Selecione uma opção"
                 multiSelect={false}
@@ -279,7 +282,10 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
 
             {electoralUnits?.length ? (
               <div className="w-full">
-                <h3 className="font-semibold mb-1 text-white">Município (opcional)</h3>
+                <div className="flex items-center gap-1 mb-1">
+                  <h3 className="font-semibold text-white">Município</h3>
+                  <span className="text-white text-sm font-normal">(opcional)</span>
+                </div>
                 <CompleteSelect
                   placeholder="Selecione uma opção"
                   multiSelect={false}
@@ -321,7 +327,10 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
           </div>
 
           <div className="w-full">
-            <h3 className="font-semibold mb-1 text-white">Cruzamento com até 3 variáveis (opcional)</h3>
+            <div className="flex items-center gap-1 mb-1">
+              <h3 className="font-semibold text-white">Cruzamento com até 3 variáveis</h3>
+              <span className="text-white text-sm font-normal">(opcional)</span>
+            </div>
             <CompleteSelect
               placeholder="Selecione os cruzamentos"
               multiSelect={'multiselect'}
@@ -342,7 +351,10 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
               ? selectedCriterias.map((criteria, idx) => {
                   return (
                     <div key={idx} className="w-full">
-                      <h3 className="font-semibold mb-1 text-white">{criteria.label}</h3>
+                      <div className="flex items-center gap-1 mb-1">
+                        <h3 className="font-semibold text-white">{criteria.label}</h3>
+                        <span className="text-white text-sm font-normal">(selecione no máximo 2)</span>
+                      </div>
                       <CompleteSelect
                         placeholder="Selecione uma opção"
                         multiSelect={criteria.type == 'multi_select' ? 'multiselect' : false}
