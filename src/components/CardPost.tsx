@@ -77,7 +77,7 @@ export const CardPost = <T extends BaseProps>({
 
   return (
     <Link
-      target="_blank"
+      target="_self"
       href={href}
       className={`flex flex-1 flex-col h-full bg-white w-full items-center rounded-[10px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] ${className} hover:shadow-lg`}
     >
