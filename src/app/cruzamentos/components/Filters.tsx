@@ -39,6 +39,14 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
   }, []);
 
   useEffect(() => {
+    if (selectedEarlyYear && selectedEarlyYear < 2014) {
+      setSelectedCriterias(prevCriterias =>
+        prevCriterias.filter(criteria => criteria.parameter !== 'raca_id'),
+      );
+    }
+  }, [selectedEarlyYear]);
+
+  useEffect(() => {
     const isValid = cargo && [12, 11, 13].includes(cargo.id);
 
     if (cargo && selectedState && isValid) {
@@ -208,6 +216,19 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
     setSelectedCriterias(updatedCriterias);
   }
 
+  function getFilteredCrossCriteriaPossibilities() {
+    if (!crossCriterias?.possibilities) {
+      return [];
+    }
+
+    // Se o ano inicial for menor que 2014, filtra fora a opção de raça
+    if (selectedEarlyYear && selectedEarlyYear < 2014) {
+      return crossCriterias.possibilities.filter(possibility => possibility.parameter !== 'raca_id');
+    }
+
+    return crossCriterias.possibilities;
+  }
+
   return (
     <div className="flex flex-col gap-[18px] bg-orange p-5 rounded-lg shadow-lg">
       <label htmlFor="toggle" className="flex items-center mb-4 cursor-pointer md:cursor-default">
@@ -335,11 +356,11 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
               placeholder="Selecione os cruzamentos"
               multiSelect={'multiselect'}
               disabled={!crossCriterias}
-              options={crossCriterias?.possibilities.map(data => ({
+              options={getFilteredCrossCriteriaPossibilities().map(data => ({
                 label: data.label,
                 value: data.parameter,
               }))}
-              selectedOption={crossCriterias?.possibilities
+              selectedOption={getFilteredCrossCriteriaPossibilities()
                 .map(data => ({ label: data.label, value: data.parameter }))
                 .filter(c => selectedCriterias.map(s => s.parameter).includes(c.value))}
               onSelect={(value: any) => selectCriteria(value)}
