@@ -196,7 +196,15 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
       return;
     }
 
-    const selected = value.map((v: any) => crossCriterias?.possibilities.find(c => c.parameter == v.value));
+    const selected = value.map((v: any) => {
+      // Procura primeiro nos critérios já selecionados para manter as seleções
+      const existingCriteria = selectedCriterias.find(c => c.parameter === v.value);
+      if (existingCriteria) {
+        return existingCriteria;
+      }
+      // Se não encontrar, cria um novo critério
+      return crossCriterias?.possibilities.find(c => c.parameter == v.value);
+    });
     setSelectedCriterias(selected);
   }
 
