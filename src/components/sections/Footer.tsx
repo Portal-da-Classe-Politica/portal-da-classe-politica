@@ -32,6 +32,8 @@ E-mail: portaldaclassepolitica@gmail.com`,
     links: [
       { text: 'Suporte Técnico', href: routes.support },
       { text: 'Reportar Erro', href: routes.support },
+      { text: 'Políticas de Privacidade', href: '/politicas-de-privacidade' },
+      { text: 'Termos de Uso', href: '/termos-de-uso' },
     ],
   },
 ];

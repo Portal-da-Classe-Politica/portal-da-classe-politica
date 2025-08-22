@@ -99,7 +99,7 @@ const Page = () => {
               democracia exige a participação equitativa das mulheres, rompendo com tradições excludentes e
               promovendo uma representação política mais justa e representativa.
             </Text>
-            <Link target="_blank" href={'/blog/reputacao-mulher'}>
+            <Link target="_self" href={'/blog/reputacao-mulher'}>
               <Text size="B1" className="mt-6 text-orange">
                 Leia mais
               </Text>

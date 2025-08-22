@@ -7,6 +7,7 @@ import { Icon } from '@base/Icon';
 import { Text } from '@base/text';
 import FilterModal from '@components/modals/FilterModal';
 import { ChartOptions } from 'chart.js';
+import Image from 'next/image';
 
 const Line = dynamic(() => import('react-chartjs-2').then(mod => mod.Line), {
   ssr: false,
@@ -215,12 +216,24 @@ const LineChart = ({ graphData, onGetCsvFile, textCsv }: LineChartProps) => {
   const handleExportImage = async () => {
     if (chartRef.current) {
       chartRef.current.style.opacity = '1';
-      const canvas = await html2canvas(chartRef.current);
+
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      const canvas = await html2canvas(chartRef.current, {
+        backgroundColor: '#ffffff',
+        scale: 2,
+        useCORS: true,
+        allowTaint: true,
+        width: 800,
+        height: 480,
+      });
+
+      chartRef.current.style.opacity = '0';
+
       const link = document.createElement('a');
       link.download = 'redem-grafico.png';
       link.href = canvas.toDataURL('image/png');
       link.click();
-      chartRef.current.style.opacity = '0';
     }
   };
 
@@ -277,8 +290,39 @@ const LineChart = ({ graphData, onGetCsvFile, textCsv }: LineChartProps) => {
         </div>
         <div className="w-full h-[500px] pt-5">
           <Line data={chartData} options={_mountOptions()} />
-          <div ref={chartRef} className="w-[800px] h-[400px] fixed top-100 left-100 bg-white opacity-0">
-            <Line data={chartData} options={_mountOptions()} />
+          <div
+            ref={chartRef}
+            className="w-[800px] h-[480px] fixed -top-[9999px] -left-[9999px] bg-white opacity-0 p-6"
+          >
+            <div className="relative w-full h-[400px]">
+              <div
+                className="absolute inset-0 flex items-center justify-center z-0"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                }}
+              >
+                <Image
+                  src="/img/LogoOrange.svg"
+                  alt="Logo"
+                  width={400}
+                  height={208}
+                  className="opacity-10"
+                  style={{
+                    maxWidth: '400px',
+                    maxHeight: '208px',
+                    width: 'auto',
+                    height: 'auto',
+                  }}
+                />
+              </div>
+              <div className="relative z-10 w-full h-full">
+                <Line data={chartData} options={_mountOptions()} />
+              </div>
+            </div>
+            <div className="text-sm text-gray-600 text-center mt-4 pt-2">
+              Fonte: Portal da Classe Política - INCT ReDem (2025)
+            </div>
           </div>
         </div>
         {graphData?.extraData && (

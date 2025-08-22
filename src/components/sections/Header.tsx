@@ -35,7 +35,7 @@ const HeaderTopic = ({
 }) => {
   const selected = verifyPathSelect(href, currentPath);
   return (
-    <Link target="_blank" href={href}>
+    <Link target="_self" href={href}>
       <Text size={'L2'} className={selected ? 'font-bold' : ''}>
         {label}
       </Text>
@@ -122,7 +122,7 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
             <HeaderTopic label="DOCUMENTAÇÃO" href={routes.documentation} currentPath={pathname} />
           </li>
           <li className={`self-center ${classes}`}>
-            <Link target="_blank" href={routes.elections2024}>
+            <Link target="_self" href={routes.elections2024}>
               <Button text="ELEIÇÕES 2024" style="fillBlack" />
             </Link>
           </li>
@@ -179,7 +179,7 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
               <HeaderTopic label="BLOG" href={routes.blog} currentPath={pathname} />
             </li>
             <li>
-              <Link target="_blank" href={routes.elections2024}>
+              <Link target="_self" href={routes.elections2024}>
                 <Button text="ELEIÇÕES 2024" style="fillBlack" />
               </Link>
             </li>

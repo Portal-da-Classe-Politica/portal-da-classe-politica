@@ -14,7 +14,6 @@ interface FiltersProps {
 }
 
 const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
-  const [cargos, setCargos] = useState<Cargo[]>([]);
   const [dimensions, setDimensions] = useState<Dimension[]>([]);
   const [crossCriterias, setCrossCriterias] = useState<CrossCriterias>();
   const [states, setStates] = useState<string[]>();
@@ -39,6 +38,14 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
   }, []);
 
   useEffect(() => {
+    if (selectedEarlyYear && selectedEarlyYear < 2014) {
+      setSelectedCriterias(prevCriterias =>
+        prevCriterias.filter(criteria => criteria.parameter !== 'raca_id'),
+      );
+    }
+  }, [selectedEarlyYear]);
+
+  useEffect(() => {
     const isValid = cargo && [12, 11, 13].includes(cargo.id);
 
     if (cargo && selectedState && isValid) {
@@ -60,7 +67,6 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
       .then(res => res.json())
       .then(data => {
         const initialFilters = data.data as InitialFiltersData;
-        setCargos(initialFilters.cargos);
         setDimensions(initialFilters.possibilities);
       })
       .finally(() => setInitialLoading(false));
@@ -156,15 +162,21 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
   }
 
   function getCargosOptions() {
-    return cargos.map(cargo => ({
+    if (!dimension?.cargos) {
+      return [];
+    }
+    return dimension.cargos.map(cargo => ({
       label: cargo.nome_cargo,
       value: cargo.id,
     }));
   }
 
   function selectCargo(data: any) {
-    setCargo(cargos.find(c => c.id == data));
-    getFiltersByRole(data);
+    const selectedCargo = dimension?.cargos.find(c => c.id == data);
+    setCargo(selectedCargo);
+    if (selectedCargo) {
+      getFiltersByRole(data);
+    }
   }
 
   function checkEarlyDate(year: number) {
@@ -188,7 +200,15 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
       return;
     }
 
-    const selected = value.map((v: any) => crossCriterias?.possibilities.find(c => c.parameter == v.value));
+    const selected = value.map((v: any) => {
+      // Procura primeiro nos critérios já selecionados para manter as seleções
+      const existingCriteria = selectedCriterias.find(c => c.parameter === v.value);
+      if (existingCriteria) {
+        return existingCriteria;
+      }
+      // Se não encontrar, cria um novo critério
+      return crossCriterias?.possibilities.find(c => c.parameter == v.value);
+    });
     setSelectedCriterias(selected);
   }
 
@@ -206,6 +226,19 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
     });
 
     setSelectedCriterias(updatedCriterias);
+  }
+
+  function getFilteredCrossCriteriaPossibilities() {
+    if (!crossCriterias?.possibilities) {
+      return [];
+    }
+
+    // Se o ano inicial for menor que 2014, filtra fora a opção de raça
+    if (selectedEarlyYear && selectedEarlyYear < 2014) {
+      return crossCriterias.possibilities.filter(possibility => possibility.parameter !== 'raca_id');
+    }
+
+    return crossCriterias.possibilities;
   }
 
   return (
@@ -239,7 +272,12 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
                   className="hidden peer"
                   name="dimension"
                   value={dim.value}
-                  onChange={(event: any) => setDimension(dimensions.find(d => d.value == event.target.value))}
+                  onChange={(event: any) => {
+                    const selectedDim = dimensions.find(d => d.value == event.target.value);
+                    setDimension(selectedDim);
+                    setCargo(undefined);
+                    resetOptions();
+                  }}
                 />
                 <div className="w-5 h-5 border-[3px] rounded-full flex items-center justify-center mr-2 peer-checked:bg-black peer-checked:border-white peer-checked:border-[3px]"></div>
                 <Text size="B1" textType="span" className="text-white">
@@ -250,7 +288,7 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
           </div>
 
           <div className="flex gap-5 md:flex-row flex-col">
-            {cargos.length ? (
+            {dimension?.cargos?.length ? (
               <div className="w-full">
                 <h3 className="font-semibold mb-1 text-white">Cargo disputado</h3>
                 <CompleteSelect
@@ -264,7 +302,10 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
             ) : null}
 
             <div className="w-full">
-              <h3 className="font-semibold mb-1 text-white">Estado (opcional)</h3>
+              <div className="flex items-center gap-1 mb-1">
+                <h3 className="font-semibold text-white">Estado</h3>
+                <span className="text-white text-sm font-normal">(opcional)</span>
+              </div>
               <CompleteSelect
                 placeholder="Selecione uma opção"
                 multiSelect={false}
@@ -277,9 +318,14 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
               />
             </div>
 
-            {electoralUnits?.length ? (
+            {electoralUnits?.length &&
+            ((dimension?.value != 'votes' && cargo?.abrangenciumId == 2) || dimension?.value == 'votes') &&
+            selectedState ? (
               <div className="w-full">
-                <h3 className="font-semibold mb-1 text-white">Município (opcional)</h3>
+                <div className="flex items-center gap-1 mb-1">
+                  <h3 className="font-semibold text-white">Município</h3>
+                  <span className="text-white text-sm font-normal">(opcional)</span>
+                </div>
                 <CompleteSelect
                   placeholder="Selecione uma opção"
                   multiSelect={false}
@@ -321,16 +367,19 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
           </div>
 
           <div className="w-full">
-            <h3 className="font-semibold mb-1 text-white">Cruzamento com até 3 variáveis (opcional)</h3>
+            <div className="flex items-center gap-1 mb-1">
+              <h3 className="font-semibold text-white">Cruzamento com até 3 variáveis</h3>
+              <span className="text-white text-sm font-normal">(opcional)</span>
+            </div>
             <CompleteSelect
               placeholder="Selecione os cruzamentos"
               multiSelect={'multiselect'}
               disabled={!crossCriterias}
-              options={crossCriterias?.possibilities.map(data => ({
+              options={getFilteredCrossCriteriaPossibilities().map(data => ({
                 label: data.label,
                 value: data.parameter,
               }))}
-              selectedOption={crossCriterias?.possibilities
+              selectedOption={getFilteredCrossCriteriaPossibilities()
                 .map(data => ({ label: data.label, value: data.parameter }))
                 .filter(c => selectedCriterias.map(s => s.parameter).includes(c.value))}
               onSelect={(value: any) => selectCriteria(value)}
@@ -342,7 +391,10 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
               ? selectedCriterias.map((criteria, idx) => {
                   return (
                     <div key={idx} className="w-full">
-                      <h3 className="font-semibold mb-1 text-white">{criteria.label}</h3>
+                      <div className="flex items-center gap-1 mb-1">
+                        <h3 className="font-semibold text-white">{criteria.label}</h3>
+                        <span className="text-white text-sm font-normal">(selecione no máximo 2)</span>
+                      </div>
                       <CompleteSelect
                         placeholder="Selecione uma opção"
                         multiSelect={criteria.type == 'multi_select' ? 'multiselect' : false}

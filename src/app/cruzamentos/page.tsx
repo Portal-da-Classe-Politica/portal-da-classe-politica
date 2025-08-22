@@ -5,16 +5,9 @@ import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
 import { Header } from '@components/sections/Header';
 import LineChart from '../../components/charts/LineChart';
 import { GraphData } from '@services/consult/getGraph';
-import { BoxImageText } from '@components/box/BoxImageText';
 import Image from 'next/image';
 import Filters from './components/Filters';
 import { useState } from 'react';
-
-const cards = [
-  { text: 'Perfil dos Candidatos', src: '/img/consulta/Head.svg', imgWidth: 130, imgHeight: 110 },
-  { text: 'Resultados das Eleições', src: '/img/consulta/Chart.svg', imgWidth: 200, imgHeight: 110 },
-  { text: 'Financiamento de Campanha', src: '/img/consulta/Circles.svg', imgWidth: 130, imgHeight: 110 },
-];
 
 const Page = () => {
   const [graphData, setGraphData] = useState<GraphData | null>(null);
@@ -42,7 +35,7 @@ const Page = () => {
 
         <section>
           <Container>
-            <div className="flex flex-col justify-between items-center md:flex-row">
+            <div className="flex flex-col justify-between items-center md:flex-row mb-20">
               <div className="flex flex-2 flex-col">
                 <Heading size="D1" className="text-orange">
                   Explorando Dados Eleitorais
@@ -54,20 +47,6 @@ const Page = () => {
                   Utilize filtros e variáveis para criar gráficos e mapas eleitorais personalizados
                 </Text>
               </div>
-            </div>
-          </Container>
-          <Container className="my-12 pb-12">
-            <div className="flex justify-center md:justify-normal flex-wrap gap-8">
-              {cards.map((card, idx) => (
-                <BoxImageText
-                  key={idx}
-                  text={card.text}
-                  src={card.src}
-                  imgClassName="pt-4"
-                  imgWidth={card.imgWidth}
-                  imgHeight={card.imgHeight}
-                />
-              ))}
             </div>
           </Container>
         </section>
