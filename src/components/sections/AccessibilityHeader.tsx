@@ -13,13 +13,7 @@ export const AccessibilityHeader = () => {
               | ReDem
             </Text>
           </div>
-          <Image
-            src="/img/financiamento/financiamento.png"
-            alt="INCT"
-            width={333}
-            height={25}
-            className="h-10 w-auto hidden md:block"
-          />
+          <Image src="/img/financiamento/financiamento.png" alt="INCT" width={320} height={32} />
         </div>
       </Container>
     </header>
