@@ -14,7 +14,6 @@ interface FiltersProps {
 }
 
 const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
-  const [cargos, setCargos] = useState<Cargo[]>([]);
   const [dimensions, setDimensions] = useState<Dimension[]>([]);
   const [crossCriterias, setCrossCriterias] = useState<CrossCriterias>();
   const [states, setStates] = useState<string[]>();
@@ -68,7 +67,6 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
       .then(res => res.json())
       .then(data => {
         const initialFilters = data.data as InitialFiltersData;
-        setCargos(initialFilters.cargos);
         setDimensions(initialFilters.possibilities);
       })
       .finally(() => setInitialLoading(false));
@@ -164,15 +162,21 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
   }
 
   function getCargosOptions() {
-    return cargos.map(cargo => ({
+    if (!dimension?.cargos) {
+      return [];
+    }
+    return dimension.cargos.map(cargo => ({
       label: cargo.nome_cargo,
       value: cargo.id,
     }));
   }
 
   function selectCargo(data: any) {
-    setCargo(cargos.find(c => c.id == data));
-    getFiltersByRole(data);
+    const selectedCargo = dimension?.cargos.find(c => c.id == data);
+    setCargo(selectedCargo);
+    if (selectedCargo) {
+      getFiltersByRole(data);
+    }
   }
 
   function checkEarlyDate(year: number) {
@@ -268,7 +272,12 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
                   className="hidden peer"
                   name="dimension"
                   value={dim.value}
-                  onChange={(event: any) => setDimension(dimensions.find(d => d.value == event.target.value))}
+                  onChange={(event: any) => {
+                    const selectedDim = dimensions.find(d => d.value == event.target.value);
+                    setDimension(selectedDim);
+                    setCargo(undefined);
+                    resetOptions();
+                  }}
                 />
                 <div className="w-5 h-5 border-[3px] rounded-full flex items-center justify-center mr-2 peer-checked:bg-black peer-checked:border-white peer-checked:border-[3px]"></div>
                 <Text size="B1" textType="span" className="text-white">
@@ -279,7 +288,7 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
           </div>
 
           <div className="flex gap-5 md:flex-row flex-col">
-            {cargos.length ? (
+            {dimension?.cargos?.length ? (
               <div className="w-full">
                 <h3 className="font-semibold mb-1 text-white">Cargo disputado</h3>
                 <CompleteSelect
@@ -309,7 +318,9 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
               />
             </div>
 
-            {electoralUnits?.length && cargo?.abrangenciumId == 2 && selectedState ? (
+            {electoralUnits?.length &&
+            ((dimension?.value != 'votes' && cargo?.abrangenciumId == 2) || dimension?.value == 'votes') &&
+            selectedState ? (
               <div className="w-full">
                 <div className="flex items-center gap-1 mb-1">
                   <h3 className="font-semibold text-white">Município</h3>
