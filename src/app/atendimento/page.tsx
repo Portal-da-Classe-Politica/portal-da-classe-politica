@@ -95,7 +95,7 @@ const Atendimento = () => {
             </div>
             <div className="flex flex-wrap items-center justify-evenly gap-4 md:gap-4">
               <div className="w-[160px] h-[160px]">
-                <BoxIconText text="Atendimento Redem" iconType="Headset" />
+                <BoxIconText text="Atendimento ReDem" iconType="Headset" />
               </div>
               <div className="w-[160px] h-[160px]">
                 <BoxIconText text="Reportar Erro" iconType="Error" />

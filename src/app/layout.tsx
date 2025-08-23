@@ -13,7 +13,7 @@ import { AccessibilityHeader } from '@components/sections/AccessibilityHeader';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Redem',
+  title: 'ReDem',
   description: 'Portal da Classe Politica',
 };
 
