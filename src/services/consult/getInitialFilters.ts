@@ -3,13 +3,13 @@ import axios from 'axios';
 
 export interface InitialFiltersData {
   possibilities: Dimension[];
-  cargos: Cargo[];
 }
 
 export interface Dimension {
   label: string;
   parameter: string;
   value: string;
+  cargos: Cargo[];
 }
 
 export interface Cargo {
