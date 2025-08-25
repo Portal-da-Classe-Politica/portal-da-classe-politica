@@ -173,7 +173,8 @@ const BarChart = ({ graphData, onGetCsvFile, textCsv }: BarChartProps) => {
             ref={chartRef}
             className="w-[800px] h-[480px] fixed -top-[9999px] -left-[9999px] bg-white opacity-0 p-6"
           >
-            <div className="relative w-full h-[400px]">
+            <h2 className="text-xl font-bold text-gray-800 mb-4 text-center">{graphData?.title}</h2>
+            <div className="relative w-full h-[350px]">
               <div
                 className="absolute top-12 right-0 z-0"
                 style={{
