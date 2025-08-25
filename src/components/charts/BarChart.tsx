@@ -175,21 +175,21 @@ const BarChart = ({ graphData, onGetCsvFile, textCsv }: BarChartProps) => {
           >
             <div className="relative w-full h-[400px]">
               <div
-                className="absolute inset-0 flex items-center justify-center z-0"
+                className="absolute top-12 right-0 z-0"
                 style={{
-                  width: '100%',
-                  height: '100%',
+                  width: '200px',
+                  height: '104px',
                 }}
               >
                 <Image
                   src="/img/LogoOrange.svg"
                   alt="Logo"
-                  width={400}
-                  height={208}
-                  className="opacity-10"
+                  width={200}
+                  height={104}
+                  className="opacity-10 color-black"
                   style={{
-                    maxWidth: '400px',
-                    maxHeight: '208px',
+                    maxWidth: '200px',
+                    maxHeight: '104px',
                     width: 'auto',
                     height: 'auto',
                   }}
