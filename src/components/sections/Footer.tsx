@@ -22,16 +22,13 @@ const sections = [
   {
     title: 'ATENDIMENTO',
     className: '',
-    text: `Tel: +55 (41) 3360-5065
-E-mail: portaldaclassepolitica@gmail.com`,
+    text: `E-mail: portaldaclassepolitica@gmail.com`,
     links: [{ text: 'Contato', href: routes.support }],
   },
   {
     title: 'FERRAMENTAS',
     className: '',
     links: [
-      { text: 'Suporte Técnico', href: routes.support },
-      { text: 'Reportar Erro', href: routes.support },
       { text: 'Políticas de Privacidade', href: '/politicas-de-privacidade' },
       { text: 'Termos de Uso', href: '/termos-de-uso' },
     ],
@@ -49,9 +46,6 @@ export const Footer = () => {
               Universidade Federal do Paraná{'\n'}
               Departamento de Ciência Política{'\n'}
               INCT ReDem{'\n'}
-              {'\n'}
-              Endereço: Rua General{'\n'}
-              Carneiro, 460 sala 515 CEP 80060-150 Curitiba, Paraná, Brasil{'\n'}
             </Text>
             <div className="flex gap-4">
               <Link target="_blank" href={Constants.links.facebook}>

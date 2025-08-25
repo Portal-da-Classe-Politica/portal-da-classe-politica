@@ -8,12 +8,14 @@ export const AccessibilityHeader = () => {
       <Container className={'my-5'}>
         <div className="flex justify-between items-center md:justify-between justify-center gap-10">
           <div className="flex-1 text-center md:text-left">
-            <Text size="C2" className="text-grayMix4">
+            <Text size="C2" className="text-grayMix4 leading-normal">
               Instituto Nacional de Ciência, Tecnologia e Inovação | Representação e Legitimidade Democrática
               | ReDem
             </Text>
           </div>
-          <Image src="/img/financiamento/financiamento.png" alt="INCT" width={320} height={32} />
+          <div className="hidden md:block">
+            <Image src="/img/financiamento/financiamento.png" alt="INCT" width={320} height={32} />
+          </div>
         </div>
       </Container>
     </header>

@@ -1,4 +1,4 @@
-# Portal Redem
+# Portal ReDem
 
 ## Getting Started
 
@@ -6,10 +6,10 @@
 2. `npm run prepare`
 3. `npm run dev`
 
-## Redem API
+## ReDem API
 
 - `api-docs-original.yml`
-  - Latest version of the Open Api Spec for Redem API. Retrieved on Backend Repo.
+  - Latest version of the Open Api Spec for ReDem API. Retrieved on Backend Repo.
 - `api-docs.yml`
   - File used to generate the API used on the frontend.
   - Many modifications were applied as the one provide on the backend is long out of date.

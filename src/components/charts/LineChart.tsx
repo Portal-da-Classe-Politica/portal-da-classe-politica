@@ -149,7 +149,7 @@ const LineChart = ({ graphData, onGetCsvFile, textCsv }: LineChartProps) => {
               }
               if (unit === 'percentage' || unit === 'percent' || unit === 'Porcentagem') {
                 value = value.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
-                return `${context.dataset.label}: % ${value}`;
+                return `${context.dataset.label}: ${value}%`;
               }
               return `${context.dataset.label}: ${value}`;
             },
@@ -194,7 +194,7 @@ const LineChart = ({ graphData, onGetCsvFile, textCsv }: LineChartProps) => {
                   minimumFractionDigits: 1,
                   maximumFractionDigits: 1,
                 });
-                return `% ${formattedValue}`;
+                return `${formattedValue}%`;
               }
               return formattedValue;
             },
@@ -294,7 +294,8 @@ const LineChart = ({ graphData, onGetCsvFile, textCsv }: LineChartProps) => {
             ref={chartRef}
             className="w-[800px] h-[480px] fixed -top-[9999px] -left-[9999px] bg-white opacity-0 p-6"
           >
-            <div className="relative w-full h-[400px]">
+            <h2 className="text-xl font-bold text-gray-800 mb-4 text-center">{graphData?.title}</h2>
+            <div className="relative w-full h-[350px]">
               <div
                 className="absolute inset-0 flex items-center justify-center z-0"
                 style={{

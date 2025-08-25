@@ -41,8 +41,8 @@ const Page = async ({ params: { id } }: { params: { id: string } }) => {
               <Heading size="H1" className="text-grayMix4">
                 Perfil do Candidato
               </Heading>
-              <Text size="S1" className="text-orange mt-8">
-                Conheça o seu canditado.
+              <Text size="S1" className="mt-8 max-w-2xl text-gray-500">
+                As informações dos candidatos referem-se à última eleição disputada, conforme os dados do TSE.
               </Text>
             </div>
           </Container>
