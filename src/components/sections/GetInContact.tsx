@@ -2,7 +2,7 @@ import { Container, Heading, Text } from '@base';
 import { routes } from '@routes';
 import Link from 'next/link';
 
-const boxes = ['Atendimento ReDem', 'Reportar Erro', 'Elogios ao projeto'];
+const boxes = ['Atendimento ReDem'];
 
 const boxClass =
   'flex flex-col w-[150px] h-[150px] flex-1 aspect-square bg-white py-5 px-7 rounded-[10px] justify-center items-center text-center text-orange';

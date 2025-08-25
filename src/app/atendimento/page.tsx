@@ -162,6 +162,13 @@ const Atendimento = () => {
                     >
                       <BoxIcon icon="LinkedIn" iconSize="2xl" />
                     </Link>
+                    <Link
+                      target="_blank"
+                      href={Constants.links.xTwitter}
+                      className="hover:scale-110 transition-transform"
+                    >
+                      <BoxIcon icon="Twitter" iconSize="2xl" />
+                    </Link>
                   </div>
                 </LineItem>
 
