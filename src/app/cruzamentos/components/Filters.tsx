@@ -320,7 +320,8 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
 
             {electoralUnits?.length &&
             ((dimension?.value != 'votes' && cargo?.abrangenciumId == 2) || dimension?.value == 'votes') &&
-            selectedState ? (
+            selectedState &&
+            selectedState !== 'BR' ? (
               <div className="w-full">
                 <div className="flex items-center gap-1 mb-1">
                   <h3 className="font-semibold text-white">Município</h3>
