@@ -60,6 +60,20 @@ const BarChart = ({ graphData, onGetCsvFile, textCsv }: BarChartProps) => {
     maintainAspectRatio: false,
     indexAxis: 'y', // Horizontal bar chart
     plugins: {
+      legend: {
+        labels: {
+          color: '#333',
+          font: {
+            size: 12,
+            family: 'Montserrat, sans-serif',
+          },
+          usePointStyle: true,
+          pointStyle: 'circle',
+          boxWidth: 10,
+          boxHeight: 10,
+          padding: 20,
+        },
+      },
       tooltip: {
         backgroundColor: 'rgb(245, 245, 245, 0.9)',
         borderWidth: 1,

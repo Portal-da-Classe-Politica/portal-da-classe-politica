@@ -120,8 +120,13 @@ const LineChart = ({ graphData, onGetCsvFile, textCsv }: LineChartProps) => {
             color: '#333',
             font: {
               size: 12,
-              family: 'Arial, sans-serif',
+              family: 'Montserrat, sans-serif',
             },
+            usePointStyle: true,
+            pointStyle: 'circle',
+            boxWidth: 10,
+            boxHeight: 10,
+            padding: 20,
           },
         },
         tooltip: {
