@@ -7,6 +7,10 @@ const __dirname = dirname(__filename);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'standalone',
+  basePath: '/portal',
+  assetPrefix: '/portal',
+  trailingSlash: true,
   experimental: {
     serverActions: {
       bodySizeLimit: '15mb',
