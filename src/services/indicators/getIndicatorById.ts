@@ -24,7 +24,7 @@ export const getIndicatorById = async (id: string, params: IndicatorParams) => {
     '9': redem.indicators.getGeographical09,
     '10': redem.indicators.getGeographical10,
     '11': redem.indicators.getGeographical11,
-    '12': redem.indicators.getGeographical12,
+    '12': redem.indicators.getPartyIndicator12,
 
     '13': redem.indicators.getFinanceIndicator13,
     '14': redem.indicators.getFinanceIndicator14,
