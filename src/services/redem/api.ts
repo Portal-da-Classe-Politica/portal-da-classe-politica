@@ -6217,67 +6217,7 @@ export const IndicatorsApiAxiosParamCreator = function (configuration?: Configur
         options: localVarRequestOptions,
       };
     },
-    /**
-     *
-     * @param {number} initialYear Ano inicial do intervalo.
-     * @param {number} finalYear Ano final do intervalo.
-     * @param {number} [cargoId] cargo desejado
-     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getGeographical12: async (
-      initialYear: number,
-      finalYear: number,
-      cargoId?: number,
-      unidadesEleitorais?: Array<string>,
-      options: RawAxiosRequestConfig = {},
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'initialYear' is not null or undefined
-      assertParamExists('getGeographical12', 'initialYear', initialYear);
-      // verify required parameter 'finalYear' is not null or undefined
-      assertParamExists('getGeographical12', 'finalYear', finalYear);
-      const localVarPath = `/noauth/indicadores/geograficos/12`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
 
-      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      if (initialYear !== undefined) {
-        localVarQueryParameter['initialYear'] = initialYear;
-      }
-
-      if (finalYear !== undefined) {
-        localVarQueryParameter['finalYear'] = finalYear;
-      }
-
-      if (cargoId !== undefined) {
-        localVarQueryParameter['cargoId'] = cargoId;
-      }
-
-      if (unidadesEleitorais) {
-        localVarQueryParameter['unidadesEleitorais'] = unidadesEleitorais;
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
     /**
      *
      * @param {*} [options] Override http request option.
@@ -6551,6 +6491,67 @@ export const IndicatorsApiAxiosParamCreator = function (configuration?: Configur
       // verify required parameter 'finalYear' is not null or undefined
       assertParamExists('getPartyIndicator08', 'finalYear', finalYear);
       const localVarPath = `/noauth/indicadores/partidarios/8`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (initialYear !== undefined) {
+        localVarQueryParameter['initialYear'] = initialYear;
+      }
+
+      if (finalYear !== undefined) {
+        localVarQueryParameter['finalYear'] = finalYear;
+      }
+
+      if (cargoId !== undefined) {
+        localVarQueryParameter['cargoId'] = cargoId;
+      }
+
+      if (unidadesEleitorais) {
+        localVarQueryParameter['unidadesEleitorais'] = unidadesEleitorais;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPartyIndicator12: async (
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'initialYear' is not null or undefined
+      assertParamExists('getPartyIndicator12', 'initialYear', initialYear);
+      // verify required parameter 'finalYear' is not null or undefined
+      assertParamExists('getPartyIndicator12', 'finalYear', finalYear);
+      const localVarPath = `/noauth/indicadores/eleitorais/12`;
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
       let baseOptions;
@@ -7156,37 +7157,7 @@ export const IndicatorsApiFp = function (configuration?: Configuration) {
      * @param {number} initialYear Ano inicial do intervalo.
      * @param {number} finalYear Ano final do intervalo.
      * @param {number} [cargoId] cargo desejado
-     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async getGeographical12(
-      initialYear: number,
-      finalYear: number,
-      cargoId?: number,
-      unidadesEleitorais?: Array<string>,
-      options?: RawAxiosRequestConfig,
-    ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetElectoralIndicators200Response>
-    > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.getGeographical12(
-        initialYear,
-        finalYear,
-        cargoId,
-        unidadesEleitorais,
-        options,
-      );
-      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-      const localVarOperationServerBasePath =
-        operationServerMap['IndicatorsApi.getGeographical12']?.[localVarOperationServerIndex]?.url;
-      return (axios, basePath) =>
-        createRequestFunction(
-          localVarAxiosArgs,
-          globalAxios,
-          BASE_PATH,
-          configuration,
-        )(axios, localVarOperationServerBasePath || basePath);
-    },
+
     /**
      *
      * @param {*} [options] Override http request option.
@@ -7368,6 +7339,42 @@ export const IndicatorsApiFp = function (configuration?: Configuration) {
       const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
       const localVarOperationServerBasePath =
         operationServerMap['IndicatorsApi.getPartyIndicator08']?.[localVarOperationServerIndex]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getPartyIndicator12(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetElectoralIndicators200Response>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getPartyIndicator12(
+        initialYear,
+        finalYear,
+        cargoId,
+        unidadesEleitorais,
+        options,
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap['IndicatorsApi.getPartyIndicator12']?.[localVarOperationServerIndex]?.url;
       return (axios, basePath) =>
         createRequestFunction(
           localVarAxiosArgs,
@@ -7700,24 +7707,7 @@ export const IndicatorsApiFactory = function (
     },
     /**
      *
-     * @param {number} initialYear Ano inicial do intervalo.
-     * @param {number} finalYear Ano final do intervalo.
-     * @param {number} [cargoId] cargo desejado
-     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getGeographical12(
-      initialYear: number,
-      finalYear: number,
-      cargoId?: number,
-      unidadesEleitorais?: Array<string>,
-      options?: RawAxiosRequestConfig,
-    ): AxiosPromise<GetElectoralIndicators200Response> {
-      return localVarFp
-        .getGeographical12(initialYear, finalYear, cargoId, unidadesEleitorais, options)
-        .then(request => request(axios, basePath));
-    },
+
     /**
      *
      * @param {*} [options] Override http request option.
@@ -7819,6 +7809,26 @@ export const IndicatorsApiFactory = function (
     ): AxiosPromise<GetElectoralIndicators200Response> {
       return localVarFp
         .getPartyIndicator08(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+        .then(request => request(axios, basePath));
+    },
+    /**
+     *
+     * @param {number} initialYear Ano inicial do intervalo.
+     * @param {number} finalYear Ano final do intervalo.
+     * @param {number} [cargoId] cargo desejado
+     * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPartyIndicator12(
+      initialYear: number,
+      finalYear: number,
+      cargoId?: number,
+      unidadesEleitorais?: Array<string>,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<GetElectoralIndicators200Response> {
+      return localVarFp
+        .getPartyIndicator12(initialYear, finalYear, cargoId, unidadesEleitorais, options)
         .then(request => request(axios, basePath));
     },
     /**
@@ -8140,17 +8150,6 @@ export class IndicatorsApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof IndicatorsApi
    */
-  public getGeographical12(
-    initialYear: number,
-    finalYear: number,
-    cargoId?: number,
-    unidadesEleitorais?: Array<string>,
-    options?: RawAxiosRequestConfig,
-  ) {
-    return IndicatorsApiFp(this.configuration)
-      .getGeographical12(initialYear, finalYear, cargoId, unidadesEleitorais, options)
-      .then(request => request(this.axios, this.basePath));
-  }
 
   /**
    *
@@ -8263,6 +8262,28 @@ export class IndicatorsApi extends BaseAPI {
   ) {
     return IndicatorsApiFp(this.configuration)
       .getPartyIndicator08(initialYear, finalYear, cargoId, unidadesEleitorais, options)
+      .then(request => request(this.axios, this.basePath));
+  }
+
+  /**
+   *
+   * @param {number} initialYear Ano inicial do intervalo.
+   * @param {number} finalYear Ano final do intervalo.
+   * @param {number} [cargoId] cargo desejado
+   * @param {Array<string>} [unidadesEleitorais] Ids das unidades eleitorais desejadas
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof IndicatorsApi
+   */
+  public getPartyIndicator12(
+    initialYear: number,
+    finalYear: number,
+    cargoId?: number,
+    unidadesEleitorais?: Array<string>,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return IndicatorsApiFp(this.configuration)
+      .getPartyIndicator12(initialYear, finalYear, cargoId, unidadesEleitorais, options)
       .then(request => request(this.axios, this.basePath));
   }
 
