@@ -22,18 +22,16 @@ const Home = () => {
                   Portal da Classe Política
                 </Display>
                 <Text size={'S1'} className="text-h6 md:text-s1">
-                  Democratizando o acesso ao conhecimento
+                  Ciência de dados para a democracia
                 </Text>
               </div>
             </div>
             <div className="flex-1 ">
               <div className="md:max-w-[460px]">
                 <Text size={'B1'}>
-                  Seja bem-vindo(a) ao Portal da Classe Política! A partir do uso intensivo de dados e da
-                  expertise de profissionais de ciência política, produzimos análises úteis e acessíveis,
-                  mesmo para quem não é especialista no assunto. Fazemos isso porque, além de produzir
-                  informação, queremos democratizar o acesso ao conhecimento, estimulando a participação,
-                  conectando pessoas, produzindo inovação e impacto social.
+                  SO INCT ReDem processa e transforma milhões de dados do Tribunal Superior Eleitoral em
+                  indicadores claros e visualizações interativas, permitindo analisar perfis de candidatos e
+                  eleitos, a dinâmica dos partidos e as principais tendências da política nacional.
                 </Text>
               </div>
             </div>
@@ -43,28 +41,28 @@ const Home = () => {
               alt="Cruzamentos e Dados Eleitorais"
               src={'/img/Cruzdados.svg'}
               title={'Cruzamentos e Dados Eleitorais'}
-              subTitle={'Cruze e analise dezenas de variáveis eleitorais.'}
+              subTitle={'Elabore suas próprias análises cruzando variáveis'}
               href={routes.cruzamentos}
             />
             <BoxFerramenta
               alt="Indicadores e Índices Especiais"
               src={'/img/Indicadores.svg'}
               title={'Indicadores e Índices Especiais'}
-              subTitle={'Trinta índices construídos com variáveis eleitorais.'}
+              subTitle={'Explore indicadores clássicos da Ciência Política'}
               href={routes.projections}
             />
             <BoxFerramenta
               alt="Aprenda a usar os Indicadores"
               src={'/img/Aprenda.svg'}
               title={'Aprenda a usar os Indicadores'}
-              subTitle={'Diversos tutoriais para ajudar você explorar ao máximo o Portal.'}
+              subTitle={'Acesse a documentação do projeto e saiba como explorar os recursos'}
               href={routes.aboutCrossing}
             />
             <BoxFerramenta
               alt="Comunicação Científica"
               src={'/img/Comunicacao.svg'}
               title={'Comunicação Científica'}
-              subTitle={'Nosso blog traz análises relevantes e acessíveis sobre a política nacional.'}
+              subTitle={'Acesse o ReDem em Pauta e acompanhe as postagens do projeto'}
               href={routes.blog}
             />
           </div>
@@ -74,10 +72,10 @@ const Home = () => {
       <section className=" pt-10 md:pt-20 pb-14 md:pb-20">
         <Container>
           <div className=" md:max-w-[854px] mb-8">
-            <Heading headingLevel={2}>Análises e Treinamentos </Heading>
+            <Heading headingLevel={2}> ReDem em Pauta </Heading>
             <Text size={'B1'}>
-              Aprofunde seu conhecimento sobre dados eleitorais com conteúdos e guias que tornarão a sua
-              experiência nos uso dos dados eleitorais mais intuitiva e fundamentada.
+              Confira as publicações e análises a partir dos dados do INCT ReDem em nosso blog. Você também
+              pode colaborar com a plataforma enviando o seu texto para nós.
             </Text>
           </div>
           <div className="m-auto">
@@ -92,14 +90,8 @@ const Home = () => {
             <div className="text-white flex-1 flex">
               <div className="max-w-[440px] content-center">
                 <Heading headingLevel={2} className="font-bold">
-                  Alguns números do Portal da Classe Política
+                  Portal em Números
                 </Heading>
-                <Text size={'B1'} className="py-6">
-                  A transparência e o acesso à informação são pilares fundamentais para o fortalecimento da
-                  democracia. O acesso fácil e intuitivo aos dados eleitorais possibilita maior participação e
-                  fiscalização por parte da sociedade. Para contribuir com esses objetivos, empreendemos
-                  grandes esforços tratar e analisar uma quantidade enorme de informações.
-                </Text>
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6	flex-1">

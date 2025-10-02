@@ -54,7 +54,7 @@ interface SecondLayerFilters {
 const FilterCandidateProfile = ({ onConsult, filters }: FilterProps) => {
   return (
     <FilterComponent
-      description="São quatro instrumentos úteis para analisar e compreender a dinâmica das eleições e do sistema eleitoral."
+      description="Escolha o indicador desejado e explore a dimensão eleitoral e partidária para analisar atributos da competição política ao longo do tempo."
       onConsult={onConsult}
       filters={filters}
     />
@@ -64,7 +64,7 @@ const FilterCandidateProfile = ({ onConsult, filters }: FilterProps) => {
 const FilterElectionResult = ({ onConsult, filters }: FilterProps) => {
   return (
     <FilterComponent
-      description="São quatro instrumentos úteis para analisar e compreender as aspirações e estratégias de carreira dos candidatos."
+      description="Escolha o indicador desejado para analisar dinâmicas de carreira e representação política ao longo do tempo."
       onConsult={onConsult}
       filters={filters}
     />
@@ -74,7 +74,7 @@ const FilterElectionResult = ({ onConsult, filters }: FilterProps) => {
 const FilterVote = ({ onConsult, filters }: FilterProps) => {
   return (
     <FilterComponent
-      description="São quatro instrumentos úteis para analisar e compreender a distribuição espacial dos votos e a competitividade regional."
+      description="Escolha o indicador desejado para explorar métricas de espacialidade da competição eleitoral no país ao longo do tempo."
       onConsult={onConsult}
       filters={filters}
     />
@@ -84,7 +84,7 @@ const FilterVote = ({ onConsult, filters }: FilterProps) => {
 const FilterFinancing = ({ onConsult, filters }: FilterProps) => {
   return (
     <FilterComponent
-      description="São quatro instrumentos úteis para analisar e compreender as dinâmicas econômica e financeira das campanhas eleitorais."
+      description="Escolha o indicador desejado para analisar dados baseados em declaração de patrimonio e receita de campanha dos candidatos ao longo dos anos."
       onConsult={onConsult}
       filters={filters}
     />

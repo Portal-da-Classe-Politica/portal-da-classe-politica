@@ -11,7 +11,7 @@ const sections = [
     title: 'MENU',
     className: '',
     links: [
-      { text: 'Cruzamentos', href: routes.consult },
+      { text: 'Cruzamentos', href: routes.cruzamentos },
       { text: 'Indices', href: routes.projections },
       { text: 'Perfil dos candidatos', href: routes.candidates },
       { text: 'Sobre o projeto', href: routes.about },
@@ -94,16 +94,7 @@ export const Footer = () => {
       <div className="w-full h-[1px] bg-white"></div>
       <Container>
         <div className="text-center py-4">
-          <Text size={'C2'}>
-            Copyright © 2024 INCT REDEM. Todos os direitos reservados. Desenvolvido por{' '}
-            <Link
-              target="_blank"
-              href={Constants.links.arwPoliticalAdvisory}
-              className="underline underline-offset-1"
-            >
-              ARW POLITICAL ADVISORY
-            </Link>
-          </Text>
+          <Text size={'C2'}>Copyright © 2024 INCT REDEM. Todos os direitos reservados.</Text>
         </div>
       </Container>
     </footer>
