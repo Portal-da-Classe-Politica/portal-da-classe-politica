@@ -11,7 +11,7 @@ const sections = [
     title: 'MENU',
     className: '',
     links: [
-      { text: 'Cruzamentos', href: routes.consult },
+      { text: 'Cruzamentos', href: routes.cruzamentos },
       { text: 'Indices', href: routes.projections },
       { text: 'Perfil dos candidatos', href: routes.candidates },
       { text: 'Sobre o projeto', href: routes.about },
