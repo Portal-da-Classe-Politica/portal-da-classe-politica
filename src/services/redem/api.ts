@@ -6551,7 +6551,7 @@ export const IndicatorsApiAxiosParamCreator = function (configuration?: Configur
       assertParamExists('getPartyIndicator12', 'initialYear', initialYear);
       // verify required parameter 'finalYear' is not null or undefined
       assertParamExists('getPartyIndicator12', 'finalYear', finalYear);
-      const localVarPath = `/noauth/indicadores/partidarios/12`;
+      const localVarPath = `/noauth/indicadores/eleitorais/12`;
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
       let baseOptions;
