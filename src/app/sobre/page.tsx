@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { Container, Heading, Text, TextParagraph, TextParagraphImage } from '@base';
 import { Header } from '@components/sections/Header';
 import Avatar from '@components/Avatar';
-import Timeline from '@components/timeline/Timeline';
 import { GetInContact } from '@components/sections/GetInContact';
 import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
 import { Constants } from '@constants';
@@ -83,7 +82,7 @@ const Page = () => {
               SOBRE O PROJETO
             </Text>
             <Heading size="H1" className="text-white mt-4 md:w-[80%]">
-              Conheça a trajetória do Portal da Classe Política e seus idealizadores
+              Conheça os grandes números do Portal da Classe Política e seus idealizadores
             </Heading>
           </div>
 
@@ -108,10 +107,10 @@ const Page = () => {
       <section className="pb-12 pt-12 md:pt-32 bg-white">
         <Container className="flex flex-col items-center">
           <TextParagraph
-            title={'Democratização e transparência de dados eleitorais no Brasil'}
+            title={'Democratização e transparência dos dados eleitorais no Brasil'}
             texts={[
-              'O Portal da Classe Política surge a partir de uma necessidade clara: tornar os dados eleitorais acessíveis e compreensíveis para toda a população, em especial para aqueles que não possuem conhecimento técnico em tratamento de dados. O Tribunal Superior Eleitoral (TSE) disponibiliza um vasto conjunto de dados desde 1998, incluindo informações sobre candidaturas, resultados de votações, financiamento de campanha e gastos e contas eleitorais. No entanto, a complexidade e o volume desses dados dificultam o seu uso por parte da sociedade civil. ',
-              'A transparência e o acesso à informação são pilares fundamentais para o fortalecimento da democracia. O acesso fácil e intuitivo aos dados eleitorais possibilita maior participação e fiscalização por parte da sociedade, promovendo a integridade do processo eleitoral. Além disso, esses dados são essenciais para a pesquisa acadêmica em diversas áreas, como Ciência Política, Economia, Sociologia, Comunicação etc. contribuindo para um entendimento mais profundo e crítico do sistema eleitoral brasileiro. Com isso, o Portal da Classe Política representa um avanço significativo na promoção desses princípios ao tornar-se a principal fonte de acesso a informações eleitorais incorporadas por ferramentas intuitivas de análise e exploração de dados. ',
+              'O Portal da Classe Política traduz a complexidade dos dados eleitorais brasileiros em conhecimento acessível. Desde 1998, o Tribunal Superior Eleitoral (TSE) publica um imenso volume de informações sobre candidaturas, votações, patrimônio pessoal, finanças de campanha e prestações de contas. Sem tratamento técnico, esses dados permanecem distantes do cidadão.',
+              'Ao oferecer acesso facilitado a esses dados, o Portal permite que a sociedade civil se informe e fiscalize o processo eleitoral com mais rigor e autonomia. Além disso, transforma essa matéria-prima em fonte de informações sistemáticas para pesquisas em Ciência Política, Economia, Sociologia Política e Comunicação, aprofundando a compreensão sobre o sistema político brasileiro.',
             ]}
           />
 
@@ -138,44 +137,12 @@ const Page = () => {
             className="md:mt-24 mt-12"
             title={'Trajetória do Portal da Classe Política'}
             texts={[
-              'O Portal da Classe Política está inserido no rol de produtos técnicos e científicos elaborados pelo INCT Representação e Legitimidade Democrática (ReDem). Criado em 2023, o ReDem tem como objetivo analisar as crises das democracias através de uma lente tridimensional, relacionando valores e percepções dos eleitores, instituições e regras eleitorais, e a morfologia da classe política nacional, para explicar como essas dimensões afetam o déficit de legitimidade da representação política. ',
-              'Em consonância com os objetivos do instituto, o Portal da Classe Política surge como uma iniciativa de transparência e acesso a informações eleitorais, fundamentais para o fortalecimento da democracia no país. A ideia do portal começou a ganhar forma em junho de 2023, a partir de um projeto de criação de uma API pública de análise de candidatos, concebido no âmbito do Instituto Federal do Rio Grande do Sul, de autoria de Luiz Sebastião D`Avila Filho. Esse projeto inicial motivou a criação de uma plataforma completa, capaz de tratar grandes conjuntos de dados do Tribunal Superior Eleitoral (TSE) e providenciar ferramentas simplificadas e intuitivas para o acesso aos dados eleitorais. ',
-              'Desde o início, o projeto contou com a colaboração do INCT ReDem, representado pelo Prof. Adriano Codato e pelo pesquisador Nilton Sainz, que contribuíram significativamente para a construção da plataforma. Em agosto de 2023, o projeto avançou com a elaboração de uma estrutura de arquitetura de bancos de dados e um design interdisciplinar, visando atender aos principais objetivos do projeto. Assim nasceu o Portal da Classe Política. Em outubro de 2023, a equipe de construção do projeto se expandiu com a inclusão da empresa ARW Political Advisory, que desenvolveu os parâmetros de experiência do usuário; a interface; e o sistema cruzamentos, análises e visualização de dados do Portal. ',
-              'O Portal da Classe Política é resultado de esforços metodológicos e técnicos constantes. Esses esforços incluem a seleção cuidadosa dos conjuntos de dados do TSE, o tratamento de variáveis, categorização, estudos e discussões sobre a implementação de índices e indicadores sobre a classe política, até a visualização gráfica dos dados. Esse processo consolidou o Portal como a principal iniciativa de transparência e acesso a dados sobre a classe política brasileira. ',
+              'O Portal da Classe Política integra os produtos técnicos e científicos do INCT Representação e Legitimidade Democrática (ReDem). Criado em 2023, o ReDem busca compreender a crise da democracia no Brasil relacionando três dimensões: valores e percepções dos eleitores, regras e instituições eleitorais e a composição da classe política para explicar como esses fatores combinados afetam a legitimidade da representação.',
+              'O Portal surgiu como uma iniciativa inédita de transparência e acesso a informações eleitorais. Em junho de 2023, a partir de um projeto desenvolvido no Instituto Federal do Rio Grande do Sul, Luiz Sebastião D’Avila Filho criou uma API pública de análise do perfil de candidatos. Essa plataforma foi ampliada com a colaboração de dois pesquisadores do INCT ReDem, Adriano Codato e Nilton Sainz, e ganhou corpo em agosto de 2023, com o desenvolvimento de uma arquitetura de banco de dados e um design interdisciplinar. ',
+              'Em outubro de 2023, a equipe foi expandida com a entrada da empresa ARW Political Advisory, responsável pelo primeiro desenho da interface e pelos sistemas de cruzamento e visualização de dados. Em dezembro de 2024 o ReDem reassumiu a tarefa de estruturar o Portal com uma série de aperfeiçoamentos metodológicos e técnicos: seleção e tratamento dos múltiplos conjuntos de dados do TSE, padronização de variáveis, definição de índices e indicadores e produção de visualizações interativas. ',
+              'O Portal da Classe Política é a principal plataforma de acesso e análise sobre candidaturas, partidos e resultados eleitorais no Brasil, reunindo rigor científico e utilidade pública. ',
             ]}
           />
-
-          <div className="mt-12 md:mt-24 text-center">
-            <Timeline
-              items={[
-                {
-                  title: '03/2023',
-                  icons: ['Location'],
-                  text: 'Instalação do Instituto Representação e Legitimidade democrática na UFPR ',
-                },
-                {
-                  title: '06/2023',
-                  icons: ['Location'],
-                  text: 'A construção da API pública com base em dados do TSE para a análise de candidatos e início dos bancos de dados ',
-                },
-                {
-                  title: '08/2023 ',
-                  icons: ['Location'],
-                  text: 'Consolidação do projeto com a incorporação da API e uma proposta de acesso e transparência de dados sobre classe política ',
-                },
-                {
-                  title: '02/2024',
-                  icons: ['Location'],
-                  text: 'Realização de estudos sobre seleção dos conjuntos e processamentos de dados, seleção das variáveis e escolhas dos índices e indicadores ',
-                },
-                {
-                  title: '02/2024',
-                  icons: ['Location'],
-                  text: 'Definição dos parâmetros e experiência do usuário e construção do sistema de cruzamentos, análises e visualização de dados. ',
-                },
-              ]}
-            />
-          </div>
 
           <div className="mt-12 md:mt-24 mb-12 md:mb-48">
             <TextParagraphImage

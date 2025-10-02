@@ -129,7 +129,8 @@ const Page = () => {
               INDICADORES
             </Text>
             <Heading size="H1" className="text-white mt-4">
-              Use os Indicadores para avaliar diferentes aspectos do cenário eleitoral ao longo do tempo.
+              Explore indicadores da Ciência Política e compreenda padrões e dinâmicas da representação e do
+              sistema político brasileiro
             </Heading>
           </div>
         </Container>

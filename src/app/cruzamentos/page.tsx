@@ -38,13 +38,14 @@ const Page = () => {
             <div className="flex flex-col justify-between items-center md:flex-row mb-20">
               <div className="flex flex-2 flex-col">
                 <Heading size="D1" className="text-orange">
-                  Explorando Dados Eleitorais
+                  Explore Dados Eleitorais
                 </Heading>
-                <Heading size="D2">Cruzamento e Visualização</Heading>
+                <Heading size="D2">Cruzamentos e visualizações</Heading>
               </div>
               <div className="flex flex-1 pt-4 md:p-[30px]">
                 <Text size="S1">
-                  Utilize filtros e variáveis para criar gráficos e mapas eleitorais personalizados
+                  Gere análises eleitorais e vizualize os dados de relações entre candidaturas, sucesso
+                  eleitoral e número de votos com variáveis sociopolíticas
                 </Text>
               </div>
             </div>
