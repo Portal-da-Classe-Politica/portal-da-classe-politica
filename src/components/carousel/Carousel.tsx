@@ -18,7 +18,7 @@ export const Carousel = () => {
           }
           src={Constants.images.reputacaoMulher}
           type="Primary"
-          href="/blog/reputacao-mulher"
+          href="/news/reputacao-mulher"
         />
       </div>
       <div className="h-[370px] md:h-[480px]">
@@ -35,7 +35,7 @@ export const Carousel = () => {
             'A promoção da participação política das mulheres parcialmente realizada pelos partidos políticos'
           }
           src={Constants.images.promoPart}
-          href="/blog/promo-part"
+          href="/news/promo-part"
         />
       </div>
       <div className="h-[370px] md:h-[480px]">
@@ -53,7 +53,7 @@ export const Carousel = () => {
           subTitle=" A persistente sub-representação feminina na política é uma questão de grande relevância e
                 complexidade"
           src={Constants.images.partFemLid}
-          href="/blog/part-fem-lid"
+          href="/news/part-fem-lid"
         />
       </div>
     </CarouselView>

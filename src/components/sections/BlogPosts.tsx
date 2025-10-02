@@ -146,7 +146,7 @@ const BlogPost = () => {
                   category={values.categories}
                   subTitle={values.description}
                   src={values.img}
-                  href={`/blog/${values.id}`}
+                  href={`/news/${values.id}`}
                 />
               </div>
             );

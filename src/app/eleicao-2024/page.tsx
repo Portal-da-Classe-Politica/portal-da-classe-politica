@@ -99,7 +99,7 @@ const Page = () => {
               democracia exige a participação equitativa das mulheres, rompendo com tradições excludentes e
               promovendo uma representação política mais justa e representativa.
             </Text>
-            <Link target="_self" href={'/blog/reputacao-mulher'}>
+            <Link target="_self" href={'/news/reputacao-mulher'}>
               <Text size="B1" className="mt-6 text-orange">
                 Leia mais
               </Text>
@@ -111,7 +111,7 @@ const Page = () => {
       <section className="mt-24">
         <Container>
           <TextParagraphImage
-            link="/blog/promo-part"
+            link="/news/promo-part"
             src={Constants.images.promoPart}
             header={
               'A promoção da participação política das mulheres parcialmente realizada pelos partidos políticos'
@@ -123,7 +123,7 @@ const Page = () => {
           />
 
           <TextParagraphImage
-            link="/blog/part-fem-lid"
+            link="/news/part-fem-lid"
             src={Constants.images.partFemLid}
             header={
               'A participação feminina na liderança partidária e o cumprimento das cotas financeiras para mulheres'

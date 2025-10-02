@@ -179,7 +179,7 @@ const Page = () => {
 
           <div className="mt-12 md:mt-24 mb-12 md:mb-48">
             <TextParagraphImage
-              link="/blog/promo-part"
+              link="/news/promo-part"
               src={Constants.images.promoPart}
               header={
                 'A promoção da participação política das mulheres parcialmente realizada pelos partidos políticos'
