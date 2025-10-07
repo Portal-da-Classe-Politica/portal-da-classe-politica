@@ -29,7 +29,7 @@ const Home = () => {
             <div className="flex-1 ">
               <div className="md:max-w-[460px]">
                 <Text size={'B1'}>
-                  SO INCT ReDem processa e transforma milhões de dados do Tribunal Superior Eleitoral em
+                  O INCT ReDem processa e transforma milhões de dados do Tribunal Superior Eleitoral em
                   indicadores claros e visualizações interativas, permitindo analisar perfis de candidatos e
                   eleitos, a dinâmica dos partidos e as principais tendências da política nacional.
                 </Text>
