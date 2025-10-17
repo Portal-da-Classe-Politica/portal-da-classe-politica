@@ -116,6 +116,9 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
             <HeaderTopic label="SOBRE O PROJETO" href={routes.about} currentPath={pathname} />
           </li>
           <li className={`self-center ${classes} mr-5`}>
+            <HeaderTopic label="EQUIPE" href={routes.team} currentPath={pathname} />
+          </li>
+          <li className={`self-center ${classes} mr-5`}>
             <HeaderTopic label="BLOG" href={routes.blog} currentPath={pathname} />
           </li>
           <li className={`self-center ${classes} mr-5`}>
@@ -174,6 +177,9 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
 
             <li>
               <HeaderTopic label="SOBRE O PROJETO" href={routes.about} currentPath={pathname} />
+            </li>
+            <li>
+              <HeaderTopic label="EQUIPE" href={routes.team} currentPath={pathname} />
             </li>
             <li>
               <HeaderTopic label="BLOG" href={routes.blog} currentPath={pathname} />
