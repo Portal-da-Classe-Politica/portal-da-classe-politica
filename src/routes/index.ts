@@ -30,4 +30,5 @@ export const routes = {
   elections2024: '/eleicao-2024',
   support: '/atendimento',
   aboutCrossing: '/sobre-cruzamentos',
+  team: '/equipe',
 };
