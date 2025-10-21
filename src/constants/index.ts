@@ -1,6 +1,6 @@
 export const Constants = {
   api: {
-    baseURL: 'http://localhost:7000',
+    baseURL: 'https://redem.c3sl.ufpr.br/v1/api',
   },
   abrangency: {
     estatudal: '1',

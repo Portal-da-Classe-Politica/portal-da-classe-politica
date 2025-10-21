@@ -13,9 +13,8 @@ export interface TeamMember {
 export const coordenacao: TeamMember[] = [
   {
     name: 'Adriano Codato',
-    description:
-      'Coordenador do INCT ReDem e Portal da Classe Política. Doutor em Ciência Política (Unicamp).',
-    image: '/img/author/AdrianoCodato.png',
+    description: 'Coordenação',
+    image: '/img/equipe/Adriano_Codato.jpeg',
     social: {
       linkedin: 'https://www.linkedin.com/in/adriano-codato-24526628/',
       instagram: 'https://www.instagram.com/adrianocodato/',
@@ -24,88 +23,142 @@ export const coordenacao: TeamMember[] = [
   },
   {
     name: 'Nilton Sainz',
-    description:
-      'Coordenador Portal da Classe Política e pesquisador do INCT ReDem. Doutorando em Ciência Política (UFPR).',
-    image: '/img/author/NiltonSainz.png',
+    description: 'Coordenação',
+    image: '/img/equipe/Nilton_Sainz.jpg',
     social: {
-      linkedin: 'https://linkedin.com/in/nilton-sainz',
-      email: 'mailto:nilton@redem.org.br',
+      linkedin: 'https://www.linkedin.com/in/nilton-sainz/',
+      email: 'mailto:sainznilton@gmail.com',
     },
   },
   {
-    name: 'Luiz Sebastião K. João Filho',
-    description:
-      'Coordenador de Dados e Metodologia. Especialista em análise estatística e modelagem de dados políticos.',
-    image: '/img/author/LuizSebastiao.png',
+    name: 'Bruno Bolognesi',
+    description: 'Coordenação',
+    image: '/img/equipe/bruno-bolognesi.webp',
     social: {
-      linkedin: 'https://linkedin.com/in/luiz-sebastiao',
-      email: 'mailto:luiz@redem.org.br',
+      instagram: 'https://www.instagram.com/_brunobolognesi/',
+      email: 'mailto:brunobolognesi@gmail.com',
     },
   },
 ];
 
 export const desenvolvedores: TeamMember[] = [
   {
-    name: 'Karolina Silva',
-    description:
-      'Desenvolvedora Full-Stack. Especialista em React, Node.js e arquitetura de sistemas. Responsável pelo desenvolvimento técnico do portal.',
-    image: '/img/author/karolina.png',
+    name: 'Luiz Dávila',
+    description: 'Desenvolvedores',
+    image: '/img/equipe/Luiz_Sebastiao.png',
     social: {
-      linkedin: 'https://linkedin.com/in/karolina-silva',
-      email: 'mailto:karolina@redem.org.br',
+      linkedin: 'https://www.linkedin.com/in/luizdavilaf/',
+      email: 'mailto:luizdavilaf@gmail.com',
     },
   },
   {
-    name: 'Maria Santos',
-    description:
-      'Desenvolvedora Frontend e UX/UI Designer. Especialista em design de interfaces e experiência do usuário para aplicações web.',
-    image: '/img/author/maria.png',
+    name: 'Mateus Marques',
+    description: 'Desenvolvedores',
+    image: '/img/equipe/Mateus_Marques.jpeg',
     social: {
-      linkedin: 'https://linkedin.com/in/maria-santos',
-      email: 'mailto:maria@redem.org.br',
+      linkedin: 'https://www.linkedin.com/in/mateus-marqs/',
+      instagram: 'https://www.instagram.com/mateus.marqs/',
+      email: 'mailto:mateusmarquesdc@gmail.com',
     },
   },
 ];
 
 export const membrosEquipe: TeamMember[] = [
   {
-    name: 'Ana Paula Oliveira',
-    description:
-      'Pesquisadora Junior. Graduada em Ciência Política pela UFRJ. Especialista em análise de dados eleitorais.',
-    image: '/img/author/AdrianoCodato.png',
+    name: 'Mateus de Albuquerque',
+    description: 'Revisores',
+    image: '/img/equipe/mateus_albuquerque.webp',
     social: {
-      linkedin: 'https://linkedin.com/in/ana-paula-oliveira',
-      email: 'mailto:ana@redem.org.br',
+      linkedin: 'https://www.linkedin.com/in/matdealbuquerque/',
+      instagram: 'https://instagram.com/matdealbuquerque',
+      email: 'mailto:mateusmartinsdealbuquerque@gmail.com',
     },
   },
   {
-    name: 'Carlos Eduardo Lima',
-    description:
-      'Analista de Dados. Especialista em Python, R e análise estatística aplicada à ciência política.',
-    image: '/img/author/NiltonSainz.png',
+    name: 'Fábio Vasconcellos',
+    description: 'Revisores',
+    image: '/img/equipe/Fabio_Vasconcellos.jpeg',
     social: {
-      linkedin: 'https://linkedin.com/in/carlos-lima',
-      email: 'mailto:carlos@redem.org.br',
+      linkedin: 'http://lattes.cnpq.br/4625289986427464',
+      instagram: 'https://www.instagram.com/fabio.vasconcellos10/',
+      email: 'mailto:Fabio.vasconcellos10@gmail.com',
     },
   },
   {
-    name: 'Fernanda Costa',
-    description:
-      'Especialista em Comunicação. Responsável pela divulgação científica e comunicação do projeto.',
-    image: '/img/author/karolina.png',
+    name: 'Felipe Schwarzer Paz',
+    description: 'Revisores',
+    image: '/img/equipe/Felipe_Schwarzer.jpeg',
     social: {
-      linkedin: 'https://linkedin.com/in/fernanda-costa',
-      email: 'mailto:fernanda@redem.org.br',
+      linkedin: 'https://www.linkedin.com/in/felipe-schwarzer-paz-4b9a01198',
+      instagram: 'https://www.instagram.com/felipespz/',
+      email: 'mailto:felipesch.paz02@gmail.com',
     },
   },
   {
-    name: 'Rafael Mendes',
-    description:
-      'Pesquisador em Política Comparada. Mestre em Ciência Política pela UFMG. Foco em estudos eleitorais.',
-    image: '/img/author/LuizSebastiao.png',
+    name: 'Bruno Fernando',
+    description: 'Revisores',
+    image: '/img/equipe/Bruno_Fernando.jpeg',
     social: {
-      linkedin: 'https://linkedin.com/in/rafael-mendes',
-      email: 'mailto:rafael@redem.org.br',
+      linkedin: 'https://www.linkedin.com/in/bruno-fsilva/',
+      email: 'mailto:b.fernando91@gmail.com',
+    },
+  },
+  {
+    name: 'Bruno Kotvisky',
+    description: 'Revisores',
+    image: '/img/equipe/Bruno_Kotvisky.jpeg',
+    social: {
+      instagram: 'https://www.instagram.com/b.z.kotvisky',
+      email: 'mailto:brunozkotvisky@gmail.com',
+    },
+  },
+  {
+    name: 'Vittorio Pizzeghello',
+    description: 'Revisores',
+    image: '/img/equipe/Vittorio_Pizzeghello.jpeg',
+    social: {
+      instagram: 'https://www.instagram.com/vitt.pz',
+      email: 'mailto:vpizzeghello@gmail.com',
+    },
+  },
+  {
+    name: 'Clara Schimitt',
+    description: 'Revisores',
+    image: '/img/equipe/Clara_Schimitt.jpeg',
+    social: {
+      linkedin: 'https://br.linkedin.com/in/clara-diz-schmitt-5ab075290',
+      instagram: 'https://www.instagram.com/claradizschmitt/',
+      email: 'mailto:claradizschmitt@yahoo.com.br',
+    },
+  },
+  {
+    name: 'Pedro Bergamaschi',
+    description: 'Revisores',
+    image: '/img/equipe/Pedro_Bergamaschi.jpeg',
+    social: {
+      linkedin: 'https://www.linkedin.com/in/pbrgm/',
+      instagram: 'https://www.instagram.com/pbrgm/',
+      email: 'mailto:plberga@gmail.com',
+    },
+  },
+  {
+    name: 'Gabryela Gabriel',
+    description: 'Revisores',
+    image: '/img/equipe/Gabryela_Gabriel.jpg',
+    social: {
+      linkedin: 'https://www.linkedin.com/in/gabryela-gabriel-8884071a1/',
+      instagram: 'https://www.instagram.com/gabryelasg/',
+      email: 'mailto:gabryela.gabriel0@gmail.com',
+    },
+  },
+  {
+    name: 'Ricardo Dantas Gonçalves',
+    description: 'Revisores',
+    image: '/img/equipe/Ricardo_Dantas.jpeg',
+    social: {
+      linkedin: 'https://www.linkedin.com/in/1goncalvesrd',
+      instagram: 'https://www.instagram.com/1rigoncalves',
+      email: 'mailto:goncalves.r@pm.me',
     },
   },
 ];

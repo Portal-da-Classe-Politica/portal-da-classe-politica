@@ -54,12 +54,12 @@ const EquipePage = () => {
             </div>
           </div>
 
-          {/* Membros da equipe */}
+          {/* Revisores */}
           <div className="mb-16">
             <Heading headingLevel={2} size="H2" className="text-h3 md:text-h2 mb-8 font-bold">
-              Membros da equipe
+              Revisores
             </Heading>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {membrosEquipe.map((member, index) => (
                 <TeamMemberCard key={index} member={member} />
               ))}
