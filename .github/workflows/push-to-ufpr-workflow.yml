@@ -24,9 +24,7 @@ jobs:
 
       - name: 🚀 Zero-Downtime Deploy no servidor
         run: |
-          ssh -o ServerAliveInterval=30 -o ServerAliveCountMax=3 -o ConnectTimeout=10 root@${{ secrets.SSH_HOST }} << 'EOF'
-            set -e  # Exit on any error
-            
+          ssh root@${{ secrets.SSH_HOST }} << 'EOF'
             cd portal-da-classe-politica
             source ~/.bashrc
             
@@ -45,37 +43,11 @@ jobs:
             fi
             
             # Make deploy script executable
-            chmod +x deploy.sh deploy-fast.sh
+            chmod +x deploy.sh
             
-            # Create deployment log
-            DEPLOY_LOG="deploy_$(date +%Y%m%d_%H%M%S).log"
-            echo "📝 Logging deployment to: $DEPLOY_LOG"
-            
-            # Run zero-downtime deployment with logging and keep-alive
+            # Run zero-downtime deployment
             echo "🚀 Starting zero-downtime deployment..."
-            (
-              # Keep SSH connection alive during long operations
-              while true; do
-                echo "⏱️  Deploy in progress... $(date)"
-                sleep 30
-              done &
-              KEEPALIVE_PID=$!
-              
-              # Run deployment
-              ./deploy.sh 2>&1 | tee "$DEPLOY_LOG"
-              DEPLOY_EXIT_CODE=${PIPESTATUS[0]}
-              
-              # Stop keep-alive
-              kill $KEEPALIVE_PID 2>/dev/null || true
-              
-              # Check deployment result
-              if [ $DEPLOY_EXIT_CODE -eq 0 ]; then
-                echo "✅ Zero-downtime deployment completed successfully!"
-              else
-                echo "❌ Deployment failed with exit code: $DEPLOY_EXIT_CODE"
-                echo "📋 Last 20 lines of deployment log:"
-                tail -20 "$DEPLOY_LOG"
-                exit $DEPLOY_EXIT_CODE
-              fi
-            )
+            ./deploy.sh
+            
+            echo "✅ Zero-downtime deployment workflow completed!"
           EOF

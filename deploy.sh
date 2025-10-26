@@ -32,42 +32,17 @@ BACKUP_DIR="backup_$(date +%Y%m%d_%H%M%S)"
 if [ -d ".next" ]; then
   echo "📦 Creating backup of current build..."
   mkdir -p "$BACKUP_DIR"
-  
-  # Backup .next directory (fast)
-  echo "   Backing up .next directory..."
-  cp -r .next "$BACKUP_DIR/" || {
-    echo "❌ Failed to backup .next directory"
-    exit 1
-  }
-  
-  # Skip node_modules backup as it's too large and can be reinstalled
-  echo "   Skipping node_modules backup (will reinstall if needed)"
-  echo "✅ Backup created successfully"
-else
-  echo "ℹ️  No existing build found, skipping backup"
+  cp -r .next "$BACKUP_DIR/"
+  cp -r node_modules "$BACKUP_DIR/" 2>/dev/null || echo "Skipping node_modules backup"
 fi
 
 # Install dependencies
 echo "📥 Installing dependencies..."
-echo "   This may take a few minutes..."
-
-# Use timeout to prevent hanging
-timeout 600 npm ci || {
-  echo "❌ Dependencies installation timed out or failed"
-  exit 1
-}
-
-echo "✅ Dependencies installed successfully"
+npm ci
 
 # Build application
 echo "🔨 Building application..."
-echo "   Compiling Next.js production build..."
-
-# Use timeout for build as well
-timeout 300 npm run build || {
-  echo "❌ Build process timed out or failed"
-  exit 1
-}
+NODE_ENV=production npm run build
 
 # Check if build was successful
 if [ ! -d ".next" ]; then
@@ -76,9 +51,9 @@ if [ ! -d ".next" ]; then
   # Restore backup if exists
   if [ -d "$BACKUP_DIR/.next" ]; then
     echo "🔄 Restoring backup..."
-    rm -rf .next
+    rm -rf .next node_modules
     mv "$BACKUP_DIR/.next" .
-    echo "✅ Backup restored successfully"
+    mv "$BACKUP_DIR/node_modules" . 2>/dev/null || echo "No node_modules backup to restore"
   fi
   
   exit 1
@@ -91,18 +66,11 @@ mkdir -p logs
 
 if [ "$PM2_RUNNING" -gt 0 ]; then
   echo "🔄 Performing zero-downtime reload..."
-  echo "   Current PM2 status:"
-  pm2 status
   
   # Reload the application (zero-downtime)
-  echo "   Reloading PM2 processes..."
-  pm2 reload ecosystem.config.js || {
-    echo "❌ PM2 reload failed"
-    exit 1
-  }
+  pm2 reload ecosystem.config.js
   
   # Wait a moment for the reload to take effect
-  echo "   Waiting for reload to complete..."
   sleep 5
   
   # Check application health
@@ -121,9 +89,9 @@ if [ "$PM2_RUNNING" -gt 0 ]; then
     if [ -d "$BACKUP_DIR/.next" ]; then
       echo "🔄 Rolling back to previous version..."
       pm2 stop portal-front
-      rm -rf .next
+      rm -rf .next node_modules
       mv "$BACKUP_DIR/.next" .
-      echo "✅ Previous build restored"
+      mv "$BACKUP_DIR/node_modules" . 2>/dev/null || echo "No node_modules backup to restore"
       pm2 start ecosystem.config.js
       
       if check_app_health; then
