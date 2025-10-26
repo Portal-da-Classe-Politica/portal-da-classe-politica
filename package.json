@@ -9,7 +9,20 @@
     "lint": "next lint",
     "prettier": "prettier --write \"**.{ts,tsx,js,jsx,cjs,mjs,json}\"",
     "prepare": "husky",
-    "hooks:prettier": "prettier --write"
+    "hooks:prettier": "prettier --write",
+    "deploy": "chmod +x deploy.sh && ./deploy.sh",
+    "deploy:zero-downtime": "chmod +x deploy.sh && ./deploy.sh",
+    "pm2:start": "pm2 start ecosystem.config.js",
+    "pm2:stop": "pm2 stop portal-front",
+    "pm2:restart": "pm2 restart portal-front",
+    "pm2:reload": "pm2 reload portal-front",
+    "pm2:status": "pm2 status",
+    "pm2:logs": "pm2 logs portal-front",
+    "pm2:monit": "pm2 monit",
+    "health-check": "chmod +x health-check.sh && ./health-check.sh",
+    "monitor": "chmod +x monitor.sh && ./monitor.sh",
+    "monitor:status": "chmod +x monitor.sh && ./monitor.sh status",
+    "monitor:cleanup": "chmod +x monitor.sh && ./monitor.sh cleanup"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
