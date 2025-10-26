@@ -13,6 +13,7 @@
     "deploy": "chmod +x deploy.sh && ./deploy.sh",
     "deploy:zero-downtime": "chmod +x deploy.sh && ./deploy.sh",
     "deploy:fast": "chmod +x deploy-fast.sh && ./deploy-fast.sh",
+    "deploy:ssh": "chmod +x deploy-ssh.sh && ./deploy-ssh.sh",
     "pm2:start": "pm2 start ecosystem.config.js",
     "pm2:stop": "pm2 stop portal-front",
     "pm2:restart": "pm2 restart portal-front",
@@ -24,7 +25,10 @@
     "monitor": "chmod +x monitor.sh && ./monitor.sh",
     "monitor:status": "chmod +x monitor.sh && ./monitor.sh status",
     "monitor:cleanup": "chmod +x monitor.sh && ./monitor.sh cleanup",
-    "debug": "chmod +x debug-deploy.sh && ./debug-deploy.sh"
+    "debug": "chmod +x debug-deploy.sh && ./debug-deploy.sh",
+    "deploy-monitor": "chmod +x deploy-monitor.sh && ./deploy-monitor.sh",
+    "deploy:status": "chmod +x deploy-monitor.sh && ./deploy-monitor.sh status",
+    "deploy:follow": "chmod +x deploy-monitor.sh && ./deploy-monitor.sh follow"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.2",

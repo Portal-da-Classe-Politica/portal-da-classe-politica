@@ -17,7 +17,23 @@ npm run pm2:logs
 
 ## 🐛 Problemas Comuns
 
-### 1. "Creating backup of current build..." (Travou)
+### 1. "client_loop: send disconnect: Broken pipe" (SSH desconectou)
+
+**Causa**: Deploy demora muito e SSH timeout ou conexão instável
+
+**Solução**:
+```bash
+# Use deploy otimizado para SSH (com keep-alive)
+npm run deploy:ssh
+
+# Ou execute deploy em background no servidor:
+nohup ./deploy-fast.sh > deploy.log 2>&1 &
+
+# Monitorar progresso:
+npm run deploy:follow
+```
+
+### 2. "Creating backup of current build..." (Travou)
 
 **Causa**: Backup do `node_modules` muito grande ou lento
 
@@ -78,6 +94,15 @@ npm install -g pm2
 ```
 
 ## ⚡ Soluções Rápidas
+
+### Deploy SSH-Otimizado (Recomendado para CI/CD)
+```bash
+npm run deploy:ssh
+```
+- 🔌 Otimizado para conexões SSH
+- 📝 Logs detalhados
+- ⏰ Keep-alive automático
+- 🛡️ Rollback automático
 
 ### Deploy Rápido (Sem Backup)
 ```bash
@@ -174,18 +199,56 @@ pm2 logs portal-front
 
 ### 3. Deploy Travado Há Muito Tempo
 ```bash
-# 1. Interromper processo
+# 1. Verificar se há deploy em background
+npm run deploy:status
+
+# 2. Se SSH desconectou mas deploy continua
+npm run deploy:follow
+
+# 3. Se tudo travou, interromper
 Ctrl+C ou kill -9 <pid>
 
-# 2. Verificar se app ainda está rodando
+# 4. Verificar se app ainda funciona
 curl http://localhost:3000
 
-# 3. Se estiver OK, não fazer nada
-# 4. Se não estiver, usar deploy rápido
+# 5. Se não funcionar, deploy rápido
 npm run deploy:fast
 ```
 
-## 📋 Checklist de Deploy
+### 4. GitHub Actions SSH Timeout
+```bash
+# No workflow do GitHub, usar:
+# - workflow-nohup.yml (deploy em background)
+# - Ou deploy:ssh com keep-alive
+```
+
+## � Monitoramento de Deploy
+
+### Verificar Status de Deploy em Background
+```bash
+# Status do deploy atual
+npm run deploy:status
+
+# Seguir deploy em tempo real
+npm run deploy:follow
+
+# Listar todos os deploys
+npm run deploy-monitor list
+
+# Ver logs completos
+npm run deploy-monitor logs
+```
+
+### Deploy via SSH (GitHub Actions)
+```bash
+# Se SSH desconectar durante GitHub Actions:
+# 1. O deploy continua rodando em background
+# 2. Acesse o servidor manualmente
+# 3. Execute: npm run deploy:status
+# 4. Se necessário: npm run deploy:follow
+```
+
+## �📋 Checklist de Deploy
 
 Antes de fazer deploy, verifique:
 
@@ -194,6 +257,7 @@ Antes de fazer deploy, verifique:
 - [ ] NPM funcionando (`npm --version`)
 - [ ] PM2 funcionando (`pm2 list`)
 - [ ] Porta 3000 livre ou em uso pela app (`netstat -tlnp | grep :3000`)
+- [ ] Conexão SSH estável (para deploys remotos)
 
 ## 🎯 Estratégias por Situação
 
@@ -254,3 +318,52 @@ Se mesmo assim não funcionar, pode ser problema de:
 - Disco cheio
 - Problemas de rede
 - Corrupção de arquivos
+
+## 🔌 Problemas de SSH Específicos
+
+### "client_loop: send disconnect: Broken pipe"
+Este erro indica que a conexão SSH foi interrompida. Soluções:
+
+1. **Use deploy SSH-otimizado**:
+   ```bash
+   npm run deploy:ssh  # Tem keep-alive automático
+   ```
+
+2. **Configure SSH client** (em `.ssh/config`):
+   ```
+   Host your-server
+     ServerAliveInterval 30
+     ServerAliveCountMax 3
+     TCPKeepAlive yes
+   ```
+
+3. **Deploy em background** (nohup):
+   ```bash
+   nohup npm run deploy:fast > deploy.log 2>&1 &
+   ```
+
+4. **Use workflow alternativo**:
+   - `.github/workflows/push-to-ufpr-workflow-nohup.yml`
+   - Executa deploy em background
+   - Monitora progresso sem manter SSH aberto
+
+### Timeouts no GitHub Actions
+- Use `ServerAliveInterval=30` no SSH
+- Implemente keep-alive com mensagens periódicas  
+- Execute deploy em background com nohup
+- Monitor status via arquivos de log
+
+### Recovery após SSH desconectar
+```bash
+# 1. Reconecte ao servidor
+ssh user@server
+
+# 2. Verifique se deploy ainda está rodando
+npm run deploy:status
+
+# 3. Se estiver rodando, acompanhe
+npm run deploy:follow
+
+# 4. Se parou, reinicie aplicação
+curl http://localhost:3000 || npm run pm2:restart
+```
