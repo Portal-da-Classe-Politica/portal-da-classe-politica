@@ -27,9 +27,6 @@ jobs:
           ssh root@${{ secrets.SSH_HOST }} << 'EOF'
             cd portal-da-classe-politica
             source ~/.bashrc
-            echo "Stop pm2..."
-            pm2 stop "portal front"
-
             echo "Git pull..."
             git reset --hard
             git pull origin main
@@ -44,5 +41,7 @@ jobs:
 
             echo "npm build"
             npm run build
-            pm2 start "portal front"
+
+            echo "Zero-downtime reload..."
+            pm2 reload "portal front" || pm2 start "portal front"
           EOF
