@@ -16,6 +16,7 @@ export interface Cargo {
   id: number;
   nome_cargo: string;
   abrangenciumId: number;
+  has_second_round?: boolean;
 }
 
 export const getInitialFilters = async (): Promise<InitialFiltersData> => {
