@@ -31,17 +31,25 @@ jobs:
             git reset --hard
             git pull origin main
 
-            echo "Remove folders..."
-            rm -rf .next node_modules
-
             echo "Build step..."
             echo "Node: $(node -v)"
             echo "Npm: $(npm -v)"
+            
+            # Clean and install dependencies
+            rm -rf node_modules
             npm install --include=dev
 
-            echo "npm build"
+            # Build application
+            echo "Building Next.js application..."
             npm run build
 
+            # Verify build was successful
+            if [ ! -d ".next" ]; then
+              echo "❌ Build failed: .next directory not found"
+              exit 1
+            fi
+
+            echo "✅ Build completed successfully"
             echo "Zero-downtime reload..."
             pm2 reload "portal front" || pm2 start "portal front"
           EOF
