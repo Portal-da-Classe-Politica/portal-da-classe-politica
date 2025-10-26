@@ -14,6 +14,7 @@ export const parseIndicatorFilters = (indicators: any) => {
       label: c.name,
       filterByUf: c.filter_by === 'UF' || c.agregacao_regional.includes('UF'),
       filterByCity: c.filter_by === 'MUNICIPIO',
+      has_second_round: c.has_second_round,
     }));
   }
 

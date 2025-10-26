@@ -32,6 +32,7 @@ export interface SecondLayerSearchValues {
   uf: string;
   electoralUnit: string;
   partyId: string;
+  round?: string;
 }
 
 interface SecondLayerFilters {
@@ -47,6 +48,7 @@ interface SecondLayerFilters {
       value: string;
       filterByUf: string;
       filterByCity: string;
+      has_second_round?: boolean;
     }[]
   >;
 }
@@ -111,6 +113,7 @@ const FilterComponent = ({
     uf: '',
     electoralUnit: '',
     partyId: '',
+    round: '',
   });
 
   const [errors, setErrors] = useObjReducer({
@@ -155,11 +158,16 @@ const FilterComponent = ({
 
   // :: Change Handlers
   const onIndicatorChange = (value: any) => {
-    setValues({ indicator: value, job: '', uf: '', electoralUnit: '' });
+    setValues({ indicator: value, job: '', uf: '', electoralUnit: '', round: '' });
   };
 
   const onJobChange = (value: any) => {
     setValues({ job: value, uf: '', electoralUnit: '' });
+    // Limpa o turno se o cargo não tiver segundo turno
+    const selectedJob = getJob(value);
+    if (selectedJob && !selectedJob.has_second_round) {
+      setValues({ round: '' });
+    }
   };
 
   const onUfChange = (value: any, uf: any) => {
@@ -179,6 +187,10 @@ const FilterComponent = ({
 
   const onPartyChange = (value: any) => {
     setValues({ partyId: value });
+  };
+
+  const onRoundChange = (value: any) => {
+    setValues({ round: value });
   };
 
   // :: Form Validation and Submit
@@ -272,6 +284,22 @@ const FilterComponent = ({
                   label="Cargo"
                   onSelect={onJobChange}
                   error={errors.job}
+                />
+              </div>
+            )}
+
+            {getSelectedJob()?.has_second_round && (
+              <div className="inline md:w-[40%] min-w-[50px]">
+                <FilterSelect
+                  options={[
+                    { label: '1º Turno', value: '1' },
+                    { label: '2º Turno', value: '2' },
+                  ]}
+                  defaultValue={values.round}
+                  placeholder="Selecione o turno"
+                  label="Turno (opcional)"
+                  onSelect={onRoundChange}
+                  error=""
                 />
               </div>
             )}

@@ -32,6 +32,7 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
   const [selectedUnit, setSelectedUnit] = useState<string>();
   const [selectedEarlyYear, setSelectedearlyYear] = useState<number>();
   const [selectedFinalYear, setSelectedFinalYear] = useState<number>();
+  const [selectedRound, setSelectedRound] = useState<number>();
 
   useEffect(() => {
     getInitialData();
@@ -120,6 +121,9 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
     if (selectedUnit) {
       params += `&unidade_eleitoral_id=${selectedUnit}`;
     }
+    if (selectedRound) {
+      params += `&round=${selectedRound}`;
+    }
     if (selectedCriterias.length) {
       selectedCriterias.forEach(criteria => {
         criteria.selections?.forEach(selection => {
@@ -137,6 +141,7 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
     setSelectedUnit(undefined);
     setSelectedearlyYear(undefined);
     setSelectedFinalYear(undefined);
+    setSelectedRound(undefined);
     setStates([]);
     setEarlyYears([]);
     setFinalYearss([]);
@@ -174,6 +179,10 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
   function selectCargo(data: any) {
     const selectedCargo = dimension?.cargos.find(c => c.id == data);
     setCargo(selectedCargo);
+    // Limpa o turno se o cargo não tiver segundo turno
+    if (selectedCargo && !selectedCargo.has_second_round) {
+      setSelectedRound(undefined);
+    }
     if (selectedCargo) {
       getFiltersByRole(data);
     }
@@ -365,6 +374,32 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
                 onSelect={(value: any) => checkFinalDate(value.value)}
               />
             </div>
+
+            {cargo?.has_second_round && (
+              <div className="w-full">
+                <div className="flex items-center gap-1 mb-1">
+                  <h3 className="font-semibold text-white">Turno</h3>
+                  <span className="text-white text-sm font-normal">(opcional)</span>
+                </div>
+                <CompleteSelect
+                  placeholder="Selecione o turno"
+                  multiSelect={false}
+                  options={[
+                    { label: '1º Turno', value: 1 },
+                    { label: '2º Turno', value: 2 },
+                  ]}
+                  selectedOption={
+                    selectedRound
+                      ? [
+                          { label: '1º Turno', value: 1 },
+                          { label: '2º Turno', value: 2 },
+                        ].find(c => c.value === selectedRound)
+                      : null
+                  }
+                  onSelect={(value: any) => setSelectedRound(value?.value)}
+                />
+              </div>
+            )}
           </div>
 
           <div className="w-full">

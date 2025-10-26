@@ -82,6 +82,11 @@ const Page = () => {
     params.append('uf', consultFilters.uf);
     params.append('partyId', consultFilters.partyId);
 
+    // Adiciona o parâmetro round apenas se ele tiver um valor
+    if (consultFilters.round) {
+      params.append('round', consultFilters.round);
+    }
+
     setStrParams(params.toString());
 
     setResult({ loading: true, data: null });
