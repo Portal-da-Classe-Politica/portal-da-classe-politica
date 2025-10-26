@@ -1,4 +1,5 @@
-import { redem } from '@services/redem';
+import { BASE_PATH } from '@services/redem/base';
+import axios from 'axios';
 
 export interface IndicatorParams {
   initialYear: number;
@@ -7,55 +8,92 @@ export interface IndicatorParams {
   unidadesEleitorais?: number[];
   uf?: string;
   partyId?: string;
+  round?: number;
 }
 
+const apiMap = new Map([
+  ['1', '/noauth/indicadores/eleitorais/1'],
+  ['2', '/noauth/indicadores/eleitorais/2'],
+  ['3', '/noauth/indicadores/eleitorais/3'],
+  ['12', '/noauth/indicadores/eleitorais/12'],
+  ['5', '/noauth/indicadores/partidarios/5'],
+  ['6', '/noauth/indicadores/partidarios/6'],
+  // ['7', '/noauth/indicadores/partidarios/7'],
+  ['8', '/noauth/indicadores/partidarios/8'],
+  // ['9', '/noauth/indicadores/geograficos/9'],
+  ['10', '/noauth/indicadores/geograficos/10'],
+  ['11', '/noauth/indicadores/geograficos/11'],
+  // ['13', '/noauth/indicadores/financeiros/13'],
+  ['14', '/noauth/indicadores/financeiros/14'],
+  ['15', '/noauth/indicadores/financeiros/15'],
+  ['16', '/noauth/indicadores/financeiros/16'],
+]);
+
 export const getIndicatorById = async (id: string, params: IndicatorParams) => {
-  const indicatorsMap = {
-    '1': redem.indicators.getElectoral01,
-    '2': redem.indicators.getElectoral02,
-    '3': redem.indicators.getElectoral03,
-    '12': redem.indicators.getPartyIndicator12,
+  try {
+    const path = apiMap.get(id);
 
-    '5': redem.indicators.getPartyIndicator05,
-    '6': redem.indicators.getPartyIndicator06,
-    // '7': redem.indicators.getPartyIndicator07,
-    '8': redem.indicators.getPartyIndicator08,
+    if (!path) {
+      return { success: false, data: null, message: 'Invalid Indicator' };
+    }
 
-    // '9': redem.indicators.getGeographical09,
-    '10': redem.indicators.getGeographical10,
-    '11': redem.indicators.getGeographical11,
+    let url = `${BASE_PATH}${path}`;
 
-    // '13': redem.indicators.getFinanceIndicator13,
-    '14': redem.indicators.getFinanceIndicator14,
-    '15': redem.indicators.getFinanceIndicator15,
-    '16': redem.indicators.getFinanceIndicator16,
-  } as Record<string, any>;
+    if (params.initialYear !== undefined) {
+      url = `${url}?initialYear=${params.initialYear}`;
+    }
 
-  if (!indicatorsMap[id]) {
-    return { success: false, data: null, message: 'Invalid Indicator' };
+    if (params.finalYear !== undefined) {
+      url = `${url}&finalYear=${params.finalYear}`;
+    }
+
+    if (params.cargoId !== undefined) {
+      url = `${url}&cargoId=${params.cargoId}`;
+    }
+
+    if (params.unidadesEleitorais) {
+      url = `${url}&unidadesEleitorais=${params.unidadesEleitorais.join(',')}`;
+    }
+
+    if (params.uf !== undefined) {
+      url = `${url}&uf=${params.uf}`;
+    }
+
+    if (params.partyId !== undefined) {
+      url = `${url}&partyId=${params.partyId}`;
+    }
+
+    if (params.round !== undefined) {
+      url = `${url}&round=${params.round}`;
+    }
+
+    const response = await axios.get(url);
+
+    if (response.status !== 200) {
+      throw new Error('Failed to fetch indicator data');
+    }
+
+    const data = response.data;
+
+    const details = [
+      {
+        title: 'Para que serve este Indicador?',
+        text: data.data?.indicator_detail?.indicator_purpose,
+      },
+      {
+        title: 'Como Interpretar?',
+        text: data.data?.indicator_detail?.how_to_interpretate,
+      },
+    ].filter(d => d.text && d.title);
+
+    const parsed = { ...data, details };
+    return { path, data: parsed };
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error('Axios error fetching indicator data:', error.message);
+    } else {
+      console.error('Unexpected error fetching indicator data:', error);
+    }
+    throw new Error('Failed to fetch indicator data. Please try again later.');
   }
-
-  const { request, data } = await indicatorsMap[id].call(
-    redem.indicators,
-    params.initialYear,
-    params.finalYear,
-    params.cargoId,
-    params.unidadesEleitorais,
-    params.uf,
-    params.partyId,
-  );
-
-  const details = [
-    {
-      title: 'Para que serve este Indicador?',
-      text: data.data?.indicator_detail?.indicator_purpose,
-    },
-    {
-      title: 'Como Interpretar?',
-      text: data.data?.indicator_detail?.how_to_interpretate,
-    },
-  ].filter(d => d.text && d.title);
-
-  const parsed = { ...data, details };
-  return { path: request.path, data: parsed };
 };

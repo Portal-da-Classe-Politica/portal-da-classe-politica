@@ -41,6 +41,10 @@ export const getindicatorsCsv = async (id: string, params: IndicatorParams): Pro
       url = `${url}&unidadesEleitorais=${params.unidadesEleitorais.join(',')}`;
     }
 
+    if (params.round !== undefined) {
+      url = `${url}&round=${params.round}`;
+    }
+
     url = `${url}&exportcsv=true`;
 
     const response = await axios.get(url, {
