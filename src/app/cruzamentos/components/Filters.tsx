@@ -205,10 +205,6 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
   }
 
   function selectCriteria(value: any) {
-    if (value.length >= crossCriterias!.max + 1) {
-      return;
-    }
-
     const selected = value.map((v: any) => {
       // Procura primeiro nos critérios já selecionados para manter as seleções
       const existingCriteria = selectedCriterias.find(c => c.parameter === v.value);
@@ -224,12 +220,10 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
   function updateCriteriasSelections(value: any, parameter: string) {
     const updatedCriterias = selectedCriterias.map(criteria => {
       if (criteria.parameter === parameter) {
-        if (value.length < criteria.max + 1) {
-          return {
-            ...criteria,
-            selections: value,
-          };
-        }
+        return {
+          ...criteria,
+          selections: value,
+        };
       }
       return criteria;
     });
@@ -404,7 +398,7 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
 
           <div className="w-full">
             <div className="flex items-center gap-1 mb-1">
-              <h3 className="font-semibold text-white">Cruzamento com até 3 variáveis</h3>
+              <h3 className="font-semibold text-white">Cruzamento de variáveis</h3>
               <span className="text-white text-sm font-normal">(opcional)</span>
             </div>
             <CompleteSelect
@@ -429,7 +423,6 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
                     <div key={idx} className="w-full">
                       <div className="flex items-center gap-1 mb-1">
                         <h3 className="font-semibold text-white">{criteria.label}</h3>
-                        <span className="text-white text-sm font-normal">(selecione no máximo 2)</span>
                       </div>
                       <CompleteSelect
                         placeholder="Selecione uma opção"
