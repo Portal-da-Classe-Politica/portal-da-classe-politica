@@ -20,7 +20,10 @@ import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
 import { KpiBox } from './components/KpiBox';
 import { LastElectionMapSection } from './components/LastElectionMapSection';
 
-const Page = async ({ params: { id } }: { params: { id: string } }) => {
+const Page = async (props: { params: Promise<{ id: string }> }) => {
+  const params = await props.params;
+  const { id } = params;
+
   const candidate = await CandidateService.getCandidateById(id);
   const kpis = await CandidateService.getCandidateKpiById(id);
 

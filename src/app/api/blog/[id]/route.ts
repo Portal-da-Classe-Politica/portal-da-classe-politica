@@ -6,7 +6,8 @@ import path from 'path';
 
 const blogPostsDirectory = path.join(process.cwd(), 'public', 'blog-posts');
 
-export async function GET(_req: NextRequest, { params }: any) {
+export async function GET(_req: NextRequest, context: { params: Promise<{ id: string }> }) {
+  const params = await context.params;
   const { id } = params;
 
   const filePath = path.join(blogPostsDirectory, `${id}.md`);

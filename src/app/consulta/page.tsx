@@ -13,7 +13,9 @@ const cards = [
   { text: 'Financiamento de Campanha', src: '/img/consulta/Circles.svg', imgWidth: 130, imgHeight: 110 },
 ];
 
-const Page = ({ searchParams }: { searchParams: { consulta: string | undefined } }) => {
+const Page = async (props: { searchParams: Promise<{ consulta: string | undefined }> }) => {
+  const searchParams = await props.searchParams;
+
   return (
     <main className="font-montserrat">
       <div className="relative">

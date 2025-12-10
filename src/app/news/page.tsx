@@ -1,3 +1,5 @@
+'use client';
+
 import { Container, Heading } from '@base';
 import { Header } from '@components/sections/Header';
 import { GetInContact } from '@components/sections/GetInContact';
@@ -10,7 +12,7 @@ const BlogPost = dynamic(() => import('@components/sections/BlogPosts'), {
   ssr: false,
 });
 
-const Page = async () => {
+const Page = () => {
   return (
     <main className="font-montserrat bg-grayMix1">
       <section className="pb-12 pt-4 relative bg-orange overflow-hidden">
