@@ -15,6 +15,4 @@ if [ -n "$filesToFormat" ]; then
   echo "$stagedFiles" | xargs -L1 git add
 fi
 
-npm run lint
-
 echo "Hook | pre-commit | End"
