@@ -1,3 +1,5 @@
+'use client';
+
 import { Container } from '@base';
 import { Header } from '@components/sections/Header';
 import { GetInContact } from '@components/sections/GetInContact';
@@ -8,7 +10,9 @@ const MarkdownSection = dynamic(() => import('@components/sections/MarkdownSecti
   ssr: false,
 });
 
-const Page = ({ params: { id } }: { params: { id: string } }) => {
+const Page = ({ params }: any) => {
+  const { id } = params;
+
   return (
     <main className="font-montserrat bg-grayMix1">
       <section className="pb-12 pt-4">

@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { GeoJsonMap } from '@components/map/geojson';
 
-export async function GET(_req: NextRequest, { params: { uf } }: { params: { uf: string } }) {
+export async function GET(_req: NextRequest, context: { params: Promise<{ uf: string }> }) {
+  const params = await context.params;
+  const { uf } = params;
+
   console.info('get:map', { uf });
 
   if (!GeoJsonMap.hasOwnProperty(uf)) {

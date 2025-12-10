@@ -4,7 +4,10 @@ import { NextRequest, NextResponse } from 'next/server';
 
 import { IndicatorsService } from '@services/indicators/IndicatorsService';
 
-export async function GET(req: NextRequest, { params: { id } }: { params: { id: string } }) {
+export async function GET(req: NextRequest, context: { params: Promise<{ id: string }> }) {
+  const params = await context.params;
+  const { id } = params;
+
   console.info(`get:indicators/[${id}] start`);
 
   const parsedParams = IndicatorsService.parseIndicatorParameters(req.nextUrl.searchParams);
