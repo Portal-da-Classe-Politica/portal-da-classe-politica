@@ -10,9 +10,7 @@ import { BoxIcon } from '@components/box/BoxIcon';
 import { WordPressBlogService } from '@services/blog/WordPressBlogService';
 import dynamic from 'next/dynamic';
 
-const ContactForm = dynamic(() => import('../../components/sections/ContactForm'), {
-  ssr: false,
-});
+const ContactForm = dynamic(() => import('../../components/sections/ContactForm'));
 
 const Atendimento = async () => {
   // Buscar último post do WordPress
