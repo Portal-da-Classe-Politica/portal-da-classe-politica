@@ -11,6 +11,16 @@ const nextConfig = {
     // Desabilita ESLint durante o build devido a incompatibilidade com Next.js 15
     ignoreDuringBuilds: true,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'redem.c3sl.ufpr.br',
+        port: '',
+        pathname: '/blog/wp-content/uploads/**',
+      },
+    ],
+  },
   experimental: {
     serverActions: {
       bodySizeLimit: '15mb',
