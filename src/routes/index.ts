@@ -24,11 +24,18 @@ export const routes = {
   cruzamentos: '/cruzamentos',
   candidate: (id: string) => `/perfil-candidato/${id}`,
   about: '/sobre',
-  blog: '/news',
+  // Updated to external WordPress blog
+  blog: 'https://redem.c3sl.ufpr.br/blog',
   documentation: '/documentacao',
-  blogPost: (id: string) => `/news/${id}`,
+  // Updated to external WordPress blog post
+  blogPost: (id: string) => `https://redem.c3sl.ufpr.br/blog/?p=${id}`,
   elections2024: '/eleicao-2024',
   support: '/atendimento',
   aboutCrossing: '/sobre-cruzamentos',
   team: '/equipe',
+
+  // TODO: Old internal blog routes - kept for backward compatibility
+  // These can be removed after migration is complete
+  // blogInternal: '/news',
+  // blogPostInternal: (id: string) => `/news/${id}`,
 };
