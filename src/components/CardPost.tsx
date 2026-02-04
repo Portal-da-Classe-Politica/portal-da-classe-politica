@@ -42,12 +42,12 @@ const Secondary = ({ title }: { title: string; href: string }) => {
 
 const Tertiary = ({ title, subTitle }: { title: string; subTitle?: string; href: string }) => {
   return (
-    <div className="flex flex-col flex-1">
-      <Heading headingLevel={6} size={'H6'} className="font-bold">
+    <div className="flex flex-col">
+      <Heading headingLevel={6} size={'H6'} className="font-bold line-clamp-3">
         {title}
       </Heading>
       <div>
-        <Text size={'B2'} className="flex-1 mt-1">
+        <Text size={'B2'} className="mt-1 line-clamp-4">
           {subTitle}
         </Text>
       </div>
@@ -73,20 +73,22 @@ export const CardPost = <T extends BaseProps>({
   href,
 }: Props<T>) => {
   const SelectedComponent = ContentSelect[type];
-  const imgSize = `min-h-[${customHeight}px] ${type === 'Tertiary' ? 'max-h-[150px]' : ''}`;
 
   return (
     <Link
       target="_self"
       href={href}
-      className={`flex flex-1 flex-col h-full bg-white w-full items-center rounded-[10px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] ${className} hover:shadow-lg`}
+      className={`flex flex-col bg-white w-full items-center rounded-[10px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] ${className} hover:shadow-lg transition-shadow`}
     >
-      <div className={`flex flex-1 w-full ${imgSize} relative`}>
+      <div
+        className={`flex w-full relative ${type === 'Tertiary' ? 'h-[150px]' : ''}`}
+        style={{ minHeight: type !== 'Tertiary' ? `${customHeight}px` : undefined }}
+      >
         <div style={{ width: '100%', height: '100%', position: 'relative' }}>
-          <Image src={src} fill className="rounded-t-[10px] object-cover h-auto w-auto" alt={alt} />
+          <Image src={src} fill className="rounded-t-[10px] object-cover" alt={alt} />
         </div>
       </div>
-      <div className="flex flex-col flex-1 p-3">
+      <div className="flex flex-col p-3 w-full">
         <div className="mb-2">
           {category.map((categoryText, i) => {
             return (

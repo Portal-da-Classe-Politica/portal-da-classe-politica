@@ -1,8 +1,49 @@
-import { Constants } from '@constants';
+import { WordPressBlogService } from '@services/blog/WordPressBlogService';
 import { CarouselView } from '@components/carousel/CarouselView';
-
 import { CarouselItem } from './CarouselItem';
 
+/**
+ * Dynamic Carousel Component
+ * Fetches featured blog posts from WordPress API
+ *
+ * TODO: Old implementation used static hardcoded posts
+ * Now dynamically fetches latest posts from WordPress for better content management
+ */
+export const Carousel = async () => {
+  // Fetch latest posts from WordPress (limit to 3 for carousel)
+  const allPosts = await WordPressBlogService.getAllFormatted();
+  const featuredPosts = allPosts.slice(0, 3); // Get first 3 posts for carousel
+
+  // Fallback if no posts are available
+  if (!featuredPosts || featuredPosts.length === 0) {
+    return null;
+  }
+
+  return (
+    <CarouselView>
+      {featuredPosts.map((post, index) => (
+        <div key={post.id} className="h-[370px] md:h-[480px]">
+          <CarouselItem
+            className="rounded-b-[0px]"
+            alt={post.title}
+            category={post.categories.length > 0 ? post.categories : ['Blog']}
+            customHeight={270}
+            title={post.title}
+            subTitle={post.description}
+            src={post.img}
+            type="Primary"
+            href={post.link}
+          />
+        </div>
+      ))}
+    </CarouselView>
+  );
+};
+
+// TODO: Old static implementation - discontinued
+// The carousel below used hardcoded posts with static images and text
+// Now uses WordPress API to fetch latest posts dynamically
+/*
 export const Carousel = () => {
   return (
     <CarouselView>
@@ -18,7 +59,7 @@ export const Carousel = () => {
           }
           src={Constants.images.reputacaoMulher}
           type="Primary"
-          href="/news/reputacao-mulher"
+          href="https://redem.c3sl.ufpr.br/blog/?p=158"
         />
       </div>
       <div className="h-[370px] md:h-[480px]">
@@ -35,7 +76,7 @@ export const Carousel = () => {
             'A promoção da participação política das mulheres parcialmente realizada pelos partidos políticos'
           }
           src={Constants.images.promoPart}
-          href="/news/promo-part"
+          href="https://redem.c3sl.ufpr.br/blog/?p=163"
         />
       </div>
       <div className="h-[370px] md:h-[480px]">
@@ -53,9 +94,10 @@ export const Carousel = () => {
           subTitle=" A persistente sub-representação feminina na política é uma questão de grande relevância e
                 complexidade"
           src={Constants.images.partFemLid}
-          href="/news/part-fem-lid"
+          href="https://redem.c3sl.ufpr.br/blog/?p=168"
         />
       </div>
     </CarouselView>
   );
 };
+*/

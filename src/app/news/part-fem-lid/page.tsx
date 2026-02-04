@@ -1,4 +1,41 @@
-import { Container, Heading, Text } from '@base';
+'use client';
+
+import { useEffect } from 'react';
+
+/**
+ * Blog Post Page - Redirects to WordPress blog
+ * Post ID: 168 - "A participação feminina na liderança partidária"
+ *
+ * TODO: This page is deprecated and redirects to WordPress blog
+ * Static content has been moved to WordPress CMS for better management
+ */
+const Page = () => {
+  useEffect(() => {
+    window.location.href = 'https://redem.c3sl.ufpr.br/blog/?p=168';
+  }, []);
+
+  return (
+    <main className="font-montserrat bg-grayMix1">
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold mb-4">Redirecionando para o artigo...</h1>
+          <p className="text-gray-600">
+            Se não for redirecionado automaticamente,{' '}
+            <a href="https://redem.c3sl.ufpr.br/blog/?p=168" className="text-orange underline">
+              clique aqui
+            </a>
+            .
+          </p>
+        </div>
+      </div>
+    </main>
+  );
+};
+
+export default Page;
+
+// TODO: Old static content implementation - discontinued
+/*
 import { Header } from '@components/sections/Header';
 import { GetInContact } from '@components/sections/GetInContact';
 import { SpecialContents } from '@components/sections/SpecialContents';
@@ -223,3 +260,4 @@ const Page = () => {
 };
 
 export default Page;
+*/

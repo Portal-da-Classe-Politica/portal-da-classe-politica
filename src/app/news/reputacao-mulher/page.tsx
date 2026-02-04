@@ -1,3 +1,41 @@
+'use client';
+
+import { useEffect } from 'react';
+
+/**
+ * Blog Post Page - Redirects to WordPress blog
+ * Post ID: 158 - "A Persistente Sub-Representação de Mulheres na Política"
+ *
+ * TODO: This page is deprecated and redirects to WordPress blog
+ * Static content has been moved to WordPress CMS for better management
+ */
+const Page = () => {
+  useEffect(() => {
+    window.location.href = 'https://redem.c3sl.ufpr.br/blog/?p=158';
+  }, []);
+
+  return (
+    <main className="font-montserrat bg-grayMix1">
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold mb-4">Redirecionando para o artigo...</h1>
+          <p className="text-gray-600">
+            Se não for redirecionado automaticamente,{' '}
+            <a href="https://redem.c3sl.ufpr.br/blog/?p=158" className="text-orange underline">
+              clique aqui
+            </a>
+            .
+          </p>
+        </div>
+      </div>
+    </main>
+  );
+};
+
+export default Page;
+
+// TODO: Old static content implementation - discontinued
+/*
 import { Container, Heading, Text } from '@base';
 import { Header } from '@components/sections/Header';
 import { GetInContact } from '@components/sections/GetInContact';
@@ -6,7 +44,6 @@ import { SpecialContents } from '@components/sections/SpecialContents';
 import Avatar from '@components/Avatar';
 import Image from 'next/image';
 import { Constants } from '@constants';
-/* eslint-disable no-use-before-define */
 const Page = () => {
   return (
     <main className="font-montserrat bg-grayMix1">
@@ -197,3 +234,4 @@ const Page = () => {
 };
 
 export default Page;
+*/

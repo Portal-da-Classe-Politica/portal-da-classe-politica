@@ -2,23 +2,18 @@ import Link from 'next/link';
 
 import { Heading, Icon, Text } from '@base';
 import { routes } from '@routes';
-import { BlogService } from '@services/blog/BlogService';
+import { WordPressBlogService } from '@services/blog/WordPressBlogService';
+// TODO: Old static blog service - discontinued, now using WordPress API
+// import { BlogService } from '@services/blog/BlogService';
 
 import { CardPost } from '../CardPost';
 
 export const SpecialContents = async ({ title = 'Conteúdos especiais' }: { title?: string }) => {
-  const getRandomNumbers = () => {
-    const numbers = [1, 2, 3, 4, 5, 6, 7];
-
-    for (let i = numbers.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
-    }
-
-    return numbers.slice(0, 4);
-  };
-  const postIds = getRandomNumbers();
-  const blogs = await Promise.all(postIds.map(id => BlogService.getBlogById(id)));
+  // Get recent blog posts from WordPress
+  // TODO: Old implementation used random static posts from JSON
+  // Now fetching latest posts from WordPress API for better content management
+  const allBlogs = await WordPressBlogService.getAllFormatted();
+  const blogs = allBlogs.slice(0, 4); // Get first 4 posts
 
   return (
     <div className="mt-10">
@@ -26,7 +21,11 @@ export const SpecialContents = async ({ title = 'Conteúdos especiais' }: { titl
         <Heading headingLevel={2} size={'H2'} className="font-bold ">
           {title}
         </Heading>
-        <Link target="_blank" href={routes.blog} className="text-orange content-end ml-auto flex">
+        <Link
+          target="_blank"
+          href="https://redem.c3sl.ufpr.br/blog/index.php/publicacoes/"
+          className="text-orange content-end ml-auto flex"
+        >
           <Text size={'C1'} className="flex font-bold">
             Ver todos artigos
             <Icon type="ArrowRightShort" className="ml-4" />
@@ -37,7 +36,7 @@ export const SpecialContents = async ({ title = 'Conteúdos especiais' }: { titl
         {blogs.map(
           (blog, idx) =>
             blog && (
-              <div key={idx} className="w-[280px] h-[400px]">
+              <div key={idx} className="w-[280px] min-h-[400px]">
                 <CardPost
                   href={routes.blogPost(blog.id)}
                   type="Tertiary"
