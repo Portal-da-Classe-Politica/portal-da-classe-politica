@@ -8,9 +8,7 @@ import { Divider } from '@components/Divider';
 import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
 import { WordPressBlogService } from '@services/blog/WordPressBlogService';
 
-const TableMenu = dynamic(() => import('@components/sections/TableMenu'), {
-  ssr: false,
-});
+const TableMenu = dynamic(() => import('@components/sections/TableMenu'));
 
 const cardIconTexts = [
   {
