@@ -8,7 +8,7 @@ import CardIconText from '@components/CardIconText';
 import Timeline from '@components/timeline/Timeline';
 import Link from 'next/link';
 import { SpecialContents } from '@components/sections/SpecialContents';
-import { Constants } from '@constants';
+import { WordPressBlogService } from '@services/blog/WordPressBlogService';
 
 const cardIconTexts = [
   {
@@ -38,7 +38,10 @@ const cardIconTexts = [
   },
 ];
 
-const Page = () => {
+const Page = async () => {
+  // Buscar os 2 posts mais recentes do WordPress
+  const posts = await WordPressBlogService.getAllFormatted();
+  const [firstPost, secondPost] = posts.slice(0, 2);
   return (
     <main className="font-montserrat bg-grayMix3">
       <section className="pb-12 pt-4">
@@ -99,7 +102,7 @@ const Page = () => {
               democracia exige a participação equitativa das mulheres, rompendo com tradições excludentes e
               promovendo uma representação política mais justa e representativa.
             </Text>
-            <Link target="_self" href={'/news/reputacao-mulher'}>
+            <Link target="_self" href={'https://redem.c3sl.ufpr.br/blog/?p=158'}>
               <Text size="B1" className="mt-6 text-orange">
                 Leia mais
               </Text>
@@ -110,30 +113,25 @@ const Page = () => {
 
       <section className="mt-24">
         <Container>
-          <TextParagraphImage
-            link="/news/promo-part"
-            src={Constants.images.promoPart}
-            header={
-              'A promoção da participação política das mulheres parcialmente realizada pelos partidos políticos'
-            }
-            texts={[
-              'Os partidos políticos desempenham um papel crucial na política, controlando recursos importantes como cargos, seleção de candidatos (as) e financiamento. Desde 2009, a legislação brasileira obriga os partidos a destinar pelo menos 5% do Fundo Partidário anual para incentivar a participação das mulheres na política. Desde 2015, essa lei tem sido aprimorada, exigindo que os recursos fossem geridos por secretarias de mulheres ou institutos liderados pela secretaria. Ainda que o repasse seja obrigatório, os partidos cumprem essa regra apenas parcialmente, no período de 2009 a 2021. A anistia dada pelos partidos a eles próprios, no caso do não cumprimento da lei, é uma forma de subverter as regras formais que buscam incluir mais mulheres na política. Enquanto isso, o papel de formação política acaba sendo ocupado por organizações sociais e think tanks.',
-            ]}
-            className="mb-28"
-          />
+          {firstPost && (
+            <TextParagraphImage
+              link={firstPost.link}
+              src={firstPost.img}
+              header={firstPost.title}
+              texts={[firstPost.description]}
+              className="mb-28"
+            />
+          )}
 
-          <TextParagraphImage
-            link="/news/part-fem-lid"
-            src={Constants.images.partFemLid}
-            header={
-              'A participação feminina na liderança partidária e o cumprimento das cotas financeiras para mulheres'
-            }
-            texts={[
-              'Na disputa eleitoral, mulheres, em geral, enfrentam desafios mais rigorosos em comparação aos homens, recebendo menor apoio partidário e possuindo redes de financiamento mais restritas. Este texto mostra como a participação feminina na estrutura organizacional partidária pode atuar como um catalisador da representação política de mulheres por meio da distribuição de recursos financeiros de campanha.',
-              'Os dados analisados apontam que diretórios estaduais nos quais mulheres ocuparam a presidência ou a secretaria geral destinaram mais recursos públicos eleitorais às suas candidatas. Além disso, a presença feminina nesses cargos aumenta a chance de os partidos cumprirem as cotas de gênero no financiamento público de campanha.',
-            ]}
-            reverse
-          />
+          {secondPost && (
+            <TextParagraphImage
+              link={secondPost.link}
+              src={secondPost.img}
+              header={secondPost.title}
+              texts={[secondPost.description]}
+              reverse
+            />
+          )}
         </Container>
       </section>
 
