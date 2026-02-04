@@ -26,12 +26,12 @@ const cardIconTexts = [
   {
     title: 'O que são Cruzamentos de Variáveis? ',
     icon: <Icon type="Three" />,
-    text: 'Cruzamentos de variáveis são combinações de diferentes conjuntos de dados para revelar relações e padrões que não são visíveis quando se analisa cada variável separadamente. No Portal, são 33 variáveis dividias em 4 dimensões: perfil social, votação obtida, prestação de contas e financiamento de campanha. ',
+    text: 'Cruzamentos de variáveis são combinações de diferentes conjuntos de dados para revelar relações e padrões que não são visíveis quando se analisa cada variável separadamente. No Portal, são 33 variáveis divididas em 4 dimensões: perfil social, votação obtida, prestação de contas e financiamento de campanha. ',
   },
   {
     title: 'Para que servem os Cruzamentos de Variáveis? ',
     icon: <Icon type="Four" />,
-    text: 'Os Cruzamentos de Variáveis ajudam a identificar tendências, correlações e insights detalhados sobre a dinâmica eleitoral e política, gerando informações úteis para análises mais aprofundadas e a formulação de estratégias baseadas em dados concreto',
+    text: 'Os Cruzamentos de Variáveis ajudam a identificar tendências, correlações e insights detalhados sobre a dinâmica eleitoral e política, gerando informações úteis para análises mais aprofundadas e a formulação de estratégias baseadas em dados concretos',
   },
   {
     title: 'O que são os Indicadores? ',

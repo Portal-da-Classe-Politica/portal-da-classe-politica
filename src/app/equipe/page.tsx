@@ -20,7 +20,7 @@ const EquipePage = () => {
               Equipe
             </Heading>
             <Text size="S1" className="text-h6 md:text-s1 max-w-2xl mx-auto">
-              O protal da Classe Política contou com uma equipe multidisciplinar, com pesquisadores, técnicos
+              O Portal da Classe Política contou com uma equipe multidisciplinar, com pesquisadores, técnicos
               e docentes
             </Text>
           </div>

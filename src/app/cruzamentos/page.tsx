@@ -44,7 +44,7 @@ const Page = () => {
               </div>
               <div className="flex flex-1 pt-4 md:p-[30px]">
                 <Text size="S1">
-                  Gere análises eleitorais e vizualize os dados de relações entre candidaturas, sucesso
+                  Gere análises eleitorais e visualize os dados de relações entre candidaturas, sucesso
                   eleitoral e número de votos com variáveis sociopolíticas
                 </Text>
               </div>
