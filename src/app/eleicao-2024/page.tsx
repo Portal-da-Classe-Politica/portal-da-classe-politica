@@ -10,6 +10,9 @@ import Link from 'next/link';
 import { SpecialContents } from '@components/sections/SpecialContents';
 import { WordPressBlogService } from '@services/blog/WordPressBlogService';
 
+// Force dynamic rendering to avoid build-time WordPress API calls
+export const dynamic = 'force-dynamic';
+
 const cardIconTexts = [
   {
     title: 'Partidos e igualdade de gênero',
@@ -40,8 +43,14 @@ const cardIconTexts = [
 
 const Page = async () => {
   // Buscar os 2 posts mais recentes do WordPress
-  const posts = await WordPressBlogService.getAllFormatted();
-  const [firstPost, secondPost] = posts.slice(0, 2);
+  let firstPost, secondPost;
+  try {
+    const posts = await WordPressBlogService.getAllFormatted();
+    [firstPost, secondPost] = posts.slice(0, 2);
+  } catch (error) {
+    console.error('Failed to fetch WordPress posts:', error);
+    // Continue rendering without posts
+  }
   return (
     <main className="font-montserrat bg-grayMix3">
       <section className="pb-12 pt-4">

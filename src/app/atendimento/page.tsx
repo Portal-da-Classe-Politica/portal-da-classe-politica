@@ -8,14 +8,23 @@ import { EmailBodyData } from '@services/contact/sendEmail';
 import Link from 'next/link';
 import { BoxIcon } from '@components/box/BoxIcon';
 import { WordPressBlogService } from '@services/blog/WordPressBlogService';
-import dynamic from 'next/dynamic';
+import dynamicImport from 'next/dynamic';
 
-const ContactForm = dynamic(() => import('../../components/sections/ContactForm'));
+// Force dynamic rendering to avoid build-time WordPress API calls
+export const dynamic = 'force-dynamic';
+
+const ContactForm = dynamicImport(() => import('../../components/sections/ContactForm'));
 
 const Atendimento = async () => {
   // Buscar último post do WordPress
-  const posts = await WordPressBlogService.getAllFormatted();
-  const latestPost = posts[0]; // Pega o post mais recente
+  let latestPost;
+  try {
+    const posts = await WordPressBlogService.getAllFormatted();
+    latestPost = posts[0]; // Pega o post mais recente
+  } catch (error) {
+    console.error('Failed to fetch WordPress posts:', error);
+    // Continue rendering without posts
+  }
 
   return (
     <main>

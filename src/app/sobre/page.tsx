@@ -7,6 +7,9 @@ import { GetInContact } from '@components/sections/GetInContact';
 import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
 import { WordPressBlogService } from '@services/blog/WordPressBlogService';
 
+// Force dynamic rendering to avoid build-time WordPress API calls
+export const dynamic = 'force-dynamic';
+
 const headerText = [
   {
     title: '2.884.495',
