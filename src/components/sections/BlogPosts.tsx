@@ -146,7 +146,10 @@ const BlogPost = () => {
                   category={values.categories}
                   subTitle={values.description}
                   src={values.img}
-                  href={`/news/${values.id}`}
+                  // Updated to external WordPress blog link
+                  href={`https://redem.c3sl.ufpr.br/blog/?p=${values.id}`}
+                  // TODO: Old internal route - discontinued
+                  // href={`/news/${values.id}`}
                 />
               </div>
             );

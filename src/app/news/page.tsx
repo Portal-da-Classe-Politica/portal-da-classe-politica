@@ -1,5 +1,48 @@
 'use client';
 
+import { useEffect } from 'react';
+
+/**
+ * Blog Page - Redirects to external WordPress blog
+ *
+ * TODO: This page is deprecated and redirects to the new WordPress blog
+ * The old static blog implementation has been discontinued in favor of WordPress CMS
+ * which provides better content management, easier updates, and doesn't require deployments.
+ *
+ * Old implementation can be found in git history if needed for reference.
+ */
+const Page = () => {
+  useEffect(() => {
+    // Redirect to WordPress blog
+    window.location.href = 'https://redem.c3sl.ufpr.br/blog';
+  }, []);
+
+  return (
+    <main className="font-montserrat bg-grayMix1">
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold mb-4">Redirecionando para o blog...</h1>
+          <p className="text-gray-600">
+            Se não for redirecionado automaticamente,{' '}
+            <a href="https://redem.c3sl.ufpr.br/blog" className="text-orange underline">
+              clique aqui
+            </a>
+            .
+          </p>
+        </div>
+      </div>
+    </main>
+  );
+};
+
+export default Page;
+
+// TODO: Old blog page implementation - discontinued
+// The page below displayed a static list of blog posts from JSON
+// Now redirects to WordPress blog for better content management
+/*
+'use client';
+
 import { Container, Heading } from '@base';
 import { Header } from '@components/sections/Header';
 import { GetInContact } from '@components/sections/GetInContact';
@@ -47,3 +90,4 @@ const Page = () => {
 };
 
 export default Page;
+*/
