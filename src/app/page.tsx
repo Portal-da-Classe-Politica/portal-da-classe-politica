@@ -8,6 +8,9 @@ import { routes } from '@routes';
 import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
 import { Carousel } from '@components/carousel/Carousel';
 
+// Force dynamic rendering to avoid build-time WordPress API calls
+export const dynamic = 'force-dynamic';
+
 const Home = () => {
   return (
     <main className="font-montserrat">

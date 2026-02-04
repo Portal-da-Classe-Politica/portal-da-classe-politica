@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Heading, Icon, Text } from '@base';
 import { routes } from '@routes';
 import { WordPressBlogService } from '@services/blog/WordPressBlogService';
+import { FormattedBlogPost } from '@services/blog/WordPressTypes';
 // TODO: Old static blog service - discontinued, now using WordPress API
 // import { BlogService } from '@services/blog/BlogService';
 
@@ -12,8 +13,19 @@ export const SpecialContents = async ({ title = 'Conteúdos especiais' }: { titl
   // Get recent blog posts from WordPress
   // TODO: Old implementation used random static posts from JSON
   // Now fetching latest posts from WordPress API for better content management
-  const allBlogs = await WordPressBlogService.getAllFormatted();
-  const blogs = allBlogs.slice(0, 4); // Get first 4 posts
+  let blogs: FormattedBlogPost[] = [];
+  try {
+    const allBlogs = await WordPressBlogService.getAllFormatted();
+    blogs = allBlogs.slice(0, 4); // Get first 4 posts
+  } catch (error) {
+    console.error('Failed to fetch WordPress posts:', error);
+    // Continue rendering without posts
+  }
+
+  // If no posts available, don't render the section
+  if (blogs.length === 0) {
+    return null;
+  }
 
   return (
     <div className="mt-10">

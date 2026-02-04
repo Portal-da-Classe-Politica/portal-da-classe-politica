@@ -1,6 +1,15 @@
 import { WordPressPost, WordPressCategory, WordPressMedia, FormattedBlogPost } from './WordPressTypes';
 
-const WORDPRESS_API_BASE = 'https://redem.c3sl.ufpr.br/blog/wp-json/wp/v2';
+const WORDPRESS_API_BASE = process.env.WORDPRESS_API_BASE || 'https://redem.c3sl.ufpr.br/blog/wp-json/wp/v2';
+const SKIP_WORDPRESS_ON_BUILD = process.env.SKIP_WORDPRESS_ON_BUILD === 'true';
+
+/**
+ * Default fetch options to handle IPv6 issues and ensure better reliability
+ */
+const DEFAULT_FETCH_OPTIONS: RequestInit = {
+  // Add timeout
+  signal: AbortSignal.timeout(10000), // 10 second timeout
+};
 
 /**
  * WordPress Blog Service
@@ -21,6 +30,12 @@ export const WordPressBlogService = {
     category?: string,
     year?: string,
   ): Promise<WordPressPost[]> => {
+    // Skip WordPress calls if configured (useful for build environments with connectivity issues)
+    if (SKIP_WORDPRESS_ON_BUILD) {
+      console.log('Skipping WordPress API call (SKIP_WORDPRESS_ON_BUILD=true)');
+      return [];
+    }
+
     try {
       const params = new URLSearchParams({
         page: String(page),
@@ -45,6 +60,7 @@ export const WordPressBlogService = {
       }
 
       const response = await fetch(`${WORDPRESS_API_BASE}/posts?${params.toString()}`, {
+        ...DEFAULT_FETCH_OPTIONS,
         next: { revalidate: 3600 }, // Revalidate every hour
       });
 
@@ -65,8 +81,14 @@ export const WordPressBlogService = {
    * @returns WordPress post or null
    */
   getPostById: async (id: string | number): Promise<WordPressPost | null> => {
+    if (SKIP_WORDPRESS_ON_BUILD) {
+      console.log('Skipping WordPress API call (SKIP_WORDPRESS_ON_BUILD=true)');
+      return null;
+    }
+
     try {
       const response = await fetch(`${WORDPRESS_API_BASE}/posts/${id}?_embed=true`, {
+        ...DEFAULT_FETCH_OPTIONS,
         next: { revalidate: 3600 },
       });
 
@@ -86,8 +108,14 @@ export const WordPressBlogService = {
    * @returns Array of WordPress categories
    */
   getCategories: async (): Promise<WordPressCategory[]> => {
+    if (SKIP_WORDPRESS_ON_BUILD) {
+      console.log('Skipping WordPress API call (SKIP_WORDPRESS_ON_BUILD=true)');
+      return [];
+    }
+
     try {
       const response = await fetch(`${WORDPRESS_API_BASE}/categories?per_page=100`, {
+        ...DEFAULT_FETCH_OPTIONS,
         next: { revalidate: 86400 }, // Revalidate every 24 hours
       });
 
@@ -108,8 +136,13 @@ export const WordPressBlogService = {
    * @returns WordPress media or null
    */
   getMedia: async (mediaId: number): Promise<WordPressMedia | null> => {
+    if (SKIP_WORDPRESS_ON_BUILD) {
+      return null;
+    }
+
     try {
       const response = await fetch(`${WORDPRESS_API_BASE}/media/${mediaId}`, {
+        ...DEFAULT_FETCH_OPTIONS,
         next: { revalidate: 86400 },
       });
 

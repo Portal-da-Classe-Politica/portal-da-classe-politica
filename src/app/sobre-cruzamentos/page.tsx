@@ -1,4 +1,4 @@
-import dynamic from 'next/dynamic';
+import dynamic_import from 'next/dynamic';
 
 import { Container, Heading, Icon, Text, TextParagraphImage } from '@base';
 import { Header } from '@components/sections/Header';
@@ -8,7 +8,10 @@ import { Divider } from '@components/Divider';
 import { DesignSemiCircle } from '@components/design/DesignSemiCircle';
 import { WordPressBlogService } from '@services/blog/WordPressBlogService';
 
-const TableMenu = dynamic(() => import('@components/sections/TableMenu'));
+// Force dynamic rendering to avoid build-time WordPress API calls
+export const dynamic = 'force-dynamic';
+
+const TableMenu = dynamic_import(() => import('@components/sections/TableMenu'));
 
 const cardIconTexts = [
   {
