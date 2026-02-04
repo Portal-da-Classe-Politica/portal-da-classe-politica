@@ -99,7 +99,7 @@ const MainTopic = {
 
 O primeiro deles apresenta informações sobre o Perfil dos Candidatos e oferece perfis completos de quem disputou quaisquer cargos eletivos entre 1998 e 2022, incluindo informações essenciais como nome, faixa etária, grau de instrução, partido, cargo, bens declarados etc. 
 
-O segundo conjunto de informações se baseia em 33 variáveis, divididas em quatro dimensões: perfil social, votação obtida, prestação de contas e financiamento de campanha. Aqui, o usuário pode realizar cruzamentos entre essas variáveis, relacionado diferentes conjuntos de dados em busca padrões e associações. 
+O segundo conjunto de informações se baseia em 33 variáveis, divididas em quatro dimensões: perfil social, votação obtida, prestação de contas e financiamento de campanha. Aqui, o usuário pode realizar cruzamentos entre essas variáveis, relacionando diferentes conjuntos de dados em busca padrões e associações. 
 
 Por fim, o Portal apresenta um conjunto de 16 indicadores, também divididos em quatro dimensões temáticas: eleitoral; de ambição política; geográfica; e de financiamento de campanha. O objetivo principal aqui é disponibilizar um conjunto de indicadores para iluminar aspectos-chave das eleições. `,
 };
