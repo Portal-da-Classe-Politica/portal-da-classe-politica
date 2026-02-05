@@ -11,11 +11,14 @@ import { CarouselItem } from './CarouselItem';
  * Now dynamically fetches latest posts from WordPress for better content management
  */
 export const Carousel = async () => {
+  console.log('Carousel: start rendering, fetching WordPress posts');
+
   // Fetch latest posts from WordPress (limit to 3 for carousel)
   let featuredPosts: FormattedBlogPost[] = [];
   try {
     const allPosts = await WordPressBlogService.getAllFormatted();
     featuredPosts = allPosts.slice(0, 3); // Get first 3 posts for carousel
+    console.log('Carousel: fetched posts count', allPosts.length, 'using', featuredPosts.length, 'items');
   } catch (error) {
     console.error('Failed to fetch WordPress posts:', error);
     // Continue rendering without posts
@@ -23,8 +26,14 @@ export const Carousel = async () => {
 
   // Fallback if no posts are available
   if (!featuredPosts || featuredPosts.length === 0) {
+    console.warn('Carousel: no posts available, returning null');
     return null;
   }
+
+  console.log(
+    'Carousel: rendering carousel with posts',
+    featuredPosts.map(post => post.id),
+  );
 
   return (
     <CarouselView>
