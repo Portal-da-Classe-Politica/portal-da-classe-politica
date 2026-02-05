@@ -94,7 +94,7 @@ export const Footer = () => {
       <div className="w-full h-[1px] bg-white"></div>
       <Container>
         <div className="text-center py-4">
-          <Text size={'C2'}>Copyright © 2024 INCT REDEM. Todos os direitos reservados</Text>
+          <Text size={'C2'}>Copyright © 2024 INCT REDEM. Todos os direitos reservados.</Text>
         </div>
       </Container>
     </footer>
