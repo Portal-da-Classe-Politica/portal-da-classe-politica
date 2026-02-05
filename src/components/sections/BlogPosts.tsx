@@ -19,7 +19,7 @@ const BlogPost = () => {
   const [selectedYear, setSelectedYear] = useState('');
 
   const onSearch = () => {
-    fetch(`/api/blog?category=${selectedCategory}&year=${selectedYear}`)
+    fetch(`/api/blog-posts?category=${selectedCategory}&year=${selectedYear}`)
       .then(res => res.json())
       .then(data => setBlogPost(data));
   };
