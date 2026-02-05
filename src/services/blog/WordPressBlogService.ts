@@ -1,6 +1,6 @@
 import { WordPressPost, WordPressCategory, WordPressMedia, FormattedBlogPost } from './WordPressTypes';
 
-const WORDPRESS_API_BASE = process.env.WORDPRESS_API_BASE || 'https://redem.c3sl.ufpr.br/blog/wp-json/wp/v2';
+const WORDPRESS_API_BASE = 'https://redem.c3sl.ufpr.br/blog/wp-json/wp/v2';
 const SKIP_WORDPRESS_ON_BUILD = process.env.SKIP_WORDPRESS_ON_BUILD === 'true';
 
 /**
