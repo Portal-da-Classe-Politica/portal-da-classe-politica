@@ -1,6 +1,7 @@
 import { WordPressPost, WordPressCategory, WordPressMedia, FormattedBlogPost } from './WordPressTypes';
+import { getBlogApiUrl } from '@utils/blogUrl';
 
-const WORDPRESS_API_BASE = 'https://redem.c3sl.ufpr.br/blog/wp-json/wp/v2';
+const WORDPRESS_API_BASE = getBlogApiUrl();
 
 type SkipReason = 'build';
 

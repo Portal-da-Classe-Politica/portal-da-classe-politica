@@ -2,6 +2,8 @@ import { WordPressBlogService } from '@services/blog/WordPressBlogService';
 import { FormattedBlogPost } from '@services/blog/WordPressTypes';
 import { CarouselView } from '@components/carousel/CarouselView';
 import { CarouselItem } from './CarouselItem';
+import { getBlogPostUrl } from '@utils/blogUrl';
+import * as Constants from '@constants';
 
 /**
  * Dynamic Carousel Component
@@ -66,7 +68,7 @@ export const Carousel = () => {
           }
           src={Constants.images.reputacaoMulher}
           type="Primary"
-          href="https://redem.c3sl.ufpr.br/blog/?p=158"
+          href={getBlogPostUrl('158')}
         />
       </div>
       <div className="h-[370px] md:h-[480px]">
@@ -83,7 +85,7 @@ export const Carousel = () => {
             'A promoção da participação política das mulheres parcialmente realizada pelos partidos políticos'
           }
           src={Constants.images.promoPart}
-          href="https://redem.c3sl.ufpr.br/blog/?p=163"
+          href={getBlogPostUrl('163')}
         />
       </div>
       <div className="h-[370px] md:h-[480px]">
@@ -101,7 +103,7 @@ export const Carousel = () => {
           subTitle=" A persistente sub-representação feminina na política é uma questão de grande relevância e
                 complexidade"
           src={Constants.images.partFemLid}
-          href="https://redem.c3sl.ufpr.br/blog/?p=168"
+          href={getBlogPostUrl('168')}
         />
       </div>
     </CarouselView>

@@ -9,6 +9,7 @@ import Timeline from '@components/timeline/Timeline';
 import Link from 'next/link';
 import { SpecialContents } from '@components/sections/SpecialContents';
 import { WordPressBlogService } from '@services/blog/WordPressBlogService';
+import { getBlogPostUrl } from '@utils/blogUrl';
 
 // Force dynamic rendering to avoid build-time WordPress API calls
 export const dynamic = 'force-dynamic';
@@ -111,7 +112,7 @@ const Page = async () => {
               democracia exige a participação equitativa das mulheres, rompendo com tradições excludentes e
               promovendo uma representação política mais justa e representativa.
             </Text>
-            <Link target="_self" href={'https://redem.c3sl.ufpr.br/blog/?p=158'}>
+            <Link target="_self" href={getBlogPostUrl('158')}>
               <Text size="B1" className="mt-6 text-orange">
                 Leia mais
               </Text>
