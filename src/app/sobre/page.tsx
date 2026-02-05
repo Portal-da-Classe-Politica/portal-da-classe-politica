@@ -9,6 +9,8 @@ import { WordPressBlogService } from '@services/blog/WordPressBlogService';
 
 // Force dynamic rendering to avoid build-time WordPress API calls
 export const dynamic = 'force-dynamic';
+// Revalidate page every 5 minutes
+export const revalidate = 300;
 
 const headerText = [
   {

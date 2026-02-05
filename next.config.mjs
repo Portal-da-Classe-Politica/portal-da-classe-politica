@@ -21,6 +21,17 @@ const nextConfig = {
       },
     ],
   },
+  // Prevent Next.js from interfering with /blog paths
+  async headers() {
+    return [
+      {
+        source: '/api/:path*',
+        headers: [
+          { key: 'Cache-Control', value: 'no-store, must-revalidate' },
+        ],
+      },
+    ];
+  },
   experimental: {
     serverActions: {
       bodySizeLimit: '15mb',

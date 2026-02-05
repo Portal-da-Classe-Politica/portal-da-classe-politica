@@ -10,6 +10,8 @@ import { Carousel } from '@components/carousel/Carousel';
 
 // Force dynamic rendering to avoid build-time WordPress API calls
 export const dynamic = 'force-dynamic';
+// Revalidate page every 5 minutes
+export const revalidate = 300;
 
 const Home = () => {
   return (

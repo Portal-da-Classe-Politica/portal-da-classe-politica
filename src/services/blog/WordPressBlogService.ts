@@ -4,11 +4,51 @@ const WORDPRESS_API_BASE = 'https://redem.c3sl.ufpr.br/blog/wp-json/wp/v2';
 const SKIP_WORDPRESS_ON_BUILD = process.env.SKIP_WORDPRESS_ON_BUILD === 'true';
 
 /**
+ * Retry mechanism for fetch requests
+ */
+async function fetchWithRetry(url: string, options: RequestInit, retries: number = 3): Promise<Response> {
+  for (let i = 0; i < retries; i++) {
+    try {
+      console.log(`Fetching ${url} (attempt ${i + 1}/${retries})`);
+      const response = await fetch(url, options);
+
+      if (response.ok) {
+        console.log(`Successfully fetched ${url} on attempt ${i + 1}`);
+        return response;
+      }
+
+      // If not the last attempt and got a server error, retry
+      if (i < retries - 1 && response.status >= 500) {
+        console.warn(`Server error ${response.status}, retrying...`);
+        await new Promise(resolve => setTimeout(resolve, 1000 * (i + 1))); // Exponential backoff
+        continue;
+      }
+
+      return response;
+    } catch (error) {
+      console.error(`Fetch attempt ${i + 1} failed:`, error);
+
+      // If not the last attempt, retry
+      if (i < retries - 1) {
+        await new Promise(resolve => setTimeout(resolve, 1000 * (i + 1))); // Exponential backoff
+        continue;
+      }
+
+      throw error;
+    }
+  }
+
+  throw new Error('All fetch attempts failed');
+}
+
+/**
  * Default fetch options to handle IPv6 issues and ensure better reliability
  */
 const DEFAULT_FETCH_OPTIONS: RequestInit = {
-  // Add timeout
-  signal: AbortSignal.timeout(10000), // 10 second timeout
+  // Add timeout - increased for server environment
+  signal: AbortSignal.timeout(30000), // 30 second timeout
+  // Disable cache to prevent caching of failed requests
+  cache: 'no-store',
 };
 
 /**
@@ -59,18 +99,25 @@ export const WordPressBlogService = {
         params.append('before', `${year}-12-31T23:59:59`);
       }
 
-      const response = await fetch(`${WORDPRESS_API_BASE}/posts?${params.toString()}`, {
+      const response = await fetchWithRetry(`${WORDPRESS_API_BASE}/posts?${params.toString()}`, {
         ...DEFAULT_FETCH_OPTIONS,
-        next: { revalidate: 3600 }, // Revalidate every hour
+        next: { revalidate: 300 }, // Revalidate every 5 minutes instead of 1 hour
       });
 
       if (!response.ok) {
-        throw new Error(`WordPress API error: ${response.status}`);
+        console.error(`WordPress API error: ${response.status} ${response.statusText}`);
+        console.error(`URL: ${WORDPRESS_API_BASE}/posts?${params.toString()}`);
+        return []; // Return empty array instead of throwing
       }
 
-      return await response.json();
+      const data = await response.json();
+      console.log(`Successfully fetched ${data.length} posts from WordPress`);
+      return data;
     } catch (error) {
       console.error('Error fetching WordPress posts:', error);
+      if (error instanceof Error) {
+        console.error('Error details:', error.message, error.stack);
+      }
       return [];
     }
   },
@@ -87,18 +134,22 @@ export const WordPressBlogService = {
     }
 
     try {
-      const response = await fetch(`${WORDPRESS_API_BASE}/posts/${id}?_embed=true`, {
+      const response = await fetchWithRetry(`${WORDPRESS_API_BASE}/posts/${id}?_embed=true`, {
         ...DEFAULT_FETCH_OPTIONS,
-        next: { revalidate: 3600 },
+        next: { revalidate: 300 },
       });
 
       if (!response.ok) {
+        console.error(`WordPress API error fetching post ${id}: ${response.status}`);
         return null;
       }
 
       return await response.json();
     } catch (error) {
       console.error('Error fetching WordPress post:', error);
+      if (error instanceof Error) {
+        console.error('Error details:', error.message);
+      }
       return null;
     }
   },
@@ -114,18 +165,24 @@ export const WordPressBlogService = {
     }
 
     try {
-      const response = await fetch(`${WORDPRESS_API_BASE}/categories?per_page=100`, {
+      const response = await fetchWithRetry(`${WORDPRESS_API_BASE}/categories?per_page=100`, {
         ...DEFAULT_FETCH_OPTIONS,
-        next: { revalidate: 86400 }, // Revalidate every 24 hours
+        next: { revalidate: 3600 }, // Revalidate every hour
       });
 
       if (!response.ok) {
-        throw new Error(`WordPress API error: ${response.status}`);
+        console.error(`WordPress API error fetching categories: ${response.status}`);
+        return []; // Return empty array instead of throwing
       }
 
-      return await response.json();
+      const data = await response.json();
+      console.log(`Successfully fetched ${data.length} categories from WordPress`);
+      return data;
     } catch (error) {
       console.error('Error fetching WordPress categories:', error);
+      if (error instanceof Error) {
+        console.error('Error details:', error.message);
+      }
       return [];
     }
   },
@@ -141,7 +198,7 @@ export const WordPressBlogService = {
     }
 
     try {
-      const response = await fetch(`${WORDPRESS_API_BASE}/media/${mediaId}`, {
+      const response = await fetchWithRetry(`${WORDPRESS_API_BASE}/media/${mediaId}`, {
         ...DEFAULT_FETCH_OPTIONS,
         next: { revalidate: 86400 },
       });
@@ -219,18 +276,31 @@ export const WordPressBlogService = {
    */
   getAllFormatted: async (category?: string, year?: string): Promise<FormattedBlogPost[]> => {
     try {
+      console.log('Fetching WordPress posts with filters:', { category, year });
+
       const [posts, categories] = await Promise.all([
         WordPressBlogService.getPosts(1, 100, category, year),
         WordPressBlogService.getCategories(),
       ]);
 
+      console.log(`Formatting ${posts.length} posts`);
+
+      if (posts.length === 0) {
+        console.warn('No posts returned from WordPress API');
+        return [];
+      }
+
       const formatted = await Promise.all(
         posts.map(post => WordPressBlogService.formatPost(post, categories)),
       );
 
+      console.log(`Successfully formatted ${formatted.length} posts`);
       return formatted;
     } catch (error) {
       console.error('Error getting formatted posts:', error);
+      if (error instanceof Error) {
+        console.error('Error details:', error.message, error.stack);
+      }
       return [];
     }
   },

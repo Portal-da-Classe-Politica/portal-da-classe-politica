@@ -1,4 +1,5 @@
 export const dynamic = 'force-dynamic';
+export const revalidate = 0; // Never cache this route
 
 import { WordPressBlogService } from '@services/blog/WordPressBlogService';
 // TODO: Old static blog service - kept for reference but no longer used
@@ -14,13 +15,21 @@ export async function GET(req: NextRequest) {
   const category = req.nextUrl.searchParams.get('category') || '';
   const _year = req.nextUrl.searchParams.get('year') || '';
 
+  console.log('API Route: Fetching blog posts with filters:', { category, _year });
+
   try {
     // Fetch posts from WordPress API
     const blogs = await WordPressBlogService.getAllFormatted(category || undefined, _year || undefined);
 
-    return NextResponse.json(blogs);
+    console.log(`API Route: Successfully fetched ${blogs.length} posts`);
+
+    return NextResponse.json(blogs, {
+      headers: {
+        'Cache-Control': 'no-store, must-revalidate',
+      },
+    });
   } catch (error) {
-    console.error('Error fetching blog posts:', error);
+    console.error('API Route: Error fetching blog posts:', error);
     return NextResponse.json({ error: 'Failed to fetch blog posts' }, { status: 500 });
   }
 
