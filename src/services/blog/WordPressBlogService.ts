@@ -1,7 +1,47 @@
 import { WordPressPost, WordPressCategory, WordPressMedia, FormattedBlogPost } from './WordPressTypes';
 
 const WORDPRESS_API_BASE = 'https://redem.c3sl.ufpr.br/blog/wp-json/wp/v2';
-const SKIP_WORDPRESS_ON_BUILD = process.env.SKIP_WORDPRESS_ON_BUILD === 'true';
+
+type SkipReason = 'build';
+
+let skipWarningLogged = false;
+let skipExecutionLogged = false;
+
+const resolveSkipReason = (): SkipReason | null => {
+  if (process.env.SKIP_WORDPRESS_ON_BUILD === 'true') {
+    const currentPhase = process.env.NEXT_PHASE;
+
+    if (currentPhase === 'phase-production-build') {
+      return 'build';
+    }
+
+    if (!skipWarningLogged) {
+      console.warn(
+        'SKIP_WORDPRESS_ON_BUILD=true, but the current NEXT_PHASE is not "phase-production-build". Allowing WordPress fetches so runtime content keeps working.',
+      );
+      skipWarningLogged = true;
+    }
+  }
+
+  return null;
+};
+
+const skipReason = resolveSkipReason();
+
+const shouldSkipWordPress = (): boolean => {
+  if (!skipReason) {
+    return false;
+  }
+
+  if (!skipExecutionLogged) {
+    console.log(
+      `Skipping WordPress API calls because SKIP_WORDPRESS_ON_BUILD is enabled during the ${skipReason} phase.`,
+    );
+    skipExecutionLogged = true;
+  }
+
+  return true;
+};
 
 /**
  * Retry mechanism for fetch requests
@@ -71,8 +111,7 @@ export const WordPressBlogService = {
     year?: string,
   ): Promise<WordPressPost[]> => {
     // Skip WordPress calls if configured (useful for build environments with connectivity issues)
-    if (SKIP_WORDPRESS_ON_BUILD) {
-      console.log('Skipping WordPress API call (SKIP_WORDPRESS_ON_BUILD=true)');
+    if (shouldSkipWordPress()) {
       return [];
     }
 
@@ -128,8 +167,7 @@ export const WordPressBlogService = {
    * @returns WordPress post or null
    */
   getPostById: async (id: string | number): Promise<WordPressPost | null> => {
-    if (SKIP_WORDPRESS_ON_BUILD) {
-      console.log('Skipping WordPress API call (SKIP_WORDPRESS_ON_BUILD=true)');
+    if (shouldSkipWordPress()) {
       return null;
     }
 
@@ -159,8 +197,7 @@ export const WordPressBlogService = {
    * @returns Array of WordPress categories
    */
   getCategories: async (): Promise<WordPressCategory[]> => {
-    if (SKIP_WORDPRESS_ON_BUILD) {
-      console.log('Skipping WordPress API call (SKIP_WORDPRESS_ON_BUILD=true)');
+    if (shouldSkipWordPress()) {
       return [];
     }
 
@@ -193,7 +230,7 @@ export const WordPressBlogService = {
    * @returns WordPress media or null
    */
   getMedia: async (mediaId: number): Promise<WordPressMedia | null> => {
-    if (SKIP_WORDPRESS_ON_BUILD) {
+    if (shouldSkipWordPress()) {
       return null;
     }
 

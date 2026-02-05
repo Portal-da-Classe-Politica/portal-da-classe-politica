@@ -19,9 +19,20 @@ const BlogPost = () => {
   const [selectedYear, setSelectedYear] = useState('');
 
   const onSearch = () => {
+    console.log('BlogPosts: fetching with filters', { selectedCategory, selectedYear });
+
     fetch(`/api/blog-posts?category=${selectedCategory}&year=${selectedYear}`)
-      .then(res => res.json())
-      .then(data => setBlogPost(data));
+      .then(res => {
+        console.log('BlogPosts: raw response status', res.status);
+        return res.json();
+      })
+      .then(data => {
+        console.log('BlogPosts: API payload', data);
+        setBlogPost(data);
+      })
+      .catch(error => {
+        console.error('BlogPosts: fetch failed', error);
+      });
   };
 
   const sortedMethod = (a: any, b: any) => {
