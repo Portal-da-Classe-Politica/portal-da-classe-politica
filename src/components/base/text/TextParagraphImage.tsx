@@ -18,10 +18,17 @@ export const TextParagraphImage = ({
   link: string;
 }) => {
   const reverseClass = reverse ? 'md:flex-row-reverse' : '';
+  const isExternal = src.startsWith('http');
   return (
     <div className={`flex flex-col md:flex-row gap-10 ${className} ${reverseClass}`}>
       <div className="md:flex-1 w-full relative h-[240px] md:h-auto">
-        <Image src={src} fill className="rounded-lg object-cover h-auto w-auto" alt="" />
+        <Image
+          src={src}
+          fill
+          unoptimized={isExternal}
+          className="rounded-lg object-cover h-auto w-auto"
+          alt=""
+        />
       </div>
       <div className="flex-1">
         <Heading headingLevel={2} size="H1" className="font-bold text-black mb-6">

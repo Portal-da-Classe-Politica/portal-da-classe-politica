@@ -85,7 +85,13 @@ export const CardPost = <T extends BaseProps>({
         style={{ minHeight: type !== 'Tertiary' ? `${customHeight}px` : undefined }}
       >
         <div style={{ width: '100%', height: '100%', position: 'relative' }}>
-          <Image src={src} fill className="rounded-t-[10px] object-cover" alt={alt} />
+          <Image
+            src={src}
+            fill
+            unoptimized={src.startsWith('http')}
+            className="rounded-t-[10px] object-cover"
+            alt={alt}
+          />
         </div>
       </div>
       <div className="flex flex-col p-3 w-full">
