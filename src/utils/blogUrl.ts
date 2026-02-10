@@ -44,6 +44,43 @@ export const getBlogApiUrl = (): string => {
 };
 
 /**
+ * Rewrite an internal WordPress URL to a public-facing URL.
+ *
+ * WordPress stores URLs using its own siteurl (e.g. http://127.0.0.1:8081).
+ * These are unreachable from the browser, so we replace the internal origin
+ * with the public blog base (e.g. /blog) which is served via nginx proxy.
+ */
+export const rewriteWordPressUrl = (url: string): string => {
+  if (!url) return url;
+
+  // Build a list of internal origins that WordPress may use
+  const internalOrigins: string[] = [];
+
+  const serverApiUrl = process.env.BLOG_API_URL;
+  if (serverApiUrl) {
+    // Strip /wp-json/wp/v2 suffix if present
+    const origin = serverApiUrl.replace(/\/wp-json\/wp\/v2\/?$/, '');
+    if (origin) internalOrigins.push(origin);
+  }
+
+  // Default internal origin used in production
+  internalOrigins.push('http://127.0.0.1:8081');
+  internalOrigins.push('https://127.0.0.1:8081');
+  internalOrigins.push('http://localhost:8081');
+  internalOrigins.push('https://localhost:8081');
+
+  const publicBase = getBlogUrl(); // e.g. "/blog" or "https://redem.c3sl.ufpr.br/blog"
+
+  for (const origin of internalOrigins) {
+    if (url.startsWith(origin)) {
+      return url.replace(origin, publicBase);
+    }
+  }
+
+  return url;
+};
+
+/**
  * Get a blog post URL by ID
  * Uses getBlogUrl() for client-side navigation
  */
