@@ -36,6 +36,10 @@ export const Carousel = async () => {
     'Carousel: rendering carousel with posts',
     featuredPosts.map(post => post.id),
   );
+  console.log(
+    'Carousel: featured posts images',
+    featuredPosts.map(post => post.img),
+  );
 
   return (
     <CarouselView>
