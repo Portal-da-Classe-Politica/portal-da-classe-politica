@@ -29,6 +29,7 @@ export const CarouselItem = ({
   href,
 }: CarouselItemProps) => {
   const imgSize = `min-h-[${customHeight}px] ${type === 'Tertiary' ? 'max-h-[150px]' : ''}`;
+  const isExternal = src.startsWith('http');
 
   return (
     <Link
@@ -38,7 +39,13 @@ export const CarouselItem = ({
     >
       <div className={`flex flex-1 w-full ${imgSize} relative`}>
         <div style={{ width: '100%', height: '100%', position: 'relative' }}>
-          <Image src={src} fill className="rounded-t-[10px] object-cover h-auto w-auto" alt={alt} />
+          <Image
+            src={src}
+            fill
+            unoptimized={isExternal}
+            className="rounded-t-[10px] object-cover h-auto w-auto"
+            alt={alt}
+          />
         </div>
       </div>
       <div className="flex w-full flex-col p-3 mb-6">
