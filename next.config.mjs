@@ -18,19 +18,7 @@ const nextConfig = {
         hostname: 'redem.c3sl.ufpr.br',
         port: '',
         pathname: '/blog/wp-content/uploads/**',
-      },
-      {
-        protocol: 'http',
-        hostname: '127.0.0.1',
-        port: '8081',
-        pathname: '/wp-content/uploads/**',
-      },
-      {
-        protocol: 'http',
-        hostname: 'localhost',
-        port: '8081',
-        pathname: '/wp-content/uploads/**',
-      },
+      },      
     ],
   },
   // Prevent Next.js from interfering with /blog paths
