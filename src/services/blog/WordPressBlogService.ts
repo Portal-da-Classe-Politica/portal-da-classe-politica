@@ -83,14 +83,16 @@ async function fetchWithRetry(url: string, options: RequestInit, retries: number
 }
 
 /**
- * Default fetch options to handle IPv6 issues and ensure better reliability
+ * Default fetch options to handle IPv6 issues and ensure better reliability.
+ * Returns a fresh object each call so the AbortSignal timeout is never reused
+ * after it expires.
  */
-const DEFAULT_FETCH_OPTIONS: RequestInit = {
-  // Add timeout - increased for server environment
-  signal: AbortSignal.timeout(30000), // 30 second timeout
+const getDefaultFetchOptions = (): RequestInit => ({
+  // Fresh timeout per request – 30 seconds
+  signal: AbortSignal.timeout(30000),
   // Disable cache to prevent caching of failed requests
   cache: 'no-store',
-};
+});
 
 /**
  * WordPress Blog Service
@@ -140,7 +142,7 @@ export const WordPressBlogService = {
       }
 
       const response = await fetchWithRetry(`${WORDPRESS_API_BASE}/posts?${params.toString()}`, {
-        ...DEFAULT_FETCH_OPTIONS,
+        ...getDefaultFetchOptions(),
         next: { revalidate: 300 }, // Revalidate every 5 minutes instead of 1 hour
       });
 
@@ -174,7 +176,7 @@ export const WordPressBlogService = {
 
     try {
       const response = await fetchWithRetry(`${WORDPRESS_API_BASE}/posts/${id}?_embed=true`, {
-        ...DEFAULT_FETCH_OPTIONS,
+        ...getDefaultFetchOptions(),
         next: { revalidate: 300 },
       });
 
@@ -204,7 +206,7 @@ export const WordPressBlogService = {
 
     try {
       const response = await fetchWithRetry(`${WORDPRESS_API_BASE}/categories?per_page=100`, {
-        ...DEFAULT_FETCH_OPTIONS,
+        ...getDefaultFetchOptions(),
         next: { revalidate: 3600 }, // Revalidate every hour
       });
 
@@ -237,7 +239,7 @@ export const WordPressBlogService = {
 
     try {
       const response = await fetchWithRetry(`${WORDPRESS_API_BASE}/media/${mediaId}`, {
-        ...DEFAULT_FETCH_OPTIONS,
+        ...getDefaultFetchOptions(),
         next: { revalidate: 86400 },
       });
 
