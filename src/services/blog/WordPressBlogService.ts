@@ -1,5 +1,5 @@
 import { WordPressPost, WordPressCategory, WordPressMedia, FormattedBlogPost } from './WordPressTypes';
-import { getBlogApiUrl } from '@utils/blogUrl';
+import { getBlogApiUrl, rewriteWordPressUrl, rewriteWordPressHtml } from '@utils/blogUrl';
 
 const WORDPRESS_API_BASE = getBlogApiUrl();
 
@@ -295,12 +295,12 @@ export const WordPressBlogService = {
       id: String(post.id),
       title: post.title.rendered,
       description: cleanExcerpt,
-      content: post.content.rendered,
-      img: imageUrl,
+      content: rewriteWordPressHtml(post.content.rendered),
+      img: rewriteWordPressUrl(imageUrl),
       categories: categoryNames,
       year,
       date: post.date,
-      link: post.link,
+      link: rewriteWordPressUrl(post.link),
       author: post.author,
       featured_media: post.featured_media,
     };
