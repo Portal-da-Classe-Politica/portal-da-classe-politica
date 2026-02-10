@@ -60,3 +60,65 @@ export const getBlogPageUrl = (path: string): string => {
   const cleanPath = path.startsWith('/') ? path : `/${path}`;
   return `${blogUrl}${cleanPath}`;
 };
+
+/**
+ * Public blog base URL used for rewriting internal WordPress URLs.
+ * In production, NEXT_PUBLIC_BLOG_URL defaults to '/blog' which is relative;
+ * we need an absolute public URL for rewriting, so we fall back to the
+ * known public hostname.
+ */
+const getPublicBlogBaseUrl = (): string => {
+  const publicUrl = process.env.NEXT_PUBLIC_BLOG_URL;
+  if (publicUrl && publicUrl.startsWith('http')) {
+    return publicUrl;
+  }
+  // Absolute public URL used in production
+  return 'https://redem.c3sl.ufpr.br/blog';
+};
+
+/**
+ * Rewrite internal WordPress URLs (e.g. http(s)://127.0.0.1:8081/...) to the
+ * public blog URL so that images and links work in the browser.
+ *
+ * Handles URLs with or without the /blog prefix, and both http and https.
+ */
+export const rewriteWordPressUrl = (url: string): string => {
+  if (!url) return url;
+
+  const publicBase = getPublicBlogBaseUrl();
+
+  // Match http(s)://127.0.0.1:8081/blog/... → replace with public base
+  // Match http(s)://127.0.0.1:8081/...      → replace with public base
+  // Also match http(s)://localhost:8081/...
+  const internalPatterns = [
+    /^https?:\/\/127\.0\.0\.1:\d+\/blog\//,
+    /^https?:\/\/127\.0\.0\.1:\d+\//,
+    /^https?:\/\/localhost:\d+\/blog\//,
+    /^https?:\/\/localhost:\d+\//,
+  ];
+
+  for (const pattern of internalPatterns) {
+    if (pattern.test(url)) {
+      return url.replace(pattern, `${publicBase}/`);
+    }
+  }
+
+  return url;
+};
+
+/**
+ * Rewrite all internal WordPress URLs found inside an HTML string.
+ * Useful for post content that may embed images/links with the internal address.
+ */
+export const rewriteWordPressHtml = (html: string): string => {
+  if (!html) return html;
+
+  const publicBase = getPublicBlogBaseUrl();
+
+  // Global replace for all occurrences in the HTML
+  return html
+    .replace(/https?:\/\/127\.0\.0\.1:\d+\/blog\//g, `${publicBase}/`)
+    .replace(/https?:\/\/127\.0\.0\.1:\d+\//g, `${publicBase}/`)
+    .replace(/https?:\/\/localhost:\d+\/blog\//g, `${publicBase}/`)
+    .replace(/https?:\/\/localhost:\d+\//g, `${publicBase}/`);
+};
