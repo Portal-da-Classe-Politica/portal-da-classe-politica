@@ -7,6 +7,7 @@ import { Text } from '@base/text';
 import { BoxIcon } from '@components/box/BoxIcon';
 import { CardPost } from '@components/CardPost';
 import { ChipContainer } from '@components/ChipContainer';
+import { getBlogPostUrl } from '@utils/blogUrl';
 import { useEffect, useState } from 'react';
 
 const filterCategoria = ['Cruzamentos', 'Indicadores', 'Perfil dos candidatos', 'Blog e conteúdos especiais'];
@@ -158,7 +159,7 @@ const BlogPost = () => {
                   subTitle={values.description}
                   src={values.img}
                   // Updated to external WordPress blog link
-                  href={`https://redem.c3sl.ufpr.br/blog/?p=${values.id}`}
+                  href={getBlogPostUrl(values.id)}
                   // TODO: Old internal route - discontinued
                   // href={`/news/${values.id}`}
                 />

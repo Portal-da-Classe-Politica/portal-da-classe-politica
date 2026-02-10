@@ -4,6 +4,7 @@ import { Heading, Icon, Text } from '@base';
 import { routes } from '@routes';
 import { WordPressBlogService } from '@services/blog/WordPressBlogService';
 import { FormattedBlogPost } from '@services/blog/WordPressTypes';
+import { getBlogPageUrl } from '@utils/blogUrl';
 // TODO: Old static blog service - discontinued, now using WordPress API
 // import { BlogService } from '@services/blog/BlogService';
 
@@ -35,7 +36,7 @@ export const SpecialContents = async ({ title = 'Conteúdos especiais' }: { titl
         </Heading>
         <Link
           target="_blank"
-          href="https://redem.c3sl.ufpr.br/blog/index.php/publicacoes/"
+          href={getBlogPageUrl('/index.php/publicacoes/')}
           className="text-orange content-end ml-auto flex"
         >
           <Text size={'C1'} className="flex font-bold">

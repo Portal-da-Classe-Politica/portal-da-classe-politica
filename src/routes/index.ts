@@ -25,10 +25,11 @@ export const routes = {
   candidate: (id: string) => `/perfil-candidato/${id}`,
   about: '/sobre',
   // Updated to external WordPress blog
-  blog: 'https://redem.c3sl.ufpr.br/blog',
+  blog: process.env.NEXT_PUBLIC_BLOG_URL || '/blog',
   documentation: '/documentacao',
   // Updated to external WordPress blog post
-  blogPost: (id: string) => `https://redem.c3sl.ufpr.br/blog/?p=${id}`,
+  blogPost: (id: string) => `${process.env.NEXT_PUBLIC_BLOG_URL || '/blog'}/?p=${id}`,
+
   elections2024: '/eleicao-2024',
   support: '/atendimento',
   aboutCrossing: '/sobre-cruzamentos',

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { getBlogPostUrl } from '@utils/blogUrl';
 
 /**
  * Individual Blog Post Page - Redirects to external WordPress blog
@@ -14,7 +15,7 @@ const Page = ({ params }: any) => {
 
   useEffect(() => {
     // Redirect to WordPress blog post
-    window.location.href = `https://redem.c3sl.ufpr.br/blog/?p=${id}`;
+    window.location.href = getBlogPostUrl(id);
   }, [id]);
 
   return (
@@ -24,7 +25,7 @@ const Page = ({ params }: any) => {
           <h1 className="text-2xl font-bold mb-4">Redirecionando para o artigo...</h1>
           <p className="text-gray-600">
             Se não for redirecionado automaticamente,{' '}
-            <a href={`https://redem.c3sl.ufpr.br/blog/?p=${id}`} className="text-orange underline">
+            <a href={getBlogPostUrl(id)} className="text-orange underline">
               clique aqui
             </a>
             .
