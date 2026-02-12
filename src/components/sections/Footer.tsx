@@ -15,7 +15,7 @@ const sections = [
       { text: 'Indices', href: routes.projections },
       { text: 'Perfil dos candidatos', href: routes.candidates },
       { text: 'Sobre o projeto', href: routes.about },
-      { text: 'Blog', href: routes.blog },
+      { text: 'DataDem', href: routes.blog },
       { text: 'Documentação', href: routes.documentation },
     ],
   },
