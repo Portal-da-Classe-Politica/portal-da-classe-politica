@@ -119,14 +119,11 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
             <HeaderTopic label="EQUIPE" href={routes.team} currentPath={pathname} />
           </li>
           <li className={`self-center ${classes} mr-5`}>
-            <HeaderTopic label="BLOG" href={routes.blog} currentPath={pathname} />
-          </li>
-          <li className={`self-center ${classes} mr-5`}>
             <HeaderTopic label="DOCUMENTAÇÃO" href={routes.documentation} currentPath={pathname} />
           </li>
           <li className={`self-center ${classes}`}>
-            <Link target="_self" href={routes.elections2024}>
-              <Button text="ELEIÇÕES 2024" style="fillBlack" />
+            <Link target="_self" href={routes.blog}>
+              <Button text="DataDem" style="fillBlack" />
             </Link>
           </li>
         </ul>
@@ -182,11 +179,8 @@ export const Header = ({ style }: { style?: 'light' | 'dark' }) => {
               <HeaderTopic label="EQUIPE" href={routes.team} currentPath={pathname} />
             </li>
             <li>
-              <HeaderTopic label="BLOG" href={routes.blog} currentPath={pathname} />
-            </li>
-            <li>
-              <Link target="_self" href={routes.elections2024}>
-                <Button text="ELEIÇÕES 2024" style="fillBlack" />
+              <Link target="_self" href={routes.blog}>
+                <Button text="DataDem" style="fillBlack" />
               </Link>
             </li>
           </ul>
