@@ -236,11 +236,6 @@ const Filters = ({ sendGraphData, onParamsChange }: FiltersProps) => {
       return [];
     }
 
-    // Se o ano inicial for menor que 2014, filtra fora a opção de raça
-    if (selectedEarlyYear && selectedEarlyYear < 2014) {
-      return crossCriterias.possibilities.filter(possibility => possibility.parameter !== 'raca_id');
-    }
-
     return crossCriterias.possibilities;
   }
 
